@@ -1,0 +1,1 @@
+../../../LRImageManager/LRImageManager/NSData+LRImageManagerAdditions.h
