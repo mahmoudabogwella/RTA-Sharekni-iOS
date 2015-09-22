@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		04931B211BAAF814000F5434 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04931B201BAAF814000F5434 /* main.m */; };
-		04931B241BAAF814000F5434 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04931B231BAAF814000F5434 /* AppDelegate.m */; };
 		04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04931B251BAAF814000F5434 /* Sharekni.xcdatamodeld */; };
-		04931B2A1BAAF814000F5434 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04931B291BAAF814000F5434 /* ViewController.m */; };
 		04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04931B2B1BAAF814000F5434 /* Main.storyboard */; };
 		04931B2F1BAAF814000F5434 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04931B2E1BAAF814000F5434 /* Images.xcassets */; };
 		04931B321BAAF814000F5434 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04931B301BAAF814000F5434 /* LaunchScreen.xib */; };
 		04931B3E1BAAF815000F5434 /* SharekniTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04931B3D1BAAF815000F5434 /* SharekniTests.m */; };
+		143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6AC1BB14BD2009F6496 /* AppDelegate.m */; };
+		143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */; };
 		F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E520A66E22BABE4DD7235 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -32,11 +32,7 @@
 		04931B1B1BAAF814000F5434 /* Sharekni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sharekni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04931B1F1BAAF814000F5434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04931B201BAAF814000F5434 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		04931B221BAAF814000F5434 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		04931B231BAAF814000F5434 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04931B261BAAF814000F5434 /* Sharekni.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sharekni.xcdatamodel; sourceTree = "<group>"; };
-		04931B281BAAF814000F5434 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		04931B291BAAF814000F5434 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		04931B2C1BAAF814000F5434 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04931B2E1BAAF814000F5434 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04931B311BAAF814000F5434 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -44,6 +40,10 @@
 		04931B3C1BAAF815000F5434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04931B3D1BAAF815000F5434 /* SharekniTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharekniTests.m; sourceTree = "<group>"; };
 		072E520A66E22BABE4DD7235 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		143BE6AB1BB14BD2009F6496 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		143BE6AC1BB14BD2009F6496 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		143BE6B01BB14BE5009F6496 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C699F720BCBF8D46B41E1A56 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,10 +90,7 @@
 		04931B1D1BAAF814000F5434 /* Sharekni */ = {
 			isa = PBXGroup;
 			children = (
-				04931B221BAAF814000F5434 /* AppDelegate.h */,
-				04931B231BAAF814000F5434 /* AppDelegate.m */,
-				04931B281BAAF814000F5434 /* ViewController.h */,
-				04931B291BAAF814000F5434 /* ViewController.m */,
+				143BE6A71BB14BD2009F6496 /* Classes */,
 				04931B2B1BAAF814000F5434 /* Main.storyboard */,
 				04931B2E1BAAF814000F5434 /* Images.xcassets */,
 				04931B301BAAF814000F5434 /* LaunchScreen.xib */,
@@ -127,6 +124,57 @@
 				04931B3C1BAAF815000F5434 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		143BE6A71BB14BD2009F6496 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				143BE6A81BB14BD2009F6496 /* Controllers */,
+				143BE6A91BB14BD2009F6496 /* CustomViews */,
+				143BE6AA1BB14BD2009F6496 /* Delegate */,
+				143BE6AD1BB14BD2009F6496 /* Helper */,
+				143BE6AE1BB14BD2009F6496 /* Views */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		143BE6A81BB14BD2009F6496 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				143BE6B01BB14BE5009F6496 /* WelcomeViewController.h */,
+				143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		143BE6A91BB14BD2009F6496 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		143BE6AA1BB14BD2009F6496 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				143BE6AB1BB14BD2009F6496 /* AppDelegate.h */,
+				143BE6AC1BB14BD2009F6496 /* AppDelegate.m */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		143BE6AD1BB14BD2009F6496 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		143BE6AE1BB14BD2009F6496 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CF95CB2E9D399F32CE70C8F6 /* Pods */ = {
@@ -280,10 +328,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04931B241BAAF814000F5434 /* AppDelegate.m in Sources */,
 				04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */,
-				04931B2A1BAAF814000F5434 /* ViewController.m in Sources */,
+				143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */,
 				04931B211BAAF814000F5434 /* main.m in Sources */,
+				143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
