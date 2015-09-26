@@ -2,3 +2,11 @@
 Sharekni.xcworkspace/xcshareddata/Sharekni.xccheckout
 
 Sharekni.xcworkspace/xcuserdata/mac.xcuserdatad/UserInterfaceState.xcuserstate
+
+*.xcscheme
+
+Pods/Pods.xcodeproj/xcuserdata/Tefa.xcuserdatad/xcschemes/xcschememanagement.plist
+
+Sharekni.xcodeproj/xcuserdata/Tefa.xcuserdatad/xcschemes/xcschememanagement.plist
+
+*.xcuserstate
