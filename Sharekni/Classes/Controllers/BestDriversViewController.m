@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = NO ;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,15 +35,16 @@
     return 5;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (BestDriverCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *driverIdentifier = @"BestDriverCell";
-    UITableViewCell *driverCell = [tableView dequeueReusableCellWithIdentifier:driverIdentifier];
+    BestDriverCell *driverCell = (BestDriverCell*)[tableView dequeueReusableCellWithIdentifier:driverIdentifier];
     if (driverCell == nil) {
-        driverCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:driverIdentifier];
+        driverCell = [[BestDriverCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:driverIdentifier];
         driverCell.contentView.backgroundColor = [UIColor clearColor];
     }
     
+    [driverCell setDriver:@"Ahmed" andCountry:@"Dubai"];
     
     return driverCell ;
 }

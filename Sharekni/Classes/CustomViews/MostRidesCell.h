@@ -10,4 +10,7 @@
 
 @interface MostRidesCell : UITableViewCell
 
+@property (nonatomic ,weak) IBOutlet UILabel *time ;
+@property (nonatomic ,weak) IBOutlet UILabel *location ;
+
 @end

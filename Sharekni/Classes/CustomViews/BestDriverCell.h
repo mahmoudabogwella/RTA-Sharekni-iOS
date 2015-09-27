@@ -17,4 +17,6 @@
 - (IBAction)sendMail:(id)sender ;
 - (IBAction)call:(id)sender ;
 
+- (void)setDriver:(NSString *)name andCountry:(NSString *)country ;
+
 @end
