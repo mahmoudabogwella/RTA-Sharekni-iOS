@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0429B1C31BB9C84400161222 /* NSObject+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 0429B1C21BB9C84400161222 /* NSObject+Blocks.m */; };
+		0429B1C61BB9DC5F00161222 /* HelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0429B1C51BB9DC5F00161222 /* HelpManager.m */; };
 		0489129E1BB92150005E4E02 /* Nationality.m in Sources */ = {isa = PBXBuildFile; fileRef = 0489129D1BB92150005E4E02 /* Nationality.m */; };
 		048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A01BB922A2005E4E02 /* TermsAndCondition.m */; };
 		048912A41BB92458005E4E02 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A31BB92458005E4E02 /* Language.m */; };
@@ -30,15 +32,11 @@
 		143BE6C71BB69327009F6496 /* MostRidesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6C61BB69327009F6496 /* MostRidesCell.m */; };
 		143BE6D01BB6E001009F6496 /* AdvancedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6CF1BB6E001009F6496 /* AdvancedSearchViewController.m */; };
 		143BE6D31BB6E00C009F6496 /* TopRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6D21BB6E00C009F6496 /* TopRidesViewController.m */; };
-
-		143BE6D61BB6E019009F6496 /* MapLookupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6D51BB6E019009F6496 /* MapLookupViewController.m */; };
 		143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6D81BB82363009F6496 /* CALayer+RuntimeAttribute.m */; };
-
 		87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* MobAccountManager.m */; };
 		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
 		87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF811BB8325500E21838 /* BaseAPIManager.m */; };
 		87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF851BB8670C00E21838 /* AgeRange.m */; };
-
 		F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E520A66E22BABE4DD7235 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +51,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0429B1C11BB9C84400161222 /* NSObject+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Blocks.h"; sourceTree = "<group>"; };
+		0429B1C21BB9C84400161222 /* NSObject+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Blocks.m"; sourceTree = "<group>"; };
+		0429B1C41BB9DC5F00161222 /* HelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpManager.h; sourceTree = "<group>"; };
+		0429B1C51BB9DC5F00161222 /* HelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpManager.m; sourceTree = "<group>"; };
 		0489129C1BB92150005E4E02 /* Nationality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nationality.h; sourceTree = "<group>"; };
 		0489129D1BB92150005E4E02 /* Nationality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nationality.m; sourceTree = "<group>"; };
 		0489129F1BB922A2005E4E02 /* TermsAndCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndCondition.h; sourceTree = "<group>"; };
@@ -212,6 +214,10 @@
 				143BE6AA1BB14BD2009F6496 /* Delegate */,
 				143BE6AD1BB14BD2009F6496 /* Helper */,
 				143BE6AE1BB14BD2009F6496 /* Views */,
+				0429B1C11BB9C84400161222 /* NSObject+Blocks.h */,
+				0429B1C21BB9C84400161222 /* NSObject+Blocks.m */,
+				0429B1C41BB9DC5F00161222 /* HelpManager.h */,
+				0429B1C51BB9DC5F00161222 /* HelpManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -461,6 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */,
+				0429B1C31BB9C84400161222 /* NSObject+Blocks.m in Sources */,
 				87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */,
 				143BE6D01BB6E001009F6496 /* AdvancedSearchViewController.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
@@ -475,6 +482,7 @@
 				048912B01BB933B8005E4E02 /* User.m in Sources */,
 				143BE6C11BB68EA5009F6496 /* BestDriversViewController.m in Sources */,
 				048912AA1BB92609005E4E02 /* Emirate.m in Sources */,
+				0429B1C61BB9DC5F00161222 /* HelpManager.m in Sources */,
 				04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */,
 				143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */,
 				143BE6D31BB6E00C009F6496 /* TopRidesViewController.m in Sources */,

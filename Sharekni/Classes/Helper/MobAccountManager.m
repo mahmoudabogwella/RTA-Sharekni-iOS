@@ -8,6 +8,8 @@
 
 #import "MobAccountManager.h"
 #import "Nationality.h"
+#import <Genome.h>
+
 #import "Sharekni.pch"
 
 #define ID_KEY @"id"
@@ -73,11 +75,25 @@
     }];
 }
 
-- (void) checkLoginWithUserName:(NSString *)userName andPassword:(NSString *)password WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
+- (void) checkLoginWithUserName:(NSString *)userName andPassword:(NSString *)password WithSuccess:(void (^)(User *user))success Failure:(void (^)(NSString *error))failure{
     NSDictionary *parameters = @{UserName_KEY:userName,
                                  Password_KEY:password};
     
-    [self.operationManager POST:ChangePassword_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+    [self.operationManager GET:CheckLogin_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        if ([responseString containsString:@"ID"]) {
+            NSError *jsonError;
+            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                             options:NSJSONReadingMutableContainers
+                                                                               error:&jsonError];
+            User *user = [User gm_mappedObjectWithJsonRepresentation:resultDictionary];
+            success(user);
+        }
+        else{
+            success(nil);           
+        }
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         

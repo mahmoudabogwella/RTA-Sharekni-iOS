@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7153DCABCF199C944A0862D2"
+               BlueprintIdentifier = "8A92A580CA33DD84B60DBC5D"
                BuildableName = "libPods-Genome.a"
                BlueprintName = "Pods-Genome"
                ReferencedContainer = "container:Pods.xcodeproj">

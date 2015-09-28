@@ -63,4 +63,7 @@
 #define GetCalculatedRating_URL @"CLS_MobAccount.asmx/GetCalculatedRating"
 
 
+#pragma Colors
+#define Red_HEX @"E30613"
+
 #endif

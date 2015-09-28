@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MasterDataManager.h"
 #import "Sharekni.pch"
+#import "MobAccountManager.h"
 
 
 @interface AppDelegate ()
@@ -20,51 +21,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-
-
     [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
         
     } Failure:^(NSString *error) {
         
     }];
+[[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:@"Tefa" andPassword:@"111111" WithSuccess:^(User *user) {
     
-    [[MasterDataManager sharedMasterDataManager] GetEmiratesWithSuccess:^(NSMutableArray *array) {
+} Failure:^(NSString *error) {
+    
+}];
+    
+    
+    [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:@"Tefa" andPassword:@"1111011" WithSuccess:^(User *user) {
         
     } Failure:^(NSString *error) {
         
     }];
-    [[MasterDataManager sharedMasterDataManager] GetEmployersWithID:@"1" WithSuccess:^(NSMutableArray *array) {
-        
-    } Failure:^(NSString *error) {
-        
-    }];
-    [[MasterDataManager sharedMasterDataManager] GetPrefferedLanguagesWithSuccess:^(NSMutableArray *array) {
-        
-    } Failure:^(NSString *error) {
-        
-    }];
-    [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"0" WithSuccess:^(NSMutableArray *array) {
-        
-    } Failure:^(NSString *error) {
-        
-    }];
-        
-    [[MasterDataManager sharedMasterDataManager] GetRegionsByEmirateID:@"1" withSuccess:^(NSMutableArray *array) {
-        
-    } Failure:^(NSString *error) {
-        
-    }];
-    [[MasterDataManager sharedMasterDataManager] GetRegionsByID:@"1" withSuccess:^(NSMutableArray *array) {
-        
-    } Failure:^(NSString *error) {
-        
-    }];
-    [[MasterDataManager sharedMasterDataManager] GetTermsAndConditionsWithSuccess:^(TermsAndCondition *termsAndCondition) {
-        
-    } Failure:^(NSString *error) {
-        
-    }];
-
+    
     
     [[UINavigationBar appearance] setBarTintColor:RGBA(230, 0, 10, 1)];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];

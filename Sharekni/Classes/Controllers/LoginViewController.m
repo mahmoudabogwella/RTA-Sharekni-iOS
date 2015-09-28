@@ -7,7 +7,11 @@
 //
 
 #import "LoginViewController.h"
-
+#import "MobAccountManager.h"
+#import <KVNProgress.h>
+#import <UIColor+Additions.h>
+#import "Constants.h"
+#import "HelpManager.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 {
     float animatedDistance ;
@@ -26,10 +30,42 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = NO ;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    [self configureUI];
+}
+
+- (void) configureUI{
+    if ([self.usernameTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
+        self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"username" attributes:@{NSForegroundColorAttributeName: color}];
+        self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: color}];
+    } else {
+        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
+        // TODO: Add fall-back code to set placeholder color.
+    }
 }
 
 - (IBAction)loginAction:(id)sender {
-    
+    [self.view endEditing:YES];
+    if(self.usernameTextField.text.length == 0){
+        [[HelpManager sharedHelpManager] showToastWithMessage:@"Please enter username"];
+    }
+    else if (self.passwordTextField.text.length == 0){
+        [[HelpManager sharedHelpManager] showToastWithMessage:@"Please enter password"];
+    }
+    else{
+        [KVNProgress showWithStatus:@"Loading...."];
+        [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:self.usernameTextField.text andPassword:self.passwordTextField.text WithSuccess:^(User *user) {
+            [KVNProgress dismiss];
+            if (user) {
+                
+            }
+            else{
+                
+            }
+        } Failure:^(NSString *error) {
+            [KVNProgress dismiss];
+        }];
+    }
 }
 
 - (IBAction)signupAction:(id)sender {
