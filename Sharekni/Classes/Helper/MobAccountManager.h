@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "SynthesizeSingleton.h"
-@interface AuthenticationManager : NSObject
+#import "BaseAPIManager.h"
+@interface MobAccountManager : BaseAPIManager
 
-+(AuthenticationManager *)sharedAuthenticationManager;
++(MobAccountManager *)sharedMobAccountManager;
 
 @end
