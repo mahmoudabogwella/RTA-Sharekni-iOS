@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0489129E1BB92150005E4E02 /* Nationality.m in Sources */ = {isa = PBXBuildFile; fileRef = 0489129D1BB92150005E4E02 /* Nationality.m */; };
+		048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A01BB922A2005E4E02 /* TermsAndCondition.m */; };
+		048912A41BB92458005E4E02 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A31BB92458005E4E02 /* Language.m */; };
+		048912A71BB92539005E4E02 /* Employer.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A61BB92539005E4E02 /* Employer.m */; };
+		048912AA1BB92609005E4E02 /* Emirate.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A91BB92609005E4E02 /* Emirate.m */; };
+		048912AD1BB926A6005E4E02 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912AC1BB926A6005E4E02 /* Region.m */; };
 		04931B211BAAF814000F5434 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04931B201BAAF814000F5434 /* main.m */; };
 		04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04931B251BAAF814000F5434 /* Sharekni.xcdatamodeld */; };
 		04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04931B2B1BAAF814000F5434 /* Main.storyboard */; };
@@ -41,6 +47,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0489129C1BB92150005E4E02 /* Nationality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nationality.h; sourceTree = "<group>"; };
+		0489129D1BB92150005E4E02 /* Nationality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nationality.m; sourceTree = "<group>"; };
+		0489129F1BB922A2005E4E02 /* TermsAndCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndCondition.h; sourceTree = "<group>"; };
+		048912A01BB922A2005E4E02 /* TermsAndCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsAndCondition.m; sourceTree = "<group>"; };
+		048912A21BB92458005E4E02 /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
+		048912A31BB92458005E4E02 /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Language.m; sourceTree = "<group>"; };
+		048912A51BB92539005E4E02 /* Employer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employer.h; sourceTree = "<group>"; };
+		048912A61BB92539005E4E02 /* Employer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employer.m; sourceTree = "<group>"; };
+		048912A81BB92609005E4E02 /* Emirate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emirate.h; sourceTree = "<group>"; };
+		048912A91BB92609005E4E02 /* Emirate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Emirate.m; sourceTree = "<group>"; };
+		048912AB1BB926A6005E4E02 /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
+		048912AC1BB926A6005E4E02 /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
 		04931B1B1BAAF814000F5434 /* Sharekni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sharekni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04931B1F1BAAF814000F5434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04931B201BAAF814000F5434 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -261,6 +279,18 @@
 			children = (
 				87C1AF841BB8670C00E21838 /* AgeRange.h */,
 				87C1AF851BB8670C00E21838 /* AgeRange.m */,
+				0489129C1BB92150005E4E02 /* Nationality.h */,
+				0489129D1BB92150005E4E02 /* Nationality.m */,
+				0489129F1BB922A2005E4E02 /* TermsAndCondition.h */,
+				048912A01BB922A2005E4E02 /* TermsAndCondition.m */,
+				048912A21BB92458005E4E02 /* Language.h */,
+				048912A31BB92458005E4E02 /* Language.m */,
+				048912A51BB92539005E4E02 /* Employer.h */,
+				048912A61BB92539005E4E02 /* Employer.m */,
+				048912A81BB92609005E4E02 /* Emirate.h */,
+				048912A91BB92609005E4E02 /* Emirate.m */,
+				048912AB1BB926A6005E4E02 /* Region.h */,
+				048912AC1BB926A6005E4E02 /* Region.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -419,11 +449,17 @@
 				87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */,
 				87A1133B1BB6FB370092E870 /* AuthenticationManager.m in Sources */,
 				143BE6D01BB6E001009F6496 /* AdvancedSearchViewController.m in Sources */,
+				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
 				143BE6B51BB56402009F6496 /* RegisterViewController.m in Sources */,
 				143BE6BE1BB68E97009F6496 /* MostRidesViewController.m in Sources */,
+				0489129E1BB92150005E4E02 /* Nationality.m in Sources */,
 				143BE6C71BB69327009F6496 /* MostRidesCell.m in Sources */,
+				048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */,
 				143BE6C41BB68F1D009F6496 /* BestDriverCell.m in Sources */,
+				048912A41BB92458005E4E02 /* Language.m in Sources */,
+				048912A71BB92539005E4E02 /* Employer.m in Sources */,
 				143BE6C11BB68EA5009F6496 /* BestDriversViewController.m in Sources */,
+				048912AA1BB92609005E4E02 /* Emirate.m in Sources */,
 				04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */,
 				143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */,
 				143BE6D31BB6E00C009F6496 /* TopRidesViewController.m in Sources */,

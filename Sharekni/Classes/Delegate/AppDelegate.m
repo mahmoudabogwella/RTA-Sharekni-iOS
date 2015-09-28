@@ -43,7 +43,7 @@
     } Failure:^(NSString *error) {
         
     }];
-    [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"1" WithSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"0" WithSuccess:^(NSMutableArray *array) {
         
     } Failure:^(NSString *error) {
         
@@ -59,7 +59,7 @@
     } Failure:^(NSString *error) {
         
     }];
-    [[MasterDataManager sharedMasterDataManager] GetTermsAndConditionsWithSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] GetTermsAndConditionsWithSuccess:^(TermsAndCondition *termsAndCondition) {
         
     } Failure:^(NSString *error) {
         
