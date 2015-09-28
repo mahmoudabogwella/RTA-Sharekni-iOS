@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "MasterDataManager.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +17,48 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
+        
+    } Failure:^(NSString *error) {
+        
+    }];
+    
+    [[MasterDataManager sharedMasterDataManager] GetEmiratesWithSuccess:^(NSMutableArray *array) {
+        
+    } Failure:^(NSString *error) {
+        
+    }];
+    [[MasterDataManager sharedMasterDataManager] GetEmployersWithID:@"1" WithSuccess:^(NSMutableArray *array) {
+        
+    } Failure:^(NSString *error) {
+        
+    }];
+    [[MasterDataManager sharedMasterDataManager] GetPrefferedLanguagesWithSuccess:^(NSMutableArray *array) {
+        
+    } Failure:^(NSString *error) {
+        
+    }];
+    [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"1" WithSuccess:^(NSMutableArray *array) {
+        
+    } Failure:^(NSString *error) {
+        
+    }];
+        
+    [[MasterDataManager sharedMasterDataManager] GetRegionsByEmirateID:@"1" withSuccess:^(NSMutableArray *array) {
+        
+    } Failure:^(NSString *error) {
+        
+    }];
+    [[MasterDataManager sharedMasterDataManager] GetRegionsByID:@"1" withSuccess:^(NSMutableArray *array) {
+        
+    } Failure:^(NSString *error) {
+        
+    }];
+    [[MasterDataManager sharedMasterDataManager] GetTermsAndConditionsWithSuccess:^(NSMutableArray *array) {
+        
+    } Failure:^(NSString *error) {
+        
+    }];
     return YES;
 }
 

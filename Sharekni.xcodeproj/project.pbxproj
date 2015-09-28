@@ -15,6 +15,10 @@
 		04931B3E1BAAF815000F5434 /* SharekniTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04931B3D1BAAF815000F5434 /* SharekniTests.m */; };
 		143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6AC1BB14BD2009F6496 /* AppDelegate.m */; };
 		143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */; };
+		87A1133B1BB6FB370092E870 /* AuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* AuthenticationManager.m */; };
+		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
+		87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF811BB8325500E21838 /* BaseAPIManager.m */; };
+		87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF851BB8670C00E21838 /* AgeRange.m */; };
 		F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E520A66E22BABE4DD7235 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +50,15 @@
 		143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		87A113391BB6FB370092E870 /* AuthenticationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationManager.h; sourceTree = "<group>"; };
+		87A1133A1BB6FB370092E870 /* AuthenticationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationManager.m; sourceTree = "<group>"; };
+		87A1133C1BB6FD230092E870 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		87C1AF7D1BB831A300E21838 /* MasterDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterDataManager.h; sourceTree = "<group>"; };
+		87C1AF7E1BB831A300E21838 /* MasterDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterDataManager.m; sourceTree = "<group>"; };
+		87C1AF801BB8325500E21838 /* BaseAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAPIManager.h; sourceTree = "<group>"; };
+		87C1AF811BB8325500E21838 /* BaseAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAPIManager.m; sourceTree = "<group>"; };
+		87C1AF841BB8670C00E21838 /* AgeRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgeRange.h; sourceTree = "<group>"; };
+		87C1AF851BB8670C00E21838 /* AgeRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgeRange.m; sourceTree = "<group>"; };
 		C699F720BCBF8D46B41E1A56 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +110,7 @@
 				04931B301BAAF814000F5434 /* LaunchScreen.xib */,
 				04931B251BAAF814000F5434 /* Sharekni.xcdatamodeld */,
 				04931B1E1BAAF814000F5434 /* Supporting Files */,
+				87A1133C1BB6FD230092E870 /* Constants.h */,
 			);
 			path = Sharekni;
 			sourceTree = "<group>";
@@ -130,6 +144,7 @@
 		143BE6A71BB14BD2009F6496 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				87C1AF831BB866DC00E21838 /* Models */,
 				143BE6A81BB14BD2009F6496 /* Controllers */,
 				143BE6A91BB14BD2009F6496 /* CustomViews */,
 				143BE6AA1BB14BD2009F6496 /* Delegate */,
@@ -168,6 +183,12 @@
 			isa = PBXGroup;
 			children = (
 				87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */,
+				87A113391BB6FB370092E870 /* AuthenticationManager.h */,
+				87A1133A1BB6FB370092E870 /* AuthenticationManager.m */,
+				87C1AF7D1BB831A300E21838 /* MasterDataManager.h */,
+				87C1AF7E1BB831A300E21838 /* MasterDataManager.m */,
+				87C1AF801BB8325500E21838 /* BaseAPIManager.h */,
+				87C1AF811BB8325500E21838 /* BaseAPIManager.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -177,6 +198,15 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		87C1AF831BB866DC00E21838 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				87C1AF841BB8670C00E21838 /* AgeRange.h */,
+				87C1AF851BB8670C00E21838 /* AgeRange.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		CF95CB2E9D399F32CE70C8F6 /* Pods */ = {
@@ -330,10 +360,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */,
+				87A1133B1BB6FB370092E870 /* AuthenticationManager.m in Sources */,
 				04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */,
 				143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */,
+				87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */,
 				04931B211BAAF814000F5434 /* main.m in Sources */,
 				143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */,
+				87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
