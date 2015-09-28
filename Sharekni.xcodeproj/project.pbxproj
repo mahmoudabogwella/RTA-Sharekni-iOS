@@ -15,24 +15,18 @@
 		04931B3E1BAAF815000F5434 /* SharekniTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04931B3D1BAAF815000F5434 /* SharekniTests.m */; };
 		143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6AC1BB14BD2009F6496 /* AppDelegate.m */; };
 		143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */; };
-
-		87A1133B1BB6FB370092E870 /* AuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* AuthenticationManager.m */; };
-		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
-		87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF811BB8325500E21838 /* BaseAPIManager.m */; };
-		87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF851BB8670C00E21838 /* AgeRange.m */; };
-
 		143BE6B51BB56402009F6496 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B41BB56402009F6496 /* RegisterViewController.m */; };
 		143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B71BB5640B009F6496 /* LoginViewController.m */; };
 		143BE6BE1BB68E97009F6496 /* MostRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6BD1BB68E97009F6496 /* MostRidesViewController.m */; };
 		143BE6C11BB68EA5009F6496 /* BestDriversViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6C01BB68EA5009F6496 /* BestDriversViewController.m */; };
 		143BE6C41BB68F1D009F6496 /* BestDriverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6C31BB68F1D009F6496 /* BestDriverCell.m */; };
 		143BE6C71BB69327009F6496 /* MostRidesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6C61BB69327009F6496 /* MostRidesCell.m */; };
-		143BE6CA1BB6D997009F6496 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6C91BB6D997009F6496 /* SearchViewController.m */; };
-		143BE6CD1BB6DFF6009F6496 /* QuickSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6CC1BB6DFF6009F6496 /* QuickSearchViewController.m */; };
 		143BE6D01BB6E001009F6496 /* AdvancedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6CF1BB6E001009F6496 /* AdvancedSearchViewController.m */; };
 		143BE6D31BB6E00C009F6496 /* TopRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6D21BB6E00C009F6496 /* TopRidesViewController.m */; };
-		143BE6D61BB6E019009F6496 /* MapLookupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6D51BB6E019009F6496 /* MapLookupViewController.m */; };
-
+		87A1133B1BB6FB370092E870 /* AuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* AuthenticationManager.m */; };
+		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
+		87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF811BB8325500E21838 /* BaseAPIManager.m */; };
+		87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF851BB8670C00E21838 /* AgeRange.m */; };
 		F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E520A66E22BABE4DD7235 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -422,27 +416,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
 				87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */,
 				87A1133B1BB6FB370092E870 /* AuthenticationManager.m in Sources */,
-
 				143BE6D01BB6E001009F6496 /* AdvancedSearchViewController.m in Sources */,
 				143BE6B51BB56402009F6496 /* RegisterViewController.m in Sources */,
 				143BE6BE1BB68E97009F6496 /* MostRidesViewController.m in Sources */,
 				143BE6C71BB69327009F6496 /* MostRidesCell.m in Sources */,
 				143BE6C41BB68F1D009F6496 /* BestDriverCell.m in Sources */,
 				143BE6C11BB68EA5009F6496 /* BestDriversViewController.m in Sources */,
-
 				04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */,
 				143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */,
 				143BE6D31BB6E00C009F6496 /* TopRidesViewController.m in Sources */,
 				143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */,
-
 				87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */,
-				143BE6CD1BB6DFF6009F6496 /* QuickSearchViewController.m in Sources */,
-				143BE6CA1BB6D997009F6496 /* SearchViewController.m in Sources */,
-				143BE6D61BB6E019009F6496 /* MapLookupViewController.m in Sources */,
-
 				04931B211BAAF814000F5434 /* main.m in Sources */,
 				143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */,
 				87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */,
