@@ -1,28 +1,23 @@
 //
-//  WelcomeViewController.m
+//  LoginViewController.m
 //  Sharekni
 //
-//  Created by Ahmed Askar on 9/22/15.
+//  Created by Ahmed Askar on 9/25/15.
 //
 //
 
-#import "WelcomeViewController.h"
+#import "LoginViewController.h"
 
-@interface WelcomeViewController ()
+@interface LoginViewController ()
 
 @end
 
-@implementation WelcomeViewController
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    self.navigationController.navigationBarHidden = NO ;
-
-}
+@implementation LoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = NO ;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 
 }

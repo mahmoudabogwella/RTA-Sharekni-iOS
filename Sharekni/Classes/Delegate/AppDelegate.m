@@ -7,7 +7,12 @@
 //
 
 #import "AppDelegate.h"
+<<<<<<< HEAD
 #import "MasterDataManager.h"
+=======
+#import "Sharekni.pch"
+
+>>>>>>> origin/master
 @interface AppDelegate ()
 
 @end
@@ -17,6 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
     [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
         
     } Failure:^(NSString *error) {
@@ -59,6 +65,11 @@
     } Failure:^(NSString *error) {
         
     }];
+
+    
+    [[UINavigationBar appearance] setBarTintColor:RGBA(230, 0, 10, 1)];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTranslucent:NO];
     return YES;
 }
 

@@ -1,29 +1,23 @@
 //
-//  WelcomeViewController.m
+//  RegisterViewController.m
 //  Sharekni
 //
-//  Created by Ahmed Askar on 9/22/15.
+//  Created by Ahmed Askar on 9/25/15.
 //
 //
 
-#import "WelcomeViewController.h"
+#import "RegisterViewController.h"
 
-@interface WelcomeViewController ()
+@interface RegisterViewController ()
 
 @end
 
-@implementation WelcomeViewController
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    self.navigationController.navigationBarHidden = NO ;
-
-}
+@implementation RegisterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    self.navigationController.navigationBarHidden = NO ;
 
 }
 
