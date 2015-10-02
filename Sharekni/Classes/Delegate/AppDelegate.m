@@ -26,6 +26,7 @@
     } Failure:^(NSString *error) {
         
     }];
+    
 [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:@"Tefa" andPassword:@"111111" WithSuccess:^(User *user) {
     
 } Failure:^(NSString *error) {

@@ -10,7 +10,10 @@
 #import <UIColor+Additions.h>
 #import <CRToast.h>
 #import "Constants.h"
+#import "NSObject+Blocks.h"
+
 @implementation HelpManager
+
 - (void) showToastWithMessage:(NSString *)message{
     NSDictionary *options = @{
                               kCRToastTextKey :message,
@@ -29,7 +32,9 @@
     [CRToastManager showNotificationWithOptions:options
                                 completionBlock:^{
                                     NSLog(@"Completed");
+                                    
                                 }];
 }
+
 SYNTHESIZE_SINGLETON_FOR_CLASS(HelpManager);
 @end
