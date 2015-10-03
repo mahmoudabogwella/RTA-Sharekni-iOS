@@ -67,11 +67,11 @@
     maskLayer.path = maskPath.CGPath;
     self.dropoffTitleLabel  .layer.mask = maskLayer;
     
-    self.selectDateView.layer.cornerRadius = 10;
-    self.selectDateView.layer.masksToBounds = YES;
+    self.dateView.layer.cornerRadius = 10;
+    self.dateView.layer.masksToBounds = YES;
     
-    self.SelectTimeView.layer.cornerRadius = 10;
-    self.SelectTimeView.layer.masksToBounds = YES;
+    self.timeView.layer.cornerRadius = 10;
+    self.timeView.layer.masksToBounds = YES;
     
     self.searchButton.layer.cornerRadius = 8;
     
@@ -92,9 +92,10 @@
     __block AdvancedSearchViewController *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
-        blockSelf.dateFormatter.dateFormat = @"EEE d";
+        blockSelf.dateFormatter.dateFormat = @"EEE";
         NSString *day = [self.dateFormatter stringFromDate:date];
         blockSelf.dayLabel.text = day;
+
         blockSelf.dateFormatter.dateFormat = @"MMM, yyyy";
         NSString * month = [self.dateFormatter stringFromDate:date];
         blockSelf.monthAndYearLabel.text = month;
