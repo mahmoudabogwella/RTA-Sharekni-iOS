@@ -229,9 +229,11 @@
                             </constraint>
                             <constraint firstItem="5eh-wa-b1E" firstAttribute="width" secondItem="IUo-kH-K8R" secondAttribute="width" id="6qR-AA-46q"/>
                             <constraint firstItem="G44-qG-S6H" firstAttribute="leading" secondItem="Ox5-wI-ECU" secondAttribute="leadingMargin" constant="-16" id="8eT-f1-jn9"/>
+                            <constraint firstItem="lUK-lP-XMX" firstAttribute="top" secondItem="IUo-kH-K8R" secondAttribute="bottom" id="CWY-Nt-1N4"/>
                             <constraint firstItem="IUo-kH-K8R" firstAttribute="top" secondItem="G44-qG-S6H" secondAttribute="bottom" constant="3" id="EWi-oG-3Qd"/>
                             <constraint firstItem="5eh-wa-b1E" firstAttribute="top" secondItem="7eh-AN-u5r" secondAttribute="bottom" constant="3" id="JgE-Mp-KBa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5eh-wa-b1E" secondAttribute="trailing" constant="-17" id="NKP-XH-Je3"/>
+                            <constraint firstItem="lUK-lP-XMX" firstAttribute="top" secondItem="5eh-wa-b1E" secondAttribute="bottom" id="OnD-Va-dIl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7eh-AN-u5r" secondAttribute="trailing" constant="-17" id="Ou3-fe-g5q"/>
                             <constraint firstItem="dVV-ky-2kv" firstAttribute="leading" secondItem="Ox5-wI-ECU" secondAttribute="leadingMargin" constant="-16" id="RBx-gZ-l9f"/>
                             <constraint firstItem="G44-qG-S6H" firstAttribute="top" secondItem="dVV-ky-2kv" secondAttribute="bottom" constant="8" id="RCi-03-vrS">
@@ -239,10 +241,8 @@
                             </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="dVV-ky-2kv" secondAttribute="trailing" constant="-16" id="S9M-3N-2Xd"/>
                             <constraint firstItem="5eh-wa-b1E" firstAttribute="leading" secondItem="IUo-kH-K8R" secondAttribute="trailing" constant="3" id="Sdc-Oj-ocP"/>
-                            <constraint firstItem="dVV-ky-2kv" firstAttribute="top" secondItem="akh-cr-b5y" secondAttribute="bottom" id="czZ-ry-o7u"/>
+                            <constraint firstItem="dVV-ky-2kv" firstAttribute="top" secondItem="akh-cr-b5y" secondAttribute="bottom" id="d12-wU-DnL"/>
                             <constraint firstItem="7eh-AN-u5r" firstAttribute="leading" secondItem="G44-qG-S6H" secondAttribute="trailing" constant="3" id="dH5-5y-OKL"/>
-                            <constraint firstItem="lUK-lP-XMX" firstAttribute="top" secondItem="5eh-wa-b1E" secondAttribute="bottom" id="gns-su-H0C"/>
-                            <constraint firstItem="lUK-lP-XMX" firstAttribute="top" secondItem="IUo-kH-K8R" secondAttribute="bottom" id="mgM-vg-7I2"/>
                             <constraint firstItem="G44-qG-S6H" firstAttribute="width" secondItem="7eh-AN-u5r" secondAttribute="width" id="qZO-VO-clT"/>
                             <constraint firstItem="IUo-kH-K8R" firstAttribute="leading" secondItem="Ox5-wI-ECU" secondAttribute="leadingMargin" constant="-16" id="qde-LW-fXw"/>
                         </constraints>
@@ -331,6 +331,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="register:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="deV-bG-3uL"/>
                                     <segue destination="TDW-Na-zcG" kind="show" id="KeL-3I-jQc"/>
                                 </connections>
                             </button>
