@@ -60,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_Genome 1
 #define COCOAPODS_VERSION_PATCH_Genome 0
 
+// HSDatePickerViewController
+#define COCOAPODS_POD_AVAILABLE_HSDatePickerViewController
+#define COCOAPODS_VERSION_MAJOR_HSDatePickerViewController 1
+#define COCOAPODS_VERSION_MINOR_HSDatePickerViewController 0
+#define COCOAPODS_VERSION_PATCH_HSDatePickerViewController 1
+
 // JVFloatLabeledTextField
 #define COCOAPODS_POD_AVAILABLE_JVFloatLabeledTextField
 #define COCOAPODS_VERSION_MAJOR_JVFloatLabeledTextField 1
@@ -83,6 +89,12 @@
 #define COCOAPODS_VERSION_MAJOR_LRImageManager 1
 #define COCOAPODS_VERSION_MINOR_LRImageManager 0
 #define COCOAPODS_VERSION_PATCH_LRImageManager 0
+
+// NSDate+Calendar
+#define COCOAPODS_POD_AVAILABLE_NSDate_Calendar
+#define COCOAPODS_VERSION_MAJOR_NSDate_Calendar 0
+#define COCOAPODS_VERSION_MINOR_NSDate_Calendar 0
+#define COCOAPODS_VERSION_PATCH_NSDate_Calendar 8
 
 // REFormattedNumberField
 #define COCOAPODS_POD_AVAILABLE_REFormattedNumberField
@@ -113,6 +125,24 @@
 #define COCOAPODS_VERSION_MAJOR_REValidation 0
 #define COCOAPODS_VERSION_MINOR_REValidation 1
 #define COCOAPODS_VERSION_PATCH_REValidation 4
+
+// RMActionController
+#define COCOAPODS_POD_AVAILABLE_RMActionController
+#define COCOAPODS_VERSION_MAJOR_RMActionController 1
+#define COCOAPODS_VERSION_MINOR_RMActionController 0
+#define COCOAPODS_VERSION_PATCH_RMActionController 4
+
+// RMDateSelectionViewController
+#define COCOAPODS_POD_AVAILABLE_RMDateSelectionViewController
+#define COCOAPODS_VERSION_MAJOR_RMDateSelectionViewController 2
+#define COCOAPODS_VERSION_MINOR_RMDateSelectionViewController 0
+#define COCOAPODS_VERSION_PATCH_RMDateSelectionViewController 1
+
+// RMPickerViewController
+#define COCOAPODS_POD_AVAILABLE_RMPickerViewController
+#define COCOAPODS_VERSION_MAJOR_RMPickerViewController 2
+#define COCOAPODS_VERSION_MINOR_RMPickerViewController 0
+#define COCOAPODS_VERSION_PATCH_RMPickerViewController 1
 
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability

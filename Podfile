@@ -10,4 +10,7 @@ pod 'pop', '~> 1.0'
 pod 'Genome'
 pod 'REFrostedViewController', '~> 2.4'
 pod 'RESideMenu', '~> 4.0.7'
-pod "AFNetworking", "~> 2.0"
+pod 'HSDatePickerViewController', '~> 1.0'
+pod "RMDateSelectionViewController", "~> 2.0.1"
+pod 'NSDate+Calendar'
+pod "RMPickerViewController", "~> 2.0.1"
