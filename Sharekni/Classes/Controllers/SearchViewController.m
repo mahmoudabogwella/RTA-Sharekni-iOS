@@ -7,7 +7,7 @@
 //
 
 #import "SearchViewController.h"
-
+#import ""
 @interface SearchViewController ()
 
 @end
@@ -17,6 +17,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)quickSearch:(id)sender
+{
+
+}
+
+- (IBAction)advancedSearch:(id)sender
+{
+    
+}
+
+- (IBAction)topRides:(id)sender
+{
+    
+}
+
+- (IBAction)mapLookUp:(id)sender
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {

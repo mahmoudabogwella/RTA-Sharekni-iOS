@@ -7,6 +7,9 @@
 //
 
 #import "WelcomeViewController.h"
+#import "LoginViewController.h"
+#import "RegisterViewController.h"
+#import "SearchViewController.h"
 
 @interface WelcomeViewController ()
 
@@ -24,6 +27,30 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+
+}
+
+- (IBAction)login:(id)sender
+{
+    LoginViewController *loginView = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    [self.navigationController pushViewController:loginView animated:YES];
+}
+
+- (IBAction)Register:(id)sender
+{
+    RegisterViewController *registerView = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+    [self.navigationController pushViewController:registerView animated:YES];
+}
+
+
+- (IBAction)search:(id)sender
+{
+    SearchViewController *searchView = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
+    [self.navigationController pushViewController:searchView animated:YES];
+}
+
+- (IBAction)topRides:(id)sender
+{
 
 }
 
