@@ -34,6 +34,7 @@
 		143BE6D31BB6E00C009F6496 /* TopRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6D21BB6E00C009F6496 /* TopRidesViewController.m */; };
 		143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6D81BB82363009F6496 /* CALayer+RuntimeAttribute.m */; };
 		144869DC1BBECB6800804C26 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 144869DE1BBECB6800804C26 /* Localization.strings */; };
+		144869EC1BC0823600804C26 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869EB1BC0823600804C26 /* LoginViewController.xib */; };
 		87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* MobAccountManager.m */; };
 		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
 		87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF811BB8325500E21838 /* BaseAPIManager.m */; };
@@ -113,6 +114,7 @@
 		143BE6D81BB82363009F6496 /* CALayer+RuntimeAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+RuntimeAttribute.m"; sourceTree = "<group>"; };
 		144869DF1BBECB7300804C26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
 		144869E01BBECB8800804C26 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localization.strings; sourceTree = "<group>"; };
+		144869EB1BC0823600804C26 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		87A113391BB6FB370092E870 /* MobAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobAccountManager.h; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */,
 				143BE6B61BB5640B009F6496 /* LoginViewController.h */,
 				143BE6B71BB5640B009F6496 /* LoginViewController.m */,
+				144869EB1BC0823600804C26 /* LoginViewController.xib */,
 				143BE6B31BB56402009F6496 /* RegisterViewController.h */,
 				143BE6B41BB56402009F6496 /* RegisterViewController.m */,
 				143BE6BC1BB68E97009F6496 /* MostRidesViewController.h */,
@@ -417,6 +420,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				144869EC1BC0823600804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				144869DC1BBECB6800804C26 /* Localization.strings in Resources */,
 				04931B321BAAF814000F5434 /* LaunchScreen.xib in Resources */,
