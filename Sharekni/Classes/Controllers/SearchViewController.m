@@ -8,6 +8,7 @@
 
 #import "SearchViewController.h"
 #import "QuickSearchViewController.h"
+#import "AdvancedSearchViewController.h"
 
 @interface SearchViewController ()
 
@@ -26,8 +27,10 @@
     [self.navigationController pushViewController:quickSearchView animated:YES];
 }
 
-- (IBAction)advancedSearch:(id)sender {
-
+- (IBAction)advancedSearch:(id)sender
+{
+    AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] initWithNibName:@"AdvancedSearchViewController" bundle:nil];
+    [self.navigationController pushViewController:advancedSearchView animated:YES];
 }
 
 - (IBAction)mapLookUp:(id)sender {

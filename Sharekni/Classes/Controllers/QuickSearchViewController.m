@@ -2,7 +2,7 @@
 //  QuickSearchViewController.m
 //  Sharekni
 //
-//  Created by Ahmed Askar on 9/26/15.
+//  Created by Ahmed Askar on 10/4/15.
 //
 //
 
@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
