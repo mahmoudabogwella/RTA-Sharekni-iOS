@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0429B1C31BB9C84400161222 /* NSObject+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 0429B1C21BB9C84400161222 /* NSObject+Blocks.m */; };
 		0429B1C61BB9DC5F00161222 /* HelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0429B1C51BB9DC5F00161222 /* HelpManager.m */; };
+		044ECE901BC0831100AF3E2D /* AdvancedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044ECE8F1BC0831100AF3E2D /* AdvancedSearchViewController.xib */; };
+		044ECE941BC08A6000AF3E2D /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044ECE921BC08A6000AF3E2D /* SearchResultsViewController.m */; };
+		044ECE951BC08A6000AF3E2D /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044ECE931BC08A6000AF3E2D /* SearchResultsViewController.xib */; };
+		044ECE991BC08A8000AF3E2D /* SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044ECE971BC08A8000AF3E2D /* SearchResultCell.m */; };
+		044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044ECE981BC08A8000AF3E2D /* SearchResultCell.xib */; };
 		0489129E1BB92150005E4E02 /* Nationality.m in Sources */ = {isa = PBXBuildFile; fileRef = 0489129D1BB92150005E4E02 /* Nationality.m */; };
 		048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A01BB922A2005E4E02 /* TermsAndCondition.m */; };
 		048912A41BB92458005E4E02 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A31BB92458005E4E02 /* Language.m */; };
@@ -57,6 +62,13 @@
 		0429B1C21BB9C84400161222 /* NSObject+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Blocks.m"; sourceTree = "<group>"; };
 		0429B1C41BB9DC5F00161222 /* HelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpManager.h; sourceTree = "<group>"; };
 		0429B1C51BB9DC5F00161222 /* HelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpManager.m; sourceTree = "<group>"; };
+		044ECE8F1BC0831100AF3E2D /* AdvancedSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedSearchViewController.xib; sourceTree = "<group>"; };
+		044ECE911BC08A6000AF3E2D /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
+		044ECE921BC08A6000AF3E2D /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
+		044ECE931BC08A6000AF3E2D /* SearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
+		044ECE961BC08A8000AF3E2D /* SearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultCell.h; sourceTree = "<group>"; };
+		044ECE971BC08A8000AF3E2D /* SearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultCell.m; sourceTree = "<group>"; };
+		044ECE981BC08A8000AF3E2D /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		0489129C1BB92150005E4E02 /* Nationality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nationality.h; sourceTree = "<group>"; };
 		0489129D1BB92150005E4E02 /* Nationality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nationality.m; sourceTree = "<group>"; };
 		0489129F1BB922A2005E4E02 /* TermsAndCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndCondition.h; sourceTree = "<group>"; };
@@ -251,6 +263,13 @@
 				143BE6D21BB6E00C009F6496 /* TopRidesViewController.m */,
 				143BE6D41BB6E019009F6496 /* MapLookupViewController.h */,
 				143BE6D51BB6E019009F6496 /* MapLookupViewController.m */,
+				044ECE8F1BC0831100AF3E2D /* AdvancedSearchViewController.xib */,
+				044ECE911BC08A6000AF3E2D /* SearchResultsViewController.h */,
+				044ECE921BC08A6000AF3E2D /* SearchResultsViewController.m */,
+				044ECE931BC08A6000AF3E2D /* SearchResultsViewController.xib */,
+				044ECE961BC08A8000AF3E2D /* SearchResultCell.h */,
+				044ECE971BC08A8000AF3E2D /* SearchResultCell.m */,
+				044ECE981BC08A8000AF3E2D /* SearchResultCell.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -420,8 +439,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044ECE951BC08A6000AF3E2D /* SearchResultsViewController.xib in Resources */,
 				144869EC1BC0823600804C26 /* LoginViewController.xib in Resources */,
+				044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
+				044ECE901BC0831100AF3E2D /* AdvancedSearchViewController.xib in Resources */,
 				144869DC1BBECB6800804C26 /* Localization.strings in Resources */,
 				04931B321BAAF814000F5434 /* LaunchScreen.xib in Resources */,
 				04931B2F1BAAF814000F5434 /* Images.xcassets in Resources */,
@@ -484,6 +506,7 @@
 				143BE6BE1BB68E97009F6496 /* MostRidesViewController.m in Sources */,
 				0489129E1BB92150005E4E02 /* Nationality.m in Sources */,
 				143BE6C71BB69327009F6496 /* MostRidesCell.m in Sources */,
+				044ECE941BC08A6000AF3E2D /* SearchResultsViewController.m in Sources */,
 				048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */,
 				143BE6C41BB68F1D009F6496 /* BestDriverCell.m in Sources */,
 				048912A41BB92458005E4E02 /* Language.m in Sources */,
@@ -500,6 +523,7 @@
 				87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */,
 				04931B211BAAF814000F5434 /* main.m in Sources */,
 				143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */,
+				044ECE991BC08A8000AF3E2D /* SearchResultCell.m in Sources */,
 				87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

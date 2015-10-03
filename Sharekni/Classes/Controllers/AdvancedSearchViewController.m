@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *startPointTextField;
 @property (weak, nonatomic) IBOutlet UITextField *destinationTextFiled;
 @property (weak, nonatomic) IBOutlet UIView *timeView;
+@property (weak, nonatomic) IBOutlet UILabel *dayNumberLabel;
 @property (weak, nonatomic) IBOutlet UIView *dateView;
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthAndYearLabel;
@@ -26,8 +27,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UILabel *pickupTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dropoffTitleLabel;
-@property (weak, nonatomic) IBOutlet UIView *SelectTimeView;
-@property (weak, nonatomic) IBOutlet UIView *selectDateView;
 @property (strong, nonatomic)  NSDateFormatter *dateFormatter;
 
 @end
