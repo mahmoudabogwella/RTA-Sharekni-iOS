@@ -28,12 +28,8 @@
     [self.navigationController pushViewController:quickSearchView animated:YES];
 }
 
-<<<<<<< Updated upstream
-- (IBAction)advancedSearch:(id)sender
-{
-=======
+
 - (IBAction)advancedSearch:(id)sender {
->>>>>>> Stashed changes
     AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] initWithNibName:@"AdvancedSearchViewController" bundle:nil];
     [self.navigationController pushViewController:advancedSearchView animated:YES];
 }
