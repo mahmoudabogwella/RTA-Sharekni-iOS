@@ -95,7 +95,11 @@
         blockSelf.dateFormatter.dateFormat = @"EEE";
         NSString *day = [self.dateFormatter stringFromDate:date];
         blockSelf.dayLabel.text = day;
-
+        
+        blockSelf.dateFormatter.dateFormat = @"dd";
+        NSString *dayNumber = [self.dateFormatter stringFromDate:date];
+        blockSelf.dayNumberLabel.text = dayNumber;
+        
         blockSelf.dateFormatter.dateFormat = @"MMM, yyyy";
         NSString * month = [self.dateFormatter stringFromDate:date];
         blockSelf.monthAndYearLabel.text = month;
