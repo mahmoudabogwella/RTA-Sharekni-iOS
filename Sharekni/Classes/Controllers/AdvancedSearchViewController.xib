@@ -18,9 +18,15 @@
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYF-3J-BAo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7zM-bg-m7L">
-                                <rect key="frame" x="28" y="410" width="272" height="48"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4vo-Ki-F56">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Female only" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTB-2b-arx">
+                                <rect key="frame" x="96" y="428" width="122" height="21"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select start point" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r7d-ls-lsA">
                                 <rect key="frame" x="109" y="8" width="191" height="30"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
@@ -57,15 +63,15 @@
                                                 <color key="textColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mar , 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ch-TB-x7h">
-                                                <rect key="frame" x="52" y="32" width="68" height="21"/>
-                                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
-                                                <color key="textColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tuesday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ6-tQ-elY">
                                                 <rect key="frame" x="51" y="10" width="68" height="21"/>
                                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                                <color key="textColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mar , 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ch-TB-x7h">
+                                                <rect key="frame" x="51" y="34" width="68" height="21"/>
+                                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -105,9 +111,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Zz-hX-IOJ">
-                                <rect key="frame" x="28" y="207" width="272" height="48"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Optional" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBr-Vb-CtJ">
                                 <rect key="frame" x="28" y="263" width="142" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -120,11 +123,6 @@
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Preferred Nationality" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UO3-Fd-DMS">
                                 <rect key="frame" x="28" y="296" width="272" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Preferred Language" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ndz-gl-deh">
-                                <rect key="frame" x="28" y="334" width="272" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -150,9 +148,35 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rd8-HB-pC2">
                                 <rect key="frame" x="267" y="374" width="25" height="25"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4vo-Ki-F56">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X1W-tQ-RBn">
+                                <rect key="frame" x="28" y="206" width="272" height="37"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="select_Left" translatesAutoresizingMaskIntoConstraints="NO" id="tNn-Ce-fVy">
+                                        <rect key="frame" x="106" y="0.0" width="60" height="38"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Periodic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLx-zj-5z0">
+                                        <rect key="frame" x="186" y="8" width="78" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Single Ride" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGq-jC-ZBv">
+                                        <rect key="frame" x="8" y="8" width="90" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="select_Left" translatesAutoresizingMaskIntoConstraints="NO" id="17g-40-B5y">
+                                <rect key="frame" x="28" y="420" width="60" height="38"/>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Preferred Language" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ndz-gl-deh">
+                                <rect key="frame" x="28" y="334" width="272" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                     </scrollView>
                 </subviews>
@@ -168,16 +192,25 @@
                 <outlet property="dayNumberLabel" destination="5Ek-TJ-07V" id="NNU-Id-1Ex"/>
                 <outlet property="destinationTextFiled" destination="Mzl-64-XnG" id="DI2-zt-1Jg"/>
                 <outlet property="dropoffTitleLabel" destination="BvA-aW-tS5" id="vks-M8-Red"/>
+                <outlet property="genderLabel" destination="zTB-2b-arx" id="f2s-Cg-fH9"/>
+                <outlet property="genderSwitchImage" destination="17g-40-B5y" id="ZDh-nx-rcw"/>
                 <outlet property="langageTextField" destination="ndz-gl-deh" id="5HU-ej-ajA"/>
                 <outlet property="monthAndYearLabel" destination="3ch-TB-x7h" id="u4v-J5-bpe"/>
                 <outlet property="nationalityTextField" destination="UO3-Fd-DMS" id="6bK-a8-5mN"/>
+                <outlet property="periodicLabel" destination="BLx-zj-5z0" id="ba3-qF-gfd"/>
                 <outlet property="pickupTitleLabel" destination="6oL-JH-AZ0" id="ugJ-fK-Hjq"/>
                 <outlet property="searchButton" destination="5z2-Xt-Qoq" id="62L-V4-MxD"/>
+                <outlet property="singleRideLabel" destination="PGq-jC-ZBv" id="9zC-6k-l1P"/>
                 <outlet property="startPointTextField" destination="r7d-ls-lsA" id="J8v-O4-M52"/>
                 <outlet property="timeLabel" destination="QNc-AZ-KtL" id="DMN-ht-vK7"/>
                 <outlet property="timeView" destination="7lq-7F-eeg" id="mxR-bJ-RM5"/>
+                <outlet property="typeSwitchImage" destination="tNn-Ce-fVy" id="FHP-dC-rro"/>
+                <outlet property="typeView" destination="X1W-tQ-RBn" id="sYP-Uc-SC7"/>
             </connections>
             <point key="canvasLocation" x="240" y="210"/>
         </viewController>
     </objects>
+    <resources>
+        <image name="select_Left" width="108" height="59"/>
+    </resources>
 </document>

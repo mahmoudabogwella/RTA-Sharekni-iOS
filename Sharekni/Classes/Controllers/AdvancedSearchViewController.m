@@ -12,6 +12,13 @@
 #import <RMDateSelectionViewController.h>
 #import <NSDate+Components.h>
 #import <NSDate+Time.h>
+#import <UIColor+Additions.h>
+#import "Constants.h"
+typedef enum RoadType : NSUInteger {
+    PeriodicType,
+    SingleRideType
+} RoadType;
+
 @interface AdvancedSearchViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *startPointTextField;
 @property (weak, nonatomic) IBOutlet UITextField *destinationTextFiled;
@@ -22,12 +29,20 @@
 @property (weak, nonatomic) IBOutlet UILabel *monthAndYearLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UITextField *nationalityTextField;
+@property (weak, nonatomic) IBOutlet UIView *typeView;
 @property (weak, nonatomic) IBOutlet UITextField *langageTextField;
 @property (weak, nonatomic) IBOutlet UITextField *ageRangeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UILabel *pickupTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dropoffTitleLabel;
 @property (strong, nonatomic)  NSDateFormatter *dateFormatter;
+@property (weak, nonatomic) IBOutlet UIImageView *typeSwitchImage;
+@property (weak, nonatomic) IBOutlet UIImageView *genderSwitchImage;
+@property (weak, nonatomic) IBOutlet UILabel *genderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *periodicLabel;
+@property (weak, nonatomic) IBOutlet UILabel *singleRideLabel;
+@property (assign, nonatomic)  RoadType selectedType;
+@property (assign, nonatomic)  BOOL isFemaleOnly;
 
 @end
 
@@ -42,6 +57,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.selectedType = SingleRideType;
+    self.isFemaleOnly = false;
+    [self configureRoadTypeView];
     [self configureUI];
 }
 
@@ -80,6 +98,20 @@
     
     UITapGestureRecognizer *TimeTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
     [self.dateView addGestureRecognizer:TimeTapGestureRecognizer];
+    
+    UITapGestureRecognizer *typeGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(typeChangedHandler)];
+    self.typeView.userInteractionEnabled = YES;
+    [self.typeView addGestureRecognizer:typeGestureRecognizer];
+}
+
+- (void) typeChangedHandler{
+    if (self.selectedType == SingleRideType) {
+        self.selectedType = PeriodicType;
+    }
+    else{
+        self.selectedType = SingleRideType;
+    }
+    [self configureRoadTypeView];
 }
 
 - (IBAction)searchAction:(id)sender {
@@ -176,4 +208,26 @@
     return YES;
 }
 
+- (void) configureRoadTypeView{
+    switch (self.selectedType) {
+        case SingleRideType:
+            self.singleRideLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
+            self.periodicLabel.textColor = [UIColor darkGrayColor];
+            self.typeSwitchImage.image = [UIImage imageNamed:@"select_Left"];
+            break;
+        case PeriodicType:
+            self.periodicLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
+            self.singleRideLabel.textColor = [UIColor darkGrayColor];
+            self.typeSwitchImage.image = [UIImage imageNamed:@"select_right"];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void) configureGenderView{
+    if (self.isFemaleOnly) {
+        self.genderSwitchImage.image = [UIImage imageNamed:@"select_right"];
+    }
+}
 @end
