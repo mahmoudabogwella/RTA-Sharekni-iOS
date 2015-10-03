@@ -33,6 +33,7 @@
 		143BE6D01BB6E001009F6496 /* AdvancedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6CF1BB6E001009F6496 /* AdvancedSearchViewController.m */; };
 		143BE6D31BB6E00C009F6496 /* TopRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6D21BB6E00C009F6496 /* TopRidesViewController.m */; };
 		143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6D81BB82363009F6496 /* CALayer+RuntimeAttribute.m */; };
+		144869DC1BBECB6800804C26 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 144869DE1BBECB6800804C26 /* Localization.strings */; };
 		87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* MobAccountManager.m */; };
 		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
 		87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF811BB8325500E21838 /* BaseAPIManager.m */; };
@@ -89,7 +90,6 @@
 		143BE6B61BB5640B009F6496 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		143BE6B71BB5640B009F6496 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		143BE6B91BB5779E009F6496 /* Sharekni.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sharekni.pch; sourceTree = "<group>"; };
-		143BE6BA1BB578BE009F6496 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		143BE6BB1BB578BE009F6496 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		143BE6BC1BB68E97009F6496 /* MostRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostRidesViewController.h; sourceTree = "<group>"; };
 		143BE6BD1BB68E97009F6496 /* MostRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostRidesViewController.m; sourceTree = "<group>"; };
@@ -111,6 +111,8 @@
 		143BE6D51BB6E019009F6496 /* MapLookupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLookupViewController.m; sourceTree = "<group>"; };
 		143BE6D71BB82363009F6496 /* CALayer+RuntimeAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+RuntimeAttribute.h"; sourceTree = "<group>"; };
 		143BE6D81BB82363009F6496 /* CALayer+RuntimeAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+RuntimeAttribute.m"; sourceTree = "<group>"; };
+		144869DF1BBECB7300804C26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
+		144869E01BBECB8800804C26 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localization.strings; sourceTree = "<group>"; };
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		87A113391BB6FB370092E870 /* MobAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobAccountManager.h; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				04931B1F1BAAF814000F5434 /* Info.plist */,
 				04931B201BAAF814000F5434 /* main.m */,
 				143BE6B91BB5779E009F6496 /* Sharekni.pch */,
+				144869DE1BBECB6800804C26 /* Localization.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 04931B121BAAF814000F5434;
 			productRefGroup = 04931B1C1BAAF814000F5434 /* Products */;
@@ -414,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
+				144869DC1BBECB6800804C26 /* Localization.strings in Resources */,
 				04931B321BAAF814000F5434 /* LaunchScreen.xib in Resources */,
 				04931B2F1BAAF814000F5434 /* Images.xcassets in Resources */,
 			);
@@ -518,7 +523,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				04931B2C1BAAF814000F5434 /* Base */,
-				143BE6BA1BB578BE009F6496 /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -530,6 +534,15 @@
 				143BE6BB1BB578BE009F6496 /* ar */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		144869DE1BBECB6800804C26 /* Localization.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				144869DF1BBECB7300804C26 /* en */,
+				144869E01BBECB8800804C26 /* ar */,
+			);
+			name = Localization.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

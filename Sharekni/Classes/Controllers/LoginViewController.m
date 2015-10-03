@@ -28,16 +28,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setHighlighted:NO];
+    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    
     self.navigationController.navigationBarHidden = NO ;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     [self configureUI];
 }
 
+- (void)popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void) configureUI{
     if ([self.usernameTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"username" attributes:@{NSForegroundColorAttributeName: color}];
-        self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: color}];
+        self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"username",nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"password", nil) attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
@@ -47,12 +59,16 @@
 - (IBAction)loginAction:(id)sender {
     [self.view endEditing:YES];
     if(self.usernameTextField.text.length == 0){
-        [[HelpManager sharedHelpManager] showToastWithMessage:@"Please enter username"];
+    
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"nameReq",nil)];
+    
     }
-    else if (self.passwordTextField.text.length == 0){
-        [[HelpManager sharedHelpManager] showToastWithMessage:@"Please enter password"];
+    else if (self.passwordTextField.text.length == 0)
+    {
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"passReq", nil)];
     }
-    else{
+    else
+    {
         [KVNProgress showWithStatus:@"Loading...."];
         [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:self.usernameTextField.text andPassword:self.passwordTextField.text WithSuccess:^(User *user) {
             [KVNProgress dismiss];
