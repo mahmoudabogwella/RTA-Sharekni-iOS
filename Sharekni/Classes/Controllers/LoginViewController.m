@@ -22,8 +22,7 @@
 @end
 
 @implementation LoginViewController
-- (IBAction)forgotPasswordAction:(id)sender {
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -86,6 +85,10 @@
 
 - (IBAction)signupAction:(id)sender {
     
+}
+
+- (IBAction)forgotPasswordAction:(id)sender {
+
 }
 
 #pragma TextFieldDelegate
