@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mI9-uV-K0N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mI9-uV-K0N">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -160,101 +160,6 @@
             </objects>
             <point key="canvasLocation" x="396.5" y="-587.625"/>
         </scene>
-        <!--Search View Controller-->
-        <scene sceneID="EBx-c4-jqf">
-            <objects>
-                <viewController id="326-rf-dRi" customClass="SearchViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="akh-cr-b5y"/>
-                        <viewControllerLayoutGuide type="bottom" id="lUK-lP-XMX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ox5-wI-ECU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dVV-ky-2kv">
-                                <rect key="frame" x="0.0" y="64" width="320" height="313"/>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="64" width="667" height="428"/>
-                                </variation>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G44-qG-S6H">
-                                <rect key="frame" x="0.0" y="385" width="159" height="90"/>
-                                <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="S4E-g1-lCF"/>
-                                </constraints>
-                                <state key="normal" title="Quick search">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="9ud-Ov-gcf" kind="show" id="TL8-kT-E2c"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUo-kH-K8R">
-                                <rect key="frame" x="0.0" y="478" width="159" height="90"/>
-                                <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="ZlQ-Tn-N9c"/>
-                                </constraints>
-                                <state key="normal" title="Map look up">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7eh-AN-u5r">
-                                <rect key="frame" x="162" y="385" width="159" height="90"/>
-                                <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="Mdh-MP-lm8"/>
-                                </constraints>
-                                <state key="normal" title="Advanced search">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eh-wa-b1E">
-                                <rect key="frame" x="162" y="478" width="159" height="90"/>
-                                <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="fCm-Tz-VAQ"/>
-                                </constraints>
-                                <state key="normal" title="Top rides sdsdsd">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="7eh-AN-u5r" firstAttribute="top" secondItem="dVV-ky-2kv" secondAttribute="bottom" constant="8" id="1i7-NI-Ays">
-                                <variation key="heightClass=regular" constant="5"/>
-                            </constraint>
-                            <constraint firstItem="5eh-wa-b1E" firstAttribute="width" secondItem="IUo-kH-K8R" secondAttribute="width" id="6qR-AA-46q"/>
-                            <constraint firstItem="G44-qG-S6H" firstAttribute="leading" secondItem="Ox5-wI-ECU" secondAttribute="leadingMargin" constant="-16" id="8eT-f1-jn9"/>
-                            <constraint firstItem="lUK-lP-XMX" firstAttribute="top" secondItem="IUo-kH-K8R" secondAttribute="bottom" id="CWY-Nt-1N4"/>
-                            <constraint firstItem="IUo-kH-K8R" firstAttribute="top" secondItem="G44-qG-S6H" secondAttribute="bottom" constant="3" id="EWi-oG-3Qd"/>
-                            <constraint firstItem="5eh-wa-b1E" firstAttribute="top" secondItem="7eh-AN-u5r" secondAttribute="bottom" constant="3" id="JgE-Mp-KBa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5eh-wa-b1E" secondAttribute="trailing" constant="-17" id="NKP-XH-Je3"/>
-                            <constraint firstItem="lUK-lP-XMX" firstAttribute="top" secondItem="5eh-wa-b1E" secondAttribute="bottom" id="OnD-Va-dIl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7eh-AN-u5r" secondAttribute="trailing" constant="-17" id="Ou3-fe-g5q"/>
-                            <constraint firstItem="dVV-ky-2kv" firstAttribute="leading" secondItem="Ox5-wI-ECU" secondAttribute="leadingMargin" constant="-16" id="RBx-gZ-l9f"/>
-                            <constraint firstItem="G44-qG-S6H" firstAttribute="top" secondItem="dVV-ky-2kv" secondAttribute="bottom" constant="8" id="RCi-03-vrS">
-                                <variation key="heightClass=regular" constant="5"/>
-                            </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="dVV-ky-2kv" secondAttribute="trailing" constant="-16" id="S9M-3N-2Xd"/>
-                            <constraint firstItem="5eh-wa-b1E" firstAttribute="leading" secondItem="IUo-kH-K8R" secondAttribute="trailing" constant="3" id="Sdc-Oj-ocP"/>
-                            <constraint firstItem="dVV-ky-2kv" firstAttribute="top" secondItem="akh-cr-b5y" secondAttribute="bottom" id="d12-wU-DnL"/>
-                            <constraint firstItem="7eh-AN-u5r" firstAttribute="leading" secondItem="G44-qG-S6H" secondAttribute="trailing" constant="3" id="dH5-5y-OKL"/>
-                            <constraint firstItem="G44-qG-S6H" firstAttribute="width" secondItem="7eh-AN-u5r" secondAttribute="width" id="qZO-VO-clT"/>
-                            <constraint firstItem="IUo-kH-K8R" firstAttribute="leading" secondItem="Ox5-wI-ECU" secondAttribute="leadingMargin" constant="-16" id="qde-LW-fXw"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="1th-qK-EGu"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Du2-zP-5B0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="889.875" y="-354.375"/>
-        </scene>
         <!--Welcome View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -365,9 +270,6 @@
                                 <state key="normal" backgroundImage="Search">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="326-rf-dRi" kind="show" id="W9m-Jr-KO6"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -511,7 +413,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVx-ZN-RMu">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVx-ZN-RMu">
                                                     <rect key="frame" x="86" y="48" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

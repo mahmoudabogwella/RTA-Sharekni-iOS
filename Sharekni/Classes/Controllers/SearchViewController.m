@@ -2,11 +2,12 @@
 //  SearchViewController.m
 //  Sharekni
 //
-//  Created by Ahmed Askar on 9/26/15.
+//  Created by Ahmed Askar on 10/4/15.
 //
 //
 
 #import "SearchViewController.h"
+#import "QuickSearchViewController.h"
 
 @interface SearchViewController ()
 
@@ -21,22 +22,19 @@
 
 - (IBAction)quickSearch:(id)sender
 {
+    QuickSearchViewController *quickSearchView = [[QuickSearchViewController alloc] initWithNibName:@"QuickSearchViewController" bundle:nil];
+    [self.navigationController pushViewController:quickSearchView animated:YES];
+}
+
+- (IBAction)advancedSearch:(id)sender {
 
 }
 
-- (IBAction)advancedSearch:(id)sender
-{
-    
+- (IBAction)mapLookUp:(id)sender {
+
 }
 
-- (IBAction)topRides:(id)sender
-{
-    
-}
-
-- (IBAction)mapLookUp:(id)sender
-{
-    
+- (IBAction)topRides:(id)sender {
 }
 
 - (void)didReceiveMemoryWarning {
