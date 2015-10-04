@@ -13,6 +13,7 @@
 @interface MasterDataManager : BaseAPIManager
 
 +(MasterDataManager *) sharedMasterDataManager;
+
 - (void) GetAgeRangesWithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure;
 - (void) GetNationalitiesByID:(NSString *)ID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure;
 - (void) GetTermsAndConditionsWithSuccess:(void (^)(TermsAndCondition *termsAndCondition))success Failure:(void (^)(NSString *error))failure;

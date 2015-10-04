@@ -19,103 +19,146 @@
 #define id_KEY @"id"
 
 @interface MasterDataManager ()
-
+@property (strong,nonatomic) NSArray *nationalties;
+@property (strong,nonatomic) NSArray *languages;
+@property (strong,nonatomic) NSArray *ageRanges;
+@property (strong,nonatomic) TermsAndCondition *termsAndCondition;
 @end
 
 @implementation MasterDataManager
 
 - (instancetype)init{
     if (self = [super init]) {
-        
+
     }
     return self;
 }
 
 - (void) GetAgeRangesWithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    [self.operationManager GET:GetAgeRanges_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-        NSLog(@"%@",responseObject);
-        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        responseString = [self jsonStringFromResponse:responseString];
-        NSError *jsonError;
-        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:&jsonError];
-        NSMutableArray *ageRanges = [NSMutableArray array];
-        for (NSDictionary *dictionary in resultDictionaries) {
-            AgeRange *range= [AgeRange gm_mappedObjectWithJsonRepresentation:dictionary];
-            [ageRanges addObject:range];
-        }
-        success(ageRanges);
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"Error %@",error.description);
-        failure(error.description);
-    }];
+    if (self.ageRanges) {
+        success([self.ageRanges mutableCopy]);
+    }
+    else{
+        __block MasterDataManager *blockSelf = self;
+        [self.operationManager GET:GetAgeRanges_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+            NSLog(@"%@",responseObject);
+            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            responseString = [self jsonStringFromResponse:responseString];
+            NSError *jsonError;
+            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                          options:NSJSONReadingMutableContainers
+                                                                            error:&jsonError];
+            NSMutableArray *ageRanges = [NSMutableArray array];
+            for (NSDictionary *dictionary in resultDictionaries) {
+                AgeRange *range= [AgeRange gm_mappedObjectWithJsonRepresentation:dictionary];
+                [ageRanges addObject:range];
+            }
+            blockSelf.ageRanges = ageRanges;
+            if (success) {
+                success(ageRanges);
+            }
+        } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+            NSLog(@"Error %@",error.description);
+            failure(error.description);
+        }];
+    }
 }
 
 - (void) GetNationalitiesByID:(NSString *)ID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    NSDictionary *parameters = @{id_KEY:ID};
-    [self.operationManager GET:GetNationalities_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+    if (self.nationalties) {
+        success([self.nationalties mutableCopy]);
+    }
+    else{
+        __block MasterDataManager *blockSelf = self;
+        NSDictionary *parameters = @{id_KEY:ID};
+        [self.operationManager GET:GetNationalities_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+            
+            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            responseString = [self jsonStringFromResponse:responseString];
+            NSError *jsonError;
+            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                          options:NSJSONReadingMutableContainers
+                                                                            error:&jsonError];
+            NSMutableArray *nationalities = [NSMutableArray array];
+            for (NSDictionary *dictionary in resultDictionaries) {
+                Nationality *nationality= [Nationality gm_mappedObjectWithJsonRepresentation:dictionary];
+                [nationalities addObject:nationality];
+            }
+            blockSelf.nationalties = nationalities;
+            if (success) {
+                success(nationalities);
+            }
 
-        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        responseString = [self jsonStringFromResponse:responseString];
-        NSError *jsonError;
-        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                      options:NSJSONReadingMutableContainers
-                                                                        error:&jsonError];
-        NSMutableArray *nationalities = [NSMutableArray array];
-        for (NSDictionary *dictionary in resultDictionaries) {
-            Nationality *nationality= [Nationality gm_mappedObjectWithJsonRepresentation:dictionary];
-            [nationalities addObject:nationality];
-        }
-        success(nationalities);
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"Error %@",error.description);
-        failure(error.description);
-    }];
+        } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+            NSLog(@"Error %@",error.description);
+            failure(error.description);
+        }];
+    }
 }
 
 - (void) GetTermsAndConditionsWithSuccess:(void (^) (TermsAndCondition *termsAndCondition))success Failure:(void (^)(NSString *error))failure{
-    [self.operationManager GET:GetTermsAndConditions_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-        NSLog(@"%@",responseObject);
-        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        responseString = [self jsonStringFromResponse:responseString];
-        NSError *jsonError;
-        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                      options:NSJSONReadingMutableContainers
-                                                                        error:&jsonError];
-       
-        TermsAndCondition *termsAndCondition = [TermsAndCondition gm_mappedObjectWithJsonRepresentation:resultDictionary];
-        success(termsAndCondition);
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"Error %@",error.description);
-        failure(error.description);
-    }];
+    if (self.termsAndCondition) {
+        success(self.termsAndCondition);
+    }
+    else{
+        __block MasterDataManager *blockSelf = self;
+        [self.operationManager GET:GetTermsAndConditions_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+            NSLog(@"%@",responseObject);
+            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            responseString = [self jsonStringFromResponse:responseString];
+            NSError *jsonError;
+            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                             options:NSJSONReadingMutableContainers
+                                                                               error:&jsonError];
+            
+            TermsAndCondition *termsAndCondition = [TermsAndCondition gm_mappedObjectWithJsonRepresentation:resultDictionary];
+            blockSelf.termsAndCondition = termsAndCondition;
+            if (success) {
+                success(termsAndCondition);
+            }
+        } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+            NSLog(@"Error %@",error.description);
+            failure(error.description);
+        }];
+        
+    }
 }
 
 - (void) GetPrefferedLanguagesWithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    [self.operationManager GET:GetPrefferedLanguages_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-        NSLog(@"%@",responseObject);
-        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        responseString = [self jsonStringFromResponse:responseString];
-        NSError *jsonError;
-        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                      options:NSJSONReadingMutableContainers
-                                                                        error:&jsonError];
+    if (self.languages) {
+        success([self.languages mutableCopy]);
+    }
+    else{
+        __block MasterDataManager *blockSelf = self;
+        [self.operationManager GET:GetPrefferedLanguages_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+            NSLog(@"%@",responseObject);
+            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            responseString = [self jsonStringFromResponse:responseString];
+            NSError *jsonError;
+            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                          options:NSJSONReadingMutableContainers
+                                                                            error:&jsonError];
+            
+            NSMutableArray *languages = [NSMutableArray array];
+            for (NSDictionary *dictionary in resultDictionaries) {
+                Language *language= [Language gm_mappedObjectWithJsonRepresentation:dictionary];
+                [languages addObject:language];
+            }
+            blockSelf.languages = languages;
+            if (success) {
+                success(languages);
+            }
+
+        } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+            NSLog(@"Error %@",error.description);
+            failure(error.description);
+        }];
         
-        NSMutableArray *languages = [NSMutableArray array];
-        for (NSDictionary *dictionary in resultDictionaries) {
-            Language *language= [Language gm_mappedObjectWithJsonRepresentation:dictionary];
-            [languages addObject:language];
-        }
-        success(languages);
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"Error %@",error.description);
-        failure(error.description);
-    }];
+    }
 }
 
 - (void) GetEmployersWithID:(NSString *)ID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
@@ -210,9 +253,6 @@
         failure(error.description);
     }];
 }
-
-
-
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MasterDataManager);
 @end
