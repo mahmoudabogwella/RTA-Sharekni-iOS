@@ -43,6 +43,8 @@ typedef enum RoadType : NSUInteger {
 @property (weak, nonatomic) IBOutlet UILabel *singleRideLabel;
 @property (assign, nonatomic)  RoadType selectedType;
 @property (assign, nonatomic)  BOOL isFemaleOnly;
+@property (weak, nonatomic) IBOutlet UIView *genderView;
+@property (strong,nonatomic) NSDate *pickupDate;
 
 @end
 
@@ -55,11 +57,13 @@ typedef enum RoadType : NSUInteger {
     return _dateFormatter;
 }
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     self.selectedType = SingleRideType;
     self.isFemaleOnly = false;
+    self.pickupDate = [[NSDate date] dateBySettingHour:10];
     [self configureRoadTypeView];
+    [self configureGenderView];
     [self configureUI];
 }
 
@@ -96,12 +100,21 @@ typedef enum RoadType : NSUInteger {
     UITapGestureRecognizer *dateTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
     [self.dateView addGestureRecognizer:dateTapGestureRecognizer];
     
-    UITapGestureRecognizer *TimeTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
-    [self.dateView addGestureRecognizer:TimeTapGestureRecognizer];
+    UITapGestureRecognizer *TimeTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTimePicker)];
+    [self.timeView addGestureRecognizer:TimeTapGestureRecognizer];
     
     UITapGestureRecognizer *typeGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(typeChangedHandler)];
     self.typeView.userInteractionEnabled = YES;
     [self.typeView addGestureRecognizer:typeGestureRecognizer];
+    
+    UITapGestureRecognizer *genderGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(genderChangedHandler)];
+    self.genderView.userInteractionEnabled = YES;
+    [self.genderView addGestureRecognizer:genderGestureRecognizer];
+}
+
+- (void) genderChangedHandler{
+    self.isFemaleOnly = !self.isFemaleOnly;
+    [self configureGenderView];
 }
 
 - (void) typeChangedHandler{
@@ -198,12 +211,15 @@ typedef enum RoadType : NSUInteger {
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
 }
+
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
 }
+
 - (void)textFieldDidEndEditing:(UITextField *)textField{
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     return YES;
 }
@@ -218,7 +234,7 @@ typedef enum RoadType : NSUInteger {
         case PeriodicType:
             self.periodicLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
             self.singleRideLabel.textColor = [UIColor darkGrayColor];
-            self.typeSwitchImage.image = [UIImage imageNamed:@"select_right"];
+            self.typeSwitchImage.image = [UIImage imageNamed:@"select_Right"];
             break;
         default:
             break;
@@ -227,7 +243,13 @@ typedef enum RoadType : NSUInteger {
 
 - (void) configureGenderView{
     if (self.isFemaleOnly) {
-        self.genderSwitchImage.image = [UIImage imageNamed:@"select_right"];
+        self.genderSwitchImage.image = [UIImage imageNamed:@"select_Right"];
+        self.genderLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
+    }
+    else{
+        self.genderSwitchImage.image = [UIImage imageNamed:@"select_Left"];
+        self.genderLabel.textColor = [UIColor darkGrayColor];
     }
 }
+
 @end
