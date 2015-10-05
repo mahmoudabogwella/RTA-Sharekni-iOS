@@ -42,9 +42,10 @@
 		143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6D81BB82363009F6496 /* CALayer+RuntimeAttribute.m */; };
 		144869DC1BBECB6800804C26 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 144869DE1BBECB6800804C26 /* Localization.strings */; };
 		144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869EF1BC0844B00804C26 /* LoginViewController.xib */; };
-		144869F31BC089D400804C26 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869F21BC089D400804C26 /* SearchViewController.xib */; };		144869F61BC091F800804C26 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144869F51BC091F800804C26 /* SearchViewController.m */; };
+		144869F31BC089D400804C26 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869F21BC089D400804C26 /* SearchViewController.xib */; };
 		144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144869F81BC0968E00804C26 /* QuickSearchViewController.m */; };
 		144869FB1BC0968E00804C26 /* QuickSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869F91BC0968E00804C26 /* QuickSearchViewController.xib */; };
+		144869FD1BC0A05700804C26 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869FC1BC0A05700804C26 /* RegisterViewController.xib */; };
 		87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* MobAccountManager.m */; };
 		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
 		87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF811BB8325500E21838 /* BaseAPIManager.m */; };
@@ -133,12 +134,10 @@
 		144869EE1BC0844B00804C26 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LoginViewController.xib; sourceTree = "<group>"; };
 		144869F11BC0845800804C26 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LoginViewController.strings; sourceTree = "<group>"; };
 		144869F21BC089D400804C26 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
-		144869F41BC091F800804C26 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
-		144869F51BC091F800804C26 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		144869F71BC0968E00804C26 /* QuickSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickSearchViewController.h; sourceTree = "<group>"; };
 		144869F81BC0968E00804C26 /* QuickSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickSearchViewController.m; sourceTree = "<group>"; };
 		144869F91BC0968E00804C26 /* QuickSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickSearchViewController.xib; sourceTree = "<group>"; };
-
+		144869FC1BC0A05700804C26 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		87A113391BB6FB370092E870 /* MobAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobAccountManager.h; sourceTree = "<group>"; };
@@ -261,17 +260,17 @@
 				144869EF1BC0844B00804C26 /* LoginViewController.xib */,
 				143BE6B31BB56402009F6496 /* RegisterViewController.h */,
 				143BE6B41BB56402009F6496 /* RegisterViewController.m */,
+				144869FC1BC0A05700804C26 /* RegisterViewController.xib */,
 				143BE6BC1BB68E97009F6496 /* MostRidesViewController.h */,
 				143BE6BD1BB68E97009F6496 /* MostRidesViewController.m */,
 				143BE6BF1BB68EA5009F6496 /* BestDriversViewController.h */,
 				143BE6C01BB68EA5009F6496 /* BestDriversViewController.m */,
 				047E454E1BC0960F000B5151 /* SearchViewController.h */,
 				047E454F1BC0960F000B5151 /* SearchViewController.m */,
-				144869F21BC089D400804C26 /* SearchViewController.xib */,				144869F71BC0968E00804C26 /* QuickSearchViewController.h */,
+				144869F21BC089D400804C26 /* SearchViewController.xib */,
+				144869F71BC0968E00804C26 /* QuickSearchViewController.h */,
 				144869F81BC0968E00804C26 /* QuickSearchViewController.m */,
 				144869F91BC0968E00804C26 /* QuickSearchViewController.xib */,
-				143BE6CB1BB6DFF6009F6496 /* QuickSearchViewController.h */,
-				143BE6CC1BB6DFF6009F6496 /* QuickSearchViewController.m */,
 				047E45531BC0964A000B5151 /* QuickSearchViewController.xib */,
 				143BE6CE1BB6E001009F6496 /* AdvancedSearchViewController.h */,
 				143BE6CF1BB6E001009F6496 /* AdvancedSearchViewController.m */,
@@ -471,6 +470,7 @@
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				144869F31BC089D400804C26 /* SearchViewController.xib in Resources */,
 				144869DC1BBECB6800804C26 /* Localization.strings in Resources */,
+				144869FD1BC0A05700804C26 /* RegisterViewController.xib in Resources */,
 				04931B321BAAF814000F5434 /* LaunchScreen.xib in Resources */,
 				04931B2F1BAAF814000F5434 /* Images.xcassets in Resources */,
 			);
