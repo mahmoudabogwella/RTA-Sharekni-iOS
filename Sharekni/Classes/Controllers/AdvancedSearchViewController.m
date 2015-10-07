@@ -21,6 +21,10 @@
 #import "AgeRange.h"
 #import "Language.h"
 #import "Nationality.h"
+#import <KLCPopup/KLCPopup.h>
+#import "PickupLocationView.h"
+#import <MZFormSheetController.h>
+#import "SelectLocationViewController.h"
 typedef enum RoadType : NSUInteger {
     PeriodicType,
     SingleRideType
@@ -394,13 +398,34 @@ typedef enum TextFieldType : NSUInteger {
     [self presentViewController:pickerController animated:YES completion:nil];
 }
 
+- (void) showLocationPickerWithTextFieldType:(TextFieldType)type{
+//    PickupLocationView *pickupLocationView = [[PickupLocationView alloc] init];
+//    pickupLocationView.title = type == PickupTextField ? @"Select pickup point" : @"Select destionation point";
+//    [pickupLocationView setPresenter:self];
+//    KLCPopup *popup = [KLCPopup popupWithContentView:pickupLocationView showType:KLCPopupShowTypeBounceInFromTop dismissType:KLCPopupDismissTypeBounceOutToBottom maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
+//    [popup show];
+    SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
+    
+    formSheet.formSheetWindow.transparentTouchEnabled = NO;
+    formSheet.transitionStyle = MZFormSheetTransitionStyleDropDown;
+    formSheet.shouldDismissOnBackgroundViewTap = YES;
+    formSheet.shouldCenterVertically = NO;
+    
+    [formSheet presentAnimated:YES completionHandler:^(UIViewController *presentedFSViewController) {
+        
+    }];
+    
+}
+
 #pragma TextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if(textField == self.startPointTextField ){
-        [self showPickerWithTextFieldType:PickupTextField];
+//        [self showPickerWithTextFieldType:PickupTextField];
+        [self showLocationPickerWithTextFieldType:PickupTextField];
     }
     else if (textField == self.destinationTextFiled){
-        [self showPickerWithTextFieldType:DestinationTextField];
+        [self showLocationPickerWithTextFieldType:DestinationTextField];
     }
     else if (textField == self.nationalityTextField){
         [self showPickerWithTextFieldType:NationalityTextField];
@@ -429,6 +454,7 @@ typedef enum TextFieldType : NSUInteger {
     [textField resignFirstResponder];
     return YES;
 }
+
 
 
 #pragma PickerViewDeelgate&DataSource

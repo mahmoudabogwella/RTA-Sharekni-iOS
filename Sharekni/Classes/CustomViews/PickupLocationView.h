@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RMActionController.h>
+#import <RMPickerViewController.h>
+@interface PickupLocationView : UIView <UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@property (weak, nonatomic)  UIViewController *presenter;
 
-@interface PickupLocationView : UIView <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *emirateTextField;
-@property (weak, nonatomic) IBOutlet UITextField *regionTextField;
-@property (weak, nonatomic) IBOutlet UIButton *searchButton;
-@property (weak, nonatomic) IBOutlet UILabel *regionView;
-@property (weak, nonatomic) IBOutlet UILabel *emirateView;
-
+@property (nonatomic,strong) NSString *title;
 @end

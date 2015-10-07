@@ -65,6 +65,6 @@
 
 #pragma Colors
 #define Red_HEX @"E30613"
-#define Red_UIColor [UIColor add_colorWithRGBHexString:Red_HEX];
+#define Red_UIColor [UIColor add_colorWithRGBHexString:Red_HEX]
 
 #endif

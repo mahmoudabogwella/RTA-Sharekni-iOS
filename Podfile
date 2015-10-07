@@ -13,4 +13,5 @@ pod 'RESideMenu', '~> 4.0.7'
 pod 'HSDatePickerViewController', '~> 1.0'
 pod "RMDateSelectionViewController", "~> 2.0.1"
 pod 'NSDate+Calendar'
+pod "MZFormSheetController"
 pod "RMPickerViewController", "~> 2.0.1"

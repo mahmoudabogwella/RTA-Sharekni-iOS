@@ -17,6 +17,10 @@
 		047E45571BC09F3B000B5151 /* AdvancedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047E45561BC09F3B000B5151 /* AdvancedSearchViewController.xib */; };
 		047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45591BC5831D000B5151 /* PickupLocationView.m */; };
 		047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047E455B1BC58330000B5151 /* PickupLocationView.xib */; };
+		047E45831BC59DE0000B5151 /* SelectLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45811BC59DE0000B5151 /* SelectLocationViewController.m */; };
+		047E45841BC59DE0000B5151 /* SelectLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047E45821BC59DE0000B5151 /* SelectLocationViewController.xib */; };
+		047E458D1BC5A4D8000B5151 /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45871BC5A4D8000B5151 /* MLPAutoCompleteTextField.m */; };
+		047E458E1BC5A4D8000B5151 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E458C1BC5A4D8000B5151 /* NSString+Levenshtein.m */; };
 		0489129E1BB92150005E4E02 /* Nationality.m in Sources */ = {isa = PBXBuildFile; fileRef = 0489129D1BB92150005E4E02 /* Nationality.m */; };
 		048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A01BB922A2005E4E02 /* TermsAndCondition.m */; };
 		048912A41BB92458005E4E02 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A31BB92458005E4E02 /* Language.m */; };
@@ -81,6 +85,16 @@
 		047E45581BC5831D000B5151 /* PickupLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupLocationView.h; sourceTree = "<group>"; };
 		047E45591BC5831D000B5151 /* PickupLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupLocationView.m; sourceTree = "<group>"; };
 		047E455B1BC58330000B5151 /* PickupLocationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickupLocationView.xib; sourceTree = "<group>"; };
+		047E45801BC59DE0000B5151 /* SelectLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationViewController.h; sourceTree = "<group>"; };
+		047E45811BC59DE0000B5151 /* SelectLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLocationViewController.m; sourceTree = "<group>"; };
+		047E45821BC59DE0000B5151 /* SelectLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectLocationViewController.xib; sourceTree = "<group>"; };
+		047E45861BC5A4D8000B5151 /* MLPAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextField.h; sourceTree = "<group>"; };
+		047E45871BC5A4D8000B5151 /* MLPAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPAutoCompleteTextField.m; sourceTree = "<group>"; };
+		047E45881BC5A4D8000B5151 /* MLPAutoCompleteTextFieldDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDataSource.h; sourceTree = "<group>"; };
+		047E45891BC5A4D8000B5151 /* MLPAutoCompleteTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDelegate.h; sourceTree = "<group>"; };
+		047E458A1BC5A4D8000B5151 /* MLPAutoCompletionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompletionObject.h; sourceTree = "<group>"; };
+		047E458B1BC5A4D8000B5151 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
+		047E458C1BC5A4D8000B5151 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
 		0489129C1BB92150005E4E02 /* Nationality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nationality.h; sourceTree = "<group>"; };
 		0489129D1BB92150005E4E02 /* Nationality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nationality.m; sourceTree = "<group>"; };
 		0489129F1BB922A2005E4E02 /* TermsAndCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndCondition.h; sourceTree = "<group>"; };
@@ -174,6 +188,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		047E455D1BC59C4C000B5151 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				047E45851BC5A4D8000B5151 /* MLPAutoCompleteTextField */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		047E45851BC5A4D8000B5151 /* MLPAutoCompleteTextField */ = {
+			isa = PBXGroup;
+			children = (
+				047E45861BC5A4D8000B5151 /* MLPAutoCompleteTextField.h */,
+				047E45871BC5A4D8000B5151 /* MLPAutoCompleteTextField.m */,
+				047E45881BC5A4D8000B5151 /* MLPAutoCompleteTextFieldDataSource.h */,
+				047E45891BC5A4D8000B5151 /* MLPAutoCompleteTextFieldDelegate.h */,
+				047E458A1BC5A4D8000B5151 /* MLPAutoCompletionObject.h */,
+				047E458B1BC5A4D8000B5151 /* NSString+Levenshtein.h */,
+				047E458C1BC5A4D8000B5151 /* NSString+Levenshtein.m */,
+			);
+			path = MLPAutoCompleteTextField;
+			sourceTree = "<group>";
+		};
 		04931B121BAAF814000F5434 = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +275,7 @@
 		143BE6A71BB14BD2009F6496 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				047E455D1BC59C4C000B5151 /* Components */,
 				87C1AF831BB866DC00E21838 /* Models */,
 				143BE6A81BB14BD2009F6496 /* Controllers */,
 				143BE6A91BB14BD2009F6496 /* CustomViews */,
@@ -287,6 +324,9 @@
 				044ECE961BC08A8000AF3E2D /* SearchResultCell.h */,
 				044ECE971BC08A8000AF3E2D /* SearchResultCell.m */,
 				044ECE981BC08A8000AF3E2D /* SearchResultCell.xib */,
+				047E45801BC59DE0000B5151 /* SelectLocationViewController.h */,
+				047E45811BC59DE0000B5151 /* SelectLocationViewController.m */,
+				047E45821BC59DE0000B5151 /* SelectLocationViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -473,6 +513,7 @@
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
+				047E45841BC59DE0000B5151 /* SelectLocationViewController.xib in Resources */,
 				144869F31BC089D400804C26 /* SearchViewController.xib in Resources */,
 				144869DC1BBECB6800804C26 /* Localization.strings in Resources */,
 				144869FD1BC0A05700804C26 /* RegisterViewController.xib in Resources */,
@@ -535,6 +576,7 @@
 				047E45501BC0960F000B5151 /* SearchViewController.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
 				143BE6B51BB56402009F6496 /* RegisterViewController.m in Sources */,
+				047E458E1BC5A4D8000B5151 /* NSString+Levenshtein.m in Sources */,
 				143BE6BE1BB68E97009F6496 /* MostRidesViewController.m in Sources */,
 				0489129E1BB92150005E4E02 /* Nationality.m in Sources */,
 				143BE6C71BB69327009F6496 /* MostRidesCell.m in Sources */,
@@ -545,6 +587,7 @@
 				048912A71BB92539005E4E02 /* Employer.m in Sources */,
 				048912B01BB933B8005E4E02 /* User.m in Sources */,
 				143BE6C11BB68EA5009F6496 /* BestDriversViewController.m in Sources */,
+				047E45831BC59DE0000B5151 /* SelectLocationViewController.m in Sources */,
 				048912AA1BB92609005E4E02 /* Emirate.m in Sources */,
 				0429B1C61BB9DC5F00161222 /* HelpManager.m in Sources */,
 				04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */,
@@ -557,6 +600,7 @@
 				04931B211BAAF814000F5434 /* main.m in Sources */,
 				144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */,
 				143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */,
+				047E458D1BC5A4D8000B5151 /* MLPAutoCompleteTextField.m in Sources */,
 				044ECE991BC08A8000AF3E2D /* SearchResultCell.m in Sources */,
 				87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */,
 			);
