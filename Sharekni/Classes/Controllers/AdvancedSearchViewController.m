@@ -27,6 +27,8 @@ typedef enum RoadType : NSUInteger {
 } RoadType;
 
 typedef enum TextFieldType : NSUInteger {
+    PickupTextField,
+    DestinationTextField,
     NationalityTextField,
     LanguageTextField,
     AgeRangeTextField
@@ -155,6 +157,7 @@ typedef enum TextFieldType : NSUInteger {
     self.searchButton.layer.cornerRadius = 8;
     
     self.langageTextField.textColor        = Red_UIColor;
+    self.nationalityTextField.textColor    = Red_UIColor;
     self.ageRangeTextField.textColor       = Red_UIColor;
     self.langageTextField.textColor        = Red_UIColor;
     self.pickupTitleLabel.backgroundColor  = Red_UIColor;
@@ -301,12 +304,28 @@ typedef enum TextFieldType : NSUInteger {
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
 }
+//http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/Passenger_FindRide?AccountID=0&PreferredGender=N&Time=&FromEmirateID=2&FromRegionID=5&ToEmirateID=3&ToRegionID=8&PrefferedLanguageId=0&PrefferedNationlaities=&AgeRangeId=0&StartDate=&SaveFind=0&IsPeriodic=
+
 
 - (void) showPickerWithTextFieldType:(TextFieldType)type{
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
+            case PickupTextField:
+            {
+                Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
+                self.nationalityTextField.text = nationality.NationalityArName;
+                self.selectedNationality = nationality;
+            }
+                break;
+            case DestinationTextField:
+            {
+                Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
+                self.nationalityTextField.text = nationality.NationalityArName;
+                self.selectedNationality = nationality;
+            }
+                break;
             case NationalityTextField:
             {
                 Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
@@ -377,8 +396,11 @@ typedef enum TextFieldType : NSUInteger {
 
 #pragma TextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if(textField == self.startPointTextField || textField == self.destinationTextFiled){
-        return YES;
+    if(textField == self.startPointTextField ){
+        [self showPickerWithTextFieldType:PickupTextField];
+    }
+    else if (textField == self.destinationTextFiled){
+        [self showPickerWithTextFieldType:DestinationTextField];
     }
     else if (textField == self.nationalityTextField){
         [self showPickerWithTextFieldType:NationalityTextField];

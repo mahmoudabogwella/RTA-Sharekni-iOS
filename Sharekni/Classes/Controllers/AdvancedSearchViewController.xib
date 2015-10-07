@@ -43,14 +43,6 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Login_bg" translatesAutoresizingMaskIntoConstraints="NO" id="iMI-6q-by1">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select start point" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hyV-KH-L94">
-                            <rect key="frame" x="109" y="8" width="191" height="30"/>
-                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="k2j-Vv-dd8"/>
-                            </connections>
-                        </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select start point" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MFq-Su-zLP">
                             <rect key="frame" x="109" y="51" width="191" height="30"/>
                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
@@ -220,6 +212,14 @@
                             <color key="textColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select start point" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hyV-KH-L94">
+                            <rect key="frame" x="109" y="8" width="191" height="30"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="k2j-Vv-dd8"/>
+                            </connections>
+                        </textField>
                     </subviews>
                 </scrollView>
             </subviews>

@@ -15,6 +15,8 @@
 		044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044ECE981BC08A8000AF3E2D /* SearchResultCell.xib */; };
 		047E45501BC0960F000B5151 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E454F1BC0960F000B5151 /* SearchViewController.m */; };
 		047E45571BC09F3B000B5151 /* AdvancedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047E45561BC09F3B000B5151 /* AdvancedSearchViewController.xib */; };
+		047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45591BC5831D000B5151 /* PickupLocationView.m */; };
+		047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047E455B1BC58330000B5151 /* PickupLocationView.xib */; };
 		0489129E1BB92150005E4E02 /* Nationality.m in Sources */ = {isa = PBXBuildFile; fileRef = 0489129D1BB92150005E4E02 /* Nationality.m */; };
 		048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A01BB922A2005E4E02 /* TermsAndCondition.m */; };
 		048912A41BB92458005E4E02 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A31BB92458005E4E02 /* Language.m */; };
@@ -76,6 +78,9 @@
 		047E454E1BC0960F000B5151 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		047E454F1BC0960F000B5151 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		047E45561BC09F3B000B5151 /* AdvancedSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedSearchViewController.xib; sourceTree = "<group>"; };
+		047E45581BC5831D000B5151 /* PickupLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupLocationView.h; sourceTree = "<group>"; };
+		047E45591BC5831D000B5151 /* PickupLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupLocationView.m; sourceTree = "<group>"; };
+		047E455B1BC58330000B5151 /* PickupLocationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickupLocationView.xib; sourceTree = "<group>"; };
 		0489129C1BB92150005E4E02 /* Nationality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nationality.h; sourceTree = "<group>"; };
 		0489129D1BB92150005E4E02 /* Nationality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nationality.m; sourceTree = "<group>"; };
 		0489129F1BB922A2005E4E02 /* TermsAndCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndCondition.h; sourceTree = "<group>"; };
@@ -135,9 +140,7 @@
 		144869F71BC0968E00804C26 /* QuickSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickSearchViewController.h; sourceTree = "<group>"; };
 		144869F81BC0968E00804C26 /* QuickSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickSearchViewController.m; sourceTree = "<group>"; };
 		144869F91BC0968E00804C26 /* QuickSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickSearchViewController.xib; sourceTree = "<group>"; };
-
 		144869FC1BC0A05700804C26 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
-
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		87A113391BB6FB370092E870 /* MobAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobAccountManager.h; sourceTree = "<group>"; };
@@ -271,10 +274,6 @@
 				144869F71BC0968E00804C26 /* QuickSearchViewController.h */,
 				144869F81BC0968E00804C26 /* QuickSearchViewController.m */,
 				144869F91BC0968E00804C26 /* QuickSearchViewController.xib */,
-
-				047E45531BC0964A000B5151 /* QuickSearchViewController.xib */,
-
-
 				143BE6CE1BB6E001009F6496 /* AdvancedSearchViewController.h */,
 				143BE6CF1BB6E001009F6496 /* AdvancedSearchViewController.m */,
 				047E45561BC09F3B000B5151 /* AdvancedSearchViewController.xib */,
@@ -299,6 +298,9 @@
 				143BE6C31BB68F1D009F6496 /* BestDriverCell.m */,
 				143BE6C51BB69327009F6496 /* MostRidesCell.h */,
 				143BE6C61BB69327009F6496 /* MostRidesCell.m */,
+				047E45581BC5831D000B5151 /* PickupLocationView.h */,
+				047E45591BC5831D000B5151 /* PickupLocationView.m */,
+				047E455B1BC58330000B5151 /* PickupLocationView.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -458,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				044ECE951BC08A6000AF3E2D /* SearchResultsViewController.xib in Resources */,
+				047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */,
 				044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */,
 				047E45571BC09F3B000B5151 /* AdvancedSearchViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
@@ -546,6 +549,7 @@
 				0429B1C61BB9DC5F00161222 /* HelpManager.m in Sources */,
 				04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */,
 				143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */,
+				047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */,
 				143BE6D31BB6E00C009F6496 /* TopRidesViewController.m in Sources */,
 				143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */,
 				143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */,
