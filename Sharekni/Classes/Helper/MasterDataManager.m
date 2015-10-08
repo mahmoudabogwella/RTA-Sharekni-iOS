@@ -260,7 +260,7 @@
     [self.operationManager GET:GetPhoto_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        responseString = [self jsonStringFromResponse:responseString];
+        
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         NSLog(@"Error %@",error.description);
