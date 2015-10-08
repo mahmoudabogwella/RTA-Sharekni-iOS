@@ -34,8 +34,10 @@
     NSString *timeString = [dateFormatter stringFromDate:date];
     dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [dateFormatter stringFromDate:date];
-    NSString *requestBody = [NSString stringWithFormat:@"CLS_MobDriver.asmx/Passenger_FindRide?AccountID=%@&PreferredGender=%@&Time=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&SaveFind=&IsPeriodic=%@",@"0",@"N",@"",fromemirate.EmirateId,fromRegion.ID,toEmirate.EmirateId,toRegion.ID,language ? language.LanguageId:@"0",nationality ? nationality.ID : @"0",ageRange ? ageRange.RangeId : @"0" ,dateString,@""];
-
+    NSString *requestBody = [NSString stringWithFormat:@"CLS_MobDriver.asmx/Passenger_FindRide?AccountID=%@&PreferredGender=%@&Time=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&SaveFind=&IsPeriodic=%@",@"0",@"N",timeString,fromemirate.EmirateId,fromRegion.ID,toEmirate.EmirateId,toRegion.ID,language ? language.LanguageId:@"0",nationality ? nationality.ID : @"0",ageRange ? ageRange.RangeId : @"0" ,dateString,@""];
+    
+    requestBody = @"CLS_MobDriver.asmx/Passenger_FindRide?AccountID=0&PreferredGender=N&Time=&FromEmirateID=2&FromRegionID=5&ToEmirateID=3&ToRegionID=8&PrefferedLanguageId=0&PrefferedNationlaities=&AgeRangeId=0&StartDate=&SaveFind=0&IsPeriodic=";
+    
     [self.operationManager GET:requestBody parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];

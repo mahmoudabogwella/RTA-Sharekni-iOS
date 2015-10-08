@@ -256,7 +256,12 @@ typedef enum TextFieldType : NSUInteger {
     }
     else{
         [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ? YES : NO WithSuccess:^(NSArray *searchResults) {
-            
+            if(searchResults){
+                
+            }
+            else{
+                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
+            }
         } Failure:^(NSString *error) {
             
         }];
