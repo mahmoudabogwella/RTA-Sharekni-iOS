@@ -39,9 +39,7 @@
 
 - (void)setItem:(DriverSearchResult *)item{
     _item = item;
-    
-    NSURL *url = [NSURL URLWithString:@""];
-  
 }
+
 
 @end

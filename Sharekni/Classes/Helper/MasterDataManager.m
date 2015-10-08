@@ -17,6 +17,7 @@
 #import "Emirate.h"
 #import "Region.h"
 #define id_KEY @"id"
+#define fileName_KEY @"s_FileName"
 
 @interface MasterDataManager ()
 @property (strong,nonatomic) NSArray *nationalties;
@@ -252,6 +253,20 @@
         NSLog(@"Error %@",error.description);
         failure(error.description);
     }];
+}
+
+- (void) GetPhotoWithName:(NSString *)name withSuccess:(void (^)(UIImage *image,NSString *filePath))success Failure:(void (^)(NSString *error))failure{
+    NSDictionary *parameters = @{fileName_KEY:name};
+    [self.operationManager GET:GetPhoto_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        NSLog(@"Error %@",error.description);
+        failure(error.description);
+    }];
+
 }
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MasterDataManager);

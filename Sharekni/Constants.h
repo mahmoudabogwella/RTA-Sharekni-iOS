@@ -51,6 +51,7 @@
 #define GetRegionsByEmirateId_URL @"cls_mobmasterdata.asmx/GetRegionsByEmirateId"
 #define GetTermsAndConditions_URL @"cls_mobmasterdata.asmx/GetTermsAndConditions"
 #define GetPrefferedLanguages_URL @"cls_mobmasterdata.asmx/GetPrefferedLanguages"
+#define GetPhoto_URL @"CLS_MobAccount.asmx/GetPhotoPath"
 
 #define RegisterPassenger_URL @"CLS_MobAccount.asmx/RegisterPassenger"
 #define ChangePassword_URL @"CLS_MobAccount.asmx/ChangePassword"

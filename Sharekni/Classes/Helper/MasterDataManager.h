@@ -10,6 +10,8 @@
 #import "SynthesizeSingleton.h"
 #import "BaseAPIManager.h"
 #import "TermsAndCondition.h"
+#import <UIKit/UIKit.h>
+
 @interface MasterDataManager : BaseAPIManager
 
 +(MasterDataManager *) sharedMasterDataManager;
@@ -29,4 +31,8 @@
 - (void) GetRegionsByID:(NSString *)ID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure;
 
 - (void) GetRegionsByEmirateID:(NSString *)emirateID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure;
+
+- (void) GetPhotoWithName:(NSString *)name withSuccess:(void (^)(UIImage *image,NSString *filePath))success Failure:(void (^)(NSString *error))failure;
+
+
 @end
