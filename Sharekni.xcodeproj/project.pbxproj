@@ -21,6 +21,8 @@
 		047E45841BC59DE0000B5151 /* SelectLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047E45821BC59DE0000B5151 /* SelectLocationViewController.xib */; };
 		047E458D1BC5A4D8000B5151 /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45871BC5A4D8000B5151 /* MLPAutoCompleteTextField.m */; };
 		047E458E1BC5A4D8000B5151 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E458C1BC5A4D8000B5151 /* NSString+Levenshtein.m */; };
+		047E45911BC63686000B5151 /* MobDriverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45901BC63686000B5151 /* MobDriverManager.m */; };
+		047E45941BC63C99000B5151 /* DriverSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45931BC63C99000B5151 /* DriverSearchResult.m */; };
 		0489129E1BB92150005E4E02 /* Nationality.m in Sources */ = {isa = PBXBuildFile; fileRef = 0489129D1BB92150005E4E02 /* Nationality.m */; };
 		048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A01BB922A2005E4E02 /* TermsAndCondition.m */; };
 		048912A41BB92458005E4E02 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 048912A31BB92458005E4E02 /* Language.m */; };
@@ -95,6 +97,10 @@
 		047E458A1BC5A4D8000B5151 /* MLPAutoCompletionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompletionObject.h; sourceTree = "<group>"; };
 		047E458B1BC5A4D8000B5151 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
 		047E458C1BC5A4D8000B5151 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
+		047E458F1BC63686000B5151 /* MobDriverManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobDriverManager.h; sourceTree = "<group>"; };
+		047E45901BC63686000B5151 /* MobDriverManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobDriverManager.m; sourceTree = "<group>"; };
+		047E45921BC63C99000B5151 /* DriverSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverSearchResult.h; sourceTree = "<group>"; };
+		047E45931BC63C99000B5151 /* DriverSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverSearchResult.m; sourceTree = "<group>"; };
 		0489129C1BB92150005E4E02 /* Nationality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nationality.h; sourceTree = "<group>"; };
 		0489129D1BB92150005E4E02 /* Nationality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nationality.m; sourceTree = "<group>"; };
 		0489129F1BB922A2005E4E02 /* TermsAndCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsAndCondition.h; sourceTree = "<group>"; };
@@ -359,13 +365,15 @@
 			children = (
 				143BE6D71BB82363009F6496 /* CALayer+RuntimeAttribute.h */,
 				143BE6D81BB82363009F6496 /* CALayer+RuntimeAttribute.m */,
+				87C1AF801BB8325500E21838 /* BaseAPIManager.h */,
+				87C1AF811BB8325500E21838 /* BaseAPIManager.m */,
 				87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */,
 				87A113391BB6FB370092E870 /* MobAccountManager.h */,
 				87A1133A1BB6FB370092E870 /* MobAccountManager.m */,
 				87C1AF7D1BB831A300E21838 /* MasterDataManager.h */,
 				87C1AF7E1BB831A300E21838 /* MasterDataManager.m */,
-				87C1AF801BB8325500E21838 /* BaseAPIManager.h */,
-				87C1AF811BB8325500E21838 /* BaseAPIManager.m */,
+				047E458F1BC63686000B5151 /* MobDriverManager.h */,
+				047E45901BC63686000B5151 /* MobDriverManager.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -396,6 +404,8 @@
 				048912AC1BB926A6005E4E02 /* Region.m */,
 				048912AE1BB933B8005E4E02 /* User.h */,
 				048912AF1BB933B8005E4E02 /* User.m */,
+				047E45921BC63C99000B5151 /* DriverSearchResult.h */,
+				047E45931BC63C99000B5151 /* DriverSearchResult.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -596,6 +606,8 @@
 				143BE6D31BB6E00C009F6496 /* TopRidesViewController.m in Sources */,
 				143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */,
 				143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */,
+				047E45911BC63686000B5151 /* MobDriverManager.m in Sources */,
+				047E45941BC63C99000B5151 /* DriverSearchResult.m in Sources */,
 				87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */,
 				04931B211BAAF814000F5434 /* main.m in Sources */,
 				144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */,

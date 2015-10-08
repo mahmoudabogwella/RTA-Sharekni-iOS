@@ -62,6 +62,10 @@
 #define ForgotPassword_URL @"CLS_MobAccount.asmx/ForgetPassword"
 #define GetCalculatedRating_URL @"CLS_MobAccount.asmx/GetCalculatedRating"
 
+#define GetPrefferedLanguages_URL @"cls_mobmasterdata.asmx/GetPrefferedLanguages"
+#define Passenger_FindRide_URL @"CLS_MobDriver.asmx/Passenger_FindRide"
+
+
 
 #pragma Colors
 #define Red_HEX @"E30613"

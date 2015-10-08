@@ -25,6 +25,9 @@
 #import "PickupLocationView.h"
 #import <MZFormSheetController.h>
 #import "SelectLocationViewController.h"
+#import "MobDriverManager.h"
+#import "HelpManager.h"
+
 typedef enum RoadType : NSUInteger {
     PeriodicType,
     SingleRideType
@@ -76,6 +79,12 @@ typedef enum TextFieldType : NSUInteger {
 @property (strong,nonatomic) AgeRange *selectedAgeRange;
 @property (strong,nonatomic) Nationality *selectedNationality;
 @property (strong,nonatomic) Language *selectedLanguage;
+
+@property (strong,nonatomic) Emirate *fromEmirate;
+@property (strong,nonatomic) Emirate *toEmirate;
+
+@property (strong,nonatomic) Region *fromRegion;
+@property (strong,nonatomic) Region *toRegion;
 
 @end
 
@@ -239,7 +248,19 @@ typedef enum TextFieldType : NSUInteger {
 }
 
 - (IBAction)searchAction:(id)sender {
-    
+    if (!self.fromEmirate) {
+          [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select start point ",nil)];
+    }
+    else if (!self.toEmirate){
+         [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select destination ",nil)];
+    }
+    else{
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ? YES : NO WithSuccess:^(NSArray *searchResults) {
+            
+        } Failure:^(NSString *error) {
+            
+        }];
+    }
 }
 
 #pragma Pickers
@@ -309,7 +330,6 @@ typedef enum TextFieldType : NSUInteger {
     [self presentViewController:dateSelectionController animated:YES completion:nil];
 }
 //http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/Passenger_FindRide?AccountID=0&PreferredGender=N&Time=&FromEmirateID=2&FromRegionID=5&ToEmirateID=3&ToRegionID=8&PrefferedLanguageId=0&PrefferedNationlaities=&AgeRangeId=0&StartDate=&SaveFind=0&IsPeriodic=
-
 
 - (void) showPickerWithTextFieldType:(TextFieldType)type{
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
@@ -399,29 +419,41 @@ typedef enum TextFieldType : NSUInteger {
 }
 
 - (void) showLocationPickerWithTextFieldType:(TextFieldType)type{
-//    PickupLocationView *pickupLocationView = [[PickupLocationView alloc] init];
-//    pickupLocationView.title = type == PickupTextField ? @"Select pickup point" : @"Select destionation point";
-//    [pickupLocationView setPresenter:self];
-//    KLCPopup *popup = [KLCPopup popupWithContentView:pickupLocationView showType:KLCPopupShowTypeBounceInFromTop dismissType:KLCPopupDismissTypeBounceOutToBottom maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
-//    [popup show];
     SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
+    selectLocationViewController.viewTitle = type == PickupTextField ? NSLocalizedString(@"Select pickup point", Nil): NSLocalizedString(@"Select destionation point", nil);
+    __block AdvancedSearchViewController *blockSelf = self;
+    [selectLocationViewController setSelectionHandler:^(Emirate *selectedEmirate, Region *selectedRegion) {
+        NSString *text = [NSString stringWithFormat:@"%@,%@",selectedEmirate.EmirateArName,selectedRegion.RegionArName];
+        if (type == PickupTextField) {
+            blockSelf.fromEmirate = selectedEmirate;
+            blockSelf.fromRegion = selectedRegion;
+            blockSelf.startPointTextField.text = text;
+        }
+        else if (type == DestinationTextField){
+            blockSelf.toEmirate = selectedEmirate;
+            blockSelf.toRegion = selectedRegion;
+            blockSelf.destinationTextFiled.text = text;
+        }
+    }];
+    
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
     
     formSheet.formSheetWindow.transparentTouchEnabled = NO;
-    formSheet.transitionStyle = MZFormSheetTransitionStyleDropDown;
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
     formSheet.shouldDismissOnBackgroundViewTap = YES;
     formSheet.shouldCenterVertically = NO;
+    formSheet.presentedFormSheetSize = CGSizeMake(300, 200);
+    formSheet.portraitTopInset = 55;
+    formSheet.cornerRadius = 8;
     
     [formSheet presentAnimated:YES completionHandler:^(UIViewController *presentedFSViewController) {
         
     }];
-    
 }
 
 #pragma TextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if(textField == self.startPointTextField ){
-//        [self showPickerWithTextFieldType:PickupTextField];
         [self showLocationPickerWithTextFieldType:PickupTextField];
     }
     else if (textField == self.destinationTextFiled){
@@ -454,8 +486,6 @@ typedef enum TextFieldType : NSUInteger {
     [textField resignFirstResponder];
     return YES;
 }
-
-
 
 #pragma PickerViewDeelgate&DataSource
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
