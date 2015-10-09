@@ -12,6 +12,8 @@
 #import <UIColor+Additions.h>
 #import "Constants.h"
 #import "HelpManager.h"
+#import "RegisterViewController.h"
+
 @interface LoginViewController ()<UITextFieldDelegate>
 {
     float animatedDistance ;
@@ -75,7 +77,7 @@
                 
             }
             else{
-                
+            
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
@@ -83,11 +85,14 @@
     }
 }
 
-- (IBAction)signupAction:(id)sender {
-    
+- (IBAction)signupAction:(id)sender
+{
+    RegisterViewController *registerView = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+    [self.navigationController pushViewController:registerView animated:YES];
 }
 
-- (IBAction)forgotPasswordAction:(id)sender {
+- (IBAction)forgotPasswordAction:(id)sender
+{
 
 }
 

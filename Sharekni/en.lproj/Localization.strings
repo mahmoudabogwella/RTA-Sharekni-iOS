@@ -19,3 +19,5 @@
 "validUsername" = "Invalid Username";
 "passReq" = "Please enter password";
 "countryReq" = "Country Required";
+
+"registration" = "Registration";

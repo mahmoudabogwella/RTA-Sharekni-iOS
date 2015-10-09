@@ -1,0 +1,42 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "8c0-Zc-Vj0"; */
+"8c0-Zc-Vj0.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Upload your photo"; ObjectID = "AbV-av-S0M"; */
+"AbV-av-S0M.normalTitle" = "Upload your photo";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "Bfw-6L-BwN"; */
+"Bfw-6L-BwN.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Nationality"; ObjectID = "H7G-Mh-PkX"; */
+"H7G-Mh-PkX.placeholder" = "Nationality";
+
+/* Class = "UILabel"; text = "Female"; ObjectID = "HgN-xn-dEs"; */
+"HgN-xn-dEs.text" = "Female";
+
+/* Class = "UITextField"; placeholder = "First Name"; ObjectID = "TmR-D4-R8s"; */
+"TmR-D4-R8s.placeholder" = "First Name";
+
+/* Class = "UITextField"; placeholder = "User Name"; ObjectID = "Uer-vt-Ype"; */
+"Uer-vt-Ype.placeholder" = "User Name";
+
+/* Class = "UILabel"; text = "Male"; ObjectID = "bSm-pb-FZn"; */
+"bSm-pb-FZn.text" = "Male";
+
+/* Class = "UITextField"; placeholder = "Mobile Number"; ObjectID = "bhq-Be-Sdh"; */
+"bhq-Be-Sdh.placeholder" = "Mobile Number";
+
+/* Class = "UILabel"; text = "By tapping the save button below"; ObjectID = "d1v-7c-aYh"; */
+"d1v-7c-aYh.text" = "By tapping the save button below";
+
+/* Class = "UITextField"; placeholder = "Last Name"; ObjectID = "gHF-Rw-A77"; */
+"gHF-Rw-A77.placeholder" = "Last Name";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "phM-yo-nTa"; */
+"phM-yo-nTa.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "I accept the RTA's terms and conditions"; ObjectID = "sqm-ZF-wLl"; */
+"sqm-ZF-wLl.text" = "I accept the RTA's terms and conditions";
+
+/* Class = "UITextField"; placeholder = "Preferred Language"; ObjectID = "uYD-uf-sSM"; */
+"uYD-uf-sSM.placeholder" = "Preferred Language";

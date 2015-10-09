@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchResultsViewController">
@@ -11,9 +11,50 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kD0-eH-XUt">
+                    <rect key="frame" x="454" y="350" width="46" height="30"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8YP-wq-iUn">
+                    <rect key="frame" x="114" y="404" width="123" height="29"/>
+                    <segments>
+                        <segment title="First"/>
+                        <segment title="Second"/>
+                    </segments>
+                </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6b-q6-p6d">
+                    <rect key="frame" x="237" y="286" width="46" height="30"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBE-Ed-p7b">
+                    <rect key="frame" x="100" y="290" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="I5U-2H-MiW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="8YP-wq-iUn" secondAttribute="bottom" constant="136" id="9du-CA-5To"/>
+                <constraint firstAttribute="trailing" secondItem="8YP-wq-iUn" secondAttribute="trailing" constant="83" id="Cw1-AI-qmf"/>
+                <constraint firstItem="8YP-wq-iUn" firstAttribute="top" secondItem="GBE-Ed-p7b" secondAttribute="bottom" constant="93" id="EB0-9d-YhC"/>
+                <constraint firstAttribute="trailing" secondItem="k6b-q6-p6d" secondAttribute="trailing" constant="37" id="FJm-pz-wEQ"/>
+                <constraint firstItem="GBE-Ed-p7b" firstAttribute="baseline" secondItem="k6b-q6-p6d" secondAttribute="baseline" id="YEY-J4-KHN"/>
+                <constraint firstItem="kD0-eH-XUt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="350" id="dCx-O2-wJd"/>
+                <constraint firstItem="kD0-eH-XUt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="454" id="pGb-Ty-dni"/>
+                <constraint firstItem="k6b-q6-p6d" firstAttribute="leading" secondItem="GBE-Ed-p7b" secondAttribute="trailing" constant="95" id="uSN-WP-8jb"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
 </document>

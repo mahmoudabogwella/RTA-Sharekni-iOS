@@ -169,31 +169,27 @@
                         <viewControllerLayoutGuide type="bottom" id="3Dm-nA-G9L"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome2_bg" translatesAutoresizingMaskIntoConstraints="NO" id="bsA-LC-fGj">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hY-f8-ZbD">
-                                <rect key="frame" x="244" y="488" width="66" height="60"/>
+                                <rect key="frame" x="244" y="420" width="66" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="X39-6W-F6l">
-                                        <variation key="heightClass=regular" constant="80"/>
-                                    </constraint>
-                                    <constraint firstAttribute="width" constant="66" id="iIX-4I-mAi">
-                                        <variation key="heightClass=regular" constant="88"/>
-                                    </constraint>
+                                    <constraint firstAttribute="height" constant="60" id="HrB-Uf-Rtf"/>
+                                    <constraint firstAttribute="width" constant="66" id="cCx-3E-QYW"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="TakeTour">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlX-fK-gaB">
-                                <rect key="frame" x="75" y="272" width="171" height="50"/>
+                                <rect key="frame" x="75" y="211" width="171" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="171" id="0sc-go-dpg"/>
-                                    <constraint firstAttribute="height" constant="50" id="yvm-XT-TRi"/>
+                                    <constraint firstAttribute="width" constant="171" id="2wF-LQ-dlW"/>
+                                    <constraint firstAttribute="height" constant="50" id="IBu-Gk-lNh"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="MostRides">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -203,10 +199,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcB-wu-JQ9">
-                                <rect key="frame" x="75" y="328" width="171" height="50"/>
+                                <rect key="frame" x="75" y="267" width="171" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="171" id="1Ne-2f-D0T"/>
-                                    <constraint firstAttribute="height" constant="50" id="CUw-I2-niB"/>
+                                    <constraint firstAttribute="width" constant="171" id="h6T-tN-j5l"/>
+                                    <constraint firstAttribute="height" constant="50" id="qoW-Fa-yJu"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="BestDrivers">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -216,21 +212,17 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="y29-Fe-oOs">
-                                <rect key="frame" x="95" y="77" width="130" height="130"/>
+                                <rect key="frame" x="95" y="46" width="130" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="fuM-Xc-nEO"/>
-                                    <constraint firstAttribute="width" constant="130" id="zmp-K3-XYz"/>
+                                    <constraint firstAttribute="width" constant="130" id="MJE-9Q-6za"/>
+                                    <constraint firstAttribute="height" constant="130" id="OQu-US-7rA"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdt-Ay-HB3">
-                                <rect key="frame" x="10" y="488" width="66" height="60"/>
+                                <rect key="frame" x="10" y="420" width="66" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="66" id="0T6-n9-IE9">
-                                        <variation key="heightClass=regular" constant="88"/>
-                                    </constraint>
-                                    <constraint firstAttribute="height" constant="60" id="Nzc-uU-DIr">
-                                        <variation key="heightClass=regular" constant="80"/>
-                                    </constraint>
+                                    <constraint firstAttribute="height" constant="60" id="6OB-eV-0Tw"/>
+                                    <constraint firstAttribute="width" constant="66" id="JRT-4N-FsV"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="Register">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -240,14 +232,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irp-dG-q1j">
-                                <rect key="frame" x="88" y="488" width="66" height="60"/>
+                                <rect key="frame" x="88" y="420" width="66" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="66" id="5iu-et-Akz">
-                                        <variation key="heightClass=regular" constant="88"/>
-                                    </constraint>
-                                    <constraint firstAttribute="height" constant="60" id="kvC-XO-19R">
-                                        <variation key="heightClass=regular" constant="80"/>
-                                    </constraint>
+                                    <constraint firstAttribute="width" constant="66" id="3TE-v9-igY"/>
+                                    <constraint firstAttribute="height" constant="60" id="533-S3-JVX"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -257,14 +245,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4g-kh-6sg">
-                                <rect key="frame" x="166" y="488" width="66" height="60"/>
+                                <rect key="frame" x="166" y="420" width="66" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="SKT-Vx-hvF">
-                                        <variation key="heightClass=regular" constant="80"/>
-                                    </constraint>
-                                    <constraint firstAttribute="width" constant="66" id="pqY-NB-Rsx">
-                                        <variation key="heightClass=regular" constant="88"/>
-                                    </constraint>
+                                    <constraint firstAttribute="width" constant="66" id="Xfo-zX-Nwq"/>
+                                    <constraint firstAttribute="height" constant="60" id="iN9-Zb-ByP"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="Search">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -276,49 +260,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="bsA-LC-fGj" secondAttribute="bottom" id="2nu-zV-Qe9"/>
-                            <constraint firstAttribute="centerX" secondItem="pcB-wu-JQ9" secondAttribute="centerX" constant="-0.5" id="4I1-Kj-l8n"/>
-                            <constraint firstItem="1hY-f8-ZbD" firstAttribute="leading" secondItem="j4g-kh-6sg" secondAttribute="trailing" constant="12" id="4Na-wA-PqC">
-                                <variation key="heightClass=regular" constant="6"/>
-                            </constraint>
-                            <constraint firstAttribute="centerX" secondItem="vdt-Ay-HB3" secondAttribute="centerX" constant="117" id="8FQ-aI-3sm">
-                                <variation key="heightClass=regular" constant="140.5"/>
-                            </constraint>
-                            <constraint firstItem="irp-dG-q1j" firstAttribute="leading" secondItem="vdt-Ay-HB3" secondAttribute="trailing" constant="12" id="Cfv-eY-OVd">
-                                <variation key="heightClass=regular" constant="6"/>
-                            </constraint>
-                            <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="irp-dG-q1j" secondAttribute="bottom" constant="20" id="E65-sp-wbD">
-                                <variation key="heightClass=regular" constant="29"/>
-                            </constraint>
-                            <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="vdt-Ay-HB3" secondAttribute="bottom" constant="20" id="EOg-LJ-14d">
-                                <variation key="heightClass=regular" constant="29"/>
-                            </constraint>
-                            <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="j4g-kh-6sg" secondAttribute="bottom" constant="20" id="Gic-Pw-Wbd">
-                                <variation key="heightClass=regular" constant="29"/>
-                            </constraint>
-                            <constraint firstItem="y29-Fe-oOs" firstAttribute="top" secondItem="qbK-JN-ewr" secondAttribute="bottom" constant="57" id="HUc-RS-NJx"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bsA-LC-fGj" secondAttribute="trailing" constant="-16" id="Kp4-S6-E57"/>
-                            <constraint firstItem="bsA-LC-fGj" firstAttribute="top" secondItem="qbK-JN-ewr" secondAttribute="bottom" constant="-20" id="XYU-jJ-EDM"/>
-                            <constraint firstItem="pcB-wu-JQ9" firstAttribute="top" secondItem="JlX-fK-gaB" secondAttribute="bottom" constant="6" id="c6n-nJ-bFF"/>
-                            <constraint firstAttribute="centerX" secondItem="y29-Fe-oOs" secondAttribute="centerX" constant="-0.5" id="jE4-s4-Gc5"/>
-                            <constraint firstItem="bsA-LC-fGj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="moW-wY-ufR"/>
-                            <constraint firstAttribute="centerX" secondItem="JlX-fK-gaB" secondAttribute="centerX" constant="-0.5" id="o0l-4P-cGI"/>
-                            <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="1hY-f8-ZbD" secondAttribute="bottom" constant="20" id="wJ9-Fu-RXv">
-                                <variation key="heightClass=regular" constant="29"/>
-                            </constraint>
-                            <constraint firstItem="j4g-kh-6sg" firstAttribute="leading" secondItem="irp-dG-q1j" secondAttribute="trailing" constant="12" id="xAG-LG-als">
-                                <variation key="heightClass=regular" constant="6"/>
-                            </constraint>
-                            <constraint firstItem="JlX-fK-gaB" firstAttribute="top" secondItem="y29-Fe-oOs" secondAttribute="bottom" constant="65" id="yDn-fS-ZOX"/>
+                            <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="irp-dG-q1j" secondAttribute="bottom" constant="24" id="186-XG-Oqq"/>
+                            <constraint firstItem="1hY-f8-ZbD" firstAttribute="leading" secondItem="j4g-kh-6sg" secondAttribute="trailing" constant="12" id="3Sd-8U-Bsm"/>
+                            <constraint firstItem="bsA-LC-fGj" firstAttribute="top" secondItem="qbK-JN-ewr" secondAttribute="bottom" id="6qX-yC-Waq"/>
+                            <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="j4g-kh-6sg" secondAttribute="bottom" constant="24" id="8Sq-wK-ChP"/>
+                            <constraint firstItem="y29-Fe-oOs" firstAttribute="top" secondItem="qbK-JN-ewr" secondAttribute="bottom" constant="46" id="9h9-ae-Xtv"/>
+                            <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="bsA-LC-fGj" secondAttribute="bottom" id="B2F-pJ-3au"/>
+                            <constraint firstItem="bsA-LC-fGj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="KOd-uo-siz"/>
+                            <constraint firstItem="JlX-fK-gaB" firstAttribute="top" secondItem="y29-Fe-oOs" secondAttribute="bottom" constant="35" id="Spf-Pu-61w"/>
+                            <constraint firstItem="pcB-wu-JQ9" firstAttribute="top" secondItem="JlX-fK-gaB" secondAttribute="bottom" constant="6" id="WKy-2U-Ns6"/>
+                            <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="1hY-f8-ZbD" secondAttribute="bottom" constant="24" id="Wv1-gm-5hk"/>
+                            <constraint firstAttribute="centerX" secondItem="vdt-Ay-HB3" secondAttribute="centerX" constant="117" id="WyL-mr-2SW"/>
+                            <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="vdt-Ay-HB3" secondAttribute="bottom" constant="24" id="XS3-dm-1iH"/>
+                            <constraint firstAttribute="centerX" secondItem="JlX-fK-gaB" secondAttribute="centerX" constant="-0.5" id="aWB-fR-ciJ"/>
+                            <constraint firstItem="irp-dG-q1j" firstAttribute="leading" secondItem="vdt-Ay-HB3" secondAttribute="trailing" constant="12" id="iCL-LP-Ptp"/>
+                            <constraint firstAttribute="centerX" secondItem="y29-Fe-oOs" secondAttribute="centerX" id="mgZ-sT-jlD"/>
+                            <constraint firstItem="j4g-kh-6sg" firstAttribute="leading" secondItem="irp-dG-q1j" secondAttribute="trailing" constant="12" id="nRM-VM-QDG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bsA-LC-fGj" secondAttribute="trailing" constant="-16" id="sbo-vw-HEt"/>
+                            <constraint firstAttribute="centerX" secondItem="pcB-wu-JQ9" secondAttribute="centerX" constant="-0.5" id="wOj-Nf-43X"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JzI-Ha-rgS"/>
-                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="455.5" y="340.125"/>
+            <point key="canvasLocation" x="455" y="340"/>
         </scene>
         <!--Best Drivers View Controller-->
         <scene sceneID="lU8-NZ-RBs">
@@ -533,7 +500,7 @@
             <objects>
                 <navigationController id="mI9-uV-K0N" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jsj-9K-FZv">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jsj-9K-FZv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.90196078431372551" green="0.0" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
