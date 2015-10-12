@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MostRide.h"
 
 @interface MostRidesCell : UITableViewCell
 
-@property (nonatomic ,weak) IBOutlet UILabel *time ;
-@property (nonatomic ,weak) IBOutlet UILabel *location ;
+@property (nonatomic ,weak) IBOutlet UILabel *drivers ;
+@property (nonatomic ,weak) IBOutlet UILabel *FromEmirateName ;
+@property (nonatomic ,weak) IBOutlet UILabel *FromRegionName ;
+@property (nonatomic ,weak) IBOutlet UILabel *ToEmirateName ;
+@property (nonatomic ,weak) IBOutlet UILabel *ToRegionName ;
+
+
+- (void)setRide:(MostRide *)ride ;
 
 @end

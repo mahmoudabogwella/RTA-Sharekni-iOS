@@ -21,12 +21,21 @@
 #import "AgeRange.h"
 #import "Language.h"
 #import "Nationality.h"
+#import <KLCPopup/KLCPopup.h>
+#import "PickupLocationView.h"
+#import <MZFormSheetController.h>
+#import "SelectLocationViewController.h"
+#import "MobDriverManager.h"
+#import "HelpManager.h"
+
 typedef enum RoadType : NSUInteger {
     PeriodicType,
     SingleRideType
 } RoadType;
 
 typedef enum TextFieldType : NSUInteger {
+    PickupTextField,
+    DestinationTextField,
     NationalityTextField,
     LanguageTextField,
     AgeRangeTextField
@@ -34,6 +43,7 @@ typedef enum TextFieldType : NSUInteger {
 
 @interface AdvancedSearchViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 //Outlets
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView ;
 @property (weak, nonatomic) IBOutlet UITextField *startPointTextField;
 @property (weak, nonatomic) IBOutlet UITextField *destinationTextFiled;
 @property (weak, nonatomic) IBOutlet UIView *timeView;
@@ -71,6 +81,12 @@ typedef enum TextFieldType : NSUInteger {
 @property (strong,nonatomic) Nationality *selectedNationality;
 @property (strong,nonatomic) Language *selectedLanguage;
 
+@property (strong,nonatomic) Emirate *fromEmirate;
+@property (strong,nonatomic) Emirate *toEmirate;
+
+@property (strong,nonatomic) Region *fromRegion;
+@property (strong,nonatomic) Region *toRegion;
+
 @end
 
 @implementation AdvancedSearchViewController
@@ -84,6 +100,17 @@ typedef enum TextFieldType : NSUInteger {
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+ 
+    self.title = NSLocalizedString(@"advancedSearch", nil);
+    
+    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setHighlighted:NO];
+    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 660)];
     self.selectedType = SingleRideType;
     self.isFemaleOnly = false;
     self.pickupDate = [[NSDate date] dateBySettingHour:10];
@@ -91,6 +118,11 @@ typedef enum TextFieldType : NSUInteger {
     [self configureRoadTypeView];
     [self configureGenderView];
     [self configureUI];
+}
+
+- (void)popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma Data
@@ -155,6 +187,7 @@ typedef enum TextFieldType : NSUInteger {
     self.searchButton.layer.cornerRadius = 8;
     
     self.langageTextField.textColor        = Red_UIColor;
+    self.nationalityTextField.textColor    = Red_UIColor;
     self.ageRangeTextField.textColor       = Red_UIColor;
     self.langageTextField.textColor        = Red_UIColor;
     self.pickupTitleLabel.backgroundColor  = Red_UIColor;
@@ -232,7 +265,24 @@ typedef enum TextFieldType : NSUInteger {
 }
 
 - (IBAction)searchAction:(id)sender {
-    
+    if (!self.fromEmirate) {
+          [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select start point ",nil)];
+    }
+    else if (!self.toEmirate){
+         [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select destination ",nil)];
+    }
+    else{
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ? YES : NO WithSuccess:^(NSArray *searchResults) {
+            if(searchResults){
+                
+            }
+            else{
+                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
+            }
+        } Failure:^(NSString *error) {
+            
+        }];
+    }
 }
 
 #pragma Pickers
@@ -301,12 +351,27 @@ typedef enum TextFieldType : NSUInteger {
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
 }
+//http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/Passenger_FindRide?AccountID=0&PreferredGender=N&Time=&FromEmirateID=2&FromRegionID=5&ToEmirateID=3&ToRegionID=8&PrefferedLanguageId=0&PrefferedNationlaities=&AgeRangeId=0&StartDate=&SaveFind=0&IsPeriodic=
 
 - (void) showPickerWithTextFieldType:(TextFieldType)type{
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
+            case PickupTextField:
+            {
+                Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
+                self.nationalityTextField.text = nationality.NationalityArName;
+                self.selectedNationality = nationality;
+            }
+                break;
+            case DestinationTextField:
+            {
+                Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
+                self.nationalityTextField.text = nationality.NationalityArName;
+                self.selectedNationality = nationality;
+            }
+                break;
             case NationalityTextField:
             {
                 Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
@@ -375,10 +440,46 @@ typedef enum TextFieldType : NSUInteger {
     [self presentViewController:pickerController animated:YES completion:nil];
 }
 
+- (void) showLocationPickerWithTextFieldType:(TextFieldType)type{
+    SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
+    selectLocationViewController.viewTitle = type == PickupTextField ? NSLocalizedString(@"Select pickup point", Nil): NSLocalizedString(@"Select destionation point", nil);
+    __block AdvancedSearchViewController *blockSelf = self;
+    [selectLocationViewController setSelectionHandler:^(Emirate *selectedEmirate, Region *selectedRegion) {
+        NSString *text = [NSString stringWithFormat:@"%@,%@",selectedEmirate.EmirateArName,selectedRegion.RegionArName];
+        if (type == PickupTextField) {
+            blockSelf.fromEmirate = selectedEmirate;
+            blockSelf.fromRegion = selectedRegion;
+            blockSelf.startPointTextField.text = text;
+        }
+        else if (type == DestinationTextField){
+            blockSelf.toEmirate = selectedEmirate;
+            blockSelf.toRegion = selectedRegion;
+            blockSelf.destinationTextFiled.text = text;
+        }
+    }];
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
+    
+    formSheet.formSheetWindow.transparentTouchEnabled = NO;
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+    formSheet.shouldDismissOnBackgroundViewTap = YES;
+    formSheet.shouldCenterVertically = NO;
+    formSheet.presentedFormSheetSize = CGSizeMake(300, 200);
+    formSheet.portraitTopInset = 55;
+    formSheet.cornerRadius = 8;
+    
+    [formSheet presentAnimated:YES completionHandler:^(UIViewController *presentedFSViewController) {
+        
+    }];
+}
+
 #pragma TextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if(textField == self.startPointTextField || textField == self.destinationTextFiled){
-        return YES;
+    if(textField == self.startPointTextField ){
+        [self showLocationPickerWithTextFieldType:PickupTextField];
+    }
+    else if (textField == self.destinationTextFiled){
+        [self showLocationPickerWithTextFieldType:DestinationTextField];
     }
     else if (textField == self.nationalityTextField){
         [self showPickerWithTextFieldType:NationalityTextField];
@@ -407,7 +508,6 @@ typedef enum TextFieldType : NSUInteger {
     [textField resignFirstResponder];
     return YES;
 }
-
 
 #pragma PickerViewDeelgate&DataSource
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component

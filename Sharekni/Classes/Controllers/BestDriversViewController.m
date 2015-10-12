@@ -8,8 +8,21 @@
 
 #import "BestDriversViewController.h"
 #import "BestDriverCell.h"
+#import "HelpManager.h"
+#import "MasterDataManager.h"
+#import "Region.h"
+#import "Emirate.h"
+#import "Constants.h"
+#import <KVNProgress/KVNProgress.h>
+#import "NSObject+Blocks.h"
+#import <UIColor+Additions.h>
+#import "NSObject+Blocks.h"
+#import "MessageUI/MessageUI.h"
 
-@interface BestDriversViewController ()
+@interface BestDriversViewController () <SendSMSDelegate,MFMessageComposeViewControllerDelegate>
+
+@property (nonatomic ,weak) IBOutlet UITableView *driversList ;
+@property (nonatomic ,strong) NSMutableArray *bestDrivers ;
 
 @end
 
@@ -19,6 +32,42 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = NO ;
+    
+    self.title = NSLocalizedString(@"bestDrivers", nil);
+    
+    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setHighlighted:NO];
+    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    
+    [self getBestDrivers];
+}
+
+#pragma mark - Methods
+- (void)popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)getBestDrivers
+{
+    __block BestDriversViewController *blockSelf = self;
+    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [[MasterDataManager sharedMasterDataManager] GetBestDrivers:^(NSMutableArray *array) {
+        blockSelf.bestDrivers = array;
+        [KVNProgress dismiss];
+        [self.driversList reloadData];
+        
+    } Failure:^(NSString *error) {
+        NSLog(@"Error in Best Drivers");
+        [KVNProgress dismiss];
+        [KVNProgress showErrorWithStatus:@"Error"];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+        } afterDelay:3];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,7 +81,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 5;
+    return self.bestDrivers.count;
 }
 
 - (BestDriverCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -42,9 +91,11 @@
     if (driverCell == nil) {
         driverCell = [[BestDriverCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:driverIdentifier];
         driverCell.contentView.backgroundColor = [UIColor clearColor];
+        driverCell.delegate = self ;
     }
     
-    [driverCell setDriver:@"Ahmed" andCountry:@"Dubai"];
+    BestDriver *driver = self.bestDrivers[indexPath.row];
+    [driverCell setDriver:driver];
     
     return driverCell ;
 }
@@ -57,6 +108,36 @@
     
 }
 
+#pragma mark - Message Delegate
+- (void)sendSMSFromPhone:(NSString *)phone
+{
+    if(![MFMessageComposeViewController canSendText])
+    {
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [warningAlert show];
+        return;
+    }
+    
+    NSArray *recipents = @[phone];
+    
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    [messageController setRecipients:recipents];
+    
+    // Present message view controller on screen
+    [self presentViewController:messageController animated:YES completion:nil];
+}
+
+- (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    switch(result)
+    {
+        case MessageComposeResultCancelled: break; //handle cancelled event
+        case MessageComposeResultFailed: break; //handle failed event
+        case MessageComposeResultSent: break; //handle sent event
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 /*

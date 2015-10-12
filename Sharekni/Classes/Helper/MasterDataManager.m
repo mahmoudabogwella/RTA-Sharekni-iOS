@@ -15,8 +15,11 @@
 #import "Language.h"
 #import "Employer.h"
 #import "Emirate.h"
+#import "BestDriver.h"
+#import "MostRide.h"
 #import "Region.h"
 #define id_KEY @"id"
+#define fileName_KEY @"s_FileName"
 
 @interface MasterDataManager ()
 @property (strong,nonatomic) NSArray *nationalties;
@@ -207,6 +210,55 @@
     }];
 }
 
+- (void) GetBestDrivers:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+{
+    [self.operationManager GET:GetBestDrivers_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+     
+        NSLog(@"%@",responseObject);
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        NSMutableArray *bestDrivers = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            BestDriver *driver= [BestDriver gm_mappedObjectWithJsonRepresentation:dictionary];
+            [bestDrivers addObject:driver];
+        }
+        success(bestDrivers);
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        NSLog(@"Error %@",error.description);
+        failure(error.description);
+    }];
+}
+
+- (void) GetMostRides:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+{
+    [self.operationManager GET:GetMostRides_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        NSMutableArray *mostRides = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            MostRide *driver= [MostRide gm_mappedObjectWithJsonRepresentation:dictionary];
+            [mostRides addObject:driver];
+        }
+        success(mostRides);
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        NSLog(@"Error %@",error.description);
+        failure(error.description);
+    }];
+}
+
+
 - (void) GetRegionsByID:(NSString *)ID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSDictionary *parameters = @{id_KEY:ID};
     [self.operationManager GET:GetRegionById_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
@@ -252,6 +304,20 @@
         NSLog(@"Error %@",error.description);
         failure(error.description);
     }];
+}
+
+- (void) GetPhotoWithName:(NSString *)name withSuccess:(void (^)(UIImage *image,NSString *filePath))success Failure:(void (^)(NSString *error))failure{
+    NSDictionary *parameters = @{fileName_KEY:name};
+    [self.operationManager GET:GetPhoto_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        NSLog(@"Error %@",error.description);
+        failure(error.description);
+    }];
+
 }
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MasterDataManager);

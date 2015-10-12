@@ -56,7 +56,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="301"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="1Bq-RW-1hd">
-                    <rect key="frame" x="40" y="105" width="98" height="95"/>
+                    <rect key="frame" x="40" y="73" width="98" height="95"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="98" id="7zd-OM-fI2"/>
                         <constraint firstAttribute="height" constant="95" id="D6e-s2-RCI"/>
@@ -83,6 +83,9 @@
                             <rect key="frame" x="6" y="5" width="283" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="aKJ-lW-naZ"/>
+                            </connections>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,6 +115,9 @@
                             <rect key="frame" x="5" y="5" width="283" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="lvS-kM-4ul"/>
+                            </connections>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -148,7 +154,7 @@
                 <constraint firstItem="hJl-MU-e0O" firstAttribute="top" secondItem="PGA-SL-v1P" secondAttribute="bottom" constant="8" id="KcJ-zW-aJd"/>
                 <constraint firstAttribute="trailing" secondItem="hJl-MU-e0O" secondAttribute="trailing" constant="14" id="RJO-yh-WMl"/>
                 <constraint firstItem="PGA-SL-v1P" firstAttribute="leading" secondItem="oFt-SY-eFE" secondAttribute="leading" constant="13" id="Sbh-Xa-HSe"/>
-                <constraint firstItem="1Bq-RW-1hd" firstAttribute="top" secondItem="oFt-SY-eFE" secondAttribute="top" constant="105" id="Utd-OI-Zc3"/>
+                <constraint firstItem="1Bq-RW-1hd" firstAttribute="top" secondItem="oFt-SY-eFE" secondAttribute="top" constant="73" id="Utd-OI-Zc3"/>
                 <constraint firstAttribute="trailing" secondItem="PGA-SL-v1P" secondAttribute="trailing" constant="13" id="WGC-kf-bXb"/>
                 <constraint firstAttribute="trailing" secondItem="U31-7k-48H" secondAttribute="trailing" id="Ydj-5z-cJD"/>
                 <constraint firstItem="al8-NN-cFP" firstAttribute="leading" secondItem="oFt-SY-eFE" secondAttribute="leading" id="eKU-jg-HEe"/>

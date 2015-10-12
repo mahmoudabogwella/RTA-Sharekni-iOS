@@ -7,6 +7,8 @@
 //
 
 #import "RegisterViewController.h"
+#import "Constants.h"
+#import <UIColor+Additions/UIColor+Additions.h>
 
 @interface RegisterViewController ()
 {
@@ -24,6 +26,11 @@
     __weak IBOutlet UILabel *dateLbl;
     __weak IBOutlet UIView *datePickerView;
     __weak IBOutlet UIButton *switchBtn;
+    
+    __weak IBOutlet UILabel *driverLbl;
+    __weak IBOutlet UILabel *passengerLbl;
+    __weak IBOutlet UILabel *bothLbl;
+
     
     float animatedDistance ;
 }
@@ -77,12 +84,52 @@
     [switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_right"]      forState:UIControlStateSelected];
     [switchBtn    setSelected:NO];
 
+    if ([firstNametxt respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
+        firstNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"firstName",nil) attributes:@{NSForegroundColorAttributeName: color}];
+        lastNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"lastName", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mobile", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"username", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        passwordTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"password", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"nationality", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"pLanguage", nil) attributes:@{NSForegroundColorAttributeName: color}];
+    } else {
+        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
+        // TODO: Add fall-back code to set placeholder color.
+    }
 }
 
 #pragma mark - Event Handlers
 - (IBAction)selectHumanType:(id)sender
 {
-    
+    switch ([sender tag]) {
+        case 0:
+            [driverBtn    setSelected:YES];
+            [passengerBtn setSelected:NO];
+            [bothBtn    setSelected:NO];
+            driverLbl.textColor = [UIColor whiteColor];
+            passengerLbl.textColor = [UIColor darkGrayColor];
+            bothLbl.textColor = [UIColor darkGrayColor];
+            break;
+        case 1:
+            [passengerBtn setSelected:YES];
+            [driverBtn    setSelected:NO];
+            [bothBtn    setSelected:NO];
+            driverLbl.textColor = [UIColor darkGrayColor];
+            passengerLbl.textColor = [UIColor whiteColor];
+            bothLbl.textColor = [UIColor darkGrayColor];
+            break;
+        case 2:
+            [driverBtn    setSelected:NO];
+            [passengerBtn setSelected:NO];
+            [bothBtn    setSelected:YES];
+            driverLbl.textColor = [UIColor darkGrayColor];
+            passengerLbl.textColor = [UIColor darkGrayColor];
+            bothLbl.textColor = [UIColor whiteColor];
+            break;
+        default:
+            break;
+    }
 }
 
 - (IBAction)selectGender:(id)sender

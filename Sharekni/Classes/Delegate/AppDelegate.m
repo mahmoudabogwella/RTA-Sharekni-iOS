@@ -10,7 +10,7 @@
 #import "MasterDataManager.h"
 #import "Sharekni.pch"
 #import "MobAccountManager.h"
-
+#import <MZFormSheetController.h>
 
 @interface AppDelegate ()
 
@@ -20,26 +20,37 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
+    [[MZFormSheetBackgroundWindow appearance] setBlurRadius:1.0];
+    [[MZFormSheetBackgroundWindow appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
+    [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
+    
+    [[MZFormSheetController sharedBackgroundWindow] setBackgroundBlurEffect:YES];
+    [[MZFormSheetController sharedBackgroundWindow] setBlurRadius:1.0];
+    [[MZFormSheetController sharedBackgroundWindow] setBlurEffectStyle:UIBlurEffectStyleDark];
+    [[MZFormSheetController sharedBackgroundWindow] setBackgroundColor:[UIColor clearColor]];
+    
     // Override point for customization after application launch.
-    [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
-        
-    } Failure:^(NSString *error) {
-        
-    }];
-    
-[[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:@"Tefa" andPassword:@"111111" WithSuccess:^(User *user) {
-    
-} Failure:^(NSString *error) {
-    
-}];
-    
-    
-    [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:@"Tefa" andPassword:@"1111011" WithSuccess:^(User *user) {
-        
-    } Failure:^(NSString *error) {
-        
-    }];
-    
+//    [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
+//        
+//    } Failure:^(NSString *error) {
+//        
+//    }];
+//    
+//[[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:@"Tefa" andPassword:@"111111" WithSuccess:^(User *user) {
+//    
+//} Failure:^(NSString *error) {
+//    
+//}];
+//    
+//    
+//    [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:@"Tefa" andPassword:@"1111011" WithSuccess:^(User *user) {
+//        
+//    } Failure:^(NSString *error) {
+//        
+//    }];
+//    
     
     [[UINavigationBar appearance] setBarTintColor:RGBA(230, 0, 10, 1)];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];

@@ -17,22 +17,26 @@
     self.driverImage.clipsToBounds = YES ;
 }
 
-- (void)setDriver:(NSString *)name andCountry:(NSString *)country
+- (void)setDriver:(BestDriver *)driver
 {
-    self.driverName.text = name ;
-    self.driverCountry.text = country ;
+    self.driverName.text = driver.AccountName ;
+    self.driverCountry.text = @"Dubai" ;
+    self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+    self.phone = driver.AccountMobile ;
 }
 
 - (IBAction)sendMail:(id)sender
 {
-
+    [self.delegate sendSMSFromPhone:self.phone];
 }
 
 - (IBAction)call:(id)sender
 {
-
-
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",self.phone]]];
 }
+
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  Sharekni
+
+  Created by Ahmed Askar on 10/9/15.
+
+*/
+
+
+"username"  = "Username";
+"password"  = "Password";
+"firstName" = "First Name";
+"lastName"  = "Last Name";
+"mobile"    = "Mobile Number";
+"nationality" = "Nationality";
+"pLanguage" = "Preferred Language";
+
+//Validation
+"nameReq" = "Please enter your username";
+"passReq" = "Please enter password";
+
+"registration" = "Registration";
+"login" = "Login";
+"bestDrivers" = "Best Drivers";
+"searchOptions" = "Search Options";
+"mostRides" = "Most Rides";
+"advancedSearch" = "Advanced Search";
+"quickSearch" = "Quick Search";
+"loading" = "Loading";
+"sharkni" = "Sharekni";

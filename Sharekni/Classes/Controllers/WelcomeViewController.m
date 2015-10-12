@@ -20,7 +20,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = NO ;
-
+    self.title = NSLocalizedString(@"sharkni", nil);
 }
 
 - (void)viewDidLoad {

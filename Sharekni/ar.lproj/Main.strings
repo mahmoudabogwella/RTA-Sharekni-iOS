@@ -5,65 +5,20 @@
 /* Class = "UITextField"; placeholder = "select start point"; ObjectID = "1bt-Rh-m5U"; */
 "1bt-Rh-m5U.placeholder" = "select start point";
 
-/* Class = "UIButton"; normalTitle = "Top rides"; ObjectID = "5eh-wa-b1E"; */
-"5eh-wa-b1E.normalTitle" = "Top rides";
+/* Class = "UIButton"; normalTitle = "Search"; ObjectID = "2rP-kC-FKb"; */
+"2rP-kC-FKb.normalTitle" = "Search";
 
 /* Class = "UILabel"; text = "60"; ObjectID = "6cl-4Y-zBF"; */
 "6cl-4Y-zBF.text" = "60";
 
-/* Class = "UIButton"; normalTitle = "Advanced search"; ObjectID = "7eh-AN-u5r"; */
-"7eh-AN-u5r.normalTitle" = "Advanced search";
-
 /* Class = "UITextField"; placeholder = "select destination"; ObjectID = "BUd-Xa-GdG"; */
 "BUd-Xa-GdG.placeholder" = "select destination";
 
-/* Class = "UITextField"; placeholder = "Password"; ObjectID = "D3c-7Z-rIc"; */
-"D3c-7Z-rIc.placeholder" = "Password";
-
-/* Class = "UIButton"; normalTitle = "Quick search"; ObjectID = "G44-qG-S6H"; */
-"G44-qG-S6H.normalTitle" = "Quick search";
-
-/* Class = "UIButton"; normalTitle = "Click here if you don't have account  - Sign up"; ObjectID = "Hou-ac-Mtg"; */
-"Hou-ac-Mtg.normalTitle" = "Click here if you don't have account  - Sign up";
-
-/* Class = "UIButton"; normalTitle = "Map look up"; ObjectID = "IUo-kH-K8R"; */
-"IUo-kH-K8R.normalTitle" = "Map look up";
-
-/* Class = "UIViewController"; title = "Login"; ObjectID = "Isz-FI-Sgu"; */
-"Isz-FI-Sgu.title" = "Login";
-
-/* Class = "UIButton"; normalTitle = "Forget Password ?"; ObjectID = "T52-nk-eQm"; */
-"T52-nk-eQm.normalTitle" = "Forget Password ?";
-
-/* Class = "UIViewController"; title = "Register"; ObjectID = "TDW-Na-zcG"; */
-"TDW-Na-zcG.title" = "Register";
-
-/* Class = "UIButton"; normalTitle = "Details"; ObjectID = "U3G-Yr-ZoA"; */
-"U3G-Yr-ZoA.normalTitle" = "Details";
-
-/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "ayO-VX-ipF"; */
-"ayO-VX-ipF.normalTitle" = "Login";
+/* Class = "UILabel"; text = "(Optional)"; ObjectID = "eUv-E0-y1N"; */
+"eUv-E0-y1N.text" = "(Optional)";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fcQ-XP-a4z"; */
 "fcQ-XP-a4z.text" = "Label";
 
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "fk2-QX-P7b"; */
-"fk2-QX-P7b.normalTitle" = "Button";
-
 /* Class = "UILabel"; text = "Label"; ObjectID = "jVx-ZN-RMu"; */
 "jVx-ZN-RMu.text" = "Label";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "pNU-o8-AFi"; */
-"pNU-o8-AFi.normalTitle" = "Button";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "pSX-aR-ayh"; */
-"pSX-aR-ayh.normalTitle" = "Button";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "sh2-xf-ZJJ"; */
-"sh2-xf-ZJJ.text" = "Label";
-
-/* Class = "UITextField"; placeholder = "Your Email"; ObjectID = "vua-Cj-6Sc"; */
-"vua-Cj-6Sc.placeholder" = "Your Email";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "xRc-Ym-F31"; */
-"xRc-Ym-F31.normalTitle" = "Button";

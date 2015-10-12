@@ -7,15 +7,18 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController">
             <connections>
                 <outlet property="bothBtn" destination="uLw-ZQ-FNa" id="afz-Yc-SNB"/>
+                <outlet property="bothLbl" destination="7p7-En-CEc" id="iNf-MZ-ySm"/>
                 <outlet property="container" destination="ahc-Yc-DaA" id="OzO-cY-dCO"/>
                 <outlet property="dateLbl" destination="8c0-Zc-Vj0" id="zey-EN-hcu"/>
                 <outlet property="datePickerView" destination="n8x-Rr-lxQ" id="htz-yX-iTo"/>
                 <outlet property="driverBtn" destination="Oco-Jf-4sM" id="cae-Z5-bhb"/>
+                <outlet property="driverLbl" destination="D5L-ck-wID" id="9O4-1M-ftA"/>
                 <outlet property="firstNametxt" destination="TmR-D4-R8s" id="0Da-YH-5eB"/>
                 <outlet property="lastNametxt" destination="gHF-Rw-A77" id="ig9-Il-O5i"/>
                 <outlet property="mobileNumberTxt" destination="bhq-Be-Sdh" id="WlX-4m-mUb"/>
                 <outlet property="nationalityTxt" destination="H7G-Mh-PkX" id="0dE-7V-wR2"/>
                 <outlet property="passengerBtn" destination="4B9-7G-uAD" id="SAW-hr-2HS"/>
+                <outlet property="passengerLbl" destination="sfC-pO-A9n" id="QeX-nt-nCm"/>
                 <outlet property="passwordTxt" destination="Bfw-6L-BwN" id="h9s-yM-Jgn"/>
                 <outlet property="preferredLanguageTxt" destination="uYD-uf-sSM" id="3el-vH-8K4"/>
                 <outlet property="switchBtn" destination="vlK-cN-jzC" id="fpx-a3-YQO"/>
@@ -37,7 +40,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oco-Jf-4sM">
-                            <rect key="frame" x="30" y="8" width="60" height="60"/>
+                            <rect key="frame" x="30" y="3" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" backgroundImage="DriverActive">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,7 +50,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4B9-7G-uAD">
-                            <rect key="frame" x="130" y="8" width="60" height="60"/>
+                            <rect key="frame" x="130" y="3" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" backgroundImage="PassengerActive">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,7 +60,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uLw-ZQ-FNa">
-                            <rect key="frame" x="230" y="8" width="60" height="60"/>
+                            <rect key="frame" x="230" y="3" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <state key="normal" backgroundImage="BothActive">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -303,7 +306,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vlK-cN-jzC">
-                                    <rect key="frame" x="121" y="7" width="52" height="31"/>
+                                    <rect key="frame" x="121" y="4" width="60" height="38"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <state key="normal" backgroundImage="select_Left">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -362,10 +365,31 @@
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="0"/>
+                                    <integer key="value" value="5"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D5L-ck-wID">
+                            <rect key="frame" x="42" y="41" width="46" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passenger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sfC-pO-A9n">
+                            <rect key="frame" x="125" y="39" width="81" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Both" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7p7-En-CEc">
+                            <rect key="frame" x="247" y="43" width="37" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                 </scrollView>
             </subviews>

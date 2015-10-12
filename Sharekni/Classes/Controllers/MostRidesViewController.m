@@ -8,9 +8,17 @@
 
 #import "MostRidesViewController.h"
 #import "MostRidesCell.h"
+#import "HelpManager.h"
+#import "MasterDataManager.h"
+#import <KVNProgress/KVNProgress.h>
+#import "NSObject+Blocks.h"
+#import <UIColor+Additions.h>
+#import "NSObject+Blocks.h"
+#import "MostRide.h"
 
 @interface MostRidesViewController ()
-
+@property (nonatomic ,weak) IBOutlet UITableView *ridesList ;
+@property (nonatomic ,strong) NSMutableArray *mostRides ;
 @end
 
 @implementation MostRidesViewController
@@ -20,6 +28,41 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = NO ;
+    self.title = NSLocalizedString(@"mostRides", nil);
+    
+    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setHighlighted:NO];
+    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    
+    [self getMostRides];
+}
+
+#pragma mark - Methods
+- (void)popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)getMostRides
+{
+    __block MostRidesViewController *blockSelf = self;
+    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [[MasterDataManager sharedMasterDataManager] GetMostRides:^(NSMutableArray *array) {
+        blockSelf.mostRides = array;
+        [KVNProgress dismiss];
+        [self.ridesList reloadData];
+        
+    } Failure:^(NSString *error) {
+        NSLog(@"Error in Most Rides");
+        [KVNProgress dismiss];
+        [KVNProgress showErrorWithStatus:@"Error"];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+        } afterDelay:3];
+    }];
 }
 
 #pragma mark -
@@ -27,18 +70,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 5;
+    return self.mostRides.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (MostRidesCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *rideIdentifier = @"MostRideCell";
-    UITableViewCell *rideCell = [tableView dequeueReusableCellWithIdentifier:rideIdentifier];
+    MostRidesCell *rideCell = (MostRidesCell*)[tableView dequeueReusableCellWithIdentifier:rideIdentifier];
     if (rideCell == nil) {
-        rideCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rideIdentifier];
+        rideCell = [[MostRidesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rideIdentifier];
         rideCell.contentView.backgroundColor = [UIColor clearColor];
     }
     
+    MostRide *ride = self.mostRides [indexPath.row];
+    [rideCell setRide:ride];
     
     return rideCell ;
 }
@@ -48,7 +93,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

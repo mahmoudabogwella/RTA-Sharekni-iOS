@@ -15,6 +15,14 @@
     
 }
 
+- (void)setRide:(MostRide *)ride
+{
+    self.FromEmirateName.text = ride.FromEmirateNameEn;
+    self.FromRegionName.text = ride.FromRegionNameEn;
+    self.ToEmirateName.text = ride.ToEmirateNameEn;
+    self.ToRegionName.text = ride.ToRegionNameEn;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

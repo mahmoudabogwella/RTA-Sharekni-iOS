@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  Sharekni
+
+  Created by Ahmed Askar on 10/9/15.
+
+*/
+
+"username" = "اسم المستخدم";
+"password" = "كلمة المرور";
+"firstName" = "الاسم الاول";
+"lastName"  = "اسم العائلة";
+"mobile"    = "رقم الهاتف";
+"nationality" = "الجنسية";
+"pLanguage" = "اللغة المفضلة";
+
+
+"nameReq" = "من فضلك أدخل اسم المستخدم";
+"passReq" = "من فضلك أدخل كلمة المرور";
+
+
+"registration" = "مستخدم جديد";
+"login" = "الدخول";
+"bestDrivers" = "أفضل السائقين";
+"searchOptions" = "خيارات البحث";
+"mostRides" = "معظم الجولات";
+"advancedSearch" = "بحث متقدم";
+"quickSearch" = "بحث";
+
+"loading" = "تحميل";
+"sharkni" = "شاركني";

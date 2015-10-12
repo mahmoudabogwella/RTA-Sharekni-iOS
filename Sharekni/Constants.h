@@ -45,12 +45,15 @@
 #define Sharkeni_BASEURL @"http://sharekni-web.sdg.ae/_mobfiles/"
 #define GetAgeRanges_URL @"cls_mobmasterdata.asmx/GetAgeRanges"
 #define GetEmirates_URL @"cls_mobmasterdata.asmx/GetEmirates"
+#define GetBestDrivers_URL @"cls_mobdriver.asmx/GetBestDrivers"
+#define GetMostRides_URL @"CLS_MobRoute.asmx/GetMostDesiredRides"
 #define GetEmployers_URL @"cls_mobmasterdata.asmx/GetEmployers"
 #define GetRegionById_URL @"cls_mobmasterdata.asmx/GetRegionById"
 #define GetNationalities_URL @"cls_mobmasterdata.asmx/GetNationalities"
 #define GetRegionsByEmirateId_URL @"cls_mobmasterdata.asmx/GetRegionsByEmirateId"
 #define GetTermsAndConditions_URL @"cls_mobmasterdata.asmx/GetTermsAndConditions"
 #define GetPrefferedLanguages_URL @"cls_mobmasterdata.asmx/GetPrefferedLanguages"
+#define GetPhoto_URL @"CLS_MobAccount.asmx/GetPhotoPath"
 
 #define RegisterPassenger_URL @"CLS_MobAccount.asmx/RegisterPassenger"
 #define ChangePassword_URL @"CLS_MobAccount.asmx/ChangePassword"
@@ -62,9 +65,13 @@
 #define ForgotPassword_URL @"CLS_MobAccount.asmx/ForgetPassword"
 #define GetCalculatedRating_URL @"CLS_MobAccount.asmx/GetCalculatedRating"
 
+#define GetPrefferedLanguages_URL @"cls_mobmasterdata.asmx/GetPrefferedLanguages"
+#define Passenger_FindRide_URL @"CLS_MobDriver.asmx/Passenger_FindRide"
+
+
 
 #pragma Colors
 #define Red_HEX @"E30613"
-#define Red_UIColor [UIColor add_colorWithRGBHexString:Red_HEX];
+#define Red_UIColor [UIColor add_colorWithRGBHexString:Red_HEX]
 
 #endif
