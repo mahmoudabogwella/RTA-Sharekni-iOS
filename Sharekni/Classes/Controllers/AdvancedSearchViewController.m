@@ -28,18 +28,6 @@
 #import "MobDriverManager.h"
 #import "HelpManager.h"
 
-typedef enum RoadType : NSUInteger {
-    PeriodicType,
-    SingleRideType
-} RoadType;
-
-typedef enum TextFieldType : NSUInteger {
-    PickupTextField,
-    DestinationTextField,
-    NationalityTextField,
-    LanguageTextField,
-    AgeRangeTextField
-} TextFieldType;
 
 @interface AdvancedSearchViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 //Outlets
@@ -358,20 +346,6 @@ typedef enum TextFieldType : NSUInteger {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
-            case PickupTextField:
-            {
-                Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
-                self.nationalityTextField.text = nationality.NationalityArName;
-                self.selectedNationality = nationality;
-            }
-                break;
-            case DestinationTextField:
-            {
-                Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
-                self.nationalityTextField.text = nationality.NationalityArName;
-                self.selectedNationality = nationality;
-            }
-                break;
             case NationalityTextField:
             {
                 Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
@@ -435,7 +409,6 @@ typedef enum TextFieldType : NSUInteger {
         default:
             break;
     }
-    
     //Now just present the picker controller using the standard iOS presentation method
     [self presentViewController:pickerController animated:YES completion:nil];
 }
@@ -493,15 +466,9 @@ typedef enum TextFieldType : NSUInteger {
     return NO;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-}
-
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField{
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

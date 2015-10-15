@@ -38,10 +38,8 @@
 
 - (IBAction)quickSearch:(id)sender
 {
-//    QuickSearchViewController *quickSearchView = [[QuickSearchViewController alloc] initWithNibName:@"QuickSearchViewController" bundle:nil];
-//    [self.navigationController pushViewController:quickSearchView animated:YES];
-    UIAlertView *alertView =  [[UIAlertView alloc] initWithTitle:@"Attention" message:@"This feature is under development" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alertView show];
+    QuickSearchViewController *quickSearchView = [[QuickSearchViewController alloc] initWithNibName:@"QuickSearchViewController" bundle:nil];
+    [self.navigationController pushViewController:quickSearchView animated:YES];
 }
 
 
@@ -62,20 +60,5 @@
     MostRidesViewController *mostRides = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
     [self.navigationController pushViewController:mostRides animated:YES];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

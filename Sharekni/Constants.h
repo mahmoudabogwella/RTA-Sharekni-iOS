@@ -74,4 +74,20 @@
 #define Red_HEX @"E30613"
 #define Red_UIColor [UIColor add_colorWithRGBHexString:Red_HEX]
 
+
+#pragma ENUMS
+
+typedef enum RoadType : NSUInteger {
+    PeriodicType,
+    SingleRideType
+} RoadType;
+
+typedef enum TextFieldType : NSUInteger {
+    PickupTextField,
+    DestinationTextField,
+    NationalityTextField,
+    LanguageTextField,
+    AgeRangeTextField
+} TextFieldType;
+
 #endif
