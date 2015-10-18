@@ -10,7 +10,7 @@
 #import "QuickSearchViewController.h"
 #import "AdvancedSearchViewController.h"
 #import "MostRidesViewController.h"
-
+#import "MapLookupViewController.h"
 @interface SearchViewController ()
 
 @end
@@ -50,8 +50,8 @@
 }
 
 - (IBAction)mapLookUp:(id)sender {
-    UIAlertView *alertView =  [[UIAlertView alloc] initWithTitle:@"Attention" message:@"This feature is under development" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alertView show];
+    MapLookupViewController *mapLookupViewController = [[MapLookupViewController alloc] initWithNibName:@"MapLookupViewController" bundle:nil];
+    [self.navigationController pushViewController:mapLookupViewController animated:YES];
 }
 
 - (IBAction)topRides:(id)sender

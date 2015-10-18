@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdvancedSearchViewController">
@@ -19,10 +20,12 @@
                 <outlet property="monthAndYearLabel" destination="OnJ-QQ-4U7" id="dn9-aT-xXm"/>
                 <outlet property="nationalityTextField" destination="YcT-ft-LVD" id="iUD-2Z-nyZ"/>
                 <outlet property="optionalHeader" destination="FQW-Aa-PCT" id="Jak-m6-4Z5"/>
+                <outlet property="periodicLabel" destination="D7N-1A-kkZ" id="ExP-sp-ew8"/>
                 <outlet property="pickupTitleLabel" destination="7o9-qf-6nL" id="bh1-JF-uGE"/>
                 <outlet property="scrollView" destination="wGa-E0-LJ3" id="Oex-47-BbH"/>
                 <outlet property="searchButton" destination="goQ-Bw-BsT" id="mt5-AA-jfa"/>
                 <outlet property="sepratorLine" destination="gGN-uR-wbc" id="kMx-6r-Wmu"/>
+                <outlet property="singleRideLabel" destination="DuK-LA-8eP" id="Jly-ra-bJp"/>
                 <outlet property="startPointTextField" destination="hyV-KH-L94" id="7jf-YA-8hA"/>
                 <outlet property="timeLabel" destination="Y1I-Pg-APQ" id="7kH-Dj-hW7"/>
                 <outlet property="timeView" destination="GLh-hf-ffD" id="a5A-Hd-RPc"/>

@@ -2,7 +2,7 @@
 //  MapLookupViewController.h
 //  Sharekni
 //
-//  Created by Ahmed Askar on 9/26/15.
+//  Created by Mohamed Abd El-latef on 10/18/15.
 //
 //
 

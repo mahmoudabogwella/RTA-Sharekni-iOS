@@ -9,8 +9,17 @@
 #import "RegisterViewController.h"
 #import "Constants.h"
 #import <UIColor+Additions/UIColor+Additions.h>
-
-@interface RegisterViewController ()
+#import <RMActionController.h>
+#import <RMPickerViewController.h>
+#import "Nationality.h"
+#import "Language.h"
+#import "HelpManager.h"
+#import <RMDateSelectionViewController.h>
+#import "MasterDataManager.h"
+#import <KVNProgress.h>
+#import "NSObject+Blocks.h"
+#import "MobAccountManager.h"
+@interface RegisterViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
 {
     __weak IBOutlet UIScrollView *container;
     __weak IBOutlet UIButton *driverBtn;
@@ -31,12 +40,31 @@
     __weak IBOutlet UILabel *passengerLbl;
     __weak IBOutlet UILabel *bothLbl;
 
+    __weak IBOutlet UILabel *femaleLabel;
     
+    __weak IBOutlet UILabel *dateLabel;
+    __weak IBOutlet UILabel *maleLabel;
     float animatedDistance ;
 }
+
+@property (strong,nonatomic) NSArray *nationalties;
+@property (strong,nonatomic) NSArray *languages;
+
+@property (strong,nonatomic) Nationality *selectedNationality;
+@property (strong,nonatomic) Language *selectedLanguage;
+@property (strong,nonatomic) NSString *userName;
+@property (strong,nonatomic) NSString *password;
+@property (strong,nonatomic) NSString *firstName;
+@property (strong,nonatomic) NSString *lastName;
+@property (strong,nonatomic) NSString *mobileNumber;
+@property (strong,nonatomic) NSDate *date;
+@property (strong,nonatomic) NSDateFormatter *dateFormatter;
+@property (assign,nonatomic) BOOL isMale;
+@property (assign,nonatomic) AccountType accountType;
 @end
 
 @implementation RegisterViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,6 +82,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
    
     [self configureUI];
+    [self configureData];
 }
 
 - (void)popViewController
@@ -63,10 +92,16 @@
 
 - (void)configureUI
 {
+    
+    dateLabel.textColor = [UIColor blackColor];
+    
     [container setContentSize:CGSizeMake(self.view.frame.size.width, 700)];
     
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setDatePicker)];
-    [self.view addGestureRecognizer:gesture];
+    [datePickerView addGestureRecognizer:gesture];
+    [dateLbl addGestureRecognizer:gesture];
+    [dateLbl setUserInteractionEnabled:YES];
+    [datePickerView setUserInteractionEnabled:YES];
     
     [driverBtn    setBackgroundImage:[UIImage imageNamed:@"DriverUnActive"]    forState:UIControlStateNormal];
     [driverBtn    setBackgroundImage:[UIImage imageNamed:@"DriverActive"]      forState:UIControlStateSelected];
@@ -99,6 +134,31 @@
     }
 }
 
+- (void) configureData{
+    __block RegisterViewController*blockSelf = self;
+    [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"0" WithSuccess:^(NSMutableArray *array) {
+        blockSelf.nationalties = array;
+        [[MasterDataManager sharedMasterDataManager] GetPrefferedLanguagesWithSuccess:^(NSMutableArray *array) {
+            [KVNProgress dismiss];
+            blockSelf.languages = array;
+        } Failure:^(NSString *error) {
+            [blockSelf handleManagerFailure];
+        }];
+    } Failure:^(NSString *error) {
+        [blockSelf handleManagerFailure];
+    }];
+    
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+}
+
+- (void) handleManagerFailure{
+    [KVNProgress dismiss];
+    [KVNProgress showErrorWithStatus:@"Error"];
+    [self performBlock:^{
+        [KVNProgress dismiss];
+    } afterDelay:3];
+}
+
 #pragma mark - Event Handlers
 - (IBAction)selectHumanType:(id)sender
 {
@@ -110,6 +170,7 @@
             driverLbl.textColor = [UIColor whiteColor];
             passengerLbl.textColor = [UIColor darkGrayColor];
             bothLbl.textColor = [UIColor darkGrayColor];
+            self.accountType = AccountTypeDriver;
             break;
         case 1:
             [passengerBtn setSelected:YES];
@@ -118,6 +179,7 @@
             driverLbl.textColor = [UIColor darkGrayColor];
             passengerLbl.textColor = [UIColor whiteColor];
             bothLbl.textColor = [UIColor darkGrayColor];
+            self.accountType = AccountTypePassenger;
             break;
         case 2:
             [driverBtn    setSelected:NO];
@@ -126,6 +188,7 @@
             driverLbl.textColor = [UIColor darkGrayColor];
             passengerLbl.textColor = [UIColor darkGrayColor];
             bothLbl.textColor = [UIColor whiteColor];
+            self.accountType = AccountTypeBoth;
             break;
         default:
             break;
@@ -139,14 +202,44 @@
     if (btn.selected)
     {
         switchBtn.selected = NO ;
+        maleLabel.textColor = Red_UIColor;
+        femaleLabel.textColor = [UIColor darkGrayColor];
+        self.isMale = YES;
     }else{
+        self.isMale = NO;
         switchBtn.selected = YES ;
+        maleLabel.textColor =  [UIColor darkGrayColor];
+        femaleLabel.textColor = Red_UIColor;;
     }
 }
 
 - (void)setDatePicker
 {
     
+    [self.view endEditing:YES];
+    __block RegisterViewController *blockSelf = self;
+    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+        NSDate *date =  ((UIDatePicker *)controller.contentView).date;
+        
+        blockSelf.dateFormatter.dateFormat = @"dd, MMM, yyyy";
+        NSString * dateString = [self.dateFormatter stringFromDate:date];
+        dateLabel.text = dateString;
+        blockSelf.date = date;
+    }];
+    
+    //Create cancel action
+    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+        
+    }];
+    
+    //Create date selection view controller
+    RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
+    dateSelectionController.title = @"select date of birth";
+    dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
+    dateSelectionController.datePicker.date = [NSDate date];
+    
+    //Now just present the date selection controller using the standard iOS presentation method
+    [self presentViewController:dateSelectionController animated:YES completion:nil];
 }
 
 #pragma TextFieldDelegate
@@ -220,7 +313,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
     [self.view setFrame:viewFrame];
     [UIView commitAnimations];
-    
     return YES;
 }
 
@@ -238,22 +330,173 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 - (void)touchEvent:(id)sender
 {
     
+    
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    [self.view endEditing:YES];
+    if (textField == nationalityTxt){
+        [self showPickerWithTextFieldType:NationalityTextField];
+    }
+    else if (textField == preferredLanguageTxt){
+        [self showPickerWithTextFieldType:LanguageTextField];
+    }
+    else{
+        return YES;
+    }
+    return NO;
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (void) showPickerWithTextFieldType:(TextFieldType)type{
+    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+        UIPickerView *picker = ((RMPickerViewController *)controller).picker;
+        NSInteger selectedRow = [picker selectedRowInComponent:0];
+        switch (picker.tag) {
+            case NationalityTextField:
+            {
+                Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
+                nationalityTxt.text = nationality.NationalityArName;
+                self.selectedNationality = nationality;
+            }
+                break;
+            case LanguageTextField:
+            {
+                Language *language = [self.languages objectAtIndex:selectedRow];
+                preferredLanguageTxt.text = language.LanguageArName;
+                self.selectedLanguage = language;
+            }
+                break;
+            default:
+                break;
+        }
+    }];
+    
+    
+    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+        NSLog(@"Row selection was canceled");
+    }];
+    
+    //Create picker view controller
+    RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:RMActionControllerStyleDefault selectAction:selectAction andCancelAction:cancelAction];
+    
+    pickerController.picker.delegate = self;
+    pickerController.picker.dataSource = self;
+    pickerController.picker.tag = type;
+    NSInteger selectedRow = 0;
+    switch (type) {
+        case NationalityTextField:
+        {
+            if (self.selectedNationality) {
+                selectedRow = [self.nationalties indexOfObject:self.selectedNationality];
+            }
+        }
+            break;
+        case LanguageTextField:
+        {
+            if (self.selectedLanguage) {
+                selectedRow = [self.languages indexOfObject:self.selectedLanguage];
+            }
+        }
+            break;
+        default:
+            break;
+    }
+    //Now just present the picker controller using the standard iOS presentation method
+    [self presentViewController:pickerController animated:YES completion:nil];
+}
 
+- (IBAction)registerAction:(id)sender {
+    self.userName = usernameTxt.text;
+    self.password = passwordTxt.text;
+    self.firstName = firstNametxt.text;
+    self.lastName = lastNametxt.text;
+    self.mobileNumber = mobileNumberTxt.text;
+    if(self.firstName.length == 0){
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please enter your first name.",nil)];
+    }
+    else if(self.lastName.length == 0){
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please enter your last name.",nil)];
+    }
+    else if(self.userName.length == 0){
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please enter your username.",nil)];
+    }
+    else if(self.password.length == 0){
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please enter your password. ",nil)];
+    }
+    else if(self.mobileNumber.length == 0){
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please enter your mobile number. ",nil)];
+    }
+    else if (!self.selectedNationality){
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select nationality. ",nil)];
+    }
+    else if (!self.selectedLanguage){
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select your preferred language. ",nil)];
+    }
+    else if (!self.date){
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select your date of birth. ",nil)];
+    }
+    else{
+        self.dateFormatter.dateFormat = @"dd/MM/yyyy";
+        NSString *dateString = [self.dateFormatter stringFromDate:self.date];
+        [KVNProgress showWithStatus:@"Loading..."];
+     [[MobAccountManager sharedMobAccountManager] registerPassengerWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
+         [KVNProgress dismiss];
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration Compeleted. ",nil)];
+     } Failure:^(NSString *error) {
+         [KVNProgress dismiss];
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration Failed. ",nil)];
+     }];
+    }
+}
+
+#pragma PickerViewDeelgate&DataSource
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *title = @"";
+    switch (pickerView.tag) {
+        case NationalityTextField:
+        {
+            Nationality *nationality = [self.nationalties objectAtIndex:row];
+            title = nationality.NationalityArName;
+        }
+            break;
+        case LanguageTextField:
+        {
+            Language *language = [self.languages objectAtIndex:row];
+            title = language.LanguageArName;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return title;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    switch (pickerView.tag) {
+        case NationalityTextField:
+        {
+            return self.nationalties.count;
+        }
+            break;
+        case LanguageTextField:
+        {
+            return self.languages.count;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    return 0;
+    
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
 @end

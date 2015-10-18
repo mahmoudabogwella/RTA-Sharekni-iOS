@@ -27,6 +27,7 @@
 #import "SelectLocationViewController.h"
 #import "MobDriverManager.h"
 #import "HelpManager.h"
+#import "SearchResultsViewController.h"
 
 
 @interface AdvancedSearchViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
@@ -213,7 +214,7 @@
         case PeriodicType:
             self.periodicLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
             self.singleRideLabel.textColor = [UIColor darkGrayColor];
-            self.typeSwitchImage.image = [UIImage imageNamed:@"select_Right"];
+            self.typeSwitchImage.image = [UIImage imageNamed:@"select_right"];
             break;
         default:
             break;
@@ -222,7 +223,7 @@
 
 - (void) configureGenderView{
     if (self.isFemaleOnly) {
-        self.genderSwitchImage.image = [UIImage imageNamed:@"select_Right"];
+        self.genderSwitchImage.image = [UIImage imageNamed:@"select_right"];
         self.genderLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
     }
     else{
@@ -260,15 +261,24 @@
          [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select destination ",nil)];
     }
     else{
+        __block AdvancedSearchViewController *blockSelf = self;
+        [KVNProgress showWithStatus:@"Loading..."];
         [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ? YES : NO WithSuccess:^(NSArray *searchResults) {
+            [KVNProgress dismiss];
             if(searchResults){
-                
+                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
+                resultViewController.results = searchResults;
+                resultViewController.fromEmirate = blockSelf.fromEmirate;
+                resultViewController.toEmirate = blockSelf.toEmirate;
+                resultViewController.fromRegion = blockSelf.fromRegion;
+                resultViewController.toRegion = blockSelf.toRegion;
+                [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
             else{
                 [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
             }
         } Failure:^(NSString *error) {
-            
+            [KVNProgress dismiss];            
         }];
     }
 }
@@ -388,7 +398,7 @@
         case NationalityTextField:
         {
             if (self.selectedNationality) {
-                selectedRow = [self.nationalties indexOfObject:self.selectedAgeRange];
+                selectedRow = [self.nationalties indexOfObject:self.selectedNationality];
             }
         }
         break;
@@ -464,6 +474,7 @@
         [self showPickerWithTextFieldType:LanguageTextField];
     }
     return NO;
+
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{

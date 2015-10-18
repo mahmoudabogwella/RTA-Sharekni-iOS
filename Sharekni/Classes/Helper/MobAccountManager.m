@@ -50,15 +50,26 @@
                                  UserName_KEY:username,
                                  Password_KEY:password,
                                  Gender_KEY:gender,
-                                 photoName_KEY:photoName,
+                                 photoName_KEY:photoName ? photoName:@"",
                                  BirthDate_KEY:birthDate,
                                  NationalityId_KEY:nationalityId,
                                  PreferredLanguageId_KEY:langID};
     
+    NSString *body = [NSString stringWithFormat:@"CLS_MobAccount.asmx/RegisterPassenger?firstName=%@&lastName=%@&mobile=%@&username=%@&password=%@&gender=%@&photoName=%@&BirthDate=%@&NationalityId=%@&PreferredLanguageId=%@",firstName,lastName,mobile,username,password,gender,@"",birthDate,nationalityId,langID];
     
-    
-    [self.operationManager POST:RegisterPassenger_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-        
+    [self.operationManager GET:body parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSLog(responseString);
+        if([responseString containsString:@"-2"]){
+            failure(@"Failed");
+        }
+        else if ([responseString containsString:@"-1"]){
+            failure(@"Failed");
+        }
+        else{
+            success(nil);
+        }
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         
     }];

@@ -15,3 +15,4 @@ pod "RMDateSelectionViewController", "~> 2.0.1"
 pod 'NSDate+Calendar'
 pod "MZFormSheetController"
 pod "RMPickerViewController", "~> 2.0.1"
+pod 'WYPopoverController', '~> 0.2.2'

@@ -36,5 +36,19 @@
                                 }];
 }
 
+- (NSString *)imagesDirectory{
+    if (!_imagesDirectory) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *basePath = paths.firstObject;
+        _imagesDirectory = [basePath stringByAppendingPathComponent:@"CahcedImages"];
+        if(![[NSFileManager defaultManager] fileExistsAtPath:_imagesDirectory]){
+            [[NSFileManager defaultManager] createDirectoryAtPath:_imagesDirectory withIntermediateDirectories:NO attributes:0 error:nil];
+        }
+    }
+    return _imagesDirectory;
+}
+
+
+
 SYNTHESIZE_SINGLETON_FOR_CLASS(HelpManager);
 @end

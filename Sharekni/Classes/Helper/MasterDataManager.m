@@ -18,6 +18,8 @@
 #import "BestDriver.h"
 #import "MostRide.h"
 #import "Region.h"
+#import "HelpManager.h"
+#import "Base64.h"
 #define id_KEY @"id"
 #define fileName_KEY @"s_FileName"
 
@@ -25,6 +27,7 @@
 @property (strong,nonatomic) NSArray *nationalties;
 @property (strong,nonatomic) NSArray *languages;
 @property (strong,nonatomic) NSArray *ageRanges;
+@property (strong,nonatomic) NSArray *emirates;
 @property (strong,nonatomic) TermsAndCondition *termsAndCondition;
 @end
 
@@ -189,25 +192,32 @@
 }
 
 - (void) GetEmiratesWithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    [self.operationManager GET:GetEmirates_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-        NSLog(@"%@",responseObject);
-        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        responseString = [self jsonStringFromResponse:responseString];
-        NSError *jsonError;
-        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                      options:NSJSONReadingMutableContainers
-                                                                        error:&jsonError];
-        NSMutableArray *emirates = [NSMutableArray array];
-        for (NSDictionary *dictionary in resultDictionaries) {
-            Emirate *emirtae= [Emirate gm_mappedObjectWithJsonRepresentation:dictionary];
-            [emirates addObject:emirtae];
-        }
-        success(emirates);
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"Error %@",error.description);
-        failure(error.description);
-    }];
+    if(self.emirates){
+        success([self.emirates mutableCopy]);
+    }
+    else{
+        [self.operationManager GET:GetEmirates_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+            NSLog(@"%@",responseObject);
+            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            responseString = [self jsonStringFromResponse:responseString];
+            NSError *jsonError;
+            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                          options:NSJSONReadingMutableContainers
+                                                                            error:&jsonError];
+            NSMutableArray *emirates = [NSMutableArray array];
+            for (NSDictionary *dictionary in resultDictionaries) {
+                Emirate *emirtae= [Emirate gm_mappedObjectWithJsonRepresentation:dictionary];
+                [emirates addObject:emirtae];
+            }
+
+            self.emirates = emirates;
+            success(emirates);
+        } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+            NSLog(@"Error %@",error.description);
+            failure(error.description);
+        }];
+    }
 }
 
 - (void) GetBestDrivers:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
@@ -306,18 +316,57 @@
     }];
 }
 
-- (void) GetPhotoWithName:(NSString *)name withSuccess:(void (^)(UIImage *image,NSString *filePath))success Failure:(void (^)(NSString *error))failure{
-    NSDictionary *parameters = @{fileName_KEY:name};
-    [self.operationManager GET:GetPhoto_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-        NSLog(@"%@",responseObject);
-        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        
-        
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"Error %@",error.description);
-        failure(error.description);
-    }];
+- (void) GetPhotoWithName:(NSString *)name withSuccess:(void (^)(UIImage *image,NSString *filePath))success
+Failure:(void (^)(NSString *error))failure{
+    if([name isEqualToString:@"NoImage.png"]){
+        success(nil,nil);
+    }
+    else{
+        NSString *imagesDirectory = [[HelpManager sharedHelpManager] imagesDirectory];
+        NSString *path = [imagesDirectory stringByAppendingPathComponent:name];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+            success(image,path);
+        }
+        else{
+            NSDictionary *parameters = @{fileName_KEY:name};
+            [self.operationManager GET:GetPhoto_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+                NSLog(@"%@",responseObject);
+                NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                NSString *base64Tag1 = @"<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+                NSString *base64Tag2 = @"<base64Binary xmlns=\"http://MobAccount.org/\">";
+                NSString *base64Tag3 = @"</base64Binary>";
+                
+                responseString = [responseString stringByReplacingOccurrencesOfString:base64Tag1 withString:@""];
+                responseString = [responseString stringByReplacingOccurrencesOfString:base64Tag2 withString:@""];
+                responseString = [responseString stringByReplacingOccurrencesOfString:base64Tag3 withString:@""];
+                responseString = [responseString stringByReplacingOccurrencesOfString:@"\r" withString:@" "];
+                NSLog(@"string %@",responseString);
+                responseString = [self encodeStringTo64:responseString];
+                NSData* data = [Base64 decode:responseString];
+                UIImage *image = [UIImage imageWithData:data];
+                NSData *pngData = UIImagePNGRepresentation(image);
+                [pngData writeToFile:path atomically:YES];
+                success(image,path);
+            } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+                NSLog(@"Error %@",error.description);
+                failure(error.description);
+            }];
+        }
+    }
+}
 
+- (NSString*)encodeStringTo64:(NSString*)fromString
+{
+    NSData *plainData = [fromString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *base64String;
+    if ([plainData respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
+        base64String = [plainData base64EncodedStringWithOptions:kNilOptions];  // iOS 7+
+    } else {
+        base64String = [plainData base64Encoding];                              // pre iOS7
+    }
+    
+    return base64String;
 }
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MasterDataManager);

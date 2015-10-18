@@ -40,7 +40,7 @@
 #define String_Open_Tag @"<string xmlns=\"http://tempuri.org/\">"
 #define String_Close_Tag @"</string>"
 #define XML_Open_Tag @"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
-
+#define XML_Tag1 @"<string xmlns=\"http://MobAccount.org/\">"
 
 #define Sharkeni_BASEURL @"http://sharekni-web.sdg.ae/_mobfiles/"
 #define GetAgeRanges_URL @"cls_mobmasterdata.asmx/GetAgeRanges"
@@ -81,6 +81,12 @@ typedef enum RoadType : NSUInteger {
     PeriodicType,
     SingleRideType
 } RoadType;
+
+typedef enum AccountType : NSUInteger {
+    AccountTypeDriver,
+    AccountTypePassenger,
+    AccountTypeBoth
+} AccountType;
 
 typedef enum TextFieldType : NSUInteger {
     PickupTextField,

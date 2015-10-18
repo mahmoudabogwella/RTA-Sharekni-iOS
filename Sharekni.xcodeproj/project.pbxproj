@@ -58,6 +58,15 @@
 		144869FB1BC0968E00804C26 /* QuickSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869F91BC0968E00804C26 /* QuickSearchViewController.xib */; };
 		14DA33D11BC5006300078F02 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14DA33D31BC5006300078F02 /* RegisterViewController.xib */; };
 		87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* MobAccountManager.m */; };
+		87B58B561BD36F7900E73E55 /* MostRideDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B551BD36F7900E73E55 /* MostRideDetails.m */; settings = {ASSET_TAGS = (); }; };
+		87B58B591BD3842800E73E55 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B581BD3842800E73E55 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87B58B5D1BD388D100E73E55 /* MapLookupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B5B1BD388D100E73E55 /* MapLookupViewController.m */; settings = {ASSET_TAGS = (); }; };
+		87B58B5E1BD388D100E73E55 /* MapLookupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87B58B5C1BD388D100E73E55 /* MapLookupViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		87B58B611BD38DD700E73E55 /* MapItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B601BD38DD700E73E55 /* MapItemView.m */; settings = {ASSET_TAGS = (); }; };
+		87B58B651BD3983800E73E55 /* MapItemPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B631BD3983800E73E55 /* MapItemPopupViewController.m */; settings = {ASSET_TAGS = (); }; };
+		87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87B58B641BD3983800E73E55 /* MapItemPopupViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		87B58B691BD3B74F00E73E55 /* XOSplashVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B681BD3B74F00E73E55 /* XOSplashVideoController.m */; settings = {ASSET_TAGS = (); }; };
+		87B58B6B1BD3BC5D00E73E55 /* Final_Intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 87B58B6A1BD3B7AA00E73E55 /* Final_Intro.mp4 */; settings = {ASSET_TAGS = (); }; };
 		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
 		87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF811BB8325500E21838 /* BaseAPIManager.m */; };
 		87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF851BB8670C00E21838 /* AgeRange.m */; };
@@ -149,8 +158,6 @@
 		143BE6CF1BB6E001009F6496 /* AdvancedSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedSearchViewController.m; sourceTree = "<group>"; };
 		143BE6D11BB6E00C009F6496 /* TopRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopRidesViewController.h; sourceTree = "<group>"; };
 		143BE6D21BB6E00C009F6496 /* TopRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopRidesViewController.m; sourceTree = "<group>"; };
-		143BE6D41BB6E019009F6496 /* MapLookupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLookupViewController.h; sourceTree = "<group>"; };
-		143BE6D51BB6E019009F6496 /* MapLookupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLookupViewController.m; sourceTree = "<group>"; };
 		143BE6D71BB82363009F6496 /* CALayer+RuntimeAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+RuntimeAttribute.h"; sourceTree = "<group>"; };
 		143BE6D81BB82363009F6496 /* CALayer+RuntimeAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+RuntimeAttribute.m"; sourceTree = "<group>"; };
 		143F30DD1BC83C28006A6A21 /* SearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
@@ -180,6 +187,21 @@
 		87A113391BB6FB370092E870 /* MobAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobAccountManager.h; sourceTree = "<group>"; };
 		87A1133A1BB6FB370092E870 /* MobAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobAccountManager.m; sourceTree = "<group>"; };
 		87A1133C1BB6FD230092E870 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		87B58B541BD36F7900E73E55 /* MostRideDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostRideDetails.h; sourceTree = "<group>"; };
+		87B58B551BD36F7900E73E55 /* MostRideDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostRideDetails.m; sourceTree = "<group>"; };
+		87B58B571BD3842800E73E55 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		87B58B581BD3842800E73E55 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		87B58B5A1BD388D100E73E55 /* MapLookupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLookupViewController.h; sourceTree = "<group>"; };
+		87B58B5B1BD388D100E73E55 /* MapLookupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLookupViewController.m; sourceTree = "<group>"; };
+		87B58B5C1BD388D100E73E55 /* MapLookupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapLookupViewController.xib; sourceTree = "<group>"; };
+		87B58B5F1BD38DD700E73E55 /* MapItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapItemView.h; sourceTree = "<group>"; };
+		87B58B601BD38DD700E73E55 /* MapItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapItemView.m; sourceTree = "<group>"; };
+		87B58B621BD3983800E73E55 /* MapItemPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapItemPopupViewController.h; sourceTree = "<group>"; };
+		87B58B631BD3983800E73E55 /* MapItemPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapItemPopupViewController.m; sourceTree = "<group>"; };
+		87B58B641BD3983800E73E55 /* MapItemPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapItemPopupViewController.xib; sourceTree = "<group>"; };
+		87B58B671BD3B74E00E73E55 /* XOSplashVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XOSplashVideoController.h; sourceTree = "<group>"; };
+		87B58B681BD3B74F00E73E55 /* XOSplashVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XOSplashVideoController.m; sourceTree = "<group>"; };
+		87B58B6A1BD3B7AA00E73E55 /* Final_Intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Final_Intro.mp4; sourceTree = "<group>"; };
 		87C1AF7D1BB831A300E21838 /* MasterDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterDataManager.h; sourceTree = "<group>"; };
 		87C1AF7E1BB831A300E21838 /* MasterDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterDataManager.m; sourceTree = "<group>"; };
 		87C1AF801BB8325500E21838 /* BaseAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAPIManager.h; sourceTree = "<group>"; };
@@ -254,6 +276,7 @@
 		04931B1D1BAAF814000F5434 /* Sharekni */ = {
 			isa = PBXGroup;
 			children = (
+				87B58B6A1BD3B7AA00E73E55 /* Final_Intro.mp4 */,
 				143F30DF1BC83F70006A6A21 /* Images.xcassets */,
 				143BE6A71BB14BD2009F6496 /* Classes */,
 				04931B2B1BAAF814000F5434 /* Main.storyboard */,
@@ -296,6 +319,8 @@
 		143BE6A71BB14BD2009F6496 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				87B58B571BD3842800E73E55 /* Base64.h */,
+				87B58B581BD3842800E73E55 /* Base64.m */,
 				047E455D1BC59C4C000B5151 /* Components */,
 				87C1AF831BB866DC00E21838 /* Models */,
 				143BE6A81BB14BD2009F6496 /* Controllers */,
@@ -314,6 +339,8 @@
 		143BE6A81BB14BD2009F6496 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				87B58B671BD3B74E00E73E55 /* XOSplashVideoController.h */,
+				87B58B681BD3B74F00E73E55 /* XOSplashVideoController.m */,
 				143BE6B01BB14BE5009F6496 /* WelcomeViewController.h */,
 				143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */,
 				143BE6B61BB5640B009F6496 /* LoginViewController.h */,
@@ -337,8 +364,6 @@
 				047E45561BC09F3B000B5151 /* AdvancedSearchViewController.xib */,
 				143BE6D11BB6E00C009F6496 /* TopRidesViewController.h */,
 				143BE6D21BB6E00C009F6496 /* TopRidesViewController.m */,
-				143BE6D41BB6E019009F6496 /* MapLookupViewController.h */,
-				143BE6D51BB6E019009F6496 /* MapLookupViewController.m */,
 				044ECE911BC08A6000AF3E2D /* SearchResultsViewController.h */,
 				044ECE921BC08A6000AF3E2D /* SearchResultsViewController.m */,
 				143F30DD1BC83C28006A6A21 /* SearchResultsViewController.xib */,
@@ -348,6 +373,9 @@
 				047E45801BC59DE0000B5151 /* SelectLocationViewController.h */,
 				047E45811BC59DE0000B5151 /* SelectLocationViewController.m */,
 				047E45821BC59DE0000B5151 /* SelectLocationViewController.xib */,
+				87B58B5A1BD388D100E73E55 /* MapLookupViewController.h */,
+				87B58B5B1BD388D100E73E55 /* MapLookupViewController.m */,
+				87B58B5C1BD388D100E73E55 /* MapLookupViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -355,6 +383,8 @@
 		143BE6A91BB14BD2009F6496 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				87B58B5F1BD38DD700E73E55 /* MapItemView.h */,
+				87B58B601BD38DD700E73E55 /* MapItemView.m */,
 				143BE6C21BB68F1D009F6496 /* BestDriverCell.h */,
 				143BE6C31BB68F1D009F6496 /* BestDriverCell.m */,
 				143BE6C51BB69327009F6496 /* MostRidesCell.h */,
@@ -362,6 +392,9 @@
 				047E45581BC5831D000B5151 /* PickupLocationView.h */,
 				047E45591BC5831D000B5151 /* PickupLocationView.m */,
 				047E455B1BC58330000B5151 /* PickupLocationView.xib */,
+				87B58B621BD3983800E73E55 /* MapItemPopupViewController.h */,
+				87B58B631BD3983800E73E55 /* MapItemPopupViewController.m */,
+				87B58B641BD3983800E73E55 /* MapItemPopupViewController.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -427,6 +460,8 @@
 				143F30F81BC8EF5E006A6A21 /* MostRide.m */,
 				143F30FF1BC9F540006A6A21 /* MapLookUp.h */,
 				143F31001BC9F540006A6A21 /* MapLookUp.m */,
+				87B58B541BD36F7900E73E55 /* MostRideDetails.h */,
+				87B58B551BD36F7900E73E55 /* MostRideDetails.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -499,7 +534,7 @@
 				TargetAttributes = {
 					04931B1A1BAAF814000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = FN9NQZP477;
+						DevelopmentTeam = 89SHAPC6FM;
 					};
 					04931B361BAAF815000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -540,6 +575,7 @@
 				143F30EE1BC8488D006A6A21 /* Localizable.strings in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
+				87B58B6B1BD3BC5D00E73E55 /* Final_Intro.mp4 in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				144869FB1BC0968E00804C26 /* QuickSearchViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
@@ -549,9 +585,11 @@
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				047E45841BC59DE0000B5151 /* SelectLocationViewController.xib in Resources */,
+				87B58B5E1BD388D100E73E55 /* MapLookupViewController.xib in Resources */,
 				143F30FA1BC90D15006A6A21 /* SearchViewController.xib in Resources */,
 				14DA33D11BC5006300078F02 /* RegisterViewController.xib in Resources */,
 				04931B321BAAF814000F5434 /* LaunchScreen.xib in Resources */,
+				87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,22 +649,27 @@
 				047E45501BC0960F000B5151 /* SearchViewController.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
 				143BE6B51BB56402009F6496 /* RegisterViewController.m in Sources */,
+				87B58B5D1BD388D100E73E55 /* MapLookupViewController.m in Sources */,
 				047E458E1BC5A4D8000B5151 /* NSString+Levenshtein.m in Sources */,
 				143BE6BE1BB68E97009F6496 /* MostRidesViewController.m in Sources */,
 				0489129E1BB92150005E4E02 /* Nationality.m in Sources */,
 				143BE6C71BB69327009F6496 /* MostRidesCell.m in Sources */,
 				044ECE941BC08A6000AF3E2D /* SearchResultsViewController.m in Sources */,
 				048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */,
+				87B58B591BD3842800E73E55 /* Base64.m in Sources */,
 				143BE6C41BB68F1D009F6496 /* BestDriverCell.m in Sources */,
 				048912A41BB92458005E4E02 /* Language.m in Sources */,
 				048912A71BB92539005E4E02 /* Employer.m in Sources */,
 				048912B01BB933B8005E4E02 /* User.m in Sources */,
 				143BE6C11BB68EA5009F6496 /* BestDriversViewController.m in Sources */,
 				047E45831BC59DE0000B5151 /* SelectLocationViewController.m in Sources */,
+				87B58B651BD3983800E73E55 /* MapItemPopupViewController.m in Sources */,
 				048912AA1BB92609005E4E02 /* Emirate.m in Sources */,
 				0429B1C61BB9DC5F00161222 /* HelpManager.m in Sources */,
 				04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */,
 				143F30F41BC85961006A6A21 /* BestDriver.m in Sources */,
+				87B58B561BD36F7900E73E55 /* MostRideDetails.m in Sources */,
+				87B58B691BD3B74F00E73E55 /* XOSplashVideoController.m in Sources */,
 				143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */,
 				047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */,
 				143BE6D31BB6E00C009F6496 /* TopRidesViewController.m in Sources */,
@@ -637,6 +680,7 @@
 				87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */,
 				04931B211BAAF814000F5434 /* main.m in Sources */,
 				144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */,
+				87B58B611BD38DD700E73E55 /* MapItemView.m in Sources */,
 				143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */,
 				047E458D1BC5A4D8000B5151 /* MLPAutoCompleteTextField.m in Sources */,
 				044ECE991BC08A8000AF3E2D /* SearchResultCell.m in Sources */,
@@ -807,7 +851,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Sharekni/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharekni.Sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -819,7 +865,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Sharekni/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharekni.Sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

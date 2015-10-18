@@ -16,6 +16,7 @@
 @property (nonatomic ,weak) IBOutlet UILabel *FromRegionName ;
 @property (nonatomic ,weak) IBOutlet UILabel *ToEmirateName ;
 @property (nonatomic ,weak) IBOutlet UILabel *ToRegionName ;
+@property (weak, nonatomic) IBOutlet UILabel *noOfDrivers;
 
 
 - (void)setRide:(MostRide *)ride ;

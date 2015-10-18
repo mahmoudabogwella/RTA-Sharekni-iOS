@@ -31,6 +31,7 @@
     NSString *string = [response stringByReplacingOccurrencesOfString:XML_Open_Tag withString:@""];
     string = [string stringByReplacingOccurrencesOfString:String_Open_Tag withString:@""];
     string = [string stringByReplacingOccurrencesOfString:String_Close_Tag withString:@""];
+    string = [string stringByReplacingOccurrencesOfString:XML_Tag1 withString:@""];
     return  string;
 }
 @end

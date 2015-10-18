@@ -19,5 +19,7 @@
 
 - (void) findRidesFromEmirate:(Emirate *)fromemirate andFromRegion:(Region *)fromRegion toEmirate:(Emirate *)toEmirate andToRegion:(Region *)toRegion PerfferedLanguage:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange date:(NSDate *)date isPeriodic:(BOOL)isPeriodic WithSuccess:(void (^)(NSArray *searchResults))success Failure:(void (^)(NSString *error))failure;
 
+- (void) getMapLookupWithSuccess:(void (^)(NSArray *items))success Failure:(void (^)(NSString *error))failure;
+
 +(MobDriverManager *) sharedMobDriverManager;
 @end

@@ -13,6 +13,7 @@
 @interface SearchResultsViewController : UIViewController
 
 @property (nonatomic,strong) NSArray *results;
+
 @property (nonatomic,strong) Emirate *fromEmirate;
 @property (nonatomic,strong) Region *fromRegion;
 @property (nonatomic,strong) Emirate *toEmirate;

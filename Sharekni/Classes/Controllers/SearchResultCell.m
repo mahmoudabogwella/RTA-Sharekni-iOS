@@ -20,8 +20,8 @@
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
     self.profileImage.clipsToBounds = YES;
     
-    self.historyButton.layer.cornerRadius = 8;
-    self.reviewsButton.layer.cornerRadius = 8;
+    self.historyButton.layer.cornerRadius = 5;
+    self.reviewsButton.layer.cornerRadius = 5;
     
     [self.historyButton setBackgroundColor:Red_UIColor];
     [self.reviewsButton setBackgroundColor:Red_UIColor];
@@ -40,7 +40,7 @@
 
 - (void)setItem:(DriverSearchResult *)item{
     _item = item;
-    
+    self.profileImage.image = [UIImage imageNamed:@"BestDriverImage"];
     [[MasterDataManager sharedMasterDataManager] GetPhotoWithName:item.AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
         
     } Failure:^(NSString *error) {
@@ -54,29 +54,25 @@
     if (item.SDG_RouteDays_Sunday.boolValue) {
         daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sun,", nil)];
     }
-    
-    if (item.SDG_RouteDays_Monday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon,", nil)];
-    }
     if (item.SDG_RouteDays_Monday.boolValue) {
         daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon,", nil)];
     }
     if (item.SDG_RouteDays_Tuesday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon,", nil)];
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Tue,", nil)];
     }
     if (item.SDG_RouteDays_Wednesday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon,", nil)];
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Wed,", nil)];
     }
     if (item.SDG_RouteDays_Thursday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon,", nil)];
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Thu,", nil)];
     }
     if (item.SDG_RouteDays_Friday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon,", nil)];
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Fri,", nil)];
     }
-    if (item.SDG_RouteDays_Thursday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon,", nil)];
+    if (item.Saturday.boolValue) {
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sat,", nil)];
     }
-    
+    self.daysLabel.text = daysText;
 }
 
 

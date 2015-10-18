@@ -18,8 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *reviewsButton;
 @property (weak, nonatomic) IBOutlet UILabel *nationalityLabel;
-@property (weak, nonatomic) IBOutlet UILabel *callIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *callIcon;
 @property (weak, nonatomic) IBOutlet UIButton *historyButton;
-@property (weak, nonatomic) IBOutlet UILabel *messageIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *messageIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @end

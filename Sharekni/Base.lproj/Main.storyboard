@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mI9-uV-K0N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mI9-uV-K0N">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -299,9 +300,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BestDriverCell" rowHeight="91" id="AE2-qc-9gc" customClass="BestDriverCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AE2-qc-9gc" id="AAv-uo-F4h">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EDq-K8-XDa">
@@ -431,9 +433,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MostRideCell" rowHeight="114" id="atS-MS-blJ" customClass="MostRidesCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="atS-MS-blJ" id="csu-Nx-Gef">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="RidesSeperator" translatesAutoresizingMaskIntoConstraints="NO" id="j4f-ep-QJq">
@@ -524,6 +527,7 @@
                                             <outlet property="FromRegionName" destination="Tis-l3-FT0" id="nkU-38-AuH"/>
                                             <outlet property="ToEmirateName" destination="kvP-Jd-41L" id="FdG-6Y-cyq"/>
                                             <outlet property="ToRegionName" destination="yiF-8p-9oG" id="lrg-XZ-BRt"/>
+                                            <outlet property="noOfDrivers" destination="6cl-4Y-zBF" id="nCT-R1-op9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -559,7 +563,7 @@
         <!--Navigation Controller-->
         <scene sceneID="AWr-oQ-HWQ">
             <objects>
-                <navigationController id="mI9-uV-K0N" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" id="mI9-uV-K0N" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jsj-9K-FZv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -577,7 +581,7 @@
     </scenes>
     <resources>
         <image name="BestDrivers" width="142" height="42"/>
-        <image name="Call_Btn" width="49" height="37"/>
+        <image name="Call_Btn" width="28" height="21"/>
         <image name="Details" width="106" height="40"/>
         <image name="Login" width="74" height="66"/>
         <image name="Login_bg" width="640" height="1039"/>
@@ -591,9 +595,4 @@
         <image name="TakeTour" width="75" height="66"/>
         <image name="Welcome2_bg" width="320" height="528"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

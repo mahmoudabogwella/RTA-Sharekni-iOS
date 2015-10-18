@@ -19,15 +19,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self configureUI];
 }
 
 
 - (void) configureUI{
+    
+   self.title = NSLocalizedString(@"Search Results", nil);
+    NSString *headerText = [NSString stringWithFormat:@"%@,%@ \n to \n %@,%@",self.fromEmirate.EmirateEnName,self.fromRegion.RegionEnName,self.toEmirate.EmirateEnName,self.toRegion.RegionEnName];
+    self.headerLabel.text = headerText;
+    self.headerLabel.numberOfLines = 3;
+
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     [self.tableView registerClass:[SearchResultCell class] forCellReuseIdentifier:SearchResultCell_ID];
     [self.tableView registerNib:[UINib nibWithNibName:@"SearchResultCell" bundle:nil] forCellReuseIdentifier:SearchResultCell_ID];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setHighlighted:NO];
+    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+}
+
+#pragma mark - Methods
+- (void)popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -

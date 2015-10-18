@@ -43,6 +43,7 @@
     mapping[@"SDG_Route_Coordinates_End_Lng"] = @"SDG_Route_Coordinates_End_Lng";
     mapping[@"SDG_Route_Coordinates_Start_Lat"] = @"SDG_Route_Coordinates_Start_Lat";
     mapping[@"SDG_Route_Coordinates_Start_Lng"] = @"SDG_Route_Coordinates_Start_Lng";
+    
     mapping[@"SDG_Route_FromEmirate_ID"] = @"SDG_Route_FromEmirate_ID";
     mapping[@"SDG_Route_Name_ar"] = @"SDG_Route_Name_ar";
     mapping[@"SDG_Route_Name_en"] = @"SDG_Route_Name_en";

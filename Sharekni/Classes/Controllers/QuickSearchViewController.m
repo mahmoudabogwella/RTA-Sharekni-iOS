@@ -27,7 +27,7 @@
 #import "SelectLocationViewController.h"
 #import "MobDriverManager.h"
 #import "HelpManager.h"
-
+#import "SearchResultsViewController.h"
 @interface QuickSearchViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *startPointTextField;
 @property (weak, nonatomic) IBOutlet UITextField *destinationTextFiled;
@@ -251,10 +251,27 @@
         [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select destination ",nil)];
     }
     else{
-
+        __block QuickSearchViewController *blockSelf = self;
+        [KVNProgress showWithStatus:@"Loading..."];
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:nil nationality:nil ageRange:nil date:self.pickupDate isPeriodic:YES WithSuccess:^(NSArray *searchResults) {
+            [KVNProgress dismiss];
+            if(searchResults){
+                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
+                resultViewController.results = searchResults;
+                resultViewController.fromEmirate = blockSelf.fromEmirate;
+                resultViewController.toEmirate = blockSelf.toEmirate;
+                resultViewController.fromRegion = blockSelf.fromRegion;
+                resultViewController.toRegion = blockSelf.toRegion;
+                [blockSelf.navigationController pushViewController:resultViewController animated:YES];
+            }
+            else{
+                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
+            }
+        } Failure:^(NSString *error) {
+            [KVNProgress dismiss];
+        }];
     }
 }
-
 
 - (void)popViewController
 {
