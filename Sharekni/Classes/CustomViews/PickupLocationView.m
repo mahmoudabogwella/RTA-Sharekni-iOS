@@ -104,6 +104,8 @@
     self.searchButton.layer.cornerRadius = 8;
     [self.searchButton setBackgroundColor:Red_UIColor];
     [self.searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    
 }
 
 - (IBAction)search:(id)sender {

@@ -26,11 +26,6 @@
     [[MZFormSheetBackgroundWindow appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
     [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
     
-    [[MZFormSheetController sharedBackgroundWindow] setBackgroundBlurEffect:YES];
-    [[MZFormSheetController sharedBackgroundWindow] setBlurRadius:1.0];
-    [[MZFormSheetController sharedBackgroundWindow] setBlurEffectStyle:UIBlurEffectStyleDark];
-    [[MZFormSheetController sharedBackgroundWindow] setBackgroundColor:[UIColor clearColor]];
-    
     // Override point for customization after application launch.
 //    [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
 //        

@@ -72,7 +72,7 @@
 }
 
 - (void) getMapLookupWithSuccess:(void (^)(NSArray *items))success Failure:(void (^)(NSString *error))failure{
-    [self.operationManager POST:@"/_mobfiles/CLS_MobRoute.asmx/GetMapLookup" parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [self.operationManager POST:@"/_mobfiles/CLS_MobRoute.asmx/GetMapLookup" parameters:nil success:^(AFHTTPRequestOperation *  operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
         NSError *jsonError;
@@ -86,7 +86,7 @@
             [mapLookUps addObject:item];
         }
         success(mapLookUps);
-    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+    } failure:^(AFHTTPRequestOperation *  operation, NSError * error) {
         
     }];
 }

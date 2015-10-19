@@ -116,8 +116,12 @@
     [bothBtn    setSelected:NO];
 
     [switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Left"]       forState:UIControlStateNormal];
-    [switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_right"]      forState:UIControlStateSelected];
+    [switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Right"]      forState:UIControlStateSelected];
     [switchBtn    setSelected:NO];
+    
+    maleLabel.textColor = Red_UIColor;
+    femaleLabel.textColor = [UIColor darkGrayColor];
+    
 
     if ([firstNametxt respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];

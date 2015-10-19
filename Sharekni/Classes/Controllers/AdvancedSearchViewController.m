@@ -214,7 +214,7 @@
         case PeriodicType:
             self.periodicLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
             self.singleRideLabel.textColor = [UIColor darkGrayColor];
-            self.typeSwitchImage.image = [UIImage imageNamed:@"select_right"];
+            self.typeSwitchImage.image = [UIImage imageNamed:@"select_Right"];
             break;
         default:
             break;
@@ -223,7 +223,7 @@
 
 - (void) configureGenderView{
     if (self.isFemaleOnly) {
-        self.genderSwitchImage.image = [UIImage imageNamed:@"select_right"];
+        self.genderSwitchImage.image = [UIImage imageNamed:@"select_Right"];
         self.genderLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
     }
     else{
