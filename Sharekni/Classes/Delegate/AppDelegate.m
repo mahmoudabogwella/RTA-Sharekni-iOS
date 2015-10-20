@@ -26,27 +26,13 @@
     [[MZFormSheetBackgroundWindow appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
     [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
     
-    // Override point for customization after application launch.
-//    [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
-//        
-//    } Failure:^(NSString *error) {
-//        
-//    }];
-//    
-//[[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:@"Tefa" andPassword:@"111111" WithSuccess:^(User *user) {
-//    
-//} Failure:^(NSString *error) {
-//    
-//}];
-//    
-//    
-//    [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:@"Tefa" andPassword:@"1111011" WithSuccess:^(User *user) {
-//        
-//    } Failure:^(NSString *error) {
-//        
-//    }];
-//    
+    [[MasterDataManager sharedMasterDataManager] GetEmiratesWithSuccess:^(NSMutableArray *array) {
     
+    } Failure:^(NSString *error) {
+    
+    }];
+    
+
     [[UINavigationBar appearance] setBarTintColor:RGBA(230, 0, 10, 1)];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTranslucent:NO];

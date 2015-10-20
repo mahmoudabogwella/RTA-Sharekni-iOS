@@ -164,12 +164,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Delegate/AppDelegate.m"
-            timestampString = "466860504.627454"
+            timestampString = "467069165.660676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "-splashVideoComplete:"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-splashVideoLoaded:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -180,28 +180,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Delegate/AppDelegate.m"
-            timestampString = "466860565.365771"
+            timestampString = "467069165.660676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-application:didFinishLaunchingWithOptions:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Controllers/SelectLocationViewController.m"
-            timestampString = "466866151.641488"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "-configureData"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-splashVideoComplete:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
