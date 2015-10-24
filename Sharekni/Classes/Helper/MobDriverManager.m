@@ -11,20 +11,7 @@
 #import <Genome.h>
 #import "DriverSearchResult.h"
 #import "MapLookUp.h"
-
-#define Account_KEY         @"AccountID"
-#define Gender_KEY          @"PreferredGender"
-#define Time_KEY            @"Time"
-#define FromEmirateID_KEY   @"FromEmirateID"
-#define FromRegionID_KEY    @"FromRegionID"
-#define ToEmirateID_KEY     @"ToEmirateID"
-#define ToRegionID_KEY      @"ToRegionID"
-#define Language_KEY        @"PrefferedLanguageId"
-#define Nationality_KEY     @"PrefferedNationlaities"
-#define AgeRange_KEY        @"AgeRangeId"
-#define StartDate_KEY       @"StartDate"
-#define IsPeriodic_KEY      @"IsPeriodic"
-
+#import "Constants.h"   
 
 @implementation MobDriverManager
 

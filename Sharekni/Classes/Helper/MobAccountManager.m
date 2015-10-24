@@ -42,6 +42,10 @@
 
 @implementation MobAccountManager
 
+- (NSString *) applicationUserID{
+    return self.applicationUser.ID;
+}
+
 - (void) registerPassengerWithFirstName:(NSString *)firstName lastName:(NSString *)lastName mobile:(NSString *)mobile username:(NSString *)username password:(NSString *)password gender:(NSString *)gender imagePath:(NSString *)photoName birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     
     NSDictionary *parameters = @{FirstName_KEY:firstName,
@@ -100,6 +104,7 @@
                                                                              options:NSJSONReadingMutableContainers
                                                                                error:&jsonError];
             User *user = [User gm_mappedObjectWithJsonRepresentation:resultDictionary];
+            self.applicationUser = user;
             success(user);
         }
         else{

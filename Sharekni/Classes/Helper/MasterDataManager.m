@@ -20,8 +20,7 @@
 #import "Region.h"
 #import "HelpManager.h"
 #import "Base64.h"
-#define id_KEY @"id"
-#define fileName_KEY @"s_FileName"
+#import "Constants.h"
 
 @interface MasterDataManager ()
 @property (strong,nonatomic) NSArray *nationalties;

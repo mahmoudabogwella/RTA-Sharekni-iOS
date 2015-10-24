@@ -42,7 +42,7 @@
 #define XML_Open_Tag @"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
 #define XML_Tag1 @"<string xmlns=\"http://MobAccount.org/\">"
 
-#define Sharkeni_BASEURL @"http://sharekni.sdgstaff.com/_MobFiles/."
+#define Sharkeni_BASEURL @"http://sharekni.sdgstaff.com/_MobFiles/"
 #define GetAgeRanges_URL @"cls_mobmasterdata.asmx/GetAgeRanges"
 #define GetEmirates_URL @"cls_mobmasterdata.asmx/GetEmirates"
 #define GetBestDrivers_URL @"cls_mobdriver.asmx/GetBestDrivers"
@@ -54,7 +54,6 @@
 #define GetTermsAndConditions_URL @"cls_mobmasterdata.asmx/GetTermsAndConditions"
 #define GetPrefferedLanguages_URL @"cls_mobmasterdata.asmx/GetPrefferedLanguages"
 #define GetPhoto_URL @"CLS_MobAccount.asmx/GetPhotoPath"
-
 #define RegisterPassenger_URL @"CLS_MobAccount.asmx/RegisterPassenger"
 #define ChangePassword_URL @"CLS_MobAccount.asmx/ChangePassword"
 #define CheckLogin_URL @"CLS_MobAccount.asmx/CheckLogin"
@@ -64,10 +63,12 @@
 #define EditProfile_URL @"CLS_MobAccount.asmx/EditProfile"
 #define ForgotPassword_URL @"CLS_MobAccount.asmx/ForgetPassword"
 #define GetCalculatedRating_URL @"CLS_MobAccount.asmx/GetCalculatedRating"
-
 #define GetPrefferedLanguages_URL @"cls_mobmasterdata.asmx/GetPrefferedLanguages"
 #define Passenger_FindRide_URL @"CLS_MobDriver.asmx/Passenger_FindRide"
 
+//MobVehicle
+#define GetVehicles_URL @"CLS_MobVehicle.asmx/Get?id=%@"
+#define GetVehiclesByDriveID_URL @"CLS_MobVehicle.asmx/GetByDriverId?id=%@"
 
 
 #pragma Colors
@@ -93,7 +94,26 @@ typedef enum TextFieldType : NSUInteger {
     DestinationTextField,
     NationalityTextField,
     LanguageTextField,
-    AgeRangeTextField
+    AgeRangeTextField,
+    VehiclesTextField
 } TextFieldType;
+
+
+#define API_PARAMETERS_KEYS
+
+#define Account_KEY         @"AccountID"
+#define Gender_KEY          @"PreferredGender"
+#define Time_KEY            @"Time"
+#define FromEmirateID_KEY   @"FromEmirateID"
+#define FromRegionID_KEY    @"FromRegionID"
+#define ToEmirateID_KEY     @"ToEmirateID"
+#define ToRegionID_KEY      @"ToRegionID"
+#define Language_KEY        @"PrefferedLanguageId"
+#define Nationality_KEY     @"PrefferedNationlaities"
+#define AgeRange_KEY        @"AgeRangeId"
+#define StartDate_KEY       @"StartDate"
+#define IsPeriodic_KEY      @"IsPeriodic"
+#define id_KEY @"id"
+#define fileName_KEY @"s_FileName"
 
 #endif

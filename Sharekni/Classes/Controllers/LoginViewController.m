@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "HelpManager.h"
 #import "RegisterViewController.h"
+#import "CreateRideViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 {
@@ -41,6 +42,9 @@
     self.navigationController.navigationBarHidden = NO ;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     [self configureUI];
+    
+    self.passwordTextField.text = @"Tefa19";
+    self.usernameTextField.text = @"Tefa19";
 }
 
 - (void)popViewController
@@ -76,7 +80,8 @@
         [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:self.usernameTextField.text andPassword:self.passwordTextField.text WithSuccess:^(User *user) {
             [KVNProgress dismiss];
             if (user) {
-                
+                CreateRideViewController  *createRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
+                [self.navigationController pushViewController:createRideViewController animated:YES];
             }
             else{
             

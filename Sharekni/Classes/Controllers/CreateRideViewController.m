@@ -1,12 +1,12 @@
 //
-//  AdvancedSearchViewController.m
-//  Sharekni
+//  CreateRideViewController.m
+//  sharekni
 //
-//  Created by Ahmed Askar on 9/26/15.
+//  Created by Mohamed Abd El-latef on 10/24/15.
 //
 //
 
-#import "AdvancedSearchViewController.h"
+#import "CreateRideViewController.h"
 #import "MasterDataManager.h"
 #import <RMActionController.h>
 #import <RMDateSelectionViewController.h>
@@ -27,15 +27,29 @@
 #import "SelectLocationViewController.h"
 #import "MobDriverManager.h"
 #import "HelpManager.h"
-#import "SearchResultsViewController.h"
-#import "MobDriverManager.h"
+#import "UILabel+Borders.h"
+#import "MobVehicleManager.h"
+#import "Vehicle.h"
 
 
-@interface AdvancedSearchViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
-//Outlets
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView ;
+@interface CreateRideViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *selectVehicleTextField;
+@property (weak, nonatomic) IBOutlet UILabel *rideDetailsSectionLabel;
+@property (weak, nonatomic) IBOutlet UIView *rideDetailsView;
+@property (weak, nonatomic) IBOutlet UIView *optionsView;
+@property (weak, nonatomic) IBOutlet UITextField *noOfSeatsTextField;
+@property (weak, nonatomic) IBOutlet UILabel *optionalSectionLabel;
+@property (weak, nonatomic) IBOutlet UITextField *rideNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *startPointTextField;
-@property (weak, nonatomic) IBOutlet UITextField *destinationTextFiled;
+@property (weak, nonatomic) IBOutlet UITextField *destinationTextField;
+@property (weak, nonatomic) IBOutlet UITextField *vehiclesTextField;
+@property (weak, nonatomic) IBOutlet UILabel *pickupTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *destinationTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *periodicLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *switchImageView;
+@property (weak, nonatomic) IBOutlet UILabel *singleRideLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property (weak, nonatomic) IBOutlet UIView *timeView;
 @property (weak, nonatomic) IBOutlet UILabel *dayNumberLabel;
 @property (weak, nonatomic) IBOutlet UIView *dateView;
@@ -46,17 +60,11 @@
 @property (weak, nonatomic) IBOutlet UIView *typeView;
 @property (weak, nonatomic) IBOutlet UITextField *langageTextField;
 @property (weak, nonatomic) IBOutlet UITextField *ageRangeTextField;
-@property (weak, nonatomic) IBOutlet UIView *sepratorLine;
-@property (weak, nonatomic) IBOutlet UILabel *optionalHeader;
-@property (weak, nonatomic) IBOutlet UIButton *searchButton;
-@property (weak, nonatomic) IBOutlet UILabel *pickupTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dropoffTitleLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *typeSwitchImage;
+@property (weak, nonatomic) IBOutlet UIButton *createButton;
 @property (weak, nonatomic) IBOutlet UIImageView *genderSwitchImage;
 @property (weak, nonatomic) IBOutlet UILabel *genderLabel;
-@property (weak, nonatomic) IBOutlet UILabel *periodicLabel;
-@property (weak, nonatomic) IBOutlet UILabel *singleRideLabel;
 @property (weak, nonatomic) IBOutlet UIView *genderView;
+
 
 @property (strong, nonatomic)  NSDateFormatter *dateFormatter;
 @property (assign, nonatomic)  RoadType selectedType;
@@ -66,10 +74,12 @@
 @property (strong,nonatomic) NSArray *nationalties;
 @property (strong,nonatomic) NSArray *languages;
 @property (strong,nonatomic) NSArray *ageRanges;
+@property (strong,nonatomic) NSArray *vehicles;
 
 @property (strong,nonatomic) AgeRange *selectedAgeRange;
 @property (strong,nonatomic) Nationality *selectedNationality;
 @property (strong,nonatomic) Language *selectedLanguage;
+@property (strong,nonatomic) Vehicle *selectedVehicle;
 
 @property (strong,nonatomic) Emirate *fromEmirate;
 @property (strong,nonatomic) Emirate *toEmirate;
@@ -79,7 +89,7 @@
 
 @end
 
-@implementation AdvancedSearchViewController
+@implementation CreateRideViewController
 
 -(NSDateFormatter *)dateFormatter{
     if (!_dateFormatter) {
@@ -88,48 +98,29 @@
     return _dateFormatter;
 }
 
-- (void) viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
- 
-    self.title = NSLocalizedString(@"advancedSearch", nil);
-    
-    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
-    [_backBtn setHighlighted:NO];
-    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
-    
-    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 660)];
-    self.selectedType = SingleRideType;
-    self.isFemaleOnly = false;
-    self.pickupDate = [[NSDate date] dateBySettingHour:10];
+
+    [self configureUI];
     [self configureData];
     [self configureRoadTypeView];
     [self configureGenderView];
-    [self configureUI];
 }
-
-- (void)popViewController
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 #pragma Data
 - (void) configureData{
-    __block AdvancedSearchViewController *blockSelf = self;
+    __block CreateRideViewController *blockSelf = self;
     [KVNProgress showWithStatus:@"Loading"];
     [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"0" WithSuccess:^(NSMutableArray *array) {
         blockSelf.nationalties = array;
         [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
             blockSelf.ageRanges = array;
             [[MasterDataManager sharedMasterDataManager] GetPrefferedLanguagesWithSuccess:^(NSMutableArray *array) {
-                [KVNProgress dismiss];
                 blockSelf.languages = array;
-                [[MasterDataManager sharedMasterDataManager] GetEmiratesWithSuccess:^(NSMutableArray *array) {
-                    
+                [[MobVehicleManager sharedMobVehicleManager] getVehiclesWithSuccess:^(NSArray *vehicles) {
+                    blockSelf.vehicles = vehicles;
+                    [KVNProgress dismiss];
                 } Failure:^(NSString *error) {
-                    
+                    [blockSelf handleManagerFailure];
                 }];
             } Failure:^(NSString *error) {
                 [blockSelf handleManagerFailure];
@@ -149,9 +140,25 @@
         [KVNProgress dismiss];
     } afterDelay:3];
 }
+
 #pragma UI
 
 - (void) configureUI{
+    
+    self.title = NSLocalizedString(@"Create Ride", nil);
+    
+    
+    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setHighlighted:NO];
+    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.scrollView.frame.size.height)];
+    self.selectedType = SingleRideType;
+    self.isFemaleOnly = false;
+    self.pickupDate = [[NSDate date] dateBySettingHour:10];
     
     UIBezierPath *maskPath;
     maskPath = [UIBezierPath bezierPathWithRoundedRect:self.pickupTitleLabel.bounds
@@ -163,15 +170,15 @@
     maskLayer.path = maskPath.CGPath;
     self.pickupTitleLabel.layer.mask = maskLayer;
     
-
-    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.dropoffTitleLabel.bounds
+    
+    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.destinationTitleLabel.bounds
                                      byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
                                            cornerRadii:CGSizeMake(5.0, 5.0)];
     
     maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = self.pickupTitleLabel.bounds;
     maskLayer.path = maskPath.CGPath;
-    self.dropoffTitleLabel  .layer.mask = maskLayer;
+    self.destinationTitleLabel  .layer.mask = maskLayer;
     
     self.dateView.layer.cornerRadius = 10;
     self.dateView.layer.masksToBounds = YES;
@@ -179,18 +186,25 @@
     self.timeView.layer.cornerRadius = 10;
     self.timeView.layer.masksToBounds = YES;
     
-    self.searchButton.layer.cornerRadius = 8;
+    self.createButton.layer.cornerRadius = 8;
     
-    self.langageTextField.textColor        = Red_UIColor;
-    self.nationalityTextField.textColor    = Red_UIColor;
-    self.ageRangeTextField.textColor       = Red_UIColor;
-    self.langageTextField.textColor        = Red_UIColor;
-    self.pickupTitleLabel.backgroundColor  = Red_UIColor;
-    self.dropoffTitleLabel.backgroundColor = Red_UIColor;
-    self.startPointTextField.textColor     = Red_UIColor;
-    self.destinationTextFiled.textColor    = Red_UIColor;
-    self.optionalHeader.textColor          =  Red_UIColor;
-    self.sepratorLine.backgroundColor      = Red_UIColor;
+    self.langageTextField.textColor                 = Red_UIColor;
+    self.nationalityTextField.textColor             = Red_UIColor;
+    self.ageRangeTextField.textColor                = Red_UIColor;
+    self.langageTextField.textColor                 = Red_UIColor;
+    self.pickupTitleLabel.backgroundColor           = Red_UIColor;
+    self.destinationTextField.textColor             = Red_UIColor;
+    self.startPointTextField.textColor              = Red_UIColor;
+    self.destinationTextField.textColor             = Red_UIColor;
+    self.noOfSeatsTextField.textColor               = Red_UIColor;
+    self.vehiclesTextField.textColor                = Red_UIColor;
+    self.rideDetailsSectionLabel.textColor          = Red_UIColor;
+    self.optionalSectionLabel.textColor             = Red_UIColor;
+    
+    [self.rideDetailsSectionLabel addRightBorder:Red_UIColor];
+    [self.rideDetailsSectionLabel addLeftBorderWithColor:Red_UIColor];
+    [self.optionalSectionLabel addRightBorder:Red_UIColor];
+    [self.optionalSectionLabel addLeftBorderWithColor:Red_UIColor];
     
     UITapGestureRecognizer *dateTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
     [self.dateView addGestureRecognizer:dateTapGestureRecognizer];
@@ -208,6 +222,17 @@
     
     UITapGestureRecognizer *dismissGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissHandler)];
     [self.view addGestureRecognizer:dismissGestureRecognizer];
+    
+    self.rideDetailsView.layer.cornerRadius = 20;
+    self.rideDetailsView.backgroundColor = [UIColor clearColor];
+    self.rideDetailsView.layer.borderColor = Red_UIColor.CGColor;
+    self.rideDetailsView.layer.borderWidth = 1.0f;
+
+    
+    self.optionsView.layer.cornerRadius = 20;
+    self.optionsView.backgroundColor = [UIColor clearColor];
+    self.optionsView.layer.borderColor = Red_UIColor.CGColor;
+    self.optionsView.layer.borderWidth = 1.0f;
 }
 
 - (void) configureRoadTypeView{
@@ -215,12 +240,12 @@
         case SingleRideType:
             self.singleRideLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
             self.periodicLabel.textColor = [UIColor darkGrayColor];
-            self.typeSwitchImage.image = [UIImage imageNamed:@"select_Left"];
+            self.switchImageView.image = [UIImage imageNamed:@"select_Left"];
             break;
         case PeriodicType:
             self.periodicLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
             self.singleRideLabel.textColor = [UIColor darkGrayColor];
-            self.typeSwitchImage.image = [UIImage imageNamed:@"select_Right"];
+            self.switchImageView.image = [UIImage imageNamed:@"select_Right"];
             break;
         default:
             break;
@@ -239,6 +264,11 @@
 }
 
 #pragma Actions&Handler
+
+- (void)popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void) genderChangedHandler{
     self.isFemaleOnly = !self.isFemaleOnly;
@@ -259,40 +289,23 @@
     [self.view endEditing:YES];
 }
 
-- (IBAction)searchAction:(id)sender {
+- (IBAction)creatRideAction:(id)sender {
     if (!self.fromEmirate) {
-          [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select start point ",nil)];
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select start point ",nil)];
     }
     else if (!self.toEmirate){
-         [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select destination ",nil)];
+        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select destination ",nil)];
     }
     else{
-        __block AdvancedSearchViewController *blockSelf = self;
+        __block CreateRideViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
-        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ? YES : NO WithSuccess:^(NSArray *searchResults) {
-            [KVNProgress dismiss];
-            if(searchResults){
-                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
-                resultViewController.results = searchResults;
-                resultViewController.fromEmirate = blockSelf.fromEmirate;
-                resultViewController.toEmirate = blockSelf.toEmirate;
-                resultViewController.fromRegion = blockSelf.fromRegion;
-                resultViewController.toRegion = blockSelf.toRegion;
-                [blockSelf.navigationController pushViewController:resultViewController animated:YES];
-            }
-            else{
-                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
-            }
-        } Failure:^(NSString *error) {
-            [KVNProgress dismiss];            
-        }];
     }
 }
 
 #pragma Pickers
 
 - (void) showDatePicker{
-    __block AdvancedSearchViewController *blockSelf = self;
+    __block CreateRideViewController *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.dateFormatter.dateFormat = @"EEE";
@@ -330,7 +343,7 @@
 
 - (void) showTimePicker{
     
-    __block AdvancedSearchViewController *blockSelf = self;
+    __block CreateRideViewController *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.dateFormatter.dateFormat = @"HH:mm a";
@@ -343,7 +356,7 @@
     
     //Create cancel action
     RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
-
+        
     }];
     
     //Create date selection view controller
@@ -368,21 +381,28 @@
                 self.nationalityTextField.text = nationality.NationalityArName;
                 self.selectedNationality = nationality;
             }
-            break;
+                break;
             case LanguageTextField:
             {
                 Language *language = [self.languages objectAtIndex:selectedRow];
                 self.langageTextField.text = language.LanguageArName;
                 self.selectedLanguage = language;
             }
-            break;
+                break;
             case AgeRangeTextField:
             {
                 AgeRange *range = [self.ageRanges objectAtIndex:selectedRow];
                 self.ageRangeTextField.text = range.Range;
                 self.selectedAgeRange = range;
             }
-            break;
+                break;
+            case VehiclesTextField:
+            {
+                Vehicle *vehicle = [self.vehicles objectAtIndex:selectedRow];
+                self.vehiclesTextField.text = vehicle.ModelArName;
+                self.selectedVehicle = vehicle;
+            }
+                break;
             default:
                 break;
         }
@@ -395,7 +415,7 @@
     
     //Create picker view controller
     RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:RMActionControllerStyleDefault selectAction:selectAction andCancelAction:cancelAction];
-
+    
     pickerController.picker.delegate = self;
     pickerController.picker.dataSource = self;
     pickerController.picker.tag = type;
@@ -407,24 +427,32 @@
                 selectedRow = [self.nationalties indexOfObject:self.selectedNationality];
             }
         }
-        break;
+            break;
         case LanguageTextField:
         {
             if (self.selectedLanguage) {
                 selectedRow = [self.languages indexOfObject:self.selectedLanguage];
             }
         }
-        break;
+            break;
         case AgeRangeTextField:
         {
             if (self.selectedAgeRange) {
                 selectedRow = [self.ageRanges indexOfObject:self.selectedAgeRange];
             }
         }
-        break;
+            break;
+        case VehiclesTextField:
+        {
+            if (self.selectedVehicle) {
+                selectedRow = [self.vehicles indexOfObject:self.selectedVehicle];
+            }
+        }
+            break;
         default:
             break;
     }
+    [pickerController.picker selectRow:selectedRow inComponent:0 animated:YES];
     //Now just present the picker controller using the standard iOS presentation method
     [self presentViewController:pickerController animated:YES completion:nil];
 }
@@ -432,7 +460,7 @@
 - (void) showLocationPickerWithTextFieldType:(TextFieldType)type{
     SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
     selectLocationViewController.viewTitle = type == PickupTextField ? NSLocalizedString(@"Select pickup point", Nil): NSLocalizedString(@"Select destionation point", nil);
-    __block AdvancedSearchViewController *blockSelf = self;
+    __block CreateRideViewController *blockSelf = self;
     [selectLocationViewController setSelectionHandler:^(Emirate *selectedEmirate, Region *selectedRegion) {
         NSString *text = [NSString stringWithFormat:@"%@,%@",selectedEmirate.EmirateArName,selectedRegion.RegionArName];
         if (type == PickupTextField) {
@@ -443,7 +471,7 @@
         else if (type == DestinationTextField){
             blockSelf.toEmirate = selectedEmirate;
             blockSelf.toRegion = selectedRegion;
-            blockSelf.destinationTextFiled.text = text;
+            blockSelf.destinationTextField.text = text;
         }
     }];
     
@@ -467,7 +495,7 @@
     if(textField == self.startPointTextField ){
         [self showLocationPickerWithTextFieldType:PickupTextField];
     }
-    else if (textField == self.destinationTextFiled){
+    else if (textField == self.destinationTextField){
         [self showLocationPickerWithTextFieldType:DestinationTextField];
     }
     else if (textField == self.nationalityTextField){
@@ -479,8 +507,10 @@
     else if (textField == self.langageTextField){
         [self showPickerWithTextFieldType:LanguageTextField];
     }
+    else if (textField == self.vehiclesTextField){
+        [self showPickerWithTextFieldType:VehiclesTextField];
+    }
     return NO;
-
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
@@ -503,25 +533,33 @@
             Nationality *nationality = [self.nationalties objectAtIndex:row];
             title = nationality.NationalityArName;
         }
-        break;
+            break;
         case AgeRangeTextField:
         {
             AgeRange *range = [self.ageRanges objectAtIndex:row];
             title = range.Range;
         }
-        break;
+            break;
         case LanguageTextField:
         {
             Language *language = [self.languages objectAtIndex:row];
             title = language.LanguageArName;
         }
-        break;
+            break;
+        case VehiclesTextField:
+        {
+            Vehicle *vehicle = [self.vehicles objectAtIndex:row];
+            title = vehicle.ModelArName;
+        }
+            break;
             
         default:
             break;
     }
     
     return title;
+
+
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -531,28 +569,34 @@
         {
             return self.nationalties.count;
         }
-        break;
+            break;
         case AgeRangeTextField:
         {
             return self.ageRanges.count;
         }
-        break;
+            break;
         case LanguageTextField:
         {
             return self.languages.count;
         }
-        break;
+            break;
+        case VehiclesTextField:
+        {
+            return self.vehicles.count;
+        }
+            break;
             
         default:
             break;
     }
     return 0;
-
+    
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
 }
+
 
 @end

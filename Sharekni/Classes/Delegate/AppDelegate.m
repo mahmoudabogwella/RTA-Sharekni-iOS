@@ -12,6 +12,8 @@
 #import "MobAccountManager.h"
 #import <MZFormSheetController.h>
 #import "XOSplashVideoController.h"
+#import <KVNProgress/KVNProgress.h>
+#import <KVNProgress/KVNProgressConfiguration.h>
 @interface AppDelegate ()<XOSplashVideoDelegate>
 
 @end
@@ -37,6 +39,8 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTranslucent:NO];
     
+    KVNProgressConfiguration * progressConfiguration = [KVNProgress configuration];
+    progressConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
     
     NSURL *Url = [[NSBundle mainBundle] URLForResource:@"Final_Intro" withExtension:@"mp4"];
     

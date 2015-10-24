@@ -70,6 +70,11 @@
 		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
 		87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF811BB8325500E21838 /* BaseAPIManager.m */; };
 		87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF851BB8670C00E21838 /* AgeRange.m */; };
+		87C571D21BDBB08000EFB618 /* CreateRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D01BDBB08000EFB618 /* CreateRideViewController.m */; settings = {ASSET_TAGS = (); }; };
+		87C571D31BDBB08000EFB618 /* CreateRideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C571D11BDBB08000EFB618 /* CreateRideViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		87C571D61BDBCCA900EFB618 /* UILabel+Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D51BDBCCA900EFB618 /* UILabel+Borders.m */; settings = {ASSET_TAGS = (); }; };
+		87C571D91BDBD07700EFB618 /* MobVehicleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D81BDBD07700EFB618 /* MobVehicleManager.m */; settings = {ASSET_TAGS = (); }; };
+		87C571DC1BDBD33F00EFB618 /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571DB1BDBD33F00EFB618 /* Vehicle.m */; settings = {ASSET_TAGS = (); }; };
 		F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E520A66E22BABE4DD7235 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -208,6 +213,15 @@
 		87C1AF811BB8325500E21838 /* BaseAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAPIManager.m; sourceTree = "<group>"; };
 		87C1AF841BB8670C00E21838 /* AgeRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgeRange.h; sourceTree = "<group>"; };
 		87C1AF851BB8670C00E21838 /* AgeRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgeRange.m; sourceTree = "<group>"; };
+		87C571CF1BDBB07F00EFB618 /* CreateRideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRideViewController.h; sourceTree = "<group>"; };
+		87C571D01BDBB08000EFB618 /* CreateRideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideViewController.m; sourceTree = "<group>"; };
+		87C571D11BDBB08000EFB618 /* CreateRideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateRideViewController.xib; sourceTree = "<group>"; };
+		87C571D41BDBCCA900EFB618 /* UILabel+Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Borders.h"; sourceTree = "<group>"; };
+		87C571D51BDBCCA900EFB618 /* UILabel+Borders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Borders.m"; sourceTree = "<group>"; };
+		87C571D71BDBD07700EFB618 /* MobVehicleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobVehicleManager.h; sourceTree = "<group>"; };
+		87C571D81BDBD07700EFB618 /* MobVehicleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobVehicleManager.m; sourceTree = "<group>"; };
+		87C571DA1BDBD33F00EFB618 /* Vehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vehicle.h; sourceTree = "<group>"; };
+		87C571DB1BDBD33F00EFB618 /* Vehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicle.m; sourceTree = "<group>"; };
 		C699F720BCBF8D46B41E1A56 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -376,6 +390,9 @@
 				87B58B5A1BD388D100E73E55 /* MapLookupViewController.h */,
 				87B58B5B1BD388D100E73E55 /* MapLookupViewController.m */,
 				87B58B5C1BD388D100E73E55 /* MapLookupViewController.xib */,
+				87C571CF1BDBB07F00EFB618 /* CreateRideViewController.h */,
+				87C571D01BDBB08000EFB618 /* CreateRideViewController.m */,
+				87C571D11BDBB08000EFB618 /* CreateRideViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -422,6 +439,8 @@
 				87C1AF7E1BB831A300E21838 /* MasterDataManager.m */,
 				047E458F1BC63686000B5151 /* MobDriverManager.h */,
 				047E45901BC63686000B5151 /* MobDriverManager.m */,
+				87C571D71BDBD07700EFB618 /* MobVehicleManager.h */,
+				87C571D81BDBD07700EFB618 /* MobVehicleManager.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -429,6 +448,8 @@
 		143BE6AE1BB14BD2009F6496 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				87C571D41BDBCCA900EFB618 /* UILabel+Borders.h */,
+				87C571D51BDBCCA900EFB618 /* UILabel+Borders.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -462,6 +483,8 @@
 				143F31001BC9F540006A6A21 /* MapLookUp.m */,
 				87B58B541BD36F7900E73E55 /* MostRideDetails.h */,
 				87B58B551BD36F7900E73E55 /* MostRideDetails.m */,
+				87C571DA1BDBD33F00EFB618 /* Vehicle.h */,
+				87C571DB1BDBD33F00EFB618 /* Vehicle.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -579,6 +602,7 @@
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				144869FB1BC0968E00804C26 /* QuickSearchViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
+				87C571D31BDBB08000EFB618 /* CreateRideViewController.xib in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				143F30DE1BC83C28006A6A21 /* SearchResultsViewController.xib in Resources */,
@@ -642,17 +666,21 @@
 			files = (
 				87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */,
 				0429B1C31BB9C84400161222 /* NSObject+Blocks.m in Sources */,
+				87C571D21BDBB08000EFB618 /* CreateRideViewController.m in Sources */,
 				87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */,
 				143BE6D01BB6E001009F6496 /* AdvancedSearchViewController.m in Sources */,
 				143F31011BC9F540006A6A21 /* MapLookUp.m in Sources */,
 				143F30F91BC8EF5E006A6A21 /* MostRide.m in Sources */,
+				87C571D91BDBD07700EFB618 /* MobVehicleManager.m in Sources */,
 				047E45501BC0960F000B5151 /* SearchViewController.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
+				87C571DC1BDBD33F00EFB618 /* Vehicle.m in Sources */,
 				143BE6B51BB56402009F6496 /* RegisterViewController.m in Sources */,
 				87B58B5D1BD388D100E73E55 /* MapLookupViewController.m in Sources */,
 				047E458E1BC5A4D8000B5151 /* NSString+Levenshtein.m in Sources */,
 				143BE6BE1BB68E97009F6496 /* MostRidesViewController.m in Sources */,
 				0489129E1BB92150005E4E02 /* Nationality.m in Sources */,
+				87C571D61BDBCCA900EFB618 /* UILabel+Borders.m in Sources */,
 				143BE6C71BB69327009F6496 /* MostRidesCell.m in Sources */,
 				044ECE941BC08A6000AF3E2D /* SearchResultsViewController.m in Sources */,
 				048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */,
