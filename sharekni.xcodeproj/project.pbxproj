@@ -32,7 +32,6 @@
 		04931B211BAAF814000F5434 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04931B201BAAF814000F5434 /* main.m */; };
 		04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04931B251BAAF814000F5434 /* Sharekni.xcdatamodeld */; };
 		04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04931B2B1BAAF814000F5434 /* Main.storyboard */; };
-		04931B321BAAF814000F5434 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04931B301BAAF814000F5434 /* LaunchScreen.xib */; };
 		04931B3E1BAAF815000F5434 /* SharekniTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04931B3D1BAAF815000F5434 /* SharekniTests.m */; };
 		143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6AC1BB14BD2009F6496 /* AppDelegate.m */; };
 		143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */; };
@@ -89,10 +88,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0429B1C11BB9C84400161222 /* NSObject+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Blocks.h"; sourceTree = "<group>"; };
-		0429B1C21BB9C84400161222 /* NSObject+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Blocks.m"; sourceTree = "<group>"; };
-		0429B1C41BB9DC5F00161222 /* HelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpManager.h; sourceTree = "<group>"; };
-		0429B1C51BB9DC5F00161222 /* HelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpManager.m; sourceTree = "<group>"; };
+		0429B1C11BB9C84400161222 /* NSObject+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Blocks.h"; path = "../NSObject+Blocks.h"; sourceTree = "<group>"; };
+		0429B1C21BB9C84400161222 /* NSObject+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Blocks.m"; path = "../NSObject+Blocks.m"; sourceTree = "<group>"; };
+		0429B1C41BB9DC5F00161222 /* HelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpManager.h; path = ../HelpManager.h; sourceTree = "<group>"; };
+		0429B1C51BB9DC5F00161222 /* HelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpManager.m; path = ../HelpManager.m; sourceTree = "<group>"; };
 		044ECE911BC08A6000AF3E2D /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
 		044ECE921BC08A6000AF3E2D /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
 		044ECE961BC08A8000AF3E2D /* SearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultCell.h; sourceTree = "<group>"; };
@@ -137,7 +136,6 @@
 		04931B201BAAF814000F5434 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04931B261BAAF814000F5434 /* Sharekni.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sharekni.xcdatamodel; sourceTree = "<group>"; };
 		04931B2C1BAAF814000F5434 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		04931B311BAAF814000F5434 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		04931B371BAAF815000F5434 /* SharekniTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharekniTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04931B3C1BAAF815000F5434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04931B3D1BAAF815000F5434 /* SharekniTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharekniTests.m; sourceTree = "<group>"; };
@@ -167,8 +165,6 @@
 		143BE6D81BB82363009F6496 /* CALayer+RuntimeAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+RuntimeAttribute.m"; sourceTree = "<group>"; };
 		143F30DD1BC83C28006A6A21 /* SearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
 		143F30DF1BC83F70006A6A21 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		143F30E31BC84645006A6A21 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
-		143F30E41BC84645006A6A21 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		143F30E51BC84645006A6A21 /* ar */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ar; path = ar.lproj/LoginViewController.xib; sourceTree = "<group>"; };
 		143F30E61BC84645006A6A21 /* ar */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ar; path = ar.lproj/RegisterViewController.xib; sourceTree = "<group>"; };
 		143F30EF1BC8488D006A6A21 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -194,8 +190,8 @@
 		87A1133C1BB6FD230092E870 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		87B58B541BD36F7900E73E55 /* MostRideDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostRideDetails.h; sourceTree = "<group>"; };
 		87B58B551BD36F7900E73E55 /* MostRideDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostRideDetails.m; sourceTree = "<group>"; };
-		87B58B571BD3842800E73E55 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
-		87B58B581BD3842800E73E55 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		87B58B571BD3842800E73E55 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base64.h; path = ../Base64.h; sourceTree = "<group>"; };
+		87B58B581BD3842800E73E55 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Base64.m; path = ../Base64.m; sourceTree = "<group>"; };
 		87B58B5A1BD388D100E73E55 /* MapLookupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLookupViewController.h; sourceTree = "<group>"; };
 		87B58B5B1BD388D100E73E55 /* MapLookupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLookupViewController.m; sourceTree = "<group>"; };
 		87B58B5C1BD388D100E73E55 /* MapLookupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapLookupViewController.xib; sourceTree = "<group>"; };
@@ -294,7 +290,6 @@
 				143F30DF1BC83F70006A6A21 /* Images.xcassets */,
 				143BE6A71BB14BD2009F6496 /* Classes */,
 				04931B2B1BAAF814000F5434 /* Main.storyboard */,
-				04931B301BAAF814000F5434 /* LaunchScreen.xib */,
 				04931B251BAAF814000F5434 /* Sharekni.xcdatamodeld */,
 				04931B1E1BAAF814000F5434 /* Supporting Files */,
 				87A1133C1BB6FD230092E870 /* Constants.h */,
@@ -333,8 +328,6 @@
 		143BE6A71BB14BD2009F6496 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				87B58B571BD3842800E73E55 /* Base64.h */,
-				87B58B581BD3842800E73E55 /* Base64.m */,
 				047E455D1BC59C4C000B5151 /* Components */,
 				87C1AF831BB866DC00E21838 /* Models */,
 				143BE6A81BB14BD2009F6496 /* Controllers */,
@@ -342,10 +335,6 @@
 				143BE6AA1BB14BD2009F6496 /* Delegate */,
 				143BE6AD1BB14BD2009F6496 /* Helper */,
 				143BE6AE1BB14BD2009F6496 /* Views */,
-				0429B1C11BB9C84400161222 /* NSObject+Blocks.h */,
-				0429B1C21BB9C84400161222 /* NSObject+Blocks.m */,
-				0429B1C41BB9DC5F00161222 /* HelpManager.h */,
-				0429B1C51BB9DC5F00161222 /* HelpManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -428,6 +417,12 @@
 		143BE6AD1BB14BD2009F6496 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				0429B1C11BB9C84400161222 /* NSObject+Blocks.h */,
+				0429B1C21BB9C84400161222 /* NSObject+Blocks.m */,
+				0429B1C41BB9DC5F00161222 /* HelpManager.h */,
+				0429B1C51BB9DC5F00161222 /* HelpManager.m */,
+				87B58B571BD3842800E73E55 /* Base64.h */,
+				87B58B581BD3842800E73E55 /* Base64.m */,
 				143BE6D71BB82363009F6496 /* CALayer+RuntimeAttribute.h */,
 				143BE6D81BB82363009F6496 /* CALayer+RuntimeAttribute.m */,
 				87C1AF801BB8325500E21838 /* BaseAPIManager.h */,
@@ -612,7 +607,6 @@
 				87B58B5E1BD388D100E73E55 /* MapLookupViewController.xib in Resources */,
 				143F30FA1BC90D15006A6A21 /* SearchViewController.xib in Resources */,
 				14DA33D11BC5006300078F02 /* RegisterViewController.xib in Resources */,
-				04931B321BAAF814000F5434 /* LaunchScreen.xib in Resources */,
 				87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -739,18 +733,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				04931B2C1BAAF814000F5434 /* Base */,
-				143F30E31BC84645006A6A21 /* ar */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		04931B301BAAF814000F5434 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				04931B311BAAF814000F5434 /* Base */,
-				143F30E41BC84645006A6A21 /* ar */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 		143F30F01BC8488D006A6A21 /* Localizable.strings */ = {

@@ -23,6 +23,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+
     [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
     [[MZFormSheetBackgroundWindow appearance] setBlurRadius:1.0];
     [[MZFormSheetBackgroundWindow appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
@@ -42,17 +44,17 @@
     KVNProgressConfiguration * progressConfiguration = [KVNProgress configuration];
     progressConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
     
-    NSURL *Url = [[NSBundle mainBundle] URLForResource:@"Final_Intro" withExtension:@"mp4"];
-    
-    // our splash controller
-    XOSplashVideoController *splashVideoController =
-    [[XOSplashVideoController alloc] initWithVideoPortraitUrl:Url
-                                            portraitImageName:@"Welcome1_bg"
-                                                 landscapeUrl:Url
-                                           landscapeImageName:@"Welcome1_bg"
-                                                     delegate:self];
-    // we'll start out with the spash view controller in the window
-    self.window.rootViewController = splashVideoController;
+//    NSURL *Url = [[NSBundle mainBundle] URLForResource:@"Final_Intro" withExtension:@"mp4"];
+//    
+//    // our splash controller
+//    XOSplashVideoController *splashVideoController =
+//    [[XOSplashVideoController alloc] initWithVideoPortraitUrl:Url
+//                                            portraitImageName:@"Welcome1_bg"
+//                                                 landscapeUrl:Url
+//                                           landscapeImageName:@"Welcome1_bg"
+//                                                     delegate:self];
+//    // we'll start out with the spash view controller in the window
+//    self.window.rootViewController = splashVideoController;
 
     return YES;
 }
