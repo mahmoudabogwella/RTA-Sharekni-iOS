@@ -14,7 +14,7 @@
 #import "HelpManager.h"
 #import "RegisterViewController.h"
 #import "CreateRideViewController.h"
-
+#import "HomeViewController.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 {
     float animatedDistance ;
@@ -80,8 +80,9 @@
         [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:self.usernameTextField.text andPassword:self.passwordTextField.text WithSuccess:^(User *user) {
             [KVNProgress dismiss];
             if (user) {
-                CreateRideViewController  *createRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
-                [self.navigationController pushViewController:createRideViewController animated:YES];
+                HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+//                CreateRideViewController  *createRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
+                [self.navigationController pushViewController:homeViewControlle animated:YES];
             }
             else{
             

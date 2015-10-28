@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mI9-uV-K0N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mI9-uV-K0N">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -281,20 +281,21 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5cT-wu-C71">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="588"/>
+                                <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nBe-dA-Fjd">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="588"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBe-dA-Fjd">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="588"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="bsA-LC-fGj" secondAttribute="bottom" id="2nu-zV-Qe9"/>
-                            <constraint firstItem="nBe-dA-Fjd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="313-Ap-lS6"/>
                             <constraint firstAttribute="centerX" secondItem="pcB-wu-JQ9" secondAttribute="centerX" constant="-0.5" id="4I1-Kj-l8n"/>
                             <constraint firstItem="1hY-f8-ZbD" firstAttribute="leading" secondItem="j4g-kh-6sg" secondAttribute="trailing" constant="12" id="4Na-wA-PqC"/>
                             <constraint firstAttribute="centerX" secondItem="vdt-Ay-HB3" secondAttribute="centerX" constant="117" id="8FQ-aI-3sm"/>
@@ -307,7 +308,6 @@
                             <constraint firstItem="5cT-wu-C71" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="Mc5-wH-rdE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5cT-wu-C71" secondAttribute="trailing" constant="-16" id="Ujk-HU-jgw"/>
                             <constraint firstItem="bsA-LC-fGj" firstAttribute="top" secondItem="qbK-JN-ewr" secondAttribute="bottom" constant="-20" id="XYU-jJ-EDM"/>
-                            <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="nBe-dA-Fjd" secondAttribute="bottom" constant="-20" id="b21-SB-i4q"/>
                             <constraint firstItem="pcB-wu-JQ9" firstAttribute="top" secondItem="JlX-fK-gaB" secondAttribute="bottom" constant="6" id="c6n-nJ-bFF"/>
                             <constraint firstItem="5cT-wu-C71" firstAttribute="top" secondItem="qbK-JN-ewr" secondAttribute="bottom" constant="-20" id="ccy-cG-7Zk"/>
                             <constraint firstAttribute="centerX" secondItem="y29-Fe-oOs" secondAttribute="centerX" constant="-0.5" id="jE4-s4-Gc5"/>
@@ -316,8 +316,6 @@
                             <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="5cT-wu-C71" secondAttribute="bottom" constant="-20" id="umG-dX-gqN"/>
                             <constraint firstItem="3Dm-nA-G9L" firstAttribute="top" secondItem="1hY-f8-ZbD" secondAttribute="bottom" constant="20" id="wJ9-Fu-RXv"/>
                             <constraint firstItem="j4g-kh-6sg" firstAttribute="leading" secondItem="irp-dG-q1j" secondAttribute="trailing" constant="12" id="xAG-LG-als"/>
-                            <constraint firstItem="nBe-dA-Fjd" firstAttribute="top" secondItem="qbK-JN-ewr" secondAttribute="bottom" constant="-20" id="xws-90-e3k"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nBe-dA-Fjd" secondAttribute="trailing" constant="-16" id="xzV-i2-aXg"/>
                             <constraint firstItem="JlX-fK-gaB" firstAttribute="top" secondItem="y29-Fe-oOs" secondAttribute="bottom" constant="65" id="yDn-fS-ZOX"/>
                         </constraints>
                     </view>

@@ -33,6 +33,8 @@
 		04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04931B251BAAF814000F5434 /* Sharekni.xcdatamodeld */; };
 		04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04931B2B1BAAF814000F5434 /* Main.storyboard */; };
 		04931B3E1BAAF815000F5434 /* SharekniTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04931B3D1BAAF815000F5434 /* SharekniTests.m */; };
+		04C3E0331BE09EF000698227 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C3E0311BE09EF000698227 /* HomeViewController.m */; };
+		04C3E0341BE09EF000698227 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C3E0321BE09EF000698227 /* HomeViewController.xib */; };
 		143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6AC1BB14BD2009F6496 /* AppDelegate.m */; };
 		143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */; };
 		143BE6B51BB56402009F6496 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B41BB56402009F6496 /* RegisterViewController.m */; };
@@ -69,11 +71,11 @@
 		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
 		87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF811BB8325500E21838 /* BaseAPIManager.m */; };
 		87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF851BB8670C00E21838 /* AgeRange.m */; };
-		87C571D21BDBB08000EFB618 /* CreateRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D01BDBB08000EFB618 /* CreateRideViewController.m */; settings = {ASSET_TAGS = (); }; };
-		87C571D31BDBB08000EFB618 /* CreateRideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C571D11BDBB08000EFB618 /* CreateRideViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		87C571D61BDBCCA900EFB618 /* UILabel+Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D51BDBCCA900EFB618 /* UILabel+Borders.m */; settings = {ASSET_TAGS = (); }; };
-		87C571D91BDBD07700EFB618 /* MobVehicleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D81BDBD07700EFB618 /* MobVehicleManager.m */; settings = {ASSET_TAGS = (); }; };
-		87C571DC1BDBD33F00EFB618 /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571DB1BDBD33F00EFB618 /* Vehicle.m */; settings = {ASSET_TAGS = (); }; };
+		87C571D21BDBB08000EFB618 /* CreateRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D01BDBB08000EFB618 /* CreateRideViewController.m */; };
+		87C571D31BDBB08000EFB618 /* CreateRideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C571D11BDBB08000EFB618 /* CreateRideViewController.xib */; };
+		87C571D61BDBCCA900EFB618 /* UILabel+Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D51BDBCCA900EFB618 /* UILabel+Borders.m */; };
+		87C571D91BDBD07700EFB618 /* MobVehicleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D81BDBD07700EFB618 /* MobVehicleManager.m */; };
+		87C571DC1BDBD33F00EFB618 /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571DB1BDBD33F00EFB618 /* Vehicle.m */; };
 		F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E520A66E22BABE4DD7235 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +141,9 @@
 		04931B371BAAF815000F5434 /* SharekniTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharekniTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04931B3C1BAAF815000F5434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04931B3D1BAAF815000F5434 /* SharekniTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharekniTests.m; sourceTree = "<group>"; };
+		04C3E0301BE09EF000698227 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		04C3E0311BE09EF000698227 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		04C3E0321BE09EF000698227 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		072E520A66E22BABE4DD7235 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		143BE6AB1BB14BD2009F6496 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		143BE6AC1BB14BD2009F6496 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -382,6 +387,9 @@
 				87C571CF1BDBB07F00EFB618 /* CreateRideViewController.h */,
 				87C571D01BDBB08000EFB618 /* CreateRideViewController.m */,
 				87C571D11BDBB08000EFB618 /* CreateRideViewController.xib */,
+				04C3E0301BE09EF000698227 /* HomeViewController.h */,
+				04C3E0311BE09EF000698227 /* HomeViewController.m */,
+				04C3E0321BE09EF000698227 /* HomeViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -608,6 +616,7 @@
 				143F30FA1BC90D15006A6A21 /* SearchViewController.xib in Resources */,
 				14DA33D11BC5006300078F02 /* RegisterViewController.xib in Resources */,
 				87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */,
+				04C3E0341BE09EF000698227 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +670,7 @@
 				87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */,
 				0429B1C31BB9C84400161222 /* NSObject+Blocks.m in Sources */,
 				87C571D21BDBB08000EFB618 /* CreateRideViewController.m in Sources */,
+				04C3E0331BE09EF000698227 /* HomeViewController.m in Sources */,
 				87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */,
 				143BE6D01BB6E001009F6496 /* AdvancedSearchViewController.m in Sources */,
 				143F31011BC9F540006A6A21 /* MapLookUp.m in Sources */,
