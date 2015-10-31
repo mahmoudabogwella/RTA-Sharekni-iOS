@@ -10,47 +10,17 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "SearchViewController.h"
-#import <AVFoundation/AVFoundation.h>
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-
-@interface VideoView : UIView
-
-@end
-
-@implementation VideoView
-
-+ (Class)layerClass{
-    
-    return [AVPlayerLayer class];
-}
-
-@end
+#import "BestDriversViewController.h"
+#import "TopRidesViewController.h"
 
 @interface WelcomeViewController ()
-{
-    BOOL videoIsLoaded ;
-}
-
-@property (nonatomic, strong) AVPlayer *avplayer;
-@property (strong, nonatomic) IBOutlet UIView *movieView;
-@property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @end
 
 @implementation WelcomeViewController
 
-- (BOOL)prefersStatusBarHidden{
-    
-    if (!videoIsLoaded) {
-       return YES;
-    }else{
-        return NO ;
-    }
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.navigationController.navigationBarHidden = YES ;
 
     self.title = NSLocalizedString(@"sharkni", nil);
 }
@@ -59,62 +29,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
-    videoIsLoaded = NO ;
-    [self prefersStatusBarHidden];
-    [self setUpPlayer];
-}
-
-- (void)setUpPlayer
-{
-    //Not affecting background music playing
-    NSError *sessionError = nil;
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&sessionError];
-    [[AVAudioSession sharedInstance] setActive:YES error:&sessionError];
-    
-    //Set up player
-    NSURL *movieURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Final_Intro" ofType:@"mp4"]];
-    AVAsset *avAsset = [AVAsset assetWithURL:movieURL];
-    AVPlayerItem *avPlayerItem =[[AVPlayerItem alloc]initWithAsset:avAsset];
-    self.avplayer = [[AVPlayer alloc]initWithPlayerItem:avPlayerItem];
-    AVPlayerLayer *avPlayerLayer =[AVPlayerLayer playerLayerWithPlayer:self.avplayer];
-    [avPlayerLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    [avPlayerLayer setFrame:[[UIScreen mainScreen] bounds]];
-    [self.movieView.layer addSublayer:avPlayerLayer];
-    
-    //Config player
-    [self.avplayer seekToTime:kCMTimeZero];
-    [self.avplayer setVolume:0.0f];
-    [self.avplayer setActionAtItemEnd:AVPlayerActionAtItemEndNone];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(playerItemDidReachEnd:)
-                                                 name:AVPlayerItemDidPlayToEndTimeNotification
-                                               object:[self.avplayer currentItem]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(playerStartPlaying)
-                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
-}
-
-- (void)playerItemDidReachEnd:(NSNotification *)notification {
-    AVPlayerItem *p = [notification object];
-    [p seekToTime:kCMTimeZero];
-    [self.avplayer setRate:0.0];
-    self.movieView.hidden = YES ;
-    self.contentView.hidden = YES ;
-   
-    videoIsLoaded = YES ;
-    [self prefersStatusBarHidden];
     self.navigationController.navigationBarHidden = NO ;
-}
-
-- (void)playerStartPlaying
-{
-    [self.avplayer play];
+    [self.navigationItem setHidesBackButton:YES];
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 }
 
 - (IBAction)login:(id)sender
@@ -129,7 +46,6 @@
     [self.navigationController pushViewController:registerView animated:YES];
 }
 
-
 - (IBAction)search:(id)sender
 {
     SearchViewController *searchView = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
@@ -138,7 +54,16 @@
 
 - (IBAction)topRides:(id)sender
 {
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TopRidesViewController *ridesView = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
+    [self.navigationController pushViewController:ridesView animated:YES];
+}
 
+- (IBAction)bestDrivers:(id)sender
+{
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    BestDriversViewController *driversView = [storyboard instantiateViewControllerWithIdentifier:@"BestDriversViewController"];
+    [self.navigationController pushViewController:driversView animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

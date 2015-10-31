@@ -22,7 +22,7 @@
     // Do any additional setup after loading the view.
     
     self.title = NSLocalizedString(@"searchOptions", nil);
-    
+    self.navigationController.navigationBarHidden = NO ;
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
     [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];

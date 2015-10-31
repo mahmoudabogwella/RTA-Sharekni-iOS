@@ -21,6 +21,7 @@
     self.FromRegionName.text = ride.FromRegionNameEn;
     self.ToEmirateName.text = ride.ToEmirateNameEn;
     self.ToRegionName.text = ride.ToRegionNameEn;
+    self.noOfDrivers.text = ride.RoutesCount ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

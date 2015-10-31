@@ -58,6 +58,8 @@
 		144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144869F81BC0968E00804C26 /* QuickSearchViewController.m */; };
 		144869FB1BC0968E00804C26 /* QuickSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869F91BC0968E00804C26 /* QuickSearchViewController.xib */; };
 		14DA33D11BC5006300078F02 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14DA33D31BC5006300078F02 /* RegisterViewController.xib */; };
+		14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */; };
+		14E7A8B01BDF145300255D86 /* VideoSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */; };
 		87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* MobAccountManager.m */; };
 		87B58B561BD36F7900E73E55 /* MostRideDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B551BD36F7900E73E55 /* MostRideDetails.m */; };
 		87B58B591BD3842800E73E55 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B581BD3842800E73E55 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -66,7 +68,6 @@
 		87B58B611BD38DD700E73E55 /* MapItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B601BD38DD700E73E55 /* MapItemView.m */; };
 		87B58B651BD3983800E73E55 /* MapItemPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B631BD3983800E73E55 /* MapItemPopupViewController.m */; };
 		87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87B58B641BD3983800E73E55 /* MapItemPopupViewController.xib */; };
-		87B58B691BD3B74F00E73E55 /* XOSplashVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B681BD3B74F00E73E55 /* XOSplashVideoController.m */; };
 		87B58B6B1BD3BC5D00E73E55 /* Final_Intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 87B58B6A1BD3B7AA00E73E55 /* Final_Intro.mp4 */; };
 		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
 		87C1AF821BB8325500E21838 /* BaseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF811BB8325500E21838 /* BaseAPIManager.m */; };
@@ -188,6 +189,9 @@
 		144869F81BC0968E00804C26 /* QuickSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickSearchViewController.m; sourceTree = "<group>"; };
 		144869F91BC0968E00804C26 /* QuickSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickSearchViewController.xib; sourceTree = "<group>"; };
 		14DA33D21BC5006300078F02 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RegisterViewController.xib; sourceTree = "<group>"; };
+		14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
+		14E7A8AD1BDF145300255D86 /* VideoSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSplashViewController.h; sourceTree = "<group>"; };
+		14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoSplashViewController.m; sourceTree = "<group>"; };
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		87A113391BB6FB370092E870 /* MobAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobAccountManager.h; sourceTree = "<group>"; };
@@ -205,8 +209,6 @@
 		87B58B621BD3983800E73E55 /* MapItemPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapItemPopupViewController.h; sourceTree = "<group>"; };
 		87B58B631BD3983800E73E55 /* MapItemPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapItemPopupViewController.m; sourceTree = "<group>"; };
 		87B58B641BD3983800E73E55 /* MapItemPopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapItemPopupViewController.xib; sourceTree = "<group>"; };
-		87B58B671BD3B74E00E73E55 /* XOSplashVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XOSplashVideoController.h; sourceTree = "<group>"; };
-		87B58B681BD3B74F00E73E55 /* XOSplashVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XOSplashVideoController.m; sourceTree = "<group>"; };
 		87B58B6A1BD3B7AA00E73E55 /* Final_Intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Final_Intro.mp4; sourceTree = "<group>"; };
 		87C1AF7D1BB831A300E21838 /* MasterDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterDataManager.h; sourceTree = "<group>"; };
 		87C1AF7E1BB831A300E21838 /* MasterDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterDataManager.m; sourceTree = "<group>"; };
@@ -347,10 +349,11 @@
 		143BE6A81BB14BD2009F6496 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				87B58B671BD3B74E00E73E55 /* XOSplashVideoController.h */,
-				87B58B681BD3B74F00E73E55 /* XOSplashVideoController.m */,
+				14E7A8AD1BDF145300255D86 /* VideoSplashViewController.h */,
+				14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */,
 				143BE6B01BB14BE5009F6496 /* WelcomeViewController.h */,
 				143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */,
+				14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */,
 				143BE6B61BB5640B009F6496 /* LoginViewController.h */,
 				143BE6B71BB5640B009F6496 /* LoginViewController.m */,
 				144869EF1BC0844B00804C26 /* LoginViewController.xib */,
@@ -598,6 +601,7 @@
 				044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */,
 				047E45571BC09F3B000B5151 /* AdvancedSearchViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
+				14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */,
 				143F30EE1BC8488D006A6A21 /* Localizable.strings in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
@@ -701,11 +705,11 @@
 				04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */,
 				143F30F41BC85961006A6A21 /* BestDriver.m in Sources */,
 				87B58B561BD36F7900E73E55 /* MostRideDetails.m in Sources */,
-				87B58B691BD3B74F00E73E55 /* XOSplashVideoController.m in Sources */,
 				143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */,
 				047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */,
 				143BE6D31BB6E00C009F6496 /* TopRidesViewController.m in Sources */,
 				143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */,
+				14E7A8B01BDF145300255D86 /* VideoSplashViewController.m in Sources */,
 				143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */,
 				047E45911BC63686000B5151 /* MobDriverManager.m in Sources */,
 				047E45941BC63C99000B5151 /* DriverSearchResult.m in Sources */,

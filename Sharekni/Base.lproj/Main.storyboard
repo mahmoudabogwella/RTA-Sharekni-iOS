@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< Updated upstream
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mI9-uV-K0N">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mI9-uV-K0N">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+>>>>>>> Stashed changes
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -174,6 +181,7 @@
             </objects>
             <point key="canvasLocation" x="211.46666666666667" y="-556.28499999999997"/>
         </scene>
+<<<<<<< Updated upstream
         <!--Welcome View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -332,10 +340,12 @@
             </objects>
             <point key="canvasLocation" x="242" y="321"/>
         </scene>
+=======
+>>>>>>> Stashed changes
         <!--Best Drivers View Controller-->
         <scene sceneID="lU8-NZ-RBs">
             <objects>
-                <viewController id="uAf-4a-n9O" customClass="BestDriversViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BestDriversViewController" id="uAf-4a-n9O" customClass="BestDriversViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5bT-Jt-Y4y"/>
                         <viewControllerLayoutGuide type="bottom" id="T5g-bz-iBR"/>
@@ -353,7 +363,7 @@
                                         <rect key="frame" x="0.0" y="86" width="320" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AE2-qc-9gc" id="AAv-uo-F4h">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="90.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EDq-K8-XDa">
@@ -545,14 +555,14 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drivers 60" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cl-4Y-zBF">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cl-4Y-zBF">
                                                     <rect key="frame" x="237" y="37" width="65" height="39"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="NEd-z3-AkA"/>
                                                         <constraint firstAttribute="height" constant="39" id="sWR-qH-ykl"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -646,33 +656,51 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="KJL-Lf-TZU"/>
+                        <segue destination="xx9-WW-IOZ" kind="relationship" relationship="rootViewController" id="bz4-90-rgA"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CSF-zX-CAM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-197" y="322"/>
         </scene>
+        <!--Video Splash View Controller-->
+        <scene sceneID="Y5Z-mE-tl7">
+            <objects>
+                <viewController id="xx9-WW-IOZ" customClass="VideoSplashViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yHd-Ss-HdI"/>
+                        <viewControllerLayoutGuide type="bottom" id="uj6-1Z-Gfs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nrn-E2-QWe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eAN-su-7iK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zBz-gg-d6Q"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="movieView" destination="eAN-su-7iK" id="PBg-Zy-XC1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s18-O3-Irm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="186" y="322"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="BestDrivers" width="142" height="42"/>
         <image name="Call_Btn" width="28" height="21"/>
         <image name="Details" width="106" height="40"/>
-        <image name="Login" width="74" height="66"/>
         <image name="Login_bg" width="640" height="1039"/>
-        <image name="Logo" width="192" height="195"/>
         <image name="MostRideIcon" width="149" height="149"/>
-        <image name="MostRides" width="142" height="42"/>
         <image name="Msg_Btn" width="57" height="37"/>
-        <image name="Register" width="77" height="66"/>
         <image name="RidesSeperator" width="640" height="3"/>
-        <image name="Search" width="77" height="65"/>
-        <image name="TakeTour" width="75" height="66"/>
-        <image name="Welcome2_bg" width="320" height="528"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

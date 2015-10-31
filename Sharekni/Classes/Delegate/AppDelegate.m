@@ -11,10 +11,11 @@
 #import "Sharekni.pch"
 #import "MobAccountManager.h"
 #import <MZFormSheetController.h>
-#import "XOSplashVideoController.h"
+#import "WelcomeViewController.h"
 #import <KVNProgress/KVNProgress.h>
 #import <KVNProgress/KVNProgressConfiguration.h>
-@interface AppDelegate ()<XOSplashVideoDelegate>
+
+@interface AppDelegate ()
 
 @end
 
@@ -22,8 +23,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
     [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
     [[MZFormSheetBackgroundWindow appearance] setBlurRadius:1.0];
@@ -36,40 +35,14 @@
     
     }];
     
-
     [[UINavigationBar appearance] setBarTintColor:RGBA(230, 0, 10, 1)];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTranslucent:NO];
     
     KVNProgressConfiguration * progressConfiguration = [KVNProgress configuration];
     progressConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
-    
-//    NSURL *Url = [[NSBundle mainBundle] URLForResource:@"Final_Intro" withExtension:@"mp4"];
-//    
-//    // our splash controller
-//    XOSplashVideoController *splashVideoController =
-//    [[XOSplashVideoController alloc] initWithVideoPortraitUrl:Url
-//                                            portraitImageName:@"Welcome1_bg"
-//                                                 landscapeUrl:Url
-//                                           landscapeImageName:@"Welcome1_bg"
-//                                                     delegate:self];
-//    // we'll start out with the spash view controller in the window
-//    self.window.rootViewController = splashVideoController;
 
     return YES;
-}
-
-- (void)splashVideoComplete:(XOSplashVideoController *)splashVideo{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
-    self.window.rootViewController = viewController;
-}
-
-- (void)splashVideoLoaded:(XOSplashVideoController *)splashVideo
-{
-    // load up our real view controller, but don't put it in to the window until the video is done
-    // if there's anything expensive to do it should happen in the background now
-//    self.viewController = [[XOViewController alloc] initWithNibName:@"XOViewController" bundle:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
