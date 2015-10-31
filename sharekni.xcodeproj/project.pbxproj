@@ -58,11 +58,8 @@
 		144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869EF1BC0844B00804C26 /* LoginViewController.xib */; };
 		144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144869F81BC0968E00804C26 /* QuickSearchViewController.m */; };
 		144869FB1BC0968E00804C26 /* QuickSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869F91BC0968E00804C26 /* QuickSearchViewController.xib */; };
-
-		14DA33D11BC5006300078F02 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14DA33D31BC5006300078F02 /* RegisterViewController.xib */; };
 		14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */; };
 		14E7A8B01BDF145300255D86 /* VideoSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */; };
-
 		87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* MobAccountManager.m */; };
 		87B58B561BD36F7900E73E55 /* MostRideDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B551BD36F7900E73E55 /* MostRideDetails.m */; };
 		87B58B591BD3842800E73E55 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B581BD3842800E73E55 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -191,11 +188,9 @@
 		144869F71BC0968E00804C26 /* QuickSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickSearchViewController.h; sourceTree = "<group>"; };
 		144869F81BC0968E00804C26 /* QuickSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickSearchViewController.m; sourceTree = "<group>"; };
 		144869F91BC0968E00804C26 /* QuickSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickSearchViewController.xib; sourceTree = "<group>"; };
-		14DA33D21BC5006300078F02 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RegisterViewController.xib; sourceTree = "<group>"; };
 		14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		14E7A8AD1BDF145300255D86 /* VideoSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSplashViewController.h; sourceTree = "<group>"; };
 		14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoSplashViewController.m; sourceTree = "<group>"; };
-
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		87A113391BB6FB370092E870 /* MobAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobAccountManager.h; sourceTree = "<group>"; };

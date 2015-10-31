@@ -26,26 +26,26 @@
 @property (nonatomic,strong) NSString *Password;
 @property (nonatomic,strong) NSNumber *Active;
 @property (nonatomic,strong) NSString *DateAdded;
-@property (nonatomic,strong) NSString *NationalityId;
+@property (nonatomic,strong) NSNumber *NationalityId;
 @property (nonatomic,strong) NSString *NationalityArName;
 @property (nonatomic,strong) NSString *NationalityEnName;
 @property (nonatomic,strong) NSString *NationalityFrName;
 @property (nonatomic,strong) NSString *NationalityChName;
 @property (nonatomic,strong) NSString *NationalityUrName;
-@property (nonatomic,strong) NSString *EmployerId;
+@property (nonatomic,strong) NSNumber *EmployerId;
 @property (nonatomic,strong) NSString *EmployerArName;
 @property (nonatomic,strong) NSString *EmployerEnName;
-@property (nonatomic,strong) NSString *AccountTypeId;
+@property (nonatomic,strong) NSNumber *AccountTypeId;
 @property (nonatomic,strong) NSString *AccountTypeArName;
 @property (nonatomic,strong) NSString *AccountTypeEnName;
 @property (nonatomic,strong) NSString *AccountStatus;
-@property (nonatomic,strong) NSString *PrefferedLanguage;
+@property (nonatomic,strong) NSNumber *PrefferedLanguage;
 
-@property (nonatomic,strong) NSString *DriverMyRidesCount;
-@property (nonatomic,strong) NSString *DriverMyAlertsCount;
+@property (nonatomic,strong) NSNumber *DriverMyRidesCount;
+@property (nonatomic,strong) NSNumber *DriverMyAlertsCount;
 
-@property (nonatomic,strong) NSString *PassengerJoinedRidesCount;
-@property (nonatomic,strong) NSString *PassengerMyRidesCount;
+@property (nonatomic,strong) NSNumber *PassengerJoinedRidesCount;
+@property (nonatomic,strong) NSNumber *PassengerMyRidesCount;
 
 @property (nonatomic,strong) UIImage *userImage;
 
