@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "MobAccountManager.h"
 #import "User.h"
-
+#import "CreateRideViewController.h"
 @interface HomeViewController ()
 #pragma Outlets
 @property (weak, nonatomic) IBOutlet UIImageView *permitBG;
@@ -75,6 +75,7 @@
 }
 
 - (void) configureNavigationBar{
+    
 }
 
 #pragma Gestures & Actions
@@ -108,7 +109,8 @@
 }
 
 - (void) createRideTapped{
-    
+    CreateRideViewController *createRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
+    [self.navigationController pushViewController:createRideViewController animated:YES];
 }
 
 - (void) historyTapped{
