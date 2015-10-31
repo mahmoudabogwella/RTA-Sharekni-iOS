@@ -532,4 +532,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 {
     return 1;
 }
+
+#pragma HomeViewController
+
+- (void) mainViewController{
+    
+}
 @end
