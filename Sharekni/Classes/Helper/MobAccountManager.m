@@ -79,6 +79,41 @@
     }];
 }
 
+- (void) registerDriverWithFirstName:(NSString *)firstName lastName:(NSString *)lastName mobile:(NSString *)mobile username:(NSString *)username password:(NSString *)password gender:(NSString *)gender imagePath:(NSString *)photoName birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
+    
+//    NSDictionary *parameters = @{FirstName_KEY:firstName,
+//                                 LastName_KEY:lastName,
+//                                 Mobile_KEY:mobile,
+//                                 UserName_KEY:username,
+//                                 Password_KEY:password,
+//                                 Gender_KEY:gender,
+//                                 photoName_KEY:photoName ? photoName:@"",
+//                                 BirthDate_KEY:birthDate,
+//                                 NationalityId_KEY:nationalityId,
+//                                 PreferredLanguageId_KEY:langID};
+    
+    NSString *body = [NSString stringWithFormat:@"CLS_MobAccount.asmx/RegisterDriver?firstName=%@&lastName=%@&mobile=%@&username=%@&password=%@&gender=%@&photoName=%@&licenseScannedFileName=%@&TrafficFileNo=%@&BirthDate=%@&NationalityId=%@&PreferredLanguageId=%@",firstName,lastName,mobile,username,password,gender,@"",@"",@"",birthDate,nationalityId,langID];
+    
+    [self.operationManager GET:body parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        if ([responseString containsString:@"-2"]){
+            failure(@"Mobile number already exists");
+        }
+        else if ([responseString containsString:@"-1"]){
+            failure(@"Email already exists");
+        }
+        else if ([responseString containsString:@"0"]){
+            failure(@"Email already exists");
+        }
+        else{
+            success(nil);
+        }
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        
+    }];
+}
+
 - (void) changeOldPassword:(NSString *)oldPassword toNewPassword:(NSString *) newPassword WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSDictionary *parameters = @{ID_KEY:@"",
                                  OldPassword_KEY:oldPassword,
@@ -93,8 +128,8 @@
 - (void) checkLoginWithUserName:(NSString *)userName andPassword:(NSString *)password WithSuccess:(void (^)(User *user))success Failure:(void (^)(NSString *error))failure{
     NSDictionary *parameters = @{UserName_KEY:userName,
                                  Password_KEY:password};
-    
-    [self.operationManager GET:CheckLogin_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+    NSString *path = [NSString stringWithFormat:@"CLS_MobAccount.asmx/CheckLogin?username=%@&password=%@",userName,password];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
         if ([responseString containsString:@"ID"]) {
@@ -105,14 +140,28 @@
                                                                                error:&jsonError];
             User *user = [User gm_mappedObjectWithJsonRepresentation:resultDictionary];
             self.applicationUser = user;
+            [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
+                
+            } Failure:^(NSString *error) {
+                
+            }];
             success(user);
+        }
+        else if ([responseString containsString:@"-2"]){
+            failure(@"Mobile number already exists");
+        }
+        else if ([responseString containsString:@"-1"]){
+            failure(@"Email already exists");
+        }
+        else if ([responseString containsString:@"0"]){
+            failure(@"Email already exists");
         }
         else{
             success(nil);           
         }
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
+        failure(@"incorrect");
     }];
 }
 
@@ -186,13 +235,6 @@
         
     }];
 }
-
-
-
-
-
-
-
 
 
 

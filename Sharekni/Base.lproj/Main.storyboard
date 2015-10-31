@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< Updated upstream
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mI9-uV-K0N">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mI9-uV-K0N">
-    <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
->>>>>>> Stashed changes
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -181,7 +174,6 @@
             </objects>
             <point key="canvasLocation" x="211.46666666666667" y="-556.28499999999997"/>
         </scene>
-<<<<<<< Updated upstream
         <!--Welcome View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -340,8 +332,7 @@
             </objects>
             <point key="canvasLocation" x="242" y="321"/>
         </scene>
-=======
->>>>>>> Stashed changes
+
         <!--Best Drivers View Controller-->
         <scene sceneID="lU8-NZ-RBs">
             <objects>

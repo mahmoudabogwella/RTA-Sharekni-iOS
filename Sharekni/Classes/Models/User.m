@@ -46,4 +46,5 @@
     mapping[@"PassengerMyRidesCount"] = @"PassengerMyRidesCount";
     return mapping;
 }
+
 @end

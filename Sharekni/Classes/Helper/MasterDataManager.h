@@ -32,8 +32,6 @@
 
 - (void) GetRegionsByEmirateID:(NSString *)emirateID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure;
 
-- (void) GetPhotoWithName:(NSString *)name withSuccess:(void (^)(UIImage *image,NSString *filePath))success Failure:(void (^)(NSString *error))failure;
-
 - (void) GetBestDrivers:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure;
 
 - (void) GetMostRides:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure;

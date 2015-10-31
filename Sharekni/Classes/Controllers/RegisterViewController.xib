@@ -3,36 +3,36 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController">
             <connections>
-                <outlet property="bothBtn" destination="uLw-ZQ-FNa" id="afz-Yc-SNB"/>
-                <outlet property="bothLbl" destination="7p7-En-CEc" id="iNf-MZ-ySm"/>
-                <outlet property="container" destination="ahc-Yc-DaA" id="OzO-cY-dCO"/>
-                <outlet property="dateLabel" destination="Gzh-nW-CKv" id="VX4-6F-J7G"/>
-                <outlet property="dateLbl" destination="8c0-Zc-Vj0" id="zey-EN-hcu"/>
-                <outlet property="datePickerView" destination="n8x-Rr-lxQ" id="htz-yX-iTo"/>
-                <outlet property="driverBtn" destination="Oco-Jf-4sM" id="cae-Z5-bhb"/>
-                <outlet property="driverLbl" destination="D5L-ck-wID" id="9O4-1M-ftA"/>
-                <outlet property="femaleLabel" destination="HgN-xn-dEs" id="lJ7-JW-Y3U"/>
-                <outlet property="firstNametxt" destination="TmR-D4-R8s" id="0Da-YH-5eB"/>
-                <outlet property="lastNametxt" destination="gHF-Rw-A77" id="ig9-Il-O5i"/>
-                <outlet property="maleLabel" destination="bSm-pb-FZn" id="uG1-tw-g8C"/>
-                <outlet property="mobileNumberTxt" destination="bhq-Be-Sdh" id="WlX-4m-mUb"/>
-                <outlet property="nationalityTxt" destination="H7G-Mh-PkX" id="0dE-7V-wR2"/>
-                <outlet property="passengerBtn" destination="4B9-7G-uAD" id="SAW-hr-2HS"/>
-                <outlet property="passengerLbl" destination="sfC-pO-A9n" id="QeX-nt-nCm"/>
-                <outlet property="passwordTxt" destination="Bfw-6L-BwN" id="h9s-yM-Jgn"/>
-                <outlet property="preferredLanguageTxt" destination="uYD-uf-sSM" id="3el-vH-8K4"/>
-                <outlet property="switchBtn" destination="vlK-cN-jzC" id="fpx-a3-YQO"/>
-                <outlet property="usernameTxt" destination="Uer-vt-Ype" id="Nre-Te-FW0"/>
+                <outlet property="bothBtn" destination="uLw-ZQ-FNa" id="TCo-AW-l7Y"/>
+                <outlet property="bothLbl" destination="7p7-En-CEc" id="2zA-ed-uGY"/>
+                <outlet property="container" destination="ahc-Yc-DaA" id="x5K-A7-mfY"/>
+                <outlet property="dateLabel" destination="Gzh-nW-CKv" id="gUm-5g-QV3"/>
+                <outlet property="datePickerView" destination="n8x-Rr-lxQ" id="wRx-nv-Wtw"/>
+                <outlet property="driverBtn" destination="Oco-Jf-4sM" id="Cj1-KP-iEa"/>
+                <outlet property="driverLbl" destination="D5L-ck-wID" id="E3l-df-bJF"/>
+                <outlet property="femaleLabel" destination="HgN-xn-dEs" id="YNp-Wf-ndK"/>
+                <outlet property="firstNametxt" destination="TmR-D4-R8s" id="PjA-UP-Qs7"/>
+                <outlet property="lastNametxt" destination="gHF-Rw-A77" id="WkI-2Z-jJz"/>
+                <outlet property="maleLabel" destination="bSm-pb-FZn" id="M64-QO-xcq"/>
+                <outlet property="mobileNumberTxt" destination="bhq-Be-Sdh" id="FxF-yA-ZcP"/>
+                <outlet property="nationalityTxt" destination="H7G-Mh-PkX" id="56x-s3-Vxt"/>
+                <outlet property="passengerBtn" destination="4B9-7G-uAD" id="YXr-Bp-lwK"/>
+                <outlet property="passengerLbl" destination="sfC-pO-A9n" id="aok-4s-w5N"/>
+                <outlet property="passwordTxt" destination="Bfw-6L-BwN" id="foL-Z1-w2j"/>
+                <outlet property="preferredLanguageTxt" destination="uYD-uf-sSM" id="0Ll-CI-nRR"/>
+                <outlet property="switchBtn" destination="vlK-cN-jzC" id="Xxd-K4-zdG"/>
+                <outlet property="usernameTxt" destination="Uer-vt-Ype" id="ez7-TW-Aba"/>
                 <outlet property="view" destination="Hjc-os-U7J" id="mOJ-V2-H2t"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="Hjc-os-U7J">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="705"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RegistrationBg" id="0ho-dJ-OZs">
@@ -41,10 +41,10 @@
                     <animations/>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ahc-Yc-DaA">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="714"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oco-Jf-4sM">
+                        <button opaque="NO" tag="99" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oco-Jf-4sM">
                             <rect key="frame" x="30" y="3" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
@@ -52,10 +52,10 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="selectHumanType:" destination="-1" eventType="touchUpInside" id="p4M-PO-DuY"/>
+                                <action selector="selectHumanType:" destination="-1" eventType="touchUpInside" id="lNW-za-IKa"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4B9-7G-uAD">
+                        <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4B9-7G-uAD">
                             <rect key="frame" x="130" y="3" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
@@ -63,10 +63,10 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="selectHumanType:" destination="-1" eventType="touchUpInside" id="23a-C9-2EB"/>
+                                <action selector="selectHumanType:" destination="-1" eventType="touchUpInside" id="g3S-Yx-enc"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uLw-ZQ-FNa">
+                        <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uLw-ZQ-FNa">
                             <rect key="frame" x="230" y="3" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <animations/>
@@ -74,7 +74,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="selectHumanType:" destination="-1" eventType="touchUpInside" id="j8d-x3-lJS"/>
+                                <action selector="selectHumanType:" destination="-1" eventType="touchUpInside" id="H3x-ZX-TlC"/>
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" id="Hih-Wp-bbd">
@@ -202,7 +202,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="egV-CH-DU7"/>
                                     </connections>
@@ -227,7 +227,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nationality" minimumFontSize="17" clearButtonMode="whileEditing" id="H7G-Mh-PkX">
-                                    <rect key="frame" x="6" y="5" width="283" height="30"/>
+                                    <rect key="frame" x="3" y="5" width="283" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -380,14 +380,6 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By tapping the save button below" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d1v-7c-aYh">
-                            <rect key="frame" x="13" y="584" width="294" height="21"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I accept the RTA's terms and conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sqm-ZF-wLl">
                             <rect key="frame" x="7" y="615" width="306" height="21"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -421,17 +413,25 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passenger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sfC-pO-A9n">
-                            <rect key="frame" x="125" y="39" width="81" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Both" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7p7-En-CEc">
+                            <rect key="frame" x="247" y="43" width="37" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Both" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7p7-En-CEc">
-                            <rect key="frame" x="247" y="43" width="37" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By tapping the save button below" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d1v-7c-aYh">
+                            <rect key="frame" x="13" y="586" width="294" height="21"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passenger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sfC-pO-A9n">
+                            <rect key="frame" x="125" y="41" width="81" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -446,6 +446,9 @@
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="601" y="269"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="545" y="397.5"/>
         </view>
     </objects>
     <resources>

@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface User : NSObject
+
 @property (nonatomic,strong) NSNumber *ID;
 @property (nonatomic,strong) NSString *FirstName;
 @property (nonatomic,strong) NSString *MiddleName;
@@ -38,8 +40,13 @@
 @property (nonatomic,strong) NSString *AccountTypeEnName;
 @property (nonatomic,strong) NSString *AccountStatus;
 @property (nonatomic,strong) NSString *PrefferedLanguage;
+
 @property (nonatomic,strong) NSString *DriverMyRidesCount;
 @property (nonatomic,strong) NSString *DriverMyAlertsCount;
+
 @property (nonatomic,strong) NSString *PassengerJoinedRidesCount;
 @property (nonatomic,strong) NSString *PassengerMyRidesCount;
+
+@property (nonatomic,strong) UIImage *userImage;
+
 @end

@@ -20,32 +20,31 @@
 #import "NSObject+Blocks.h"
 #import "MobAccountManager.h"
 @interface RegisterViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
-{
-    __weak IBOutlet UIScrollView *container;
-    __weak IBOutlet UIButton *driverBtn;
-    __weak IBOutlet UIButton *passengerBtn;
-    __weak IBOutlet UIButton *bothBtn;
-    __weak IBOutlet UITextField *firstNametxt;
-    __weak IBOutlet UITextField *lastNametxt;
-    __weak IBOutlet UITextField *mobileNumberTxt;
-    __weak IBOutlet UITextField *usernameTxt;
-    __weak IBOutlet UITextField *passwordTxt;
-    __weak IBOutlet UITextField *nationalityTxt;
-    __weak IBOutlet UITextField *preferredLanguageTxt;
-    __weak IBOutlet UILabel *dateLbl;
-    __weak IBOutlet UIView *datePickerView;
-    __weak IBOutlet UIButton *switchBtn;
-    
-    __weak IBOutlet UILabel *driverLbl;
-    __weak IBOutlet UILabel *passengerLbl;
-    __weak IBOutlet UILabel *bothLbl;
 
-    __weak IBOutlet UILabel *femaleLabel;
+    @property (weak,nonatomic) IBOutlet UIScrollView *container;
+    @property (weak,nonatomic)  IBOutlet UIButton *driverBtn;
+    @property (weak,nonatomic)IBOutlet UIButton *passengerBtn;
+    @property (weak,nonatomic) IBOutlet UIButton *bothBtn;
+    @property (weak,nonatomic) IBOutlet UITextField *firstNametxt;
+    @property (weak,nonatomic) IBOutlet UITextField *lastNametxt;
+    @property (weak,nonatomic) IBOutlet UITextField *mobileNumberTxt;
+    @property (weak,nonatomic) IBOutlet UITextField *usernameTxt;
+    @property (weak,nonatomic) IBOutlet UITextField *passwordTxt;
+    @property (weak,nonatomic) IBOutlet UITextField *nationalityTxt;
+    @property (weak,nonatomic) IBOutlet UITextField *preferredLanguageTxt;
+    @property (weak,nonatomic) IBOutlet UILabel *dateLbl;
+    @property (weak,nonatomic) IBOutlet UIView *datePickerView;
+    @property (weak,nonatomic) IBOutlet UIButton *switchBtn;
     
-    __weak IBOutlet UILabel *dateLabel;
-    __weak IBOutlet UILabel *maleLabel;
-    float animatedDistance ;
-}
+    @property (weak,nonatomic) IBOutlet UILabel *driverLbl;
+    @property (weak,nonatomic) IBOutlet UILabel *passengerLbl;
+    @property (weak,nonatomic) IBOutlet UILabel *bothLbl;
+
+    @property (weak,nonatomic) IBOutlet UILabel *femaleLabel;
+    
+    @property (weak,nonatomic) IBOutlet UILabel *dateLabel;
+    @property (weak,nonatomic) IBOutlet UILabel *maleLabel;
+    @property (nonatomic,assign) float animatedDistance ;
 
 @property (strong,nonatomic) NSArray *nationalties;
 @property (strong,nonatomic) NSArray *languages;
@@ -85,53 +84,50 @@
     [self configureData];
 }
 
-- (void)popViewController
-{
+- (void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)configureUI
-{
+- (void) configureUI{
     
-    dateLabel.textColor = [UIColor blackColor];
-    
-    [container setContentSize:CGSizeMake(self.view.frame.size.width, 700)];
+    self.dateLabel.textColor = [UIColor blackColor];
     
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setDatePicker)];
-    [datePickerView addGestureRecognizer:gesture];
-    [dateLbl addGestureRecognizer:gesture];
-    [dateLbl setUserInteractionEnabled:YES];
-    [datePickerView setUserInteractionEnabled:YES];
+    [self.datePickerView addGestureRecognizer:gesture];
+    [self.dateLbl addGestureRecognizer:gesture];
+    [self.dateLbl setUserInteractionEnabled:YES];
+    [self.datePickerView setUserInteractionEnabled:YES];
     
-    [driverBtn    setBackgroundImage:[UIImage imageNamed:@"DriverUnActive"]    forState:UIControlStateNormal];
-    [driverBtn    setBackgroundImage:[UIImage imageNamed:@"DriverActive"]      forState:UIControlStateSelected];
-    [driverBtn    setSelected:NO];
+    [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"DriverUnActive"]    forState:UIControlStateNormal];
+    [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"DriverActive"]      forState:UIControlStateSelected];
+    [self.driverBtn    setSelected:NO];
    
-    [passengerBtn setBackgroundImage:[UIImage imageNamed:@"PassengerUnActive"] forState:UIControlStateNormal];
-    [passengerBtn setBackgroundImage:[UIImage imageNamed:@"PassengerActive"]   forState:UIControlStateSelected];
-    [passengerBtn    setSelected:NO];
+    [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"PassengerUnActive"] forState:UIControlStateNormal];
+    [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"PassengerActive"]   forState:UIControlStateSelected];
+    [self.passengerBtn    setSelected:NO];
 
-    [bothBtn      setBackgroundImage:[UIImage imageNamed:@"BothUnActive"]      forState:UIControlStateNormal];
-    [bothBtn      setBackgroundImage:[UIImage imageNamed:@"BothActive"]        forState:UIControlStateSelected];
-    [bothBtn    setSelected:NO];
+    [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"BothUnActive"]      forState:UIControlStateNormal];
+    [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"BothActive"]        forState:UIControlStateSelected];
+    [self.bothBtn    setSelected:NO];
 
-    [switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Left"]       forState:UIControlStateNormal];
-    [switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Right"]      forState:UIControlStateSelected];
-    [switchBtn    setSelected:NO];
+    [self.switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Left"]       forState:UIControlStateNormal];
+    [self.switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Right"]      forState:UIControlStateSelected];
+    [self.switchBtn    setSelected:NO];
     
-    maleLabel.textColor = Red_UIColor;
-    femaleLabel.textColor = [UIColor darkGrayColor];
+    self.maleLabel.textColor = Red_UIColor;
+    self.femaleLabel.textColor = [UIColor darkGrayColor];
     
+    [self.container setContentSize:self.container.frame.size];
 
-    if ([firstNametxt respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+    if ([self.firstNametxt respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        firstNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"firstName",nil) attributes:@{NSForegroundColorAttributeName: color}];
-        lastNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"lastName", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mobile", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"username", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        passwordTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"password", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"nationality", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"pLanguage", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.firstNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"firstName",nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.lastNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"lastName", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mobile", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"username", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.passwordTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"password", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"nationality", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"pLanguage", nil) attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
@@ -167,31 +163,31 @@
 - (IBAction)selectHumanType:(id)sender
 {
     switch ([sender tag]) {
-        case 0:
-            [driverBtn    setSelected:YES];
-            [passengerBtn setSelected:NO];
-            [bothBtn    setSelected:NO];
-            driverLbl.textColor = [UIColor whiteColor];
-            passengerLbl.textColor = [UIColor darkGrayColor];
-            bothLbl.textColor = [UIColor darkGrayColor];
+        case 99:
+            [self.driverBtn    setSelected:YES];
+            [self.passengerBtn setSelected:NO];
+            [self.bothBtn    setSelected:NO];
+            self.driverLbl.textColor = [UIColor whiteColor];
+            self.passengerLbl.textColor = [UIColor darkGrayColor];
+            self.bothLbl.textColor = [UIColor darkGrayColor];
             self.accountType = AccountTypeDriver;
             break;
-        case 1:
-            [passengerBtn setSelected:YES];
-            [driverBtn    setSelected:NO];
-            [bothBtn    setSelected:NO];
-            driverLbl.textColor = [UIColor darkGrayColor];
-            passengerLbl.textColor = [UIColor whiteColor];
-            bothLbl.textColor = [UIColor darkGrayColor];
+        case 100:
+            [self.passengerBtn setSelected:YES];
+            [self.driverBtn    setSelected:NO];
+            [self.bothBtn    setSelected:NO];
+            self.driverLbl.textColor = [UIColor darkGrayColor];
+            self.passengerLbl.textColor = [UIColor whiteColor];
+            self.bothLbl.textColor = [UIColor darkGrayColor];
             self.accountType = AccountTypePassenger;
             break;
-        case 2:
-            [driverBtn    setSelected:NO];
-            [passengerBtn setSelected:NO];
-            [bothBtn    setSelected:YES];
-            driverLbl.textColor = [UIColor darkGrayColor];
-            passengerLbl.textColor = [UIColor darkGrayColor];
-            bothLbl.textColor = [UIColor whiteColor];
+        case 101:
+            [self.driverBtn    setSelected:NO];
+            [self.passengerBtn setSelected:NO];
+            [self.bothBtn    setSelected:YES];
+            self.driverLbl.textColor = [UIColor darkGrayColor];
+            self.passengerLbl.textColor = [UIColor darkGrayColor];
+            self.bothLbl.textColor = [UIColor whiteColor];
             self.accountType = AccountTypeBoth;
             break;
         default:
@@ -205,15 +201,15 @@
     
     if (btn.selected)
     {
-        switchBtn.selected = NO ;
-        maleLabel.textColor = Red_UIColor;
-        femaleLabel.textColor = [UIColor darkGrayColor];
+        self.switchBtn.selected = NO ;
+        self.maleLabel.textColor = Red_UIColor;
+        self.femaleLabel.textColor = [UIColor darkGrayColor];
         self.isMale = YES;
     }else{
         self.isMale = NO;
-        switchBtn.selected = YES ;
-        maleLabel.textColor =  [UIColor darkGrayColor];
-        femaleLabel.textColor = Red_UIColor;;
+        self.switchBtn.selected = YES ;
+        self.maleLabel.textColor =  [UIColor darkGrayColor];
+        self.femaleLabel.textColor = Red_UIColor;;
     }
 }
 
@@ -227,7 +223,7 @@
         
         blockSelf.dateFormatter.dateFormat = @"dd, MMM, yyyy";
         NSString * dateString = [self.dateFormatter stringFromDate:date];
-        dateLabel.text = dateString;
+        self.dateLabel.text = dateString;
         blockSelf.date = date;
     }];
     
@@ -293,14 +289,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     if (orientation == UIInterfaceOrientationPortrait ||
         orientation == UIInterfaceOrientationPortraitUpsideDown)
     {
-        animatedDistance = floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
+        self.animatedDistance = floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
     }
     else
     {
-        animatedDistance = floor(LANDSCAPE_KEYBOARD_HEIGHT * heightFraction);
+        self.animatedDistance = floor(LANDSCAPE_KEYBOARD_HEIGHT * heightFraction);
     }
     CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y -= animatedDistance;
+    viewFrame.origin.y -= self.animatedDistance;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
@@ -311,7 +307,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 - (BOOL)textSouldEndEditing
 {
     CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y += animatedDistance;
+    viewFrame.origin.y += self.animatedDistance;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
@@ -339,10 +335,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     [self.view endEditing:YES];
-    if (textField == nationalityTxt){
+    if (textField == self.nationalityTxt){
         [self showPickerWithTextFieldType:NationalityTextField];
     }
-    else if (textField == preferredLanguageTxt){
+    else if (textField == self.preferredLanguageTxt){
         [self showPickerWithTextFieldType:LanguageTextField];
     }
     else{
@@ -359,14 +355,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
             case NationalityTextField:
             {
                 Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
-                nationalityTxt.text = nationality.NationalityArName;
+                self.nationalityTxt.text = nationality.NationalityArName;
                 self.selectedNationality = nationality;
             }
                 break;
             case LanguageTextField:
             {
                 Language *language = [self.languages objectAtIndex:selectedRow];
-                preferredLanguageTxt.text = language.LanguageArName;
+                self.preferredLanguageTxt.text = language.LanguageArName;
                 self.selectedLanguage = language;
             }
                 break;
@@ -410,11 +406,11 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 }
 
 - (IBAction)registerAction:(id)sender {
-    self.userName = usernameTxt.text;
-    self.password = passwordTxt.text;
-    self.firstName = firstNametxt.text;
-    self.lastName = lastNametxt.text;
-    self.mobileNumber = mobileNumberTxt.text;
+    self.userName = self.usernameTxt.text;
+    self.password = self.passwordTxt.text;
+    self.firstName = self.firstNametxt.text;
+    self.lastName = self.lastNametxt.text;
+    self.mobileNumber = self.mobileNumberTxt.text;
     if(self.firstName.length == 0){
         [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please enter your first name.",nil)];
     }
@@ -442,14 +438,28 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     else{
         self.dateFormatter.dateFormat = @"dd/MM/yyyy";
         NSString *dateString = [self.dateFormatter stringFromDate:self.date];
-        [KVNProgress showWithStatus:@"Loading..."];
-     [[MobAccountManager sharedMobAccountManager] registerPassengerWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
-         [KVNProgress dismiss];
-        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration Compeleted. ",nil)];
-     } Failure:^(NSString *error) {
-         [KVNProgress dismiss];
-        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration Failed. ",nil)];
-     }];
+        [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+        if (self.accountType == AccountTypeBoth) {
+            
+        }
+        else if (self.accountType == AccountTypeDriver){
+            [[MobAccountManager sharedMobAccountManager] registerDriverWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
+                [KVNProgress dismiss];
+                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration as a driver Compeleted. ",nil)];
+            } Failure:^(NSString *error) {
+                [KVNProgress dismiss];
+                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration Failed. ",nil)];
+            }];
+        }
+        else if (self.accountType == AccountTypePassenger){
+            [[MobAccountManager sharedMobAccountManager] registerPassengerWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
+                [KVNProgress dismiss];
+                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration as a passenger Compeleted. ",nil)];
+            } Failure:^(NSString *error) {
+                [KVNProgress dismiss];
+                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration Failed. ",nil)];
+            }];
+        }
     }
 }
 
