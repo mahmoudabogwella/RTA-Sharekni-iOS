@@ -15,7 +15,8 @@
 #import <UIColor+Additions.h>
 #import "NSObject+Blocks.h"
 #import "MostRide.h"
-
+#import <UIViewController+REFrostedViewController.h>
+#import <REFrostedViewController.h>
 @interface MostRidesViewController ()
 @property (nonatomic ,weak) IBOutlet UITableView *ridesList ;
 @property (nonatomic ,strong) NSMutableArray *mostRides ;
@@ -30,14 +31,25 @@
     self.navigationController.navigationBarHidden = NO ;
     self.title = NSLocalizedString(@"mostRides", nil);
     
-    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
-    [_backBtn setHighlighted:NO];
-    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    if (self.enableBackButton) {
+        UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backBtn.frame = CGRectMake(0, 0, 22, 22);
+        [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+        [_backBtn setHighlighted:NO];
+        [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    }
+    else {
+        UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(menuItemTapped)];
+        self.navigationItem.leftBarButtonItem = menuItem;
+    }
     
     [self getMostRides];
+}
+
+#pragma mark - Methods
+- (void) menuItemTapped{
+    [self.frostedViewController presentMenuViewController];
 }
 
 #pragma mark - Methods

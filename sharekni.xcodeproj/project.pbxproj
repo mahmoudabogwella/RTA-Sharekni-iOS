@@ -14,6 +14,7 @@
 		044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044ECE981BC08A8000AF3E2D /* SearchResultCell.xib */; };
 		0453B2E71BE54B3B00007271 /* SideMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453B2E61BE54B3B00007271 /* SideMenuTableViewController.m */; };
 		0453B2EA1BE54EC500007271 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453B2E91BE54EC500007271 /* BaseViewController.m */; };
+		0453B2EC1BE55E1000007271 /* MostRidesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0453B2EB1BE55E1000007271 /* MostRidesCell.xib */; };
 		047E45501BC0960F000B5151 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E454F1BC0960F000B5151 /* SearchViewController.m */; };
 		047E45571BC09F3B000B5151 /* AdvancedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047E45561BC09F3B000B5151 /* AdvancedSearchViewController.xib */; };
 		047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45591BC5831D000B5151 /* PickupLocationView.m */; };
@@ -106,6 +107,7 @@
 		0453B2E61BE54B3B00007271 /* SideMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuTableViewController.m; sourceTree = "<group>"; };
 		0453B2E81BE54EC500007271 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		0453B2E91BE54EC500007271 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		0453B2EB1BE55E1000007271 /* MostRidesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MostRidesCell.xib; sourceTree = "<group>"; };
 		047E454E1BC0960F000B5151 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		047E454F1BC0960F000B5151 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		047E45561BC09F3B000B5151 /* AdvancedSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedSearchViewController.xib; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				0453B2E61BE54B3B00007271 /* SideMenuTableViewController.m */,
 				0453B2E81BE54EC500007271 /* BaseViewController.h */,
 				0453B2E91BE54EC500007271 /* BaseViewController.m */,
+				0453B2EB1BE55E1000007271 /* MostRidesCell.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 			files = (
 				047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */,
 				143F30E01BC83F70006A6A21 /* Images.xcassets in Resources */,
+				0453B2EC1BE55E1000007271 /* MostRidesCell.xib in Resources */,
 				044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */,
 				047E45571BC09F3B000B5151 /* AdvancedSearchViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,

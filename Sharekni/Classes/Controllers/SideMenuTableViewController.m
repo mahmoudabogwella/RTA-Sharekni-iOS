@@ -148,19 +148,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row < 5) {
         if (indexPath.row == 0) { //Home
-            [self.frostedViewController setMenuViewController:self.homeNavigationController];
+            [self.frostedViewController setContentViewController:self.homeNavigationController];
+            [self.frostedViewController hideMenuViewController];
         }
         if (indexPath.row == 1) { //Most Rides
-            [self.frostedViewController setMenuViewController:self.mostRidesNavigationController];
+            [self.frostedViewController setContentViewController:self.mostRidesNavigationController];
+            [self.frostedViewController hideMenuViewController];
         }
         if (indexPath.row == 2) { //Best Drivers
-            [self.frostedViewController setMenuViewController:self.bestDriversNavigationController];
+            [self.frostedViewController setContentViewController:self.bestDriversNavigationController];
+            [self.frostedViewController hideMenuViewController];
         }
         if (indexPath.row == 3) { //Search
-            [self.frostedViewController setMenuViewController:self.searchNavigationController];
+            [self.frostedViewController setContentViewController:self.searchNavigationController];
+            [self.frostedViewController hideMenuViewController];
         }
         if (indexPath.row == 4) { //Notifications
-            [self.frostedViewController setMenuViewController:self.searchNavigationController];
+            [self.frostedViewController setContentViewController:self.searchNavigationController];
+            [self.frostedViewController hideMenuViewController];
         }
     }
     else{
@@ -170,7 +175,9 @@
 
 - (UINavigationController *)bestDriversNavigationController{
     if (!_bestDriversNavigationController) {
-        BestDriversViewController *viewController = [[BestDriversViewController alloc] initWithNibName:@"BestDriversViewController" bundle:nil];
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        BestDriversViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"BestDriversViewController"];
+            viewController.enableBackButton = NO;        
         _bestDriversNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     }
     return _bestDriversNavigationController;
@@ -180,6 +187,7 @@
 - (UINavigationController *)searchNavigationController{
     if (!_searchNavigationController) {
         SearchViewController *viewController = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
+        viewController.enableBackButton = NO;
         _searchNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     }
     return _searchNavigationController;
@@ -189,7 +197,9 @@
     if (!_mostRidesNavigationController) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         MostRidesViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
+        viewController.enableBackButton = NO;
         _mostRidesNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+
     }
     return _mostRidesNavigationController;
 }

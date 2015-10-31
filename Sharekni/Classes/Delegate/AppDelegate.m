@@ -38,10 +38,10 @@
     [[UINavigationBar appearance] setBarTintColor:RGBA(230, 0, 10, 1)];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTranslucent:NO];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     KVNProgressConfiguration * progressConfiguration = [KVNProgress configuration];
     progressConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
-
     return YES;
 }
 

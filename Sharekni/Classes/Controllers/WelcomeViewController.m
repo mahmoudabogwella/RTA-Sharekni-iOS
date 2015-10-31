@@ -12,7 +12,7 @@
 #import "SearchViewController.h"
 #import "BestDriversViewController.h"
 #import "TopRidesViewController.h"
-
+#import "MostRidesViewController.h"
 @interface WelcomeViewController ()
 
 @end
@@ -55,7 +55,8 @@
 - (IBAction)topRides:(id)sender
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    TopRidesViewController *ridesView = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
+    MostRidesViewController *ridesView = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
+    ridesView.enableBackButton = YES;
     [self.navigationController pushViewController:ridesView animated:YES];
 }
 

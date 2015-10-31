@@ -70,7 +70,6 @@
     if(self.usernameTextField.text.length == 0){
     
         [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"nameReq",nil)];
-    
     }
     else if (self.passwordTextField.text.length == 0)
     {
@@ -201,7 +200,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     
     HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
-    SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
+    
     
     // Create frosted view controller
     //
