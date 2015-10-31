@@ -40,7 +40,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <view contentMode="scaleToFill" id="sRX-Os-AaR">
-                    <rect key="frame" x="0.0" y="403.00000004526214" width="320" height="164.99999995473786"/>
+                    <rect key="frame" x="0.0" y="403.00000008966532" width="320" height="164.99999991033471"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="uoa-xz-Igd">
@@ -88,7 +88,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" id="Zn8-B0-aRg">
-                            <rect key="frame" x="160" y="81.999999977089544" width="155" height="80"/>
+                            <rect key="frame" x="160" y="81.999999954613855" width="155" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QuickSearch" id="Ix6-q5-6Ci">
@@ -110,7 +110,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" id="MBl-6I-dIa">
-                            <rect key="frame" x="4" y="82" width="155" height="80"/>
+                            <rect key="frame" x="4" y="81.999999955720838" width="155" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QuickSearch" id="BF6-xX-L42">
@@ -189,7 +189,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="cvI-78-rbb">
-                    <rect key="frame" x="215" y="344" width="100.00000033687859" height="58"/>
+                    <rect key="frame" x="215" y="344" width="100" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehicles" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="Qea-Mi-cI7">
@@ -200,7 +200,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vechils" id="1iw-ei-ZFL">
-                            <rect key="frame" x="0.0" y="0.0" width="100.00000033687859" height="51"/>
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="51"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </imageView>

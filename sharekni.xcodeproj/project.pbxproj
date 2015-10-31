@@ -13,6 +13,7 @@
 		044ECE991BC08A8000AF3E2D /* SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044ECE971BC08A8000AF3E2D /* SearchResultCell.m */; };
 		044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044ECE981BC08A8000AF3E2D /* SearchResultCell.xib */; };
 		0453B2E71BE54B3B00007271 /* SideMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453B2E61BE54B3B00007271 /* SideMenuTableViewController.m */; };
+		0453B2EA1BE54EC500007271 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453B2E91BE54EC500007271 /* BaseViewController.m */; };
 		047E45501BC0960F000B5151 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E454F1BC0960F000B5151 /* SearchViewController.m */; };
 		047E45571BC09F3B000B5151 /* AdvancedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047E45561BC09F3B000B5151 /* AdvancedSearchViewController.xib */; };
 		047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45591BC5831D000B5151 /* PickupLocationView.m */; };
@@ -103,6 +104,8 @@
 		044ECE981BC08A8000AF3E2D /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		0453B2E51BE54B3B00007271 /* SideMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuTableViewController.h; sourceTree = "<group>"; };
 		0453B2E61BE54B3B00007271 /* SideMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuTableViewController.m; sourceTree = "<group>"; };
+		0453B2E81BE54EC500007271 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		0453B2E91BE54EC500007271 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		047E454E1BC0960F000B5151 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		047E454F1BC0960F000B5151 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		047E45561BC09F3B000B5151 /* AdvancedSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedSearchViewController.xib; sourceTree = "<group>"; };
@@ -397,6 +400,8 @@
 				04CFC7041BE52C6B0009BBDA /* RegisterViewController.xib */,
 				0453B2E51BE54B3B00007271 /* SideMenuTableViewController.h */,
 				0453B2E61BE54B3B00007271 /* SideMenuTableViewController.m */,
+				0453B2E81BE54EC500007271 /* BaseViewController.h */,
+				0453B2E91BE54EC500007271 /* BaseViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -684,6 +689,7 @@
 				143BE6D01BB6E001009F6496 /* AdvancedSearchViewController.m in Sources */,
 				143F31011BC9F540006A6A21 /* MapLookUp.m in Sources */,
 				143F30F91BC8EF5E006A6A21 /* MostRide.m in Sources */,
+				0453B2EA1BE54EC500007271 /* BaseViewController.m in Sources */,
 				87C571D91BDBD07700EFB618 /* MobVehicleManager.m in Sources */,
 				047E45501BC0960F000B5151 /* SearchViewController.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,

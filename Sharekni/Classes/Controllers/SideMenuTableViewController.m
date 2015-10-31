@@ -7,42 +7,89 @@
 //
 
 #import "SideMenuTableViewController.h"
+#import "Constants.h"
+#import "HelpManager.h"
+#import <UIColor+Additions.h>
+#import "User.h"
+#import "MobAccountManager.h"
+#import "BestDriversViewController.h"
+#import "SearchViewController.h"
+#import "MostRidesViewController.h"
+#import <REFrostedViewController.h>
+#import <UIViewController+REFrostedViewController.h>
+
+#define Title_Key @"Title"
+#define Image_Key @"ImageName"
 
 @interface SideMenuTableViewController ()
-
+@property (nonatomic,strong) NSMutableArray *items;
+@property (nonatomic,strong) User *applicationUser;
 @end
 
 @implementation SideMenuTableViewController
 
+- (instancetype) initWithNavigationController:(UINavigationController *) navigationController{
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
+        self.homeNavigationController = navigationController;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.applicationUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    [self configureDataSourceArray];
     [self configureTableView];
 }
 
+- (void) configureDataSourceArray{
+    self.items = [NSMutableArray array];
+    
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    [self.items addObject:dictionary];
+    
+    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Most Rides", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    [self.items addObject:dictionary];
+    
+    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Best Drivers", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    [self.items addObject:dictionary];
+    
+    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Search", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    [self.items addObject:dictionary];
+    
+    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Notifications", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    [self.items addObject:dictionary];
+    
+    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Logout", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    [self.items addObject:dictionary];
+}
+
 - (void) configureTableView{
-    self.tableView.separatorColor = [UIColor colorWithRed:150/255.0f green:161/255.0f blue:177/255.0f alpha:1.0f];
+    self.tableView.separatorColor = Red_UIColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.opaque = NO;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = ({
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 184.0f)];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, 100, 100)];
+//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, 100, 100)];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 51, 100, 79)];
         imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         imageView.image = [UIImage imageNamed:@"man.png"];
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = 50.0;
-        imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-        imageView.layer.borderWidth = 3.0f;
+//        imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+//        imageView.layer.borderWidth = 3.0f;
         imageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         imageView.layer.shouldRasterize = YES;
         imageView.clipsToBounds = YES;
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 0, 24)];
-        label.text = @"Roman Efimov";
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 135, 0, 24)];
+        label.text = [NSString stringWithFormat:@"%@ %@",self.applicationUser.FirstName,self.applicationUser.LastName];
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
         label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor colorWithRed:62/255.0f green:68/255.0f blue:75/255.0f alpha:1.0f];
+        label.textColor = Red_UIColor;
         [label sizeToFit];
         label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         
@@ -50,12 +97,9 @@
         [view addSubview:label];
         view;
     });
+    self.tableView.tableFooterView = [[UIView alloc]  initWithFrame:CGRectZero];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-}
 
 #pragma mark - Table view data source
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -83,7 +127,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-    return 5;
+    return self.items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,10 +140,60 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-        NSArray *titles = @[@"Home", @"Profile", @"Chats",@"John Appleseed", @"John Doe"];
-        cell.textLabel.text = titles[indexPath.row];
-    
+    NSDictionary *dictionary = self.items[indexPath.row];
+    cell.textLabel.text = [dictionary valueForKey:Title_Key];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row < 5) {
+        if (indexPath.row == 0) { //Home
+            [self.frostedViewController setMenuViewController:self.homeNavigationController];
+        }
+        if (indexPath.row == 1) { //Most Rides
+            [self.frostedViewController setMenuViewController:self.mostRidesNavigationController];
+        }
+        if (indexPath.row == 2) { //Best Drivers
+            [self.frostedViewController setMenuViewController:self.bestDriversNavigationController];
+        }
+        if (indexPath.row == 3) { //Search
+            [self.frostedViewController setMenuViewController:self.searchNavigationController];
+        }
+        if (indexPath.row == 4) { //Notifications
+            [self.frostedViewController setMenuViewController:self.searchNavigationController];
+        }
+    }
+    else{
+        //Logout
+    }
+}
+
+- (UINavigationController *)bestDriversNavigationController{
+    if (!_bestDriversNavigationController) {
+        BestDriversViewController *viewController = [[BestDriversViewController alloc] initWithNibName:@"BestDriversViewController" bundle:nil];
+        _bestDriversNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    }
+    return _bestDriversNavigationController;
+}
+
+
+- (UINavigationController *)searchNavigationController{
+    if (!_searchNavigationController) {
+        SearchViewController *viewController = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
+        _searchNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    }
+    return _searchNavigationController;
+}
+
+- (UINavigationController *)mostRidesNavigationController{
+    if (!_mostRidesNavigationController) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        MostRidesViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
+        _mostRidesNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    }
+    return _mostRidesNavigationController;
+}
+
+
 
 @end

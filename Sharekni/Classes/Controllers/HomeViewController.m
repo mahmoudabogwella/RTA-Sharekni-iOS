@@ -74,6 +74,9 @@
     self.vehiclesLabel.text = vehiclesCountText;
 }
 
+- (void) configureNavigationBar{
+}
+
 #pragma Gestures & Actions
 
 - (void) configureGestures{
