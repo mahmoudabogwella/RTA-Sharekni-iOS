@@ -9,6 +9,9 @@
 #import "RideDetailsViewController.h"
 
 @interface RideDetailsViewController ()
+{
+    __weak IBOutlet UIScrollView *contentView ;
+}
 
 @end
 
@@ -17,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

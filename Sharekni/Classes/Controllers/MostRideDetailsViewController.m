@@ -43,8 +43,8 @@
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
 
-    _FromRegionName.text = _ride.FromRegionNameEn ;
-    _ToRegionName.text = _ride.ToRegionNameEn ;
+    _FromRegionName.text = [NSString stringWithFormat:@"From : %@",_ride.FromRegionNameEn] ;
+    _ToRegionName.text = [NSString stringWithFormat:@"From : %@",_ride.ToRegionNameEn] ;;
     
     [self getRideDetails];
 }
@@ -106,8 +106,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MostRideDetails *ride = self.rides[indexPath.row];
     DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
+    driverDetails.mostRideDetails = ride ;
     [self.navigationController pushViewController:driverDetails animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Message Delegate
