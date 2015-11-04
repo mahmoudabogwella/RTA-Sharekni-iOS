@@ -11,13 +11,8 @@
 #import "RegisterViewController.h"
 #import "SearchViewController.h"
 #import "BestDriversViewController.h"
-<<<<<<< HEAD
 #import "MostRidesViewController.h"
 
-=======
-#import "TopRidesViewController.h"
-#import "MostRidesViewController.h"
->>>>>>> origin/master
 @interface WelcomeViewController ()
 
 @end
@@ -60,10 +55,7 @@
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MostRidesViewController *ridesView = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
-<<<<<<< HEAD
-=======
     ridesView.enableBackButton = YES;
->>>>>>> origin/master
     [self.navigationController pushViewController:ridesView animated:YES];
 }
 

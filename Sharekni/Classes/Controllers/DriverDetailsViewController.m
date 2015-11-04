@@ -30,7 +30,8 @@
 
 @implementation DriverDetailsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -63,8 +64,8 @@
 {
     __block DriverDetailsViewController *blockSelf = self;
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-    [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:_mostRideDetails.AccountId WithSuccess:^(NSMutableArray *array) {
-        
+    [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:_mostRideDetails.AccountId WithSuccess:^(NSMutableArray *array)
+    {
         blockSelf.driverRides = array;
         [KVNProgress dismiss];
         [self.ridesList reloadData];
@@ -77,7 +78,6 @@
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
         } afterDelay:3];
-        
     }];
 }
 
@@ -92,7 +92,6 @@
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",_mostRideDetails.DriverMobile]]];
 }
-
 
 #pragma mark -
 #pragma mark UITableView Datasource

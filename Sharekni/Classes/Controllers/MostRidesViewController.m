@@ -15,13 +15,10 @@
 #import <UIColor+Additions.h>
 #import "NSObject+Blocks.h"
 #import "MostRide.h"
-<<<<<<< HEAD
 #import "MostRideDetailsViewController.h"
-
-=======
 #import <UIViewController+REFrostedViewController.h>
 #import <REFrostedViewController.h>
->>>>>>> origin/master
+
 @interface MostRidesViewController ()
 @property (nonatomic ,weak) IBOutlet UITableView *ridesList ;
 @property (nonatomic ,strong) NSMutableArray *mostRides ;
