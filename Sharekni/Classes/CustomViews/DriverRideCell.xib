@@ -58,6 +58,7 @@
                 <animations/>
             </tableViewCellContentView>
             <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="FromRegionName" destination="O0V-Fo-hLv" id="TtY-Pk-lcf"/>
                 <outlet property="RouteName" destination="pq8-Ui-rMD" id="F7i-jP-OND"/>

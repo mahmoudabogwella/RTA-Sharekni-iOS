@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DriverDetails.h"
 
 @interface RideDetailsViewController : UIViewController
+
+@property (nonatomic ,strong) DriverDetails *driverDetails;
 
 @end

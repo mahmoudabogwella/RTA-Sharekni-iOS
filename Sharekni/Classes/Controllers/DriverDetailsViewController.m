@@ -105,16 +105,17 @@
 {
     static NSString *CellIdentifier  = @"DriverRideCell";
     
-    DriverRideCell *rideCell = (DriverRideCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DriverRideCell *driverCell = (DriverRideCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (rideCell == nil)
+    if (driverCell == nil)
     {
-        rideCell = (DriverRideCell *)[[[NSBundle mainBundle] loadNibNamed:@"DriverRideCell" owner:nil options:nil] objectAtIndex:0];
+        driverCell = (DriverRideCell *)[[[NSBundle mainBundle] loadNibNamed:@"DriverRideCell" owner:nil options:nil] objectAtIndex:0];
     }
     
-    DriverDetails *ride = self.driverRides[indexPath.row];
+    DriverDetails *driver = self.driverRides[indexPath.row];
+    [driverCell setDriverRideDetails:driver];
     
-    return rideCell ;
+    return driverCell ;
 }
 
 #pragma mark -
@@ -122,7 +123,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DriverDetails *driver = self.driverRides[indexPath.row];
     RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:@"RideDetailsViewController" bundle:nil];
+    rideDetails.driverDetails = driver ;
     [self.navigationController pushViewController:rideDetails animated:YES];
 }
 
