@@ -30,6 +30,12 @@
 
 @implementation DriverDetailsViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTranslucent:NO];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -71,6 +71,8 @@
 		148795D11BEA685800B940D8 /* DriverDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795D01BEA685800B940D8 /* DriverDetails.m */; };
 		148795D41BEA97E300B940D8 /* RideDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795D31BEA97E300B940D8 /* RideDetails.m */; };
 		148795D71BEA97EF00B940D8 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795D61BEA97EF00B940D8 /* Review.m */; };
+		148795DB1BEA9CF900B940D8 /* ReviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795D91BEA9CF900B940D8 /* ReviewCell.m */; };
+		148795DC1BEA9CF900B940D8 /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148795DA1BEA9CF900B940D8 /* ReviewCell.xib */; };
 		14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E692631BE8B7180041A999 /* DriverDetailsViewController.m */; };
 		14E692661BE8B7180041A999 /* DriverDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */; };
 		14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */; };
@@ -224,6 +226,9 @@
 		148795D31BEA97E300B940D8 /* RideDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideDetails.m; sourceTree = "<group>"; };
 		148795D51BEA97EF00B940D8 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		148795D61BEA97EF00B940D8 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		148795D81BEA9CF900B940D8 /* ReviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewCell.h; sourceTree = "<group>"; };
+		148795D91BEA9CF900B940D8 /* ReviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewCell.m; sourceTree = "<group>"; };
+		148795DA1BEA9CF900B940D8 /* ReviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
 		14E692621BE8B7180041A999 /* DriverDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverDetailsViewController.h; sourceTree = "<group>"; };
 		14E692631BE8B7180041A999 /* DriverDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverDetailsViewController.m; sourceTree = "<group>"; };
 		14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DriverDetailsViewController.xib; sourceTree = "<group>"; };
@@ -468,6 +473,9 @@
 				148795CA1BEA679800B940D8 /* DriverRideCell.h */,
 				148795CB1BEA679800B940D8 /* DriverRideCell.m */,
 				148795CC1BEA679800B940D8 /* DriverRideCell.xib */,
+				148795D81BEA9CF900B940D8 /* ReviewCell.h */,
+				148795D91BEA9CF900B940D8 /* ReviewCell.m */,
+				148795DA1BEA9CF900B940D8 /* ReviewCell.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -676,6 +684,7 @@
 				14022BE61BE56AA400585042 /* RideDetailsViewController.xib in Resources */,
 				14022BE11BE56A9300585042 /* MostRideDetailsViewController.xib in Resources */,
 				148795CE1BEA679800B940D8 /* DriverRideCell.xib in Resources */,
+				148795DC1BEA9CF900B940D8 /* ReviewCell.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				87C571D31BDBB08000EFB618 /* CreateRideViewController.xib in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
@@ -760,6 +769,7 @@
 				0429B1C31BB9C84400161222 /* NSObject+Blocks.m in Sources */,
 				14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */,
 				148795D41BEA97E300B940D8 /* RideDetails.m in Sources */,
+				148795DB1BEA9CF900B940D8 /* ReviewCell.m in Sources */,
 				148795CD1BEA679800B940D8 /* DriverRideCell.m in Sources */,
 				87C571D21BDBB08000EFB618 /* CreateRideViewController.m in Sources */,
 				04C3E0331BE09EF000698227 /* HomeViewController.m in Sources */,

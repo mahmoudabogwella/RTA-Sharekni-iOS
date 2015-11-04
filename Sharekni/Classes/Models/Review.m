@@ -16,6 +16,7 @@
     
     mapping[@"ReviewId"] = @"ReviewId";
     mapping[@"AccountId"] = @"AccountId";
+    mapping[@"Review"] = @"Review";
     mapping[@"AccountName"] = @"AccountName";
     mapping[@"AccountPhoto"] = @"AccountPhoto";
     mapping[@"AccountNationalityAr"] = @"AccountNationalityAr";

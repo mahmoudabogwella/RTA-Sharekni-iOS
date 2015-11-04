@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mI9-uV-K0N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mI9-uV-K0N">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -180,7 +181,7 @@
                                                         <constraint firstAttribute="height" constant="2" id="Itx-UU-fgB"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MostRideIcon" translatesAutoresizingMaskIntoConstraints="NO" id="K3A-ND-2GK">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K3A-ND-2GK">
                                                     <rect key="frame" x="226" y="14" width="86" height="86"/>
                                                     <animations/>
                                                     <constraints>
@@ -218,14 +219,14 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cl-4Y-zBF">
-                                                    <rect key="frame" x="237" y="37" width="65" height="39"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drivers 7" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cl-4Y-zBF">
+                                                    <rect key="frame" x="237" y="28.5" width="65" height="57.5"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="NEd-z3-AkA"/>
-                                                        <constraint firstAttribute="height" constant="39" id="sWR-qH-ykl"/>
+                                                        <constraint firstAttribute="height" constant="57.5" id="sWR-qH-ykl"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -251,7 +252,7 @@
                                                 <constraint firstItem="Tis-l3-FT0" firstAttribute="top" secondItem="0Z3-7C-TGE" secondAttribute="bottom" constant="4" id="Qqh-0m-ifw"/>
                                                 <constraint firstItem="kvP-Jd-41L" firstAttribute="leading" secondItem="csu-Nx-Gef" secondAttribute="leadingMargin" id="UAQ-tq-Qfr"/>
                                                 <constraint firstItem="j4f-ep-QJq" firstAttribute="leading" secondItem="csu-Nx-Gef" secondAttribute="leadingMargin" constant="-8" id="a8M-YK-In4"/>
-                                                <constraint firstItem="6cl-4Y-zBF" firstAttribute="top" secondItem="csu-Nx-Gef" secondAttribute="topMargin" constant="29" id="eYG-Zf-8Yb"/>
+                                                <constraint firstItem="6cl-4Y-zBF" firstAttribute="top" secondItem="csu-Nx-Gef" secondAttribute="topMargin" constant="20.5" id="eYG-Zf-8Yb"/>
                                                 <constraint firstItem="K3A-ND-2GK" firstAttribute="top" secondItem="csu-Nx-Gef" secondAttribute="topMargin" constant="6" id="ed1-aX-YWb"/>
                                                 <constraint firstItem="K3A-ND-2GK" firstAttribute="leading" secondItem="yiF-8p-9oG" secondAttribute="trailing" constant="8" id="qIJ-iX-6ih"/>
                                                 <constraint firstItem="K3A-ND-2GK" firstAttribute="leading" secondItem="kvP-Jd-41L" secondAttribute="trailing" constant="8" id="sbn-au-zPL"/>
@@ -270,6 +271,7 @@
                                             <outlet property="FromRegionName" destination="Tis-l3-FT0" id="nkU-38-AuH"/>
                                             <outlet property="ToEmirateName" destination="kvP-Jd-41L" id="FdG-6Y-cyq"/>
                                             <outlet property="ToRegionName" destination="yiF-8p-9oG" id="lrg-XZ-BRt"/>
+                                            <outlet property="driversImage" destination="K3A-ND-2GK" id="4pA-br-Nbe"/>
                                             <outlet property="noOfDrivers" destination="6cl-4Y-zBF" id="nCT-R1-op9"/>
                                         </connections>
                                     </tableViewCell>
@@ -359,13 +361,7 @@
         <image name="Call_Btn" width="28" height="21"/>
         <image name="Details" width="106" height="40"/>
         <image name="Login_bg" width="640" height="1039"/>
-        <image name="MostRideIcon" width="149" height="149"/>
         <image name="Msg_Btn" width="57" height="37"/>
         <image name="RidesSeperator" width="640" height="3"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

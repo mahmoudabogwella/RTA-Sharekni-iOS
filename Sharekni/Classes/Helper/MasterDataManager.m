@@ -150,7 +150,6 @@
     else{
         __block MasterDataManager *blockSelf = self;
         [self.operationManager GET:GetPrefferedLanguages_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-            NSLog(@"%@",responseObject);
             NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             responseString = [self jsonStringFromResponse:responseString];
             NSError *jsonError;
@@ -180,7 +179,6 @@
 - (void) GetEmployersWithID:(NSString *)ID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSDictionary *parameters = @{id_KEY:ID};
     [self.operationManager GET:GetEmployers_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-        NSLog(@"%@",responseObject);
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
         NSError *jsonError;
@@ -207,7 +205,6 @@
     }
     else{
         [self.operationManager GET:GetEmirates_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-            NSLog(@"%@",responseObject);
             NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             responseString = [self jsonStringFromResponse:responseString];
             NSError *jsonError;
@@ -234,7 +231,6 @@
 {
     [self.operationManager GET:GetBestDrivers_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
      
-        NSLog(@"%@",responseObject);
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
         NSError *jsonError;
@@ -264,7 +260,6 @@
 {
     [self.operationManager GET:GetMostRides_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
-        NSLog(@"%@",responseObject);
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
         NSError *jsonError;
@@ -298,9 +293,7 @@
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
       
         responseString = [self jsonStringFromResponse:responseString];
-      
-        NSLog(@"%@",responseString);
-      
+        
         NSError *jsonError;
         NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
@@ -329,8 +322,6 @@
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
         responseString = [self jsonStringFromResponse:responseString];
-        
-        NSLog(@"%@",responseString);
         
         NSError *jsonError;
         NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
@@ -361,8 +352,6 @@
         
         responseString = [self jsonStringFromResponse:responseString];
         
-        NSLog(@"%@",responseString);
-        
         NSError *jsonError;
         NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
@@ -392,8 +381,6 @@
         
         responseString = [self jsonStringFromResponse:responseString];
         
-        NSLog(@"%@",responseString);
-        
         NSError *jsonError;
         NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
@@ -416,7 +403,6 @@
 - (void) GetRegionsByID:(NSString *)ID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSDictionary *parameters = @{id_KEY:ID};
     [self.operationManager GET:GetRegionById_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-        NSLog(@"%@",responseObject);
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
         NSError *jsonError;
@@ -440,7 +426,6 @@
 - (void) GetRegionsByEmirateID:(NSString *)emirateID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSDictionary *parameters = @{id_KEY:emirateID};
     [self.operationManager GET:GetRegionsByEmirateId_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-        NSLog(@"%@",responseObject);
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
         NSError *jsonError;

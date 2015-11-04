@@ -12,7 +12,7 @@
 #define RIDE_CELL_ID @"RIDE_CELL_ID"
 @interface MostRidesCell : UITableViewCell
 
-@property (nonatomic ,weak) IBOutlet UILabel *drivers ;
+@property (nonatomic ,weak) IBOutlet UIImageView *driversImage;
 @property (nonatomic ,weak) IBOutlet UILabel *FromEmirateName ;
 @property (nonatomic ,weak) IBOutlet UILabel *FromRegionName ;
 @property (nonatomic ,weak) IBOutlet UILabel *ToEmirateName ;

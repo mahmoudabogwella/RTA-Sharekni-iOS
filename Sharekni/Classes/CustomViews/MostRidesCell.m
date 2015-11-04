@@ -12,16 +12,20 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
+    self.driversImage.layer.cornerRadius = self.driversImage.frame.size.width / 2.0f ;
+    self.driversImage.layer.borderWidth = 3.0f;
+    self.driversImage.layer.borderColor = [[UIColor redColor] CGColor];
+    self.driversImage.clipsToBounds = YES ;
 }
 
 - (void)setRide:(MostRide *)ride
 {
+    
     self.FromEmirateName.text = @"From";
     self.FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",ride.FromEmirateNameEn,ride.FromRegionNameEn];
     self.ToEmirateName.text = @"To";
     self.ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",ride.ToEmirateNameEn,ride.ToRegionNameEn];
-    self.noOfDrivers.text = [NSString stringWithFormat:@"%ld",ride.RoutesCount] ;
+    self.noOfDrivers.text = [NSString stringWithFormat:@"%ld Drivers",ride.RoutesCount] ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
