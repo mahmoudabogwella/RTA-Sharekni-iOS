@@ -20,6 +20,14 @@
     mapping[@"ToEmirateNameEn"] = @"ToEmirateNameEn";
     mapping[@"ToRegionNameAr"] = @"ToRegionNameAr";
     mapping[@"ToRegionNameEn"] = @"ToRegionNameEn";
+    
+    mapping[@"FromEmirateId"] = @"FromEmirateId";
+        mapping[@"ToEmirateId"] = @"ToEmirateId";
+        mapping[@"FromRegionId"] = @"FromRegionId";
+        mapping[@"ToRegionId"] = @"ToRegionId";
+        mapping[@"RoutesCount"] = @"RoutesCount";
+    
     return mapping;
 }
+
 @end

@@ -20,7 +20,7 @@
 - (void)setDriver:(BestDriver *)driver
 {
     self.driverName.text = driver.AccountName ;
-    self.driverCountry.text = @"Dubai" ;
+    self.driverCountry.text = driver.NationalityEnName ;
     self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
     self.phone = driver.AccountMobile ;
 }

@@ -1,22 +1,22 @@
 //
-//  TopRidesViewController.m
-//  Sharekni
+//  RideDetailsViewController.m
+//  sharekni
 //
-//  Created by Ahmed Askar on 9/26/15.
+//  Created by Ahmed Askar on 10/31/15.
 //
 //
 
-#import "TopRidesViewController.h"
+#import "RideDetailsViewController.h"
 
-@interface TopRidesViewController ()
+@interface RideDetailsViewController ()
 
 @end
 
-@implementation TopRidesViewController
+@implementation RideDetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {

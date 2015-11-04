@@ -21,6 +21,16 @@
 #import "HelpManager.h"
 #import "Base64.h"
 #import "Constants.h"
+#import "MostRideDetails.h"
+#import "DriverDetails.h"
+
+
+#define AccountId @"AccountID"
+#define FromEmirateId  @"FromEmirateID"
+#define FromRegionId    @"FromRegionID"
+#define ToEmirateId  @"ToEmirateID"
+#define ToRegionId  @"ToRegionID"
+
 
 @interface MasterDataManager ()
 @property (strong,nonatomic) NSArray *nationalties;
@@ -273,6 +283,71 @@
     }];
 }
 
+
+- (void) getRideDetails:(NSString *)accountID FromEmirateID:(NSString *)fromEmirateID FromRegionID:(NSString *)fromRegionID ToEmirateID:(NSString *)toEmirateID ToRegionID:(NSString *)toRegionID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+{
+    NSDictionary *parameters = @{AccountId:accountID,
+                                 FromEmirateId:fromEmirateID,
+                                 FromRegionId:fromRegionID,
+                                 ToEmirateId:toEmirateID,
+                                 ToRegionId:toRegionID};
+
+    [self.operationManager POST:GetMostRideDetails_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+      
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+      
+        responseString = [self jsonStringFromResponse:responseString];
+      
+        NSLog(@"%@",responseString);
+      
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        
+        NSMutableArray *mostRideDetails = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            MostRideDetails *rideDetails= [MostRideDetails gm_mappedObjectWithJsonRepresentation:dictionary];
+            [mostRideDetails addObject:rideDetails];
+        }
+        success(mostRideDetails);
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        
+    }];
+}
+
+
+- (void) getDriverRideDetails:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+{
+    NSDictionary *parameters = @{AccountId:accountID};
+    
+    [self.operationManager POST:GetDriverRideDetails_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        NSLog(@"%@",responseString);
+        
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        
+        NSMutableArray *rideDrivers = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            DriverDetails *driverDetails = [DriverDetails gm_mappedObjectWithJsonRepresentation:dictionary];
+            [rideDrivers addObject:driverDetails];
+        }
+        success(rideDrivers);
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        
+    }];
+}
 
 - (void) GetRegionsByID:(NSString *)ID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSDictionary *parameters = @{id_KEY:ID};

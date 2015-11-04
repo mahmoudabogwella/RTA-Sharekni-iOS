@@ -15,15 +15,15 @@
     if (self = [super init]) {
         
         self.operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:Sharkeni_BASEURL]];
-//        self.operationManager.ser
         
         AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
-        [requestSerializer setValue:@"application/xml" forHTTPHeaderField:@"Content-Type"];
+        [requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         [requestSerializer setValue:@"application/xml" forHTTPHeaderField:@"Accept"];
         self.operationManager.requestSerializer = requestSerializer;
         
         AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
         [responseSerializer.acceptableContentTypes setByAddingObject:@"application/xml"];
+        
         self.operationManager.responseSerializer = responseSerializer;
     }
     return self;
@@ -34,6 +34,7 @@
     string = [string stringByReplacingOccurrencesOfString:String_Open_Tag withString:@""];
     string = [string stringByReplacingOccurrencesOfString:String_Close_Tag withString:@""];
     string = [string stringByReplacingOccurrencesOfString:XML_Tag1 withString:@""];
+    string = [string stringByReplacingOccurrencesOfString:XML_Tag2 withString:@""];
     return  string;
 }
 

@@ -1,15 +1,16 @@
 //
-//  MostRideDetails.h
-//  Sharekni
+//  DriverDetails.h
+//  sharekni
 //
-//  Created by Mohamed Abd El-latef on 10/18/15.
+//  Created by Ahmed Askar on 11/4/15.
 //
 //
 
 #import <Foundation/Foundation.h>
 
-@interface MostRideDetails : NSObject
+@interface DriverDetails : NSObject
 
+@property (nonatomic,strong) NSString *ID;
 @property (nonatomic,strong) NSString *RouteId;
 @property (nonatomic,strong) NSString *RouteArName;
 @property (nonatomic,strong) NSString *RouteEnName;
@@ -17,14 +18,24 @@
 @property (nonatomic,strong) NSString *AccountId;
 @property (nonatomic,strong) NSString *DriverName;
 @property (nonatomic,strong) NSString *DriverMobile;
+@property (nonatomic,strong) NSString *PreferredGender;
 
-@property (nonatomic,assign) long Rating;
-
+@property (nonatomic,strong) NSString *NationalityId;
 @property (nonatomic,strong) NSString *NationalityArName;
 @property (nonatomic,strong) NSString *NationalityEnName;
 @property (nonatomic,strong) NSString *NationalityFrName;
 @property (nonatomic,strong) NSString *NationalityChName;
 @property (nonatomic,strong) NSString *NationalityUrName;
+
+@property (nonatomic,strong) NSString *PrefLanguageId;
+@property (nonatomic,strong) NSString *PrefLanguageArName;
+@property (nonatomic,strong) NSString *PrefLanguageEnName;
+@property (nonatomic,strong) NSString *PrefLanguageFrName;
+@property (nonatomic,strong) NSString *PrefLanguageChName;
+@property (nonatomic,strong) NSString *PrefLanguageUrName;
+
+@property (nonatomic,strong) NSString *AgeRangeId;
+@property (nonatomic,strong) NSString *AgeRange;
 
 @property (nonatomic,strong) NSString *FromEmirateId;
 @property (nonatomic,strong) NSString *ToEmirateId;
@@ -55,10 +66,19 @@
 @property (nonatomic,strong) NSString *ToRegionNameCh;
 @property (nonatomic,strong) NSString *ToRegionNameUr;
 
-@property (nonatomic,strong) NSString *CoordinatesStartLat;
-@property (nonatomic,strong) NSString *CoordinatesStartLng;
-@property (nonatomic,strong) NSString *CoordinatesEndLat;
-@property (nonatomic,strong) NSString *CoordinatesEndLng;
+@property (nonatomic,strong) NSString *VehicelId;
+@property (nonatomic,strong) NSString *VehicleManuName_ar;
+@property (nonatomic,strong) NSString *VehicleManuName_en;
+@property (nonatomic,strong) NSString *VehicleManYear;
+@property (nonatomic,strong) NSString *VechilePhoto;
+@property (nonatomic,strong) NSString *VehicleNoOfSeats;
+
+@property (nonatomic,strong) NSString *BasisId;
+@property (nonatomic,strong) NSString *BasisArName;
+@property (nonatomic,strong) NSString *BasisEnName;
+@property (nonatomic,strong) NSString *BasisFrName;
+@property (nonatomic,strong) NSString *BasisChName;
+@property (nonatomic,strong) NSString *BasisUrName;
 
 @property (nonatomic,strong) NSNumber *Saturday;
 @property (nonatomic,strong) NSNumber *Sunday;
@@ -68,7 +88,20 @@
 @property (nonatomic,strong) NSNumber *Thrursday;
 @property (nonatomic,strong) NSNumber *Friday;
 
+@property (nonatomic,strong) NSNumber *IsSmoking;
+@property (nonatomic,strong) NSNumber *IsRounded;
+@property (nonatomic,strong) NSNumber *IsPassenger;
+
 @property (nonatomic,strong) NSString *StartTime;
 @property (nonatomic,strong) NSString *EndTime;
+@property (nonatomic,strong) NSString *StartFromTime;
+@property (nonatomic,strong) NSString *StartToTime;
+@property (nonatomic,strong) NSString *EndFromTime;
+@property (nonatomic,strong) NSString *EndToTime;
+
+@property (nonatomic,strong) NSString *FromStreetName;
+@property (nonatomic,strong) NSString *ToStreetName;
+
+@property (nonatomic,strong) NSString *Remarks;
 
 @end

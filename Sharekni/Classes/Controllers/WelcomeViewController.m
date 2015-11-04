@@ -11,7 +11,7 @@
 #import "RegisterViewController.h"
 #import "SearchViewController.h"
 #import "BestDriversViewController.h"
-#import "TopRidesViewController.h"
+#import "MostRidesViewController.h"
 
 @interface WelcomeViewController ()
 
@@ -21,7 +21,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-
     self.title = NSLocalizedString(@"sharkni", nil);
 }
 
@@ -55,7 +54,7 @@
 - (IBAction)topRides:(id)sender
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    TopRidesViewController *ridesView = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
+    MostRidesViewController *ridesView = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
     [self.navigationController pushViewController:ridesView animated:YES];
 }
 

@@ -15,6 +15,7 @@
 #import <UIColor+Additions.h>
 #import "NSObject+Blocks.h"
 #import "MostRide.h"
+#import "MostRideDetailsViewController.h"
 
 @interface MostRidesViewController ()
 @property (nonatomic ,weak) IBOutlet UITableView *ridesList ;
@@ -93,6 +94,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MostRideDetailsViewController *rideDetailsView = [[MostRideDetailsViewController alloc] initWithNibName:@"MostRideDetailsViewController" bundle:nil];
+    MostRide *ride = self.mostRides [indexPath.row];
+    rideDetailsView.ride = ride ;
+    [self.navigationController pushViewController:rideDetailsView animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

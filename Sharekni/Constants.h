@@ -40,13 +40,19 @@
 #define String_Open_Tag @"<string xmlns=\"http://tempuri.org/\">"
 #define String_Close_Tag @"</string>"
 #define XML_Open_Tag @"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
-#define XML_Tag1 @"<string xmlns=\"http://MobAccount.org/\">"
+#define XML_Tag2 @"<string xmlns=\"http://MobAccount.org/\">"
+#define XML_Tag1 @"<string xmlns=\"http://Sharekni-MobIOS-Data.org/\">"
 
-#define Sharkeni_BASEURL @"http://sharekni.sdgstaff.com/_MobFiles/"
+//#define Sharkeni_BASEURL @"http://sharekni.sdgstaff.com/_MobFiles/"
+#define Sharkeni_BASEURL @"http://sharekni-web.sdg.ae/_mobfiles/"
 #define GetAgeRanges_URL @"cls_mobmasterdata.asmx/GetAgeRanges"
 #define GetEmirates_URL @"cls_mobmasterdata.asmx/GetEmirates"
 #define GetBestDrivers_URL @"cls_mobdriver.asmx/GetBestDrivers"
 #define GetMostRides_URL @"CLS_MobRoute.asmx/GetMostDesiredRides"
+#define GetMostRideDetails_URL @"cls_mobios.asmx/GetMostDesiredRideDetails"
+#define GetDriverRideDetails_URL @"cls_mobios.asmx/GetDriverDetailsByAccountId"
+
+
 #define GetEmployers_URL @"cls_mobmasterdata.asmx/GetEmployers"
 #define GetRegionById_URL @"cls_mobmasterdata.asmx/GetRegionById"
 #define GetNationalities_URL @"cls_mobmasterdata.asmx/GetNationalities"

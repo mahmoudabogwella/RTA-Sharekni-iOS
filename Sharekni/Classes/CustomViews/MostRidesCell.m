@@ -17,11 +17,11 @@
 
 - (void)setRide:(MostRide *)ride
 {
-    self.FromEmirateName.text = ride.FromEmirateNameEn;
-    self.FromRegionName.text = ride.FromRegionNameEn;
-    self.ToEmirateName.text = ride.ToEmirateNameEn;
-    self.ToRegionName.text = ride.ToRegionNameEn;
-    self.noOfDrivers.text = ride.RoutesCount ;
+    self.FromEmirateName.text = @"From";
+    self.FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",ride.FromEmirateNameEn,ride.FromRegionNameEn];
+    self.ToEmirateName.text = @"To";
+    self.ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",ride.ToEmirateNameEn,ride.ToRegionNameEn];
+    self.noOfDrivers.text = [NSString stringWithFormat:@"%ld",ride.RoutesCount] ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

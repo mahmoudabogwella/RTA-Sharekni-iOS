@@ -18,6 +18,12 @@
 @property (nonatomic,strong) NSString *ToEmirateNameEn;
 @property (nonatomic,strong) NSString *ToRegionNameAr;
 @property (nonatomic,strong) NSString *ToRegionNameEn;
-@property (nonatomic,strong) NSString *RoutesCount;
+
+@property (nonatomic,strong) NSString *FromEmirateId;
+@property (nonatomic,strong) NSString *ToEmirateId;
+@property (nonatomic,strong) NSString *FromRegionId;
+@property (nonatomic,strong) NSString *ToRegionId;
+
+@property (nonatomic,assign) long RoutesCount;
 
 @end
