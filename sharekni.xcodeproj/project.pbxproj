@@ -436,7 +436,6 @@
 				0453B2E61BE54B3B00007271 /* SideMenuTableViewController.m */,
 				0453B2E81BE54EC500007271 /* BaseViewController.h */,
 				0453B2E91BE54EC500007271 /* BaseViewController.m */,
-				0453B2EB1BE55E1000007271 /* MostRidesCell.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
