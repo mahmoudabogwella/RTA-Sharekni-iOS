@@ -53,6 +53,10 @@
     self.usernameTextField.text = @"Tefa19";
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = YES;
+}
 
 - (void)popViewController
 {

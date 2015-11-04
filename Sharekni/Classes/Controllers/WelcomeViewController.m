@@ -25,7 +25,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.title = NSLocalizedString(@"sharkni", nil);
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)viewDidLoad
@@ -70,6 +72,7 @@
 - (IBAction)search:(id)sender
 {
     SearchViewController *searchView = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
+    searchView.enableBackButton = YES;
     [self.navigationController pushViewController:searchView animated:YES];
 }
 
@@ -85,6 +88,7 @@
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     BestDriversViewController *driversView = [storyboard instantiateViewControllerWithIdentifier:@"BestDriversViewController"];
+    driversView.enableBackButton = YES;
     [self.navigationController pushViewController:driversView animated:YES];
 }
 

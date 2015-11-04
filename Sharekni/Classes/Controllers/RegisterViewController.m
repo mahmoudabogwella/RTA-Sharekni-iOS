@@ -89,6 +89,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = NO;
+}
+
 - (void) configureUI{
     
     self.dateLabel.textColor = [UIColor blackColor];
@@ -99,16 +104,16 @@
     [self.dateLbl setUserInteractionEnabled:YES];
     [self.datePickerView setUserInteractionEnabled:YES];
     
-    [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"DriverUnActive"]    forState:UIControlStateNormal];
-    [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"DriverActive"]      forState:UIControlStateSelected];
+    [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"driver_icon"]    forState:UIControlStateNormal];
+    [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"driverActive_icon"]      forState:UIControlStateSelected];
     [self.driverBtn    setSelected:NO];
    
-    [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"PassengerUnActive"] forState:UIControlStateNormal];
-    [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"PassengerActive"]   forState:UIControlStateSelected];
+    [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"passenger_icon"] forState:UIControlStateNormal];
+    [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"passengerActive_icon"]   forState:UIControlStateSelected];
     [self.passengerBtn    setSelected:NO];
 
-    [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"BothUnActive"]      forState:UIControlStateNormal];
-    [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"BothActive"]        forState:UIControlStateSelected];
+    [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"both_icon"]      forState:UIControlStateNormal];
+    [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"bothAcive_icon"]        forState:UIControlStateSelected];
     [self.bothBtn    setSelected:NO];
 
     [self.switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Left"]       forState:UIControlStateNormal];
@@ -133,6 +138,8 @@
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
     }
+    
+    self.dateLabel.textColor = Red_UIColor;
 }
 
 - (void) configureData{
