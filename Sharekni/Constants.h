@@ -123,6 +123,6 @@ typedef enum TextFieldType : NSUInteger {
 #define fileName_KEY @"s_FileName"
 
 
-#define GoogleMapsAPIKey @"AIzaSyBzBF30U7gZtIedN6Itwx2Xfk3VBh-6UDU"
+#define GoogleMapsAPIKey @"AIzaSyCa4kUqEf-xXAvD_JE17Wk4Odd6OTuTXIg"
 
 #endif

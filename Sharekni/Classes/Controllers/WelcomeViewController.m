@@ -12,8 +12,12 @@
 #import "SearchViewController.h"
 #import "BestDriversViewController.h"
 #import "MostRidesViewController.h"
+#import <UIColor+Additions.h>
+#import "Constants.h"
 
 @interface WelcomeViewController ()
+@property (weak, nonatomic) IBOutlet UIView *mostRidesView;
+@property (weak, nonatomic) IBOutlet UIView *bestDriversView;
 
 @end
 
@@ -31,6 +35,24 @@
     self.navigationController.navigationBarHidden = NO ;
     [self.navigationItem setHidesBackButton:YES];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    [self configureUI];
+}
+
+- (void) configureUI{
+    
+    self.navigationController.navigationBar.translucent = YES;
+    
+    self.bestDriversView.layer.cornerRadius = 10;
+    self.bestDriversView.layer.borderWidth = 1.5;
+    self.bestDriversView.layer.borderColor = Red_UIColor.CGColor;
+    UITapGestureRecognizer *BestDrivertapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bestDriverTapped)];
+    [self.bestDriversView addGestureRecognizer:BestDrivertapGesture];
+    
+    self.mostRidesView.layer.cornerRadius = 10;
+    self.mostRidesView.layer.borderWidth = 1.5;
+    self.mostRidesView.layer.borderColor = Red_UIColor.CGColor;
+    UITapGestureRecognizer *mostRidestapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mostRidesTapped)];
+    [self.mostRidesView addGestureRecognizer:mostRidestapGesture];
 }
 
 - (IBAction)login:(id)sender
@@ -51,7 +73,7 @@
     [self.navigationController pushViewController:searchView animated:YES];
 }
 
-- (IBAction)topRides:(id)sender
+- (void)mostRidesTapped
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MostRidesViewController *ridesView = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
@@ -59,7 +81,7 @@
     [self.navigationController pushViewController:ridesView animated:YES];
 }
 
-- (IBAction)bestDrivers:(id)sender
+- (void)bestDriverTapped
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     BestDriversViewController *driversView = [storyboard instantiateViewControllerWithIdentifier:@"BestDriversViewController"];

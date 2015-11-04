@@ -14,6 +14,8 @@
 #import "WelcomeViewController.h"
 #import <KVNProgress/KVNProgress.h>
 #import <KVNProgress/KVNProgressConfiguration.h>
+#import "WelcomeViewController.h"
+#import "HomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -42,6 +44,10 @@
     
     KVNProgressConfiguration * progressConfiguration = [KVNProgress configuration];
     progressConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+    WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

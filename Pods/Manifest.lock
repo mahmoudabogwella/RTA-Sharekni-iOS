@@ -22,6 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - CRToast (0.0.8)
   - Genome (0.1)
+  - GoogleMaps (1.10.5)
   - HSDatePickerViewController (1.0.1)
   - JVFloatLabeledTextField (1.1.0)
   - KLCPopup (1.0)
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - CRToast (~> 0.0.7)
   - Genome
+  - GoogleMaps
   - HSDatePickerViewController (~> 1.0)
   - JVFloatLabeledTextField
   - KLCPopup
@@ -76,6 +78,7 @@ SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   CRToast: b087127369b4c603726ef6249d74d0d737629ab8
   Genome: 7aa8b47f7275df8d6e65afe1f35799a7177675f9
+  GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
   HSDatePickerViewController: b292f2a53b2644a68aa5e1343053d2f3554de64c
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   KLCPopup: 76c5a19227977f1e53d85236f9ef42257c168d98
@@ -97,4 +100,4 @@ SPEC CHECKSUMS:
   UIColor+Additions: 8b14f4851a4da23ef60be123454f4f30fafdb5c2
   WYPopoverController: 00d879c25bddd1fd873dcc21aa98c8308d7f1555
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
