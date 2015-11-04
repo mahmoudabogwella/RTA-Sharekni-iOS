@@ -17,9 +17,13 @@
 
 @implementation RideDetailsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [contentView setScrollEnabled:YES];
+    [contentView setContentSize:CGSizeMake(self.view.frame.size.width, 600.0f)];
     
     
     

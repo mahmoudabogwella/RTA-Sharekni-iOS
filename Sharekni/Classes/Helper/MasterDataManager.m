@@ -23,6 +23,7 @@
 #import "Constants.h"
 #import "MostRideDetails.h"
 #import "DriverDetails.h"
+#import "Review.h"
 
 
 #define AccountId @"AccountID"
@@ -348,6 +349,69 @@
         
     }];
 }
+
+
+- (void) GetRouteByRouteId:(NSString *)routeID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
+    
+    NSDictionary *parameters = @{@"RouteId":routeID};
+    
+    [self.operationManager POST:GetRouteByRouteId_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        NSLog(@"%@",responseString);
+        
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        
+        NSMutableArray *rideDrivers = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            DriverDetails *driverDetails = [DriverDetails gm_mappedObjectWithJsonRepresentation:dictionary];
+            [rideDrivers addObject:driverDetails];
+        }
+        success(rideDrivers);
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        
+    }];
+}
+
+
+- (void) getReviewList:(NSString *)driverID andRoute:(NSString *)routeID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
+    
+    NSDictionary *parameters = @{@"DriverId":driverID,@"RouteId":routeID};
+    
+    [self.operationManager POST:GetReviewList_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        NSLog(@"%@",responseString);
+        
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        
+        NSMutableArray *reviews = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            Review *review = [Review gm_mappedObjectWithJsonRepresentation:dictionary];
+            [reviews addObject:review];
+        }
+        success(reviews);
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        
+    }];
+}
+
 
 - (void) GetRegionsByID:(NSString *)ID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSDictionary *parameters = @{id_KEY:ID};
