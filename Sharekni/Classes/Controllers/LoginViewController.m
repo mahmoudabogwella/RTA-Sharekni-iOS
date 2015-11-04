@@ -23,6 +23,10 @@
 }
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerNewButton;
+@property (weak, nonatomic) IBOutlet UIView *sepratorView;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @end
 
@@ -49,6 +53,7 @@
     self.usernameTextField.text = @"Tefa19";
 }
 
+
 - (void)popViewController
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -57,12 +62,18 @@
 - (void) configureUI{
     if ([self.usernameTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"username",nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"example@gmail.com ",nil) attributes:@{NSForegroundColorAttributeName: color}];
         self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"password", nil) attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
     }
+    
+    [self.forgotPasswordButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
+    [self.registerNewButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
+    self.sepratorView.backgroundColor = Red_UIColor;
+    self.loginButton.layer.cornerRadius = 8;
+    
 }
 
 - (IBAction)loginAction:(id)sender {

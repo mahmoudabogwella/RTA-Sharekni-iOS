@@ -113,7 +113,7 @@
     </objects>
     <resources>
         <image name="Best_Driver" width="25" height="25"/>
-        <image name="Logo" width="192" height="195"/>
+        <image name="Logo" width="600" height="600"/>
         <image name="Most_Ride" width="25" height="25"/>
         <image name="login_icon" width="75" height="75"/>
         <image name="register_icon" width="75" height="75"/>
