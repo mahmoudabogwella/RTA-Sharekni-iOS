@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "MobAccountManager.h"
 #import "User.h"
-
+#import "CreateRideViewController.h"
 @interface HomeViewController ()
 #pragma Outlets
 @property (weak, nonatomic) IBOutlet UIImageView *permitBG;
@@ -45,15 +45,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    #warning autoLayout issue @TEFA
-    //Fix this issue by autoLayout
-//    [self.view sendSubviewToBack:self.backgroundImageView];
-//    [self.historyView sendSubviewToBack:self.historyBG];
-//    [self.permitView sendSubviewToBack:self.permitBG];
-//    [self.findRideView sendSubviewToBack:self.findRideBackground];
-//    [self.createRideView sendSubviewToBack:self.createRideBackground];
-
     [self configureGestures];
+    [self configureData];
+    [self configureUI];
 }
 
 
@@ -67,16 +61,21 @@
 }
 #pragma UI
 - (void) configureUI{
-    if ([self.sharedUser.AccountTypeId isEqualToString:@"1"]) {
-        NSString *joinedRides = self.sharedUser.PassengerJoinedRidesCount;
-        
-    }
-    else if ([self.sharedUser.AccountTypeId isEqualToString:@"2"]){
-        
-    }
-    else if ([self.sharedUser.AccountTypeId isEqualToString:@"3"]){
-        
-    }
+    self.notificationCountLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.DriverMyAlertsCount];
+    
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.FirstName,self.sharedUser.LastName];
+    self.nationalityLabel.text = self.sharedUser.NationalityEnName;
+
+    NSString *ridesCreatedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Created", nil),self.sharedUser.DriverMyRidesCount];
+    NSString *ridesJoinedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Joined", nil),self.sharedUser.PassengerJoinedRidesCount];
+    NSString *vehiclesCountText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Vehicles", nil),@"0"];
+    self.ridesCreatedLabel.text = ridesCreatedText;
+    self.ridesJoinedLabel.text = ridesJoinedText;
+    self.vehiclesLabel.text = vehiclesCountText;
+}
+
+- (void) configureNavigationBar{
+    
 }
 
 #pragma Gestures & Actions
@@ -110,7 +109,8 @@
 }
 
 - (void) createRideTapped{
-    
+    CreateRideViewController *createRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
+    [self.navigationController pushViewController:createRideViewController animated:YES];
 }
 
 - (void) historyTapped{

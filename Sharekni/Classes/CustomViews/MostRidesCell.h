@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MostRide.h"
 
+#define RIDE_CELL_ID @"RIDE_CELL_ID"
 @interface MostRidesCell : UITableViewCell
 
 @property (nonatomic ,weak) IBOutlet UILabel *drivers ;

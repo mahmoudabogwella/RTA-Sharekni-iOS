@@ -15,7 +15,9 @@
 #import "RegisterViewController.h"
 #import "CreateRideViewController.h"
 #import "HomeViewController.h"
-@interface LoginViewController ()<UITextFieldDelegate>
+#import <REFrostedViewController.h>
+#import "SideMenuTableViewController.h"
+@interface LoginViewController ()<UITextFieldDelegate,REFrostedViewControllerDelegate>
 {
     float animatedDistance ;
 }
@@ -68,7 +70,6 @@
     if(self.usernameTextField.text.length == 0){
     
         [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"nameReq",nil)];
-    
     }
     else if (self.passwordTextField.text.length == 0)
     {
@@ -80,9 +81,8 @@
         [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:self.usernameTextField.text andPassword:self.passwordTextField.text WithSuccess:^(User *user) {
             [KVNProgress dismiss];
             if (user) {
-                HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
-//                CreateRideViewController  *createRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
-                [self.navigationController pushViewController:homeViewControlle animated:YES];
+                REFrostedViewController *frostedViewController = [self mainViewController];
+                [self.navigationController presentViewController:frostedViewController animated:YES completion:nil];
             }
             else{
             
@@ -196,6 +196,22 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     
 }
 
-
+- (REFrostedViewController *) mainViewController {
+    
+    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
+    SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
+    
+    
+    // Create frosted view controller
+    //
+    REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
+    frostedViewController.direction = REFrostedViewControllerDirectionLeft;
+    frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+    frostedViewController.liveBlur = YES;
+    frostedViewController.delegate = self;
+    
+    return frostedViewController;
+}
 
 @end

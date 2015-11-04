@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface BestDriversViewController : UIViewController
+#import "BaseViewController.h"
+@interface BestDriversViewController : BaseViewController
 
 @end
