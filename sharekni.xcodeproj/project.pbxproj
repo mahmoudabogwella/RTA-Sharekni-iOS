@@ -77,6 +77,8 @@
 		14E692661BE8B7180041A999 /* DriverDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */; };
 		14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */; };
 		14E7A8B01BDF145300255D86 /* VideoSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */; };
+		873E4C5E1BED3086006C42F8 /* MapInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 873E4C5D1BED3085006C42F8 /* MapInfoWindow.xib */; };
+		873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 873E4C601BED30E4006C42F8 /* MapInfoWindow.m */; };
 		87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* MobAccountManager.m */; };
 		87B58B561BD36F7900E73E55 /* MostRideDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B551BD36F7900E73E55 /* MostRideDetails.m */; };
 		87B58B591BD3842800E73E55 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B581BD3842800E73E55 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -236,6 +238,9 @@
 		14E7A8AD1BDF145300255D86 /* VideoSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSplashViewController.h; sourceTree = "<group>"; };
 		14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoSplashViewController.m; sourceTree = "<group>"; };
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		873E4C5D1BED3085006C42F8 /* MapInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapInfoWindow.xib; sourceTree = "<group>"; };
+		873E4C5F1BED30E4006C42F8 /* MapInfoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapInfoWindow.h; sourceTree = "<group>"; };
+		873E4C601BED30E4006C42F8 /* MapInfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapInfoWindow.m; sourceTree = "<group>"; };
 		87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		87A113391BB6FB370092E870 /* MobAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobAccountManager.h; sourceTree = "<group>"; };
 		87A1133A1BB6FB370092E870 /* MobAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobAccountManager.m; sourceTree = "<group>"; };
@@ -476,6 +481,9 @@
 				148795D81BEA9CF900B940D8 /* ReviewCell.h */,
 				148795D91BEA9CF900B940D8 /* ReviewCell.m */,
 				148795DA1BEA9CF900B940D8 /* ReviewCell.xib */,
+				873E4C5D1BED3085006C42F8 /* MapInfoWindow.xib */,
+				873E4C5F1BED30E4006C42F8 /* MapInfoWindow.h */,
+				873E4C601BED30E4006C42F8 /* MapInfoWindow.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -668,6 +676,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */,
+				873E4C5E1BED3086006C42F8 /* MapInfoWindow.xib in Resources */,
 				143F30E01BC83F70006A6A21 /* Images.xcassets in Resources */,
 				0453B2EC1BE55E1000007271 /* MostRidesCell.xib in Resources */,
 				044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */,
@@ -781,6 +790,7 @@
 				0453B2EA1BE54EC500007271 /* BaseViewController.m in Sources */,
 				87C571D91BDBD07700EFB618 /* MobVehicleManager.m in Sources */,
 				047E45501BC0960F000B5151 /* SearchViewController.m in Sources */,
+				873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
 				87C571DC1BDBD33F00EFB618 /* Vehicle.m in Sources */,
 				87B58B5D1BD388D100E73E55 /* MapLookupViewController.m in Sources */,

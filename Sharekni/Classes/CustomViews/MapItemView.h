@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import "MapLookUp.h"
-@interface MapItemView : NSObject <MKAnnotation>
+@interface MapItemView : NSObject
 @property (nonatomic,strong) NSString *arabicName;
 @property (nonatomic,strong) NSString *englishName;
 @property (nonatomic,strong) NSString *lat;
