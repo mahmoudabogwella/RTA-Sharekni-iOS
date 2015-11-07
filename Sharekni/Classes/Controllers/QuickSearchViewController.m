@@ -59,7 +59,7 @@
     }
     return _dateFormatter;
 }
-
+/*
 - (void) viewDidLoad {
     [super viewDidLoad];
     
@@ -277,5 +277,5 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+*/
 @end

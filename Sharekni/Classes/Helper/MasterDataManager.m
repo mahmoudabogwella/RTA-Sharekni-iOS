@@ -279,7 +279,6 @@
     }];
 }
 
-
 - (void) getRideDetails:(NSString *)accountID FromEmirateID:(NSString *)fromEmirateID FromRegionID:(NSString *)fromRegionID ToEmirateID:(NSString *)toEmirateID ToRegionID:(NSString *)toRegionID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
     NSDictionary *parameters = @{AccountId:accountID,
