@@ -19,6 +19,6 @@
 @property (nonatomic,strong) NSString *NationalityFrName;
 @property (nonatomic,strong) NSString *NationalityChName;
 @property (nonatomic,strong) NSString *NationalityUrName;
-@property (nonatomic,strong) NSString *Rating;
+@property (nonatomic,assign) long Rating;
 
 @end

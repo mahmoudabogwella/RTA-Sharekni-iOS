@@ -18,6 +18,7 @@
 #import <UIColor+Additions.h>
 #import "NSObject+Blocks.h"
 #import "MessageUI/MessageUI.h"
+#import "DriverDetailsViewController.h"
 
 @interface BestDriversViewController () <SendSMSDelegate,MFMessageComposeViewControllerDelegate>
 
@@ -27,6 +28,12 @@
 @end
 
 @implementation BestDriversViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTranslucent:NO];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -97,7 +104,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    BestDriver *driver = self.bestDrivers[indexPath.row];
+    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
+    driverDetails.isBestDriver = YES ;
+    driverDetails.bestDriver = driver;
+    [self.navigationController pushViewController:driverDetails animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Message Delegate

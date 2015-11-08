@@ -60,8 +60,8 @@
     
     [contentView setScrollEnabled:YES];
     
-    FromRegionName.text = [NSString stringWithFormat:@"From %@ : %@",_driverDetails.FromEmirateEnName,_driverDetails.FromRegionEnName];
-    ToRegionName.text = [NSString stringWithFormat:@"To %@ : %@",_driverDetails.ToEmirateEnName,_driverDetails.ToRegionEnName];
+    FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",_driverDetails.FromEmirateEnName,_driverDetails.FromRegionEnName];
+    ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",_driverDetails.ToEmirateEnName,_driverDetails.ToRegionEnName];
     startingTime.text = [NSString stringWithFormat:@"Time %@ : %@",_driverDetails.StartTime,_driverDetails.EndTime];
     availableDays.text = [NSString stringWithFormat:@"Ride Days : %@",[self getAvailableDays:self.driverDetails]];
     

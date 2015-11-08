@@ -53,10 +53,18 @@
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
     
-    self.driverName.text = _mostRideDetails.DriverName ;
-    self.country.text = _mostRideDetails.NationalityArName ;
-    self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
-    self.rate.text = [NSString stringWithFormat:@"%ld",_mostRideDetails.Rating];
+    if (self.isBestDriver) {
+        self.driverName.text = _bestDriver.AccountName ;
+        self.country.text = _bestDriver.NationalityEnName ;
+        self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+        self.rate.text = [NSString stringWithFormat:@"%ld",_bestDriver.Rating];
+    }else{
+        self.driverName.text = _mostRideDetails.DriverName ;
+        self.country.text = _mostRideDetails.NationalityArName ;
+        self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+        self.rate.text = [NSString stringWithFormat:@"%ld",_mostRideDetails.Rating];
+    }
+    
     
     [self getDriverRides];
 }
@@ -70,7 +78,7 @@
 {
     __block DriverDetailsViewController *blockSelf = self;
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-    [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:_mostRideDetails.AccountId WithSuccess:^(NSMutableArray *array)
+    [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:(_isBestDriver)?_bestDriver.AccountId:_mostRideDetails.AccountId WithSuccess:^(NSMutableArray *array)
     {
         blockSelf.driverRides = array;
         [KVNProgress dismiss];
@@ -96,7 +104,7 @@
 
 - (IBAction)call:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",_mostRideDetails.DriverMobile]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",(_isBestDriver)?_bestDriver.AccountMobile:_mostRideDetails.DriverMobile]]];
 }
 
 #pragma mark -

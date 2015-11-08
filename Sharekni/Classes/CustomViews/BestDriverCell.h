@@ -20,7 +20,7 @@
 @property (nonatomic ,weak) IBOutlet UIImageView *driverImage ;
 @property (nonatomic ,weak) IBOutlet UILabel *driverName ;
 @property (nonatomic ,weak) IBOutlet UILabel *driverCountry ;
-
+@property (nonatomic ,weak) IBOutlet UILabel *rateLbl ;
 @property (nonatomic ,strong) NSString *phone;
 
 - (IBAction)sendMail:(id)sender ;

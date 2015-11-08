@@ -23,6 +23,7 @@
     self.driverCountry.text = driver.NationalityEnName ;
     self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
     self.phone = driver.AccountMobile ;
+    self.rateLbl.text = [NSString stringWithFormat:@"%ld",driver.Rating];
 }
 
 - (IBAction)sendMail:(id)sender
