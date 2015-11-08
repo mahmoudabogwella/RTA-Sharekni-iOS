@@ -58,7 +58,6 @@
 		143F30F41BC85961006A6A21 /* BestDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 143F30F31BC85961006A6A21 /* BestDriver.m */; };
 		143F30F61BC86DE7006A6A21 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143F30F51BC86DE7006A6A21 /* MessageUI.framework */; };
 		143F30F91BC8EF5E006A6A21 /* MostRide.m in Sources */ = {isa = PBXBuildFile; fileRef = 143F30F81BC8EF5E006A6A21 /* MostRide.m */; };
-		143F30FA1BC90D15006A6A21 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143F30FC1BC90D15006A6A21 /* SearchViewController.xib */; };
 		143F31011BC9F540006A6A21 /* MapLookUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 143F31001BC9F540006A6A21 /* MapLookUp.m */; };
 		144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869EF1BC0844B00804C26 /* LoginViewController.xib */; };
 		144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144869F81BC0968E00804C26 /* QuickSearchViewController.m */; };
@@ -70,6 +69,7 @@
 		148795D71BEA97EF00B940D8 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795D61BEA97EF00B940D8 /* Review.m */; };
 		148795DB1BEA9CF900B940D8 /* ReviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795D91BEA9CF900B940D8 /* ReviewCell.m */; };
 		148795DC1BEA9CF900B940D8 /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148795DA1BEA9CF900B940D8 /* ReviewCell.xib */; };
+		14B0EFCE1BEF96F100937011 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0EFCD1BEF96F100937011 /* SearchViewController.xib */; };
 		14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E692631BE8B7180041A999 /* DriverDetailsViewController.m */; };
 		14E692661BE8B7180041A999 /* DriverDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */; };
 		14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */; };
@@ -208,8 +208,6 @@
 		143F30F51BC86DE7006A6A21 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		143F30F71BC8EF5E006A6A21 /* MostRide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostRide.h; sourceTree = "<group>"; };
 		143F30F81BC8EF5E006A6A21 /* MostRide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostRide.m; sourceTree = "<group>"; };
-		143F30FB1BC90D15006A6A21 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SearchViewController.xib; sourceTree = "<group>"; };
-		143F30FE1BC90D19006A6A21 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SearchViewController.strings; sourceTree = "<group>"; };
 		143F30FF1BC9F540006A6A21 /* MapLookUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLookUp.h; sourceTree = "<group>"; };
 		143F31001BC9F540006A6A21 /* MapLookUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLookUp.m; sourceTree = "<group>"; };
 		144869EE1BC0844B00804C26 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LoginViewController.xib; sourceTree = "<group>"; };
@@ -228,6 +226,7 @@
 		148795D81BEA9CF900B940D8 /* ReviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewCell.h; sourceTree = "<group>"; };
 		148795D91BEA9CF900B940D8 /* ReviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewCell.m; sourceTree = "<group>"; };
 		148795DA1BEA9CF900B940D8 /* ReviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
+		14B0EFCD1BEF96F100937011 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		14E692621BE8B7180041A999 /* DriverDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverDetailsViewController.h; sourceTree = "<group>"; };
 		14E692631BE8B7180041A999 /* DriverDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverDetailsViewController.m; sourceTree = "<group>"; };
 		14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DriverDetailsViewController.xib; sourceTree = "<group>"; };
@@ -414,7 +413,7 @@
 				143BE6C01BB68EA5009F6496 /* BestDriversViewController.m */,
 				047E454E1BC0960F000B5151 /* SearchViewController.h */,
 				047E454F1BC0960F000B5151 /* SearchViewController.m */,
-				143F30FC1BC90D15006A6A21 /* SearchViewController.xib */,
+				14B0EFCD1BEF96F100937011 /* SearchViewController.xib */,
 				144869F71BC0968E00804C26 /* QuickSearchViewController.h */,
 				144869F81BC0968E00804C26 /* QuickSearchViewController.m */,
 				144869F91BC0968E00804C26 /* QuickSearchViewController.xib */,
@@ -703,10 +702,10 @@
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				047E45841BC59DE0000B5151 /* SelectLocationViewController.xib in Resources */,
 				87B58B5E1BD388D100E73E55 /* MapLookupViewController.xib in Resources */,
-				143F30FA1BC90D15006A6A21 /* SearchViewController.xib in Resources */,
 				87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */,
 				14022BEB1BE56B8B00585042 /* MostRideDetailsCell.xib in Resources */,
 				04C3E0341BE09EF000698227 /* HomeViewController.xib in Resources */,
+				14B0EFCE1BEF96F100937011 /* SearchViewController.xib in Resources */,
 				04CFC7061BE52C6B0009BBDA /* RegisterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -871,15 +870,6 @@
 				143F30F11BC84893006A6A21 /* ar */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		143F30FC1BC90D15006A6A21 /* SearchViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				143F30FB1BC90D15006A6A21 /* en */,
-				143F30FE1BC90D19006A6A21 /* ar */,
-			);
-			name = SearchViewController.xib;
 			sourceTree = "<group>";
 		};
 		144869EF1BC0844B00804C26 /* LoginViewController.xib */ = {

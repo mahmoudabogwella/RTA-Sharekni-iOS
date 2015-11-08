@@ -127,10 +127,6 @@
     [self configureUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.translucent = NO;
-}
 
 - (void)popViewController
 {
