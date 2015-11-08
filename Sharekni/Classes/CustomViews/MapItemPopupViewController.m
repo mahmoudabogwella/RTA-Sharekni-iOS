@@ -23,8 +23,6 @@
 
 @implementation MapItemPopupViewController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     for (UILabel *label in self.headerLabels) {

@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UILabel (Borders)
-- (void) addRightBorder:(UIColor *)color;
-- (void)addLeftBorderWithColor:(UIColor *)color;
+- (void) addRightBorderWithColor:(UIColor *)color;
+- (void) addLeftBorderWithColor:(UIColor *)color;
 @end

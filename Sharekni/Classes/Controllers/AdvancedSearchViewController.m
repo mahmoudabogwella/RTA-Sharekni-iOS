@@ -29,25 +29,35 @@
 #import "HelpManager.h"
 #import "SearchResultsViewController.h"
 #import "MobDriverManager.h"
+#import "MLPAutoCompleteTextField.h"
+#import "MLPAutoCompleteTextFieldDataSource.h"
+#import "MLPAutoCompleteTextFieldDelegate.h"
 
-
-@interface AdvancedSearchViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface AdvancedSearchViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,MLPAutoCompleteTextFieldDelegate,MLPAutoCompleteTextFieldDataSource>
 //Outlets
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView ;
+
+@property (weak, nonatomic) IBOutlet UIButton *setDirectionBtuton;
+@property (weak, nonatomic) IBOutlet UIButton *languageButton;
+@property (weak, nonatomic) IBOutlet UIButton *ageRangeButton;
+
 @property (weak, nonatomic) IBOutlet UITextField *startPointTextField;
 @property (weak, nonatomic) IBOutlet UITextField *destinationTextFiled;
-@property (weak, nonatomic) IBOutlet UIView *timeView;
-@property (weak, nonatomic) IBOutlet UILabel *dayNumberLabel;
+
+
 @property (weak, nonatomic) IBOutlet UIView *dateView;
-@property (weak, nonatomic) IBOutlet UILabel *dayLabel;
-@property (weak, nonatomic) IBOutlet UILabel *monthAndYearLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *timeView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UITextField *nationalityTextField;
+
+@property (weak, nonatomic) IBOutlet MLPAutoCompleteTextField *nationalityTextField;
+
 @property (weak, nonatomic) IBOutlet UIView *typeView;
-@property (weak, nonatomic) IBOutlet UITextField *langageTextField;
-@property (weak, nonatomic) IBOutlet UITextField *ageRangeTextField;
+
 @property (weak, nonatomic) IBOutlet UIView *sepratorLine;
 @property (weak, nonatomic) IBOutlet UILabel *optionalHeader;
+
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UILabel *pickupTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dropoffTitleLabel;
@@ -64,6 +74,7 @@
 @property (strong,nonatomic) NSDate *pickupDate;
 
 @property (strong,nonatomic) NSArray *nationalties;
+@property (strong,nonatomic) NSMutableArray *nationaltiesStringsArray;
 @property (strong,nonatomic) NSArray *languages;
 @property (strong,nonatomic) NSArray *ageRanges;
 
@@ -116,6 +127,11 @@
     [self configureUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = NO;
+}
+
 - (void)popViewController
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -127,6 +143,10 @@
     [KVNProgress showWithStatus:@"Loading"];
     [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"0" WithSuccess:^(NSMutableArray *array) {
         blockSelf.nationalties = array;
+        blockSelf.nationaltiesStringsArray = [NSMutableArray array];
+        for (Nationality *nationality in array) {
+            [blockSelf.nationaltiesStringsArray addObject:nationality.NationalityEnName];
+        }
         [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
             blockSelf.ageRanges = array;
             [[MasterDataManager sharedMasterDataManager] GetPrefferedLanguagesWithSuccess:^(NSMutableArray *array) {
@@ -159,6 +179,28 @@
 
 - (void) configureUI{
     
+    [self.setDirectionBtuton setBackgroundColor:Red_UIColor];
+    self.setDirectionBtuton.layer.cornerRadius = 10;
+    [self.setDirectionBtuton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.setDirectionBtuton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [self.setDirectionBtuton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    
+    [self.languageButton setBackgroundColor:[UIColor whiteColor]];
+    self.languageButton.layer.cornerRadius = 10;
+    [self.languageButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
+    [self.languageButton setTitleColor:Red_UIColor forState:UIControlStateHighlighted];
+    [self.languageButton setTitleColor:Red_UIColor forState:UIControlStateSelected];
+    self.languageButton.layer.borderWidth = .8;
+    self.languageButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    
+    [self.ageRangeButton setBackgroundColor:[UIColor whiteColor]];
+    self.ageRangeButton.layer.cornerRadius = 10;
+    [self.ageRangeButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
+    [self.ageRangeButton setTitleColor:Red_UIColor forState:UIControlStateHighlighted];
+    [self.ageRangeButton setTitleColor:Red_UIColor forState:UIControlStateSelected];
+    self.ageRangeButton.layer.borderWidth = .8;
+    self.ageRangeButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    
     UIBezierPath *maskPath;
     maskPath = [UIBezierPath bezierPathWithRoundedRect:self.pickupTitleLabel.bounds
                                      byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
@@ -179,24 +221,38 @@
     maskLayer.path = maskPath.CGPath;
     self.dropoffTitleLabel  .layer.mask = maskLayer;
     
-    self.dateView.layer.cornerRadius = 10;
+    self.dateView.layer.cornerRadius = 8;
+    self.dateView.layer.borderWidth = 0;
+    self.dateView.layer.borderColor = Red_UIColor.CGColor;
     self.dateView.layer.masksToBounds = YES;
     
-    self.timeView.layer.cornerRadius = 10;
+    
+    self.timeView.layer.cornerRadius = 8;
+    self.timeView.layer.borderWidth = 0;
+    self.timeView.layer.borderColor = [UIColor blackColor].CGColor;
     self.timeView.layer.masksToBounds = YES;
     
     self.searchButton.layer.cornerRadius = 8;
     
-    self.langageTextField.textColor        = Red_UIColor;
     self.nationalityTextField.textColor    = Red_UIColor;
-    self.ageRangeTextField.textColor       = Red_UIColor;
-    self.langageTextField.textColor        = Red_UIColor;
     self.pickupTitleLabel.backgroundColor  = Red_UIColor;
     self.dropoffTitleLabel.backgroundColor = Red_UIColor;
     self.startPointTextField.textColor     = Red_UIColor;
     self.destinationTextFiled.textColor    = Red_UIColor;
     self.optionalHeader.textColor          =  Red_UIColor;
     self.sepratorLine.backgroundColor      = Red_UIColor;
+    self.dateLabel.textColor = Red_UIColor;
+    self.timeLabel.textColor = Red_UIColor;
+    self.dateLabel.textColor = Red_UIColor;
+    self.timeLabel.textColor = Red_UIColor;
+    
+    
+    self.dateLabel.text = NSLocalizedString(@"Starting when", nil);
+    self.timeLabel.text = NSLocalizedString(@"schedule on", nil);
+    
+    [self.languageButton setTitle:NSLocalizedString(@"Choose a language", nil) forState:UIControlStateNormal];
+    [self.ageRangeButton setTitle:NSLocalizedString(@"Choose age range", nil) forState:UIControlStateNormal];
+    
     
     UITapGestureRecognizer *dateTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
     [self.dateView addGestureRecognizer:dateTapGestureRecognizer];
@@ -214,6 +270,15 @@
     
     UITapGestureRecognizer *dismissGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissHandler)];
     [self.view addGestureRecognizer:dismissGestureRecognizer];
+    
+    self.nationalityTextField.delegate = self;
+    self.nationalityTextField.autoCompleteDataSource = self;
+    self.nationalityTextField.autoCompleteDelegate = self;
+    self.nationalityTextField.autoCompleteTableBorderColor = Red_UIColor;
+    self.nationalityTextField.autoCompleteTableBorderWidth = 2;
+    self.nationalityTextField.autoCompleteTableBackgroundColor = [UIColor whiteColor];
+    self.nationalityTextField.autoCompleteTableAppearsAsKeyboardAccessory = YES;
+    [self.nationalityTextField setTintColor:Red_UIColor];
 }
 
 - (void) configureRoadTypeView{
@@ -301,17 +366,9 @@
     __block AdvancedSearchViewController *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
-        blockSelf.dateFormatter.dateFormat = @"EEE";
-        NSString *day = [self.dateFormatter stringFromDate:date];
-        blockSelf.dayLabel.text = day;
-        
-        blockSelf.dateFormatter.dateFormat = @"dd";
-        NSString *dayNumber = [self.dateFormatter stringFromDate:date];
-        blockSelf.dayNumberLabel.text = dayNumber;
-        
-        blockSelf.dateFormatter.dateFormat = @"MMM, yyyy";
-        NSString * month = [self.dateFormatter stringFromDate:date];
-        blockSelf.monthAndYearLabel.text = month;
+        blockSelf.dateFormatter.dateFormat = @"EEE,  dd/MM/yyyy";
+        NSString *dateString = [self.dateFormatter stringFromDate:date];
+        blockSelf.dateLabel.text = dateString;
         
         NSInteger hour = blockSelf.pickupDate.hour;
         NSInteger minutes = blockSelf.pickupDate.minute;
@@ -378,14 +435,14 @@
             case LanguageTextField:
             {
                 Language *language = [self.languages objectAtIndex:selectedRow];
-                self.langageTextField.text = language.LanguageArName;
+                [self.languageButton setTitle:language.LanguageEnName forState:UIControlStateNormal];
                 self.selectedLanguage = language;
             }
             break;
             case AgeRangeTextField:
             {
                 AgeRange *range = [self.ageRanges objectAtIndex:selectedRow];
-                self.ageRangeTextField.text = range.Range;
+                [self.ageRangeButton setTitle:range.Range forState:UIControlStateNormal];
                 self.selectedAgeRange = range;
             }
             break;
@@ -435,55 +492,48 @@
     [self presentViewController:pickerController animated:YES completion:nil];
 }
 
-- (void) showLocationPickerWithTextFieldType:(TextFieldType)type{
+- (void) showLocationPicker{
     SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
-    selectLocationViewController.viewTitle = type == PickupTextField ? NSLocalizedString(@"Select pickup point", Nil): NSLocalizedString(@"Select destionation point", nil);
     __block AdvancedSearchViewController *blockSelf = self;
-    [selectLocationViewController setSelectionHandler:^(Emirate *selectedEmirate, Region *selectedRegion) {
-        NSString *text = [NSString stringWithFormat:@"%@,%@",selectedEmirate.EmirateArName,selectedRegion.RegionArName];
-        if (type == PickupTextField) {
-            blockSelf.fromEmirate = selectedEmirate;
-            blockSelf.fromRegion = selectedRegion;
-            blockSelf.startPointTextField.text = text;
-        }
-        else if (type == DestinationTextField){
-            blockSelf.toEmirate = selectedEmirate;
-            blockSelf.toRegion = selectedRegion;
-            blockSelf.destinationTextFiled.text = text;
-        }
-    }];
-    
-    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
-    
-    formSheet.formSheetWindow.transparentTouchEnabled = NO;
-    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
-    formSheet.shouldDismissOnBackgroundViewTap = YES;
-    formSheet.shouldCenterVertically = NO;
-    formSheet.presentedFormSheetSize = CGSizeMake(300, 200);
-    formSheet.portraitTopInset = 55;
-    formSheet.cornerRadius = 8;
-    
-    [formSheet presentAnimated:YES completionHandler:^(UIViewController *presentedFSViewController) {
+    [selectLocationViewController setSelectionHandler:^(Emirate *fromEmirate, Region *fromRegion,Emirate *toEmirate, Region *toRegion) {
         
+        NSString *fromText = [NSString stringWithFormat:@"%@,%@",fromEmirate.EmirateEnName,fromRegion.RegionEnName];
+        
+            blockSelf.fromEmirate = fromEmirate;
+            blockSelf.fromRegion = fromRegion;
+            blockSelf.startPointTextField.text = fromText;
+        
+            NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
+            blockSelf.toEmirate = toEmirate;
+            blockSelf.toRegion = toRegion;
+            blockSelf.destinationTextFiled.text = toText;
     }];
+    [self.navigationController pushViewController:selectLocationViewController animated:YES];
+//    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
+//    
+//    formSheet.formSheetWindow.transparentTouchEnabled = NO;
+//    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+//    formSheet.shouldDismissOnBackgroundViewTap = YES;
+//    formSheet.shouldCenterVertically = NO;
+//    formSheet.presentedFormSheetSize = CGSizeMake(300, 200);
+//    formSheet.portraitTopInset = 55;
+//    formSheet.cornerRadius = 8;
+//    
+//    [formSheet presentAnimated:YES completionHandler:^(UIViewController *presentedFSViewController) {
+//        
+//    }];
 }
 
 #pragma TextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if(textField == self.startPointTextField ){
-        [self showLocationPickerWithTextFieldType:PickupTextField];
+    if(textField == self.startPointTextField && textField.text.length == 0){
+        [self showLocationPicker];
     }
-    else if (textField == self.destinationTextFiled){
-        [self showLocationPickerWithTextFieldType:DestinationTextField];
+    else if (textField == self.destinationTextFiled && textField.text.length == 0){
+        [self showLocationPicker];
     }
     else if (textField == self.nationalityTextField){
         [self showPickerWithTextFieldType:NationalityTextField];
-    }
-    else if (textField == self.ageRangeTextField){
-        [self showPickerWithTextFieldType:AgeRangeTextField];
-    }
-    else if (textField == self.langageTextField){
-        [self showPickerWithTextFieldType:LanguageTextField];
     }
     return NO;
 
@@ -559,6 +609,29 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
+}
+- (IBAction)setDirectionButtonHandler:(id)sender {
+    [self showLocationPicker];
+}
+- (IBAction)ageRangeButtonHandler:(id)sender {
+    [self showPickerWithTextFieldType:AgeRangeTextField];
+}
+- (IBAction)languageButtonHandler:(id)sender {
+    [self showPickerWithTextFieldType:LanguageTextField];
+}
+
+#pragma AutoCompelete_Delegate
+- (BOOL)autoCompleteTextField:(MLPAutoCompleteTextField *)textField
+shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
+               forBorderStyle:(UITextBorderStyle)borderStyle{
+    return YES;
+}
+
+- (NSArray *)autoCompleteTextField:(MLPAutoCompleteTextField *)textField      possibleCompletionsForString:(NSString *)string{
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",string]; // if you need case sensitive search avoid '[c]' in the predicate
+    NSArray *results = [self.nationaltiesStringsArray filteredArrayUsingPredicate:predicate];
+    return results;
 }
 
 @end

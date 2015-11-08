@@ -201,9 +201,9 @@
     self.rideDetailsSectionLabel.textColor          = Red_UIColor;
     self.optionalSectionLabel.textColor             = Red_UIColor;
     
-    [self.rideDetailsSectionLabel addRightBorder:Red_UIColor];
+    [self.rideDetailsSectionLabel addRightBorderWithColor:Red_UIColor];
     [self.rideDetailsSectionLabel addLeftBorderWithColor:Red_UIColor];
-    [self.optionalSectionLabel addRightBorder:Red_UIColor];
+    [self.optionalSectionLabel addRightBorderWithColor:Red_UIColor];
     [self.optionalSectionLabel addLeftBorderWithColor:Red_UIColor];
     
     UITapGestureRecognizer *dateTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
@@ -457,22 +457,20 @@
     [self presentViewController:pickerController animated:YES completion:nil];
 }
 
-- (void) showLocationPickerWithTextFieldType:(TextFieldType)type{
+- (void) showLocationPicker{
     SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
-    selectLocationViewController.viewTitle = type == PickupTextField ? NSLocalizedString(@"Select pickup point", Nil): NSLocalizedString(@"Select destionation point", nil);
     __block CreateRideViewController *blockSelf = self;
-    [selectLocationViewController setSelectionHandler:^(Emirate *selectedEmirate, Region *selectedRegion) {
-        NSString *text = [NSString stringWithFormat:@"%@,%@",selectedEmirate.EmirateArName,selectedRegion.RegionArName];
-        if (type == PickupTextField) {
-            blockSelf.fromEmirate = selectedEmirate;
-            blockSelf.fromRegion = selectedRegion;
-            blockSelf.startPointTextField.text = text;
-        }
-        else if (type == DestinationTextField){
-            blockSelf.toEmirate = selectedEmirate;
-            blockSelf.toRegion = selectedRegion;
-            blockSelf.destinationTextField.text = text;
-        }
+    [selectLocationViewController setSelectionHandler:^(Emirate *fromEmirate, Region *fromRegion ,Emirate *toEmirate, Region *toRegion) {
+        NSString *fromText = [NSString stringWithFormat:@"%@,%@",fromEmirate.EmirateEnName,fromRegion.RegionEnName];
+
+            blockSelf.fromEmirate = fromEmirate;
+            blockSelf.fromRegion = fromRegion;
+            blockSelf.startPointTextField.text = fromText;
+        NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
+        
+            blockSelf.toEmirate = toEmirate;
+            blockSelf.toRegion = toRegion;
+            blockSelf.destinationTextField.text = toText;
     }];
     
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
@@ -492,11 +490,11 @@
 
 #pragma TextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if(textField == self.startPointTextField ){
-        [self showLocationPickerWithTextFieldType:PickupTextField];
+    if(textField == self.startPointTextField && textField.text.length == 0){
+        [self showLocationPicker];
     }
-    else if (textField == self.destinationTextField){
-        [self showLocationPickerWithTextFieldType:DestinationTextField];
+    else if (textField == self.destinationTextField && textField.text.length == 0){
+        [self showLocationPicker];
     }
     else if (textField == self.nationalityTextField){
         [self showPickerWithTextFieldType:NationalityTextField];

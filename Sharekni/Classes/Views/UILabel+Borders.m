@@ -9,7 +9,7 @@
 #import "UILabel+Borders.h"
 
 @implementation UILabel (Borders)
-- (void) addRightBorder:(UIColor *)color{
+- (void) addRightBorderWithColor:(UIColor *)color{
     CALayer *rightBorder = [CALayer layer];
     rightBorder.backgroundColor = [color CGColor];
     rightBorder.frame = CGRectMake(CGRectGetWidth(self.frame), 0, 1, CGRectGetHeight(self.frame));

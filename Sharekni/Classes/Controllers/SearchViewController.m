@@ -34,6 +34,7 @@
 #import "SearchResultsViewController.h"
 
 @interface SearchViewController ()<UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *setDirectionButton;
 
 @property (weak, nonatomic) IBOutlet UITextField *startPointTextField;
 @property (weak, nonatomic) IBOutlet UITextField *destinationTextFiled;
@@ -83,7 +84,16 @@
     [self configureUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.translucent = YES;
+}
+
 - (void) configureUI{
+    
+    [self.setDirectionButton setTitle:NSLocalizedString(@"Set Direction", nil) forState:UIControlStateNormal];
+    [self.setDirectionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.setDirectionButton.layer.cornerRadius = 10;
+    [self.setDirectionButton setBackgroundColor:Red_UIColor];
     
     UIBezierPath *maskPath;
     maskPath = [UIBezierPath bezierPathWithRoundedRect:self.pickupTitleLabel.bounds
@@ -166,7 +176,7 @@
     __block SearchViewController  *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
-        blockSelf.dateFormatter.dateFormat = @"dd/MM/yyyy";
+        blockSelf.dateFormatter.dateFormat = @"EEE,  dd/MM/yyyy";
         NSString *dateString = [self.dateFormatter stringFromDate:date];
         blockSelf.dateLabel.text = dateString;
 
@@ -191,7 +201,6 @@
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
 }
-
 
 - (void) showTimePicker{
     
@@ -221,46 +230,43 @@
     [self presentViewController:dateSelectionController animated:YES completion:nil];
 }
 
-- (void) showLocationPickerWithTextFieldType:(TextFieldType)type{
+- (void) showLocationPicker{
     SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
-    selectLocationViewController.viewTitle = type == PickupTextField ? NSLocalizedString(@"Select pickup point", Nil): NSLocalizedString(@"Select destionation point", nil);
     __block SearchViewController *blockSelf = self;
-    [selectLocationViewController setSelectionHandler:^(Emirate *selectedEmirate, Region *selectedRegion) {
-        NSString *text = [NSString stringWithFormat:@"%@,%@",selectedEmirate.EmirateArName,selectedRegion.RegionArName];
-        if (type == PickupTextField) {
-            blockSelf.fromEmirate = selectedEmirate;
-            blockSelf.fromRegion = selectedRegion;
-            blockSelf.startPointTextField.text = text;
-        }
-        else if (type == DestinationTextField){
-            blockSelf.toEmirate = selectedEmirate;
-            blockSelf.toRegion = selectedRegion;
-            blockSelf.destinationTextFiled.text = text;
-        }
+    [selectLocationViewController setSelectionHandler:^(Emirate *fromEmirate, Region *fromRegion,Emirate *toEmirate, Region *toRegion) {
+        NSString *fromText = [NSString stringWithFormat:@"%@,%@",fromEmirate.EmirateEnName,fromRegion.RegionEnName];
+            blockSelf.fromEmirate = fromEmirate;
+            blockSelf.fromRegion = fromRegion;
+            blockSelf.startPointTextField.text = fromText;
+        NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
+            blockSelf.toEmirate = toEmirate;
+            blockSelf.toRegion = toRegion;
+            blockSelf.destinationTextFiled.text = toText;
     }];
     
-    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
-    
-    formSheet.formSheetWindow.transparentTouchEnabled = NO;
-    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
-    formSheet.shouldDismissOnBackgroundViewTap = YES;
-    formSheet.shouldCenterVertically = NO;
-    formSheet.presentedFormSheetSize = CGSizeMake(300, 200);
-    formSheet.portraitTopInset = 55;
-    formSheet.cornerRadius = 8;
-    
-    [formSheet presentAnimated:YES completionHandler:^(UIViewController *presentedFSViewController) {
-        
-    }];
+    [self.navigationController pushViewController:selectLocationViewController animated:YES];
+//    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
+//    
+//    formSheet.formSheetWindow.transparentTouchEnabled = NO;
+//    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+//    formSheet.shouldDismissOnBackgroundViewTap = YES;
+//    formSheet.shouldCenterVertically = NO;
+//    formSheet.presentedFormSheetSize = CGSizeMake(300, 200);
+//    formSheet.portraitTopInset = 55;
+//    formSheet.cornerRadius = 8;
+//    
+//    [formSheet presentAnimated:YES completionHandler:^(UIViewController *presentedFSViewController) {
+//        
+//    }];
 }
 
 #pragma TextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if(textField == self.startPointTextField ){
-        [self showLocationPickerWithTextFieldType:PickupTextField];
+    if(textField == self.startPointTextField &&textField.text.length == 0){
+        [self showLocationPicker];
     }
-    else if (textField == self.destinationTextFiled){
-        [self showLocationPickerWithTextFieldType:DestinationTextField];
+    else if (textField == self.destinationTextFiled&&textField.text.length == 0){
+        [self showLocationPicker];
     }
     return NO;
 }
@@ -309,6 +315,10 @@
 - (void)popViewController
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma Actions
+- (IBAction)setDirectionAction:(id)sender {
+    [self showLocationPicker];
 }
 
 - (IBAction)advancedSearch:(id)sender

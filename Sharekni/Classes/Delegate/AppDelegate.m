@@ -17,6 +17,7 @@
 #import "WelcomeViewController.h"
 #import "HomeViewController.h"
 
+@import GoogleMaps;
 @interface AppDelegate ()
 
 @end
@@ -24,7 +25,7 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
     [[MZFormSheetBackgroundWindow appearance] setBlurRadius:1.0];
@@ -44,6 +45,10 @@
     
     KVNProgressConfiguration * progressConfiguration = [KVNProgress configuration];
     progressConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
+    
+    [GMSServices provideAPIKey:GoogleMapsAPIKey];
+    
+    
     WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
     self.window.rootViewController = navigationController;

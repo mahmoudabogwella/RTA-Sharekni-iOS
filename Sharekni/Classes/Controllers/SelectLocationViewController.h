@@ -12,5 +12,5 @@
 @interface SelectLocationViewController : UIViewController
 @property (nonatomic,strong) NSString *viewTitle;
 
-@property (strong, nonatomic) void (^selectionHandler) (Emirate*,Region*) ;
+@property (strong, nonatomic) void (^selectionHandler) (Emirate*,Region*,Emirate*,Region*) ;
 @end
