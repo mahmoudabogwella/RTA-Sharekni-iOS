@@ -114,7 +114,8 @@
 
     [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"both_icon"]      forState:UIControlStateNormal];
     [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"bothAcive_icon"]        forState:UIControlStateSelected];
-    [self.bothBtn    setSelected:NO];
+    [self.bothBtn    setSelected:YES];
+    self.accountType = AccountTypeBoth;
 
     [self.switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Left"]       forState:UIControlStateNormal];
     [self.switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Right"]      forState:UIControlStateSelected];
@@ -363,14 +364,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
             case NationalityTextField:
             {
                 Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
-                self.nationalityTxt.text = nationality.NationalityArName;
+                self.nationalityTxt.text = nationality.NationalityEnName;
                 self.selectedNationality = nationality;
             }
                 break;
             case LanguageTextField:
             {
                 Language *language = [self.languages objectAtIndex:selectedRow];
-                self.preferredLanguageTxt.text = language.LanguageArName;
+                self.preferredLanguageTxt.text = language.LanguageEnName;
                 self.selectedLanguage = language;
             }
                 break;
@@ -447,10 +448,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         self.dateFormatter.dateFormat = @"dd/MM/yyyy";
         NSString *dateString = [self.dateFormatter stringFromDate:self.date];
         [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
-        if (self.accountType == AccountTypeBoth) {
-            
-        }
-        else if (self.accountType == AccountTypeDriver){
+     if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
             [[MobAccountManager sharedMobAccountManager] registerDriverWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
                 [KVNProgress dismiss];
                 [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration as a driver Compeleted. ",nil)];
@@ -497,13 +495,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         case NationalityTextField:
         {
             Nationality *nationality = [self.nationalties objectAtIndex:row];
-            title = nationality.NationalityArName;
+            title = nationality.NationalityEnName;
         }
             break;
         case LanguageTextField:
         {
             Language *language = [self.languages objectAtIndex:row];
-            title = language.LanguageArName;
+            title = language.LanguageEnName;
         }
             break;
             

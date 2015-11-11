@@ -35,6 +35,7 @@
     string = [string stringByReplacingOccurrencesOfString:String_Close_Tag withString:@""];
     string = [string stringByReplacingOccurrencesOfString:XML_Tag1 withString:@""];
     string = [string stringByReplacingOccurrencesOfString:XML_Tag2 withString:@""];
+    string = [string stringByReplacingOccurrencesOfString:XML_Tag3 withString:@""];
     return  string;
 }
 

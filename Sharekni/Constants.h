@@ -42,6 +42,7 @@
 #define XML_Open_Tag @"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
 #define XML_Tag2 @"<string xmlns=\"http://MobAccount.org/\">"
 #define XML_Tag1 @"<string xmlns=\"http://Sharekni-MobIOS-Data.org/\">"
+#define XML_Tag3 @"<string xmlns=\"http://Sharekni-MobIOS-Data.org/\">"
 
 //#define Sharkeni_BASEURL @"http://sharekni.sdgstaff.com/_MobFiles/"
 //#define Sharkeni_BASEURL @"http://sharekni-web.sdg.ae/_mobfiles/"

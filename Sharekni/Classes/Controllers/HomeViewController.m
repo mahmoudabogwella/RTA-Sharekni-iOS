@@ -33,14 +33,14 @@
 @property (weak, nonatomic) IBOutlet UIView *createRideView;
 @property (weak, nonatomic) IBOutlet UIView *permitView;
 @property (weak, nonatomic) IBOutlet UIView *historyView;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *driverViews;
+
 
 
 @property (nonatomic,strong) User *sharedUser;
 @end
 
 @implementation HomeViewController
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,7 +49,6 @@
     [self configureData];
     [self configureUI];
 }
-
 
 #pragma Data
 - (void) configureData{
@@ -61,6 +60,7 @@
 }
 #pragma UI
 - (void) configureUI{
+    self.navigationItem.title = NSLocalizedString(@"Home Page", nil);
     self.notificationCountLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.DriverMyAlertsCount];
     
     self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.FirstName,self.sharedUser.LastName];
