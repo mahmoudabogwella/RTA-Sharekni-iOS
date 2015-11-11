@@ -13,10 +13,9 @@
 @interface DriverRideCell : UITableViewCell
 
 @property (nonatomic ,weak) IBOutlet UILabel *RouteName ;
+@property (nonatomic ,weak) IBOutlet UIView *containerView ;
 @property (nonatomic ,weak) IBOutlet UILabel *FromRegionName ;
 @property (nonatomic ,weak) IBOutlet UILabel *ToRegionName ;
-@property (nonatomic ,weak) IBOutlet UILabel *startingTime ;
-@property (nonatomic ,weak) IBOutlet UILabel *availableDays ;
 
 
 - (void)setDriverRideDetails:(DriverDetails *)rideDetails;

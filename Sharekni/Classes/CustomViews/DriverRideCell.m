@@ -7,11 +7,21 @@
 //
 
 #import "DriverRideCell.h"
+#import "UILabel+Borders.h"
+#import "Constants.h"
+#import <UIColor+Additions/UIColor+Additions.h>
 
 @implementation DriverRideCell
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    [_RouteName addRightBorderWithColor:Red_UIColor];
+    [_RouteName addLeftBorderWithColor:Red_UIColor];
+    
+    _containerView.layer.cornerRadius = 20;
+    _containerView.layer.borderWidth = 1;
+    _containerView.layer.borderColor = Red_UIColor.CGColor;
 }
 
 - (void)setDriverRideDetails:(DriverDetails *)rideDetails
@@ -19,8 +29,6 @@
     _RouteName.text = rideDetails.RouteEnName ;
     _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",rideDetails.FromEmirateEnName,rideDetails.FromRegionEnName];
     _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",rideDetails.ToEmirateEnName,rideDetails.ToRegionEnName];
-    _startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",rideDetails.StartTime];
-    _availableDays.text = [self getAvailableDays:rideDetails];
 }
 
 - (NSString *)getAvailableDays:(DriverDetails *)rideDetails

@@ -20,11 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RegistrationBg" id="TYl-hx-VoP">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <animations/>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="7bE-oY-TXs">
                     <rect key="frame" x="3" y="13" width="70" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -86,7 +81,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
                 </imageView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="159" sectionHeaderHeight="28" sectionFooterHeight="28" id="LBn-Mc-ZA6">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="170" sectionHeaderHeight="28" sectionFooterHeight="28" id="LBn-Mc-ZA6">
                     <rect key="frame" x="0.0" y="143" width="320" height="425"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <animations/>
@@ -108,7 +103,6 @@
     <resources>
         <image name="Call_Btn" width="56" height="42"/>
         <image name="Msg_Btn" width="57" height="37"/>
-        <image name="RegistrationBg" width="640" height="1039"/>
         <image name="rate" width="54" height="61"/>
     </resources>
 </document>

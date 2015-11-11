@@ -15,6 +15,9 @@
 #import "MasterDataManager.h"
 #import "Review.h"
 #import "ReviewCell.h"
+#import "UILabel+Borders.h"
+#import <UIColor+Additions/UIColor+Additions.h>
+#import "Constants.h"
 
 @interface RideDetailsViewController ()
 {
@@ -31,6 +34,11 @@
     __weak IBOutlet UILabel *nationality ;
     __weak IBOutlet UILabel *gender ;
     __weak IBOutlet UILabel *ageRange ;
+    
+    __weak IBOutlet UILabel *preferenceLbl ;
+    __weak IBOutlet UILabel *reviewLbl ;
+    __weak IBOutlet UIView *preferenceView ;
+    __weak IBOutlet UIView *reviewsView ;
 }
 
 @property (nonatomic ,strong) NSMutableArray *reviews ;
@@ -59,6 +67,21 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
     [contentView setScrollEnabled:YES];
+    [contentView setContentSize:contentView.frame.size];
+    
+    [preferenceLbl addRightBorderWithColor:Red_UIColor];
+    [preferenceLbl addLeftBorderWithColor:Red_UIColor];
+    [reviewLbl addRightBorderWithColor:Red_UIColor];
+    [reviewLbl addLeftBorderWithColor:Red_UIColor];
+
+    
+    preferenceView.layer.cornerRadius = 20;
+    preferenceView.layer.borderWidth = 1;
+    preferenceView.layer.borderColor = Red_UIColor.CGColor;
+    
+    reviewsView.layer.cornerRadius = 20;
+    reviewsView.layer.borderWidth = 1;
+    reviewsView.layer.borderColor = Red_UIColor.CGColor;
     
     FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",_driverDetails.FromEmirateEnName,_driverDetails.FromRegionEnName];
     ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",_driverDetails.ToEmirateEnName,_driverDetails.ToRegionEnName];
@@ -93,11 +116,16 @@
    
     [[MasterDataManager sharedMasterDataManager] getReviewList:_driverDetails.AccountId andRoute:_driverDetails.RouteId withSuccess:^(NSMutableArray *array) {
         blockSelf.reviews = array;
+        
+        if (array.count == 0) {
+            reviewLbl.hidden = YES ;
+        }
         [KVNProgress dismiss];
         [reviewList reloadData];
         
         reviewList.frame = CGRectMake(reviewList.frame.origin.x, reviewList.frame.origin.y, reviewList.frame.size.width,self.reviews.count * 146.0f);
-        [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewList.frame.origin.y + (self.reviews.count * 146.0f) + 10.0f)];
+//        [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewList.frame.origin.y + (self.reviews.count * 146.0f) + 10.0f)];
+        reviewsView.frame = CGRectMake(reviewsView.frame.origin.x, reviewsView.frame.origin.y, reviewsView.frame.size.width,self.reviews.count * 146.0f);
         
     } Failure:^(NSString *error) {
         
