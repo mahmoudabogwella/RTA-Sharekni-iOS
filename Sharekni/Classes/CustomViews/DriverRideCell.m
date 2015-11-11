@@ -17,9 +17,9 @@
 - (void)setDriverRideDetails:(DriverDetails *)rideDetails
 {
     _RouteName.text = rideDetails.RouteEnName ;
-    _FromRegionName.text = [NSString stringWithFormat:@"From %@ - %@",rideDetails.FromEmirateEnName,rideDetails.FromRegionEnName];
+    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",rideDetails.FromEmirateEnName,rideDetails.FromRegionEnName];
     _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",rideDetails.ToEmirateEnName,rideDetails.ToRegionEnName];
-    _startingTime.text = [NSString stringWithFormat:@"Starting Time : %@ - End Time : %@",rideDetails.StartTime,rideDetails.EndTime];
+    _startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",rideDetails.StartTime];
     _availableDays.text = [self getAvailableDays:rideDetails];
 }
 

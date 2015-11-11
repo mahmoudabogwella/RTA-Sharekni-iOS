@@ -31,7 +31,7 @@
                     <animations/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SE2-af-F5K">
-                    <rect key="frame" x="278" y="18" width="42" height="31"/>
+                    <rect key="frame" x="278" y="33" width="42" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -42,17 +42,8 @@
                         <action selector="call:" destination="-1" eventType="touchUpInside" id="mUH-hb-gbs"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wEp-h8-6CX">
-                    <rect key="frame" x="226" y="48" width="92" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                    <animations/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" backgroundImage="Details">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7lz-01-vHg">
-                    <rect key="frame" x="227" y="17" width="49" height="31"/>
+                    <rect key="frame" x="227" y="32" width="49" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -91,7 +82,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="uZC-WS-UKH">
-                    <rect key="frame" x="109" y="66" width="21" height="21"/>
+                    <rect key="frame" x="109" y="66" width="21" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
                 </imageView>
@@ -105,12 +96,6 @@
                         <outlet property="delegate" destination="-1" id="1Tk-52-Zn9"/>
                     </connections>
                 </tableView>
-                <view contentMode="scaleToFill" id="Ln5-sX-HRD">
-                    <rect key="frame" x="0.0" y="103" width="320" height="1"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <animations/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="0.38080658779999998" colorSpace="calibratedWhite"/>
-                </view>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -121,8 +106,7 @@
         </view>
     </objects>
     <resources>
-        <image name="Call_Btn" width="28" height="21"/>
-        <image name="Details" width="106" height="40"/>
+        <image name="Call_Btn" width="56" height="42"/>
         <image name="Msg_Btn" width="57" height="37"/>
         <image name="RegistrationBg" width="640" height="1039"/>
     </resources>

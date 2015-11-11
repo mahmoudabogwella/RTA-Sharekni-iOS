@@ -89,7 +89,7 @@ U3VuICwgTW9uICwgVHVlECAsIFdlZCAsIFRodSAsIEZyaQ
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Call_Btn" width="28" height="21"/>
+        <image name="Call_Btn" width="56" height="42"/>
         <image name="Msg_Btn" width="57" height="37"/>
     </resources>
 </document>

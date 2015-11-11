@@ -21,7 +21,7 @@
     self.driverName.text = mostRide.DriverName ;
     self.country.text = mostRide.NationalityArName ;
     self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
-    self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@ - End Time : %@",mostRide.StartTime,mostRide.EndTime];
+    self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",mostRide.StartTime];
     self.availableDays.text = [self getAvailableDays:mostRide];
     self.rate.text = [NSString stringWithFormat:@"%ld",mostRide.Rating];
     self.phone = mostRide.DriverMobile ;

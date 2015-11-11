@@ -49,8 +49,8 @@
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
 
-    _FromRegionName.text = [NSString stringWithFormat:@"From : %@",_ride.FromRegionNameEn] ;
-    _ToRegionName.text = [NSString stringWithFormat:@"From : %@",_ride.ToRegionNameEn] ;;
+    _FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",_ride.FromEmirateNameEn,_ride.FromRegionNameEn] ;
+    _ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",_ride.ToEmirateNameEn,_ride.ToRegionNameEn] ;;
     
     [self getRideDetails];
 }
