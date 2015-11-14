@@ -70,7 +70,9 @@
                 AgeRange *range= [AgeRange gm_mappedObjectWithJsonRepresentation:dictionary];
                 [ageRanges addObject:range];
             }
-            blockSelf.ageRanges = ageRanges;
+            if (ageRanges.count > 0) {
+                blockSelf.ageRanges = ageRanges;                
+            }
             if (success) {
                 success(ageRanges);
             }
@@ -102,7 +104,10 @@
                 Nationality *nationality= [Nationality gm_mappedObjectWithJsonRepresentation:dictionary];
                 [nationalities addObject:nationality];
             }
-            blockSelf.nationalties = nationalities;
+            if (nationalities.count == 0) {
+                blockSelf.nationalties = nationalities;
+            }
+            
             if (success) {
                 success(nationalities);
             }
@@ -163,7 +168,10 @@
                 Language *language= [Language gm_mappedObjectWithJsonRepresentation:dictionary];
                 [languages addObject:language];
             }
-            blockSelf.languages = languages;
+            if(languages.count > 0){
+                blockSelf.languages = languages;
+            }
+
             if (success) {
                 success(languages);
             }
@@ -217,8 +225,10 @@
                 Emirate *emirtae= [Emirate gm_mappedObjectWithJsonRepresentation:dictionary];
                 [emirates addObject:emirtae];
             }
+            if(emirates.count > 0){
+                self.emirates = emirates;
+            }
 
-            self.emirates = emirates;
             success(emirates);
         } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
             NSLog(@"Error %@",error.description);

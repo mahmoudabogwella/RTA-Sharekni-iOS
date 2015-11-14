@@ -94,10 +94,16 @@ typedef enum RoadType : NSUInteger {
     SingleRideType
 } RoadType;
 
+typedef enum WebViewType : NSUInteger {
+    WebViewPrivacyType,
+    WebViewTermsAndConditionsType
+} WebViewType;
+
 typedef enum AccountType : NSUInteger {
     AccountTypeDriver,
     AccountTypePassenger,
-    AccountTypeBoth
+    AccountTypeBoth,
+    AccountTypeNone
 } AccountType;
 
 typedef enum TextFieldType : NSUInteger {

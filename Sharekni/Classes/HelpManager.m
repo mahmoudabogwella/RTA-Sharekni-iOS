@@ -49,6 +49,13 @@
 }
 
 
+- (NSInteger) yearsBetweenDate:(NSDate *)date1 andDate:(NSDate *)date2{
+    NSTimeInterval distanceBetweenDates = [date1 timeIntervalSinceDate:date2];
+    double secondsInyear = 60 * 60 * 24 * 365;
+    NSInteger yearsBetweenDates = distanceBetweenDates / secondsInyear;
+    return yearsBetweenDates;
+}
+
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(HelpManager);
 @end

@@ -77,6 +77,10 @@
 		87196D461BF0A30500A94370 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87196D451BF0A30500A94370 /* Launch Screen.storyboard */; };
 		873E4C5E1BED3086006C42F8 /* MapInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 873E4C5D1BED3085006C42F8 /* MapInfoWindow.xib */; };
 		873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 873E4C601BED30E4006C42F8 /* MapInfoWindow.m */; };
+		8787E1EE1BF74EBC00CCD53B /* SharekniWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8787E1EC1BF74EBC00CCD53B /* SharekniWebViewController.m */; };
+		8787E1EF1BF74EBC00CCD53B /* SharekniWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8787E1ED1BF74EBC00CCD53B /* SharekniWebViewController.xib */; };
+		8787E1F21BF7534100CCD53B /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = 8787E1F01BF7534100CCD53B /* policy.html */; };
+		8787E1F31BF7534100CCD53B /* terms_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 8787E1F11BF7534100CCD53B /* terms_en.html */; };
 		87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* MobAccountManager.m */; };
 		87B58B561BD36F7900E73E55 /* MostRideDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B551BD36F7900E73E55 /* MostRideDetails.m */; };
 		87B58B591BD3842800E73E55 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B581BD3842800E73E55 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -232,12 +236,17 @@
 		14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DriverDetailsViewController.xib; sourceTree = "<group>"; };
 		14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		14E7A8AD1BDF145300255D86 /* VideoSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSplashViewController.h; sourceTree = "<group>"; };
-		14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoSplashViewController.m; sourceTree = "<group>"; };
+		14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoSplashViewController.m; path = Classes/Controllers/VideoSplashViewController.m; sourceTree = "<group>"; };
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		87196D451BF0A30500A94370 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		873E4C5D1BED3085006C42F8 /* MapInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapInfoWindow.xib; sourceTree = "<group>"; };
 		873E4C5F1BED30E4006C42F8 /* MapInfoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapInfoWindow.h; sourceTree = "<group>"; };
 		873E4C601BED30E4006C42F8 /* MapInfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapInfoWindow.m; sourceTree = "<group>"; };
+		8787E1EB1BF74EBC00CCD53B /* SharekniWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharekniWebViewController.h; sourceTree = "<group>"; };
+		8787E1EC1BF74EBC00CCD53B /* SharekniWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharekniWebViewController.m; sourceTree = "<group>"; };
+		8787E1ED1BF74EBC00CCD53B /* SharekniWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SharekniWebViewController.xib; sourceTree = "<group>"; };
+		8787E1F01BF7534100CCD53B /* policy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = policy.html; sourceTree = "<group>"; };
+		8787E1F11BF7534100CCD53B /* terms_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms_en.html; sourceTree = "<group>"; };
 		87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		87A113391BB6FB370092E870 /* MobAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobAccountManager.h; sourceTree = "<group>"; };
 		87A1133A1BB6FB370092E870 /* MobAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobAccountManager.m; sourceTree = "<group>"; };
@@ -340,8 +349,11 @@
 		04931B1D1BAAF814000F5434 /* Sharekni */ = {
 			isa = PBXGroup;
 			children = (
-				143F30DF1BC83F70006A6A21 /* Images.xcassets */,
+				8787E1F01BF7534100CCD53B /* policy.html */,
+				8787E1F11BF7534100CCD53B /* terms_en.html */,
+				14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */,
 				143BE6A71BB14BD2009F6496 /* Classes */,
+				143F30DF1BC83F70006A6A21 /* Images.xcassets */,
 				04931B2B1BAAF814000F5434 /* Main.storyboard */,
 				04931B251BAAF814000F5434 /* Sharekni.xcdatamodeld */,
 				04931B1E1BAAF814000F5434 /* Supporting Files */,
@@ -400,7 +412,6 @@
 				87D9D32D1BEE58380096E17A /* AdvancedSearchViewController.m */,
 				87D9D32E1BEE58380096E17A /* AdvancedSearchViewController.xib */,
 				14E7A8AD1BDF145300255D86 /* VideoSplashViewController.h */,
-				14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */,
 				143BE6B01BB14BE5009F6496 /* WelcomeViewController.h */,
 				143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */,
 				14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */,
@@ -451,6 +462,9 @@
 				0453B2E61BE54B3B00007271 /* SideMenuTableViewController.m */,
 				0453B2E81BE54EC500007271 /* BaseViewController.h */,
 				0453B2E91BE54EC500007271 /* BaseViewController.m */,
+				8787E1EB1BF74EBC00CCD53B /* SharekniWebViewController.h */,
+				8787E1EC1BF74EBC00CCD53B /* SharekniWebViewController.m */,
+				8787E1ED1BF74EBC00CCD53B /* SharekniWebViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -674,10 +688,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8787E1F21BF7534100CCD53B /* policy.html in Resources */,
 				047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */,
 				873E4C5E1BED3086006C42F8 /* MapInfoWindow.xib in Resources */,
 				87196D461BF0A30500A94370 /* Launch Screen.storyboard in Resources */,
 				87D9D3301BEE58380096E17A /* AdvancedSearchViewController.xib in Resources */,
+				8787E1F31BF7534100CCD53B /* terms_en.html in Resources */,
 				143F30E01BC83F70006A6A21 /* Images.xcassets in Resources */,
 				0453B2EC1BE55E1000007271 /* MostRidesCell.xib in Resources */,
 				044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */,
@@ -698,6 +714,7 @@
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				143F30DE1BC83C28006A6A21 /* SearchResultsViewController.xib in Resources */,
+				8787E1EF1BF74EBC00CCD53B /* SharekniWebViewController.xib in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				047E45841BC59DE0000B5151 /* SelectLocationViewController.xib in Resources */,
@@ -792,6 +809,7 @@
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
 				87C571DC1BDBD33F00EFB618 /* Vehicle.m in Sources */,
 				87B58B5D1BD388D100E73E55 /* MapLookupViewController.m in Sources */,
+				8787E1EE1BF74EBC00CCD53B /* SharekniWebViewController.m in Sources */,
 				047E458E1BC5A4D8000B5151 /* NSString+Levenshtein.m in Sources */,
 				143BE6BE1BB68E97009F6496 /* MostRidesViewController.m in Sources */,
 				04CFC7051BE52C6B0009BBDA /* RegisterViewController.m in Sources */,
