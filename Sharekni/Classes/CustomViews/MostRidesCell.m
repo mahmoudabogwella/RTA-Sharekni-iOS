@@ -7,14 +7,15 @@
 //
 
 #import "MostRidesCell.h"
-
+#import "Constants.h"
+#import <UIColor+Additions.h>
 @implementation MostRidesCell
 
 - (void)awakeFromNib {
     // Initialization code
     self.driversImage.layer.cornerRadius = self.driversImage.frame.size.width / 2.0f ;
     self.driversImage.layer.borderWidth = 3.0f;
-    self.driversImage.layer.borderColor = [[UIColor redColor] CGColor];
+    self.driversImage.layer.borderColor = Red_UIColor.CGColor;
     self.driversImage.clipsToBounds = YES ;
 }
 

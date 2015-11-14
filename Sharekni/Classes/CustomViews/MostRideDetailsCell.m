@@ -19,7 +19,7 @@
 - (void)setMostRide:(MostRideDetails *)mostRide
 {
     self.driverName.text = mostRide.DriverName ;
-    self.country.text = mostRide.NationalityArName ;
+    self.country.text = mostRide.NationalityEnName ;
     self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
     self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",mostRide.StartTime];
     self.availableDays.text = [self getAvailableDays:mostRide];

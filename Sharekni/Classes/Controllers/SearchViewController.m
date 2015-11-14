@@ -139,8 +139,8 @@
     
     self.dateLabel.textColor = Red_UIColor;
     self.timeLabel.textColor = Red_UIColor;
-    self.dateLabel.text = NSLocalizedString(@"Starting when", nil);
-    self.timeLabel.text = NSLocalizedString(@"schedule on", nil);
+//    self.dateLabel.text = NSLocalizedString(@"Starting when", nil);
+//    self.timeLabel.text = NSLocalizedString(@"schedule on", nil);
     
     [self.searchButton setBackgroundColor:Red_UIColor];
     
