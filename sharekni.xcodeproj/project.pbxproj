@@ -655,7 +655,6 @@
 				TargetAttributes = {
 					04931B1A1BAAF814000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 89SHAPC6FM;
 					};
 					04931B361BAAF815000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -987,6 +986,7 @@
 			baseConfigurationReference = 33EF369DCE24017837965426 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1004,15 +1004,16 @@
 			baseConfigurationReference = C699F720BCBF8D46B41E1A56 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Roads & Transport Authority (89SHAPC6FM)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Sharekni/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rta.ae.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "59aed275-3b05-4aac-941f-714f922d44e0";
+				PROVISIONING_PROFILE = "5cbf6e5f-6e88-4081-b65e-43661d9f4086";
 			};
 			name = Release;
 		};
