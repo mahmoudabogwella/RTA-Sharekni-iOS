@@ -181,33 +181,7 @@
         
         responseString = [self jsonStringFromResponse:responseString];
         
-//        if ([responseString containsString:@"ID"]) {
-//            NSError *jsonError;
-//            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-//            NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:objectData
-//                                                                             options:NSJSONReadingMutableContainers
-//                                                                               error:&jsonError];
-//            User *user = [User gm_mappedObjectWithJsonRepresentation:resultDictionary];
-//            self.applicationUser = user;
-//            [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
-//                
-//            } Failure:^(NSString *error) {
-//                
-//            }];
-//            success(user);
-//        }
-//        else if ([responseString containsString:@"-2"]){
-//            failure(@"Mobile number already exists");
-//        }
-//        else if ([responseString containsString:@"-1"]){
-//            failure(@"Email already exists");
-//        }
-//        else if ([responseString containsString:@"0"]){
-//            failure(@"Email already exists");
-//        }
-//        else{
-//            success(nil);
-//        }
+
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         failure(@"incorrect");
