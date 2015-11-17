@@ -90,7 +90,10 @@
 //                                 BirthDate_KEY:birthDate,
 //                                 NationalityId_KEY:nationalityId,
 //                                 PreferredLanguageId_KEY:langID};
-    
+    /*
+     cls_mobios.asmx/RegisterDriver?firstName=testqw&lastName=testqw&mobile=01020203030&username=testqw@gmail.com&password=testqw&gender=F&photoName=&licenseScannedFileName=&TrafficFileNo=&BirthDate=17/11/1979&NationalityId=8&PreferredLanguageId=1
+
+     */
     NSString *body = [NSString stringWithFormat:@"cls_mobios.asmx/RegisterDriver?firstName=%@&lastName=%@&mobile=%@&username=%@&password=%@&gender=%@&photoName=%@&licenseScannedFileName=%@&TrafficFileNo=%@&BirthDate=%@&NationalityId=%@&PreferredLanguageId=%@",firstName,lastName,mobile,username,password,gender,@"",@"",@"",birthDate,nationalityId,langID];
     
     [self.operationManager GET:body parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
@@ -102,14 +105,11 @@
         else if ([responseString containsString:@"-1"]){
             failure(@"Email already exists");
         }
-        else if ([responseString containsString:@"0"]){
-            failure(@"Email already exists");
-        }
         else{
             success(nil);
         }
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
+        failure(error.localizedDescription);
     }];
 }
 

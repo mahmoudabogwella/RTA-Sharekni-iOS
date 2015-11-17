@@ -36,6 +36,7 @@
     string = [string stringByReplacingOccurrencesOfString:XML_Tag1 withString:@""];
     string = [string stringByReplacingOccurrencesOfString:XML_Tag2 withString:@""];
     string = [string stringByReplacingOccurrencesOfString:XML_Tag3 withString:@""];
+    string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     return  string;
 }
 

@@ -230,6 +230,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     else{
         [self addGreyBorderToView:textField.superview];
     }
+    if (textField == self.nationalityTxt) {
+    BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
+        if (!validNationality) {
+            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select nationality from list", nil)];
+            return NO;
+        }
+    }
     return [self textSouldEndEditing];
 }
 
@@ -422,12 +429,16 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     self.firstName = self.firstNametxt.text;
     self.lastName = self.lastNametxt.text;
     self.mobileNumber = self.mobileNumberTxt.text;
+    BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
+    if (validNationality){
+        self.selectedNationality = [self.nationalties objectAtIndex:[self.nationaltiesStringsArray indexOfObject:self.nationalityTxt.text]];
+    }
     
     if(self.accountType == AccountTypeNone){
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Please Choose acconut type.", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
     }
-    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 || !self.selectedNationality || !self.selectedLanguage || !self.date){
+    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 || !validNationality || !self.selectedLanguage || !self.date){
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Please fill all fields", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
         [self configureBorders];
@@ -455,7 +466,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
                 [self loginAfterRegisteration];
             } Failure:^(NSString *error) {
                 [KVNProgress dismiss];
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration Failed. ",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:error];
             }];
         }
         else if (self.accountType == AccountTypePassenger){
@@ -465,7 +476,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
                 [self loginAfterRegisteration];
             } Failure:^(NSString *error) {
                 [KVNProgress dismiss];
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration Failed. ",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:error];
             }];
         }
     }
@@ -653,8 +664,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     else{
         [self addGreyBorderToView:self.mobileNumberView];
     }
-    
-    if (!self.selectedNationality){
+    BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
+    if (!validNationality){
         [self addRedBorderToView:self.nationalityView];
     }
     else{
