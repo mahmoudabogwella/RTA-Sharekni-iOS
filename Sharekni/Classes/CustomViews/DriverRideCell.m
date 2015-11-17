@@ -12,6 +12,18 @@
 #import <UIColor+Additions/UIColor+Additions.h>
 
 @implementation DriverRideCell
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self = [[[NSBundle mainBundle] loadNibNamed:@"DriverRideCell" owner:nil options:nil] objectAtIndex:0];
+        [_RouteName addRightBorderWithColor:Red_UIColor];
+        [_RouteName addLeftBorderWithColor:Red_UIColor];
+        
+        _containerView.layer.cornerRadius = 20;
+        _containerView.layer.borderWidth = 1;
+        _containerView.layer.borderColor = Red_UIColor.CGColor;
+    }
+    return self;
+}
 
 - (void)awakeFromNib {
     // Initialization code
