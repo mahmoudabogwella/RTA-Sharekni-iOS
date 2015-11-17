@@ -139,12 +139,16 @@
                                                                                error:&jsonError];
             User *user = [User gm_mappedObjectWithJsonRepresentation:resultDictionary];
             self.applicationUser = user;
+            __block MobAccountManager *blockSelf = self;
             [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
-                
+                blockSelf.applicationUser.userImage = image;
+                blockSelf.applicationUser.imageLocalPath = filePath;
+                success(user);
             } Failure:^(NSString *error) {
-                
+                blockSelf.applicationUser.userImage = [UIImage imageNamed:@"Man"];
+                blockSelf.applicationUser.imageLocalPath = nil;
+                success(user);
             }];
-            success(user);
         }
         else if ([responseString containsString:@"-2"]){
             failure(@"Mobile number already exists");

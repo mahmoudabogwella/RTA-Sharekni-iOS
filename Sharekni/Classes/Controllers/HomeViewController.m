@@ -15,6 +15,7 @@
 #import "SearchViewController.h"
 @interface HomeViewController ()
 #pragma Outlets
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 
 @property (weak, nonatomic) IBOutlet UILabel *ridesCreatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ridesJoinedLabel;
@@ -52,7 +53,6 @@
 @end
 
 @implementation HomeViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -135,6 +135,16 @@
     NSString *ridesCreatedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Created", nil),self.sharedUser.DriverMyRidesCount];
     NSString *ridesJoinedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Joined", nil),self.sharedUser.PassengerJoinedRidesCount];
     NSString *vehiclesCountText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Vehicles", nil),@"0"];
+    
+    
+    self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"Man"];
+    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
+    self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.profileImageView.layer.borderWidth = 0.5f;
+    self.profileImageView.clipsToBounds = YES;
+    
+    
+    
     self.ridesCreatedLabel.text = ridesCreatedText;
     self.ridesJoinedLabel.text = ridesJoinedText;
     self.vehiclesLabel.text = vehiclesCountText;

@@ -76,6 +76,7 @@
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 51, 100, 79)];
         imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        imageView.image = self.applicationUser.userImage ? self.applicationUser.userImage : [UIImage imageNamed:@"Man"];
         imageView.image = [UIImage imageNamed:@"man.png"];
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = 50.0;
@@ -84,7 +85,7 @@
         imageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         imageView.layer.shouldRasterize = YES;
         imageView.clipsToBounds = YES;
-        
+        imageView.contentMode  =UIViewContentModeScaleAspectFit;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 135, 0, 24)];
         label.text = [NSString stringWithFormat:@"%@ %@",self.applicationUser.FirstName,self.applicationUser.LastName];
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:21];

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 @interface User : NSObject
 
@@ -48,5 +49,7 @@
 @property (nonatomic,strong) NSNumber *PassengerMyRidesCount;
 
 @property (nonatomic,strong) UIImage *userImage;
+@property (nonatomic,strong) NSString *imageLocalPath;
+@property (nonatomic,strong) AccountType *accountType;
 
 @end

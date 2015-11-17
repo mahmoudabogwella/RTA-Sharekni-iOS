@@ -69,6 +69,8 @@
                 responseString = [responseString stringByReplacingOccurrencesOfString:base64tag4 withString:@""];
                 responseString = [responseString stringByReplacingOccurrencesOfString:@"\r" withString:@" "];
                 responseString = [responseString stringByReplacingOccurrencesOfString:base64tag5 withString:@""];
+                responseString = [responseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                
                 NSLog(@"string %@",responseString);
 //                NSString *test = @"asdasdasdasdasdasdqweqweqweqwejkbnjknknk";
 //                NSString * x = [self encodeStringTo64:test];
