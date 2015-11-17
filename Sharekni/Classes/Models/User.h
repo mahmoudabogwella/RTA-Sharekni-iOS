@@ -50,6 +50,6 @@
 
 @property (nonatomic,strong) UIImage *userImage;
 @property (nonatomic,strong) NSString *imageLocalPath;
-@property (nonatomic,strong) AccountType *accountType;
+@property (nonatomic,assign) AccountType accountType;
 
 @end

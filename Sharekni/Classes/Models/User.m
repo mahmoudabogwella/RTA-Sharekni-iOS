@@ -47,4 +47,18 @@
     return mapping;
 }
 
+
+- (void)setAccountStatus:(NSString *)AccountStatus{
+    _AccountStatus = AccountStatus;
+    if ([_AccountStatus containsString:@"D"]) {
+        self.accountType = AccountTypeDriver;
+    }
+    else if ([_AccountStatus containsString:@"P"]){
+        self.accountType = AccountTypePassenger;
+    }
+    else if ([_AccountStatus containsString:@"B"]){
+        self.accountType = AccountTypeBoth;
+    }
+}
+
 @end
