@@ -63,6 +63,7 @@
 
 @property (strong, nonatomic)  NSDateFormatter *dateFormatter;
 @property (strong,nonatomic) NSDate *pickupDate;
+@property (strong,nonatomic) NSDate *pickupTime;
 
 @end
 
@@ -120,20 +121,20 @@
     self.pickupTitleLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     
-    self.dateView.layer.cornerRadius = 8;
-    self.dateView.layer.borderWidth = 0;
-    self.dateView.layer.borderColor = Red_UIColor.CGColor;
-    self.dateView.layer.masksToBounds = YES;
+//    self.dateView.layer.cornerRadius = 8;
+//    self.dateView.layer.borderWidth = 0;
+//    self.dateView.layer.borderColor = Red_UIColor.CGColor;
+//    self.dateView.layer.masksToBounds = YES;
     
     
-    self.timeView.layer.cornerRadius = 8;
-    self.timeView.layer.borderWidth = 0;
-    self.timeView.layer.borderColor = [UIColor blackColor].CGColor;
-    self.timeView.layer.masksToBounds = YES;
+//    self.timeView.layer.cornerRadius = 8;
+//    self.timeView.layer.borderWidth = 0;
+//    self.timeView.layer.borderColor = [UIColor blackColor].CGColor;
+//    self.timeView.layer.masksToBounds = YES;
     
-    self.saveSearchView.layer.cornerRadius = 10;
-    self.saveSearchView.layer.borderWidth = 0;
-    self.saveSearchView.layer.borderColor = [UIColor blackColor].CGColor;
+//    self.saveSearchView.layer.cornerRadius = 10;
+//    self.saveSearchView.layer.borderWidth = 0;
+//    self.saveSearchView.layer.borderColor = [UIColor blackColor].CGColor;
     
     self.searchButton.layer.cornerRadius = 8;
     
@@ -163,9 +164,10 @@
     [self.timeView addGestureRecognizer:TimeTapGestureRecognizer];
     
     self.emiratesRegionsView.alpha = 0;
+    self.helpLabel.alpha = 1;
 }
 
-- (void) saveSearchViewTapped{
+- (void) saveSearchViewTapped {
     self.saveSearchEnabled = !self.saveSearchEnabled;
     if (self.saveSearchEnabled) {
         self.saveSearchLabel.textColor = Red_UIColor;
@@ -180,7 +182,7 @@
 #pragma Pickers
 
 - (void) showDatePicker{
-    self.pickupDate = [[NSDate date] dateBySettingHour:10];
+//    self.pickupDate = [[NSDate date] dateBySettingHour:10];
     __block SearchViewController  *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
@@ -192,7 +194,7 @@
         NSInteger hour = blockSelf.pickupDate.hour;
         NSInteger minutes = blockSelf.pickupDate.minute;
         
-        blockSelf.pickupDate = [[date dateBySettingHour:hour] dateBySettingMinute:minutes];
+        blockSelf.pickupDate = [[date dateBySettingHour:10] dateBySettingMinute:0];
     }];
     
     //Create cancel action
@@ -204,7 +206,7 @@
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
     dateSelectionController.title = @"select Pickup Date";
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
-    dateSelectionController.datePicker.date = self.pickupDate;
+    dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [[NSDate date] dateByAddingHour:10];;
     
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
@@ -215,6 +217,7 @@
     __block SearchViewController *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
+        blockSelf.pickupTime = date;
         blockSelf.dateFormatter.dateFormat = @"HH:mm a";
         NSString *time = [self.dateFormatter stringFromDate:date];
         blockSelf.timeLabel.text = time;
@@ -232,7 +235,7 @@
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
     dateSelectionController.title = @"select Pickup Time";
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
-    dateSelectionController.datePicker.date = self.pickupDate;
+    dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [NSDate date];
     
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
@@ -284,6 +287,12 @@
 - (IBAction) quickSearchAction:(id)sender {
     if (!self.fromEmirate) {
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
+    }
+    else if (!self.pickupDate){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter date ",nil)];
+    }
+    else if (!self.pickupTime) {
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter time ",nil)];
     }
     else{
         __block SearchViewController *blockSelf = self;

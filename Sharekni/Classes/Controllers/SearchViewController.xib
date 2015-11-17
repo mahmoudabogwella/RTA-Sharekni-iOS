@@ -68,6 +68,17 @@
                             </subviews>
                             <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                    <color key="value" white="0.59999999999999998" alpha="1" colorSpace="calibratedWhite"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" id="ZLy-Rt-HDh">
                             <rect key="frame" x="162" y="277" width="140" height="50"/>
@@ -89,6 +100,17 @@
                             </subviews>
                             <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                    <color key="value" white="0.59999999999999998" alpha="1" colorSpace="calibratedWhite"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="F5K-17-Yco">
                             <rect key="frame" x="13" y="97" width="288" height="40"/>
@@ -149,7 +171,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" id="N9k-FZ-MTx">
-                            <rect key="frame" x="10" y="145" width="301" height="110"/>
+                            <rect key="frame" x="10" y="150" width="301" height="110"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" id="qlI-um-GFd">
@@ -244,6 +266,18 @@
                         <action selector="mapLookUp:" destination="-1" eventType="touchUpInside" id="z9m-0O-yo9"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Eiq-Si-50L">
+                    <rect key="frame" x="107" y="478" width="106" height="90"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="topRides:" destination="-1" eventType="touchUpInside" id="y8e-tt-LcX"/>
+                    </connections>
+                </button>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="advancedSearchIcon" id="82I-un-cyJ">
                     <rect key="frame" x="247" y="490" width="42" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -283,18 +317,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Eiq-Si-50L">
-                    <rect key="frame" x="107" y="478" width="106" height="90"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
-                    <animations/>
-                    <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="topRides:" destination="-1" eventType="touchUpInside" id="y8e-tt-LcX"/>
-                    </connections>
-                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -7,8 +7,20 @@
 //
 
 #import "MostRideDetailsCell.h"
-
+#import "MasterDataManager.h"
 @implementation MostRideDetailsCell
+
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
+    {
+        self = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:0];
+        self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
+        self.driverImage.clipsToBounds = YES ;
+    }
+    return self;
+}
+
 
 - (void)awakeFromNib {
     // Initialization code
@@ -18,6 +30,7 @@
 
 - (void)setMostRide:(MostRideDetails *)mostRide
 {
+    _mostRide = mostRide;
     self.driverName.text = mostRide.DriverName ;
     self.country.text = mostRide.NationalityEnName ;
     self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
@@ -25,6 +38,46 @@
     self.availableDays.text = [self getAvailableDays:mostRide];
     self.rate.text = [NSString stringWithFormat:@"%ld",mostRide.Rating];
     self.phone = mostRide.DriverMobile ;
+}
+
+- (void)setDriver:(DriverSearchResult *)driver{
+    _driver = driver;
+    self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+    [[MasterDataManager sharedMasterDataManager] GetPhotoWithName:driver.AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
+        
+    } Failure:^(NSString *error) {
+        
+    }];
+    
+    self.driverName.text = driver.AccountName;
+    self.country.text = driver.Nationality_en;
+    self.phone = driver.AccountMobile ;
+    
+    NSString *daysText = @"";
+    if (driver.SDG_RouteDays_Sunday.boolValue) {
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sun,", nil)];
+    }
+    if (driver.SDG_RouteDays_Monday.boolValue) {
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon,", nil)];
+    }
+    if (driver.SDG_RouteDays_Tuesday.boolValue) {
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Tue,", nil)];
+    }
+    if (driver.SDG_RouteDays_Wednesday.boolValue) {
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Wed,", nil)];
+    }
+    if (driver.SDG_RouteDays_Thursday.boolValue) {
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Thu,", nil)];
+    }
+    if (driver.SDG_RouteDays_Friday.boolValue) {
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Fri,", nil)];
+    }
+    if (driver.Saturday.boolValue) {
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sat,", nil)];
+    }
+    if (daysText.length > 0) {
+        self.availableDays.text = daysText;        
+    }
 }
 
 - (IBAction)sendMail:(id)sender

@@ -24,11 +24,18 @@
     _containerView.layer.borderColor = Red_UIColor.CGColor;
 }
 
-- (void)setDriverRideDetails:(DriverDetails *)rideDetails
-{
-    _RouteName.text = rideDetails.RouteEnName ;
-    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",rideDetails.FromEmirateEnName,rideDetails.FromRegionEnName];
-    _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",rideDetails.ToEmirateEnName,rideDetails.ToRegionEnName];
+- (void)setDriverRideDetails:(DriverDetails *)driverRideDetails{
+    _driverRideDetails = driverRideDetails;
+    _RouteName.text = _driverRideDetails.RouteEnName ;
+    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",_driverRideDetails.FromEmirateEnName,_driverRideDetails.FromRegionEnName];
+    _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",_driverRideDetails.ToEmirateEnName,_driverRideDetails.ToRegionEnName];
+}
+
+- (void)setRideDetails:(Ride *)rideDetails{
+    _rideDetails = rideDetails;
+    _RouteName.text = _rideDetails.RouteEnName ;
+//    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",_rideDetails.FromEmirateEnName,_driverRideDetails.FromRegionEnName];
+//    _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",_driverRideDetails.ToEmirateEnName,_driverRideDetails.ToRegionEnName];
 }
 
 - (NSString *)getAvailableDays:(DriverDetails *)rideDetails

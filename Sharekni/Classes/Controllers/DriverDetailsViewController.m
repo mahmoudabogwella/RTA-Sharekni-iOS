@@ -17,6 +17,7 @@
 #import "MasterDataManager.h"
 #import "RideDetailsViewController.h"
 
+
 @interface DriverDetailsViewController () <MFMessageComposeViewControllerDelegate>
 
 @property (nonatomic ,weak) IBOutlet UIImageView *driverImage ;
@@ -53,18 +54,25 @@
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
     
-    if (self.isBestDriver) {
+    if (self.bestDriver) {
         self.driverName.text = _bestDriver.AccountName ;
         self.country.text = _bestDriver.NationalityEnName ;
         self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
         self.rate.text = [NSString stringWithFormat:@"%ld",_bestDriver.Rating];
-    }else{
+    }else if (self.mostRideDetails){
         self.driverName.text = _mostRideDetails.DriverName ;
         self.country.text = _mostRideDetails.NationalityArName ;
         self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
         self.rate.text = [NSString stringWithFormat:@"%ld",_mostRideDetails.Rating];
+    }else if (self.driverSearchResult){
+        self.driverName.text = self.driverSearchResult.DriverEnName ;
+        self.country.text = self.driverSearchResult.Nationality_en ;
+        self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+        self.rate.text = [NSString stringWithFormat:@"%@",self.driverSearchResult.Rating];
     }
     
+    [self.ridesList registerClass:[DriverRideCell class] forCellReuseIdentifier:RIDE_CELLID];
+    [self.ridesList registerNib:[UINib nibWithNibName:@"DriverRideCell" bundle:nil] forCellReuseIdentifier:RIDE_CELLID];
     
     [self getDriverRides];
 }
@@ -78,7 +86,9 @@
 {
     __block DriverDetailsViewController *blockSelf = self;
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-    [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:(_isBestDriver)?_bestDriver.AccountId:_mostRideDetails.AccountId WithSuccess:^(NSMutableArray *array)
+    NSString *ID = self.bestDriver ? self.bestDriver.AccountId : self.mostRideDetails ? self.mostRideDetails.AccountId : self.driverSearchResult.DriverId;
+    
+    [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:ID WithSuccess:^(NSMutableArray *array)
     {
         blockSelf.driverRides = array;
         [KVNProgress dismiss];
@@ -117,17 +127,15 @@
 
 - (DriverRideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier  = @"DriverRideCell";
-    
-    DriverRideCell *driverCell = (DriverRideCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DriverRideCell *driverCell = (DriverRideCell *)[tableView dequeueReusableCellWithIdentifier:RIDE_CELLID];
     
     if (driverCell == nil)
     {
-        driverCell = (DriverRideCell *)[[[NSBundle mainBundle] loadNibNamed:@"DriverRideCell" owner:nil options:nil] objectAtIndex:0];
+        driverCell = [[DriverRideCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:RIDE_CELLID];
     }
     
-    DriverDetails *driver = self.driverRides[indexPath.row];
-    [driverCell setDriverRideDetails:driver];
+    DriverDetails *driverDetails = self.driverRides[indexPath.row];
+    [driverCell setDriverRideDetails:driverDetails];
     
     return driverCell ;
 }
@@ -141,6 +149,10 @@
     RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:@"RideDetailsViewController" bundle:nil];
     rideDetails.driverDetails = driver ;
     [self.navigationController pushViewController:rideDetails animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return Driver_Ride_CELLHEIGHT;
 }
 
 #pragma mark - Message Delegate

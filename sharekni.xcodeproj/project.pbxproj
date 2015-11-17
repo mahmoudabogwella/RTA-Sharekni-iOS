@@ -100,6 +100,11 @@
 		87D9D32A1BEE555B0096E17A /* SideMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453B2E61BE54B3B00007271 /* SideMenuTableViewController.m */; };
 		87D9D32F1BEE58380096E17A /* AdvancedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D32D1BEE58380096E17A /* AdvancedSearchViewController.m */; };
 		87D9D3301BEE58380096E17A /* AdvancedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D9D32E1BEE58380096E17A /* AdvancedSearchViewController.xib */; };
+		87E5F75F1BFB464C004FF688 /* Ride.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F75E1BFB464C004FF688 /* Ride.m */; };
+		87E5F7631BFB68DE004FF688 /* RidesJoinedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F7611BFB68DE004FF688 /* RidesJoinedViewController.m */; };
+		87E5F7641BFB68DE004FF688 /* RidesJoinedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E5F7621BFB68DE004FF688 /* RidesJoinedViewController.xib */; };
+		87E5F7681BFB6914004FF688 /* RidesCreatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F7661BFB6914004FF688 /* RidesCreatedViewController.m */; };
+		87E5F7691BFB6914004FF688 /* RidesCreatedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */; };
 		F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E520A66E22BABE4DD7235 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -281,6 +286,14 @@
 		87D9D32C1BEE58380096E17A /* AdvancedSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedSearchViewController.h; sourceTree = "<group>"; };
 		87D9D32D1BEE58380096E17A /* AdvancedSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedSearchViewController.m; sourceTree = "<group>"; };
 		87D9D32E1BEE58380096E17A /* AdvancedSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedSearchViewController.xib; sourceTree = "<group>"; };
+		87E5F75D1BFB464C004FF688 /* Ride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ride.h; sourceTree = "<group>"; };
+		87E5F75E1BFB464C004FF688 /* Ride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ride.m; sourceTree = "<group>"; };
+		87E5F7601BFB68DE004FF688 /* RidesJoinedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesJoinedViewController.h; sourceTree = "<group>"; };
+		87E5F7611BFB68DE004FF688 /* RidesJoinedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RidesJoinedViewController.m; sourceTree = "<group>"; };
+		87E5F7621BFB68DE004FF688 /* RidesJoinedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RidesJoinedViewController.xib; sourceTree = "<group>"; };
+		87E5F7651BFB6914004FF688 /* RidesCreatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesCreatedViewController.h; sourceTree = "<group>"; };
+		87E5F7661BFB6914004FF688 /* RidesCreatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RidesCreatedViewController.m; sourceTree = "<group>"; };
+		87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RidesCreatedViewController.xib; sourceTree = "<group>"; };
 		C699F720BCBF8D46B41E1A56 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -465,6 +478,12 @@
 				8787E1EB1BF74EBC00CCD53B /* SharekniWebViewController.h */,
 				8787E1EC1BF74EBC00CCD53B /* SharekniWebViewController.m */,
 				8787E1ED1BF74EBC00CCD53B /* SharekniWebViewController.xib */,
+				87E5F7601BFB68DE004FF688 /* RidesJoinedViewController.h */,
+				87E5F7611BFB68DE004FF688 /* RidesJoinedViewController.m */,
+				87E5F7621BFB68DE004FF688 /* RidesJoinedViewController.xib */,
+				87E5F7651BFB6914004FF688 /* RidesCreatedViewController.h */,
+				87E5F7661BFB6914004FF688 /* RidesCreatedViewController.m */,
+				87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -582,6 +601,8 @@
 				148795D31BEA97E300B940D8 /* RideDetails.m */,
 				148795D51BEA97EF00B940D8 /* Review.h */,
 				148795D61BEA97EF00B940D8 /* Review.m */,
+				87E5F75D1BFB464C004FF688 /* Ride.h */,
+				87E5F75E1BFB464C004FF688 /* Ride.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -655,7 +676,7 @@
 				TargetAttributes = {
 					04931B1A1BAAF814000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = L92W2F5CHE;
+						DevelopmentTeam = 89SHAPC6FM;
 					};
 					04931B361BAAF815000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -699,9 +720,11 @@
 				044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */,
+				87E5F7691BFB6914004FF688 /* RidesCreatedViewController.xib in Resources */,
 				14E692661BE8B7180041A999 /* DriverDetailsViewController.xib in Resources */,
 				143F30EE1BC8488D006A6A21 /* Localizable.strings in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
+				87E5F7641BFB68DE004FF688 /* RidesJoinedViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				144869FB1BC0968E00804C26 /* QuickSearchViewController.xib in Resources */,
@@ -794,10 +817,12 @@
 				0429B1C31BB9C84400161222 /* NSObject+Blocks.m in Sources */,
 				14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */,
 				148795D41BEA97E300B940D8 /* RideDetails.m in Sources */,
+				87E5F7631BFB68DE004FF688 /* RidesJoinedViewController.m in Sources */,
 				148795DB1BEA9CF900B940D8 /* ReviewCell.m in Sources */,
 				148795CD1BEA679800B940D8 /* DriverRideCell.m in Sources */,
 				87C571D21BDBB08000EFB618 /* CreateRideViewController.m in Sources */,
 				04C3E0331BE09EF000698227 /* HomeViewController.m in Sources */,
+				87E5F75F1BFB464C004FF688 /* Ride.m in Sources */,
 				87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */,
 				143F31011BC9F540006A6A21 /* MapLookUp.m in Sources */,
 				14022BE51BE56AA400585042 /* RideDetailsViewController.m in Sources */,
@@ -829,6 +854,7 @@
 				047E45831BC59DE0000B5151 /* SelectLocationViewController.m in Sources */,
 				87B58B651BD3983800E73E55 /* MapItemPopupViewController.m in Sources */,
 				048912AA1BB92609005E4E02 /* Emirate.m in Sources */,
+				87E5F7681BFB6914004FF688 /* RidesCreatedViewController.m in Sources */,
 				14022BE01BE56A9300585042 /* MostRideDetailsViewController.m in Sources */,
 				0429B1C61BB9DC5F00161222 /* HelpManager.m in Sources */,
 				148795D71BEA97EF00B940D8 /* Review.m in Sources */,
@@ -988,15 +1014,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: khaled.alqaisi@rta.ae (KFPNGHU89M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: khaled.alqaisi@rta.ae (KFPNGHU89M)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Sharekni/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rta.ae.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "b054ef99-a906-44dd-b171-34ecf318754b";
 			};
 			name = Debug;
 		};
@@ -1006,15 +1032,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: khaled.alqaisi@rta.ae (KFPNGHU89M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: khaled.alqaisi@rta.ae (KFPNGHU89M)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Sharekni/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rta.ae.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "b054ef99-a906-44dd-b171-34ecf318754b";
 			};
 			name = Release;
 		};

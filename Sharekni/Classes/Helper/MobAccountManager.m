@@ -9,7 +9,7 @@
 #import "MobAccountManager.h"
 #import "Nationality.h"
 #import <Genome.h>
-
+#import "Ride.h"
 #import "Sharekni.pch"
 
 #define ID_KEY @"id"
@@ -164,7 +164,6 @@
     }];
 }
 
-
 - (void) confirmMobileWithCode:(NSString *)code WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSDictionary *parameters = @{AccountID_KEY:@"",
                                  Code_KEY:code};
@@ -233,6 +232,37 @@
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         
     }];
+}
+
+- (void) getJoinedRidesWithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
+    NSString *path;
+    if(self.applicationUser.AccountTypeId.integerValue == 1){
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_GetJoinedRides?AccountId=%@",self.applicationUser.ID.stringValue];
+    }
+    else{
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_GetJoinedRides?AccountId=%@",self.applicationUser.ID.stringValue];
+    }
+    
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        NSMutableArray *rides = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            Ride *ride= [Ride gm_mappedObjectWithJsonRepresentation:dictionary];
+            [rides addObject:ride];
+        }
+        success(rides);
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+
+//NSString *url = [NSString stringWithFormat:self.sharedMobAccountManager.us]
+// self.operationManager
 }
 
 

@@ -12,6 +12,7 @@
 
 @interface MobVehicleManager : BaseAPIManager
 - (void) getVehiclesWithSuccess:(void (^)(NSArray *vehicles))success Failure:(void (^)(NSString *error))failure;
+
 - (void) getVehiclesByDriverID:(NSString *)driverID Success:(void (^)(NSArray *vehicles))success Failure:(void (^)(NSString *error))failure;
 
 +(MobVehicleManager *) sharedMobVehicleManager;

@@ -9,10 +9,14 @@
 #import "SearchResultsViewController.h"
 #import "SearchResultCell.h"
 #import "DriverSearchResult.h"
+#import "MostRideDetailsCell.h"
+#import "DriverDetailsViewController.h"
 @interface SearchResultsViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *headerLabel;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *fromLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *toLabel;
 @end
 
 @implementation SearchResultsViewController
@@ -27,17 +31,15 @@
     self.navigationController.navigationBar.translucent = NO;
 }
 
-
 - (void) configureUI{
     
    self.title = NSLocalizedString(@"Search Results", nil);
-    NSString *headerText = [NSString stringWithFormat:@"%@,%@ \n to \n %@,%@",self.fromEmirate.EmirateEnName,self.fromRegion.RegionEnName,self.toEmirate.EmirateEnName,self.toRegion.RegionEnName];
-    self.headerLabel.text = headerText;
-    self.headerLabel.numberOfLines = 3;
+    self.fromLabel.text = [NSString stringWithFormat:@"%@ , %@",self.fromEmirate.EmirateEnName , self.fromRegion.RegionEnName];
+    self.toLabel.text = (self.toEmirate&&self.toRegion) ? [NSString stringWithFormat:@"%@ , %@",self.toEmirate.EmirateEnName , self.toRegion.RegionEnName] : @"Not specified";
 
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-    [self.tableView registerClass:[SearchResultCell class] forCellReuseIdentifier:SearchResultCell_ID];
-    [self.tableView registerNib:[UINib nibWithNibName:@"SearchResultCell" bundle:nil] forCellReuseIdentifier:SearchResultCell_ID];
+    [self.tableView registerClass:[MostRideDetailsCell class] forCellReuseIdentifier:MOST_RIDE_DETAILS_CELLID];
+    [self.tableView registerNib:[UINib nibWithNibName:MOST_RIDE_DETAILS_CELLID bundle:nil] forCellReuseIdentifier:SearchResultCell_ID];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -60,28 +62,31 @@
     return self.results.count;
 }
 
-- (SearchResultCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SearchResultCell *cell = (SearchResultCell*)[tableView dequeueReusableCellWithIdentifier:SearchResultCell_ID];
+- (MostRideDetailsCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+   MostRideDetailsCell *cell = (MostRideDetailsCell*)[tableView dequeueReusableCellWithIdentifier:MOST_RIDE_DETAILS_CELLID];
     if (cell == nil) {
-        cell = [[SearchResultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SearchResultCell_ID];
+        cell = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:0];
         cell.contentView.backgroundColor = [UIColor clearColor];
     }
     DriverSearchResult *driver = [self.results objectAtIndex:indexPath.row];
-    cell.item = driver;
+    [cell setDriver:driver];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return SearchResultCell_HEIGHT;
+    return 147;
 }
 
 #pragma mark -
 #pragma mark UITableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
+    DriverSearchResult *driver = [self.results objectAtIndex:indexPath.row];
+    driverDetails.driverSearchResult = driver;
+    [self.navigationController pushViewController:driverDetails animated:YES];
 }
 
 

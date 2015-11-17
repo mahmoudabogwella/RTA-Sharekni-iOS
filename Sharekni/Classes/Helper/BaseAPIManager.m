@@ -17,7 +17,7 @@
         self.operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:Sharkeni_BASEURL]];
         
         AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
-        [requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [requestSerializer setValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
         [requestSerializer setValue:@"application/xml" forHTTPHeaderField:@"Accept"];
         self.operationManager.requestSerializer = requestSerializer;
         
@@ -61,12 +61,14 @@
                 NSString *base64Tag2 = @"<base64Binary xmlns=\"http://MobAccount.org/\">";
                 NSString *base64Tag3 = @"</base64Binary>";
                 NSString *base64tag4 = @"<base64Binary xmlns=\"http://tempuri.org/\">";
+                NSString *base64tag5 = @"<base64Binary xmlns=\"http://Sharekni-MobIOS-Data.org/\">";
                 
                 responseString = [responseString stringByReplacingOccurrencesOfString:base64Tag1 withString:@""];
                 responseString = [responseString stringByReplacingOccurrencesOfString:base64Tag2 withString:@""];
                 responseString = [responseString stringByReplacingOccurrencesOfString:base64Tag3 withString:@""];
                 responseString = [responseString stringByReplacingOccurrencesOfString:base64tag4 withString:@""];
                 responseString = [responseString stringByReplacingOccurrencesOfString:@"\r" withString:@" "];
+                responseString = [responseString stringByReplacingOccurrencesOfString:base64tag5 withString:@""];
                 NSLog(@"string %@",responseString);
 //                NSString *test = @"asdasdasdasdasdasdqweqweqweqwejkbnjknknk";
 //                NSString * x = [self encodeStringTo64:test];

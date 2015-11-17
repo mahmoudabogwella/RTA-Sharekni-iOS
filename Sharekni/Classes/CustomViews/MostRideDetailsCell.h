@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MostRideDetails.h"
+#import "DriverSearchResult.h"
 
+#define MOST_RIDE_DETAILS_CELLID @"MostRideDetailsCell"
 @protocol SendMSGDelegate <NSObject>
 
 - (void)sendSMSFromPhone:(NSString *)phone;
@@ -26,9 +28,11 @@
 @property (nonatomic ,weak) IBOutlet UILabel *rate ;
 @property (nonatomic ,strong) NSString *phone;
 
+@property (nonatomic ,strong) DriverSearchResult *driver;
+@property (nonatomic ,strong) MostRideDetails *mostRide;
+
 - (IBAction)call:(id)sender ;
 - (IBAction)sendMail:(id)sender ;
 
-- (void)setMostRide:(MostRideDetails *)mostRide;
 
 @end

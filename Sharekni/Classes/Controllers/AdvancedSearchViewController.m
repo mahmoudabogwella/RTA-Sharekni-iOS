@@ -41,9 +41,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *languageButton;
 @property (weak, nonatomic) IBOutlet UIButton *ageRangeButton;
 
-@property (weak, nonatomic) IBOutlet UITextField *startPointTextField;
-@property (weak, nonatomic) IBOutlet UITextField *destinationTextFiled;
+@property (weak, nonatomic) IBOutlet UILabel *startPointLabel;
+@property (weak, nonatomic) IBOutlet UILabel *destinationLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *helpLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *emiratesAndRegionsView;
 
 @property (weak, nonatomic) IBOutlet UIView *dateView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
@@ -182,20 +185,16 @@
     [self.setDirectionBtuton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     
     [self.languageButton setBackgroundColor:[UIColor whiteColor]];
-    self.languageButton.layer.cornerRadius = 10;
     [self.languageButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
     [self.languageButton setTitleColor:Red_UIColor forState:UIControlStateHighlighted];
     [self.languageButton setTitleColor:Red_UIColor forState:UIControlStateSelected];
-    self.languageButton.layer.borderWidth = .8;
-    self.languageButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+
     
     [self.ageRangeButton setBackgroundColor:[UIColor whiteColor]];
-    self.ageRangeButton.layer.cornerRadius = 10;
     [self.ageRangeButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
     [self.ageRangeButton setTitleColor:Red_UIColor forState:UIControlStateHighlighted];
     [self.ageRangeButton setTitleColor:Red_UIColor forState:UIControlStateSelected];
-    self.ageRangeButton.layer.borderWidth = .8;
-    self.ageRangeButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+
     
     UIBezierPath *maskPath;
     maskPath = [UIBezierPath bezierPathWithRoundedRect:self.pickupTitleLabel.bounds
@@ -233,8 +232,8 @@
     self.nationalityTextField.textColor    = Red_UIColor;
     self.pickupTitleLabel.backgroundColor  = Red_UIColor;
     self.dropoffTitleLabel.backgroundColor = Red_UIColor;
-    self.startPointTextField.textColor     = Red_UIColor;
-    self.destinationTextFiled.textColor    = Red_UIColor;
+    self.startPointLabel.textColor     = Red_UIColor;
+    self.destinationLabel.textColor    = Red_UIColor;
     self.optionalHeader.textColor          =  Red_UIColor;
     self.sepratorLine.backgroundColor      = Red_UIColor;
     self.dateLabel.textColor = Red_UIColor;
@@ -273,8 +272,12 @@
     self.nationalityTextField.autoCompleteTableBorderColor = Red_UIColor;
     self.nationalityTextField.autoCompleteTableBorderWidth = 2;
     self.nationalityTextField.autoCompleteTableBackgroundColor = [UIColor whiteColor];
+    self.nationalityTextField.autoCompleteTableCellTextColor = Red_UIColor;
     self.nationalityTextField.autoCompleteTableAppearsAsKeyboardAccessory = YES;
     [self.nationalityTextField setTintColor:Red_UIColor];
+    
+    self.helpLabel.alpha = 1;
+    self.emiratesAndRegionsView.alpha = 0;
 }
 
 - (void) configureRoadTypeView{
@@ -497,12 +500,12 @@
         
             blockSelf.fromEmirate = fromEmirate;
             blockSelf.fromRegion = fromRegion;
-            blockSelf.startPointTextField.text = fromText;
+            blockSelf.startPointLabel.text = fromText;
         
             NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
             blockSelf.toEmirate = toEmirate;
             blockSelf.toRegion = toRegion;
-            blockSelf.destinationTextFiled.text = toText;
+            blockSelf.destinationLabel.text = toText;
     }];
     [self.navigationController pushViewController:selectLocationViewController animated:YES];
 //    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
@@ -522,14 +525,9 @@
 
 #pragma TextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if(textField == self.startPointTextField && textField.text.length == 0){
-        [self showLocationPicker];
-    }
-    else if (textField == self.destinationTextFiled && textField.text.length == 0){
-        [self showLocationPicker];
-    }
-    else if (textField == self.nationalityTextField){
-        [self showPickerWithTextFieldType:NationalityTextField];
+    if (textField == self.nationalityTextField){
+//        [self showPickerWithTextFieldType:NationalityTextField];
+        return YES;
     }
     return NO;
 
@@ -565,7 +563,7 @@
         case LanguageTextField:
         {
             Language *language = [self.languages objectAtIndex:row];
-            title = language.LanguageArName;
+            title = language.LanguageEnName;
         }
         break;
             
@@ -607,6 +605,8 @@
     return 1;
 }
 - (IBAction)setDirectionButtonHandler:(id)sender {
+    self.helpLabel.alpha = 0;
+    self.emiratesAndRegionsView.alpha = 1;
     [self showLocationPicker];
 }
 - (IBAction)ageRangeButtonHandler:(id)sender {
