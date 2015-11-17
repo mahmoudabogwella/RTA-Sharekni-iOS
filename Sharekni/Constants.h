@@ -44,8 +44,8 @@
 #define XML_Tag1 @"<string xmlns=\"http://Sharekni-MobIOS-Data.org/\">"
 #define XML_Tag3 @"<string xmlns=\"http://Sharekni-MobIOS-Data.org/\">"
 
-#define Sharkeni_BASEURL @"http://sharekni.sdgstaff.com/_mobfiles/"
-//#define Sharkeni_BASEURL @"http://sharekni-web.sdg.ae/_mobfiles/"
+//#define Sharkeni_BASEURL @"http://sharekni.sdgstaff.com/_mobfiles/"
+#define Sharkeni_BASEURL @"http://sharekni-web.sdg.ae/_mobfiles/"
 //#define Sharkeni_BASEURL @"https://www.sharekni.ae/_mobfiles/"
 
 #define GetAgeRanges_URL @"cls_mobios.asmx/GetAgeRanges"
