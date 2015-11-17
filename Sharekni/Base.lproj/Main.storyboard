@@ -306,7 +306,7 @@
             <objects>
                 <navigationController storyboardIdentifier="MainNavigationController" id="mI9-uV-K0N" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jsj-9K-FZv">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jsj-9K-FZv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -356,6 +356,6 @@
         <image name="Call_Btn" width="56" height="42"/>
         <image name="Login_bg" width="640" height="1039"/>
         <image name="Msg_Btn" width="57" height="37"/>
-        <image name="rate" width="54" height="61"/>
+        <image name="rate" width="50" height="50"/>
     </resources>
 </document>

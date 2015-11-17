@@ -101,41 +101,6 @@
                                      byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
                                            cornerRadii:CGSizeMake(5.0, 5.0)];
     
-//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-//    maskLayer.frame = self.pickupTitleLabel.bounds;
-//    maskLayer.path = maskPath.CGPath;
-//    self.pickupTitleLabel.layer.mask = maskLayer;
-    
-    
-//    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.dropoffTitleLabel.bounds
-//                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
-//                                           cornerRadii:CGSizeMake(5.0, 5.0)];
-    
-//    maskLayer = [[CAShapeLayer alloc] init];
-//    maskLayer.frame = self.pickupTitleLabel.bounds;
-//    maskLayer.path = maskPath.CGPath;
-//    self.dropoffTitleLabel  .layer.mask = maskLayer;
-    
-    
-//    self.pickupTitleLabel.layer.borderWidth = .3;
-//    self.pickupTitleLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    
-    
-//    self.dateView.layer.cornerRadius = 8;
-//    self.dateView.layer.borderWidth = 0;
-//    self.dateView.layer.borderColor = Red_UIColor.CGColor;
-//    self.dateView.layer.masksToBounds = YES;
-    
-    
-//    self.timeView.layer.cornerRadius = 8;
-//    self.timeView.layer.borderWidth = 0;
-//    self.timeView.layer.borderColor = [UIColor blackColor].CGColor;
-//    self.timeView.layer.masksToBounds = YES;
-    
-//    self.saveSearchView.layer.cornerRadius = 10;
-//    self.saveSearchView.layer.borderWidth = 0;
-//    self.saveSearchView.layer.borderColor = [UIColor blackColor].CGColor;
-    
     self.searchButton.layer.cornerRadius = 8;
     
     self.pickupTitleLabel.backgroundColor  = [UIColor whiteColor];
@@ -264,36 +229,11 @@
 }
 
 #pragma TextFieldDelegate
-//- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField{
-//    if(textField == self.startPointLabel &&textField.text.length == 0){
-//        [self showLocationPicker];
-//    }
-//    else if (textField == self.destinationTextFiled&&textField.text.length == 0){
-//        [self showLocationPicker];
-//    }
-//    return NO;
-//}
-//
-//- (BOOL) textFieldShouldEndEditing:(UITextField *)textField{
-//    [textField resignFirstResponder];
-//    return YES;
-//}
-//
-//- (BOOL) textFieldShouldReturn:(UITextField *)textField{
-//    [textField resignFirstResponder];
-//    return YES;
-//}
 
 - (IBAction) quickSearchAction:(id)sender {
     if (!self.fromEmirate) {
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
     }
-//    else if (!self.pickupDate){
-//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter date ",nil)];
-//    }
-//    else if (!self.pickupTime) {
-//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter time ",nil)];
-//    }
     else{
         __block SearchViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];

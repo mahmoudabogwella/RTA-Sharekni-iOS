@@ -193,44 +193,13 @@
     [self.ageRangeButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
     [self.ageRangeButton setTitleColor:Red_UIColor forState:UIControlStateHighlighted];
     [self.ageRangeButton setTitleColor:Red_UIColor forState:UIControlStateSelected];
-
-    
-    UIBezierPath *maskPath;
-    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.pickupTitleLabel.bounds
-                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
-                                           cornerRadii:CGSizeMake(5.0, 5.0)];
-    
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.pickupTitleLabel.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.pickupTitleLabel.layer.mask = maskLayer;
-    
-
-    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.dropoffTitleLabel.bounds
-                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
-                                           cornerRadii:CGSizeMake(5.0, 5.0)];
-    
-    maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.pickupTitleLabel.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.dropoffTitleLabel  .layer.mask = maskLayer;
-    
-    self.dateView.layer.cornerRadius = 8;
-    self.dateView.layer.borderWidth = 0;
-    self.dateView.layer.borderColor = Red_UIColor.CGColor;
-    self.dateView.layer.masksToBounds = YES;
-    
-    
-    self.timeView.layer.cornerRadius = 8;
-    self.timeView.layer.borderWidth = 0;
-    self.timeView.layer.borderColor = [UIColor blackColor].CGColor;
-    self.timeView.layer.masksToBounds = YES;
     
     self.searchButton.layer.cornerRadius = 8;
     
     self.nationalityTextField.textColor    = Red_UIColor;
-    self.pickupTitleLabel.backgroundColor  = Red_UIColor;
-    self.dropoffTitleLabel.backgroundColor = Red_UIColor;
+    UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
+    self.nationalityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"preferedLang",nil) attributes:@{NSForegroundColorAttributeName: color}];
+    
     self.startPointLabel.textColor     = Red_UIColor;
     self.destinationLabel.textColor    = Red_UIColor;
     self.optionalHeader.textColor          =  Red_UIColor;
@@ -241,8 +210,8 @@
     self.timeLabel.textColor = Red_UIColor;
     
     
-    self.dateLabel.text = NSLocalizedString(@"Starting when", nil);
-    self.timeLabel.text = NSLocalizedString(@"schedule on", nil);
+//    self.dateLabel.text = NSLocalizedString(@"Starting when", nil);
+//    self.timeLabel.text = NSLocalizedString(@"schedule on", nil);
     
     [self.languageButton setTitle:NSLocalizedString(@"Choose a language", nil) forState:UIControlStateNormal];
     [self.ageRangeButton setTitle:NSLocalizedString(@"Choose age range", nil) forState:UIControlStateNormal];
@@ -331,9 +300,6 @@
 - (IBAction)searchAction:(id)sender {
     if (!self.fromEmirate) {
           [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
-    }
-    else if (!self.toEmirate){
-         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select destination ",nil)];
     }
     else{
         __block AdvancedSearchViewController *blockSelf = self;
@@ -501,25 +467,15 @@
             blockSelf.fromRegion = fromRegion;
             blockSelf.startPointLabel.text = fromText;
         
+        blockSelf.destinationLabel.text = @"";
+        if (toEmirate && toRegion) {
             NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
             blockSelf.toEmirate = toEmirate;
             blockSelf.toRegion = toRegion;
             blockSelf.destinationLabel.text = toText;
+        }
     }];
     [self.navigationController pushViewController:selectLocationViewController animated:YES];
-//    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
-//    
-//    formSheet.formSheetWindow.transparentTouchEnabled = NO;
-//    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
-//    formSheet.shouldDismissOnBackgroundViewTap = YES;
-//    formSheet.shouldCenterVertically = NO;
-//    formSheet.presentedFormSheetSize = CGSizeMake(300, 200);
-//    formSheet.portraitTopInset = 55;
-//    formSheet.cornerRadius = 8;
-//    
-//    [formSheet presentAnimated:YES completionHandler:^(UIViewController *presentedFSViewController) {
-//        
-//    }];
 }
 
 #pragma TextFieldDelegate
