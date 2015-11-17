@@ -228,7 +228,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [self addRedBorderToView:textField.superview];
     }
     else{
-        [self removeBorderFromView:textField.superview];
+        [self addGreyBorderToView:textField.superview];
     }
     return [self textSouldEndEditing];
 }
@@ -278,7 +278,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    [self.view endEditing:YES];
+//    [self.view endEditing:YES];
     if (textField == self.nationalityTxt){
         return YES;
 //        [self showPickerWithTextFieldType:NationalityTextField];
@@ -626,62 +626,67 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [self addRedBorderToView:self.firstNameView];
     }
     else{
-        [self removeBorderFromView:self.firstNameView];
+        [self addGreyBorderToView:self.firstNameView];
     }
     
     if(self.lastName.length == 0){
         [self addRedBorderToView:self.lastNameView];
     }
     else{
-        [self removeBorderFromView:self.lastNameView];
+        [self addGreyBorderToView:self.lastNameView];
     }
     
     if(self.userName.length == 0){
         [self addRedBorderToView:self.userNameView];
     }
     else{
-        [self removeBorderFromView:self.userNameView];
+        [self addGreyBorderToView:self.userNameView];
     }
     
     if(self.password.length == 0){
         [self addRedBorderToView:self.passwordView];
     }
     else{
-        [self removeBorderFromView:self.passwordView];
+        [self addGreyBorderToView:self.passwordView];
     }
     
     if(self.mobileNumber.length == 0){
         [self addRedBorderToView:self.mobileNumberView];
     }
     else{
-        [self removeBorderFromView:self.mobileNumberView];
+        [self addGreyBorderToView:self.mobileNumberView];
     }
     
     if (!self.selectedNationality){
         [self addRedBorderToView:self.nationalityView];
     }
     else{
-        [self removeBorderFromView:self.nationalityView];
+        [self addGreyBorderToView:self.nationalityView];
     }
     
     if (!self.selectedLanguage){
         [self addRedBorderToView:self.languageView];
     }
     else{
-        [self removeBorderFromView:self.languageView];
+        [self addGreyBorderToView:self.languageView];
     }
     
     if (!self.date){
         [self addRedBorderToView:self.datePickerView];
     }
     else{
-        [self removeBorderFromView:self.datePickerView];
+        [self addGreyBorderToView:self.datePickerView];
     }
 }
 
 - (void) addRedBorderToView :(UIView *)view{
     view.layer.borderWidth = .5;
     view.layer.borderColor = Red_UIColor.CGColor;
+}
+
+- (void) addGreyBorderToView :(UIView *)view{
+    view.layer.borderWidth = .5;
+    view.layer.borderColor = [UIColor lightGrayColor].CGColor;
 }
 
 - (void) removeBorderFromView:(UIView *)view{
