@@ -80,7 +80,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = NSLocalizedString(@"search", nil);
+    self.title = NSLocalizedString(@"searchOptions", nil);
     self.navigationController.navigationBarHidden = NO ;
     [self configureUI];
 }
