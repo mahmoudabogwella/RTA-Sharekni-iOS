@@ -191,31 +191,45 @@ typedef enum DirectionType : NSUInteger {
 
 - (IBAction)DoneAction:(id)sender {
     if (!self.selectedFromEmirate) {
-      [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select from Emirate ",nil)];
+      [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select from Emirate ",nil)];
     }
     else if (self.fromRegionTextField.text.length == 0){
-      [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please Enter from Region ",nil)];
+      [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter from Region ",nil)];
     }
     else if (![self.fromRegionsStringsArray containsObject:self.fromRegionTextField.text]){
-      [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please Enter Valid from Region Name",nil)];
-    }
-    else if (!self.selectedToEmirate) {
-        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select to Emirate ",nil)];
-    }
-    else if (self.toRegionTextField.text.length == 0){
-        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please Enter to Region ",nil)];
-    }
-    else if (![self.toRegionsStringsArray containsObject:self.toRegionTextField.text]){
-        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please Enter Valid to Region Name",nil)];
+      [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter Valid from Region Name",nil)];
     }
     else{
-        NSInteger fromRegionIndex = [self.fromRegionsStringsArray indexOfObject:self.fromRegionTextField.text];
-        self.selectedFromRegion = [self.fromRegions objectAtIndex:fromRegionIndex];
-        NSInteger toRegionIndex = [self.toRegionsStringsArray indexOfObject:self.toRegionTextField.text];
-        self.selectedToRegion = [self.toRegions objectAtIndex:toRegionIndex];
-        
-        self.selectionHandler(self.selectedFromEmirate,self.selectedFromRegion,self.selectedToEmirate,self.selectedToRegion);
-        [self.navigationController popViewControllerAnimated:YES];
+        if(self.selectedToEmirate || self.selectedToRegion){
+            if (!self.selectedToEmirate) {
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select to Emirate ",nil)];
+            }
+            else if (self.toRegionTextField.text.length == 0){
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter to Region ",nil)];
+                
+            }
+            else if (![self.toRegionsStringsArray containsObject:self.toRegionTextField.text]){
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter Valid to Region Name",nil)];
+            }
+            else{
+                NSInteger fromRegionIndex = [self.fromRegionsStringsArray indexOfObject:self.fromRegionTextField.text];
+                self.selectedFromRegion = [self.fromRegions objectAtIndex:fromRegionIndex];
+                NSInteger toRegionIndex = [self.toRegionsStringsArray indexOfObject:self.toRegionTextField.text];
+                self.selectedToRegion = [self.toRegions objectAtIndex:toRegionIndex];
+                
+                self.selectionHandler(self.selectedFromEmirate,self.selectedFromRegion,self.selectedToEmirate,self.selectedToRegion);
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+        else{
+            NSInteger fromRegionIndex = [self.fromRegionsStringsArray indexOfObject:self.fromRegionTextField.text];
+            self.selectedFromRegion = [self.fromRegions objectAtIndex:fromRegionIndex];
+            NSInteger toRegionIndex = [self.toRegionsStringsArray indexOfObject:self.toRegionTextField.text];
+            self.selectedToRegion = [self.toRegions objectAtIndex:toRegionIndex];
+            
+            self.selectionHandler(self.selectedFromEmirate,self.selectedFromRegion,self.selectedToEmirate,self.selectedToRegion);
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 
@@ -274,14 +288,14 @@ typedef enum DirectionType : NSUInteger {
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if (textField == self.fromRegionTextField){
         if (!self.selectedFromEmirate) {
-            [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select from Emirate first",nil)];
+            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select from Emirate first",nil)];
             return NO;
         }
         return YES;
     }
     if (textField == self.toRegionTextField){
         if (!self.selectedToEmirate) {
-            [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select to Emirate first",nil)];
+            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select to Emirate first",nil)];
             return NO;
         }
         return YES;

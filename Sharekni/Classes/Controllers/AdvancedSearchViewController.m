@@ -328,15 +328,15 @@
 
 - (IBAction)searchAction:(id)sender {
     if (!self.fromEmirate) {
-          [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select start point ",nil)];
+          [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
     }
     else if (!self.toEmirate){
-         [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select destination ",nil)];
+         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select destination ",nil)];
     }
     else{
         __block AdvancedSearchViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
-        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ? YES : NO WithSuccess:^(NSArray *searchResults) {
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ? YES : NO saveSearch:NO WithSuccess:^(NSArray *searchResults) {
             [KVNProgress dismiss];
             if(searchResults){
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
@@ -348,7 +348,7 @@
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
             else{
-                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];            

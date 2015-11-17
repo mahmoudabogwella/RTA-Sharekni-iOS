@@ -12,7 +12,7 @@
 @interface HelpManager : NSObject
 
 @property (nonatomic,strong) NSString *imagesDirectory;
-- (void) showToastWithMessage:(NSString *)message;
+- (void) showAlertWithMessage:(NSString *)message;
 + (HelpManager *) sharedHelpManager;
 - (NSInteger) yearsBetweenDate:(NSDate *)date1 andDate:(NSDate *)date2;
 

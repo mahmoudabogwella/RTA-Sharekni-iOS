@@ -84,11 +84,11 @@
     [self.view endEditing:YES];
     if(self.usernameTextField.text.length == 0){
     
-        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"nameReq",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"nameReq",nil)];
     }
     else if (self.passwordTextField.text.length == 0)
     {
-        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"passReq", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"passReq", nil)];
     }
     else
     {

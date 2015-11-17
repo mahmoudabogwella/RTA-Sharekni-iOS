@@ -453,21 +453,21 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
      if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
             [[MobAccountManager sharedMobAccountManager] registerDriverWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
                 [KVNProgress dismiss];
-                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration as a driver Compeleted. ",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration as a driver Compeleted. ",nil)];
                 [self loginAfterRegisteration];
             } Failure:^(NSString *error) {
                 [KVNProgress dismiss];
-                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration Failed. ",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration Failed. ",nil)];
             }];
         }
         else if (self.accountType == AccountTypePassenger){
             [[MobAccountManager sharedMobAccountManager] registerPassengerWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
                 [KVNProgress dismiss];
-                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration as a passenger Compeleted. ",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration as a passenger Compeleted. ",nil)];
                 [self loginAfterRegisteration];
             } Failure:^(NSString *error) {
                 [KVNProgress dismiss];
-                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Registeration Failed. ",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration Failed. ",nil)];
             }];
         }
     }

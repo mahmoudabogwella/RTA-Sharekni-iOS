@@ -291,10 +291,10 @@
 
 - (IBAction)creatRideAction:(id)sender {
     if (!self.fromEmirate) {
-        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select start point ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
     }
     else if (!self.toEmirate){
-        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select destination ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select destination ",nil)];
     }
     else{
         __block CreateRideViewController *blockSelf = self;

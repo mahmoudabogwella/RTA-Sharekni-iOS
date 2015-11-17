@@ -10,7 +10,8 @@
 #import "Emirate.h"
 #import "Region.h"
 @interface SelectLocationViewController : UIViewController
-@property (nonatomic,strong) NSString *viewTitle;
 
+@property (nonatomic,strong) NSString *viewTitle;
 @property (strong, nonatomic) void (^selectionHandler) (Emirate*,Region*,Emirate*,Region*) ;
+
 @end

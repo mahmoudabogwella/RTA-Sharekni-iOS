@@ -36,8 +36,8 @@
 @interface SearchViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *setDirectionButton;
 
-@property (weak, nonatomic) IBOutlet UITextField *startPointTextField;
-@property (weak, nonatomic) IBOutlet UITextField *destinationTextFiled;
+@property (weak, nonatomic) IBOutlet UILabel *startPointLabel;
+@property (weak, nonatomic) IBOutlet UILabel *destinationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UILabel *pickupTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dropoffTitleLabel;
@@ -45,12 +45,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *saveSearchLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *SwitchImage;
 @property (weak, nonatomic) IBOutlet UIView *timeView;
-@property (weak, nonatomic) IBOutlet UIButton *advancedSearchBG;
+
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIView *dateView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIView *saveSearchView;
+@property (weak, nonatomic) IBOutlet UILabel *helpLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *emiratesRegionsView;
 @property (strong,nonatomic) Emirate *fromEmirate;
 @property (strong,nonatomic) Emirate *toEmirate;
 
@@ -61,6 +63,7 @@
 
 @property (strong, nonatomic)  NSDateFormatter *dateFormatter;
 @property (strong,nonatomic) NSDate *pickupDate;
+
 @end
 
 @implementation SearchViewController
@@ -72,19 +75,16 @@
     return _dateFormatter;
 }
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = NSLocalizedString(@"searchOptions", nil);
+    self.title = NSLocalizedString(@"search", nil);
     self.navigationController.navigationBarHidden = NO ;
-    self.pickupDate = [[NSDate date] dateBySettingHour:10];
-    self.startPointTextField.delegate = self;
-    self.destinationTextFiled.delegate = self;
     [self configureUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.translucent = YES;
 }
 
@@ -115,6 +115,11 @@
     maskLayer.path = maskPath.CGPath;
     self.dropoffTitleLabel  .layer.mask = maskLayer;
     
+    
+    self.pickupTitleLabel.layer.borderWidth = .3;
+    self.pickupTitleLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    
     self.dateView.layer.cornerRadius = 8;
     self.dateView.layer.borderWidth = 0;
     self.dateView.layer.borderColor = Red_UIColor.CGColor;
@@ -132,21 +137,21 @@
     
     self.searchButton.layer.cornerRadius = 8;
     
-    self.pickupTitleLabel.backgroundColor  = Red_UIColor;
-    self.dropoffTitleLabel.backgroundColor = Red_UIColor;
-    self.startPointTextField.textColor     = Red_UIColor;
-    self.destinationTextFiled.textColor    = Red_UIColor;
+    self.pickupTitleLabel.backgroundColor  = [UIColor whiteColor];
+    self.dropoffTitleLabel.backgroundColor = [UIColor whiteColor];
+    self.pickupTitleLabel.textColor  = [UIColor blackColor];
+    self.dropoffTitleLabel.textColor = [UIColor blackColor];
+    self.startPointLabel.textColor     = Red_UIColor;
+    self.startPointLabel.textColor    = Red_UIColor;
     
     self.dateLabel.textColor = Red_UIColor;
     self.timeLabel.textColor = Red_UIColor;
-//    self.dateLabel.text = NSLocalizedString(@"Starting when", nil);
-//    self.timeLabel.text = NSLocalizedString(@"schedule on", nil);
     
     [self.searchButton setBackgroundColor:Red_UIColor];
+    [self.searchButton setTitle:NSLocalizedString(@"Search", nil) forState:UIControlStateNormal];
     
-    
-    [self.view sendSubviewToBack:self.advancedSearchBG];
-    [self.view sendSubviewToBack:self.background];
+    self.helpLabel.text = NSLocalizedString(@"Please click on set direction button to set start and end point", nil);
+    self.helpLabel.textColor = [UIColor blackColor];
 
     UITapGestureRecognizer *saveSearchTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveSearchViewTapped)];
     [self.saveSearchView addGestureRecognizer:saveSearchTapGestureRecognizer];
@@ -156,6 +161,8 @@
     
     UITapGestureRecognizer *TimeTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTimePicker)];
     [self.timeView addGestureRecognizer:TimeTapGestureRecognizer];
+    
+    self.emiratesRegionsView.alpha = 0;
 }
 
 - (void) saveSearchViewTapped{
@@ -173,6 +180,7 @@
 #pragma Pickers
 
 - (void) showDatePicker{
+    self.pickupDate = [[NSDate date] dateBySettingHour:10];
     __block SearchViewController  *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
@@ -234,64 +242,53 @@
     SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
     __block SearchViewController *blockSelf = self;
     [selectLocationViewController setSelectionHandler:^(Emirate *fromEmirate, Region *fromRegion,Emirate *toEmirate, Region *toRegion) {
+        blockSelf.helpLabel.alpha = 0;
+        blockSelf.emiratesRegionsView.alpha = 1;
         NSString *fromText = [NSString stringWithFormat:@"%@,%@",fromEmirate.EmirateEnName,fromRegion.RegionEnName];
             blockSelf.fromEmirate = fromEmirate;
             blockSelf.fromRegion = fromRegion;
-            blockSelf.startPointTextField.text = fromText;
-        NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
+            blockSelf.startPointLabel.text = fromText;
+            blockSelf.destinationLabel.text = @"";
+        if (toEmirate && toRegion) {
+            NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
             blockSelf.toEmirate = toEmirate;
             blockSelf.toRegion = toRegion;
-            blockSelf.destinationTextFiled.text = toText;
+            blockSelf.destinationLabel.text = toText;
+        }
     }];
     
     [self.navigationController pushViewController:selectLocationViewController animated:YES];
-//    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
-//    
-//    formSheet.formSheetWindow.transparentTouchEnabled = NO;
-//    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
-//    formSheet.shouldDismissOnBackgroundViewTap = YES;
-//    formSheet.shouldCenterVertically = NO;
-//    formSheet.presentedFormSheetSize = CGSizeMake(300, 200);
-//    formSheet.portraitTopInset = 55;
-//    formSheet.cornerRadius = 8;
-//    
-//    [formSheet presentAnimated:YES completionHandler:^(UIViewController *presentedFSViewController) {
-//        
-//    }];
 }
 
 #pragma TextFieldDelegate
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if(textField == self.startPointTextField &&textField.text.length == 0){
-        [self showLocationPicker];
-    }
-    else if (textField == self.destinationTextFiled&&textField.text.length == 0){
-        [self showLocationPicker];
-    }
-    return NO;
-}
+//- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField{
+//    if(textField == self.startPointLabel &&textField.text.length == 0){
+//        [self showLocationPicker];
+//    }
+//    else if (textField == self.destinationTextFiled&&textField.text.length == 0){
+//        [self showLocationPicker];
+//    }
+//    return NO;
+//}
+//
+//- (BOOL) textFieldShouldEndEditing:(UITextField *)textField{
+//    [textField resignFirstResponder];
+//    return YES;
+//}
+//
+//- (BOOL) textFieldShouldReturn:(UITextField *)textField{
+//    [textField resignFirstResponder];
+//    return YES;
+//}
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
-}
-
-- (IBAction)quickSearchAction:(id)sender {
+- (IBAction) quickSearchAction:(id)sender {
     if (!self.fromEmirate) {
-        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select start point ",nil)];
-    }
-    else if (!self.toEmirate){
-        [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"Please select destination ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
     }
     else{
         __block SearchViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
-        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:nil nationality:nil ageRange:nil date:self.pickupDate isPeriodic:YES WithSuccess:^(NSArray *searchResults) {
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:nil nationality:nil ageRange:nil date:self.pickupDate isPeriodic:NO saveSearch:self.saveSearchEnabled WithSuccess:^(NSArray *searchResults) {
             [KVNProgress dismiss];
             if(searchResults){
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
@@ -303,7 +300,7 @@
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
             else{
-                [[HelpManager sharedHelpManager] showToastWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
@@ -311,29 +308,27 @@
     }
 }
 
-
-- (void)popViewController
-{
+- (void) popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 #pragma Actions
-- (IBAction)setDirectionAction:(id)sender {
+
+- (IBAction) setDirectionAction:(id)sender {
     [self showLocationPicker];
 }
 
-- (IBAction)advancedSearch:(id)sender
-{
+- (IBAction) advancedSearch:(id)sender{
     AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] initWithNibName:@"AdvancedSearchViewController" bundle:nil];
     [self.navigationController pushViewController:advancedSearchView animated:YES];
 }
 
-- (IBAction)mapLookUp:(id)sender {
+- (IBAction) mapLookUp:(id)sender {
     MapLookupViewController *mapLookupViewController = [[MapLookupViewController alloc] initWithNibName:@"MapLookupViewController" bundle:nil];
     [self.navigationController pushViewController:mapLookupViewController animated:YES];
 }
 
-- (IBAction)topRides:(id)sender
-{
+- (IBAction) topRides:(id)sender{
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MostRidesViewController *mostRides = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
     mostRides.enableBackButton = YES;

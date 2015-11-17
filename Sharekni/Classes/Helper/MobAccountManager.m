@@ -19,7 +19,6 @@
 #define Mobile_KEY    @"mobile"
 #define UserName_KEY  @"username"
 #define Password_KEY  @"password"
-#define Gender_KEY    @"gender"
 #define photoName_KEY @"photoName"
 #define BirthDate_KEY @"BirthDate"
 #define NationalityId_KEY @"NationalityId"
@@ -43,7 +42,7 @@
 @implementation MobAccountManager
 
 - (NSString *) applicationUserID{
-    return self.applicationUser.ID;
+    return self.applicationUser.ID.stringValue;
 }
 
 - (void) registerPassengerWithFirstName:(NSString *)firstName lastName:(NSString *)lastName mobile:(NSString *)mobile username:(NSString *)username password:(NSString *)password gender:(NSString *)gender imagePath:(NSString *)photoName birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
@@ -235,7 +234,6 @@
         
     }];
 }
-
 
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MobAccountManager);

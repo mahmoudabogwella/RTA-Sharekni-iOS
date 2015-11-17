@@ -22,6 +22,11 @@
     [self configureUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = NO;
+}
+
 
 - (void) configureUI{
     
@@ -44,21 +49,18 @@
 }
 
 #pragma mark - Methods
-- (void)popViewController
-{
+- (void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -
 #pragma mark UITableView Datasource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex{
     return self.results.count;
 }
 
-- (SearchResultCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (SearchResultCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SearchResultCell *cell = (SearchResultCell*)[tableView dequeueReusableCellWithIdentifier:SearchResultCell_ID];
     if (cell == nil) {
         cell = [[SearchResultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SearchResultCell_ID];
@@ -78,8 +80,7 @@
 #pragma mark -
 #pragma mark UITableView Delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
 

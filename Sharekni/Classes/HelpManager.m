@@ -14,26 +14,28 @@
 
 @implementation HelpManager
 
-- (void) showToastWithMessage:(NSString *)message{
-    NSDictionary *options = @{
-                              kCRToastTextKey :message,
-                              kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
-                              kCRToastBackgroundColorKey : [UIColor whiteColor],
-                              kCRToastAnimationInTypeKey : @(CRToastAnimationTypeSpring),
-                              kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeSpring),
-                              kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionBottom),
-                              kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop),
-                              kCRToastNotificationTypeKey : @(CRToastTypeNavigationBar),
-                              kCRToastTextColorKey : [UIColor add_colorWithRGBHexString:Red_HEX]
-                              
-//                              kCRToastImageKey : [UIImage imageNamed:@""],
-//                              kCRToastImageAlignmentKey :NSTextAlignmentLeft,
-                              };
-    [CRToastManager showNotificationWithOptions:options
-                                completionBlock:^{
-                                    NSLog(@"Completed");
-                                    
-                                }];
+- (void) showAlertWithMessage:(NSString *)message{
+//    NSDictionary *options = @{
+//                              kCRToastTextKey :message,
+//                              kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
+//                              kCRToastBackgroundColorKey : [UIColor whiteColor],
+//                              kCRToastAnimationInTypeKey : @(CRToastAnimationTypeSpring),
+//                              kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeSpring),
+//                              kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionBottom),
+//                              kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop),
+//                              kCRToastNotificationTypeKey : @(CRToastTypeNavigationBar),
+//                              kCRToastTextColorKey : [UIColor add_colorWithRGBHexString:Red_HEX]
+//                              
+////                              kCRToastImageKey : [UIImage imageNamed:@""],
+////                              kCRToastImageAlignmentKey :NSTextAlignmentLeft,
+//                              };
+//    [CRToastManager showNotificationWithOptions:options
+//                                completionBlock:^{
+//                                    NSLog(@"Completed");
+//                                    
+//                                }];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:nil, nil];
+    [alertView show];
 }
 
 - (NSString *)imagesDirectory{

@@ -12,21 +12,31 @@
 #import "DriverSearchResult.h"
 #import "MapLookUp.h"
 #import "Constants.h"   
-
+#import "MobAccountManager.h"
 @implementation MobDriverManager
 
-- (void) findRidesFromEmirate:(Emirate *)fromemirate andFromRegion:(Region *)fromRegion toEmirate:(Emirate *)toEmirate andToRegion:(Region *)toRegion PerfferedLanguage:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange date:(NSDate *)date isPeriodic:(BOOL)isPeriodic WithSuccess:(void (^)(NSArray *searchResults))success Failure:(void (^)(NSString *error))failure{
+- (void) findRidesFromEmirate:(Emirate *)fromemirate andFromRegion:(Region *)fromRegion toEmirate:(Emirate *)toEmirate andToRegion:(Region *)toRegion PerfferedLanguage:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange date:(NSDate *)date isPeriodic:(BOOL)isPeriodic saveSearch:(BOOL)saveSearch WithSuccess:(void (^)(NSArray *searchResults))success Failure:(void (^)(NSString *error))failure{
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"hh:mm";
     NSString *timeString = [dateFormatter stringFromDate:date];
     dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [dateFormatter stringFromDate:date];
-    NSString *requestBody = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_FindRide?AccountID=%@&PreferredGender=%@&Time=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&SaveFind=&IsPeriodic=%@",@"0",@"N",timeString,fromemirate.EmirateId,fromRegion.ID,toEmirate.EmirateId,toRegion.ID,language ? language.LanguageId:@"0",nationality ? nationality.ID : @"0",ageRange ? ageRange.RangeId : @"0" ,dateString,@""];
     
+    NSString *accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+    if (accountID.length == 0) {
+        accountID = @"0";
+    }
     
-//  requestBody = @"CLS_MobDriver.asmx/Passenger_FindRide?AccountID=0&PreferredGender=N&Time=&FromEmirateID=2&FromRegionID=5&ToEmirateID=3&ToRegionID=8&PrefferedLanguageId=0&PrefferedNationlaities=&AgeRangeId=0&StartDate=&SaveFind=0&IsPeriodic=";
+    NSString *toEmirateID    = toEmirate ? toEmirate.EmirateId : @"0";
+    NSString *toRegionID     = toRegion  ? toRegion.ID : @"0";
+    NSString *languageId     = language  ? language.LanguageId : @"0";
+    NSString *nationalityId  = nationality  ? nationality.ID : @"0";
+    NSString *saveSearchString = saveSearch ? @"1":@"0";
+    NSString *isPeriodicString = isPeriodic ? @"1":@"0";
     
+    NSString *requestBody = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_FindRide?AccountID=%@&PreferredGender=%@&Time=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&SaveFind=%@&IsPeriodic=%@",accountID,@"N",timeString,fromemirate.EmirateId,fromRegion.ID,toEmirateID,toRegionID,languageId,nationalityId,ageRange ? ageRange.RangeId : @"0" ,dateString,saveSearchString,isPeriodicString];
+
     [self.operationManager GET:requestBody parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
