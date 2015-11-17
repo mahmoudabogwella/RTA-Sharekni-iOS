@@ -19,6 +19,9 @@
 "nameReq" = "Please enter your username";
 "passReq" = "Please enter password";
 
+"mobileReq" = "Please enter mobile number";
+"mailReq" = "Please enter email address";
+
 "registration" = "Registration";
 "login" = "Login";
 "bestDrivers" = "Best Drivers";

@@ -168,6 +168,52 @@
     }];
 }
 
+- (void) forgetPassword:(NSString *)number andEmail:(NSString *)email WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+{
+//    NSDictionary *parameters = @{@"mobile":number,
+//                                 @"email":email};
+    
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ForgetPassword?mobile=%@&email=%@",number,email];
+    
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+       
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        responseString = [self jsonStringFromResponse:responseString];
+        
+//        if ([responseString containsString:@"ID"]) {
+//            NSError *jsonError;
+//            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+//            NSDictionary *resultDictionary = [NSJSONSerialization JSONObjectWithData:objectData
+//                                                                             options:NSJSONReadingMutableContainers
+//                                                                               error:&jsonError];
+//            User *user = [User gm_mappedObjectWithJsonRepresentation:resultDictionary];
+//            self.applicationUser = user;
+//            [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
+//                
+//            } Failure:^(NSString *error) {
+//                
+//            }];
+//            success(user);
+//        }
+//        else if ([responseString containsString:@"-2"]){
+//            failure(@"Mobile number already exists");
+//        }
+//        else if ([responseString containsString:@"-1"]){
+//            failure(@"Email already exists");
+//        }
+//        else if ([responseString containsString:@"0"]){
+//            failure(@"Email already exists");
+//        }
+//        else{
+//            success(nil);
+//        }
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        failure(@"incorrect");
+    }];
+}
+
 - (void) confirmMobileWithCode:(NSString *)code WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSDictionary *parameters = @{AccountID_KEY:@"",
                                  Code_KEY:code};
