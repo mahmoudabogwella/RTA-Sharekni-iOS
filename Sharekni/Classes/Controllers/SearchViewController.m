@@ -288,12 +288,12 @@
     if (!self.fromEmirate) {
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
     }
-    else if (!self.pickupDate){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter date ",nil)];
-    }
-    else if (!self.pickupTime) {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter time ",nil)];
-    }
+//    else if (!self.pickupDate){
+//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter date ",nil)];
+//    }
+//    else if (!self.pickupTime) {
+//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter time ",nil)];
+//    }
     else{
         __block SearchViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];

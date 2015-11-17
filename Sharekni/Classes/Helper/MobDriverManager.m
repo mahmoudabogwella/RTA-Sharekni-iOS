@@ -16,12 +16,20 @@
 @implementation MobDriverManager
 
 - (void) findRidesFromEmirate:(Emirate *)fromemirate andFromRegion:(Region *)fromRegion toEmirate:(Emirate *)toEmirate andToRegion:(Region *)toRegion PerfferedLanguage:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange date:(NSDate *)date isPeriodic:(BOOL)isPeriodic saveSearch:(BOOL)saveSearch WithSuccess:(void (^)(NSArray *searchResults))success Failure:(void (^)(NSString *error))failure{
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"hh:mm";
-    NSString *timeString = [dateFormatter stringFromDate:date];
-    dateFormatter.dateFormat = @"dd/MM/yyyy";
-    NSString *dateString = [dateFormatter stringFromDate:date];
+    NSString *dateString;
+    NSString *timeString;
+    if(date){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"hh:mm";
+        timeString = [dateFormatter stringFromDate:date];
+        dateFormatter.dateFormat = @"dd/MM/yyyy";
+        dateString = [dateFormatter stringFromDate:date];
+    }
+    else{
+        dateString = @"";
+        timeString = @"";
+    }
+
     
     NSString *accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
     if (accountID.length == 0) {
