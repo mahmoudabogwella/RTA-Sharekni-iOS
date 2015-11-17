@@ -69,8 +69,6 @@
 		148795D71BEA97EF00B940D8 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795D61BEA97EF00B940D8 /* Review.m */; };
 		148795DB1BEA9CF900B940D8 /* ReviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795D91BEA9CF900B940D8 /* ReviewCell.m */; };
 		148795DC1BEA9CF900B940D8 /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148795DA1BEA9CF900B940D8 /* ReviewCell.xib */; };
-		14B00C921BFB80E6004F46F7 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B00C901BFB80E6004F46F7 /* ForgetPasswordViewController.m */; };
-		14B00C931BFB80E6004F46F7 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B00C911BFB80E6004F46F7 /* ForgetPasswordViewController.xib */; };
 		14B0EFCE1BEF96F100937011 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0EFCD1BEF96F100937011 /* SearchViewController.xib */; };
 		14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E692631BE8B7180041A999 /* DriverDetailsViewController.m */; };
 		14E692661BE8B7180041A999 /* DriverDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */; };
@@ -237,9 +235,6 @@
 		148795D81BEA9CF900B940D8 /* ReviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewCell.h; sourceTree = "<group>"; };
 		148795D91BEA9CF900B940D8 /* ReviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewCell.m; sourceTree = "<group>"; };
 		148795DA1BEA9CF900B940D8 /* ReviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
-		14B00C8F1BFB80E6004F46F7 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
-		14B00C901BFB80E6004F46F7 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
-		14B00C911BFB80E6004F46F7 /* ForgetPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPasswordViewController.xib; sourceTree = "<group>"; };
 		14B0EFCD1BEF96F100937011 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		14E692621BE8B7180041A999 /* DriverDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverDetailsViewController.h; sourceTree = "<group>"; };
 		14E692631BE8B7180041A999 /* DriverDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverDetailsViewController.m; sourceTree = "<group>"; };
@@ -489,9 +484,6 @@
 				87E5F7651BFB6914004FF688 /* RidesCreatedViewController.h */,
 				87E5F7661BFB6914004FF688 /* RidesCreatedViewController.m */,
 				87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */,
-				14B00C8F1BFB80E6004F46F7 /* ForgetPasswordViewController.h */,
-				14B00C901BFB80E6004F46F7 /* ForgetPasswordViewController.m */,
-				14B00C911BFB80E6004F46F7 /* ForgetPasswordViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -724,7 +716,6 @@
 				87D9D3301BEE58380096E17A /* AdvancedSearchViewController.xib in Resources */,
 				8787E1F31BF7534100CCD53B /* terms_en.html in Resources */,
 				143F30E01BC83F70006A6A21 /* Images.xcassets in Resources */,
-				14B00C931BFB80E6004F46F7 /* ForgetPasswordViewController.xib in Resources */,
 				0453B2EC1BE55E1000007271 /* MostRidesCell.xib in Resources */,
 				044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
@@ -841,7 +832,6 @@
 				047E45501BC0960F000B5151 /* SearchViewController.m in Sources */,
 				873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
-				14B00C921BFB80E6004F46F7 /* ForgetPasswordViewController.m in Sources */,
 				87C571DC1BDBD33F00EFB618 /* Vehicle.m in Sources */,
 				87B58B5D1BD388D100E73E55 /* MapLookupViewController.m in Sources */,
 				8787E1EE1BF74EBC00CCD53B /* SharekniWebViewController.m in Sources */,
