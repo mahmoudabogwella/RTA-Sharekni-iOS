@@ -101,24 +101,24 @@
                                      byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
                                            cornerRadii:CGSizeMake(5.0, 5.0)];
     
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.pickupTitleLabel.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.pickupTitleLabel.layer.mask = maskLayer;
+//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = self.pickupTitleLabel.bounds;
+//    maskLayer.path = maskPath.CGPath;
+//    self.pickupTitleLabel.layer.mask = maskLayer;
     
     
-    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.dropoffTitleLabel.bounds
-                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
-                                           cornerRadii:CGSizeMake(5.0, 5.0)];
+//    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.dropoffTitleLabel.bounds
+//                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
+//                                           cornerRadii:CGSizeMake(5.0, 5.0)];
     
-    maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.pickupTitleLabel.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.dropoffTitleLabel  .layer.mask = maskLayer;
+//    maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = self.pickupTitleLabel.bounds;
+//    maskLayer.path = maskPath.CGPath;
+//    self.dropoffTitleLabel  .layer.mask = maskLayer;
     
     
-    self.pickupTitleLabel.layer.borderWidth = .3;
-    self.pickupTitleLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//    self.pickupTitleLabel.layer.borderWidth = .3;
+//    self.pickupTitleLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     
 //    self.dateView.layer.cornerRadius = 8;

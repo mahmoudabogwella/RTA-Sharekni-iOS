@@ -311,7 +311,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
             [recognizer addTarget:self action:@selector(touchEvent:)];
         }
         
-        [self.view endEditing:YES];
+//        [self.view endEditing:YES];
     }
 }
 
