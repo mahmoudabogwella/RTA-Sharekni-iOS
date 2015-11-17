@@ -545,8 +545,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 }
 
 #pragma PickerViewDeelgate&DataSource
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     NSString *title = @"";
     switch (pickerView.tag) {
         case NationalityTextField:
@@ -569,8 +568,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     return title;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     switch (pickerView.tag) {
         case NationalityTextField:
         {
@@ -590,8 +588,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }
 

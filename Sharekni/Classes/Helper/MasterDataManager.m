@@ -297,8 +297,10 @@
                                  FromRegionId:fromRegionID,
                                  ToEmirateId:toEmirateID,
                                  ToRegionId:toRegionID};
+    
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/GetMostDesiredRideDetails?AccountID=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@",accountID,fromEmirateID,fromRegionID,toEmirateID,toRegionID];
 
-    [self.operationManager POST:GetMostRideDetails_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
       
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
       
@@ -318,7 +320,7 @@
         success(mostRideDetails);
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
+        failure(error.localizedDescription);
     }];
 }
 

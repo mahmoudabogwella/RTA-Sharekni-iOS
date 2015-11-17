@@ -92,13 +92,12 @@
 
 - (MostRideDetailsCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier  = @"MostRideDetailsCell";
     
-    MostRideDetailsCell *rideCell = (MostRideDetailsCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MostRideDetailsCell *rideCell = (MostRideDetailsCell *)[tableView dequeueReusableCellWithIdentifier:MOST_RIDE_DETAILS_CELLID];
     
     if (rideCell == nil)
     {
-        rideCell = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:0];
+        rideCell = [[MostRideDetailsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MOST_RIDE_DETAILS_CELLID];
     }
     
     MostRideDetails *ride = self.rides[indexPath.row];
