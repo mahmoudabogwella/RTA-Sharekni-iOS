@@ -117,14 +117,13 @@
 
 - (void) configureUI{
     
-    
     self.profileImageView.hidden = YES;
     
     self.dateLabel.textColor = [UIColor blackColor];
     
     [self.termsButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
     
-    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setDatePicker)];
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
     [self.datePickerView addGestureRecognizer:gesture];
     [self.dateLabel addGestureRecognizer:gesture];
     [self.dateLabel setUserInteractionEnabled:YES];
@@ -211,7 +210,6 @@
         [KVNProgress dismiss];
     } afterDelay:3];
 }
-
 
 #pragma TextFieldDelegate
 #pragma mark - TextFieldDelegate

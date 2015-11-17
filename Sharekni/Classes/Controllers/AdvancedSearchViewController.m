@@ -123,7 +123,6 @@
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 660)];
     self.selectedType = SingleRideType;
     self.isFemaleOnly = false;
-    self.pickupDate = [[NSDate date] dateBySettingHour:10];
     [self configureData];
     [self configureRoadTypeView];
     [self configureGenderView];
