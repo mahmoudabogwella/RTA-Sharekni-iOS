@@ -441,25 +441,33 @@
 }
 
 - (void) GetRegionsByEmirateID:(NSString *)emirateID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    NSDictionary *parameters = @{id_KEY:emirateID};
-    [self.operationManager GET:GetRegionsByEmirateId_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        responseString = [self jsonStringFromResponse:responseString];
-        NSError *jsonError;
-        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                      options:NSJSONReadingMutableContainers
-                                                                        error:&jsonError];
-        NSMutableArray *regions = [NSMutableArray array];
-        for (NSDictionary *dictionary in resultDictionaries) {
-            Region *region= [Region gm_mappedObjectWithJsonRepresentation:dictionary];
-            [regions addObject:region];
-        }
-        success(regions);
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        NSLog(@"Error %@",error.description);
-        failure(error.description);
-    }];
+    NSArray *savedRegions = [self getRegionsForEmirateID:emirateID];
+    if (savedRegions) {
+        success([savedRegions mutableCopy]);
+    }
+    else{
+        __block MasterDataManager *blockSelf = self;
+        NSDictionary *parameters = @{id_KEY:emirateID};
+        [self.operationManager GET:GetRegionsByEmirateId_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            responseString = [self jsonStringFromResponse:responseString];
+            NSError *jsonError;
+            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                          options:NSJSONReadingMutableContainers
+                                                                            error:&jsonError];
+            NSMutableArray *regions = [NSMutableArray array];
+            for (NSDictionary *dictionary in resultDictionaries) {
+                Region *region= [Region gm_mappedObjectWithJsonRepresentation:dictionary];
+                [regions addObject:region];
+            }
+            [blockSelf setRegions:regions forEmirateWithID:emirateID];
+            success(regions);
+        } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+            NSLog(@"Error %@",error.description);
+            failure(error.description);
+        }];
+    }
 }
 
 - (void) setRegions:(NSArray *)regions forEmirateWithID:(NSString *)ID{
