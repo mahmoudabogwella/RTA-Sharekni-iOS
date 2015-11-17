@@ -17,6 +17,8 @@
 #import "HomeViewController.h"
 #import <REFrostedViewController.h>
 #import "SideMenuTableViewController.h"
+#import "ForgetPasswordViewController.h"
+
 @interface LoginViewController ()<UITextFieldDelegate,REFrostedViewControllerDelegate>
 {
     float animatedDistance ;
@@ -117,7 +119,8 @@
 
 - (IBAction)forgotPasswordAction:(id)sender
 {
-
+    ForgetPasswordViewController *forgetPass = [[ForgetPasswordViewController alloc] initWithNibName:@"ForgetPasswordViewController" bundle:nil];
+    [self.navigationController pushViewController:forgetPass animated:YES];
 }
 
 #pragma TextFieldDelegate

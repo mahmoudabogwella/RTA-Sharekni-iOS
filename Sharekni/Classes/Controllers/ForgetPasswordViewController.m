@@ -63,8 +63,8 @@
 - (void) configureUI{
     if ([self.mobileTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"number",nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"email", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mobileReq",nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mailReq", nil) attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
@@ -80,12 +80,12 @@
     [self.view endEditing:YES];
 
     if(self.mobileTextField.text.length == 0){
-        
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"nameReq",nil)];
+  
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"mobileReq",nil)];
     }
     else if (self.emailTextField.text.length == 0)
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"passReq", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"mailReq", nil)];
     }
     else
     {
