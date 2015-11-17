@@ -35,7 +35,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"login", nil);
+    self.title = NSLocalizedString(@"forget", nil);
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
@@ -52,7 +52,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)popViewController
@@ -71,6 +70,7 @@
     }
     
     [self.submitButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
+    [self.submitButton setTitle:NSLocalizedString(@"submit", nil) forState:UIControlStateNormal];
     self.submitButton.layer.cornerRadius = 8;
     
 }

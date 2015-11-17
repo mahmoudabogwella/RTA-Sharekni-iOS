@@ -36,3 +36,6 @@
 "driversrides" = "Drivers's Rides";
 "driverDetails" = "Driver Details";
 "rideDetails" = "Ride Details";
+
+"submit" = "Submit";
+"forget" = "Forget Password";
