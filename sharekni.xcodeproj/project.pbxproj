@@ -62,6 +62,8 @@
 		144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869EF1BC0844B00804C26 /* LoginViewController.xib */; };
 		144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144869F81BC0968E00804C26 /* QuickSearchViewController.m */; };
 		144869FB1BC0968E00804C26 /* QuickSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144869F91BC0968E00804C26 /* QuickSearchViewController.xib */; };
+		146815541BFBB61000A78430 /* SideMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146815521BFBB61000A78430 /* SideMenuCell.m */; };
+		146815551BFBB61000A78430 /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146815531BFBB61000A78430 /* SideMenuCell.xib */; };
 		148795CD1BEA679800B940D8 /* DriverRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795CB1BEA679800B940D8 /* DriverRideCell.m */; };
 		148795CE1BEA679800B940D8 /* DriverRideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148795CC1BEA679800B940D8 /* DriverRideCell.xib */; };
 		148795D11BEA685800B940D8 /* DriverDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795D01BEA685800B940D8 /* DriverDetails.m */; };
@@ -225,6 +227,9 @@
 		144869F71BC0968E00804C26 /* QuickSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickSearchViewController.h; sourceTree = "<group>"; };
 		144869F81BC0968E00804C26 /* QuickSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickSearchViewController.m; sourceTree = "<group>"; };
 		144869F91BC0968E00804C26 /* QuickSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickSearchViewController.xib; sourceTree = "<group>"; };
+		146815511BFBB61000A78430 /* SideMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuCell.h; sourceTree = "<group>"; };
+		146815521BFBB61000A78430 /* SideMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuCell.m; sourceTree = "<group>"; };
+		146815531BFBB61000A78430 /* SideMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
 		148795CA1BEA679800B940D8 /* DriverRideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverRideCell.h; sourceTree = "<group>"; };
 		148795CB1BEA679800B940D8 /* DriverRideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverRideCell.m; sourceTree = "<group>"; };
 		148795CC1BEA679800B940D8 /* DriverRideCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DriverRideCell.xib; sourceTree = "<group>"; };
@@ -524,6 +529,9 @@
 				873E4C5D1BED3085006C42F8 /* MapInfoWindow.xib */,
 				873E4C5F1BED30E4006C42F8 /* MapInfoWindow.h */,
 				873E4C601BED30E4006C42F8 /* MapInfoWindow.m */,
+				146815511BFBB61000A78430 /* SideMenuCell.h */,
+				146815521BFBB61000A78430 /* SideMenuCell.m */,
+				146815531BFBB61000A78430 /* SideMenuCell.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -720,6 +728,7 @@
 				8787E1F21BF7534100CCD53B /* policy.html in Resources */,
 				047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */,
 				873E4C5E1BED3086006C42F8 /* MapInfoWindow.xib in Resources */,
+				146815551BFBB61000A78430 /* SideMenuCell.xib in Resources */,
 				87196D461BF0A30500A94370 /* Launch Screen.storyboard in Resources */,
 				87D9D3301BEE58380096E17A /* AdvancedSearchViewController.xib in Resources */,
 				8787E1F31BF7534100CCD53B /* terms_en.html in Resources */,
@@ -882,6 +891,7 @@
 				87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */,
 				04931B211BAAF814000F5434 /* main.m in Sources */,
 				144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */,
+				146815541BFBB61000A78430 /* SideMenuCell.m in Sources */,
 				87B58B611BD38DD700E73E55 /* MapItemView.m in Sources */,
 				143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */,
 				047E458D1BC5A4D8000B5151 /* MLPAutoCompleteTextField.m in Sources */,
