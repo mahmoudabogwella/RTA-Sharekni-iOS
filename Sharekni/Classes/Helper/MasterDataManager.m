@@ -327,9 +327,8 @@
 
 - (void) getDriverRideDetails:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    NSDictionary *parameters = @{AccountId:accountID};
-    
-    [self.operationManager POST:GetDriverRideDetails_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/GetDriverDetailsByAccountId?AccountId=%@",accountID];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
@@ -349,16 +348,15 @@
         success(rideDrivers);
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
+        failure(error.localizedDescription);
     }];
 }
 
 
-- (void) GetRouteByRouteId:(NSString *)routeID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
+- (void) GetRouteByRouteId:(NSString *)routeID withSuccess:(void (^)(RouteDetails *routeDetails))success Failure:(void (^)(NSString *error))failure{
     
-    NSDictionary *parameters = @{@"RouteId":routeID};
-    
-    [self.operationManager POST:GetRouteByRouteId_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/GetRouteByRouteId?RouteId=%@",routeID];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
@@ -369,25 +367,26 @@
         NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
                                                                       options:NSJSONReadingMutableContainers
                                                                         error:&jsonError];
-        
-        NSMutableArray *rideDrivers = [NSMutableArray array];
-        for (NSDictionary *dictionary in resultDictionaries) {
-            DriverDetails *driverDetails = [DriverDetails gm_mappedObjectWithJsonRepresentation:dictionary];
-            [rideDrivers addObject:driverDetails];
+        if (resultDictionaries.count == 1) {
+            RouteDetails *routeDetails = [RouteDetails gm_mappedObjectWithJsonRepresentation:resultDictionaries[0]];
+            
+            success(routeDetails);
         }
-        success(rideDrivers);
+        else{
+            failure(@"failed to map");
+        }
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
+        failure(error.localizedDescription);
     }];
 }
 
 
 - (void) getReviewList:(NSString *)driverID andRoute:(NSString *)routeID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     
-    NSDictionary *parameters = @{@"DriverId":driverID,@"RouteId":routeID};
-    
-    [self.operationManager POST:GetReviewList_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+//    NSDictionary *parameters = @{@"DriverId":driverID,@"RouteId":routeID};
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Driver_GetReviewList?DriverId=%@&RouteId=%@",driverID,routeID];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
@@ -407,7 +406,7 @@
         success(reviews);
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
+        failure(error.localizedDescription);
     }];
 }
 

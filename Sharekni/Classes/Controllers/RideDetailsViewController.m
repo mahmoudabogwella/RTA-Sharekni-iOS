@@ -19,7 +19,13 @@
 #import <UIColor+Additions/UIColor+Additions.h>
 #import "Constants.h"
 
-@interface RideDetailsViewController ()
+#import "MapItemView.h"
+#import "MapItemPopupViewController.h"
+#import "MapInfoWindow.h"
+#import "RouteDetails.h"
+#import <GoogleMaps/GoogleMaps.h>
+
+@interface RideDetailsViewController ()<GMSMapViewDelegate>
 {
     __weak IBOutlet UIScrollView *contentView ;
     __weak IBOutlet UITableView *reviewList ;
@@ -35,14 +41,18 @@
     __weak IBOutlet UILabel *gender ;
     __weak IBOutlet UILabel *ageRange ;
     
+    __weak IBOutlet MKMapView *_MKmapView;
+
     __weak IBOutlet UILabel *preferenceLbl ;
     __weak IBOutlet UILabel *reviewLbl ;
     __weak IBOutlet UIView *preferenceView ;
     __weak IBOutlet UIView *reviewsView ;
+    GMSMapView *_mapView;
 }
 
 @property (nonatomic ,strong) NSMutableArray *reviews ;
-
+@property (nonatomic ,strong) NSMutableArray *markers ;
+@property (nonatomic ,strong) RouteDetails *routeDetails ;
 @end
 
 @implementation RideDetailsViewController
@@ -100,7 +110,8 @@
     language.text = _driverDetails.PrefLanguageEnName;
     gender.text = _driverDetails.PreferredGender;
     
-    [self getReviews];
+    [self configureMapView];
+    [self configureData];
 }
 
 - (void)popViewController
@@ -109,35 +120,43 @@
 }
 
 
-- (void)getReviews
+- (void)configureData
 {
     __block RideDetailsViewController *blockSelf = self;
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-   
-    [[MasterDataManager sharedMasterDataManager] getReviewList:_driverDetails.AccountId andRoute:_driverDetails.RouteId withSuccess:^(NSMutableArray *array) {
-        blockSelf.reviews = array;
-        
-        if (array.count == 0) {
-            reviewLbl.hidden = YES ;
-        }
-        [KVNProgress dismiss];
-        [reviewList reloadData];
-        
-        reviewList.frame = CGRectMake(reviewList.frame.origin.x, reviewList.frame.origin.y, reviewList.frame.size.width,self.reviews.count * 146.0f);
-//        [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewList.frame.origin.y + (self.reviews.count * 146.0f) + 10.0f)];
-        reviewsView.frame = CGRectMake(reviewsView.frame.origin.x, reviewsView.frame.origin.y, reviewsView.frame.size.width,self.reviews.count * 146.0f);
-        
-    } Failure:^(NSString *error) {
-        
-        NSLog(@"Error in Best Drivers");
-        [KVNProgress dismiss];
-        [KVNProgress showErrorWithStatus:@"Error"];
-        [blockSelf performBlock:^{
-            [KVNProgress dismiss];
-        } afterDelay:3];
-    }];
+   [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:_driverDetails.RouteId withSuccess:^(RouteDetails *routeDetails) {
+       
+       blockSelf.routeDetails = routeDetails;
+       [blockSelf configurePins];
+       [[MasterDataManager sharedMasterDataManager] getReviewList:_driverDetails.AccountId andRoute:_driverDetails.RouteId withSuccess:^(NSMutableArray *array) {
+           blockSelf.reviews = array;
+           
+           if (array.count == 0) {
+               reviewLbl.hidden = YES ;
+           }
+           [KVNProgress dismiss];
+           [reviewList reloadData];
+           
+           reviewList.frame = CGRectMake(reviewList.frame.origin.x, reviewList.frame.origin.y, reviewList.frame.size.width,self.reviews.count * 146.0f);
+           reviewsView.frame = CGRectMake(reviewsView.frame.origin.x, reviewsView.frame.origin.y, reviewsView.frame.size.width,self.reviews.count * 146.0f);
+           
+       } Failure:^(NSString *error) {
+           [blockSelf handleResponseError];
+       }];
+   } Failure:^(NSString *error) {
+       [blockSelf handleResponseError];
+   }];
+    
 }
 
+- (void) handleResponseError{
+    NSLog(@"Error in Best Drivers");
+    [KVNProgress dismiss];
+    [KVNProgress showErrorWithStatus:@"Error"];
+    [self performBlock:^{
+        [KVNProgress dismiss];
+    } afterDelay:3];
+}
 - (NSString *)getAvailableDays:(DriverDetails *)driverDetails
 {
     NSMutableString *str = [[NSMutableString alloc] init];
@@ -194,19 +213,73 @@
     return reviewCell ;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark -
+#pragma mark GOOGLE_MAPS
+
+- (void) configureMapView{
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:24.4667
+                                                            longitude:54.3667
+                                                                 zoom:15];
+    CGRect frame = _MKmapView.frame;
+    _mapView = [GMSMapView mapWithFrame:frame camera:camera];
+    _mapView.myLocationEnabled = YES;
+    _mapView.delegate = self;
+    [self.view addSubview:_mapView];
+    [_MKmapView removeFromSuperview];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void) configurePins{
+
+        CLLocationCoordinate2D position = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);
+        GMSMarker *startMarker = [GMSMarker markerWithPosition:position];
+        MapItemView *startItem = [[MapItemView alloc] initWithLat:self.routeDetails.StartLat lng:self.routeDetails.StartLng address:self.routeDetails.FromStreetName name:self.routeDetails.FromEmirateEnName];
+        startItem.arabicName = self.routeDetails.FromRegionArName;
+        startItem.englishName = self.routeDetails.FromRegionEnName;
+        startItem.rides = self.routeDetails.NoOfSeats.stringValue;
+        startMarker.userData = startItem;
+        startMarker.title = self.routeDetails.FromEmirateEnName;
+        startMarker.icon = [UIImage imageNamed:@"Location"];
+        startMarker.map = _mapView;
+        [self.markers addObject:startMarker];
+    
+    GMSMarker *endMarker = [GMSMarker markerWithPosition:position];
+    MapItemView *endItem = [[MapItemView alloc] initWithLat:self.routeDetails.EndLat lng:self.routeDetails.EndLng address:self.routeDetails.ToStreetName name:self.routeDetails.ToEmirateEnName];
+    endItem.arabicName = self.routeDetails.ToRegionArName;
+    endItem.englishName = self.routeDetails.ToRegionEnName;
+    endItem.rides = self.routeDetails.NoOfSeats.stringValue;
+    endMarker.userData = endItem;
+    endMarker.title = self.routeDetails.ToEmirateEnName;
+    endMarker.icon = [UIImage imageNamed:@"Location"];
+    endMarker.map = _mapView;
+    [self.markers addObject:endItem];
 }
-*/
+
+- (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
+    MapItemView *mapItem = (MapItemView *)marker.userData;
+    MapInfoWindow *infoWindow = [[MapInfoWindow alloc] initWithArabicName:mapItem.arabicName englishName:mapItem.englishName rides:mapItem.rides lat:mapItem.lat lng:mapItem.lng time:mapItem.comingRides];
+    return infoWindow;
+}
+
+- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+    CGPoint point = [mapView.projection pointForCoordinate:marker.position];
+    point.y = point.y - 100;
+    GMSCameraUpdate *camera =
+    [GMSCameraUpdate setTarget:[mapView.projection coordinateForPoint:point]];
+    [mapView animateWithCameraUpdate:camera];
+    
+    mapView.selectedMarker = marker;
+    return YES;
+}
+
+- (void)focusMapToShowAllMarkers{
+    CLLocationCoordinate2D myLocation = ((GMSMarker *)_markers.firstObject).position;
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:myLocation coordinate:myLocation];
+    
+    for (GMSMarker *marker in self.markers)
+        bounds = [bounds includingCoordinate:marker.position];
+    
+    [_mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:15.0f]];
+}
 
 @end

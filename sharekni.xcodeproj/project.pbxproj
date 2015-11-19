@@ -107,6 +107,8 @@
 		87E5F7641BFB68DE004FF688 /* RidesJoinedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E5F7621BFB68DE004FF688 /* RidesJoinedViewController.xib */; };
 		87E5F7681BFB6914004FF688 /* RidesCreatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F7661BFB6914004FF688 /* RidesCreatedViewController.m */; };
 		87E5F7691BFB6914004FF688 /* RidesCreatedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */; };
+		87FFDDAE1BFD65040031CE61 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FFDDAD1BFD65030031CE61 /* MapKit.framework */; };
+		87FFDDB11BFD6A570031CE61 /* RouteDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFDDB01BFD6A570031CE61 /* RouteDetails.m */; };
 		F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E520A66E22BABE4DD7235 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -299,6 +301,9 @@
 		87E5F7651BFB6914004FF688 /* RidesCreatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesCreatedViewController.h; sourceTree = "<group>"; };
 		87E5F7661BFB6914004FF688 /* RidesCreatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RidesCreatedViewController.m; sourceTree = "<group>"; };
 		87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RidesCreatedViewController.xib; sourceTree = "<group>"; };
+		87FFDDAD1BFD65030031CE61 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		87FFDDAF1BFD6A570031CE61 /* RouteDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteDetails.h; sourceTree = "<group>"; };
+		87FFDDB01BFD6A570031CE61 /* RouteDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteDetails.m; sourceTree = "<group>"; };
 		C699F720BCBF8D46B41E1A56 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -307,6 +312,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87FFDDAE1BFD65040031CE61 /* MapKit.framework in Frameworks */,
 				143F30F61BC86DE7006A6A21 /* MessageUI.framework in Frameworks */,
 				F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */,
 			);
@@ -611,6 +617,8 @@
 				148795D61BEA97EF00B940D8 /* Review.m */,
 				87E5F75D1BFB464C004FF688 /* Ride.h */,
 				87E5F75E1BFB464C004FF688 /* Ride.m */,
+				87FFDDAF1BFD6A570031CE61 /* RouteDetails.h */,
+				87FFDDB01BFD6A570031CE61 /* RouteDetails.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -627,6 +635,7 @@
 		EB0896A2D090EB584EC82226 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87FFDDAD1BFD65030031CE61 /* MapKit.framework */,
 				143F30F51BC86DE7006A6A21 /* MessageUI.framework */,
 				072E520A66E22BABE4DD7235 /* libPods.a */,
 			);
@@ -873,6 +882,7 @@
 				143F30F41BC85961006A6A21 /* BestDriver.m in Sources */,
 				87B58B561BD36F7900E73E55 /* MostRideDetails.m in Sources */,
 				143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */,
+				87FFDDB11BFD6A570031CE61 /* RouteDetails.m in Sources */,
 				047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */,
 				143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */,
 				14E7A8B01BDF145300255D86 /* VideoSplashViewController.m in Sources */,

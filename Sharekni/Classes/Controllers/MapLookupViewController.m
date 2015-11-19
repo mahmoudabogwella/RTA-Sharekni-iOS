@@ -126,7 +126,7 @@
         [KVNProgress dismiss];
     }];
 }
-
+/*
 - (void) fitAllPins{
     CLLocationDegrees maxLat = -90.0f;
     CLLocationDegrees maxLon = -180.0f;
@@ -189,5 +189,5 @@
         [self.popover presentPopoverFromRect:view.bounds inView:view permittedArrowDirections:WYPopoverArrowDirectionAny animated:TRUE  options:WYPopoverAnimationOptionFadeWithScale];
     }
 }
-
+*/
 @end

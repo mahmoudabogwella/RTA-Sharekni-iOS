@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="FromRegionName" destination="9Ss-AV-fjr" id="xID-WC-cn3"/>
                 <outlet property="ToRegionName" destination="2uY-OX-8Gx" id="Lz7-8D-xSW"/>
+                <outlet property="_MKmapView" destination="7lu-n3-uSK" id="a8N-Di-jnK"/>
                 <outlet property="ageRange" destination="Qvo-8B-rBr" id="OyO-Zf-Y6e"/>
                 <outlet property="availableDays" destination="Nz4-WU-aZd" id="lul-bd-hrr"/>
                 <outlet property="contentView" destination="GLx-ED-AA7" id="9ce-RD-d6Q"/>
