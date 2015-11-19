@@ -292,12 +292,6 @@
 
 - (void) getRideDetails:(NSString *)accountID FromEmirateID:(NSString *)fromEmirateID FromRegionID:(NSString *)fromRegionID ToEmirateID:(NSString *)toEmirateID ToRegionID:(NSString *)toRegionID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    NSDictionary *parameters = @{AccountId:accountID,
-                                 FromEmirateId:fromEmirateID,
-                                 FromRegionId:fromRegionID,
-                                 ToEmirateId:toEmirateID,
-                                 ToRegionId:toRegionID};
-    
     NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/GetMostDesiredRideDetails?AccountID=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@",accountID,fromEmirateID,fromRegionID,toEmirateID,toRegionID];
 
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
@@ -327,9 +321,9 @@
 
 - (void) getDriverRideDetails:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    NSDictionary *parameters = @{AccountId:accountID};
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/GetDriverDetailsByAccountId?AccountID=%@",accountID];
     
-    [self.operationManager POST:GetDriverRideDetails_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
@@ -349,7 +343,8 @@
         success(rideDrivers);
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
+        failure(error.localizedDescription);
+
     }];
 }
 

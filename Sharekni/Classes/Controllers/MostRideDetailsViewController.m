@@ -64,7 +64,7 @@
 {
     __block MostRideDetailsViewController *blockSelf = self;
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-    [[MasterDataManager sharedMasterDataManager] getRideDetails:@"80091" FromEmirateID:_ride.FromEmirateId FromRegionID:_ride.FromRegionId ToEmirateID:_ride.ToEmirateId ToRegionID:_ride.ToRegionId WithSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] getRideDetails:@"0" FromEmirateID:_ride.FromEmirateId FromRegionID:_ride.FromRegionId ToEmirateID:_ride.ToEmirateId ToRegionID:_ride.ToRegionId WithSuccess:^(NSMutableArray *array) {
         
         blockSelf.rides = array;
         [KVNProgress dismiss];
