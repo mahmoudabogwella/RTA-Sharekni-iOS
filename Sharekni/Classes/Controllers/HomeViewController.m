@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "SearchViewController.h"
 @interface HomeViewController ()
+
 #pragma Outlets
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 
@@ -137,7 +138,7 @@
     NSString *vehiclesCountText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Vehicles", nil),@"0"];
     
     
-    self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"Man"];
+    self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"thumbnail"];
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
     self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.profileImageView.layer.borderWidth = 0.5f;

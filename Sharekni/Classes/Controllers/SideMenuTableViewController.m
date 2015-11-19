@@ -17,6 +17,7 @@
 #import "MostRidesViewController.h"
 #import <REFrostedViewController.h>
 #import <UIViewController+REFrostedViewController.h>
+#import "SideMenuCell.h"
 
 #define Title_Key @"Title"
 #define Image_Key @"ImageName"
@@ -45,22 +46,22 @@
 - (void) configureDataSourceArray{
     self.items = [NSMutableArray array];
     
-    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home", nil),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
     [self.items addObject:dictionary];
     
-    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Most Rides", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Most Rides", nil),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];
     [self.items addObject:dictionary];
     
-    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Best Drivers", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Best Drivers", nil),@"Side_bestdriver"] forKeys:@[Title_Key,Image_Key]];
     [self.items addObject:dictionary];
     
-    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Search", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Search", nil),@"Side_search"] forKeys:@[Title_Key,Image_Key]];
     [self.items addObject:dictionary];
     
-    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Notifications", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Notifications", nil),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
     [self.items addObject:dictionary];
     
-    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Logout", nil),@""] forKeys:@[Title_Key,Image_Key]];
+    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Logout", nil),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
     [self.items addObject:dictionary];
 }
 
@@ -131,19 +132,22 @@
     return self.items.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (SideMenuCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
+    static NSString *CellIdentifier  = @"SideMenuCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SideMenuCell *sideCell = (SideMenuCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    if (sideCell == nil)
+    {
+        sideCell = (SideMenuCell *)[[[NSBundle mainBundle] loadNibNamed:@"SideMenuCell" owner:nil options:nil] objectAtIndex:0];
     }
     
     NSDictionary *dictionary = self.items[indexPath.row];
-    cell.textLabel.text = [dictionary valueForKey:Title_Key];
-    return cell;
+    
+    sideCell.cellTitle.text = [dictionary valueForKey:Title_Key] ;
+    sideCell.cellIcon.image = [UIImage imageNamed:[dictionary valueForKey:Image_Key]] ;
+    return sideCell ;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -133,7 +133,7 @@ typedef enum TextFieldType : NSUInteger {
 #define id_KEY @"id"
 #define fileName_KEY @"s_FileName"
 
-#define Driver_Ride_CELLHEIGHT 170
+#define Driver_Ride_CELLHEIGHT 210
 
 
 #define GoogleMapsAPIKey @"AIzaSyBxG-5UNm22YqbwQZReb7Yv6eJ02ztjpxQ"
