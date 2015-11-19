@@ -55,8 +55,7 @@
 #define GetMostRideDetails_URL @"cls_mobios.asmx/GetMostDesiredRideDetails"
 #define GetDriverRideDetails_URL @"cls_mobios.asmx/GetDriverDetailsByAccountId"
 #define GetRouteByRouteId_URL @"cls_mobios.asmx/GetRouteByRouteId"
-#define GetReviewList_URL @"cls_mobios.asmx/Driver_GetReviewList"
-
+#define GetReviewList_URL @"CLS_Mobios.asmx/Driver_GetReviewList"
 
 #define GetEmployers_URL @"cls_mobios.asmx/GetEmployers"
 #define GetRegionById_URL @"cls_mobios.asmx/GetRegionById"

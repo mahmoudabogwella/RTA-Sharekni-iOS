@@ -373,7 +373,8 @@
         success(rideDrivers);
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
+        failure(error.localizedDescription);
+
     }];
 }
 
@@ -402,7 +403,8 @@
         success(reviews);
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
+        failure(error.localizedDescription);
+
     }];
 }
 

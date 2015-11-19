@@ -23,6 +23,7 @@
 {
     __weak IBOutlet UIScrollView *contentView ;
     __weak IBOutlet UITableView *reviewList ;
+    __weak IBOutlet UIButton *joinRideBtn ;
     
     __weak IBOutlet UILabel *FromRegionName ;
     __weak IBOutlet UILabel *ToRegionName ;
@@ -112,9 +113,11 @@
 - (void)getReviews
 {
     __block RideDetailsViewController *blockSelf = self;
+  
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
    
     [[MasterDataManager sharedMasterDataManager] getReviewList:_driverDetails.AccountId andRoute:_driverDetails.RouteId withSuccess:^(NSMutableArray *array) {
+       
         blockSelf.reviews = array;
         
         if (array.count == 0) {
@@ -124,9 +127,13 @@
         [reviewList reloadData];
         
         reviewList.frame = CGRectMake(reviewList.frame.origin.x, reviewList.frame.origin.y, reviewList.frame.size.width,self.reviews.count * 146.0f);
-//        [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewList.frame.origin.y + (self.reviews.count * 146.0f) + 10.0f)];
+        
         reviewsView.frame = CGRectMake(reviewsView.frame.origin.x, reviewsView.frame.origin.y, reviewsView.frame.size.width,self.reviews.count * 146.0f);
         
+        joinRideBtn.frame = CGRectMake(joinRideBtn.frame.origin.x, reviewsView.frame.origin.y + reviewsView.frame.size.height + 15.0f, joinRideBtn.frame.size.width, joinRideBtn.frame.size.height);
+        
+        [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewsView.frame.origin.y + (self.reviews.count * 146.0f) + joinRideBtn.frame.size.height + 25.0f)];
+
     } Failure:^(NSString *error) {
         
         NSLog(@"Error in Best Drivers");

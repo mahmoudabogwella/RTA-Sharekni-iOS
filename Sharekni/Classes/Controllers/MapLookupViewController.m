@@ -51,7 +51,6 @@
     [self.view addSubview:mapView_];
 
     mapView_.delegate = self;
-
 }
 
 - (void) configurePins{
