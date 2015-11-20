@@ -151,9 +151,9 @@
 #pragma mark - Event Handler
 - (IBAction)submit:(id)sender
 {
-    [KVNProgress showWithStatus:@"Loading...."];
+    [KVNProgress showWithStatus:@"Loading.."];
     
-    [[MobAccountManager sharedMobAccountManager] registerVehicle:@"" TrafficFileNo:self.traficFileNo.text BirthDate:self.dateLabel.text WithSuccess:^(NSString *user) {
+    [[MobAccountManager sharedMobAccountManager] registerVehicle:@"144449" TrafficFileNo:self.traficFileNo.text BirthDate:self.dateLabel.text WithSuccess:^(NSString *user) {
         
         [KVNProgress dismiss];
         
@@ -172,6 +172,8 @@
         [self getAllVehicles];
         
     } Failure:^(NSString *error) {
+        
+        [[HelpManager sharedHelpManager] showAlertWithMessage:error];
         
         [KVNProgress dismiss];
         

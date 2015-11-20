@@ -46,24 +46,13 @@
 }
 
 - (void) registerPassengerWithFirstName:(NSString *)firstName lastName:(NSString *)lastName mobile:(NSString *)mobile username:(NSString *)username password:(NSString *)password gender:(NSString *)gender imagePath:(NSString *)photoName birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    
-    NSDictionary *parameters = @{FirstName_KEY:firstName,
-                                 LastName_KEY:lastName,
-                                 Mobile_KEY:mobile,
-                                 UserName_KEY:username,
-                                 Password_KEY:password,
-                                 Gender_KEY:gender,
-                                 photoName_KEY:photoName ? photoName:@"",
-                                 BirthDate_KEY:birthDate,
-                                 NationalityId_KEY:nationalityId,
-                                 PreferredLanguageId_KEY:langID};
-    
+
     NSString *body = [NSString stringWithFormat:@"cls_mobios.asmx/RegisterPassenger?firstName=%@&lastName=%@&mobile=%@&username=%@&password=%@&gender=%@&photoName=%@&BirthDate=%@&NationalityId=%@&PreferredLanguageId=%@",firstName,lastName,mobile,username,password,gender,@"",birthDate,nationalityId,langID];
     
     [self.operationManager GET:body parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
-        NSLog(responseString);
+
         if([responseString containsString:@"-2"]){
             failure(@"Failed");
         }
@@ -80,20 +69,6 @@
 
 - (void) registerDriverWithFirstName:(NSString *)firstName lastName:(NSString *)lastName mobile:(NSString *)mobile username:(NSString *)username password:(NSString *)password gender:(NSString *)gender imagePath:(NSString *)photoName birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     
-//    NSDictionary *parameters = @{FirstName_KEY:firstName,
-//                                 LastName_KEY:lastName,
-//                                 Mobile_KEY:mobile,
-//                                 UserName_KEY:username,
-//                                 Password_KEY:password,
-//                                 Gender_KEY:gender,
-//                                 photoName_KEY:photoName ? photoName:@"",
-//                                 BirthDate_KEY:birthDate,
-//                                 NationalityId_KEY:nationalityId,
-//                                 PreferredLanguageId_KEY:langID};
-    /*
-     cls_mobios.asmx/RegisterDriver?firstName=testqw&lastName=testqw&mobile=01020203030&username=testqw@gmail.com&password=testqw&gender=F&photoName=&licenseScannedFileName=&TrafficFileNo=&BirthDate=17/11/1979&NationalityId=8&PreferredLanguageId=1
-
-     */
     NSString *body = [NSString stringWithFormat:@"cls_mobios.asmx/RegisterDriver?firstName=%@&lastName=%@&mobile=%@&username=%@&password=%@&gender=%@&photoName=%@&licenseScannedFileName=%@&TrafficFileNo=%@&BirthDate=%@&NationalityId=%@&PreferredLanguageId=%@",firstName,lastName,mobile,username,password,gender,@"",@"",@"",birthDate,nationalityId,langID];
     
     [self.operationManager GET:body parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
@@ -315,17 +290,29 @@
          NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
          responseString = [self jsonStringFromResponse:responseString];
          
-         if (![responseString containsString:@"1"]){
-             failure(@"Error");
+         if ([responseString containsString:@"1"])
+         {
+             [[NSUserDefaults standardUserDefaults] setValue:TrafficFileNo forKey:@"TrafficFileNo"];
+             [[NSUserDefaults standardUserDefaults] setValue:AccountId forKey:@"AccountId"];
+             [[NSUserDefaults standardUserDefaults] setValue:BirthDate forKey:@"BirthDate"];
+             [[NSUserDefaults standardUserDefaults] synchronize];
+             success(responseString);
          }
-         
-         [[NSUserDefaults standardUserDefaults] setValue:TrafficFileNo forKey:@"TrafficFileNo"];
-         [[NSUserDefaults standardUserDefaults] setValue:AccountId forKey:@"AccountId"];
-         [[NSUserDefaults standardUserDefaults] setValue:BirthDate forKey:@"BirthDate"];
-         [[NSUserDefaults standardUserDefaults] synchronize];
-         
-         success(responseString);
-         
+         else if ([responseString containsString:@"-2"]){
+             failure(@"You can't use this file number");
+         }
+         else if ([responseString containsString:@"-3"]){
+             failure(@"Date birth invalid");
+         }
+         else if ([responseString containsString:@"-4"]){
+             failure(@"License verified, but no cars found");
+         }
+         else if ([responseString containsString:@"-5"]){
+             failure(@"Invalid data please check again");
+         }
+         else if ([responseString containsString:@"-6"]){
+             failure(@"Invalid data please check again");
+         }
      } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
          failure(@"incorrect");
      }];
