@@ -55,6 +55,8 @@
 		1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1425F8071BFF11B300AD086B /* SavedSearchViewController.xib */; };
 		1425F80D1BFF48BE00AD086B /* VehicleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F80B1BFF48BE00AD086B /* VehicleViewCell.m */; };
 		1425F80E1BFF48BE00AD086B /* VehicleViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1425F80C1BFF48BE00AD086B /* VehicleViewCell.xib */; };
+		1425F8121BFF9C9F00AD086B /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F8101BFF9C9F00AD086B /* NotificationsViewController.m */; };
+		1425F8131BFF9C9F00AD086B /* NotificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1425F8111BFF9C9F00AD086B /* NotificationsViewController.xib */; };
 		143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6AC1BB14BD2009F6496 /* AppDelegate.m */; };
 		143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */; };
 		143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B71BB5640B009F6496 /* LoginViewController.m */; };
@@ -224,6 +226,9 @@
 		1425F80A1BFF48BE00AD086B /* VehicleViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleViewCell.h; sourceTree = "<group>"; };
 		1425F80B1BFF48BE00AD086B /* VehicleViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehicleViewCell.m; sourceTree = "<group>"; };
 		1425F80C1BFF48BE00AD086B /* VehicleViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VehicleViewCell.xib; sourceTree = "<group>"; };
+		1425F80F1BFF9C9F00AD086B /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
+		1425F8101BFF9C9F00AD086B /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
+		1425F8111BFF9C9F00AD086B /* NotificationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationsViewController.xib; sourceTree = "<group>"; };
 		143BE6AB1BB14BD2009F6496 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		143BE6AC1BB14BD2009F6496 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		143BE6B01BB14BE5009F6496 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
@@ -548,6 +553,9 @@
 				1425F8051BFF11B300AD086B /* SavedSearchViewController.h */,
 				1425F8061BFF11B300AD086B /* SavedSearchViewController.m */,
 				1425F8071BFF11B300AD086B /* SavedSearchViewController.xib */,
+				1425F80F1BFF9C9F00AD086B /* NotificationsViewController.h */,
+				1425F8101BFF9C9F00AD086B /* NotificationsViewController.m */,
+				1425F8111BFF9C9F00AD086B /* NotificationsViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -790,6 +798,7 @@
 				1425F80E1BFF48BE00AD086B /* VehicleViewCell.xib in Resources */,
 				146815551BFBB61000A78430 /* SideMenuCell.xib in Resources */,
 				87196D461BF0A30500A94370 /* Launch Screen.storyboard in Resources */,
+				1425F8131BFF9C9F00AD086B /* NotificationsViewController.xib in Resources */,
 				87D9D3301BEE58380096E17A /* AdvancedSearchViewController.xib in Resources */,
 				8787E1F31BF7534100CCD53B /* terms_en.html in Resources */,
 				143F30E01BC83F70006A6A21 /* Images.xcassets in Resources */,
@@ -913,6 +922,7 @@
 				047E45501BC0960F000B5151 /* SearchViewController.m in Sources */,
 				873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
+				1425F8121BFF9C9F00AD086B /* NotificationsViewController.m in Sources */,
 				14B00C971BFB921E004F46F7 /* ForgetPasswordViewController.m in Sources */,
 				1425F8031BFF11A200AD086B /* VehiclesViewController.m in Sources */,
 				140960931BFEB0C700BA3268 /* MJPopupBackgroundView.m in Sources */,

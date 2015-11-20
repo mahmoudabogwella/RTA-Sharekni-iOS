@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DriverDetails.h"
 #import "Ride.h"
+#import "MostRideDetails.h"
 
 #define RIDE_CELLID @"RIDECELL"
 
@@ -26,4 +27,5 @@
 @property (nonatomic,strong) DriverDetails *driverRideDetails;
 @property (nonatomic,strong) Ride *rideDetails;
 
+- (void)setSavedResultRideDetails:(MostRideDetails *)rideDetails ;
 @end

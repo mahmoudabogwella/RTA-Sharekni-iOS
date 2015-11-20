@@ -43,11 +43,16 @@
     _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",_driverRideDetails.ToEmirateEnName,_driverRideDetails.ToRegionEnName];
 }
 
+- (void)setSavedResultRideDetails:(MostRideDetails *)rideDetails{
+    _RouteName.text = [NSString stringWithFormat:@"%@ : %@",rideDetails.FromEmirateEnName,rideDetails.ToEmirateEnName] ;
+    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",rideDetails.FromEmirateEnName,rideDetails.FromRegionEnName];
+    _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",rideDetails.ToEmirateEnName,rideDetails.ToRegionEnName];
+}
+
 - (void)setRideDetails:(Ride *)rideDetails{
     _rideDetails = rideDetails;
     _RouteName.text = _rideDetails.RouteEnName ;
-//    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",_rideDetails.FromEmirateEnName,_driverRideDetails.FromRegionEnName];
-//    _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",_driverRideDetails.ToEmirateEnName,_driverRideDetails.ToRegionEnName];
+
 }
 
 - (NSString *)getAvailableDays:(DriverDetails *)rideDetails

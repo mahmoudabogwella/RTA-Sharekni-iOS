@@ -408,7 +408,7 @@
 
 - (void) getSavedSearch:(NSString *)accountID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Passenger_GetSavedSearch?AccountId=%@",AccountId];
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Passenger_GetSavedSearch?AccountId=%@",accountID];
     
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
@@ -424,8 +424,8 @@
         
         NSMutableArray *rideDrivers = [NSMutableArray array];
         for (NSDictionary *dictionary in resultDictionaries) {
-            DriverDetails *driverDetails = [DriverDetails gm_mappedObjectWithJsonRepresentation:dictionary];
-            [rideDrivers addObject:driverDetails];
+            MostRideDetails *rideDetails = [MostRideDetails gm_mappedObjectWithJsonRepresentation:dictionary];
+            [rideDrivers addObject:rideDetails];
         }
         success(rideDrivers);
         
@@ -437,8 +437,8 @@
 
 - (void)getVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/GetVehicleById?id=%@",AccountId];
-    
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/GetVehicleById?id=%@",accountID];
+
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];

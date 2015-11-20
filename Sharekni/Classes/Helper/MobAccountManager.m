@@ -311,7 +311,12 @@
              failure(@"Invalid data please check again");
          }
          else if ([responseString containsString:@"-6"]){
-             failure(@"Invalid data please check again");
+//             failure(@"Invalid data please check again");
+             [[NSUserDefaults standardUserDefaults] setValue:TrafficFileNo forKey:@"TrafficFileNo"];
+             [[NSUserDefaults standardUserDefaults] setValue:AccountId forKey:@"AccountId"];
+             [[NSUserDefaults standardUserDefaults] setValue:BirthDate forKey:@"BirthDate"];
+             [[NSUserDefaults standardUserDefaults] synchronize];
+             success(responseString);
          }
      } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
          failure(@"incorrect");

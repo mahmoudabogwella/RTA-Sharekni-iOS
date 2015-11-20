@@ -45,12 +45,19 @@
 
 @implementation VehiclesViewController
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = NO;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     self.title = @"Register Vehicles";
+    
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
     [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
@@ -58,9 +65,11 @@
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
-    //Check here for user default then hide containerview and title label
     if ([[NSUserDefaults standardUserDefaults] valueForKey:@"TrafficFileNo"] != nil) {
-        self.view = self.vehiclesView;
+        self.vehiclesView.hidden = YES ;
+        containerView.hidden = YES ;
+        titleLabel.hidden = YES ;
+        
         self.vehiclesTitleLabel.textColor = Red_UIColor;
         [self.vehiclesTitleLabel addRightBorderWithColor:Red_UIColor];
         [self.vehiclesTitleLabel addLeftBorderWithColor:Red_UIColor];
@@ -72,19 +81,18 @@
         self.vehiclesContainerView.backgroundColor = [UIColor whiteColor];
         
         [self getAllVehicles];
+        
     }else{
+        
+        self.vehiclesView.hidden = YES ;
         self.dateFormatter = [[NSDateFormatter alloc] init];
         
         [self configureUI];
     }
 }
 
-- (void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.translucent = NO;
-}
-
-- (void) popViewController{
+- (void) popViewController
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -123,12 +131,13 @@
     
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
     
-    [[MasterDataManager sharedMasterDataManager] getVehicleById:@"" WithSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] getVehicleById:@"20027" WithSuccess:^(NSMutableArray *array) {
         
         blockSelf.vehiclesArray = array;
         
         [KVNProgress dismiss];
         
+        self.vehiclesView.hidden = NO ;
         self.vehiclesList.dataSource = self ;
         self.vehiclesList.delegate = self ;
         
@@ -228,7 +237,7 @@
     
     if (vehicleCell == nil)
     {
-        vehicleCell = (VehicleViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"ReviewCell" owner:nil options:nil] objectAtIndex:0];
+        vehicleCell = (VehicleViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"VehicleViewCell" owner:nil options:nil] objectAtIndex:0];
     }
     
     Vehicle *vehicle = self.vehiclesArray[indexPath.row];

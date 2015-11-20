@@ -8,14 +8,13 @@
 
 #import "SavedSearchViewController.h"
 #import "MessageUI/MessageUI.h"
-#import "MostRideDetailsCell.h"
-#import "MostRideDetails.h"
-#import "DriverDetailsViewController.h"
+#import "DriverRideCell.h"
 #import "Constants.h"
 #import <KVNProgress/KVNProgress.h>
 #import "NSObject+Blocks.h"
 #import <UIColor+Additions.h>
 #import "MasterDataManager.h"
+#import "RideDetailsViewController.h"
 
 @interface SavedSearchViewController ()
 
@@ -35,7 +34,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"savedSearch", nil);
+    self.title = @"Saved Search";
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
@@ -56,7 +55,7 @@
 {
     __block SavedSearchViewController *blockSelf = self;
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-    [[MasterDataManager sharedMasterDataManager] getSavedSearch:@"" withSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] getSavedSearch:@"144450" withSuccess:^(NSMutableArray *array) {
         
         blockSelf.savedData = array;
         [KVNProgress dismiss];
@@ -80,19 +79,19 @@
     return self.savedData.count;
 }
 
-- (MostRideDetailsCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (DriverRideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MostRideDetailsCell *rideCell = (MostRideDetailsCell *)[tableView dequeueReusableCellWithIdentifier:MOST_RIDE_DETAILS_CELLID];
+    DriverRideCell *driverCell = (DriverRideCell *)[tableView dequeueReusableCellWithIdentifier:RIDE_CELLID];
     
-    if (rideCell == nil)
+    if (driverCell == nil)
     {
-        rideCell = [[MostRideDetailsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MOST_RIDE_DETAILS_CELLID];
+        driverCell = [[DriverRideCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:RIDE_CELLID];
     }
     
-    MostRideDetails *ride = self.savedData[indexPath.row];
-    [rideCell setMostRide:ride];
+    MostRideDetails *driverDetails = self.savedData[indexPath.row];
+    [driverCell setSavedResultRideDetails:driverDetails];
     
-    return rideCell ;
+    return driverCell ;
 }
 
 #pragma mark -
@@ -100,41 +99,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MostRideDetails *ride = self.savedData[indexPath.row];
-    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
-    driverDetails.mostRideDetails = ride ;
-    [self.navigationController pushViewController:driverDetails animated:YES];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-#pragma mark - Message Delegate
-- (void)sendSMSFromPhone:(NSString *)phone
-{
-    if(![MFMessageComposeViewController canSendText])
-    {
-        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [warningAlert show];
-        return;
-    }
-    
-    NSArray *recipents = @[phone];
-    
-    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-    messageController.messageComposeDelegate = self;
-    [messageController setRecipients:recipents];
-    
-    // Present message view controller on screen
-    [self presentViewController:messageController animated:YES completion:nil];
-}
-
-- (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{
-    switch(result)
-    {
-        case MessageComposeResultCancelled: break; //handle cancelled event
-        case MessageComposeResultFailed: break; //handle failed event
-        case MessageComposeResultSent: break; //handle sent event
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    DriverDetails *driver = self.savedData[indexPath.row];
+    RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:@"RideDetailsViewController" bundle:nil];
+    rideDetails.driverDetails = driver ;
+    [self.navigationController pushViewController:rideDetails animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

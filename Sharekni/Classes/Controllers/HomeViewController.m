@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "SearchViewController.h"
 #import "VehiclesViewController.h"
+#import "SavedSearchViewController.h"
 
 @interface HomeViewController ()
 
@@ -58,7 +59,8 @@
 @implementation HomeViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+
     [self configureData];
     [self configureUI];
     [self configureActionsUI];
@@ -190,8 +192,11 @@
 
 - (void)showVeichles:(id)sender
 {
-    VehiclesViewController *registerVehicle = [[VehiclesViewController alloc] initWithNibName:@"VehiclesViewController" bundle:nil];
-    [self.navigationController pushViewController:registerVehicle animated:YES];
+    SavedSearchViewController *savedView = [[SavedSearchViewController alloc] initWithNibName:@"SavedSearchViewController" bundle:nil];
+    [self.navigationController pushViewController:savedView animated:YES];
+    
+//    VehiclesViewController *registerVehicle = [[VehiclesViewController alloc] initWithNibName:@"VehiclesViewController" bundle:nil];
+//    [self.navigationController pushViewController:registerVehicle animated:YES];
 }
 
 @end
