@@ -406,6 +406,13 @@
     }];
 }
 
+- (void) getSavedSearch:(NSString *)accountID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+{
+
+
+
+}
+
 
 - (void) GetRegionsByID:(NSString *)ID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSArray *savedRegions = [self getRegionsForEmirateID:ID];

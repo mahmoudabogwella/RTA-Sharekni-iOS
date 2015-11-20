@@ -45,10 +45,14 @@
 		14022BEA1BE56B8B00585042 /* MostRideDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14022BE81BE56B8B00585042 /* MostRideDetailsCell.m */; };
 		14022BEB1BE56B8B00585042 /* MostRideDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14022BE91BE56B8B00585042 /* MostRideDetailsCell.xib */; };
 		140960881BFEACC100BA3268 /* NSStringEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 140960871BFEACC100BA3268 /* NSStringEmpty.m */; };
-		140960911BFEB0C700BA3268 /* MJDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409608B1BFEB0C700BA3268 /* MJDetailViewController.m */; };
-		140960921BFEB0C700BA3268 /* MJDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1409608C1BFEB0C700BA3268 /* MJDetailViewController.xib */; };
+		140960911BFEB0C700BA3268 /* AddReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409608B1BFEB0C700BA3268 /* AddReviewViewController.m */; };
+		140960921BFEB0C700BA3268 /* AddReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1409608C1BFEB0C700BA3268 /* AddReviewViewController.xib */; };
 		140960931BFEB0C700BA3268 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409608E1BFEB0C700BA3268 /* MJPopupBackgroundView.m */; };
 		140960941BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140960901BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m */; };
+		1425F8031BFF11A200AD086B /* VehiclesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F8011BFF11A200AD086B /* VehiclesViewController.m */; };
+		1425F8041BFF11A200AD086B /* VehiclesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1425F8021BFF11A200AD086B /* VehiclesViewController.xib */; };
+		1425F8081BFF11B300AD086B /* SavedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F8061BFF11B300AD086B /* SavedSearchViewController.m */; };
+		1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1425F8071BFF11B300AD086B /* SavedSearchViewController.xib */; };
 		143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6AC1BB14BD2009F6496 /* AppDelegate.m */; };
 		143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */; };
 		143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B71BB5640B009F6496 /* LoginViewController.m */; };
@@ -82,7 +86,6 @@
 		14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E692631BE8B7180041A999 /* DriverDetailsViewController.m */; };
 		14E692661BE8B7180041A999 /* DriverDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */; };
 		14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */; };
-		14E7A8B01BDF145300255D86 /* VideoSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */; };
 		87196D461BF0A30500A94370 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87196D451BF0A30500A94370 /* Launch Screen.storyboard */; };
 		873E4C5E1BED3086006C42F8 /* MapInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 873E4C5D1BED3085006C42F8 /* MapInfoWindow.xib */; };
 		873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 873E4C601BED30E4006C42F8 /* MapInfoWindow.m */; };
@@ -203,13 +206,19 @@
 		14022BE91BE56B8B00585042 /* MostRideDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MostRideDetailsCell.xib; sourceTree = "<group>"; };
 		140960861BFEACC100BA3268 /* NSStringEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringEmpty.h; sourceTree = "<group>"; };
 		140960871BFEACC100BA3268 /* NSStringEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringEmpty.m; sourceTree = "<group>"; };
-		1409608A1BFEB0C700BA3268 /* MJDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDetailViewController.h; sourceTree = "<group>"; };
-		1409608B1BFEB0C700BA3268 /* MJDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDetailViewController.m; sourceTree = "<group>"; };
-		1409608C1BFEB0C700BA3268 /* MJDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJDetailViewController.xib; sourceTree = "<group>"; };
+		1409608A1BFEB0C700BA3268 /* AddReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReviewViewController.h; sourceTree = "<group>"; };
+		1409608B1BFEB0C700BA3268 /* AddReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReviewViewController.m; sourceTree = "<group>"; };
+		1409608C1BFEB0C700BA3268 /* AddReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddReviewViewController.xib; sourceTree = "<group>"; };
 		1409608D1BFEB0C700BA3268 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
 		1409608E1BFEB0C700BA3268 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
 		1409608F1BFEB0C700BA3268 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
 		140960901BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		1425F8001BFF11A200AD086B /* VehiclesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehiclesViewController.h; sourceTree = "<group>"; };
+		1425F8011BFF11A200AD086B /* VehiclesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehiclesViewController.m; sourceTree = "<group>"; };
+		1425F8021BFF11A200AD086B /* VehiclesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VehiclesViewController.xib; sourceTree = "<group>"; };
+		1425F8051BFF11B300AD086B /* SavedSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedSearchViewController.h; sourceTree = "<group>"; };
+		1425F8061BFF11B300AD086B /* SavedSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedSearchViewController.m; sourceTree = "<group>"; };
+		1425F8071BFF11B300AD086B /* SavedSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SavedSearchViewController.xib; sourceTree = "<group>"; };
 		143BE6AB1BB14BD2009F6496 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		143BE6AC1BB14BD2009F6496 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		143BE6B01BB14BE5009F6496 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
@@ -266,8 +275,6 @@
 		14E692631BE8B7180041A999 /* DriverDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverDetailsViewController.m; sourceTree = "<group>"; };
 		14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DriverDetailsViewController.xib; sourceTree = "<group>"; };
 		14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
-		14E7A8AD1BDF145300255D86 /* VideoSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSplashViewController.h; sourceTree = "<group>"; };
-		14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoSplashViewController.m; path = Classes/Controllers/VideoSplashViewController.m; sourceTree = "<group>"; };
 		33EF369DCE24017837965426 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		87196D451BF0A30500A94370 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		873E4C5D1BED3085006C42F8 /* MapInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapInfoWindow.xib; sourceTree = "<group>"; };
@@ -395,7 +402,6 @@
 			children = (
 				8787E1F01BF7534100CCD53B /* policy.html */,
 				8787E1F11BF7534100CCD53B /* terms_en.html */,
-				14E7A8AE1BDF145300255D86 /* VideoSplashViewController.m */,
 				143BE6A71BB14BD2009F6496 /* Classes */,
 				143F30DF1BC83F70006A6A21 /* Images.xcassets */,
 				04931B2B1BAAF814000F5434 /* Main.storyboard */,
@@ -438,9 +444,9 @@
 		140960891BFEB0C700BA3268 /* MJPopupBackgroundView */ = {
 			isa = PBXGroup;
 			children = (
-				1409608A1BFEB0C700BA3268 /* MJDetailViewController.h */,
-				1409608B1BFEB0C700BA3268 /* MJDetailViewController.m */,
-				1409608C1BFEB0C700BA3268 /* MJDetailViewController.xib */,
+				1409608A1BFEB0C700BA3268 /* AddReviewViewController.h */,
+				1409608B1BFEB0C700BA3268 /* AddReviewViewController.m */,
+				1409608C1BFEB0C700BA3268 /* AddReviewViewController.xib */,
 				1409608D1BFEB0C700BA3268 /* MJPopupBackgroundView.h */,
 				1409608E1BFEB0C700BA3268 /* MJPopupBackgroundView.m */,
 				1409608F1BFEB0C700BA3268 /* UIViewController+MJPopupViewController.h */,
@@ -469,7 +475,6 @@
 				87D9D32C1BEE58380096E17A /* AdvancedSearchViewController.h */,
 				87D9D32D1BEE58380096E17A /* AdvancedSearchViewController.m */,
 				87D9D32E1BEE58380096E17A /* AdvancedSearchViewController.xib */,
-				14E7A8AD1BDF145300255D86 /* VideoSplashViewController.h */,
 				143BE6B01BB14BE5009F6496 /* WelcomeViewController.h */,
 				143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */,
 				14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */,
@@ -532,6 +537,12 @@
 				14B00C941BFB921E004F46F7 /* ForgetPasswordViewController.h */,
 				14B00C951BFB921E004F46F7 /* ForgetPasswordViewController.m */,
 				14B00C961BFB921E004F46F7 /* ForgetPasswordViewController.xib */,
+				1425F8001BFF11A200AD086B /* VehiclesViewController.h */,
+				1425F8011BFF11A200AD086B /* VehiclesViewController.m */,
+				1425F8021BFF11A200AD086B /* VehiclesViewController.xib */,
+				1425F8051BFF11B300AD086B /* SavedSearchViewController.h */,
+				1425F8061BFF11B300AD086B /* SavedSearchViewController.m */,
+				1425F8071BFF11B300AD086B /* SavedSearchViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -790,8 +801,9 @@
 				14022BE11BE56A9300585042 /* MostRideDetailsViewController.xib in Resources */,
 				148795CE1BEA679800B940D8 /* DriverRideCell.xib in Resources */,
 				148795DC1BEA9CF900B940D8 /* ReviewCell.xib in Resources */,
+				1425F8041BFF11A200AD086B /* VehiclesViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
-				140960921BFEB0C700BA3268 /* MJDetailViewController.xib in Resources */,
+				140960921BFEB0C700BA3268 /* AddReviewViewController.xib in Resources */,
 				87C571D31BDBB08000EFB618 /* CreateRideViewController.xib in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
@@ -804,6 +816,7 @@
 				87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */,
 				14022BEB1BE56B8B00585042 /* MostRideDetailsCell.xib in Resources */,
 				04C3E0341BE09EF000698227 /* HomeViewController.xib in Resources */,
+				1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */,
 				14B0EFCE1BEF96F100937011 /* SearchViewController.xib in Resources */,
 				04CFC7061BE52C6B0009BBDA /* RegisterViewController.xib in Resources */,
 			);
@@ -892,6 +905,7 @@
 				873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
 				14B00C971BFB921E004F46F7 /* ForgetPasswordViewController.m in Sources */,
+				1425F8031BFF11A200AD086B /* VehiclesViewController.m in Sources */,
 				140960931BFEB0C700BA3268 /* MJPopupBackgroundView.m in Sources */,
 				87C571DC1BDBD33F00EFB618 /* Vehicle.m in Sources */,
 				87B58B5D1BD388D100E73E55 /* MapLookupViewController.m in Sources */,
@@ -902,6 +916,7 @@
 				0489129E1BB92150005E4E02 /* Nationality.m in Sources */,
 				87C571D61BDBCCA900EFB618 /* UILabel+Borders.m in Sources */,
 				143BE6C71BB69327009F6496 /* MostRidesCell.m in Sources */,
+				1425F8081BFF11B300AD086B /* SavedSearchViewController.m in Sources */,
 				14022BEA1BE56B8B00585042 /* MostRideDetailsCell.m in Sources */,
 				044ECE941BC08A6000AF3E2D /* SearchResultsViewController.m in Sources */,
 				048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */,
@@ -928,8 +943,7 @@
 				87FFDDB11BFD6A570031CE61 /* RouteDetails.m in Sources */,
 				047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */,
 				143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */,
-				14E7A8B01BDF145300255D86 /* VideoSplashViewController.m in Sources */,
-				140960911BFEB0C700BA3268 /* MJDetailViewController.m in Sources */,
+				140960911BFEB0C700BA3268 /* AddReviewViewController.m in Sources */,
 				143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */,
 				140960881BFEACC100BA3268 /* NSStringEmpty.m in Sources */,
 				047E45911BC63686000B5151 /* MobDriverManager.m in Sources */,

@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MJPopupBackgroundView.h"
 #import <objc/runtime.h>
+#import "Constants.h"
 
 #define kPopupModalAnimationDuration 0.35
 #define kMJPopupViewController @"kMJPopupViewController"
@@ -239,11 +240,35 @@ static void * const keypath = (void*)&keypath;
                                         popupSize.height);
             break;
     }
-    CGRect popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
-                                     (sourceSize.height - popupSize.height) / 2,
-                                     popupSize.width,
-                                     popupSize.height);
     
+    CGRect popupEndRect ;
+    
+    if (IS_IPHONE_5)
+    {
+         popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
+                                         44.0f,
+                                         popupSize.width,
+                                   popupSize.height);
+    }
+    
+    if (IS_IPHONE_6)
+    {
+            popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
+                                      100.0f,
+                                      popupSize.width,
+                                      popupSize.height);
+            
+    }
+    
+    if(IS_IPHONE_6P)
+    {
+        popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
+                                  130.0f,
+                                  popupSize.width,
+                                  popupSize.height);
+    }
+    
+
     // Set starting properties
     popupView.frame = popupStartRect;
     popupView.alpha = 1.0f;

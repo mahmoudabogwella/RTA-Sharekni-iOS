@@ -22,7 +22,7 @@
     self.driverPhoto.image = [UIImage imageNamed:@"BestDriverImage"];
     self.driverName.text = review.AccountName ;
     self.nationality.text = review.AccountNationalityEn ;
-//    self.comment.text = review.Review ;
+    self.comment.text = review.Review ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

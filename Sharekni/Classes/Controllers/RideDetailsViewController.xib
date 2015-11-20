@@ -113,6 +113,9 @@
                                             <integer key="value" value="4"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="addReview:" destination="-1" eventType="touchUpInside" id="Qb5-29-NCE"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <animations/>

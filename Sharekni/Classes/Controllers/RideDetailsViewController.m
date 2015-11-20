@@ -24,8 +24,11 @@
 #import "MapInfoWindow.h"
 #import "RouteDetails.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "AddReviewViewController.h"
+#import "UIViewController+MJPopupViewController.h"
 
-@interface RideDetailsViewController ()<GMSMapViewDelegate>
+
+@interface RideDetailsViewController ()<GMSMapViewDelegate,MJDetailPopupDelegate>
 {
     __weak IBOutlet UIScrollView *contentView ;
     __weak IBOutlet UITableView *reviewList ;
@@ -70,8 +73,8 @@
     // Do any additional setup after loading the view from its nib.
     self.title = NSLocalizedString(@"rideDetails", nil);
     
-    reviewList.rowHeight = UITableViewAutomaticDimension ;
-    reviewList.estimatedRowHeight = 55;
+//    reviewList.rowHeight = UITableViewAutomaticDimension ;
+//    reviewList.estimatedRowHeight = 55;
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
@@ -174,15 +177,14 @@
            [KVNProgress dismiss];
            [reviewList reloadData];
            
-           reviewList.frame = CGRectMake(reviewList.frame.origin.x, reviewList.frame.origin.y + 15, reviewList.frame.size.width,self.reviews.count * 146.0f);
+           reviewsView.frame = CGRectMake(reviewsView.frame.origin.x, reviewsView.frame.origin.y, reviewsView.frame.size.width,self.reviews.count *110);
            
-           reviewsView.frame = CGRectMake(reviewsView.frame.origin.x, reviewsView.frame.origin.y, reviewsView.frame.size.width,self.reviews.count * 146.0f + 30.0f);
+           reviewList.frame = CGRectMake(reviewList.frame.origin.x, reviewList.frame.origin.y + 15, reviewList.frame.size.width,reviewsView.frame.size.height - 30.0f);
            
            joinRideBtn.frame = CGRectMake(joinRideBtn.frame.origin.x, reviewsView.frame.origin.y + reviewsView.frame.size.height + 15.0f, joinRideBtn.frame.size.width, joinRideBtn.frame.size.height);
            
-           [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewsView.frame.origin.y + (self.reviews.count * 146.0f) + joinRideBtn.frame.size.height + 45.0f)];
-           
-           
+           [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewsView.frame.origin.y + reviewsView.frame.size.height + joinRideBtn.frame.size.height + 55.0f)];
+
        } Failure:^(NSString *error) {
            [blockSelf handleResponseError];
        }];
@@ -234,10 +236,19 @@
 #pragma mark - Event Handler
 - (IBAction)addReview:(id)sender
 {
-
-
+    AddReviewViewController *addReview = [[AddReviewViewController alloc] initWithNibName:@"AddReviewViewController" bundle:nil];
+    addReview.driverDetails = self.driverDetails ;
+    addReview.delegate = self;
+    [self presentPopupViewController:addReview animationType:MJPopupViewAnimationSlideBottomBottom];
 }
 
+- (void)cancelButtonClicked:(AddReviewViewController *)addReviewViewController
+{
+
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+ 
+    [self configureData];
+}
 
 - (IBAction)joinThisRide:(id)sender
 {
@@ -268,12 +279,6 @@
     
     Review *review = self.reviews[indexPath.row];
     [reviewCell setReview:review];
-    if (indexPath.row == 0) {
-        reviewCell.comment.text = @"Comment Comment Comment Comment Comment Comment Comment ";
-    }
-    if (indexPath.row == 1) {
-        reviewCell.comment.text = @"Comment Comment Comment Comment Comment Comment Comment Comment Comment Comment Comment Comment Comment Comment ";
-    }
 
     return reviewCell ;
 }

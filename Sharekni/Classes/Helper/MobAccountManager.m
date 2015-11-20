@@ -284,9 +284,29 @@
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         failure(error.localizedDescription);
     }];
+}
 
-//NSString *url = [NSString stringWithFormat:self.sharedMobAccountManager.us]
-// self.operationManager
+- (void) reviewDriver:(NSString *)driverId PassengerId:(NSString *)passengerId RouteId:(NSString *)routeId ReviewText:(NSString *)reviewText WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
+{
+    NSDictionary *parameters = @{@"DriverId":driverId,
+                                 @"PassengerId":passengerId,
+                                 @"RouteId":routeId,
+                                 @"ReviewText":reviewText
+                                 };
+
+    [self.operationManager POST:Passenger_ReviewDriver parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject)
+    {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        if (![responseString containsString:@"1"]){
+            failure(@"Error");
+        }
+        success(responseString);
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        failure(@"incorrect");
+    }];
 }
 
 
