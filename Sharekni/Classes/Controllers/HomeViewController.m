@@ -13,6 +13,8 @@
 #import <UIColor+Additions.h>
 #import "Constants.h"
 #import "SearchViewController.h"
+#import "VehiclesViewController.h"
+
 @interface HomeViewController ()
 
 #pragma Outlets
@@ -98,8 +100,11 @@
         self.bottomRightLabel.text = NSLocalizedString(@"Permit", nil);
         UITapGestureRecognizer *bottomRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(permitAction)];
         [self.bottomRightView addGestureRecognizer:bottomRightGesture];
-    }
-    else{
+        
+        UITapGestureRecognizer *vechilesGuesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVeichles:)];
+        [self.vehiclesView addGestureRecognizer:vechilesGuesture];
+    
+    }else{
         //passenger
         self.ridesCreatedView.alpha = 0;
         self.vehiclesView.alpha = 0;
@@ -124,6 +129,10 @@
         UITapGestureRecognizer *bottomRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(permitAction)];
         [self.bottomRightView addGestureRecognizer:bottomRightGesture];
     }
+    
+    
+    
+    
 }
 
 - (void) configureUI{
@@ -179,10 +188,10 @@
     
 }
 
-- (IBAction)showVeichles:(id)sender
+- (void)showVeichles:(id)sender
 {
-
-    
+    VehiclesViewController *registerVehicle = [[VehiclesViewController alloc] initWithNibName:@"VehiclesViewController" bundle:nil];
+    [self.navigationController pushViewController:registerVehicle animated:YES];
 }
 
 @end

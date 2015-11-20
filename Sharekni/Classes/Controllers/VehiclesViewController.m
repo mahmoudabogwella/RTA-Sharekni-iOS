@@ -7,17 +7,235 @@
 //
 
 #import "VehiclesViewController.h"
+#import "Constants.h"
+#import <UIColor+Additions/UIColor+Additions.h>
+#import <RMActionController.h>
+#import <RMPickerViewController.h>
+#import "HelpManager.h"
+#import <RMDateSelectionViewController.h>
+#import "MasterDataManager.h"
+#import <KVNProgress.h>
+#import "NSObject+Blocks.h"
+#import "MobAccountManager.h"
+#import "SharekniWebViewController.h"
+#import "MLPAutoCompleteTextField.h"
+#import "UILabel+Borders.h"
+#import "VehicleViewCell.h"
+#import "Vehicle.h"
 
-@interface VehiclesViewController ()
+@interface VehiclesViewController () <UITableViewDataSource ,UITableViewDelegate>
+{
+    __weak IBOutlet UILabel *titleLabel ;
+    __weak IBOutlet UIView *containerView ;
+}
+
+@property (weak ,nonatomic) IBOutlet UIView  *vehiclesView ;
+@property (weak ,nonatomic) IBOutlet UIView  *vehiclesContainerView ;
+@property (weak ,nonatomic) IBOutlet UILabel *vehiclesTitleLabel ;
+@property (weak ,nonatomic) IBOutlet UITableView *vehiclesList ;
+@property (nonatomic ,strong) NSMutableArray *vehiclesArray ;
+
+@property (weak,nonatomic) IBOutlet UITextField *traficFileNo ;
+@property (weak,nonatomic) IBOutlet UILabel *dateLabel ;
+@property (weak,nonatomic) IBOutlet UIView *datePickerView ;
+@property (strong,nonatomic) NSDate *date ;
+@property (strong,nonatomic) NSDateFormatter *dateFormatter;
 
 @end
 
 @implementation VehiclesViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.title = @"Register Vehicles";
+    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setHighlighted:NO];
+    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    
+    //Check here for user default then hide containerview and title label
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"TrafficFileNo"] != nil) {
+        self.view = self.vehiclesView;
+        self.vehiclesTitleLabel.textColor = Red_UIColor;
+        [self.vehiclesTitleLabel addRightBorderWithColor:Red_UIColor];
+        [self.vehiclesTitleLabel addLeftBorderWithColor:Red_UIColor];
+        self.vehiclesTitleLabel.backgroundColor = [UIColor whiteColor];
+        
+        self.vehiclesContainerView.layer.cornerRadius = 20;
+        self.vehiclesContainerView.layer.borderWidth = 1;
+        self.vehiclesContainerView.layer.borderColor = Red_UIColor.CGColor;
+        self.vehiclesContainerView.backgroundColor = [UIColor whiteColor];
+        
+        [self getAllVehicles];
+    }else{
+        self.dateFormatter = [[NSDateFormatter alloc] init];
+        
+        [self configureUI];
+    }
 }
+
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = NO;
+}
+
+- (void) popViewController{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)configureUI
+{
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
+    [self.datePickerView addGestureRecognizer:gesture];
+    [self.dateLabel addGestureRecognizer:gesture];
+    [self.dateLabel setUserInteractionEnabled:YES];
+    [self.datePickerView setUserInteractionEnabled:YES];
+    
+    if ([self.traficFileNo respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+        UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
+        self.traficFileNo.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Traffic File No." attributes:@{NSForegroundColorAttributeName: color}];
+    } else {
+        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
+        
+    }
+    
+    self.dateLabel.textColor = Red_UIColor;
+    
+    titleLabel.textColor = Red_UIColor;
+    [titleLabel addRightBorderWithColor:Red_UIColor];
+    [titleLabel addLeftBorderWithColor:Red_UIColor];
+    titleLabel.backgroundColor = [UIColor whiteColor];
+    
+    containerView.layer.cornerRadius = 20;
+    containerView.layer.borderWidth = 1;
+    containerView.layer.borderColor = Red_UIColor.CGColor;
+    containerView.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)getAllVehicles
+{
+    __block VehiclesViewController *blockSelf = self;
+    
+    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    
+    [[MasterDataManager sharedMasterDataManager] getVehicleById:@"" WithSuccess:^(NSMutableArray *array) {
+        
+        blockSelf.vehiclesArray = array;
+        
+        [KVNProgress dismiss];
+        
+        self.vehiclesList.dataSource = self ;
+        self.vehiclesList.delegate = self ;
+        
+        [self.vehiclesList reloadData];
+        
+    } Failure:^(NSString *error) {
+        [blockSelf handleResponseError];
+    }];
+}
+
+- (void) handleResponseError{
+    NSLog(@"Error in Best Drivers");
+    [KVNProgress dismiss];
+    [KVNProgress showErrorWithStatus:@"Error"];
+    [self performBlock:^{
+        [KVNProgress dismiss];
+    } afterDelay:3];
+}
+
+#pragma mark - Event Handler
+- (IBAction)submit:(id)sender
+{
+    [KVNProgress showWithStatus:@"Loading...."];
+    
+    [[MobAccountManager sharedMobAccountManager] registerVehicle:@"" TrafficFileNo:self.traficFileNo.text BirthDate:self.dateLabel.text WithSuccess:^(NSString *user) {
+        
+        [KVNProgress dismiss];
+        
+        //If success
+        self.view = self.vehiclesView;
+        self.vehiclesTitleLabel.textColor = Red_UIColor;
+        [self.vehiclesTitleLabel addRightBorderWithColor:Red_UIColor];
+        [self.vehiclesTitleLabel addLeftBorderWithColor:Red_UIColor];
+        self.vehiclesTitleLabel.backgroundColor = [UIColor whiteColor];
+        
+        self.vehiclesContainerView.layer.cornerRadius = 20;
+        self.vehiclesContainerView.layer.borderWidth = 1;
+        self.vehiclesContainerView.layer.borderColor = Red_UIColor.CGColor;
+        self.vehiclesContainerView.backgroundColor = [UIColor whiteColor];
+        
+        [self getAllVehicles];
+        
+    } Failure:^(NSString *error) {
+        
+        [KVNProgress dismiss];
+        
+    }];
+}
+
+#pragma mark - Pickers
+- (void)showDatePicker
+{
+    [self.view endEditing:YES];
+    __block VehiclesViewController *blockSelf = self;
+    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+        NSDate *date =  ((UIDatePicker *)controller.contentView).date;
+        
+        blockSelf.dateFormatter.dateFormat = @"dd, MMM, yyyy";
+        NSString * dateString = [self.dateFormatter stringFromDate:date];
+        self.dateLabel.text = dateString;
+        blockSelf.date = date;
+        if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:blockSelf.date] < 18)){
+            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"invalid birthdate", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alertView show];
+            self.date = nil;
+        }
+    }];
+    
+    //Create cancel action
+    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+        
+    }];
+    
+    //Create date selection view controller
+    RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
+    dateSelectionController.title = @"select date of birth";
+    dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
+    dateSelectionController.datePicker.date = [NSDate date];
+    
+    //Now just present the date selection controller using the standard iOS presentation method
+    [self presentViewController:dateSelectionController animated:YES completion:nil];
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
+{
+    return self.vehiclesArray.count;
+}
+
+- (VehicleViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier  = @"VehicleViewCell";
+    
+    VehicleViewCell *vehicleCell = (VehicleViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (vehicleCell == nil)
+    {
+        vehicleCell = (VehicleViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"ReviewCell" owner:nil options:nil] objectAtIndex:0];
+    }
+    
+    Vehicle *vehicle = self.vehiclesArray[indexPath.row];
+    vehicleCell.countryLbl.text = @"Dubai";
+    vehicleCell.numberLbl.text = [NSString stringWithFormat:@"%@ %@",vehicle.PlateCode,vehicle.PlateNumber];
+    
+    return vehicleCell ;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -25,13 +243,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

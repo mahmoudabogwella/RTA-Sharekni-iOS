@@ -24,6 +24,7 @@
 #import "MostRideDetails.h"
 #import "DriverDetails.h"
 #import "Review.h"
+#import "Vehicle.h"
 
 
 #define AccountId @"AccountID"
@@ -380,7 +381,6 @@
 
 - (void) getReviewList:(NSString *)driverID andRoute:(NSString *)routeID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     
-//    NSDictionary *parameters = @{@"DriverId":driverID,@"RouteId":routeID};
     NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Driver_GetReviewList?DriverId=%@&RouteId=%@",driverID,routeID];
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
@@ -434,6 +434,34 @@
     }];
 }
 
+
+- (void)getVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+{
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/GetVehicleById?id=%@",AccountId];
+    
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        
+        NSMutableArray *vehicles = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            Vehicle *vehicle = [Vehicle gm_mappedObjectWithJsonRepresentation:dictionary];
+            [vehicles addObject:vehicle];
+        }
+        success(vehicles);
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        failure(error.localizedDescription);
+    }];
+}
 
 - (void) GetRegionsByID:(NSString *)ID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSArray *savedRegions = [self getRegionsForEmirateID:ID];
@@ -494,6 +522,8 @@
         }];
     }
 }
+
+
 
 - (void) setRegions:(NSArray *)regions forEmirateWithID:(NSString *)ID{
     if(!self.regionsDictionary){

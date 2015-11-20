@@ -125,8 +125,7 @@
 }
 
 - (void) checkLoginWithUserName:(NSString *)userName andPassword:(NSString *)password WithSuccess:(void (^)(User *user))success Failure:(void (^)(NSString *error))failure{
-    NSDictionary *parameters = @{UserName_KEY:userName,
-                                 Password_KEY:password};
+   
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/CheckLogin?username=%@&password=%@",userName,password];
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -170,9 +169,6 @@
 
 - (void) forgetPassword:(NSString *)number andEmail:(NSString *)email WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-//    NSDictionary *parameters = @{@"mobile":number,
-//                                 @"email":email};
-    
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ForgetPassword?mobile=%@&email=%@",number,email];
     
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
@@ -180,8 +176,6 @@
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
         responseString = [self jsonStringFromResponse:responseString];
-        
-
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         failure(@"incorrect");
@@ -309,6 +303,33 @@
     }];
 }
 
+- (void) registerVehicle:(NSString *)AccountId TrafficFileNo:(NSString *)TrafficFileNo BirthDate:(NSString *)BirthDate WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
+{
+    NSDictionary *parameters = @{@"AccountId":AccountId,
+                                 @"TrafficFileNo":TrafficFileNo,
+                                 @"BirthDate":BirthDate
+                                 };
+    
+    [self.operationManager POST:RegisterVehicleWithETService parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject)
+     {
+         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+         responseString = [self jsonStringFromResponse:responseString];
+         
+         if (![responseString containsString:@"1"]){
+             failure(@"Error");
+         }
+         
+         [[NSUserDefaults standardUserDefaults] setValue:TrafficFileNo forKey:@"TrafficFileNo"];
+         [[NSUserDefaults standardUserDefaults] setValue:AccountId forKey:@"AccountId"];
+         [[NSUserDefaults standardUserDefaults] setValue:BirthDate forKey:@"BirthDate"];
+         [[NSUserDefaults standardUserDefaults] synchronize];
+         
+         success(responseString);
+         
+     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+         failure(@"incorrect");
+     }];
+}
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MobAccountManager);
 @end

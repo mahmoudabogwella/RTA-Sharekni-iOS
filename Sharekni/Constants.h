@@ -45,8 +45,8 @@
 #define XML_Tag3 @"<string xmlns=\"http://Sharekni-MobIOS-Data.org/\">"
 
 //#define Sharkeni_BASEURL @"http://sharekni.sdgstaff.com/_mobfiles/"
-#define Sharkeni_BASEURL @"http://sharekni-web.sdg.ae/_mobfiles/"
-//#define Sharkeni_BASEURL @"https://www.sharekni.ae/_mobfiles/"
+//#define Sharkeni_BASEURL @"http://sharekni-web.sdg.ae/_mobfiles/"
+#define Sharkeni_BASEURL @"http://213.42.51.219/_mobfiles/"
 
 #define GetAgeRanges_URL @"cls_mobios.asmx/GetAgeRanges"
 #define GetEmirates_URL @"cls_mobios.asmx/GetEmirates"
@@ -58,6 +58,8 @@
 #define GetReviewList_URL @"CLS_Mobios.asmx/Driver_GetReviewList"
 #define Passenger_ReviewDriver @"CLS_Mobios.asmx/Passenger_ReviewDriver"
 #define Passenger_GetSavedSearch @"CLS_Mobios.asmx/Passenger_GetSavedSearch"
+#define RegisterVehicleWithETService @"CLS_Mobios.asmx/Driver_RegisterVehicleWithETService"
+#define GetVehicleById @"CLS_Mobios.asmx/GetVehicleById"
 
 
 #define GetEmployers_URL @"cls_mobios.asmx/GetEmployers"
