@@ -44,9 +44,16 @@
 }
 
 - (void)setSavedResultRideDetails:(MostRideDetails *)rideDetails{
+   
     _RouteName.text = [NSString stringWithFormat:@"%@ : %@",rideDetails.FromEmirateEnName,rideDetails.ToEmirateEnName] ;
     _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",rideDetails.FromEmirateEnName,rideDetails.FromRegionEnName];
     _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",rideDetails.ToEmirateEnName,rideDetails.ToRegionEnName];
+
+    if (rideDetails.ToEmirateEnName == nil) {
+        _RouteName.text = [NSString stringWithFormat:@"%@",rideDetails.FromEmirateEnName] ;
+        _ToRegionName.text = @"";
+    }
+    
 }
 
 - (void)setRideDetails:(Ride *)rideDetails{

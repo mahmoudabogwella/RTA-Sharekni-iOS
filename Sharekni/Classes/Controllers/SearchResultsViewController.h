@@ -14,9 +14,9 @@
 
 @property (nonatomic,strong) NSArray *results;
 
-@property (nonatomic,strong) Emirate *fromEmirate;
-@property (nonatomic,strong) Region *fromRegion;
-@property (nonatomic,strong) Emirate *toEmirate;
-@property (nonatomic,strong) Region *toRegion;
+@property (nonatomic,strong) NSString *fromEmirate;
+@property (nonatomic,strong) NSString *fromRegion;
+@property (nonatomic,strong) NSString *toEmirate;
+@property (nonatomic,strong) NSString *toRegion;
 
 @end

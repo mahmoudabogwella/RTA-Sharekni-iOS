@@ -242,10 +242,10 @@
             if(searchResults){
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
-                resultViewController.fromEmirate = blockSelf.fromEmirate;
-                resultViewController.toEmirate = blockSelf.toEmirate;
-                resultViewController.fromRegion = blockSelf.fromRegion;
-                resultViewController.toRegion = blockSelf.toRegion;
+                resultViewController.fromEmirate = blockSelf.fromEmirate.EmirateEnName;
+                resultViewController.toEmirate = blockSelf.toEmirate.EmirateEnName;
+                resultViewController.fromRegion = blockSelf.fromRegion.RegionEnName;
+                resultViewController.toRegion = blockSelf.toRegion.RegionEnName;
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
             else{

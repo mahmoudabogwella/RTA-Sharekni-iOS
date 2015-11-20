@@ -102,7 +102,6 @@
     [self configureUI];
     [self configrueNationalityAutoCompelete];
     [self configureData];
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated{

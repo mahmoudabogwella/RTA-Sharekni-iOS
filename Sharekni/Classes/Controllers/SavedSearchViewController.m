@@ -18,6 +18,7 @@
 #import "DriverDetailsViewController.h"
 #import "SearchResultsViewController.h"
 #import "MobDriverManager.h"
+#import "HelpManager.h"
 
 @interface SavedSearchViewController ()
 
@@ -103,26 +104,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MostRideDetails *ride = self.savedData[indexPath.row];
-//    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
-//    driverDetails.mostRideDetails = ride ;
-//    [self.navigationController pushViewController:driverDetails animated:YES];
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-//    if (!self.fromEmirate) {
-//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
-//    }
-//    else{
+
         __block SavedSearchViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
-        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:ride.FromEmirateId andFromRegion:ride.FromRegionId toEmirate:ride.ToEmirateId andToRegion:ride.ToRegionId PerfferedLanguage:nil nationality:nil ageRange:nil date:nil isPeriodic:NO saveSearch:NO WithSuccess:^(NSArray *searchResults) {
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirateID:ride.FromEmirateId andFromRegionID:ride.FromRegionId toEmirateID:ride.ToEmirateId andToRegionID:ride.ToRegionId PerfferedLanguageID:@"0" nationalityID:@"0" ageRangeID:@"0" date:nil isPeriodic:NO saveSearch:NO WithSuccess:^(NSArray *searchResults) {
+    
             [KVNProgress dismiss];
             if(searchResults){
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
-                resultViewController.fromEmirate = blockSelf.fromEmirate;
-                resultViewController.toEmirate = blockSelf.toEmirate;
-                resultViewController.fromRegion = blockSelf.fromRegion;
-                resultViewController.toRegion = blockSelf.toRegion;
+                resultViewController.fromEmirate = ride.FromEmirateEnName;
+                resultViewController.toEmirate = ride.ToEmirateEnName;
+                resultViewController.fromRegion = ride.FromRegionEnName;
+                resultViewController.toRegion = ride.ToRegionEnName;
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
             else{

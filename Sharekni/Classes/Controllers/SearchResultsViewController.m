@@ -34,8 +34,8 @@
 - (void) configureUI{
     
    self.title = NSLocalizedString(@"Search Results", nil);
-    self.fromLabel.text = [NSString stringWithFormat:@"%@ , %@",self.fromEmirate.EmirateEnName , self.fromRegion.RegionEnName];
-    self.toLabel.text = (self.toEmirate&&self.toRegion) ? [NSString stringWithFormat:@"%@ , %@",self.toEmirate.EmirateEnName , self.toRegion.RegionEnName] : @"Not specified";
+    self.fromLabel.text = [NSString stringWithFormat:@"%@ , %@",self.fromEmirate , self.fromRegion];
+    self.toLabel.text = (self.toEmirate&&self.toRegion) ? [NSString stringWithFormat:@"%@ , %@",self.toEmirate , self.toRegion] : @"Not specified";
 
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     [self.tableView registerClass:[MostRideDetailsCell class] forCellReuseIdentifier:MOST_RIDE_DETAILS_CELLID];

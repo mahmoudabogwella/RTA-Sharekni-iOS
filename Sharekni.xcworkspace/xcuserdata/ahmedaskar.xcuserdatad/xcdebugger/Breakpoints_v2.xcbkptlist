@@ -19,22 +19,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/CustomViews/DriverRideCell.m"
-            timestampString = "469739776.82992"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "-setRideDetails:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Controllers/DriverDetailsViewController.m"
             timestampString = "469742192.306758"
             startingColumnNumber = "9223372036854775807"
@@ -52,7 +36,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ahmedaskar/Work/inCore/Sharekni/Sharekni/Classes/Controllers/DriverDetailsViewController.m"
-                  timestampString = "469742192.311824"
+                  timestampString = "469744926.584141"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -63,26 +47,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__Block_byref_object_copy_"
-                  moduleName = "Sharekni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ahmedaskar/Work/inCore/Sharekni/Sharekni/Classes/Controllers/DriverDetailsViewController.m"
-                  timestampString = "469742192.31211"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
                   symbolName = "__Block_byref_object_dispose_"
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ahmedaskar/Work/inCore/Sharekni/Sharekni/Classes/Controllers/DriverDetailsViewController.m"
-                  timestampString = "469742192.312352"
+                  timestampString = "469744926.584715"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -90,22 +59,6 @@
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Controllers/SavedSearchViewController.m"
-            timestampString = "469742416.811064"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
