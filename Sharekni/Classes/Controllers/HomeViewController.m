@@ -83,7 +83,7 @@
     self.bottomRightView.backgroundColor = Red_UIColor;
     
     if (self.sharedUser.AccountTypeId.integerValue == 1) {      //Driver
-        self.topLeftIcon.image = [UIImage imageNamed:@""];
+        self.topLeftIcon.image = [UIImage imageNamed:@"search-icon"];
         self.topLeftLabel.text = NSLocalizedString(@"Search", nil);
         UITapGestureRecognizer *topLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction)];
         [self.topLeftView addGestureRecognizer:topLeftGesture];

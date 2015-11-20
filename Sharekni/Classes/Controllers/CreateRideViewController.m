@@ -33,6 +33,7 @@
 
 
 @interface CreateRideViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *setDirectionButton;
 @property (weak, nonatomic) IBOutlet UITextField *selectVehicleTextField;
 @property (weak, nonatomic) IBOutlet UILabel *rideDetailsSectionLabel;
 @property (weak, nonatomic) IBOutlet UIView *rideDetailsView;
@@ -40,8 +41,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *noOfSeatsTextField;
 @property (weak, nonatomic) IBOutlet UILabel *optionalSectionLabel;
 @property (weak, nonatomic) IBOutlet UITextField *rideNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *startPointTextField;
-@property (weak, nonatomic) IBOutlet UITextField *destinationTextField;
+@property (weak, nonatomic) IBOutlet UILabel *startPointLabel;
+@property (weak, nonatomic) IBOutlet UILabel *destinationLabel;
 @property (weak, nonatomic) IBOutlet UITextField *vehiclesTextField;
 @property (weak, nonatomic) IBOutlet UILabel *pickupTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationTitleLabel;
@@ -51,10 +52,10 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UIView *timeView;
-@property (weak, nonatomic) IBOutlet UILabel *dayNumberLabel;
+
 @property (weak, nonatomic) IBOutlet UIView *dateView;
-@property (weak, nonatomic) IBOutlet UILabel *dayLabel;
-@property (weak, nonatomic) IBOutlet UILabel *monthAndYearLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UITextField *nationalityTextField;
 @property (weak, nonatomic) IBOutlet UIView *typeView;
@@ -106,6 +107,11 @@
     [self configureRoadTypeView];
     [self configureGenderView];
 }
+
+- (IBAction)setDirectionAction:(id)sender {
+    [self showLocationPicker];
+}
+
 #pragma Data
 - (void) configureData{
     __block CreateRideViewController *blockSelf = self;
@@ -160,25 +166,25 @@
     self.isFemaleOnly = false;
     self.pickupDate = [[NSDate date] dateBySettingHour:10];
     
-    UIBezierPath *maskPath;
-    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.pickupTitleLabel.bounds
-                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
-                                           cornerRadii:CGSizeMake(5.0, 5.0)];
-    
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.pickupTitleLabel.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.pickupTitleLabel.layer.mask = maskLayer;
-    
-    
-    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.destinationTitleLabel.bounds
-                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
-                                           cornerRadii:CGSizeMake(5.0, 5.0)];
-    
-    maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.pickupTitleLabel.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.destinationTitleLabel  .layer.mask = maskLayer;
+//    UIBezierPath *maskPath;
+//    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.pickupTitleLabel.bounds
+//                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
+//                                           cornerRadii:CGSizeMake(5.0, 5.0)];
+//    
+//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = self.pickupTitleLabel.bounds;
+//    maskLayer.path = maskPath.CGPath;
+//    self.pickupTitleLabel.layer.mask = maskLayer;
+//    
+//    
+//    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.destinationTitleLabel.bounds
+//                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
+//                                           cornerRadii:CGSizeMake(5.0, 5.0)];
+//    
+//    maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = self.pickupTitleLabel.bounds;
+//    maskLayer.path = maskPath.CGPath;
+//    self.destinationTitleLabel  .layer.mask = maskLayer;
     
     self.dateView.layer.cornerRadius = 10;
     self.dateView.layer.masksToBounds = YES;
@@ -193,9 +199,8 @@
     self.ageRangeTextField.textColor                = Red_UIColor;
     self.langageTextField.textColor                 = Red_UIColor;
     self.pickupTitleLabel.backgroundColor           = Red_UIColor;
-    self.destinationTextField.textColor             = Red_UIColor;
-    self.startPointTextField.textColor              = Red_UIColor;
-    self.destinationTextField.textColor             = Red_UIColor;
+    self.destinationLabel.textColor                 = Red_UIColor;
+    self.startPointLabel.textColor                  = Red_UIColor;
     self.noOfSeatsTextField.textColor               = Red_UIColor;
     self.vehiclesTextField.textColor                = Red_UIColor;
     self.rideDetailsSectionLabel.textColor          = Red_UIColor;
@@ -295,6 +300,7 @@
     }
     else if (!self.toEmirate){
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select destination ",nil)];
+        
     }
     else{
         __block CreateRideViewController *blockSelf = self;
@@ -306,19 +312,11 @@
 
 - (void) showDatePicker{
     __block CreateRideViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select",nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
-        blockSelf.dateFormatter.dateFormat = @"EEE";
-        NSString *day = [self.dateFormatter stringFromDate:date];
-        blockSelf.dayLabel.text = day;
-        
-        blockSelf.dateFormatter.dateFormat = @"dd";
-        NSString *dayNumber = [self.dateFormatter stringFromDate:date];
-        blockSelf.dayNumberLabel.text = dayNumber;
-        
-        blockSelf.dateFormatter.dateFormat = @"MMM, yyyy";
-        NSString * month = [self.dateFormatter stringFromDate:date];
-        blockSelf.monthAndYearLabel.text = month;
+        blockSelf.dateFormatter.dateFormat = @"EEE,  dd/MM/yyyy";
+        NSString *dateString = [self.dateFormatter stringFromDate:date];
+        blockSelf.dateLabel.text = dateString;
         
         NSInteger hour = blockSelf.pickupDate.hour;
         NSInteger minutes = blockSelf.pickupDate.minute;
@@ -327,13 +325,13 @@
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel",nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = @"select Pickup Date";
+    dateSelectionController.title = NSLocalizedString(@"select Pickup Date", nil);
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
     dateSelectionController.datePicker.date = self.pickupDate;
     
@@ -344,7 +342,7 @@
 - (void) showTimePicker{
     
     __block CreateRideViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select",nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.dateFormatter.dateFormat = @"HH:mm a";
         NSString *time = [self.dateFormatter stringFromDate:date];
@@ -355,13 +353,13 @@
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel",nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = @"select Pickup Time";
+    dateSelectionController.title = NSLocalizedString(@"select Pickup Time",nil);
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
     dateSelectionController.datePicker.date = self.pickupDate;
     
@@ -465,12 +463,12 @@
 
             blockSelf.fromEmirate = fromEmirate;
             blockSelf.fromRegion = fromRegion;
-            blockSelf.startPointTextField.text = fromText;
+            blockSelf.startPointLabel.text = fromText;
         NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
         
             blockSelf.toEmirate = toEmirate;
             blockSelf.toRegion = toRegion;
-            blockSelf.destinationTextField.text = toText;
+            blockSelf.destinationLabel.text = toText;
     }];
     
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:selectLocationViewController];
@@ -490,13 +488,8 @@
 
 #pragma TextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if(textField == self.startPointTextField && textField.text.length == 0){
-        [self showLocationPicker];
-    }
-    else if (textField == self.destinationTextField && textField.text.length == 0){
-        [self showLocationPicker];
-    }
-    else if (textField == self.nationalityTextField){
+    
+    if (textField == self.nationalityTextField){
         [self showPickerWithTextFieldType:NationalityTextField];
     }
     else if (textField == self.ageRangeTextField){
