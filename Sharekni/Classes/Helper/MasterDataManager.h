@@ -11,6 +11,7 @@
 #import "BaseAPIManager.h"
 #import "TermsAndCondition.h"
 #import <UIKit/UIKit.h>
+#import "RouteDetails.h"
 
 @interface MasterDataManager : BaseAPIManager
 
@@ -40,7 +41,7 @@
 
 - (void)getDriverRideDetails:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 
-- (void) GetRouteByRouteId:(NSString *)RouteID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
+- (void) GetRouteByRouteId:(NSString *)routeID withSuccess:(void (^)(RouteDetails *routeDetails))success Failure:(void (^)(NSString *error))failure;
 
 - (void) getReviewList:(NSString *)driverID andRoute:(NSString *)routeID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 @end
