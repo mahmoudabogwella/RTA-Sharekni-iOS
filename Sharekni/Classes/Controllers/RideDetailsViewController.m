@@ -18,7 +18,7 @@
 #import "UILabel+Borders.h"
 #import <UIColor+Additions/UIColor+Additions.h>
 #import "Constants.h"
-
+#import "NSStringEmpty.h"
 #import "MapItemView.h"
 #import "MapItemPopupViewController.h"
 #import "MapInfoWindow.h"
@@ -102,8 +102,23 @@
     startingTime.text = [NSString stringWithFormat:@"Time %@ : %@",_driverDetails.StartTime,_driverDetails.EndTime];
     availableDays.text = [NSString stringWithFormat:@"Ride Days : %@",[self getAvailableDays:self.driverDetails]];
     
-    nationality.text = _driverDetails.NationalityEnName ;
-    ageRange.text = _driverDetails.AgeRange ;
+    if ([NSStringEmpty isNullOrEmpty:_driverDetails.NationalityEnName])
+    {
+        nationality.text = @"Not Set";
+    }
+    else
+    {
+        nationality.text = _driverDetails.NationalityEnName ;
+    }
+    
+    if ([NSStringEmpty isNullOrEmpty:_driverDetails.AgeRange])
+    {
+        ageRange.text = @"Not Set";
+    }
+    else
+    {
+        ageRange.text = _driverDetails.AgeRange ;
+    }
     
     if (_driverDetails.IsSmoking.boolValue) {
         smoking.text = @"Yes";
@@ -111,8 +126,24 @@
         smoking.text = @"No";
     }
     
-    language.text = _driverDetails.PrefLanguageEnName;
-    gender.text = _driverDetails.PreferredGender;
+    if ([NSStringEmpty isNullOrEmpty:_driverDetails.PrefLanguageEnName])
+    {
+        language.text = @"Not Set";
+    }
+    else
+    {
+        language.text = _driverDetails.PrefLanguageEnName;
+    }
+    
+    if ([NSStringEmpty isNullOrEmpty:_driverDetails.PreferredGender])
+    {
+        gender.text = @"Not Set";
+    }
+    else
+    {
+        gender.text = _driverDetails.PreferredGender;
+    }
+    
     
     [self configureMapView];
     [self configureData];
@@ -149,7 +180,7 @@
            
            joinRideBtn.frame = CGRectMake(joinRideBtn.frame.origin.x, reviewsView.frame.origin.y + reviewsView.frame.size.height + 15.0f, joinRideBtn.frame.size.width, joinRideBtn.frame.size.height);
            
-           [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewsView.frame.origin.y + (self.reviews.count * 146.0f) + joinRideBtn.frame.size.height + 35.0f)];
+           [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewsView.frame.origin.y + (self.reviews.count * 146.0f) + joinRideBtn.frame.size.height + 45.0f)];
            
            
        } Failure:^(NSString *error) {
@@ -168,6 +199,7 @@
         [KVNProgress dismiss];
     } afterDelay:3];
 }
+
 - (NSString *)getAvailableDays:(DriverDetails *)driverDetails
 {
     NSMutableString *str = [[NSMutableString alloc] init];
@@ -198,6 +230,22 @@
     
     return str ;
 }
+
+#pragma mark - Event Handler
+- (IBAction)addReview:(id)sender
+{
+
+
+}
+
+
+- (IBAction)joinThisRide:(id)sender
+{
+
+
+
+}
+
 
 #pragma mark -
 #pragma mark UITableView Datasource
@@ -241,7 +289,7 @@
     _mapView = [GMSMapView mapWithFrame:frame camera:camera];
     _mapView.myLocationEnabled = YES;
     _mapView.delegate = self;
-    [self.view addSubview:_mapView];
+    [contentView addSubview:_mapView];
     [_MKmapView removeFromSuperview];
 }
 

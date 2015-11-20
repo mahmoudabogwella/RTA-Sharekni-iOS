@@ -44,6 +44,11 @@
 		14022BE61BE56AA400585042 /* RideDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14022BE41BE56AA400585042 /* RideDetailsViewController.xib */; };
 		14022BEA1BE56B8B00585042 /* MostRideDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14022BE81BE56B8B00585042 /* MostRideDetailsCell.m */; };
 		14022BEB1BE56B8B00585042 /* MostRideDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14022BE91BE56B8B00585042 /* MostRideDetailsCell.xib */; };
+		140960881BFEACC100BA3268 /* NSStringEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 140960871BFEACC100BA3268 /* NSStringEmpty.m */; };
+		140960911BFEB0C700BA3268 /* MJDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409608B1BFEB0C700BA3268 /* MJDetailViewController.m */; };
+		140960921BFEB0C700BA3268 /* MJDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1409608C1BFEB0C700BA3268 /* MJDetailViewController.xib */; };
+		140960931BFEB0C700BA3268 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409608E1BFEB0C700BA3268 /* MJPopupBackgroundView.m */; };
+		140960941BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140960901BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m */; };
 		143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6AC1BB14BD2009F6496 /* AppDelegate.m */; };
 		143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */; };
 		143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B71BB5640B009F6496 /* LoginViewController.m */; };
@@ -196,6 +201,15 @@
 		14022BE71BE56B8B00585042 /* MostRideDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostRideDetailsCell.h; sourceTree = "<group>"; };
 		14022BE81BE56B8B00585042 /* MostRideDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostRideDetailsCell.m; sourceTree = "<group>"; };
 		14022BE91BE56B8B00585042 /* MostRideDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MostRideDetailsCell.xib; sourceTree = "<group>"; };
+		140960861BFEACC100BA3268 /* NSStringEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringEmpty.h; sourceTree = "<group>"; };
+		140960871BFEACC100BA3268 /* NSStringEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringEmpty.m; sourceTree = "<group>"; };
+		1409608A1BFEB0C700BA3268 /* MJDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDetailViewController.h; sourceTree = "<group>"; };
+		1409608B1BFEB0C700BA3268 /* MJDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDetailViewController.m; sourceTree = "<group>"; };
+		1409608C1BFEB0C700BA3268 /* MJDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJDetailViewController.xib; sourceTree = "<group>"; };
+		1409608D1BFEB0C700BA3268 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		1409608E1BFEB0C700BA3268 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		1409608F1BFEB0C700BA3268 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		140960901BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
 		143BE6AB1BB14BD2009F6496 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		143BE6AC1BB14BD2009F6496 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		143BE6B01BB14BE5009F6496 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
@@ -336,6 +350,7 @@
 		047E455D1BC59C4C000B5151 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				140960891BFEB0C700BA3268 /* MJPopupBackgroundView */,
 				047E45851BC5A4D8000B5151 /* MLPAutoCompleteTextField */,
 			);
 			path = Components;
@@ -418,6 +433,20 @@
 				04931B3C1BAAF815000F5434 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		140960891BFEB0C700BA3268 /* MJPopupBackgroundView */ = {
+			isa = PBXGroup;
+			children = (
+				1409608A1BFEB0C700BA3268 /* MJDetailViewController.h */,
+				1409608B1BFEB0C700BA3268 /* MJDetailViewController.m */,
+				1409608C1BFEB0C700BA3268 /* MJDetailViewController.xib */,
+				1409608D1BFEB0C700BA3268 /* MJPopupBackgroundView.h */,
+				1409608E1BFEB0C700BA3268 /* MJPopupBackgroundView.m */,
+				1409608F1BFEB0C700BA3268 /* UIViewController+MJPopupViewController.h */,
+				140960901BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m */,
+			);
+			path = MJPopupBackgroundView;
 			sourceTree = "<group>";
 		};
 		143BE6A71BB14BD2009F6496 /* Classes */ = {
@@ -573,6 +602,8 @@
 				047E45901BC63686000B5151 /* MobDriverManager.m */,
 				87C571D71BDBD07700EFB618 /* MobVehicleManager.h */,
 				87C571D81BDBD07700EFB618 /* MobVehicleManager.m */,
+				140960861BFEACC100BA3268 /* NSStringEmpty.h */,
+				140960871BFEACC100BA3268 /* NSStringEmpty.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -760,6 +791,7 @@
 				148795CE1BEA679800B940D8 /* DriverRideCell.xib in Resources */,
 				148795DC1BEA9CF900B940D8 /* ReviewCell.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
+				140960921BFEB0C700BA3268 /* MJDetailViewController.xib in Resources */,
 				87C571D31BDBB08000EFB618 /* CreateRideViewController.xib in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
@@ -860,6 +892,7 @@
 				873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
 				14B00C971BFB921E004F46F7 /* ForgetPasswordViewController.m in Sources */,
+				140960931BFEB0C700BA3268 /* MJPopupBackgroundView.m in Sources */,
 				87C571DC1BDBD33F00EFB618 /* Vehicle.m in Sources */,
 				87B58B5D1BD388D100E73E55 /* MapLookupViewController.m in Sources */,
 				8787E1EE1BF74EBC00CCD53B /* SharekniWebViewController.m in Sources */,
@@ -891,11 +924,14 @@
 				143F30F41BC85961006A6A21 /* BestDriver.m in Sources */,
 				87B58B561BD36F7900E73E55 /* MostRideDetails.m in Sources */,
 				143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */,
+				140960941BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m in Sources */,
 				87FFDDB11BFD6A570031CE61 /* RouteDetails.m in Sources */,
 				047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */,
 				143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */,
 				14E7A8B01BDF145300255D86 /* VideoSplashViewController.m in Sources */,
+				140960911BFEB0C700BA3268 /* MJDetailViewController.m in Sources */,
 				143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */,
+				140960881BFEACC100BA3268 /* NSStringEmpty.m in Sources */,
 				047E45911BC63686000B5151 /* MobDriverManager.m in Sources */,
 				047E45941BC63C99000B5151 /* DriverSearchResult.m in Sources */,
 				87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */,
