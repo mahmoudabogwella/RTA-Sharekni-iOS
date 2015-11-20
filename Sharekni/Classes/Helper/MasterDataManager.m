@@ -408,9 +408,30 @@
 
 - (void) getSavedSearch:(NSString *)accountID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-
-
-
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Passenger_GetSavedSearch?AccountId=%@",AccountId];
+    
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        
+        NSMutableArray *rideDrivers = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            DriverDetails *driverDetails = [DriverDetails gm_mappedObjectWithJsonRepresentation:dictionary];
+            [rideDrivers addObject:driverDetails];
+        }
+        success(rideDrivers);
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        failure(error.localizedDescription);
+    }];
 }
 
 

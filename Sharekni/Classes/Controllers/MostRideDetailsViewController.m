@@ -92,7 +92,6 @@
 
 - (MostRideDetailsCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     MostRideDetailsCell *rideCell = (MostRideDetailsCell *)[tableView dequeueReusableCellWithIdentifier:MOST_RIDE_DETAILS_CELLID];
     
     if (rideCell == nil)

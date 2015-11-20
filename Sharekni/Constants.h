@@ -57,6 +57,7 @@
 #define GetRouteByRouteId_URL @"cls_mobios.asmx/GetRouteByRouteId"
 #define GetReviewList_URL @"CLS_Mobios.asmx/Driver_GetReviewList"
 #define Passenger_ReviewDriver @"CLS_Mobios.asmx/Passenger_ReviewDriver"
+#define Passenger_GetSavedSearch @"CLS_Mobios.asmx/Passenger_GetSavedSearch"
 
 
 #define GetEmployers_URL @"cls_mobios.asmx/GetEmployers"
