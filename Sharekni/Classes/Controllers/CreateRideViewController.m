@@ -44,7 +44,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *startPointLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationLabel;
 @property (weak, nonatomic) IBOutlet UITextField *vehiclesTextField;
-@property (weak, nonatomic) IBOutlet UILabel *pickupTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *periodicLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *switchImageView;
@@ -153,7 +152,6 @@
     
     self.title = NSLocalizedString(@"Create Ride", nil);
     
-    
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
     [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
@@ -165,26 +163,7 @@
     self.selectedType = SingleRideType;
     self.isFemaleOnly = false;
     self.pickupDate = [[NSDate date] dateBySettingHour:10];
-    
-//    UIBezierPath *maskPath;
-//    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.pickupTitleLabel.bounds
-//                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
-//                                           cornerRadii:CGSizeMake(5.0, 5.0)];
-//    
-//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-//    maskLayer.frame = self.pickupTitleLabel.bounds;
-//    maskLayer.path = maskPath.CGPath;
-//    self.pickupTitleLabel.layer.mask = maskLayer;
-//    
-//    
-//    maskPath = [UIBezierPath bezierPathWithRoundedRect:self.destinationTitleLabel.bounds
-//                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerTopLeft)
-//                                           cornerRadii:CGSizeMake(5.0, 5.0)];
-//    
-//    maskLayer = [[CAShapeLayer alloc] init];
-//    maskLayer.frame = self.pickupTitleLabel.bounds;
-//    maskLayer.path = maskPath.CGPath;
-//    self.destinationTitleLabel  .layer.mask = maskLayer;
+
     
     self.dateView.layer.cornerRadius = 10;
     self.dateView.layer.masksToBounds = YES;
@@ -198,7 +177,6 @@
     self.nationalityTextField.textColor             = Red_UIColor;
     self.ageRangeTextField.textColor                = Red_UIColor;
     self.langageTextField.textColor                 = Red_UIColor;
-    self.pickupTitleLabel.backgroundColor           = Red_UIColor;
     self.destinationLabel.textColor                 = Red_UIColor;
     self.startPointLabel.textColor                  = Red_UIColor;
     self.noOfSeatsTextField.textColor               = Red_UIColor;

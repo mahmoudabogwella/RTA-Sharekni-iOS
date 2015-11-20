@@ -76,6 +76,63 @@
     
 }
 
+- (void) findRidesFromEmirateID:(NSString *)fromEmirateID andFromRegionID:(NSString *)fromRegionID toEmirateID:(NSString *)toEmirateID andToRegionID:(NSString *)toRegionID PerfferedLanguageID:(NSString *)languageID nationalityID:(NSString *)nationalityID ageRangeID:(NSString *)ageRangeID date:(NSDate *)date isPeriodic:(BOOL)isPeriodic saveSearch:(BOOL)saveSearch WithSuccess:(void (^)(NSArray *searchResults))success Failure:(void (^)(NSString *error))failure{
+    
+    NSString *dateString;
+    NSString *timeString;
+    if(date){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"hh:mm";
+        timeString = [dateFormatter stringFromDate:date];
+        dateFormatter.dateFormat = @"dd/MM/yyyy";
+        dateString = [dateFormatter stringFromDate:date];
+    }
+    else{
+        dateString = @"";
+        timeString = @"";
+    }
+
+    
+    NSString *saveSearchString = saveSearch ? @"1":@"0";
+    NSString *isPeriodicString = isPeriodic ? @"1":@"0";
+    
+    NSString *accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+    if (accountID.length == 0) {
+        accountID = @"0";
+    }
+    
+    NSString *requestBody = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_FindRide?AccountID=%@&PreferredGender=%@&Time=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&SaveFind=%@&IsPeriodic=%@",accountID,@"N",timeString,fromEmirateID,fromRegionID,toEmirateID,toRegionID,languageID,nationalityID,ageRangeID ,dateString,saveSearchString,isPeriodicString];
+    
+    [self.operationManager GET:requestBody parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        if ([responseString containsString:@"AccountEmail"]){
+            NSError *jsonError;
+            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                          options:NSJSONReadingMutableContainers
+                                                                            error:&jsonError];
+            NSMutableArray *searchResults = [NSMutableArray array];
+            for (NSDictionary *dictionary in resultDictionaries) {
+                DriverSearchResult *result= [DriverSearchResult gm_mappedObjectWithJsonRepresentation:dictionary];
+                [searchResults addObject:result];
+            }
+            if (success) {
+                success(searchResults);
+            }
+        }
+        else if ([responseString containsString:@"0"]){
+            success(nil);
+            return;
+        }
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        NSLog(@"Error %@",error.description);
+        failure(error.description);
+    }];
+}
+
 - (void) getMapLookupWithSuccess:(void (^)(NSArray *items))success Failure:(void (^)(NSString *error))failure{
     [self.operationManager POST:@"cls_mobios.asmx/GetMapLookup" parameters:nil success:^(AFHTTPRequestOperation *  operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
