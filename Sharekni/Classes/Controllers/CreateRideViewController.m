@@ -33,22 +33,23 @@
 
 
 @interface CreateRideViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *selectAgeRangeButton;
+@property (weak, nonatomic) IBOutlet UIButton *selectLanguageButton;
+@property (weak, nonatomic) IBOutlet UIButton *selectVehicleButton;
 @property (weak, nonatomic) IBOutlet UIButton *setDirectionButton;
-@property (weak, nonatomic) IBOutlet UITextField *selectVehicleTextField;
 @property (weak, nonatomic) IBOutlet UILabel *rideDetailsSectionLabel;
 @property (weak, nonatomic) IBOutlet UIView *rideDetailsView;
 @property (weak, nonatomic) IBOutlet UIView *optionsView;
-@property (weak, nonatomic) IBOutlet UITextField *noOfSeatsTextField;
 @property (weak, nonatomic) IBOutlet UILabel *optionalSectionLabel;
 @property (weak, nonatomic) IBOutlet UITextField *rideNameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *startPointLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationLabel;
-@property (weak, nonatomic) IBOutlet UITextField *vehiclesTextField;
 @property (weak, nonatomic) IBOutlet UILabel *destinationTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *periodicLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *switchImageView;
 @property (weak, nonatomic) IBOutlet UILabel *singleRideLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *availableSeatsLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *timeView;
 
@@ -58,8 +59,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UITextField *nationalityTextField;
 @property (weak, nonatomic) IBOutlet UIView *typeView;
-@property (weak, nonatomic) IBOutlet UITextField *langageTextField;
-@property (weak, nonatomic) IBOutlet UITextField *ageRangeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *createButton;
 @property (weak, nonatomic) IBOutlet UIImageView *genderSwitchImage;
 @property (weak, nonatomic) IBOutlet UILabel *genderLabel;
@@ -107,8 +106,17 @@
     [self configureGenderView];
 }
 
+- (IBAction)selectVehilceAction:(id)sender {
+}
+
 - (IBAction)setDirectionAction:(id)sender {
     [self showLocationPicker];
+}
+- (IBAction)selectLanguageAction:(id)sender {
+    [self showPickerWithTextFieldType:LanguageTextField];
+}
+- (IBAction)selectAgeRangeAction:(id)sender {
+    [self showPickerWithTextFieldType:AgeRangeTextField];
 }
 
 #pragma Data
@@ -173,14 +181,19 @@
     
     self.createButton.layer.cornerRadius = 8;
     
-    self.langageTextField.textColor                 = Red_UIColor;
+    [self.selectVehicleButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
+    [self.selectVehicleButton setBackgroundColor:[UIColor whiteColor]];
+    
+    [self.selectLanguageButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
+    [self.selectLanguageButton setBackgroundColor:[UIColor whiteColor]];
+    
+    [self.selectAgeRangeButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
+    [self.selectAgeRangeButton setBackgroundColor:[UIColor whiteColor]];
+    
     self.nationalityTextField.textColor             = Red_UIColor;
-    self.ageRangeTextField.textColor                = Red_UIColor;
-    self.langageTextField.textColor                 = Red_UIColor;
     self.destinationLabel.textColor                 = Red_UIColor;
     self.startPointLabel.textColor                  = Red_UIColor;
-    self.noOfSeatsTextField.textColor               = Red_UIColor;
-    self.vehiclesTextField.textColor                = Red_UIColor;
+
     self.rideDetailsSectionLabel.textColor          = Red_UIColor;
     self.optionalSectionLabel.textColor             = Red_UIColor;
     
@@ -361,24 +374,25 @@
             case LanguageTextField:
             {
                 Language *language = [self.languages objectAtIndex:selectedRow];
-                self.langageTextField.text = language.LanguageArName;
+                [self.selectLanguageButton setTitle:language.LanguageEnName forState:UIControlStateNormal];
                 self.selectedLanguage = language;
             }
                 break;
             case AgeRangeTextField:
             {
                 AgeRange *range = [self.ageRanges objectAtIndex:selectedRow];
-                self.ageRangeTextField.text = range.Range;
+                [self.selectAgeRangeButton  setTitle:range.Range forState:UIControlStateNormal];
                 self.selectedAgeRange = range;
             }
                 break;
             case VehiclesTextField:
             {
                 Vehicle *vehicle = [self.vehicles objectAtIndex:selectedRow];
-                self.vehiclesTextField.text = vehicle.ModelArName;
+                [self.selectVehicleButton setTitle:vehicle.ModelEnName forState:UIControlStateNormal];
                 self.selectedVehicle = vehicle;
             }
                 break;
+                
             default:
                 break;
         }
@@ -469,15 +483,6 @@
     
     if (textField == self.nationalityTextField){
         [self showPickerWithTextFieldType:NationalityTextField];
-    }
-    else if (textField == self.ageRangeTextField){
-        [self showPickerWithTextFieldType:AgeRangeTextField];
-    }
-    else if (textField == self.langageTextField){
-        [self showPickerWithTextFieldType:LanguageTextField];
-    }
-    else if (textField == self.vehiclesTextField){
-        [self showPickerWithTextFieldType:VehiclesTextField];
     }
     return NO;
 }
