@@ -154,6 +154,55 @@
     }];
 }
 
+//GET /_mobfiles/cls_mobios.asmx/Driver_CreateCarpool?AccountID=string&EnName=string&FromEmirateID=string&ToEmirateID=string&FromRegionID=string&ToRegionID=string&IsRounded=string&Time=string&Saturday=string&Sunday=string&Monday=string&Tuesday=string&Wednesday=string&Thursday=string&Friday=string&PreferredGender=string&VehicleID=string&NoOfSeats=string&StartLat=string&StartLng=string&EndLat=string&EndLng=string&PrefferedLanguageId=string&PrefferedNationlaities=string&AgeRangeId=string&StartDate=string HTTP/1.1
+
+- (void) createRideWithName:(NSString *)name fromEmirate:(Emirate *)fromEmirate fromRegion:(Region *)fromRegion toEmirate:(Emirate *)toEmirate toRegion:(Region *)toRegion isRounded:(BOOL)isRounded  date:(NSDate *)date saturday:(BOOL) saturday sunday:(BOOL) sunday  monday:(BOOL) monday  tuesday:(BOOL) tuesday  wednesday:(BOOL) wednesday  thursday:(BOOL) thursday friday:(BOOL) friday PreferredGender:(NSString *)gender vehicle:(Vehicle *)vehicle noOfSeats:(NSInteger)noOfSeats language:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange{
+    NSString *dateString;
+    NSString *timeString;
+    if(date){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"hh:mm";
+        timeString = [dateFormatter stringFromDate:date];
+        dateFormatter.dateFormat = @"dd/MM/yyyy";
+        dateString = [dateFormatter stringFromDate:date];
+    }
+    else{
+        dateString = @"";
+        timeString = @"";
+    }
+    
+    
+    NSString *accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+    if (accountID.length == 0) {
+        accountID = @"0";
+    }
+    
+    NSString *_isRounded = isRounded ? @"1":@"0";
+    NSString *_noOfSeats = [NSString  stringWithFormat:@"%li",(long)noOfSeats];
+    
+    NSString *toEmirateID    = toEmirate ? toEmirate.EmirateId : @"0";
+    NSString *toRegionID     = toRegion  ? toRegion.ID : @"0";
+    NSString *languageId     = language  ? language.LanguageId : @"0";
+    NSString *nationalityId  = nationality  ? nationality.ID : @"0";
+    NSString *ageRangeId  =   ageRange  ? ageRange.RangeId : @"0";
+    
+    NSString *sat = saturday ? @"1":@"0";
+    NSString *sun = sunday   ? @"1":@"0";
+    NSString *mon = monday   ? @"1":@"0";
+    NSString *tue = tuesday  ? @"1":@"0";
+    NSString *wed = wednesday ? @"1":@"0";
+    NSString *thu = thursday ? @"1":@"0";
+    NSString *fri = friday ? @"1":@"0";
+    
+    
+    NSString *requestBody = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_CreateCarpool?AccountID=%@&EnName=%@&FromEmirateID=%@&ToEmirateID=%@&FromRegionID=%@&ToRegionID=%@&IsRounded=%@&Time=%@&Saturday=%@&Sunday=%@&Monday=%@&Tuesday=%@&Wednesday=%@&Thursday=%@&Friday=%@&PreferredGender=%@&VehicleID=%@&NoOfSeats=%@&StartLat=&StartLng=&EndLat=&EndLng=&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@",accountID,name,fromEmirate.EmirateId,toEmirateID,fromRegion.ID,toRegionID,_isRounded,timeString,sat,sun,mon,tue,wed,thu,fri,gender,vehicle.ID.stringValue,_noOfSeats,languageId,nationalityId,ageRangeId,dateString];
+    [self.operationManager GET:requestBody parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
 SYNTHESIZE_SINGLETON_FOR_CLASS(MobDriverManager);
 @end
 

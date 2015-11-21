@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CreateRideViewController : UIViewController
-
+@property (nonatomic,strong) id ride;
 @end

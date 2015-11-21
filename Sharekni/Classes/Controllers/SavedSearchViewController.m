@@ -125,8 +125,6 @@
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
         }];
-//    }
-
 }
 
 - (void)didReceiveMemoryWarning {

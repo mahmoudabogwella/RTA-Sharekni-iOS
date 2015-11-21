@@ -25,6 +25,7 @@
 #import "DriverDetails.h"
 #import "Review.h"
 #import "Vehicle.h"
+#import "MobAccountManager.h"
 
 
 #define AccountId @"AccountID"
@@ -39,6 +40,8 @@
 @property (strong,nonatomic) NSArray *languages;
 @property (strong,nonatomic) NSArray *ageRanges;
 @property (strong,nonatomic) NSArray *emirates;
+@property (strong,nonatomic) NSDictionary *vehiclesDictionary;
+
 @property (strong,nonatomic) TermsAndCondition *termsAndCondition;
 @property (strong,nonatomic) NSMutableDictionary *regionsDictionary;
 @end
@@ -50,6 +53,13 @@
 
     }
     return self;
+}
+
+- (NSMutableDictionary *)vehiclesDictionary{
+    if (!_vehiclesDictionary) {
+        _vehiclesDictionary = [[NSMutableDictionary alloc] init];
+    }
+    return _vehiclesDictionary;
 }
 
 - (void) GetAgeRangesWithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
@@ -434,33 +444,44 @@
     }];
 }
 
-
 - (void)getVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/GetVehicleById?id=%@",accountID];
-
-    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+    if (!accountID) {
+        accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+    }
+    
+    NSMutableArray *savedVehicles = [self.vehiclesDictionary valueForKey:accountID];
+    if (savedVehicles) {
+        success(savedVehicles);
+    }
+    else{
+        NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/GetVehicleById?id=%@",accountID];
         
-        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        
-        responseString = [self jsonStringFromResponse:responseString];
-        
-        NSError *jsonError;
-        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                      options:NSJSONReadingMutableContainers
-                                                                        error:&jsonError];
-        
-        NSMutableArray *vehicles = [NSMutableArray array];
-        for (NSDictionary *dictionary in resultDictionaries) {
-            Vehicle *vehicle = [Vehicle gm_mappedObjectWithJsonRepresentation:dictionary];
-            [vehicles addObject:vehicle];
-        }
-        success(vehicles);
-        
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        failure(error.localizedDescription);
-    }];
+        __block MasterDataManager *blockSelf = self;
+        [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+            
+            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            
+            responseString = [self jsonStringFromResponse:responseString];
+            
+            NSError *jsonError;
+            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                          options:NSJSONReadingMutableContainers
+                                                                            error:&jsonError];
+            
+            NSMutableArray *vehicles = [NSMutableArray array];
+            for (NSDictionary *dictionary in resultDictionaries) {
+                Vehicle *vehicle = [Vehicle gm_mappedObjectWithJsonRepresentation:dictionary];
+                [vehicles addObject:vehicle];
+            }
+            [blockSelf.vehiclesDictionary setValue:vehicles forKey:accountID];
+            success(vehicles);
+            
+        } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+            failure(error.localizedDescription);
+        }];
+    }
 }
 
 - (void) GetRegionsByID:(NSString *)ID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
