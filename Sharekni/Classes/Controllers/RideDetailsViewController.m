@@ -173,13 +173,16 @@
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
     
     NSString *routeID;
-    NSString *accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+    NSString *accountID ;
     if (self.driverDetails) {
         routeID = self.driverDetails.RouteId;
+        accountID = self.driverDetails.ID;
     }
     else if (self.createdRide){
         routeID = self.createdRide.RouteID.stringValue;
+        accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
     }
+    
    [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:routeID withSuccess:^(RouteDetails *routeDetails) {
        
        blockSelf.routeDetails = routeDetails;
@@ -199,9 +202,11 @@
            
            reviewList.frame = CGRectMake(reviewList.frame.origin.x, reviewList.frame.origin.y + 15, reviewList.frame.size.width,reviewsView.frame.size.height - 30.0f);
            
-           joinRideBtn.frame = CGRectMake(joinRideBtn.frame.origin.x, reviewsView.frame.origin.y + reviewsView.frame.size.height + 15.0f, joinRideBtn.frame.size.width, joinRideBtn.frame.size.height);
+           int joinRideBtnYPosition = reviewsView.frame.origin.y + reviewsView.frame.size.height + ((array.count == 0) ? 0 : 15) ;
            
-           [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewsView.frame.origin.y + reviewsView.frame.size.height + joinRideBtn.frame.size.height + 55.0f)];
+           joinRideBtn.frame = CGRectMake(joinRideBtn.frame.origin.x,joinRideBtnYPosition, joinRideBtn.frame.size.width, joinRideBtn.frame.size.height);
+           
+           [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewsView.frame.origin.y + reviewsView.frame.size.height + joinRideBtn.frame.size.height + 20.0f)];
 
        } Failure:^(NSString *error) {
            [blockSelf handleResponseError];
@@ -368,7 +373,7 @@
     for (GMSMarker *marker in self.markers)
         bounds = [bounds includingCoordinate:marker.position];
     
-    [_mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:15.0f]];
+    [_mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:40.0f]];
 }
 
 @end

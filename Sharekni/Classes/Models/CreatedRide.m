@@ -48,7 +48,7 @@
     
     mapping[@"ToRegionId"] = @"ToRegionId";
     mapping[@"ToRegionArName"] = @"ToRegionArName";
-    mapping[@"ToEmirateEnName"] = @"ToEmirateEnName";
+    mapping[@"ToRegionEnName"] = @"ToRegionEnName";
     mapping[@"ToRegionFrName"] = @"ToRegionFrName";
     mapping[@"ToRegionChName"] = @"ToRegionChName";
     mapping[@"ToRegionUrName"] = @"ToRegionUrName";

@@ -14,6 +14,9 @@
 #import "RideDetailsViewController.h"
 #import "NSObject+Blocks.h"
 #import "CreateRideViewController.h"
+#import "UILabel+Borders.h"
+#import <UIColor+Additions.h>
+
 
 @interface CreatedRidesViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -60,14 +63,13 @@
 #pragma mark -
 #pragma mark UITableView Datasource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex{
     return self.createdRides.count;
 }
 
-- (DriverRideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (DriverRideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DriverRideCell *rideCell = [[DriverRideCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:RIDE_CELLID];
+    [rideCell.RouteName addLeftBorderWithColor:Red_UIColor];
 
     CreatedRide *ride = self.createdRides[indexPath.row];
     __block CreatedRidesViewController *blockSelf = self;
@@ -93,8 +95,7 @@
 #pragma mark -
 #pragma mark UITableView Delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    CreatedRide *ride = self.createdRides[indexPath.row];
     
 }
