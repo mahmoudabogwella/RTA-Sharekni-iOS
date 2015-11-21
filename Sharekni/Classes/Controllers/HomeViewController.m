@@ -15,7 +15,7 @@
 #import "SearchViewController.h"
 #import "VehiclesViewController.h"
 #import "SavedSearchViewController.h"
-
+#import "CreatedRidesViewController.h"
 @interface HomeViewController ()
 
 #pragma Outlets
@@ -103,8 +103,14 @@
         UITapGestureRecognizer *bottomRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(permitAction)];
         [self.bottomRightView addGestureRecognizer:bottomRightGesture];
         
-        UITapGestureRecognizer *vechilesGuesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVeichles:)];
-        [self.vehiclesView addGestureRecognizer:vechilesGuesture];
+        UITapGestureRecognizer *vechilesGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVeichles:)];
+        [self.vehiclesView addGestureRecognizer:vechilesGesture];
+        
+        UITapGestureRecognizer *createdRidesGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showCreatedRides)];
+        [self.ridesCreatedView addGestureRecognizer:createdRidesGesture];
+        
+        UITapGestureRecognizer *joinedRidesGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showJoinedRides)];
+        [self.ridesJoinedView addGestureRecognizer:joinedRidesGesture];
     
     }else{
         //passenger
@@ -197,6 +203,14 @@
     
     VehiclesViewController *registerVehicle = [[VehiclesViewController alloc] initWithNibName:@"VehiclesViewController" bundle:nil];
     [self.navigationController pushViewController:registerVehicle animated:YES];
+}
+
+- (void) showCreatedRides{
+    CreatedRidesViewController *createdRideViewController = [[CreatedRidesViewController alloc] initWithNibName:@"CreatedRidesViewController" bundle:nil];
+    [self.navigationController pushViewController:createdRideViewController animated:YES];
+}
+- (void) showJoinedRides{
+    
 }
 
 @end

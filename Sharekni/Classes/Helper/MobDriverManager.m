@@ -202,17 +202,15 @@
         NSLog(@"Response create ride %@",responseObject);
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
-        if (            [responseString containsString:@"-2"];) {
-
+        if ([responseString containsString:@"-2"] || [responseString containsString:@"0"]) {
+            success(NO);
         }
-        NSError *jsonError;
-        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                      options:NSJSONReadingMutableContainers
-                                                                        error:&jsonError];
-        
-        
-        
+        else if ([responseString containsString:@"1"]) {
+            success(YES);
+        }
+        else {
+            success(NO);
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error.localizedDescription);
     }];

@@ -47,7 +47,7 @@
    
     _RouteName.text = [NSString stringWithFormat:@"%@ : %@",rideDetails.FromEmirateEnName,rideDetails.ToEmirateEnName] ;
     _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",rideDetails.FromEmirateEnName,rideDetails.FromRegionEnName];
-    _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",rideDetails.ToEmirateEnName,rideDetails.ToRegionEnName];
+    _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",rideDetails.ToEmirateEnName,rideDetails.ToRegionEnName];
 
     if (rideDetails.ToEmirateEnName == nil) {
         _RouteName.text = [NSString stringWithFormat:@"%@",rideDetails.FromEmirateEnName] ;
@@ -60,6 +60,16 @@
     _rideDetails = rideDetails;
     _RouteName.text = _rideDetails.RouteEnName ;
 
+}
+
+- (void)setCreatedRide:(CreatedRide *)createdRide{
+    _createdRide = createdRide;
+    _RouteName.text = createdRide.Name_en;
+    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",createdRide.FromEmirateEnName,createdRide.FromRegionEnName];
+    _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",createdRide.ToEmirateEnName,createdRide.ToRegionEnName];
+    [self.firstButton setTitle:NSLocalizedString(@"Details", nil) forState:UIControlStateNormal];
+    [self.secondButton setTitle:NSLocalizedString(@"Edit", nil) forState:UIControlStateNormal];
+    [self.thirdButton setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
 }
 
 - (NSString *)getAvailableDays:(DriverDetails *)rideDetails
@@ -90,11 +100,42 @@
     
     return str ;
 }
+- (IBAction)firstButtonHandler:(id)sender {
+    if (self.createdRide) { //details
+        if (self.detailsHandler) {
+            self.detailsHandler();
+        }
+    }
+    else{
+        
+    }
+}
+- (IBAction)secondButtonHandler:(id)sender {
+    if (self.createdRide) { // edit
+        if (self.editHandler) {
+            self.editHandler();
+        }
+    }
+    else{
+        
+    }
+}
+- (IBAction)thirdButtonHandler:(id)sender {
+    if (self.createdRide) { // Delete
+        if(self.deleteHandler){
+            self.deleteHandler();
+        }
+    }
+    else{
+        
+    }
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
+
 
 @end

@@ -100,52 +100,6 @@
     reviewsView.layer.borderWidth = 1;
     reviewsView.layer.borderColor = Red_UIColor.CGColor;
     
-    FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",_driverDetails.FromEmirateEnName,_driverDetails.FromRegionEnName];
-    ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",_driverDetails.ToEmirateEnName,_driverDetails.ToRegionEnName];
-    startingTime.text = [NSString stringWithFormat:@"Time %@ : %@",_driverDetails.StartTime,_driverDetails.EndTime];
-    availableDays.text = [NSString stringWithFormat:@"Ride Days : %@",[self getAvailableDays:self.driverDetails]];
-    
-    if ([NSStringEmpty isNullOrEmpty:_driverDetails.NationalityEnName])
-    {
-        nationality.text = @"Not Set";
-    }
-    else
-    {
-        nationality.text = _driverDetails.NationalityEnName ;
-    }
-    
-    if ([NSStringEmpty isNullOrEmpty:_driverDetails.AgeRange])
-    {
-        ageRange.text = @"Not Set";
-    }
-    else
-    {
-        ageRange.text = _driverDetails.AgeRange ;
-    }
-    
-    if (_driverDetails.IsSmoking.boolValue) {
-        smoking.text = @"Yes";
-    }else{
-        smoking.text = @"No";
-    }
-    
-    if ([NSStringEmpty isNullOrEmpty:_driverDetails.PrefLanguageEnName])
-    {
-        language.text = @"Not Set";
-    }
-    else
-    {
-        language.text = _driverDetails.PrefLanguageEnName;
-    }
-    
-    if ([NSStringEmpty isNullOrEmpty:_driverDetails.PreferredGender])
-    {
-        gender.text = @"Not Set";
-    }
-    else
-    {
-        gender.text = _driverDetails.PreferredGender;
-    }
     
     
     [self configureMapView];
@@ -157,17 +111,78 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)configureUIData{
+    FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",self.routeDetails.FromEmirateEnName,self.routeDetails.FromRegionEnName];
+    ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",self.routeDetails.ToEmirateEnName,self.routeDetails.ToRegionEnName];
+    startingTime.text = [NSString stringWithFormat:@"Time %@ : %@",self.routeDetails.StartFromTime,self.routeDetails.EndFromTime];
+    availableDays.text = [NSString stringWithFormat:@"Ride Days : %@",[self getAvailableDays]];
+    
+    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.NationalityEnName])
+    {
+        nationality.text = @"Not Set";
+    }
+    else
+    {
+        nationality.text = self.routeDetails.NationalityEnName ;
+    }
+    
+    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.AgeRange])
+    {
+        ageRange.text = @"Not Set";
+    }
+    else
+    {
+        ageRange.text = self.routeDetails.AgeRange ;
+    }
+    
+    if (_driverDetails.IsSmoking.boolValue) {
+        smoking.text = @"Yes";
+    }else{
+        smoking.text = @"No";
+    }
+    
+    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.PrefLanguageEnName])
+    {
+        language.text = @"Not Set";
+    }
+    else
+    {
+        language.text = self.routeDetails.PrefLanguageEnName;
+    }
+    
+    
+    //Ask Q
+    gender.text = @"Not Set";
+    
+//    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.PreferredGender])
+//    {
+//        gender.text = @"Not Set";
+//    }
+//    else
+//    {
+//        gender.text = self.routeDetails.PreferredGender;
+//    }
+
+}
 
 - (void)configureData
 {
     __block RideDetailsViewController *blockSelf = self;
   
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-   
+    
+    NSString *routeID;
+    if (self.driverDetails) {
+        routeID = self.driverDetails.RouteId;
+    }
+    else if (self.createdRide){
+        routeID = self.createdRide.RouteID.stringValue;
+    }
    [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:_driverDetails.RouteId withSuccess:^(RouteDetails *routeDetails) {
        
        blockSelf.routeDetails = routeDetails;
        [blockSelf configurePins];
+       [blockSelf configureUIData];
        [[MasterDataManager sharedMasterDataManager] getReviewList:_driverDetails.AccountId andRoute:_driverDetails.RouteId withSuccess:^(NSMutableArray *array) {
            blockSelf.reviews = array;
            
@@ -202,31 +217,31 @@
     } afterDelay:3];
 }
 
-- (NSString *)getAvailableDays:(DriverDetails *)driverDetails
+- (NSString *)getAvailableDays
 {
     NSMutableString *str = [[NSMutableString alloc] init];
     
-    if (driverDetails.Saturday.boolValue) {
+    if (self.routeDetails.Saturday.boolValue) {
         [str appendString:NSLocalizedString(@"Sat ", nil)];
     }
-    if (driverDetails.Sunday.boolValue) {
+    if (self.routeDetails.Sunday.boolValue) {
         [str appendString:NSLocalizedString(@"Sun ", nil)];
     }
-    if (driverDetails.Monday.boolValue) {
+    if (self.routeDetails.Monday.boolValue) {
         [str appendString:NSLocalizedString(@"Mon ", nil)];
     }
-    if (driverDetails.Tuesday.boolValue) {
+    if (self.routeDetails.Tuesday.boolValue) {
         [str appendString:NSLocalizedString(@"Tue ", nil)];
     }
-    if (driverDetails.Wendenday.boolValue) {
+    if (self.routeDetails.Wendenday.boolValue) {
         [str appendString:NSLocalizedString(@"Wed ", nil)];
         
     }
-    if (driverDetails.Thrursday.boolValue) {
+    if (self.routeDetails.Thrursday.boolValue) {
         [str appendString:NSLocalizedString(@"Thu ", nil)];
         
     }
-    if (driverDetails.Friday.boolValue) {
+    if (self.routeDetails.Friday.boolValue) {
         [str appendString:NSLocalizedString(@"Fri ", nil)];
     }
     

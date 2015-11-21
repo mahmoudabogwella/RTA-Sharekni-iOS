@@ -662,13 +662,18 @@
         BOOL isRounded = self.selectedType == PeriodicType ? YES : NO;
         NSString *gender = self.isFemaleOnly ? @"F":@"M";
         
-        [[MobDriverManager sharedMobDriverManager] createRideWithName:self.rideNameTextField.text fromEmirate:self.fromEmirate fromRegion:self.fromRegion toEmirate:self.toEmirate toRegion:self.toRegion isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicle:self.selectedVehicle noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange WithSuccess:^(NSArray *searchResults) {
+        [[MobDriverManager sharedMobDriverManager] createRideWithName:self.rideNameTextField.text fromEmirate:self.fromEmirate fromRegion:self.fromRegion toEmirate:self.toEmirate toRegion:self.toRegion isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicle:self.selectedVehicle noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange WithSuccess:^(BOOL createdSuccessfully) {
             [KVNProgress dismiss];
-            [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Ride created successfully", nil)];
-            [blockSelf performBlock:^{
-                [KVNProgress dismiss];
-                [blockSelf.navigationController popViewControllerAnimated:YES];
-            } afterDelay:3];
+            if (createdSuccessfully) {
+                [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Ride created successfully", nil)];
+                [blockSelf performBlock:^{
+                    [KVNProgress dismiss];
+                    [blockSelf.navigationController popViewControllerAnimated:YES];
+                } afterDelay:3];
+            }
+            else{
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"you cannot create more than 2 rides.", nil)];
+            }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
             [KVNProgress showErrorWithStatus:NSLocalizedString(@"an error happend when trying to create ride", nil)];
