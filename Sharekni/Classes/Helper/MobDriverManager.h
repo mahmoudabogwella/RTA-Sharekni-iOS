@@ -26,7 +26,7 @@
 
 - (void) getMapLookupWithSuccess:(void (^)(NSArray *items))success Failure:(void (^)(NSString *error))failure;
 
-- (void) createRideWithName:(NSString *)name fromEmirate:(Emirate *)fromEmirate fromRegion:(Region *)fromRegion toEmirate:(Emirate *)toEmirate toRegion:(Region *)toRegion isRounded:(BOOL)isRounded  date:(NSDate *)date saturday:(BOOL) saturday sunday:(BOOL) sunday  monday:(BOOL) monday  tuesday:(BOOL) tuesday  wednesday:(BOOL) wednesday  thursday:(BOOL) thursday friday:(BOOL) friday PreferredGender:(NSString *)gender vehicle:(Vehicle *)vehicle noOfSeats:(NSInteger)noOfSeats language:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange  WithSuccess:(void (^)(BOOL createdSuccessfully))success Failure:(void (^)(NSString *error))failure;
+- (void) createRideWithName:(NSString *)name fromEmirate:(Emirate *)fromEmirate fromRegion:(Region *)fromRegion toEmirate:(Emirate *)toEmirate toRegion:(Region *)toRegion isRounded:(BOOL)isRounded  date:(NSDate *)date saturday:(BOOL) saturday sunday:(BOOL) sunday  monday:(BOOL) monday  tuesday:(BOOL) tuesday  wednesday:(BOOL) wednesday  thursday:(BOOL) thursday friday:(BOOL) friday PreferredGender:(NSString *)gender vehicle:(Vehicle *)vehicle noOfSeats:(NSInteger)noOfSeats language:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange  WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure;
 
 +(MobDriverManager *) sharedMobDriverManager;
 @end

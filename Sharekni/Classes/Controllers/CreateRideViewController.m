@@ -662,16 +662,20 @@
         BOOL isRounded = self.selectedType == PeriodicType ? YES : NO;
         NSString *gender = self.isFemaleOnly ? @"F":@"M";
         
-        [[MobDriverManager sharedMobDriverManager] createRideWithName:self.rideNameTextField.text fromEmirate:self.fromEmirate fromRegion:self.fromRegion toEmirate:self.toEmirate toRegion:self.toRegion isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicle:self.selectedVehicle noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange WithSuccess:^(BOOL createdSuccessfully) {
+        [[MobDriverManager sharedMobDriverManager] createRideWithName:self.rideNameTextField.text fromEmirate:self.fromEmirate fromRegion:self.fromRegion toEmirate:self.toEmirate toRegion:self.toRegion isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicle:self.selectedVehicle noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange WithSuccess:^(NSString *response) {
             [KVNProgress dismiss];
-            if (createdSuccessfully) {
+            
+            if ([response containsString:@"1"]) {
                 [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Ride created successfully", nil)];
                 [blockSelf performBlock:^{
                     [KVNProgress dismiss];
                     [blockSelf.navigationController popViewControllerAnimated:YES];
                 } afterDelay:3];
             }
-            else{
+            else if ([response containsString:@"0"]){
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Error.", nil)];
+            }
+            else if ([response containsString:@"-2"]){
                 [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"you cannot create more than 2 rides.", nil)];
             }
         } Failure:^(NSString *error) {

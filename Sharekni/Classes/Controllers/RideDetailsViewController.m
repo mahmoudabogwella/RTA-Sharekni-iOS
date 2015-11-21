@@ -26,6 +26,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "AddReviewViewController.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "MobAccountManager.h"
 
 
 @interface RideDetailsViewController ()<GMSMapViewDelegate,MJDetailPopupDelegate>
@@ -172,18 +173,20 @@
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
     
     NSString *routeID;
+    NSString *accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
     if (self.driverDetails) {
         routeID = self.driverDetails.RouteId;
     }
     else if (self.createdRide){
         routeID = self.createdRide.RouteID.stringValue;
     }
-   [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:_driverDetails.RouteId withSuccess:^(RouteDetails *routeDetails) {
+   [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:routeID withSuccess:^(RouteDetails *routeDetails) {
        
        blockSelf.routeDetails = routeDetails;
        [blockSelf configurePins];
+       [blockSelf focusMapToShowAllMarkers];
        [blockSelf configureUIData];
-       [[MasterDataManager sharedMasterDataManager] getReviewList:_driverDetails.AccountId andRoute:_driverDetails.RouteId withSuccess:^(NSMutableArray *array) {
+       [[MasterDataManager sharedMasterDataManager] getReviewList:accountID andRoute:routeID withSuccess:^(NSMutableArray *array) {
            blockSelf.reviews = array;
            
            if (array.count == 0) {
@@ -315,9 +318,9 @@
 
 
 - (void) configurePins{
-
-        CLLocationCoordinate2D position = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);
-        GMSMarker *startMarker = [GMSMarker markerWithPosition:position];
+    self.markers = [NSMutableArray array];
+        CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);
+        GMSMarker *startMarker = [GMSMarker markerWithPosition:startPosition];
         MapItemView *startItem = [[MapItemView alloc] initWithLat:self.routeDetails.StartLat lng:self.routeDetails.StartLng address:self.routeDetails.FromStreetName name:self.routeDetails.FromEmirateEnName];
         startItem.arabicName = self.routeDetails.FromRegionArName;
         startItem.englishName = self.routeDetails.FromRegionEnName;
@@ -328,7 +331,8 @@
         startMarker.map = _mapView;
         [self.markers addObject:startMarker];
     
-    GMSMarker *endMarker = [GMSMarker markerWithPosition:position];
+    CLLocationCoordinate2D endPosition = CLLocationCoordinate2DMake(self.routeDetails.EndLat.doubleValue, self.routeDetails.EndLng.doubleValue);
+    GMSMarker *endMarker = [GMSMarker markerWithPosition:endPosition];
     MapItemView *endItem = [[MapItemView alloc] initWithLat:self.routeDetails.EndLat lng:self.routeDetails.EndLng address:self.routeDetails.ToStreetName name:self.routeDetails.ToEmirateEnName];
     endItem.arabicName = self.routeDetails.ToRegionArName;
     endItem.englishName = self.routeDetails.ToRegionEnName;
@@ -337,7 +341,7 @@
     endMarker.title = self.routeDetails.ToEmirateEnName;
     endMarker.icon = [UIImage imageNamed:@"Location"];
     endMarker.map = _mapView;
-    [self.markers addObject:endItem];
+    [self.markers addObject:endMarker];
 }
 
 - (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
