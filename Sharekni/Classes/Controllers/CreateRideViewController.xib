@@ -341,7 +341,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ride Name" textAlignment="center" minimumFontSize="17" id="UUr-0y-0yW">
-                                            <rect key="frame" x="16" y="5" width="256" height="30"/>
+                                            <rect key="frame" x="12" y="5" width="256" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

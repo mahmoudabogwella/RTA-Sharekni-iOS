@@ -200,7 +200,7 @@ typedef enum DirectionType : NSUInteger {
       [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter Valid from Region Name",nil)];
     }
     else{
-        if(self.selectedToEmirate || self.selectedToRegion){
+        if(self.selectedToEmirate || self.selectedToRegion || self.validateDestination){
             if (!self.selectedToEmirate) {
                 [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select to Emirate ",nil)];
             }

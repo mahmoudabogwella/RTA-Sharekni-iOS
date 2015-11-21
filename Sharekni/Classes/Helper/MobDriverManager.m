@@ -156,7 +156,7 @@
 
 //GET /_mobfiles/cls_mobios.asmx/Driver_CreateCarpool?AccountID=string&EnName=string&FromEmirateID=string&ToEmirateID=string&FromRegionID=string&ToRegionID=string&IsRounded=string&Time=string&Saturday=string&Sunday=string&Monday=string&Tuesday=string&Wednesday=string&Thursday=string&Friday=string&PreferredGender=string&VehicleID=string&NoOfSeats=string&StartLat=string&StartLng=string&EndLat=string&EndLng=string&PrefferedLanguageId=string&PrefferedNationlaities=string&AgeRangeId=string&StartDate=string HTTP/1.1
 
-- (void) createRideWithName:(NSString *)name fromEmirate:(Emirate *)fromEmirate fromRegion:(Region *)fromRegion toEmirate:(Emirate *)toEmirate toRegion:(Region *)toRegion isRounded:(BOOL)isRounded  date:(NSDate *)date saturday:(BOOL) saturday sunday:(BOOL) sunday  monday:(BOOL) monday  tuesday:(BOOL) tuesday  wednesday:(BOOL) wednesday  thursday:(BOOL) thursday friday:(BOOL) friday PreferredGender:(NSString *)gender vehicle:(Vehicle *)vehicle noOfSeats:(NSInteger)noOfSeats language:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange{
+- (void) createRideWithName:(NSString *)name fromEmirate:(Emirate *)fromEmirate fromRegion:(Region *)fromRegion toEmirate:(Emirate *)toEmirate toRegion:(Region *)toRegion isRounded:(BOOL)isRounded  date:(NSDate *)date saturday:(BOOL) saturday sunday:(BOOL) sunday  monday:(BOOL) monday  tuesday:(BOOL) tuesday  wednesday:(BOOL) wednesday  thursday:(BOOL) thursday friday:(BOOL) friday PreferredGender:(NSString *)gender vehicle:(Vehicle *)vehicle noOfSeats:(NSInteger)noOfSeats language:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange  WithSuccess:(void (^)(BOOL createdSuccessfully))success Failure:(void (^)(NSString *error))failure;{
     NSString *dateString;
     NSString *timeString;
     if(date){
@@ -186,20 +186,35 @@
     NSString *nationalityId  = nationality  ? nationality.ID : @"0";
     NSString *ageRangeId  =   ageRange  ? ageRange.RangeId : @"0";
     
-    NSString *sat = saturday ? @"1":@"0";
-    NSString *sun = sunday   ? @"1":@"0";
-    NSString *mon = monday   ? @"1":@"0";
-    NSString *tue = tuesday  ? @"1":@"0";
+    NSString *sat = saturday  ? @"1":@"0";
+    NSString *sun = sunday    ? @"1":@"0";
+    NSString *mon = monday    ? @"1":@"0";
+    NSString *tue = tuesday   ? @"1":@"0";
     NSString *wed = wednesday ? @"1":@"0";
-    NSString *thu = thursday ? @"1":@"0";
-    NSString *fri = friday ? @"1":@"0";
+    NSString *thu = thursday  ? @"1":@"0";
+    NSString *fri = friday    ? @"1":@"0";
     
     
     NSString *requestBody = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_CreateCarpool?AccountID=%@&EnName=%@&FromEmirateID=%@&ToEmirateID=%@&FromRegionID=%@&ToRegionID=%@&IsRounded=%@&Time=%@&Saturday=%@&Sunday=%@&Monday=%@&Tuesday=%@&Wednesday=%@&Thursday=%@&Friday=%@&PreferredGender=%@&VehicleID=%@&NoOfSeats=%@&StartLat=&StartLng=&EndLat=&EndLng=&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@",accountID,name,fromEmirate.EmirateId,toEmirateID,fromRegion.ID,toRegionID,_isRounded,timeString,sat,sun,mon,tue,wed,thu,fri,gender,vehicle.ID.stringValue,_noOfSeats,languageId,nationalityId,ageRangeId,dateString];
+    requestBody = [requestBody stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
     [self.operationManager GET:requestBody parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response create ride %@",responseObject);
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        if (            [responseString containsString:@"-2"];) {
+
+        }
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        
+        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        failure(error.localizedDescription);
     }];
 }
 

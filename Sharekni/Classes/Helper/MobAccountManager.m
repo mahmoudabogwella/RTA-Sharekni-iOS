@@ -130,15 +130,15 @@
         else if ([responseString containsString:@"-1"]){
             failure(@"Email already exists");
         }
-        else if ([responseString containsString:@"0"]){
-            failure(@"Email already exists");
-        }
+//        else if ([responseString containsString:@"0"]){
+//            failure(@"Email already exists");
+//        }
         else{
-            success(nil);           
+            failure(@"invalid email or password");
         }
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        failure(@"incorrect");
+        failure(@"invalid email or password");
     }];
 }
 

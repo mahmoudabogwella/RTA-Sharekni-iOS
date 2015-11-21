@@ -30,7 +30,8 @@
 #import "UILabel+Borders.h"
 #import "MobVehicleManager.h"
 #import "Vehicle.h"
-
+#import "MasterDataManager.h"
+#import "MobDriverManager.h"
 
 @interface CreateRideViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *seat4ImageView;
@@ -222,7 +223,12 @@
 
 #pragma ACTIONS
 - (IBAction) selectVehilceAction:(id)sender {
-    [self showPickerWithTextFieldType:VehiclesTextField];
+    if(self.vehicles.count == 0){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"please configure your vehicles first", nil)];
+    }
+    else{
+        [self showPickerWithTextFieldType:VehiclesTextField];
+    }
 }
 
 - (IBAction) setDirectionAction:(id)sender {
@@ -384,8 +390,9 @@
         self.satLabel.textColor = [UIColor whiteColor];
     }
     else{
-        self.satLabel.backgroundColor = [UIColor whiteColor];;
-        self.satLabel.textColor = Red_UIColor;
+        self.satLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.satLabel.backgroundColor = [UIColor lightGrayColor];
+        self.satLabel.textColor = [UIColor whiteColor];;
     }
 }
 - (void) sunTapped{
@@ -395,8 +402,9 @@
         self.sunLabel.textColor = [UIColor whiteColor];
     }
     else{
-        self.sunLabel.backgroundColor = [UIColor whiteColor];;
-        self.sunLabel.textColor = Red_UIColor;
+        self.sunLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.sunLabel.backgroundColor = [UIColor lightGrayColor];
+        self.sunLabel.textColor = [UIColor whiteColor];
     }
 }
 - (void) monTapped{
@@ -406,8 +414,9 @@
         self.monLabel.textColor = [UIColor whiteColor];
     }
     else{
-        self.monLabel.backgroundColor = [UIColor whiteColor];;
-        self.monLabel.textColor = Red_UIColor;
+        self.monLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.monLabel.backgroundColor = [UIColor lightGrayColor];
+        self.monLabel.textColor = [UIColor whiteColor];
     }
 }
 - (void) tueTapped{
@@ -417,8 +426,9 @@
         self.tueLabel.textColor = [UIColor whiteColor];
     }
     else{
-        self.tueLabel.backgroundColor = [UIColor whiteColor];;
-        self.tueLabel.textColor = Red_UIColor;
+        self.tueLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.tueLabel.backgroundColor = [UIColor lightGrayColor];
+        self.tueLabel.textColor = [UIColor whiteColor];
     }
 }
 - (void) wedTapped{
@@ -428,8 +438,9 @@
         self.wedLabel.textColor = [UIColor whiteColor];
     }
     else{
-        self.wedLabel.backgroundColor = [UIColor whiteColor];;
-        self.wedLabel.textColor = Red_UIColor;
+        self.wedLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.wedLabel.backgroundColor = [UIColor lightGrayColor];
+        self.wedLabel.textColor = [UIColor whiteColor];
     }
 }
 - (void) thrTapped{
@@ -439,8 +450,9 @@
         self.thrLabel.textColor = [UIColor whiteColor];
     }
     else{
-        self.thrLabel.backgroundColor = [UIColor whiteColor];;
-        self.thrLabel.textColor = Red_UIColor;
+        self.thrLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.thrLabel.backgroundColor = [UIColor lightGrayColor];
+        self.thrLabel.textColor = [UIColor whiteColor];
     }
 }
 - (void) friTapped{
@@ -450,8 +462,9 @@
         self.friLabel.textColor = [UIColor whiteColor];
     }
     else{
-        self.friLabel.backgroundColor = [UIColor whiteColor];;
-        self.friLabel.textColor = Red_UIColor;
+        self.friLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.friLabel.backgroundColor = [UIColor lightGrayColor];
+        self.friLabel.textColor = [UIColor whiteColor];
     }
 }
 
@@ -467,12 +480,7 @@
                 blockSelf.ageRanges = array;
                 [[MasterDataManager sharedMasterDataManager] GetPrefferedLanguagesWithSuccess:^(NSMutableArray *array) {
                     blockSelf.languages = array;
-                    [[MobVehicleManager sharedMobVehicleManager] getVehiclesWithSuccess:^(NSArray *vehicles) {
-                        blockSelf.vehicles = vehicles;
-                        [KVNProgress dismiss];
-                    } Failure:^(NSString *error) {
-                        [blockSelf handleManagerFailure];
-                    }];
+                    [KVNProgress dismiss];
                 } Failure:^(NSString *error) {
                     [blockSelf handleManagerFailure];
                 }];
@@ -511,7 +519,6 @@
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.scrollView.frame.size.height)];
     self.selectedType = SingleRideType;
     self.isFemaleOnly = false;
-    self.pickupDate = [[NSDate date] dateBySettingHour:10];
 
     
     self.dateView.layer.cornerRadius = 10;
@@ -634,16 +641,41 @@
 }
 
 - (IBAction) creatRideAction:(id)sender {
-    if (!self.fromEmirate) {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
+    if (!self.fromEmirate || !self.toEmirate) {
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please set startpoint and destination.",nil)];
     }
-    else if (!self.toEmirate){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select destination ",nil)];
-        
+    else if (!self.selectedVehicle){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select Vehicle.",nil)];
     }
+    else if (self.rideNameTextField.text.length == 0){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter ride name.",nil)];
+    }
+//    else if (self.noOfSeats.text.length == 0){
+//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter ride name.",nil)];
+//    }
+//    else if (self.rideNameTextField.text.length == 0){
+//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter ride name.",nil)];
+//    }
     else{
         __block CreateRideViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
+        BOOL isRounded = self.selectedType == PeriodicType ? YES : NO;
+        NSString *gender = self.isFemaleOnly ? @"F":@"M";
+        
+        [[MobDriverManager sharedMobDriverManager] createRideWithName:self.rideNameTextField.text fromEmirate:self.fromEmirate fromRegion:self.fromRegion toEmirate:self.toEmirate toRegion:self.toRegion isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicle:self.selectedVehicle noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange WithSuccess:^(NSArray *searchResults) {
+            [KVNProgress dismiss];
+            [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Ride created successfully", nil)];
+            [blockSelf performBlock:^{
+                [KVNProgress dismiss];
+                [blockSelf.navigationController popViewControllerAnimated:YES];
+            } afterDelay:3];
+        } Failure:^(NSString *error) {
+            [KVNProgress dismiss];
+            [KVNProgress showErrorWithStatus:NSLocalizedString(@"an error happend when trying to create ride", nil)];
+            [blockSelf performBlock:^{
+                [KVNProgress dismiss];
+            } afterDelay:3];
+        }];
     }
 }
 
@@ -672,7 +704,7 @@
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
     dateSelectionController.title = NSLocalizedString(@"select Pickup Date", nil);
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
-    dateSelectionController.datePicker.date = self.pickupDate;
+    dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [NSDate date];
     
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
@@ -797,8 +829,12 @@
 
 - (void) showLocationPicker{
     SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
+    selectLocationViewController.validateDestination = YES;
     __block CreateRideViewController *blockSelf = self;
     [selectLocationViewController setSelectionHandler:^(Emirate *fromEmirate, Region *fromRegion,Emirate *toEmirate, Region *toRegion) {
+        
+        blockSelf.helpLabel.alpha = 0;
+        blockSelf.emiratesAndRegionsView.alpha = 1;
         
         NSString *fromText = [NSString stringWithFormat:@"%@,%@",fromEmirate.EmirateEnName,fromRegion.RegionEnName];
         
@@ -806,13 +842,11 @@
         blockSelf.fromRegion = fromRegion;
         blockSelf.startPointLabel.text = fromText;
         
-        blockSelf.destinationLabel.text = @"";
-        if (toEmirate && toRegion) {
-            NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
-            blockSelf.toEmirate = toEmirate;
-            blockSelf.toRegion = toRegion;
-            blockSelf.destinationLabel.text = toText;
-        }
+        NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
+        blockSelf.toEmirate = toEmirate;
+        blockSelf.toRegion = toRegion;
+        blockSelf.destinationLabel.text = toText;
+        
     }];
     [self.navigationController pushViewController:selectLocationViewController animated:YES];
 }
