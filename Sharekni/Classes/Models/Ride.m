@@ -29,6 +29,31 @@
     mapping[@"DriverNationalityFrName"] = @"DriverNationalityFrName";
     mapping[@"DriverNationalityChName"] = @"DriverNationalityChName";
     mapping[@"DriverNationalityUrName"] = @"DriverNationalityUrName";
+    
+    mapping[@"FromEmirateArName"] = @"FromEmirateArName";
+    mapping[@"FromEmirateEnName"] = @"FromEmirateEnName";
+    mapping[@"FromEmirateNameFr"] = @"FromEmirateNameFr";
+    mapping[@"FromEmirateNameCh"] = @"FromEmirateNameCh";
+    mapping[@"FromEmirateNameUr"] = @"FromEmirateNameUr";
+    
+    mapping[@"ToEmirateArName"] = @"ToEmirateArName";
+    mapping[@"ToEmirateEnName"] = @"ToEmirateEnName";
+    mapping[@"ToEmirateNameFr"] = @"ToEmirateNameFr";
+    mapping[@"ToEmirateNameCh"] = @"ToEmirateNameCh";
+    mapping[@"ToEmirateNameUr"] = @"ToEmirateNameUr";
+    
+    mapping[@"FromRegionArName"] = @"FromRegionArName";
+    mapping[@"FromRegionEnName"] = @"FromRegionEnName";
+    mapping[@"FromRegionNameFr"] = @"FromRegionNameFr";
+    mapping[@"FromRegionNameCh"] = @"FromRegionNameCh";
+    mapping[@"FromRegionNameUr"] = @"FromRegionNameUr";
+    
+    mapping[@"ToRegionArName"] = @"ToRegionArName";
+    mapping[@"ToRegionEnName"] = @"ToRegionEnName";
+    mapping[@"ToRegionNameFr"] = @"ToRegionNameFr";
+    mapping[@"ToRegionNameCh"] = @"ToRegionNameCh";
+    mapping[@"ToRegionNameUr"] = @"ToRegionNameUr";
+
     return mapping;
 }
 

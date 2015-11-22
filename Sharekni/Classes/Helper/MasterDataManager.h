@@ -49,6 +49,14 @@
 
 - (void)getVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 
+<<<<<<< HEAD
 - (void)getRequestNotifications:(NSString *)accountID isDriver:(BOOL)isDriver WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
+=======
+- (void) getPassengersByRouteId:(NSString *)routeId withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure;
+
+- (void) deletePassengerWithID:(NSString *)passengerID withSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure;
+
+- (void)getRequestNotifications:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
+>>>>>>> origin/master
 
 @end

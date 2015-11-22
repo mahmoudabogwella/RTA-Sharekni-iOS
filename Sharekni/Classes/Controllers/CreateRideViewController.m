@@ -27,7 +27,7 @@
 #import "SelectLocationViewController.h"
 #import "MobDriverManager.h"
 #import "HelpManager.h"
-#import "UILabel+Borders.h"
+#import "UIView+Borders.h"
 #import "MobVehicleManager.h"
 #import "Vehicle.h"
 #import "MasterDataManager.h"
@@ -117,6 +117,7 @@
 @property (assign,nonatomic) BOOL thrActive;
 @property (assign,nonatomic) BOOL friActive;
 @property (assign, nonatomic) NSInteger noOfSeats;
+@property (strong, nonatomic) RouteDetails *routeDetails;
 @end
 
 @implementation CreateRideViewController
@@ -131,12 +132,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.isEdit = (self.ride != nil);
-    if (self.isEdit) {
-        
-    }
-    else{
-        self.noOfSeats = 0;
-    }
+
     [self configureUI];
     [self configureSeats];
     [self configureDaysLabels];
@@ -145,6 +141,182 @@
     [self configureGenderView];
 }
 
+- (void) configureEditMode{
+    
+    //Emirates and regions view
+    self.helpLabel.alpha = 0;
+    self.emiratesAndRegionsView.alpha = 1;
+    NSString *fromText = [NSString stringWithFormat:@"%@,%@",self.ride.FromEmirateEnName,self.ride.FromRegionEnName];
+    
+    self.startPointLabel.text = fromText;
+    
+    NSString *toText = [NSString stringWithFormat:@"%@,%@",self.ride.ToEmirateEnName,self.ride.ToRegionEnName];
+    self.destinationLabel.text = toText;
+    
+    __block CreateRideViewController *blockSelf = self;
+    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:self.ride.RouteID.stringValue withSuccess:^(RouteDetails *routeDetails) {
+        [KVNProgress dismiss];
+        blockSelf.routeDetails = routeDetails;
+        [blockSelf configureUIWithRouteDetails];
+    } Failure:^(NSString *error) {
+        [KVNProgress dismiss];
+        [blockSelf handleManagerFailure];
+    }];
+}
+
+- (void) configureUIWithRouteDetails{
+    
+    //Ride Name
+    self.rideNameTextField.text = self.routeDetails.RouteEnName;
+    
+    //RoadType
+    self.selectedType = self.routeDetails.IsRounded.boolValue ? PeriodicType : SingleRideType;
+    [self configureRoadTypeView];
+    
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    //Start Date
+    dateFormatter.dateFormat = @"dd/MM/yyyy";
+    NSDate *startDate = [dateFormatter dateFromString:self.routeDetails.StartDate];
+    
+    dateFormatter.dateFormat = @"EEE,  dd/MM/yyyy";
+    NSString *dateString = [dateFormatter stringFromDate:startDate];
+    self.dateLabel.text  = dateString;
+    
+    //Start Time
+    if ([self.routeDetails.StartFromTime containsString:@"AM"]) {
+        self.routeDetails.StartFromTime = [self.routeDetails.StartFromTime stringByReplacingOccurrencesOfString:@"AM" withString:@" AM"];
+    }
+    else if ([self.routeDetails.StartFromTime containsString:@"PM"]) {
+        self.routeDetails.StartFromTime = [self.routeDetails.StartFromTime stringByReplacingOccurrencesOfString:@"PM" withString:@" PM"];
+    }
+    
+    dateFormatter.dateFormat = @"MMM dd yyy hh:mm a";
+    NSDate *startTime = [dateFormatter dateFromString:self.routeDetails.StartFromTime];
+    
+
+    dateFormatter.dateFormat = @"hh:mm a";
+    NSString *timeString = [dateFormatter stringFromDate:startTime];
+    
+    self.pickupDate = startDate;
+    self.pickupDate = [self.pickupDate dateByAddingHour:startTime.hour];
+    self.pickupDate = [self.pickupDate dateByAddingMinute:startTime.minute];
+    
+    self.timeLabel.text = timeString;
+    
+    //Vehicle
+    if (self.vehicles && self.ride) {
+        NSString *ID = self.routeDetails.VehicelId.stringValue;
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID ==%@",ID];
+        NSArray *result = [self.vehicles filteredArrayUsingPredicate:predicate];
+        self.selectedVehicle = result.count > 0 ? result[0]:nil;
+        if (self.selectedVehicle) {
+            [self.selectVehicleButton setTitle:self.selectedVehicle.ModelEnName forState:UIControlStateNormal];
+        }
+        else{
+        [self.selectVehicleButton setTitle:NSLocalizedString(@"Select vehicle", nil)  forState:UIControlStateNormal];
+        }
+    }
+    else{
+        self.selectedVehicle = nil;
+        [self.selectVehicleButton setTitle:NSLocalizedString(@"Select vehicle", nil)  forState:UIControlStateNormal];
+    }
+    
+    //no of seats
+    self.noOfSeats = self.routeDetails.NoOfSeats.integerValue;
+    switch (self.noOfSeats) {
+        case 1:
+            self.seat1Active = YES;
+            self.seat2Active = NO;
+            self.seat3Active = NO;
+            self.seat4Active = NO;
+            [self.seat1ImageView setImage:[UIImage imageNamed:@"SeatActive"]];
+            
+            
+            break;
+        case 2:
+            self.seat1Active = YES;
+            self.seat2Active = YES;
+            self.seat3Active = NO;
+            self.seat4Active = NO;
+            [self.seat1ImageView setImage:[UIImage imageNamed:@"SeatActive"]];
+            [self.seat2ImageView setImage:[UIImage imageNamed:@"SeatActive"]];
+            
+            break;
+        case 3:
+            self.seat1Active = YES;
+            self.seat2Active = YES;
+            self.seat3Active = YES;
+            self.seat4Active = NO;
+            [self.seat1ImageView setImage:[UIImage imageNamed:@"SeatActive"]];
+            [self.seat2ImageView setImage:[UIImage imageNamed:@"SeatActive"]];
+            [self.seat3ImageView setImage:[UIImage imageNamed:@"SeatActive"]];
+            
+            break;
+        case 4:
+            self.seat1Active = YES;
+            self.seat2Active = YES;
+            self.seat3Active = YES;
+            self.seat4Active = YES;
+            [self.seat1ImageView setImage:[UIImage imageNamed:@"SeatActive"]];
+            [self.seat2ImageView setImage:[UIImage imageNamed:@"SeatActive"]];
+            [self.seat3ImageView setImage:[UIImage imageNamed:@"SeatActive"]];
+            [self.seat4ImageView setImage:[UIImage imageNamed:@"SeatActive"]];
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    //language
+    NSNumber *languageID = self.routeDetails.PrefLanguageId;
+    if (languageID.integerValue != 0 &&self.languages.count > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"LanguageId ==%d",languageID.integerValue];
+        NSArray *result = [self.languages filteredArrayUsingPredicate:predicate];
+        self.selectedLanguage = result.count > 0 ? result[0]:nil;
+        [self.selectLanguageButton setTitle:self.selectedLanguage.LanguageEnName forState:UIControlStateNormal];
+    }
+    else{
+        self.selectedLanguage = nil;
+    }
+    
+    //Age Range
+    NSString  *RangeID = self.routeDetails.AgeRangeID;
+    if (RangeID.integerValue != 0 &&self.ageRanges.count > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"RangeId ==%d",RangeID.integerValue];
+        NSArray *result = [self.ageRanges filteredArrayUsingPredicate:predicate];
+        self.selectedAgeRange = result.count > 0 ? result[0]:nil;
+        [self.selectAgeRangeButton setTitle:self.selectedAgeRange.Range forState:UIControlStateNormal];
+    }
+    else{
+        self.selectedAgeRange = nil;
+    }
+    
+    //Nationality
+    NSNumber *nationalityID = self.routeDetails.NationalityId;
+    if (nationalityID.integerValue != 0 &&self.nationalties.count > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID ==%d",nationalityID.integerValue];
+        NSArray *result = [self.nationalties filteredArrayUsingPredicate:predicate];
+        self.selectedNationality = result.count > 0 ? result[0]:nil;;
+        [self.nationalityTextField setText:self.selectedNationality.NationalityEnName];
+    }
+    else{
+        self.selectedNationality = nil;
+    }
+    
+    //Gender
+    self.isFemaleOnly = NO;
+    [self configureGenderView];
+    
+    //Days Of Week
+    [self configureDaysLabels];
+    
+    [self.createButton setTitle:@"Edit Ride" forState:UIControlStateNormal];
+}
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -246,7 +418,13 @@
 #pragma DAYSOFWEEK
 - (void) configureDaysLabels{
     if (self.isEdit) {
-        
+        self.satActive = self.routeDetails.Saturday.boolValue;
+        self.sunActive = self.routeDetails.Sunday.boolValue;
+        self.monActive = self.routeDetails.Monday.boolValue;
+        self.tueActive = self.routeDetails.Tuesday.boolValue;
+        self.wedActive = self.routeDetails.Wendenday.boolValue;
+        self.thrActive = self.routeDetails.Thrursday.boolValue;
+        self.friActive = self.routeDetails.Friday.boolValue;
     }
     else{
         self.satActive = NO;
@@ -480,7 +658,13 @@
                 blockSelf.ageRanges = array;
                 [[MasterDataManager sharedMasterDataManager] GetPrefferedLanguagesWithSuccess:^(NSMutableArray *array) {
                     blockSelf.languages = array;
-                    [KVNProgress dismiss];
+                    if (blockSelf.isEdit) {
+                        [blockSelf configureEditMode];
+                    }
+                    else{
+                        blockSelf.noOfSeats = 0;
+                        [KVNProgress dismiss];
+                    }
                 } Failure:^(NSString *error) {
                     [blockSelf handleManagerFailure];
                 }];
@@ -641,32 +825,33 @@
 }
 
 - (IBAction) creatRideAction:(id)sender {
-    if (!self.fromEmirate || !self.toEmirate) {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please set startpoint and destination.",nil)];
+    if ((!self.fromEmirate || !self.toEmirate)&& !self.isEdit) {
+            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please set startpoint and destination.",nil)];
     }
-    else if (!self.selectedVehicle){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select Vehicle.",nil)];
+    else if (!self.selectedVehicle &&!self.isEdit){
+        if(!self.isEdit){
+            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select Vehicle.",nil)];
+        }
     }
     else if (self.rideNameTextField.text.length == 0){
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter ride name.",nil)];
     }
-//    else if (self.noOfSeats.text.length == 0){
-//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter ride name.",nil)];
-//    }
-//    else if (self.rideNameTextField.text.length == 0){
-//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter ride name.",nil)];
-//    }
     else{
         __block CreateRideViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
         BOOL isRounded = self.selectedType == PeriodicType ? YES : NO;
         NSString *gender = self.isFemaleOnly ? @"F":@"M";
         
-        [[MobDriverManager sharedMobDriverManager] createRideWithName:self.rideNameTextField.text fromEmirate:self.fromEmirate fromRegion:self.fromRegion toEmirate:self.toEmirate toRegion:self.toRegion isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicle:self.selectedVehicle noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange WithSuccess:^(NSString *response) {
+        NSString *fromEmirateID = self.isEdit ? self.routeDetails.FromEmirateId.stringValue : self.fromEmirate.EmirateId;
+        NSString *toEmirateID = self.isEdit ? self.routeDetails.ToEmirateId.stringValue : self.toEmirate.EmirateId;
+        NSString *fromRegionID = self.isEdit ? self.routeDetails.FromRegionId.stringValue : self.fromRegion.ID;
+        NSString *toRegionID = self.isEdit ? self.routeDetails.ToRegionId.stringValue : self.toRegion.ID;
+        
+        [[MobDriverManager sharedMobDriverManager] createEditRideWithName:self.rideNameTextField.text fromEmirateID:fromEmirateID fromRegionID:fromRegionID toEmirateID:toEmirateID toRegionID:toRegionID isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicleID:self.isEdit ? self.routeDetails.VehicelId.stringValue : self.selectedVehicle.ID.stringValue noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange  isEdit:self.isEdit routeID:self.routeDetails.ID.stringValue WithSuccess:^(NSString *response) {
             [KVNProgress dismiss];
             
             if ([response containsString:@"1"]) {
-                [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Ride created successfully", nil)];
+                [KVNProgress showSuccessWithStatus:self.isEdit ?  NSLocalizedString(@"Ride edited successfully", nil) : NSLocalizedString(@"Ride created successfully", nil)];
                 [blockSelf performBlock:^{
                     [KVNProgress dismiss];
                     [blockSelf.navigationController popViewControllerAnimated:YES];
@@ -676,7 +861,7 @@
                 [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Error.", nil)];
             }
             else if ([response containsString:@"-2"]){
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"you cannot create more than 2 rides.", nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:self.isEdit ? NSLocalizedString(@"an error happend when trying to create ride", nil) : NSLocalizedString(@"you cannot create more than 2 rides.", nil)];
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
@@ -861,6 +1046,7 @@
 }
 
 #pragma TextFieldDelegate
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
     if (textField == self.nationalityTextField){
@@ -880,8 +1066,7 @@
 }
 
 #pragma PickerViewDeelgate&DataSource
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     NSString *title = @"";
     switch (pickerView.tag) {
         case NationalityTextField:
@@ -918,8 +1103,7 @@
 
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     switch (pickerView.tag) {
         case NationalityTextField:
         {
@@ -949,8 +1133,7 @@
     
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }
 

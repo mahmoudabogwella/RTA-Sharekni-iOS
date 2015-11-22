@@ -408,5 +408,22 @@
     }];
 }
 
+- (void) leaveRideWithID:(NSString *) routeID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure{
+    NSString *path =[NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Route_Delete?RouteId=%@",routeID];
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSLog(@"delete response :%@",responseString);
+        if ([responseString containsString:@"1"]) {
+            success(YES);
+        }
+        else{
+            success(NO);
+        }
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+}
+
 SYNTHESIZE_SINGLETON_FOR_CLASS(MobAccountManager);
 @end

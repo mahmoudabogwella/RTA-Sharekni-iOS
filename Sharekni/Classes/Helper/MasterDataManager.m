@@ -26,6 +26,7 @@
 #import "Review.h"
 #import "Vehicle.h"
 #import "MobAccountManager.h"
+#import "Passenger.h"
 #import "Notification.h"
 
 
@@ -550,8 +551,6 @@
     }
 }
 
-
-
 - (void) setRegions:(NSArray *)regions forEmirateWithID:(NSString *)ID{
     if(!self.regionsDictionary){
         self.regionsDictionary = [NSMutableDictionary dictionary];
@@ -565,6 +564,42 @@
          regions = [self.regionsDictionary objectForKey:ID];
     }
     return regions;
+}
+
+- (void) getPassengersByRouteId:(NSString *)routeId withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetPassengersByRouteId?id=%@",routeId];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        NSMutableArray *passengers = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            Passenger *passenger= [Passenger gm_mappedObjectWithJsonRepresentation:dictionary];
+            [passengers addObject:passenger];
+        }
+        success(passengers);
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        NSLog(@"Error %@",error.description);
+        failure(error.description);
+    }];
+    
+}
+
+- (void) deletePassengerWithID:(NSString *)passengerID withSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Driver_RemovePassenger?RoutePassengerId=%@",passengerID];
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        success(responseString);
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
 }
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MasterDataManager);

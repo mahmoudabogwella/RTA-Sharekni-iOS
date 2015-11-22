@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface AgeRange : NSObject
-@property (nonatomic,strong) NSString *RangeId;
+@property (nonatomic,strong) NSNumber *RangeId;
 @property (nonatomic,strong) NSString *Range;
 
 @end

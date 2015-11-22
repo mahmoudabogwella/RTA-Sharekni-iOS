@@ -27,24 +27,35 @@
 @property (nonatomic,strong) NSString *DriverNationalityChName;
 @property (nonatomic,strong) NSString *DriverNationalityUrName;
 
+@property (nonatomic,strong) NSNumber *FromEmirateId;
+@property (nonatomic,strong) NSString *FromEmirateArName;
+@property (nonatomic,strong) NSString *FromEmirateEnName;
+@property (nonatomic,strong) NSString *FromEmirateNameFr;
+@property (nonatomic,strong) NSString *FromEmirateNameCh;
+@property (nonatomic,strong) NSString *FromEmirateNameUr;
+
+@property (nonatomic,strong) NSNumber *ToEmirateId;
+@property (nonatomic,strong) NSString *ToEmirateArName;
+@property (nonatomic,strong) NSString *ToEmirateEnName;
+@property (nonatomic,strong) NSString *ToEmirateNameFr;
+@property (nonatomic,strong) NSString *ToEmirateNameCh;
+@property (nonatomic,strong) NSString *ToEmirateNameUr;
+
+@property (nonatomic,strong) NSNumber *FromRegionId;
+@property (nonatomic,strong) NSString *FromRegionArName;
+@property (nonatomic,strong) NSString *FromRegionEnName;
+@property (nonatomic,strong) NSString *FromRegionNameFr;
+@property (nonatomic,strong) NSString *FromRegionNameCh;
+@property (nonatomic,strong) NSString *FromRegionNameUr;
+
+@property (nonatomic,strong) NSNumber *ToRegionId;
+@property (nonatomic,strong) NSString *ToRegionArName;
+@property (nonatomic,strong) NSString *ToRegionEnName;
+@property (nonatomic,strong) NSString *ToRegionNameFr;
+@property (nonatomic,strong) NSString *ToRegionNameCh;
+@property (nonatomic,strong) NSString *ToRegionNameUr;
+
 @end
 
-//public int RoutePassengerId { get; set; }
-//public bool DriverAccept { get; set; }
-//public int RouteID { get; set; }
-//public int DriverId { get; set; }
-
-//public object RouteArName { get; set; }
-//public string RouteEnName { get; set; }
-//public string JoinDate { get; set; }
-//public string DriverMobile { get; set; }
-//public string DriverName { get; set; }
-//public string DriverPhoto { get; set; }
-//public int DriverNationalityId { get; set; }
-//public string DriverNationalityArName { get; set; }
-//public string DriverNationalityEnName { get; set; }
-//public string DriverNationalityFrName { get; set; }
-//public string DriverNationalityChName { get; set; }
-//public string DriverNationalityUrName { get; set; }
 
 

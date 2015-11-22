@@ -6,9 +6,9 @@
 //
 //
 
-#import "UILabel+Borders.h"
+#import "UIView+Borders.h"
 
-@implementation UILabel (Borders)
+@implementation UIView (Borders)
 
 - (void) addRightBorderWithColor:(UIColor *)color{
     CALayer *rightBorder = [CALayer layer];
@@ -20,6 +20,13 @@
     CALayer *leftBorder = [CALayer layer];
     leftBorder.backgroundColor = [color CGColor];
     leftBorder.frame = CGRectMake(0, 0, 1, CGRectGetHeight(self.frame));
+    [self.layer addSublayer:leftBorder];
+}
+
+- (void)addBottomBorderWithColor:(UIColor *)color{
+    CALayer *leftBorder = [CALayer layer];
+    leftBorder.backgroundColor = [color CGColor];
+    leftBorder.frame = CGRectMake(0,CGRectGetHeight(self.frame) - 1, CGRectGetWidth(self.frame), 1);
     [self.layer addSublayer:leftBorder];
 }
 @end

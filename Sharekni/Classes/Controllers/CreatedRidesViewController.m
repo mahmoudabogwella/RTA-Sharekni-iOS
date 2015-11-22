@@ -14,7 +14,7 @@
 #import "RideDetailsViewController.h"
 #import "NSObject+Blocks.h"
 #import "CreateRideViewController.h"
-#import "UILabel+Borders.h"
+#import "UIView+Borders.h"
 #import <UIColor+Additions.h>
 
 
@@ -77,6 +77,9 @@
     [rideCell setCreatedRide:ride];
     
     [rideCell setEditHandler:^{
+        CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
+        editRideViewController.ride = ride;
+        [blockSelf.navigationController pushViewController:editRideViewController animated:YES];
         
     }];
     [rideCell setDeleteHandler:^{
@@ -120,7 +123,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 0) {
+    if (buttonIndex == 1) {
         [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
         __block CreatedRidesViewController *blockSelf = self;
         [[MobAccountManager sharedMobAccountManager] deleteRideWithID:self.toBeDeletedRide.RouteID.stringValue withSuccess:^(BOOL deletedSuccessfully) {

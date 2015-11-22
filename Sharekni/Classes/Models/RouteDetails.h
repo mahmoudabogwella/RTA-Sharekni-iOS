@@ -69,14 +69,14 @@
 @property (nonatomic,strong) NSString *VehicleArName;
 @property (nonatomic,strong) NSString *VehicleEnName;
 
-@property (nonatomic,strong) NSString *NationalityId;
+@property (nonatomic,strong) NSNumber *NationalityId;
 @property (nonatomic,strong) NSString *NationalityArName;
 @property (nonatomic,strong) NSString *NationalityEnName;
 @property (nonatomic,strong) NSString *NationalityFrName;
 @property (nonatomic,strong) NSString *NationalityChName;
 @property (nonatomic,strong) NSString *NationalityUrName;
 
-@property (nonatomic,strong) NSString *PrefLanguageId;
+@property (nonatomic,strong) NSNumber *PrefLanguageId;
 @property (nonatomic,strong) NSString *PrefLanguageArName;
 @property (nonatomic,strong) NSString *PrefLanguageEnName;
 @property (nonatomic,strong) NSString *PrefLanguageFrName;
@@ -92,7 +92,8 @@
 @property (nonatomic,strong) NSNumber *Friday;
 
 @property (nonatomic,strong) NSString *StartDate;
-@property (nonatomic,strong) NSString *AgeRangeId;
+
+@property (nonatomic,strong) NSNumber *AgeRangeId;
 @property (nonatomic,strong) NSString *StartLat;
 @property (nonatomic,strong) NSString *StartLng;
 @property (nonatomic,strong) NSString *EndLat;

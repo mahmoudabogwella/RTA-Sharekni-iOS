@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
             endingLineNumber = "41"
-            landmarkName = "-findRidesFromEmirate:andFromRegion:toEmirate:andToRegion:PerfferedLanguage:nationality:ageRange:date:isPeriodic:WithSuccess:Failure:"
+            landmarkName = "-findRidesFromEmirate:andFromRegion:toEmirate:andToRegion:PerfferedLanguage:nationality:ageRange:date:isPeriodic:saveSearch:WithSuccess:Failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
             endingLineNumber = "65"
-            landmarkName = "-getMapLookupWithSuccess:Failure:"
+            landmarkName = "-findRidesFromEmirate:andFromRegion:toEmirate:andToRegion:PerfferedLanguage:nationality:ageRange:date:isPeriodic:saveSearch:WithSuccess:Failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,61 +138,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Helper/MobAccountManager.m"
-            timestampString = "468006298.413003"
+            timestampString = "468006357.178508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "-checkLoginWithUserName:andPassword:WithSuccess:Failure:"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-confirmMobileWithCode:WithSuccess:Failure:"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__76-[MobAccountManager checkLoginWithUserName:andPassword:WithSuccess:Failure:]_block_invoke"
+                  symbolName = "-[MobAccountManager confirmMobileWithCode:WithSuccess:Failure:]"
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/Helper/MobAccountManager.m"
-                  timestampString = "468950888.403818"
+                  timestampString = "469909340.355627"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "143"
-                  endingLineNumber = "143"
-                  offsetFromSymbolStart = "416">
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "216">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__76-[MobAccountManager checkLoginWithUserName:andPassword:WithSuccess:Failure:]_block_invoke_2"
+                  symbolName = "__63-[MobAccountManager confirmMobileWithCode:WithSuccess:Failure:]_block_invoke"
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/Helper/MobAccountManager.m"
-                  timestampString = "468950888.404206"
+                  timestampString = "469909340.355808"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "143"
-                  endingLineNumber = "143"
-                  offsetFromSymbolStart = "75">
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "69">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Helper/MobAccountManager.m"
-            timestampString = "468006357.178508"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "-checkLoginWithUserName:andPassword:WithSuccess:Failure:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -207,7 +191,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
             endingLineNumber = "151"
-            landmarkName = "-checkLoginWithUserName:andPassword:WithSuccess:Failure:"
+            landmarkName = "-forgetPassword:andEmail:WithSuccess:Failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -225,38 +209,6 @@
             endingLineNumber = "132"
             landmarkName = "-checkLoginWithUserName:andPassword:WithSuccess:Failure:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[MobAccountManager checkLoginWithUserName:andPassword:WithSuccess:Failure:]"
-                  moduleName = "Sharekni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/Helper/MobAccountManager.m"
-                  timestampString = "468950888.409801"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "132"
-                  endingLineNumber = "132"
-                  offsetFromSymbolStart = "344">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__76-[MobAccountManager checkLoginWithUserName:andPassword:WithSuccess:Failure:]_block_invoke"
-                  moduleName = "Sharekni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/Helper/MobAccountManager.m"
-                  timestampString = "468950888.410149"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "132"
-                  endingLineNumber = "132"
-                  offsetFromSymbolStart = "64">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -298,7 +250,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/Controllers/MostRidesViewController.m"
-                  timestampString = "468950888.412913"
+                  timestampString = "469909340.359342"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
@@ -313,7 +265,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/Controllers/MostRidesViewController.m"
-                  timestampString = "468950888.413238"
+                  timestampString = "469909340.359684"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
@@ -328,7 +280,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/Controllers/MostRidesViewController.m"
-                  timestampString = "468950888.413547"
+                  timestampString = "469909340.359959"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
@@ -377,7 +329,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/CustomViews/PickupLocationView.m"
-                  timestampString = "468950888.417231"
+                  timestampString = "469909340.362638"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
@@ -392,7 +344,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/CustomViews/PickupLocationView.m"
-                  timestampString = "468950888.417619"
+                  timestampString = "469909340.362836"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
@@ -400,38 +352,6 @@
                   offsetFromSymbolStart = "36">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Helper/MasterDataManager.m"
-            timestampString = "468365234.68794"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
-            landmarkName = "-GetRegionsByEmirateID:withSuccess:Failure:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Helper/MasterDataManager.m"
-            timestampString = "468365235.90611"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
-            landmarkName = "-GetRegionsByEmirateID:withSuccess:Failure:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -464,6 +384,68 @@
             endingLineNumber = "65"
             landmarkName = "-registerPassengerWithFirstName:lastName:mobile:username:password:gender:imagePath:birthDate:nationalityID:PreferredLanguageId:WithSuccess:Failure:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__167-[MobAccountManager registerPassengerWithFirstName:lastName:mobile:username:password:gender:imagePath:birthDate:nationalityID:PreferredLanguageId:WithSuccess:Failure:]_block_invoke"
+                  moduleName = "Sharekni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/Helper/MobAccountManager.m"
+                  timestampString = "469909340.364895"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "353">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_"
+                  moduleName = "Sharekni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/Helper/MobAccountManager.m"
+                  timestampString = "469909340.365083"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "Sharekni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/Helper/MobAccountManager.m"
+                  timestampString = "469909340.365324"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__167-[MobAccountManager registerPassengerWithFirstName:lastName:mobile:username:password:gender:imagePath:birthDate:nationalityID:PreferredLanguageId:WithSuccess:Failure:]_block_invoke26"
+                  moduleName = "Sharekni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Sharekni/Sharekni/Classes/Helper/MobAccountManager.m"
+                  timestampString = "469909340.365554"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "75">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -495,6 +477,182 @@
             startingLineNumber = "468"
             endingLineNumber = "468"
             landmarkName = "-registerAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/CreateRideViewController.m"
+            timestampString = "469903310.150745"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "-configureUIWithRouteDetails"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/CreateRideViewController.m"
+            timestampString = "469903310.150745"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "-configureUIWithRouteDetails"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/CreateRideViewController.m"
+            timestampString = "469903310.150745"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "-configureUIWithRouteDetails"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/CreateRideViewController.m"
+            timestampString = "469903310.150745"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "-configureUIWithRouteDetails"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Helper/MobDriverManager.m"
+            timestampString = "469902703.018068"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "-createEditRideWithName:fromEmirateID:fromRegionID:toEmirateID:toRegionID:isRounded:date:saturday:sunday:monday:tuesday:wednesday:thursday:friday:PreferredGender:vehicleID:noOfSeats:language:nationality:ageRange:isEdit:routeID:WithSuccess:Failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/CreateRideViewController.m"
+            timestampString = "469903310.150745"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "828"
+            endingLineNumber = "828"
+            landmarkName = "-creatRideAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/CreateRideViewController.m"
+            timestampString = "469903310.150745"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "828"
+            endingLineNumber = "828"
+            landmarkName = "-creatRideAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Helper/MobDriverManager.m"
+            timestampString = "469903310.150745"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "-createEditRideWithName:fromEmirateID:fromRegionID:toEmirateID:toRegionID:isRounded:date:saturday:sunday:monday:tuesday:wednesday:thursday:friday:PreferredGender:vehicleID:noOfSeats:language:nationality:ageRange:isEdit:routeID:WithSuccess:Failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Helper/MobDriverManager.m"
+            timestampString = "469903310.150745"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "-createEditRideWithName:fromEmirateID:fromRegionID:toEmirateID:toRegionID:isRounded:date:saturday:sunday:monday:tuesday:wednesday:thursday:friday:PreferredGender:vehicleID:noOfSeats:language:nationality:ageRange:isEdit:routeID:WithSuccess:Failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Helper/MobDriverManager.m"
+            timestampString = "469902815.10849"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "-createEditRideWithName:fromEmirateID:fromRegionID:toEmirateID:toRegionID:isRounded:date:saturday:sunday:monday:tuesday:wednesday:thursday:friday:PreferredGender:vehicleID:noOfSeats:language:nationality:ageRange:isEdit:routeID:WithSuccess:Failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/LoginViewController.m"
+            timestampString = "469908337.788458"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-loginAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

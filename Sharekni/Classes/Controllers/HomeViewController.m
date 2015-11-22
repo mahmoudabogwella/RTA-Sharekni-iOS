@@ -21,7 +21,7 @@
 #import "MasterDataManager.h"
 #import "NSObject+Blocks.h"
 #import "NotificationsViewController.h"
-
+#import "RidesJoinedViewController.h"
 @interface HomeViewController ()
 
 #pragma Outlets
@@ -279,7 +279,8 @@
     [self.navigationController pushViewController:createdRideViewController animated:YES];
 }
 - (void) showJoinedRides{
-    
+    RidesJoinedViewController *joinedRidesViewController =  [[RidesJoinedViewController alloc] initWithNibName:@"RidesJoinedViewController" bundle:nil];
+    [self.navigationController pushViewController:joinedRidesViewController animated:YES];
 }
 
 @end
