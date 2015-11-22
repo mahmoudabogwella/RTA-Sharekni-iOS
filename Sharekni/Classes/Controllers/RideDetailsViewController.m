@@ -259,6 +259,8 @@
         [thirdButton setTitle:NSLocalizedString(@"Permit", nil) forState:UIControlStateNormal];
         [thirdButton addTarget:self action:@selector(permitRideAction) forControlEvents:UIControlEventTouchUpInside];
         
+        firstButton.alpha = 1;
+        secondButton.alpha = 1;
         if(self.passengers.count > 0){
             thirdButton.alpha = 1;
         }
@@ -269,7 +271,7 @@
     else{
         [firstButton setTitle:NSLocalizedString(@"Review", nil) forState:UIControlStateNormal];
         [firstButton addTarget:self action:@selector(addReviewAction) forControlEvents:UIControlEventTouchUpInside];
-        
+        firstButton.alpha = 1;
         secondButton.alpha = 0;
         thirdButton.alpha = 0;
     }
@@ -343,7 +345,6 @@
     CGSize contentSize = contentView.contentSize ;
     contentSize.height = joinRideBtn.frame.origin.y + joinRideBtn.frame.size.height + VERTICAL_SPACE;
     contentView.contentSize = contentSize;
-
 }
 
 - (void) handleResponseError{

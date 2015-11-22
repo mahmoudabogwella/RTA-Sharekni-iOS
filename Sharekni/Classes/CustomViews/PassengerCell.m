@@ -12,19 +12,18 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self = (PassengerCell *)[[[NSBundle mainBundle] loadNibNamed:@"PassengerCell" owner:nil options:nil] objectAtIndex:0];
         self.ratingView = [[HCSStarRatingView alloc] initWithFrame:self.placeholderView.frame];
-        
         self.ratingView.maximumValue = 5;
         self.ratingView.minimumValue = 0;
         self.ratingView.value = 0;
-        self.ratingView.tintColor = [UIColor redColor];
+        self.ratingView.tintColor = [UIColor yellowColor];
         [self.ratingView addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
         self.ratingView.accurateHalfStars = YES;
         self.ratingView.emptyStarImage = [[UIImage imageNamed:@"star-empty"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         self.ratingView.filledStarImage = [[UIImage imageNamed:@"start-filled"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [self.placeholderView removeFromSuperview];
         [self addSubview:self.ratingView];
-        
     }
     return self;
 }
