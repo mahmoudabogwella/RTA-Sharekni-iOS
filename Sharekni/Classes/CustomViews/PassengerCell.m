@@ -7,6 +7,8 @@
 //
 
 #import "PassengerCell.h"
+#import <UIColor+Additions.h>
+#import "Constants.h"
 
 @implementation PassengerCell
 
@@ -17,7 +19,7 @@
         self.ratingView.maximumValue = 5;
         self.ratingView.minimumValue = 0;
         self.ratingView.value = 0;
-        self.ratingView.tintColor = [UIColor yellowColor];
+        self.ratingView.tintColor = Yellow_UIColor;
         [self.ratingView addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
         self.ratingView.accurateHalfStars = YES;
         self.ratingView.emptyStarImage = [[UIImage imageNamed:@"star-empty"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

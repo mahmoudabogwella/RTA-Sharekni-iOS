@@ -97,7 +97,9 @@
 
 #pragma Colors
 #define Red_HEX @"E30613"
+#define Yellow_HEX @"f30c12"
 #define Red_UIColor [UIColor add_colorWithRGBHexString:Red_HEX]
+#define Yellow_UIColor [UIColor add_colorWithRGBHexString:Yellow_HEX]
 
 
 #pragma ENUMS

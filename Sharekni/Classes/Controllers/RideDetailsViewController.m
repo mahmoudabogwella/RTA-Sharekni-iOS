@@ -33,6 +33,7 @@
 #define VERTICAL_SPACE 15
 #define REVIEWS_CELL_HEIGHT  110
 #define PASSENGER_ALERT_TAG  1199
+#define DELETE_RIDE_ALERT_TAG  1188
 
 @interface RideDetailsViewController ()<GMSMapViewDelegate,MJDetailPopupDelegate,MFMessageComposeViewControllerDelegate,UIAlertViewDelegate>
 {
@@ -395,7 +396,9 @@
 }
 
 - (void) deleteRideAction{
-    
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Confirm", nil) message:NSLocalizedString(@"Do you want to delete this ride", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Delete", nil), nil];
+        alertView.tag = DELETE_RIDE_ALERT_TAG;
+        [alertView show];
 }
 
 - (void) editRideAction{
@@ -415,6 +418,27 @@
 
 - (IBAction)joinThisRide:(id)sender{
 
+}
+
+
+- (void) deleteRide{
+    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    __block RideDetailsViewController *blockSelf = self;
+    [[MobAccountManager sharedMobAccountManager] deleteRideWithID:self.routeDetails.ID.stringValue withSuccess:^(BOOL deletedSuccessfully) {
+        [KVNProgress dismiss];
+        [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Ride Delete successfully.", nil)];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+            [blockSelf configureData];
+        } afterDelay:3];
+        
+    } Failure:^(NSString *error) {
+        [KVNProgress showErrorWithStatus:NSLocalizedString(@"an error occured when deleting ride", nil)];
+        [blockSelf configureData];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+        } afterDelay:3];
+    }];
 }
 
 - (void) deletePassenger:(Passenger *)passenger{
@@ -627,6 +651,13 @@
     if (alertView.tag == PASSENGER_ALERT_TAG && buttonIndex == 1) {
         [self deletePassenger:self.toBeDeletedpassenger];
     }
+    if (alertView.tag == DELETE_RIDE_ALERT_TAG && buttonIndex == 1) {
+        [self deleteRide];
+    }
+
 }
+
+
+
 
 @end
