@@ -12,6 +12,7 @@
 @property (nonatomic,strong) NSNumber *ID;
 @property (nonatomic,strong) NSString *RouteArName;
 @property (nonatomic,strong) NSString *RouteEnName;
+@property (nonatomic,strong) NSString *PreferredGender;
 
 @property (nonatomic,strong) NSNumber *IsSmoking;
 

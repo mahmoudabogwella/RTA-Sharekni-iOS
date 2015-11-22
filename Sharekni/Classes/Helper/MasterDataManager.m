@@ -30,7 +30,6 @@
 #import "Notification.h"
 #import "Permit.h"
 
-
 #define AccountId @"AccountID"
 #define FromEmirateId  @"FromEmirateID"
 #define FromRegionId    @"FromRegionID"
@@ -458,7 +457,7 @@
         success(savedVehicles);
     }
     else{
-        NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/GetVehicleById?id=%@",accountID];
+        NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/GetByDriverId?id=%@",accountID];
         
         __block MasterDataManager *blockSelf = self;
         [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {

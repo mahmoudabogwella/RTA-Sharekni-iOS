@@ -17,6 +17,7 @@
     mapping[@"ID"] = @"ID";
     mapping[@"RouteArName"] = @"RouteArName";
     mapping[@"RouteEnName"] = @"RouteEnName";
+    mapping[@"PreferredGender"] = @"PreferredGender";
     
     mapping[@"NoOfSeats"] = @"NoOfSeats";
     mapping[@"AccountId"] = @"AccountId";

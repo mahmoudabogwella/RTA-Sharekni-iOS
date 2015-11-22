@@ -136,6 +136,7 @@
 		87D9D32A1BEE555B0096E17A /* SideMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453B2E61BE54B3B00007271 /* SideMenuTableViewController.m */; };
 		87D9D32F1BEE58380096E17A /* AdvancedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9D32D1BEE58380096E17A /* AdvancedSearchViewController.m */; };
 		87D9D3301BEE58380096E17A /* AdvancedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D9D32E1BEE58380096E17A /* AdvancedSearchViewController.xib */; };
+		87E5E5481C0277B5008F5684 /* HCSStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5E5461C0277B5008F5684 /* HCSStarRatingView.m */; };
 		87E5F75F1BFB464C004FF688 /* Ride.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F75E1BFB464C004FF688 /* Ride.m */; };
 		87E5F7631BFB68DE004FF688 /* RidesJoinedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F7611BFB68DE004FF688 /* RidesJoinedViewController.m */; };
 		87E5F7641BFB68DE004FF688 /* RidesJoinedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E5F7621BFB68DE004FF688 /* RidesJoinedViewController.xib */; };
@@ -381,6 +382,8 @@
 		87D9D32C1BEE58380096E17A /* AdvancedSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedSearchViewController.h; sourceTree = "<group>"; };
 		87D9D32D1BEE58380096E17A /* AdvancedSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedSearchViewController.m; sourceTree = "<group>"; };
 		87D9D32E1BEE58380096E17A /* AdvancedSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedSearchViewController.xib; sourceTree = "<group>"; };
+		87E5E5451C0277B5008F5684 /* HCSStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSStarRatingView.h; sourceTree = "<group>"; };
+		87E5E5461C0277B5008F5684 /* HCSStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSStarRatingView.m; sourceTree = "<group>"; };
 		87E5F75D1BFB464C004FF688 /* Ride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ride.h; sourceTree = "<group>"; };
 		87E5F75E1BFB464C004FF688 /* Ride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ride.m; sourceTree = "<group>"; };
 		87E5F7601BFB68DE004FF688 /* RidesJoinedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesJoinedViewController.h; sourceTree = "<group>"; };
@@ -419,6 +422,7 @@
 		047E455D1BC59C4C000B5151 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				87E5E5441C0277B5008F5684 /* HCSStarRatingView */,
 				140960891BFEB0C700BA3268 /* MJPopupBackgroundView */,
 				047E45851BC5A4D8000B5151 /* MLPAutoCompleteTextField */,
 			);
@@ -773,6 +777,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		87E5E5441C0277B5008F5684 /* HCSStarRatingView */ = {
+			isa = PBXGroup;
+			children = (
+				87E5E5451C0277B5008F5684 /* HCSStarRatingView.h */,
+				87E5E5461C0277B5008F5684 /* HCSStarRatingView.m */,
+			);
+			path = HCSStarRatingView;
+			sourceTree = "<group>";
+		};
 		CF95CB2E9D399F32CE70C8F6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1052,6 +1065,7 @@
 				8777FA681C01AD120022E368 /* PassengerCell.m in Sources */,
 				14022BE01BE56A9300585042 /* MostRideDetailsViewController.m in Sources */,
 				0429B1C61BB9DC5F00161222 /* HelpManager.m in Sources */,
+				87E5E5481C0277B5008F5684 /* HCSStarRatingView.m in Sources */,
 				148795D71BEA97EF00B940D8 /* Review.m in Sources */,
 				87D9D32F1BEE58380096E17A /* AdvancedSearchViewController.m in Sources */,
 				04931B271BAAF814000F5434 /* Sharekni.xcdatamodeld in Sources */,

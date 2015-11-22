@@ -58,10 +58,13 @@
     __weak IBOutlet UILabel *preferenceLbl ;
     __weak IBOutlet UILabel *reviewLbl ;
     __weak IBOutlet UIView *preferenceView ;
+    __weak IBOutlet UIButton *secondButton;
     __weak IBOutlet UIView *reviewsView ;
     __weak IBOutlet UITableView *passengersList;
     GMSMapView *_mapView;
+    __weak IBOutlet UIButton *firstButton;
     __weak IBOutlet UIView *passengersView;
+    __weak IBOutlet UIButton *thirdButton;
 }
 
 @property (nonatomic ,strong) NSMutableArray *reviews ;
@@ -74,14 +77,12 @@
 
 @implementation RideDetailsViewController
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTranslucent:NO];
 }
 
-- (void) viewDidLoad
-{
+- (void) viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = NSLocalizedString(@"rideDetails", nil);
@@ -122,12 +123,14 @@
     
     [passengersList registerClass:[PassengerCell class] forCellReuseIdentifier:PASSENGER_CELLID];
     [passengersList registerNib:[UINib nibWithNibName:@"PassengerCell" bundle:nil] forCellReuseIdentifier:PASSENGER_CELLID];
-    
 
+    //Actions
+    firstButton.alpha = 0;
+    secondButton.alpha = 0;
+    thirdButton.alpha = 0;
     [self configureMapView];
     [self configureData];
 }
-
 
 - (void) popViewController{
     [self.navigationController popViewControllerAnimated:YES];
@@ -172,19 +175,7 @@
         language.text = self.routeDetails.PrefLanguageEnName;
     }
     
-    
-    //Ask Question
-    gender.text = @"Not Specified";
-    
-//    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.PreferredGender])
-//    {
-//        gender.text = @"Not Set";
-//    }
-//    else
-//    {
-//        gender.text = self.routeDetails.PreferredGender;
-//    }
-
+    gender.text = self.routeDetails.PreferredGender;
 }
 
 - (void) configureData{
@@ -229,29 +220,62 @@
                    [blockPassengersList reloadData];
                    [KVNProgress dismiss];
                    [blockSelf configureFrames];
+                   [blockSelf configureActionsButtons];
                    
                } Failure:^(NSString *error) {
                    [blockSelf handleResponseError];
                    [blockSelf configureFrames];
+                   [blockSelf configureActionsButtons];
                }];
            }
            else{
                [KVNProgress dismiss];
                [blockSelf configureFrames];
+               [blockSelf configureActionsButtons];
            }
            
        } Failure:^(NSString *error) {
            [blockSelf handleResponseError];
            [blockSelf configureFrames];
+           [blockSelf configureActionsButtons];
        }];
        
     } Failure:^(NSString *error) {
        [blockSelf handleResponseError];
        [blockSelf configureFrames];
+        [blockSelf configureActionsButtons];
    }];
 }
 
--(void) configureFrames{
+- (void) configureActionsButtons{
+    
+    if (self.createdRide) {
+        [firstButton setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
+        [firstButton addTarget:self action:@selector(deleteRideAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        [secondButton setTitle:NSLocalizedString(@"Edit", nil) forState:UIControlStateNormal];
+        [secondButton addTarget:self action:@selector(editRideAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        [thirdButton setTitle:NSLocalizedString(@"Permit", nil) forState:UIControlStateNormal];
+        [thirdButton addTarget:self action:@selector(permitRideAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        if(self.passengers.count > 0){
+            thirdButton.alpha = 1;
+        }
+        else{
+            thirdButton.alpha = 0;
+        }
+    }
+    else{
+        [firstButton setTitle:NSLocalizedString(@"Review", nil) forState:UIControlStateNormal];
+        [firstButton addTarget:self action:@selector(addReviewAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        secondButton.alpha = 0;
+        thirdButton.alpha = 0;
+    }
+}
+
+- (void) configureFrames{
     if(self.passengers.count > 0){
         CGRect passengersLabelFrame = passengersHeader.frame;
         passengersLabelFrame.origin.y = locationsView.frame.origin.y + locationsView.frame.size.height + VERTICAL_SPACE;
@@ -362,14 +386,26 @@
 }
 
 #pragma mark - Event Handler
-- (IBAction)addReview:(id)sender{
+- (void) addReviewAction{
     AddReviewViewController *addReview = [[AddReviewViewController alloc] initWithNibName:@"AddReviewViewController" bundle:nil];
     addReview.driverDetails = self.driverDetails ;
     addReview.delegate = self;
     [self presentPopupViewController:addReview animationType:MJPopupViewAnimationSlideBottomBottom];
 }
 
-- (void)cancelButtonClicked:(AddReviewViewController *)addReviewViewController{
+- (void) deleteRideAction{
+    
+}
+
+- (void) editRideAction{
+    
+}
+
+- (void) permitRideAction{
+    
+}
+
+- (void) cancelButtonClicked:(AddReviewViewController *)addReviewViewController{
 
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
  
@@ -377,8 +413,6 @@
 }
 
 - (IBAction)joinThisRide:(id)sender{
-
-
 
 }
 
@@ -404,7 +438,6 @@
         [blockSelf handleResponseError];
     }];
 }
-
 
 #pragma mark -
 #pragma mark UITableView Datasource
@@ -437,16 +470,16 @@
         return reviewCell ;
     }
     else{
-        PassengerCell *passengerCell = (PassengerCell *)[tableView dequeueReusableCellWithIdentifier:PASSENGER_CELLID];
-        
-        if (passengerCell == nil)
-        {
-            passengerCell = [(PassengerCell *)[PassengerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PASSENGER_CELLID];
-        }
+//        PassengerCell *passengerCell = (PassengerCell *)[tableView dequeueReusableCellWithIdentifier:PASSENGER_CELLID];
+//        
+//        if (passengerCell == nil)
+//        {
+            PassengerCell *passengerCell = [[PassengerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PASSENGER_CELLID];
+//        }
         
         Passenger *passenger = self.passengers[indexPath.row];
         passengerCell.nameLabel.text = passenger.AccountName;
-        passengerCell.nationalityLabel.text = passenger.AccountNationalityEn;
+        passengerCell.selectionStyle = UITableViewCellSelectionStyleNone;
         __block Passenger*blockPasseger = passenger;
         __block RideDetailsViewController *blockSelf = self;
         [passengerCell setCallHandler:^{
@@ -473,8 +506,8 @@
             alertView.tag = PASSENGER_ALERT_TAG;
             [alertView show];
         }];
-        [passengerCell setRatingHandler:^{
-            
+        [passengerCell setRatingHandler:^(float rating) {
+            NSLog(@"Rating handler");
         }];
         return passengerCell ;
     }
@@ -530,24 +563,24 @@
     [self.markers addObject:endMarker];
 }
 
-- (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
-    MapItemView *mapItem = (MapItemView *)marker.userData;
-    MapInfoWindow *infoWindow = [[MapInfoWindow alloc] initWithArabicName:mapItem.arabicName englishName:mapItem.englishName rides:mapItem.rides lat:mapItem.lat lng:mapItem.lng time:mapItem.comingRides];
-    return infoWindow;
-}
+//- (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
+//    MapItemView *mapItem = (MapItemView *)marker.userData;
+//    MapInfoWindow *infoWindow = [[MapInfoWindow alloc] initWithArabicName:mapItem.arabicName englishName:mapItem.englishName rides:mapItem.rides lat:mapItem.lat lng:mapItem.lng time:mapItem.comingRides];
+//    return infoWindow;
+//}
 
-- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
-    CGPoint point = [mapView.projection pointForCoordinate:marker.position];
-    point.y = point.y - 100;
-    GMSCameraUpdate *camera =
-    [GMSCameraUpdate setTarget:[mapView.projection coordinateForPoint:point]];
-    [mapView animateWithCameraUpdate:camera];
-    
-    mapView.selectedMarker = marker;
-    return YES;
-}
+//- (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+//    CGPoint point = [mapView.projection pointForCoordinate:marker.position];
+//    point.y = point.y - 100;
+//    GMSCameraUpdate *camera =
+//    [GMSCameraUpdate setTarget:[mapView.projection coordinateForPoint:point]];
+//    [mapView animateWithCameraUpdate:camera];
+//    
+//    mapView.selectedMarker = marker;
+//    return YES;
+//}
 
-- (void)focusMapToShowAllMarkers{
+- (void) focusMapToShowAllMarkers{
     CLLocationCoordinate2D myLocation = ((GMSMarker *)_markers.firstObject).position;
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:myLocation coordinate:myLocation];
     
