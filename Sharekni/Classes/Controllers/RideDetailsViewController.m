@@ -157,7 +157,7 @@
         ageRange.text = self.routeDetails.AgeRange ;
     }
     
-    if (_driverDetails.IsSmoking.boolValue) {
+    if (self.routeDetails.IsSmoking.boolValue) {
         smoking.text = @"Yes";
     }else{
         smoking.text = @"No";
@@ -201,6 +201,10 @@
     }
     else if (self.createdRide){
         routeID = self.createdRide.RouteID.stringValue;
+        accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+    }
+    else if (self.joinedRide){
+        routeID = self.joinedRide.RouteID.stringValue;
         accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
     }
     

@@ -56,10 +56,15 @@
     
 }
 
-- (void)setRideDetails:(Ride *)rideDetails{
-    _rideDetails = rideDetails;
-    _RouteName.text = _rideDetails.RouteEnName ;
-
+- (void)setJoinedRide:(Ride *)joinedRide{
+    _joinedRide = joinedRide;
+    _RouteName.text = joinedRide.RouteEnName;
+    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",joinedRide.FromEmirateEnName,joinedRide.FromRegionEnName];
+    _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",joinedRide.ToEmirateEnName,joinedRide.ToRegionEnName];
+    
+    [self.firstButton setTitle:NSLocalizedString(@"Details", nil) forState:UIControlStateNormal];
+    [self.secondButton setTitle:NSLocalizedString(@"Driver", nil) forState:UIControlStateNormal];
+    [self.thirdButton setTitle:NSLocalizedString(@"Leave", nil) forState:UIControlStateNormal];
 }
 
 - (void)setCreatedRide:(CreatedRide *)createdRide{
@@ -101,13 +106,8 @@
     return str ;
 }
 - (IBAction)firstButtonHandler:(id)sender {
-    if (self.createdRide) { //details
-        if (self.detailsHandler) {
-            self.detailsHandler();
-        }
-    }
-    else{
-        
+    if (self.detailsHandler) {
+        self.detailsHandler();
     }
 }
 - (IBAction)secondButtonHandler:(id)sender {
@@ -116,18 +116,23 @@
             self.editHandler();
         }
     }
-    else{
-        
+    else if (self.joinedRide){
+        if (self.driverHandler) {
+            self.driverHandler();
+        }
     }
 }
+
 - (IBAction)thirdButtonHandler:(id)sender {
     if (self.createdRide) { // Delete
         if(self.deleteHandler){
             self.deleteHandler();
         }
     }
-    else{
-        
+    else if(self.joinedRide){
+        if(self.leaveHandler){
+            self.leaveHandler();
+        }
     }
 }
 

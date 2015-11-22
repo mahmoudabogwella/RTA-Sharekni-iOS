@@ -34,7 +34,7 @@
 
 
 @property (nonatomic,strong) DriverDetails *driverRideDetails;
-@property (nonatomic,strong) Ride *rideDetails;
+@property (nonatomic,strong) Ride *joinedRide;
 @property (nonatomic,strong) CreatedRide *createdRide;
 
 - (void)setSavedResultRideDetails:(MostRideDetails *)rideDetails ;

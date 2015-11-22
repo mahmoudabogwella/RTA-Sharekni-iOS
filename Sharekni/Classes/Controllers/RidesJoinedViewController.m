@@ -12,21 +12,55 @@
 #import "DriverRideCell.h"
 #import "Ride.h"
 #import "RideDetailsViewController.h"
+#import "MobAccountManager.h"
+#import <KVNProgress.h>
+#import "NSObject+Blocks.h"
+
+#import "UIView+Borders.h"
+
 #define JOINED_RIDE_CELLHEIGHT 210
 @interface RidesJoinedViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSArray *rides;
+@property (nonatomic,strong) Ride *toBeLeavedRide;
 @end
 
 @implementation RidesJoinedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self configureTableView];
+    [self configureData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = YES;
+}
+
+- (void) configureTableView{
+    [self.tableView registerClass:[DriverRideCell class] forCellReuseIdentifier:RIDE_CELLID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DriverRideCell" bundle:nil] forCellReuseIdentifier:RIDE_CELLID];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+}
+
+- (void) configureData{
+    __block RidesJoinedViewController *blockSelf = self;
+    [[MobAccountManager sharedMobAccountManager] getJoinedRidesWithSuccess:^(NSMutableArray *array) {
+        blockSelf.rides = array;
+        [blockSelf.tableView reloadData];
+        
+    } Failure:^(NSString *error) {
+        [blockSelf handleManagerFailure];
+    }];
+}
+
+- (void) handleManagerFailure{
+    [KVNProgress dismiss];
+    [KVNProgress showErrorWithStatus:@"Error"];
+    [self performBlock:^{
+        [KVNProgress dismiss];
+    } afterDelay:3];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
@@ -36,34 +70,70 @@
 
 - (DriverRideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier  = @"DriverRideCell";
     
-    DriverRideCell *driverCell = (DriverRideCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DriverRideCell *rideCell = [[DriverRideCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:RIDE_CELLID];
+    [rideCell.RouteName addLeftBorderWithColor:Red_UIColor];
     
-    if (driverCell == nil)
-    {
-        driverCell = (DriverRideCell *)[[[NSBundle mainBundle] loadNibNamed:@"DriverRideCell" owner:nil options:nil] objectAtIndex:0];
-    }
+    Ride *ride = self.rides[indexPath.row];
+    [rideCell setJoinedRide:ride];
     
-    Ride *driver = self.rides[indexPath.row];
-    [driverCell setRideDetails:driver];
+    __block RidesJoinedViewController *blockSelf = self;
+    __block Ride *blockRide = ride;
     
-    return driverCell ;
+
+    [rideCell setLeaveHandler:^{
+        [blockSelf leaveRide:blockRide];
+    }];
+    [rideCell setDetailsHandler:^{
+        [blockSelf showDetailsViewControllerWithRide:blockRide];
+    }];
+    [rideCell setDriverHandler:^{
+        NSLog(@"not implemented");
+    }];
+    return rideCell ;
 }
 
 #pragma mark -
 #pragma mark UITableView Delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    Ride *driver = self.rides[indexPath.row];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 210;
+}
+
+- (void)leaveRide:(Ride *)ride{
+    self.toBeLeavedRide = ride;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Confirm", nil) message:NSLocalizedString(@"Do you want to leave this ride", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Leave", nil), nil];
+    [alertView show];
+}
+
+
+- (void) showDetailsViewControllerWithRide:(Ride *)createdRide{
     RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:@"RideDetailsViewController" bundle:nil];
-//    rideDetails.driverDetails = driver ;
+    rideDetails.joinedRide = createdRide ;
     [self.navigationController pushViewController:rideDetails animated:YES];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return Driver_Ride_CELLHEIGHT;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+        __block RidesJoinedViewController *blockSelf = self;
+        [[MobAccountManager sharedMobAccountManager] leaveRideWithID:self.toBeLeavedRide.RouteID.stringValue withSuccess:^(BOOL deletedSuccessfully) {
+            [KVNProgress dismiss];
+            [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Ride leaved successfully.", nil)];
+            [blockSelf performBlock:^{
+                [KVNProgress dismiss];
+                [blockSelf configureData];
+            } afterDelay:3];
+            
+        } Failure:^(NSString *error) {
+            [KVNProgress showErrorWithStatus:NSLocalizedString(@"an error occured when leaving ride", nil)];
+            [blockSelf configureData];
+            [blockSelf performBlock:^{
+                [KVNProgress dismiss];
+            } afterDelay:3];
+        }];
+    }
 }
+
 
 @end
