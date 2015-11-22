@@ -35,22 +35,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Controllers/NotificationsViewController.m"
-            timestampString = "469881432.863552"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "-getNotifications"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Helper/MobAccountManager.m"
             timestampString = "469880758.229832"
             startingColumnNumber = "9223372036854775807"
@@ -90,22 +74,6 @@
             startingLineNumber = "376"
             endingLineNumber = "376"
             landmarkName = "-acceptRequest:andIsAccepted:WithSuccess:Failure:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Controllers/NotificationDetailsViewController.m"
-            timestampString = "469885126.611295"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "-acceptRequest:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -203,6 +171,38 @@
             endingLineNumber = "515"
             landmarkName = "-getRequestNotifications:isDriver:WithSuccess:Failure:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__74-[MasterDataManager getRequestNotifications:isDriver:WithSuccess:Failure:]_block_invoke"
+                  moduleName = "Sharekni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmedaskar/Work/inCore/Sharekni/Sharekni/Classes/Helper/MasterDataManager.m"
+                  timestampString = "469921207.09567"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "515"
+                  endingLineNumber = "515"
+                  offsetFromSymbolStart = "803">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__74-[MasterDataManager getRequestNotifications:isDriver:WithSuccess:Failure:]_block_invoke"
+                  moduleName = "Sharekni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmedaskar/Work/inCore/Sharekni/Sharekni/Classes/Helper/MasterDataManager.m"
+                  timestampString = "469921207.095888"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "515"
+                  endingLineNumber = "515"
+                  offsetFromSymbolStart = "811">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

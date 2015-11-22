@@ -39,10 +39,9 @@
 
 - (void) joinRidePassenger:(NSString *)PassengerID RouteID:(NSString *)RouteID DriverID:(NSString *)DriverID Remark:(NSString *)remark WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
 
-<<<<<<< HEAD
 - (void) acceptRequest:(NSString *)RequestId andIsAccepted:(NSString *)IsAccept WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure;
-=======
+
 - (void) leaveRideWithID:(NSString *) routeID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure;
->>>>>>> origin/master
+
 
 @end

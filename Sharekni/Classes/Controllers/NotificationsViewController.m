@@ -20,7 +20,7 @@
 #import "NotificationCell.h"
 #import "NotificationDetailsViewController.h"
 
-@interface NotificationsViewController ()
+@interface NotificationsViewController () <ReloadNotificationsDelegate>
 
 @property (nonatomic ,weak) IBOutlet UITableView *notificationsList ;
 
@@ -76,6 +76,11 @@
     }];
 }
 
+- (void)reloadNotifications
+{
+    [self reloadNotifications];
+}
+
 #pragma mark -
 #pragma mark UITableView Datasource
 
@@ -108,6 +113,7 @@
 {
     Notification *notification = self.notifications[indexPath.row];
     NotificationDetailsViewController *notificationDetails = [[NotificationDetailsViewController alloc] initWithNibName:@"NotificationDetailsViewController" bundle:nil];
+    notificationDetails.delegate = self ;
     notificationDetails.notification = notification ;
     [self.navigationController pushViewController:notificationDetails animated:YES];
 }

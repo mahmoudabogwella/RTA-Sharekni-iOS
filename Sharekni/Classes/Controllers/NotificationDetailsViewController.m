@@ -69,6 +69,7 @@
         
         [KVNProgress dismiss];
         [self popViewController];
+        [self.delegate reloadNotifications];
 
     } Failure:^(NSString *error) {
         NSLog(@"Error in Best Drivers");
@@ -84,6 +85,8 @@
         
         [KVNProgress dismiss];
         [self popViewController];
+        [self.delegate reloadNotifications];
+        
     } Failure:^(NSString *error) {
         NSLog(@"Error in Best Drivers");
         [KVNProgress dismiss];

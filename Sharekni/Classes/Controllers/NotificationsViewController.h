@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol ReloadNotificationsDelegate <NSObject>
-
-- (void)reloadNotifications ;
-
-@end
-
 @interface NotificationsViewController : UIViewController
 
 @property (nonatomic ,strong) NSMutableArray *notifications;
