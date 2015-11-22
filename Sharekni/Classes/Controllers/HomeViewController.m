@@ -16,6 +16,12 @@
 #import "VehiclesViewController.h"
 #import "SavedSearchViewController.h"
 #import "CreatedRidesViewController.h"
+#import "Constants.h"
+#import <KVNProgress/KVNProgress.h>
+#import "MasterDataManager.h"
+#import "NSObject+Blocks.h"
+#import "NotificationsViewController.h"
+
 @interface HomeViewController ()
 
 #pragma Outlets
@@ -52,6 +58,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *vehiclesView;
 
+//Notifications
+@property (nonatomic ,strong) NSMutableArray *notifications ;
 
 @property (nonatomic,strong) User *sharedUser;
 @end
@@ -64,6 +72,7 @@
     [self configureData];
     [self configureUI];
     [self configureActionsUI];
+    [self getNotifications];
 }
 
 #pragma Data
@@ -194,6 +203,39 @@
 
 - (IBAction)editAction:(id)sender {
     
+}
+
+
+- (IBAction)openNotifications:(id)sender
+{
+    NotificationsViewController *notificationsView = [[NotificationsViewController alloc] initWithNibName:@"NotificationsViewController" bundle:nil];
+    notificationsView.notifications = self.notifications ;
+    [self.navigationController pushViewController:notificationsView animated:YES];
+}
+
+- (void)getNotifications
+{
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    
+    __block HomeViewController *blockSelf = self;
+    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    
+    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] WithSuccess:^(NSMutableArray *array) {
+        
+        blockSelf.notifications = array;
+        
+        self.notificationCountLabel.text = [NSString stringWithFormat:@"%d",(unsigned int)self.notifications.count];
+       
+        [KVNProgress dismiss];
+        
+    } Failure:^(NSString *error) {
+        NSLog(@"Error in Notifications");
+        [KVNProgress dismiss];
+        [KVNProgress showErrorWithStatus:@"Error"];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+        } afterDelay:3];
+    }];
 }
 
 - (void)showVeichles:(id)sender

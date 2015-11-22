@@ -49,4 +49,6 @@
 
 - (void)getVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 
+- (void)getRequestNotifications:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
+
 @end

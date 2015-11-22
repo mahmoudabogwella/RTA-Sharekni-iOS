@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="AuK-qL-0xU" userLabel="NotificationCell" customClass="NotificationCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AuK-qL-0xU" id="Zxr-wy-cgg">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Ahmed" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9g-YG-0yL">
+                        <rect key="frame" x="81" y="4" width="231" height="52.5"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail" translatesAutoresizingMaskIntoConstraints="NO" id="kM5-kA-i8d">
+                        <rect key="frame" x="5" y="9" width="62" height="62"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="62" id="kAq-aI-Hoo"/>
+                            <constraint firstAttribute="width" constant="62" id="y6j-8B-y7H"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bck-Or-rGd">
+                        <rect key="frame" x="81" y="58.5" width="231" height="16.5"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="Bck-Or-rGd" firstAttribute="top" secondItem="z9g-YG-0yL" secondAttribute="bottom" constant="2.5" id="63z-Pu-qC4"/>
+                    <constraint firstItem="kM5-kA-i8d" firstAttribute="centerY" secondItem="Zxr-wy-cgg" secondAttribute="centerY" id="AsQ-3a-4IG"/>
+                    <constraint firstItem="kM5-kA-i8d" firstAttribute="leading" secondItem="Zxr-wy-cgg" secondAttribute="leadingMargin" constant="-3" id="J5l-ud-zSB"/>
+                    <constraint firstItem="Bck-Or-rGd" firstAttribute="leading" secondItem="kM5-kA-i8d" secondAttribute="trailing" constant="14" id="YyD-jR-Y3N"/>
+                    <constraint firstItem="z9g-YG-0yL" firstAttribute="leading" secondItem="kM5-kA-i8d" secondAttribute="trailing" constant="14" id="ehP-sU-a16"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Bck-Or-rGd" secondAttribute="trailing" id="n29-iO-57u"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Bck-Or-rGd" secondAttribute="bottom" constant="-3.5" id="p2p-dv-YcS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="z9g-YG-0yL" secondAttribute="trailing" id="qQU-kI-kjz"/>
+                    <constraint firstAttribute="topMargin" secondItem="z9g-YG-0yL" secondAttribute="top" constant="4" id="whn-Rd-6Ek"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="nationality" destination="Bck-Or-rGd" id="5Le-EJ-L7c"/>
+                <outlet property="notificationLbl" destination="z9g-YG-0yL" id="qFk-Tm-5MD"/>
+                <outlet property="userImage" destination="kM5-kA-i8d" id="M7r-hV-aZG"/>
+            </connections>
+            <point key="canvasLocation" x="263" y="201"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="thumbnail" width="336" height="336"/>
+    </resources>
+</document>

@@ -89,6 +89,9 @@
 		14B00C971BFB921E004F46F7 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B00C951BFB921E004F46F7 /* ForgetPasswordViewController.m */; };
 		14B00C981BFB921E004F46F7 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B00C961BFB921E004F46F7 /* ForgetPasswordViewController.xib */; };
 		14B0EFCE1BEF96F100937011 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0EFCD1BEF96F100937011 /* SearchViewController.xib */; };
+		14E5D79B1C01A2E80089054A /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D79A1C01A2E80089054A /* Notification.m */; };
+		14E5D79F1C01A6F10089054A /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D79D1C01A6F10089054A /* NotificationCell.m */; };
+		14E5D7A01C01A6F10089054A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D79E1C01A6F10089054A /* NotificationCell.xib */; };
 		14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E692631BE8B7180041A999 /* DriverDetailsViewController.m */; };
 		14E692661BE8B7180041A999 /* DriverDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */; };
 		14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */; };
@@ -289,6 +292,11 @@
 		14B00C951BFB921E004F46F7 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		14B00C961BFB921E004F46F7 /* ForgetPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPasswordViewController.xib; sourceTree = "<group>"; };
 		14B0EFCD1BEF96F100937011 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		14E5D7991C01A2E80089054A /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		14E5D79A1C01A2E80089054A /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
+		14E5D79C1C01A6F10089054A /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCell.h; sourceTree = "<group>"; };
+		14E5D79D1C01A6F10089054A /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCell.m; sourceTree = "<group>"; };
+		14E5D79E1C01A6F10089054A /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		14E692621BE8B7180041A999 /* DriverDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverDetailsViewController.h; sourceTree = "<group>"; };
 		14E692631BE8B7180041A999 /* DriverDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverDetailsViewController.m; sourceTree = "<group>"; };
 		14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DriverDetailsViewController.xib; sourceTree = "<group>"; };
@@ -613,6 +621,9 @@
 				1425F80A1BFF48BE00AD086B /* VehicleViewCell.h */,
 				1425F80B1BFF48BE00AD086B /* VehicleViewCell.m */,
 				1425F80C1BFF48BE00AD086B /* VehicleViewCell.xib */,
+				14E5D79C1C01A6F10089054A /* NotificationCell.h */,
+				14E5D79D1C01A6F10089054A /* NotificationCell.m */,
+				14E5D79E1C01A6F10089054A /* NotificationCell.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -706,6 +717,8 @@
 				87FFDDB01BFD6A570031CE61 /* RouteDetails.m */,
 				8777FA5A1C00C1740022E368 /* CreatedRide.h */,
 				8777FA5B1C00C1750022E368 /* CreatedRide.m */,
+				14E5D7991C01A2E80089054A /* Notification.h */,
+				14E5D79A1C01A2E80089054A /* Notification.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -857,6 +870,7 @@
 				1425F8181BFFCB5500AD086B /* AddRemarksViewController.xib in Resources */,
 				14022BEB1BE56B8B00585042 /* MostRideDetailsCell.xib in Resources */,
 				04C3E0341BE09EF000698227 /* HomeViewController.xib in Resources */,
+				14E5D7A01C01A6F10089054A /* NotificationCell.xib in Resources */,
 				1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */,
 				14B0EFCE1BEF96F100937011 /* SearchViewController.xib in Resources */,
 				04CFC7061BE52C6B0009BBDA /* RegisterViewController.xib in Resources */,
@@ -961,6 +975,7 @@
 				143BE6C71BB69327009F6496 /* MostRidesCell.m in Sources */,
 				1425F8081BFF11B300AD086B /* SavedSearchViewController.m in Sources */,
 				14022BEA1BE56B8B00585042 /* MostRideDetailsCell.m in Sources */,
+				14E5D79F1C01A6F10089054A /* NotificationCell.m in Sources */,
 				044ECE941BC08A6000AF3E2D /* SearchResultsViewController.m in Sources */,
 				048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */,
 				87B58B591BD3842800E73E55 /* Base64.m in Sources */,
@@ -970,6 +985,7 @@
 				048912A71BB92539005E4E02 /* Employer.m in Sources */,
 				048912B01BB933B8005E4E02 /* User.m in Sources */,
 				143BE6C11BB68EA5009F6496 /* BestDriversViewController.m in Sources */,
+				14E5D79B1C01A2E80089054A /* Notification.m in Sources */,
 				047E45831BC59DE0000B5151 /* SelectLocationViewController.m in Sources */,
 				87B58B651BD3983800E73E55 /* MapItemPopupViewController.m in Sources */,
 				048912AA1BB92609005E4E02 /* Emirate.m in Sources */,

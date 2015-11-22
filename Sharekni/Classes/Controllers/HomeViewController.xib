@@ -148,6 +148,15 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hNu-LX-rRR">
+                    <rect key="frame" x="8" y="8" width="38" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                    <state key="normal" backgroundImage="not"/>
+                    <connections>
+                        <action selector="openNotifications:" destination="-1" eventType="touchUpInside" id="K1P-AZ-HaY"/>
+                    </connections>
+                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate" id="Nd7-4j-sOi">
                     <rect key="frame" x="248" y="7" width="28" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -161,11 +170,6 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="not" id="oyO-5y-xgq">
-                    <rect key="frame" x="8" y="8" width="38" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <animations/>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United Arab Emirates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lLb-KN-xZz">
                     <rect key="frame" x="24" y="211" width="272" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
@@ -249,12 +253,12 @@
                         <action selector="editAction:" destination="-1" eventType="touchUpInside" id="dnx-tH-SEM"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="man" id="Id1-yf-Gaf">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail" id="Id1-yf-Gaf">
                     <rect key="frame" x="110" y="74" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                     <animations/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="53" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lb1-8H-wGV">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lb1-8H-wGV">
                     <rect key="frame" x="19" y="12" width="24" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
@@ -276,12 +280,12 @@
         <image name="edit" width="50" height="58"/>
         <image name="history" width="50" height="50"/>
         <image name="home-bg" width="320" height="407"/>
-        <image name="man" width="268" height="212"/>
         <image name="not" width="50" height="40"/>
         <image name="permit" width="50" height="50"/>
         <image name="rate" width="50" height="50"/>
         <image name="ride-created" width="100" height="34"/>
         <image name="search-icon" width="50" height="50"/>
+        <image name="thumbnail" width="336" height="336"/>
         <image name="vechils" width="100" height="34"/>
     </resources>
 </document>

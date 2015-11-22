@@ -51,7 +51,7 @@
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     [self configureUI];
 
-    self.usernameTextField.text = @"osama@gmail.com";
+    self.usernameTextField.text = @"yasmin@gmail.com";
     self.passwordTextField.text = @"12345";
 }
 
