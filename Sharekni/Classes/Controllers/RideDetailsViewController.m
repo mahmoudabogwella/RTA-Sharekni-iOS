@@ -15,7 +15,7 @@
 #import "MasterDataManager.h"
 #import "Review.h"
 #import "ReviewCell.h"
-#import "UILabel+Borders.h"
+#import "UIView+Borders.h"
 #import <UIColor+Additions/UIColor+Additions.h>
 #import "Constants.h"
 #import "NSStringEmpty.h"
@@ -27,12 +27,18 @@
 #import "AddReviewViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "MobAccountManager.h"
+#import "PassengerCell.h"
+#import "Passenger.h"
 
+#define VERTICAL_SPACE 15
+#define REVIEWS_CELL_HEIGHT  110
+#define PASSENGER_ALERT_TAG  1199
 
-@interface RideDetailsViewController ()<GMSMapViewDelegate,MJDetailPopupDelegate>
+@interface RideDetailsViewController ()<GMSMapViewDelegate,MJDetailPopupDelegate,MFMessageComposeViewControllerDelegate,UIAlertViewDelegate>
 {
     __weak IBOutlet UIScrollView *contentView ;
     __weak IBOutlet UITableView *reviewList ;
+    __weak IBOutlet UIView *passengersHeader;
     __weak IBOutlet UIButton *joinRideBtn ;
     
     __weak IBOutlet UILabel *FromRegionName ;
@@ -48,27 +54,33 @@
     
     __weak IBOutlet MKMapView *_MKmapView;
 
+    __weak IBOutlet UIView *locationsView;
     __weak IBOutlet UILabel *preferenceLbl ;
     __weak IBOutlet UILabel *reviewLbl ;
     __weak IBOutlet UIView *preferenceView ;
     __weak IBOutlet UIView *reviewsView ;
+    __weak IBOutlet UITableView *passengersList;
     GMSMapView *_mapView;
+    __weak IBOutlet UIView *passengersView;
 }
 
 @property (nonatomic ,strong) NSMutableArray *reviews ;
 @property (nonatomic ,strong) NSMutableArray *markers ;
+@property (nonatomic ,strong) NSArray *passengers ;
+@property (nonatomic ,strong) Passenger *toBeDeletedpassenger ;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *passengersHeaderLabels;
 @property (nonatomic ,strong) RouteDetails *routeDetails ;
 @end
 
 @implementation RideDetailsViewController
 
-- (void)viewWillAppear:(BOOL)animated
+- (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTranslucent:NO];
 }
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -94,25 +106,41 @@
 
     
     preferenceView.layer.cornerRadius = 20;
-    preferenceView.layer.borderWidth = 1;
-    preferenceView.layer.borderColor = Red_UIColor.CGColor;
+    preferenceView.layer.borderWidth  = 1;
+    preferenceView.layer.borderColor  = Red_UIColor.CGColor;
     
     reviewsView.layer.cornerRadius = 20;
-    reviewsView.layer.borderWidth = 1;
-    reviewsView.layer.borderColor = Red_UIColor.CGColor;
+    reviewsView.layer.borderWidth  = 1;
     
+    passengersHeader.backgroundColor = [UIColor whiteColor];
     
+    reviewsView.layer.borderColor  = Red_UIColor.CGColor;
     
+//    passengersView.layer.cornerRadius = 20;
+//    passengersView.layer.borderWidth  = 1;
+//    passengersView.layer.borderColor  = Red_UIColor.CGColor;
+    
+    [passengersHeader addBottomBorderWithColor:[UIColor lightGrayColor]];
+    for (UILabel *label in self.passengersHeaderLabels) {
+        [label setTextColor:Red_UIColor];
+    }
+    
+    passengersList.separatorColor = Red_UIColor;
+    
+    [passengersList registerClass:[PassengerCell class] forCellReuseIdentifier:PASSENGER_CELLID];
+    [passengersList registerNib:[UINib nibWithNibName:@"PassengerCell" bundle:nil] forCellReuseIdentifier:PASSENGER_CELLID];
+    
+
     [self configureMapView];
     [self configureData];
 }
 
-- (void)popViewController
-{
+
+- (void) popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)configureUIData{
+- (void) showRideDetailsData{
     FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",self.routeDetails.FromEmirateEnName,self.routeDetails.FromRegionEnName];
     ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",self.routeDetails.ToEmirateEnName,self.routeDetails.ToRegionEnName];
     startingTime.text = [NSString stringWithFormat:@"Time %@ : %@",self.routeDetails.StartFromTime,self.routeDetails.EndFromTime];
@@ -152,8 +180,8 @@
     }
     
     
-    //Ask Q
-    gender.text = @"Not Set";
+    //Ask Question
+    gender.text = @"Not Specified";
     
 //    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.PreferredGender])
 //    {
@@ -166,11 +194,11 @@
 
 }
 
-- (void)configureData
-{
+- (void) configureData{
     __block RideDetailsViewController *blockSelf = self;
-  
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    __block UITableView *blockPassengersList = passengersList;
+    __block UITableView *blockReviewsList = reviewList;
+    [KVNProgress showWithStatus:NSLocalizedString(@"loading...", nil)];
     
     NSString *routeID;
     NSString *accountID ;
@@ -188,32 +216,106 @@
        blockSelf.routeDetails = routeDetails;
        [blockSelf configurePins];
        [blockSelf focusMapToShowAllMarkers];
-       [blockSelf configureUIData];
-       [[MasterDataManager sharedMasterDataManager] getReviewList:accountID andRoute:routeID withSuccess:^(NSMutableArray *array) {
-           blockSelf.reviews = array;
+       [blockSelf showRideDetailsData];
+       
+       [[MasterDataManager sharedMasterDataManager] getPassengersByRouteId:routeID withSuccess:^(NSMutableArray *array) {
+           blockSelf.passengers = array;
+           [blockPassengersList reloadData];
+           [[MasterDataManager sharedMasterDataManager] getReviewList:accountID andRoute:routeID withSuccess:^(NSMutableArray *array) {
+               blockSelf.reviews = array;
+               
+               if (array.count == 0) {
+                   reviewLbl.hidden = YES ;
+               }
+               [KVNProgress dismiss];
+               [blockReviewsList reloadData];
+               
+               [blockSelf configureFrames];
+               
+           } Failure:^(NSString *error) {
+               [blockSelf handleResponseError];
+               [blockSelf configureFrames];
+           }];
            
-           if (array.count == 0) {
-               reviewLbl.hidden = YES ;
-           }
-           [KVNProgress dismiss];
-           [reviewList reloadData];
-           
-           reviewsView.frame = CGRectMake(reviewsView.frame.origin.x, reviewsView.frame.origin.y, reviewsView.frame.size.width,self.reviews.count *110);
-           
-           reviewList.frame = CGRectMake(reviewList.frame.origin.x, reviewList.frame.origin.y + 15, reviewList.frame.size.width,reviewsView.frame.size.height - 30.0f);
-           
-           int joinRideBtnYPosition = reviewsView.frame.origin.y + reviewsView.frame.size.height + ((array.count == 0) ? 0 : 15) ;
-           
-           joinRideBtn.frame = CGRectMake(joinRideBtn.frame.origin.x,joinRideBtnYPosition, joinRideBtn.frame.size.width, joinRideBtn.frame.size.height);
-           
-           [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewsView.frame.origin.y + reviewsView.frame.size.height + joinRideBtn.frame.size.height + 20.0f)];
-
        } Failure:^(NSString *error) {
            [blockSelf handleResponseError];
+           [blockSelf configureFrames];
        }];
-   } Failure:^(NSString *error) {
+    } Failure:^(NSString *error) {
        [blockSelf handleResponseError];
+       [blockSelf configureFrames];
    }];
+}
+
+-(void) configureFrames{
+    if(self.passengers.count > 0){
+        CGRect passengersLabelFrame = passengersHeader.frame;
+        passengersLabelFrame.origin.y = locationsView.frame.origin.y + locationsView.frame.size.height + VERTICAL_SPACE;
+        passengersHeader.frame = passengersLabelFrame;
+        
+        CGRect passengersViewFrame = passengersView.frame;
+        passengersViewFrame.origin.y = passengersHeader.frame.origin.y + passengersHeader.frame.size.height;
+        passengersViewFrame.size.height = self.passengers.count * REVIEWS_CELL_HEIGHT + 10;
+        passengersView.frame = passengersViewFrame;
+        
+        
+        CGRect passengersListFrame = passengersList.frame;
+        passengersListFrame.size.height = self.passengers.count *REVIEWS_CELL_HEIGHT;
+        passengersList.frame = passengersListFrame;
+        
+        CGRect PreferencesLabelFrame = preferenceLbl.frame;
+        PreferencesLabelFrame.origin.y = passengersView.frame.origin.y + passengersView.frame.size.height + VERTICAL_SPACE;
+        preferenceLbl.frame = PreferencesLabelFrame;
+    }
+    else{
+        passengersHeader.alpha = 0;
+        passengersView.alpha = 0;
+        
+        CGRect PreferencesLabelFrame = preferenceLbl.frame;
+        PreferencesLabelFrame.origin.y = locationsView.frame.origin.y + locationsView.frame.size.height + VERTICAL_SPACE;
+        preferenceLbl.frame = PreferencesLabelFrame;
+    }
+    
+    CGRect PreferencesViewFrame = preferenceView.frame;
+    PreferencesViewFrame.origin.y = preferenceLbl.frame.origin.y + VERTICAL_SPACE;
+    preferenceView.frame = PreferencesViewFrame;
+    
+    
+    if(self.reviews.count > 0){
+        CGRect reviewsLabelFrame = reviewLbl.frame;
+        reviewsLabelFrame.origin.y = preferenceView.frame.origin.y + preferenceView.frame.size.height + VERTICAL_SPACE;
+        reviewLbl.frame = reviewsLabelFrame;
+        
+        CGRect reviewsViewFrame = reviewsView.frame;
+        reviewsViewFrame.origin.y = reviewLbl.frame.origin.y + VERTICAL_SPACE;
+        reviewsViewFrame.size.height = (self.reviews.count * REVIEWS_CELL_HEIGHT) + 10;
+        reviewsView.frame = reviewsViewFrame;
+        
+        CGRect reviewsListFrame = reviewList.frame;
+        reviewsListFrame.size.height = self.reviews.count *REVIEWS_CELL_HEIGHT;
+        reviewList.frame = reviewsListFrame;
+        
+        CGRect buttonFrame = joinRideBtn.frame;
+        buttonFrame.origin.y = reviewsView.frame.origin.y + reviewsView.frame.size.height + VERTICAL_SPACE;
+        joinRideBtn.frame = buttonFrame;
+    }
+    else{
+        reviewLbl.hidden = YES;
+        reviewsView.hidden = YES;
+        
+        CGRect buttonFrame = joinRideBtn.frame;
+        buttonFrame.origin.y = preferenceView.frame.origin.y + preferenceView.frame.size.height + VERTICAL_SPACE;
+        joinRideBtn.frame = buttonFrame;
+    }
+    
+//    CGRect scrollViewFrame = contentView.frame;
+//    scrollViewFrame.size.height = joinRideBtn.frame.origin.y + joinRideBtn.frame.size.height + VERTICAL_SPACE;
+//    contentView.frame = scrollViewFrame;
+    
+    CGSize contentSize = contentView.contentSize ;
+    contentSize.height = joinRideBtn.frame.origin.y + joinRideBtn.frame.size.height + VERTICAL_SPACE;
+    contentView.contentSize = contentSize;
+
 }
 
 - (void) handleResponseError{
@@ -225,8 +327,7 @@
     } afterDelay:3];
 }
 
-- (NSString *)getAvailableDays
-{
+- (NSString *)getAvailableDays{
     NSMutableString *str = [[NSMutableString alloc] init];
     
     if (self.routeDetails.Saturday.boolValue) {
@@ -257,55 +358,132 @@
 }
 
 #pragma mark - Event Handler
-- (IBAction)addReview:(id)sender
-{
+- (IBAction)addReview:(id)sender{
     AddReviewViewController *addReview = [[AddReviewViewController alloc] initWithNibName:@"AddReviewViewController" bundle:nil];
     addReview.driverDetails = self.driverDetails ;
     addReview.delegate = self;
     [self presentPopupViewController:addReview animationType:MJPopupViewAnimationSlideBottomBottom];
 }
 
-- (void)cancelButtonClicked:(AddReviewViewController *)addReviewViewController
-{
+- (void)cancelButtonClicked:(AddReviewViewController *)addReviewViewController{
 
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
  
     [self configureData];
 }
 
-- (IBAction)joinThisRide:(id)sender
-{
+- (IBAction)joinThisRide:(id)sender{
 
 
 
+}
+
+- (void) deletePassenger:(Passenger *)passenger{
+    __block RideDetailsViewController *blockSelf = self;
+    
+    [KVNProgress showWithStatus:NSLocalizedString(@"loading...", nil)];
+    [[MasterDataManager sharedMasterDataManager] deletePassengerWithID:passenger.ID.stringValue withSuccess:^(NSString *response) {
+        [KVNProgress dismiss];
+        if([response containsString:@"1"]){
+            [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Passenger removed successfully", nil)];
+            [blockSelf performBlock:^{
+                [KVNProgress dismiss];
+            } afterDelay:3];
+        }
+        else{
+            [KVNProgress showErrorWithStatus:NSLocalizedString(@"Unable to remover passenger", nil)];
+            [blockSelf performBlock:^{
+                [KVNProgress dismiss];
+            } afterDelay:3];
+        }
+    } Failure:^(NSString *error) {
+        [blockSelf handleResponseError];
+    }];
 }
 
 
 #pragma mark -
 #pragma mark UITableView Datasource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
-{
-    return self.reviews.count;
-}
-
-- (ReviewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier  = @"ReviewCell";
-    
-    ReviewCell *reviewCell = (ReviewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (reviewCell == nil)
-    {
-        reviewCell = (ReviewCell *)[[[NSBundle mainBundle] loadNibNamed:@"ReviewCell" owner:nil options:nil] objectAtIndex:0];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex{
+    if (tableView == reviewList) {
+        return self.reviews.count;
     }
-    
-    Review *review = self.reviews[indexPath.row];
-    [reviewCell setReview:review];
+    else{
+        return self.passengers.count;
+    }
 
-    return reviewCell ;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (tableView == reviewList) {
+        static NSString *CellIdentifier  = @"ReviewCell";
+        
+        ReviewCell *reviewCell = (ReviewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (reviewCell == nil)
+        {
+            reviewCell = (ReviewCell *)[[[NSBundle mainBundle] loadNibNamed:@"ReviewCell" owner:nil options:nil] objectAtIndex:0];
+        }
+        
+        Review *review = self.reviews[indexPath.row];
+        [reviewCell setReview:review];
+        
+        return reviewCell ;
+    }
+    else{
+        PassengerCell *passengerCell = (PassengerCell *)[tableView dequeueReusableCellWithIdentifier:PASSENGER_CELLID];
+        
+        if (passengerCell == nil)
+        {
+            passengerCell = [(PassengerCell *)[PassengerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PASSENGER_CELLID];
+        }
+        
+        Passenger *passenger = self.passengers[indexPath.row];
+        passengerCell.nameLabel.text = passenger.AccountName;
+        passengerCell.nationalityLabel.text = passenger.AccountNationalityEn;
+        __block Passenger*blockPasseger = passenger;
+        __block RideDetailsViewController *blockSelf = self;
+        [passengerCell setCallHandler:^{
+            if(blockPasseger.AccountMobile.length > 0){
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",blockPasseger.AccountMobile]]];
+            }
+            else{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Account Mobile Number not avialable",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+        [passengerCell setMessageHandler:^{
+            if(blockPasseger.AccountMobile.length > 0){
+                [blockSelf sendSMSFromPhone:blockPasseger.AccountMobile];
+            }
+            else{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Account Mobile Number not avialable",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+        [passengerCell setDeleteHandler:^{
+            blockSelf.toBeDeletedpassenger = passenger;
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"do you want to delete this passenger ?",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:@"Delete", nil];
+            alertView.tag = PASSENGER_ALERT_TAG;
+            [alertView show];
+        }];
+        [passengerCell setRatingHandler:^{
+            
+        }];
+        return passengerCell ;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == reviewList) {
+        return REVIEWS_CELL_HEIGHT;
+    }
+    else{
+        return PASSENGER_CELLHEIGHT;
+    }
+}
 #pragma mark -
 #pragma mark GOOGLE_MAPS
 
@@ -320,7 +498,6 @@
     [contentView addSubview:_mapView];
     [_MKmapView removeFromSuperview];
 }
-
 
 - (void) configurePins{
     self.markers = [NSMutableArray array];
@@ -374,6 +551,44 @@
         bounds = [bounds includingCoordinate:marker.position];
     
     [_mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:40.0f]];
+}
+
+
+#pragma mark - Message Delegate
+- (void)sendSMSFromPhone:(NSString *)phone
+{
+    if(![MFMessageComposeViewController canSendText])
+    {
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [warningAlert show];
+        return;
+    }
+    
+    NSArray *recipents = @[phone];
+    
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    [messageController setRecipients:recipents];
+    
+    // Present message view controller on screen
+    [self presentViewController:messageController animated:YES completion:nil];
+}
+
+- (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    switch(result)
+    {
+        case MessageComposeResultCancelled: break; //handle cancelled event
+        case MessageComposeResultFailed: break; //handle failed event
+        case MessageComposeResultSent: break; //handle sent event
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == PASSENGER_ALERT_TAG && buttonIndex == 1) {
+        [self deletePassenger:self.toBeDeletedpassenger];
+    }
 }
 
 @end

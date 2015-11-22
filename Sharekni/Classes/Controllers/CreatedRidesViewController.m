@@ -14,7 +14,7 @@
 #import "RideDetailsViewController.h"
 #import "NSObject+Blocks.h"
 #import "CreateRideViewController.h"
-#import "UILabel+Borders.h"
+#import "UIView+Borders.h"
 #import <UIColor+Additions.h>
 
 

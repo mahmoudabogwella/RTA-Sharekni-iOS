@@ -19,7 +19,7 @@
 #import "MobAccountManager.h"
 #import "SharekniWebViewController.h"
 #import "MLPAutoCompleteTextField.h"
-#import "UILabel+Borders.h"
+#import "UIView+Borders.h"
 #import "VehicleViewCell.h"
 #import "Vehicle.h"
 

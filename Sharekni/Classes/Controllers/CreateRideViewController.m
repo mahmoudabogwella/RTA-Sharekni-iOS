@@ -27,7 +27,7 @@
 #import "SelectLocationViewController.h"
 #import "MobDriverManager.h"
 #import "HelpManager.h"
-#import "UILabel+Borders.h"
+#import "UIView+Borders.h"
 #import "MobVehicleManager.h"
 #import "Vehicle.h"
 #import "MasterDataManager.h"
@@ -650,12 +650,6 @@
     else if (self.rideNameTextField.text.length == 0){
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter ride name.",nil)];
     }
-//    else if (self.noOfSeats.text.length == 0){
-//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter ride name.",nil)];
-//    }
-//    else if (self.rideNameTextField.text.length == 0){
-//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter ride name.",nil)];
-//    }
     else{
         __block CreateRideViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
@@ -861,6 +855,7 @@
 }
 
 #pragma TextFieldDelegate
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
     if (textField == self.nationalityTextField){
@@ -880,8 +875,7 @@
 }
 
 #pragma PickerViewDeelgate&DataSource
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     NSString *title = @"";
     switch (pickerView.tag) {
         case NationalityTextField:
@@ -918,8 +912,7 @@
 
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     switch (pickerView.tag) {
         case NationalityTextField:
         {
@@ -949,8 +942,7 @@
     
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }
 

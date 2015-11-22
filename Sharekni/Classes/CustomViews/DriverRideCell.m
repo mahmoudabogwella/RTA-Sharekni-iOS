@@ -7,7 +7,7 @@
 //
 
 #import "DriverRideCell.h"
-#import "UILabel+Borders.h"
+#import "UIView+Borders.h"
 #import "Constants.h"
 #import <UIColor+Additions/UIColor+Additions.h>
 

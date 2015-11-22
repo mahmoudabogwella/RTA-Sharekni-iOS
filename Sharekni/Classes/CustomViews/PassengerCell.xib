@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PassengerCell" rowHeight="80" id="KGk-i7-Jjw" customClass="PassengerCell">
+            <rect key="frame" x="0.0" y="0.0" width="304" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="304" height="84"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mostafa farouk" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="FeK-t7-y45">
+                        <rect key="frame" x="2" y="21" width="106" height="42"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGm-Qm-YL9">
+                        <rect key="frame" x="261" y="44" width="40" height="40"/>
+                        <animations/>
+                        <state key="normal" image="Delete_ICON"/>
+                        <connections>
+                            <action selector="deleteHandler:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CGn-pq-sVm"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etE-5c-ETb">
+                        <rect key="frame" x="261" y="4" width="40" height="34"/>
+                        <animations/>
+                        <state key="normal" backgroundImage="Call_Btn"/>
+                        <connections>
+                            <action selector="callHandler:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jl2-Cb-PiE"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKO-8v-2da">
+                        <rect key="frame" x="191" y="6" width="50" height="30"/>
+                        <animations/>
+                        <state key="normal" image="Msg_Btn"/>
+                        <connections>
+                            <action selector="messageHandler:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KFR-my-aMF"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqT-AC-uEf">
+                        <rect key="frame" x="196" y="44" width="40" height="40"/>
+                        <animations/>
+                        <state key="normal" image="addRating"/>
+                        <connections>
+                            <action selector="ratingHandler:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FOJ-EN-6vK"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vDP-qt-xeD">
+                        <rect key="frame" x="107" y="19" width="81" height="42"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="nameLabel" destination="FeK-t7-y45" id="Nwq-9l-sbZ"/>
+                <outlet property="nationalityLabel" destination="vDP-qt-xeD" id="ZFk-CN-ZRa"/>
+            </connections>
+            <point key="canvasLocation" x="333" y="286.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Call_Btn" width="56" height="42"/>
+        <image name="Delete_ICON" width="102" height="102"/>
+        <image name="Msg_Btn" width="57" height="37"/>
+        <image name="addRating" width="512" height="512"/>
+    </resources>
+</document>

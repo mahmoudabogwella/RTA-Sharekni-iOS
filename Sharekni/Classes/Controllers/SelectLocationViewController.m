@@ -19,7 +19,7 @@
 #import "MLPAutoCompleteTextFieldDataSource.h"
 #import "MLPAutoCompleteTextFieldDelegate.h"
 #import <MZFormSheetController.h>
-#import "UILabel+Borders.h"
+#import "UIView+Borders.h"
 
 typedef enum DirectionType : NSUInteger {
     DirectionTypeTo,

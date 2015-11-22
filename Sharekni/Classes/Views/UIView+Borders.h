@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UILabel (Borders)
+@interface UIView (Borders)
 - (void) addRightBorderWithColor:(UIColor *)color;
 - (void) addLeftBorderWithColor:(UIColor *)color;
+- (void)addBottomBorderWithColor:(UIColor *)color;
 @end
