@@ -50,7 +50,7 @@
     self.navigationController.navigationBarHidden = NO ;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     [self configureUI];
-    
+
     self.usernameTextField.text = @"osama@gmail.com";
     self.passwordTextField.text = @"12345";
 }

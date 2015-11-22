@@ -26,6 +26,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "AddReviewViewController.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "MobAccountManager.h"
 
 
 @interface RideDetailsViewController ()<GMSMapViewDelegate,MJDetailPopupDelegate>
@@ -100,52 +101,6 @@
     reviewsView.layer.borderWidth = 1;
     reviewsView.layer.borderColor = Red_UIColor.CGColor;
     
-    FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",_driverDetails.FromEmirateEnName,_driverDetails.FromRegionEnName];
-    ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",_driverDetails.ToEmirateEnName,_driverDetails.ToRegionEnName];
-    startingTime.text = [NSString stringWithFormat:@"Time %@ : %@",_driverDetails.StartTime,_driverDetails.EndTime];
-    availableDays.text = [NSString stringWithFormat:@"Ride Days : %@",[self getAvailableDays:self.driverDetails]];
-    
-    if ([NSStringEmpty isNullOrEmpty:_driverDetails.NationalityEnName])
-    {
-        nationality.text = @"Not Set";
-    }
-    else
-    {
-        nationality.text = _driverDetails.NationalityEnName ;
-    }
-    
-    if ([NSStringEmpty isNullOrEmpty:_driverDetails.AgeRange])
-    {
-        ageRange.text = @"Not Set";
-    }
-    else
-    {
-        ageRange.text = _driverDetails.AgeRange ;
-    }
-    
-    if (_driverDetails.IsSmoking.boolValue) {
-        smoking.text = @"Yes";
-    }else{
-        smoking.text = @"No";
-    }
-    
-    if ([NSStringEmpty isNullOrEmpty:_driverDetails.PrefLanguageEnName])
-    {
-        language.text = @"Not Set";
-    }
-    else
-    {
-        language.text = _driverDetails.PrefLanguageEnName;
-    }
-    
-    if ([NSStringEmpty isNullOrEmpty:_driverDetails.PreferredGender])
-    {
-        gender.text = @"Not Set";
-    }
-    else
-    {
-        gender.text = _driverDetails.PreferredGender;
-    }
     
     
     [self configureMapView];
@@ -157,18 +112,84 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)configureUIData{
+    FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",self.routeDetails.FromEmirateEnName,self.routeDetails.FromRegionEnName];
+    ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",self.routeDetails.ToEmirateEnName,self.routeDetails.ToRegionEnName];
+    startingTime.text = [NSString stringWithFormat:@"Time %@ : %@",self.routeDetails.StartFromTime,self.routeDetails.EndFromTime];
+    availableDays.text = [NSString stringWithFormat:@"Ride Days : %@",[self getAvailableDays]];
+    
+    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.NationalityEnName])
+    {
+        nationality.text = @"Not Set";
+    }
+    else
+    {
+        nationality.text = self.routeDetails.NationalityEnName ;
+    }
+    
+    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.AgeRange])
+    {
+        ageRange.text = @"Not Set";
+    }
+    else
+    {
+        ageRange.text = self.routeDetails.AgeRange ;
+    }
+    
+    if (_driverDetails.IsSmoking.boolValue) {
+        smoking.text = @"Yes";
+    }else{
+        smoking.text = @"No";
+    }
+    
+    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.PrefLanguageEnName])
+    {
+        language.text = @"Not Set";
+    }
+    else
+    {
+        language.text = self.routeDetails.PrefLanguageEnName;
+    }
+    
+    
+    //Ask Q
+    gender.text = @"Not Set";
+    
+//    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.PreferredGender])
+//    {
+//        gender.text = @"Not Set";
+//    }
+//    else
+//    {
+//        gender.text = self.routeDetails.PreferredGender;
+//    }
+
+}
 
 - (void)configureData
 {
     __block RideDetailsViewController *blockSelf = self;
   
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-   
-   [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:_driverDetails.RouteId withSuccess:^(RouteDetails *routeDetails) {
+    
+    NSString *routeID;
+    NSString *accountID ;
+    if (self.driverDetails) {
+        routeID = self.driverDetails.RouteId;
+        accountID = self.driverDetails.ID;
+    }
+    else if (self.createdRide){
+        routeID = self.createdRide.RouteID.stringValue;
+        accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+    }
+    
+   [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:routeID withSuccess:^(RouteDetails *routeDetails) {
        
        blockSelf.routeDetails = routeDetails;
        [blockSelf configurePins];
-       [[MasterDataManager sharedMasterDataManager] getReviewList:_driverDetails.AccountId andRoute:_driverDetails.RouteId withSuccess:^(NSMutableArray *array) {
+       [blockSelf focusMapToShowAllMarkers];
+       [blockSelf configureUIData];
+       [[MasterDataManager sharedMasterDataManager] getReviewList:accountID andRoute:routeID withSuccess:^(NSMutableArray *array) {
            blockSelf.reviews = array;
            
            if (array.count == 0) {
@@ -181,9 +202,11 @@
            
            reviewList.frame = CGRectMake(reviewList.frame.origin.x, reviewList.frame.origin.y + 15, reviewList.frame.size.width,reviewsView.frame.size.height - 30.0f);
            
-           joinRideBtn.frame = CGRectMake(joinRideBtn.frame.origin.x, reviewsView.frame.origin.y + reviewsView.frame.size.height + 15.0f, joinRideBtn.frame.size.width, joinRideBtn.frame.size.height);
+           int joinRideBtnYPosition = reviewsView.frame.origin.y + reviewsView.frame.size.height + ((array.count == 0) ? 0 : 15) ;
            
-           [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewsView.frame.origin.y + reviewsView.frame.size.height + joinRideBtn.frame.size.height + 55.0f)];
+           joinRideBtn.frame = CGRectMake(joinRideBtn.frame.origin.x,joinRideBtnYPosition, joinRideBtn.frame.size.width, joinRideBtn.frame.size.height);
+           
+           [contentView setContentSize:CGSizeMake(self.view.frame.size.width, reviewsView.frame.origin.y + reviewsView.frame.size.height + joinRideBtn.frame.size.height + 20.0f)];
 
        } Failure:^(NSString *error) {
            [blockSelf handleResponseError];
@@ -202,31 +225,31 @@
     } afterDelay:3];
 }
 
-- (NSString *)getAvailableDays:(DriverDetails *)driverDetails
+- (NSString *)getAvailableDays
 {
     NSMutableString *str = [[NSMutableString alloc] init];
     
-    if (driverDetails.Saturday.boolValue) {
+    if (self.routeDetails.Saturday.boolValue) {
         [str appendString:NSLocalizedString(@"Sat ", nil)];
     }
-    if (driverDetails.Sunday.boolValue) {
+    if (self.routeDetails.Sunday.boolValue) {
         [str appendString:NSLocalizedString(@"Sun ", nil)];
     }
-    if (driverDetails.Monday.boolValue) {
+    if (self.routeDetails.Monday.boolValue) {
         [str appendString:NSLocalizedString(@"Mon ", nil)];
     }
-    if (driverDetails.Tuesday.boolValue) {
+    if (self.routeDetails.Tuesday.boolValue) {
         [str appendString:NSLocalizedString(@"Tue ", nil)];
     }
-    if (driverDetails.Wendenday.boolValue) {
+    if (self.routeDetails.Wendenday.boolValue) {
         [str appendString:NSLocalizedString(@"Wed ", nil)];
         
     }
-    if (driverDetails.Thrursday.boolValue) {
+    if (self.routeDetails.Thrursday.boolValue) {
         [str appendString:NSLocalizedString(@"Thu ", nil)];
         
     }
-    if (driverDetails.Friday.boolValue) {
+    if (self.routeDetails.Friday.boolValue) {
         [str appendString:NSLocalizedString(@"Fri ", nil)];
     }
     
@@ -300,9 +323,9 @@
 
 
 - (void) configurePins{
-
-        CLLocationCoordinate2D position = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);
-        GMSMarker *startMarker = [GMSMarker markerWithPosition:position];
+    self.markers = [NSMutableArray array];
+        CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);
+        GMSMarker *startMarker = [GMSMarker markerWithPosition:startPosition];
         MapItemView *startItem = [[MapItemView alloc] initWithLat:self.routeDetails.StartLat lng:self.routeDetails.StartLng address:self.routeDetails.FromStreetName name:self.routeDetails.FromEmirateEnName];
         startItem.arabicName = self.routeDetails.FromRegionArName;
         startItem.englishName = self.routeDetails.FromRegionEnName;
@@ -313,7 +336,8 @@
         startMarker.map = _mapView;
         [self.markers addObject:startMarker];
     
-    GMSMarker *endMarker = [GMSMarker markerWithPosition:position];
+    CLLocationCoordinate2D endPosition = CLLocationCoordinate2DMake(self.routeDetails.EndLat.doubleValue, self.routeDetails.EndLng.doubleValue);
+    GMSMarker *endMarker = [GMSMarker markerWithPosition:endPosition];
     MapItemView *endItem = [[MapItemView alloc] initWithLat:self.routeDetails.EndLat lng:self.routeDetails.EndLng address:self.routeDetails.ToStreetName name:self.routeDetails.ToEmirateEnName];
     endItem.arabicName = self.routeDetails.ToRegionArName;
     endItem.englishName = self.routeDetails.ToRegionEnName;
@@ -322,7 +346,7 @@
     endMarker.title = self.routeDetails.ToEmirateEnName;
     endMarker.icon = [UIImage imageNamed:@"Location"];
     endMarker.map = _mapView;
-    [self.markers addObject:endItem];
+    [self.markers addObject:endMarker];
 }
 
 - (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
@@ -349,7 +373,7 @@
     for (GMSMarker *marker in self.markers)
         bounds = [bounds includingCoordinate:marker.position];
     
-    [_mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:15.0f]];
+    [_mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:40.0f]];
 }
 
 @end

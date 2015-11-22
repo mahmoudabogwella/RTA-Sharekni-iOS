@@ -11,7 +11,7 @@
 #import <Genome.h>
 #import "Ride.h"
 #import "Sharekni.pch"
-
+#import "CreatedRide.h"
 #define ID_KEY @"id"
 
 #define FirstName_KEY @"firstName"
@@ -130,15 +130,15 @@
         else if ([responseString containsString:@"-1"]){
             failure(@"Email already exists");
         }
-        else if ([responseString containsString:@"0"]){
-            failure(@"Email already exists");
-        }
+//        else if ([responseString containsString:@"0"]){
+//            failure(@"Email already exists");
+//        }
         else{
-            success(nil);           
+            failure(@"invalid email or password");
         }
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        failure(@"incorrect");
+        failure(@"invalid email or password");
     }];
 }
 
@@ -228,13 +228,8 @@
 }
 
 - (void) getJoinedRidesWithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    NSString *path;
-    if(self.applicationUser.AccountTypeId.integerValue == 1){
-        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_GetJoinedRides?AccountId=%@",self.applicationUser.ID.stringValue];
-    }
-    else{
-        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_GetJoinedRides?AccountId=%@",self.applicationUser.ID.stringValue];
-    }
+
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_GetJoinedRides?AccountId=%@",self.applicationUser.ID.stringValue];
     
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -247,6 +242,28 @@
         NSMutableArray *rides = [NSMutableArray array];
         for (NSDictionary *dictionary in resultDictionaries) {
             Ride *ride= [Ride gm_mappedObjectWithJsonRepresentation:dictionary];
+            [rides addObject:ride];
+        }
+        success(rides);
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+}
+
+- (void) getCreatedRidesWithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Driver_MyRides?AccountId=%@",self.applicationUser.ID.stringValue];
+    
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        NSMutableArray *rides = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            CreatedRide *ride= [CreatedRide gm_mappedObjectWithJsonRepresentation:dictionary];
             [rides addObject:ride];
         }
         success(rides);
@@ -345,6 +362,23 @@
      } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
          failure(@"incorrect");
      }];
+}
+
+- (void) deleteRideWithID:(NSString *)rideID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure{
+    NSString *path =[NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Route_Delete?RouteId=%@",rideID];
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSLog(@"delete response :%@",responseString);
+        if ([responseString containsString:@"1"]) {
+            success(YES);
+        }
+        else{
+            success(NO);
+        }
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
 }
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MobAccountManager);
