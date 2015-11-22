@@ -19,7 +19,7 @@
 @property (assign, nonatomic) id <MJDetailPopupDelegate> delegate;
 
 @property (nonatomic ,strong) DriverDetails *driverDetails;
-
+@property (nonatomic ,strong) NSString *accountID ;
 @end
 
 @protocol MJDetailPopupDelegate<NSObject>

@@ -19,8 +19,6 @@
     [super viewDidLoad];
     
     [viewText becomeFirstResponder];
-    
-//    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, 100);
 }
 
 - (void)HideKeyboard
@@ -37,7 +35,7 @@
     }
     
     [KVNProgress showWithStatus:@"Loading...."];
-    [[MobAccountManager sharedMobAccountManager] reviewDriver:_driverDetails.AccountId PassengerId:@"120101" RouteId:_driverDetails.RouteId ReviewText:viewText.text WithSuccess:^(NSString *user) {
+    [[MobAccountManager sharedMobAccountManager] reviewDriver:_driverDetails.AccountId PassengerId:self.accountID RouteId:_driverDetails.RouteId ReviewText:viewText.text WithSuccess:^(NSString *user) {
     
         [KVNProgress dismiss];
 

@@ -57,6 +57,8 @@
 		1425F80E1BFF48BE00AD086B /* VehicleViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1425F80C1BFF48BE00AD086B /* VehicleViewCell.xib */; };
 		1425F8121BFF9C9F00AD086B /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F8101BFF9C9F00AD086B /* NotificationsViewController.m */; };
 		1425F8131BFF9C9F00AD086B /* NotificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1425F8111BFF9C9F00AD086B /* NotificationsViewController.xib */; };
+		1425F8171BFFCB5500AD086B /* AddRemarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F8151BFFCB5500AD086B /* AddRemarksViewController.m */; };
+		1425F8181BFFCB5500AD086B /* AddRemarksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1425F8161BFFCB5500AD086B /* AddRemarksViewController.xib */; };
 		143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6AC1BB14BD2009F6496 /* AppDelegate.m */; };
 		143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B11BB14BE5009F6496 /* WelcomeViewController.m */; };
 		143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143BE6B71BB5640B009F6496 /* LoginViewController.m */; };
@@ -229,6 +231,9 @@
 		1425F80F1BFF9C9F00AD086B /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
 		1425F8101BFF9C9F00AD086B /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
 		1425F8111BFF9C9F00AD086B /* NotificationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationsViewController.xib; sourceTree = "<group>"; };
+		1425F8141BFFCB5500AD086B /* AddRemarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRemarksViewController.h; sourceTree = "<group>"; };
+		1425F8151BFFCB5500AD086B /* AddRemarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRemarksViewController.m; sourceTree = "<group>"; };
+		1425F8161BFFCB5500AD086B /* AddRemarksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddRemarksViewController.xib; sourceTree = "<group>"; };
 		143BE6AB1BB14BD2009F6496 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		143BE6AC1BB14BD2009F6496 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		143BE6B01BB14BE5009F6496 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
@@ -461,6 +466,9 @@
 				1409608E1BFEB0C700BA3268 /* MJPopupBackgroundView.m */,
 				1409608F1BFEB0C700BA3268 /* UIViewController+MJPopupViewController.h */,
 				140960901BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m */,
+				1425F8141BFFCB5500AD086B /* AddRemarksViewController.h */,
+				1425F8151BFFCB5500AD086B /* AddRemarksViewController.m */,
+				1425F8161BFFCB5500AD086B /* AddRemarksViewController.xib */,
 			);
 			path = MJPopupBackgroundView;
 			sourceTree = "<group>";
@@ -832,6 +840,7 @@
 				047E45841BC59DE0000B5151 /* SelectLocationViewController.xib in Resources */,
 				87B58B5E1BD388D100E73E55 /* MapLookupViewController.xib in Resources */,
 				87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */,
+				1425F8181BFFCB5500AD086B /* AddRemarksViewController.xib in Resources */,
 				14022BEB1BE56B8B00585042 /* MostRideDetailsCell.xib in Resources */,
 				04C3E0341BE09EF000698227 /* HomeViewController.xib in Resources */,
 				1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */,
@@ -960,6 +969,7 @@
 				143BE6B81BB5640B009F6496 /* LoginViewController.m in Sources */,
 				140960941BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m in Sources */,
 				87FFDDB11BFD6A570031CE61 /* RouteDetails.m in Sources */,
+				1425F8171BFFCB5500AD086B /* AddRemarksViewController.m in Sources */,
 				047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */,
 				143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */,
 				140960911BFEB0C700BA3268 /* AddReviewViewController.m in Sources */,

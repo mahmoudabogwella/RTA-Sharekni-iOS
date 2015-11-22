@@ -51,7 +51,7 @@
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     [self configureUI];
     
-    self.usernameTextField.text = @"yasmin@gmail.com";
+    self.usernameTextField.text = @"osama@gmail.com";
     self.passwordTextField.text = @"12345";
 }
 
@@ -62,7 +62,12 @@
 
 - (void)popViewController
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_isLogged) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 - (void) configureUI{
@@ -82,10 +87,11 @@
     
 }
 
-- (IBAction)loginAction:(id)sender {
+- (IBAction)loginAction:(id)sender
+{
     [self.view endEditing:YES];
-    if(self.usernameTextField.text.length == 0){
-    
+    if(self.usernameTextField.text.length == 0)
+    {
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"nameReq",nil)];
     }
     else if (self.passwordTextField.text.length == 0)
@@ -98,11 +104,15 @@
         [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:self.usernameTextField.text andPassword:self.passwordTextField.text WithSuccess:^(User *user) {
             [KVNProgress dismiss];
             if (user) {
-                REFrostedViewController *frostedViewController = [self mainViewController];
-                [self.navigationController presentViewController:frostedViewController animated:YES completion:nil];
+                if (_isLogged) {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }else{
+                    REFrostedViewController *frostedViewController = [self mainViewController];
+                    [self.navigationController presentViewController:frostedViewController animated:YES completion:nil];
+                }
             }
             else{
-            
+                
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
