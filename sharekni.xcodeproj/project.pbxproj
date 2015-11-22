@@ -94,6 +94,13 @@
 		14E5D7A01C01A6F10089054A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D79E1C01A6F10089054A /* NotificationCell.xib */; };
 		14E5D7A41C01B3BC0089054A /* NotificationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D7A21C01B3BC0089054A /* NotificationDetailsViewController.m */; };
 		14E5D7A51C01B3BC0089054A /* NotificationDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D7A31C01B3BC0089054A /* NotificationDetailsViewController.xib */; };
+		14E5D7B41C026F4F0089054A /* Permit.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D7B31C026F4F0089054A /* Permit.m */; };
+		14E5D7B81C0270E80089054A /* PermitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D7B61C0270E80089054A /* PermitsViewController.m */; };
+		14E5D7B91C0270E80089054A /* PermitsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D7B71C0270E80089054A /* PermitsViewController.xib */; };
+		14E5D7BD1C0271090089054A /* PermitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D7BB1C0271090089054A /* PermitCell.m */; };
+		14E5D7BE1C0271090089054A /* PermitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D7BC1C0271090089054A /* PermitCell.xib */; };
+		14E5D7C21C0276900089054A /* ActivatePermitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D7C01C0276900089054A /* ActivatePermitViewController.m */; };
+		14E5D7C31C0276900089054A /* ActivatePermitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D7C11C0276900089054A /* ActivatePermitViewController.xib */; };
 		14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E692631BE8B7180041A999 /* DriverDetailsViewController.m */; };
 		14E692661BE8B7180041A999 /* DriverDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */; };
 		14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */; };
@@ -305,6 +312,17 @@
 		14E5D7A11C01B3BC0089054A /* NotificationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationDetailsViewController.h; sourceTree = "<group>"; };
 		14E5D7A21C01B3BC0089054A /* NotificationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationDetailsViewController.m; sourceTree = "<group>"; };
 		14E5D7A31C01B3BC0089054A /* NotificationDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationDetailsViewController.xib; sourceTree = "<group>"; };
+		14E5D7B21C026F4F0089054A /* Permit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Permit.h; sourceTree = "<group>"; };
+		14E5D7B31C026F4F0089054A /* Permit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Permit.m; sourceTree = "<group>"; };
+		14E5D7B51C0270E80089054A /* PermitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermitsViewController.h; sourceTree = "<group>"; };
+		14E5D7B61C0270E80089054A /* PermitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermitsViewController.m; sourceTree = "<group>"; };
+		14E5D7B71C0270E80089054A /* PermitsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PermitsViewController.xib; sourceTree = "<group>"; };
+		14E5D7BA1C0271090089054A /* PermitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermitCell.h; sourceTree = "<group>"; };
+		14E5D7BB1C0271090089054A /* PermitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermitCell.m; sourceTree = "<group>"; };
+		14E5D7BC1C0271090089054A /* PermitCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PermitCell.xib; sourceTree = "<group>"; };
+		14E5D7BF1C0276900089054A /* ActivatePermitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivatePermitViewController.h; sourceTree = "<group>"; };
+		14E5D7C01C0276900089054A /* ActivatePermitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivatePermitViewController.m; sourceTree = "<group>"; };
+		14E5D7C11C0276900089054A /* ActivatePermitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivatePermitViewController.xib; sourceTree = "<group>"; };
 		14E692621BE8B7180041A999 /* DriverDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverDetailsViewController.h; sourceTree = "<group>"; };
 		14E692631BE8B7180041A999 /* DriverDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverDetailsViewController.m; sourceTree = "<group>"; };
 		14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DriverDetailsViewController.xib; sourceTree = "<group>"; };
@@ -599,6 +617,12 @@
 				8777FA5D1C00C4B20022E368 /* CreatedRidesViewController.h */,
 				8777FA5E1C00C4B20022E368 /* CreatedRidesViewController.m */,
 				8777FA5F1C00C4B20022E368 /* CreatedRidesViewController.xib */,
+				14E5D7B51C0270E80089054A /* PermitsViewController.h */,
+				14E5D7B61C0270E80089054A /* PermitsViewController.m */,
+				14E5D7B71C0270E80089054A /* PermitsViewController.xib */,
+				14E5D7BF1C0276900089054A /* ActivatePermitViewController.h */,
+				14E5D7C01C0276900089054A /* ActivatePermitViewController.m */,
+				14E5D7C11C0276900089054A /* ActivatePermitViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -643,6 +667,9 @@
 				14E5D79C1C01A6F10089054A /* NotificationCell.h */,
 				14E5D79D1C01A6F10089054A /* NotificationCell.m */,
 				14E5D79E1C01A6F10089054A /* NotificationCell.xib */,
+				14E5D7BA1C0271090089054A /* PermitCell.h */,
+				14E5D7BB1C0271090089054A /* PermitCell.m */,
+				14E5D7BC1C0271090089054A /* PermitCell.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -740,6 +767,8 @@
 				8777FA631C01580D0022E368 /* Passenger.m */,
 				14E5D7991C01A2E80089054A /* Notification.h */,
 				14E5D79A1C01A2E80089054A /* Notification.m */,
+				14E5D7B21C026F4F0089054A /* Permit.h */,
+				14E5D7B31C026F4F0089054A /* Permit.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -847,6 +876,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E5D7BE1C0271090089054A /* PermitCell.xib in Resources */,
 				8787E1F21BF7534100CCD53B /* policy.html in Resources */,
 				047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */,
 				873E4C5E1BED3086006C42F8 /* MapInfoWindow.xib in Resources */,
@@ -864,6 +894,7 @@
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */,
 				87E5F7691BFB6914004FF688 /* RidesCreatedViewController.xib in Resources */,
+				14E5D7C31C0276900089054A /* ActivatePermitViewController.xib in Resources */,
 				14E692661BE8B7180041A999 /* DriverDetailsViewController.xib in Resources */,
 				143F30EE1BC8488D006A6A21 /* Localizable.strings in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
@@ -873,6 +904,7 @@
 				144869FB1BC0968E00804C26 /* QuickSearchViewController.xib in Resources */,
 				14022BE61BE56AA400585042 /* RideDetailsViewController.xib in Resources */,
 				14022BE11BE56A9300585042 /* MostRideDetailsViewController.xib in Resources */,
+				14E5D7B91C0270E80089054A /* PermitsViewController.xib in Resources */,
 				148795CE1BEA679800B940D8 /* DriverRideCell.xib in Resources */,
 				148795DC1BEA9CF900B940D8 /* ReviewCell.xib in Resources */,
 				8777FA691C01AD120022E368 /* PassengerCell.xib in Resources */,
@@ -963,7 +995,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				87D9D32A1BEE555B0096E17A /* SideMenuTableViewController.m in Sources */,
+				14E5D7C21C0276900089054A /* ActivatePermitViewController.m in Sources */,
 				87D9D3291BEE55530096E17A /* BaseAPIManager.m in Sources */,
+				14E5D7BD1C0271090089054A /* PermitCell.m in Sources */,
 				0429B1C31BB9C84400161222 /* NSObject+Blocks.m in Sources */,
 				14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */,
 				8777FA5C1C00C1750022E368 /* CreatedRide.m in Sources */,
@@ -985,6 +1019,7 @@
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
 				1425F8121BFF9C9F00AD086B /* NotificationsViewController.m in Sources */,
 				14B00C971BFB921E004F46F7 /* ForgetPasswordViewController.m in Sources */,
+				14E5D7B81C0270E80089054A /* PermitsViewController.m in Sources */,
 				1425F8031BFF11A200AD086B /* VehiclesViewController.m in Sources */,
 				140960931BFEB0C700BA3268 /* MJPopupBackgroundView.m in Sources */,
 				87C571DC1BDBD33F00EFB618 /* Vehicle.m in Sources */,
@@ -1034,6 +1069,7 @@
 				140960881BFEACC100BA3268 /* NSStringEmpty.m in Sources */,
 				047E45911BC63686000B5151 /* MobDriverManager.m in Sources */,
 				047E45941BC63C99000B5151 /* DriverSearchResult.m in Sources */,
+				14E5D7B41C026F4F0089054A /* Permit.m in Sources */,
 				87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */,
 				04931B211BAAF814000F5434 /* main.m in Sources */,
 				144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */,

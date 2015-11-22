@@ -28,6 +28,7 @@
 #import "MobAccountManager.h"
 #import "Passenger.h"
 #import "Notification.h"
+#import "Permit.h"
 
 
 #define AccountId @"AccountID"
@@ -514,6 +515,34 @@
             [notifications addObject:notification];
         }
         success(notifications);
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        failure(error.localizedDescription);
+    }];
+}
+
+- (void)getPermits:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+{
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/GetPermitByDriverId?id=%@",accountID];
+
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        
+        NSMutableArray *permits = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            Permit *permit = [Permit gm_mappedObjectWithJsonRepresentation:dictionary];
+            [permits addObject:permit];
+        }
+        success(permits);
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         failure(error.localizedDescription);

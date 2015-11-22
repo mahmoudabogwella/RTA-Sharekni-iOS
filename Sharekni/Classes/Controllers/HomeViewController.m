@@ -22,6 +22,8 @@
 #import "NSObject+Blocks.h"
 #import "NotificationsViewController.h"
 #import "RidesJoinedViewController.h"
+#import "PermitsViewController.h"
+
 @interface HomeViewController ()
 
 #pragma Outlets
@@ -198,7 +200,8 @@
 }
 
 - (void) permitAction{
-    
+    PermitsViewController *permitsView = [[PermitsViewController alloc] initWithNibName:@"PermitsViewController" bundle:nil];
+    [self.navigationController pushViewController:permitsView animated:YES];
 }
 
 - (IBAction)editAction:(id)sender {
