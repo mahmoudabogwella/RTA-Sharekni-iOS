@@ -364,6 +364,33 @@
      }];
 }
 
+- (void) acceptRequest:(NSString *)RequestId andIsAccepted:(NSString *)IsAccept WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure
+{
+    NSDictionary *parameters = @{@"IsAccept":IsAccept,
+                                 @"RequestId":RequestId
+                                 };
+    
+    [self.operationManager POST:Driver_AcceptRequest parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject)
+    {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        if([responseString containsString:@"-2"]){
+            failure(@"Failed");
+        }
+        else if ([responseString containsString:@"-1"]){
+            failure(@"Failed");
+        }
+        else{
+            success(nil);
+        }
+
+        
+        } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        
+    }];
+}
+
 - (void) deleteRideWithID:(NSString *)rideID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure{
     NSString *path =[NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Route_Delete?RouteId=%@",rideID];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {

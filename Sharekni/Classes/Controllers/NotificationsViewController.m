@@ -18,6 +18,7 @@
 #import "MobAccountManager.h"
 #import "User.h"
 #import "NotificationCell.h"
+#import "NotificationDetailsViewController.h"
 
 @interface NotificationsViewController ()
 
@@ -33,7 +34,8 @@
     [self.navigationController.navigationBar setTranslucent:NO];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -45,8 +47,6 @@
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
-    
-//    [self getNotifications];
 }
 
 - (void)popViewController
@@ -106,7 +106,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    Notification *notification = self.notifications[indexPath.row];
+    NotificationDetailsViewController *notificationDetails = [[NotificationDetailsViewController alloc] initWithNibName:@"NotificationDetailsViewController" bundle:nil];
+    notificationDetails.notification = notification ;
+    [self.navigationController pushViewController:notificationDetails animated:YES];
 }
 
 

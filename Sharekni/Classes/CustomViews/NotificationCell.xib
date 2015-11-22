@@ -55,6 +55,7 @@
                 </constraints>
             </tableViewCellContentView>
             <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="nationality" destination="Bck-Or-rGd" id="5Le-EJ-L7c"/>
                 <outlet property="notificationLbl" destination="z9g-YG-0yL" id="qFk-Tm-5MD"/>

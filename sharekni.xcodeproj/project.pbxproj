@@ -92,6 +92,8 @@
 		14E5D79B1C01A2E80089054A /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D79A1C01A2E80089054A /* Notification.m */; };
 		14E5D79F1C01A6F10089054A /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D79D1C01A6F10089054A /* NotificationCell.m */; };
 		14E5D7A01C01A6F10089054A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D79E1C01A6F10089054A /* NotificationCell.xib */; };
+		14E5D7A41C01B3BC0089054A /* NotificationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D7A21C01B3BC0089054A /* NotificationDetailsViewController.m */; };
+		14E5D7A51C01B3BC0089054A /* NotificationDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D7A31C01B3BC0089054A /* NotificationDetailsViewController.xib */; };
 		14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E692631BE8B7180041A999 /* DriverDetailsViewController.m */; };
 		14E692661BE8B7180041A999 /* DriverDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */; };
 		14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E7A8AB1BDF11F900255D86 /* WelcomeViewController.xib */; };
@@ -297,6 +299,9 @@
 		14E5D79C1C01A6F10089054A /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCell.h; sourceTree = "<group>"; };
 		14E5D79D1C01A6F10089054A /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCell.m; sourceTree = "<group>"; };
 		14E5D79E1C01A6F10089054A /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		14E5D7A11C01B3BC0089054A /* NotificationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationDetailsViewController.h; sourceTree = "<group>"; };
+		14E5D7A21C01B3BC0089054A /* NotificationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationDetailsViewController.m; sourceTree = "<group>"; };
+		14E5D7A31C01B3BC0089054A /* NotificationDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationDetailsViewController.xib; sourceTree = "<group>"; };
 		14E692621BE8B7180041A999 /* DriverDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverDetailsViewController.h; sourceTree = "<group>"; };
 		14E692631BE8B7180041A999 /* DriverDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverDetailsViewController.m; sourceTree = "<group>"; };
 		14E692641BE8B7180041A999 /* DriverDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DriverDetailsViewController.xib; sourceTree = "<group>"; };
@@ -580,6 +585,9 @@
 				1425F80F1BFF9C9F00AD086B /* NotificationsViewController.h */,
 				1425F8101BFF9C9F00AD086B /* NotificationsViewController.m */,
 				1425F8111BFF9C9F00AD086B /* NotificationsViewController.xib */,
+				14E5D7A11C01B3BC0089054A /* NotificationDetailsViewController.h */,
+				14E5D7A21C01B3BC0089054A /* NotificationDetailsViewController.m */,
+				14E5D7A31C01B3BC0089054A /* NotificationDetailsViewController.xib */,
 				8777FA5D1C00C4B20022E368 /* CreatedRidesViewController.h */,
 				8777FA5E1C00C4B20022E368 /* CreatedRidesViewController.m */,
 				8777FA5F1C00C4B20022E368 /* CreatedRidesViewController.xib */,
@@ -864,6 +872,7 @@
 				8787E1EF1BF74EBC00CCD53B /* SharekniWebViewController.xib in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
+				14E5D7A51C01B3BC0089054A /* NotificationDetailsViewController.xib in Resources */,
 				047E45841BC59DE0000B5151 /* SelectLocationViewController.xib in Resources */,
 				87B58B5E1BD388D100E73E55 /* MapLookupViewController.xib in Resources */,
 				87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */,
@@ -968,6 +977,7 @@
 				87B58B5D1BD388D100E73E55 /* MapLookupViewController.m in Sources */,
 				8787E1EE1BF74EBC00CCD53B /* SharekniWebViewController.m in Sources */,
 				047E458E1BC5A4D8000B5151 /* NSString+Levenshtein.m in Sources */,
+				14E5D7A41C01B3BC0089054A /* NotificationDetailsViewController.m in Sources */,
 				143BE6BE1BB68E97009F6496 /* MostRidesViewController.m in Sources */,
 				04CFC7051BE52C6B0009BBDA /* RegisterViewController.m in Sources */,
 				0489129E1BB92150005E4E02 /* Nationality.m in Sources */,

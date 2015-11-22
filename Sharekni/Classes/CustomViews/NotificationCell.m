@@ -18,7 +18,11 @@
 
 - (void)setNotification:(Notification *)notification
 {
-    self.notificationLbl.text = [NSString stringWithFormat:@"%@ Send you a join request",notification.PassengerName] ;
+    if ([notification.DriverAccept boolValue]) {
+        self.notificationLbl.text = [NSString stringWithFormat:@"%@ Has Accepted your request",notification.PassengerName] ;
+    }else{
+        self.notificationLbl.text = [NSString stringWithFormat:@"%@ Send you a join request",notification.PassengerName] ;
+    }
     self.nationality.text = notification.NationalityEnName ;
 }
 

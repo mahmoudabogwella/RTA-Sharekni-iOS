@@ -60,6 +60,9 @@
 #define GetReviewList_URL @"CLS_Mobios.asmx/Driver_GetReviewList"
 #define Passenger_ReviewDriver @"CLS_Mobios.asmx/Passenger_ReviewDriver"
 #define Passenger_SendAlert @"CLS_Mobios.asmx/Passenger_SendAlert"
+#define Driver_AcceptRequest @"CLS_Mobios.asmx/Driver_AcceptRequest"
+
+
 
 #define Passenger_GetSavedSearch @"CLS_Mobios.asmx/Passenger_GetSavedSearch"
 #define RegisterVehicleWithETService @"CLS_Mobios.asmx/Driver_RegisterVehicleWithETService"

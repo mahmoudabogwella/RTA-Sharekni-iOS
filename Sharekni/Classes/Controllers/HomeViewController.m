@@ -220,12 +220,39 @@
     __block HomeViewController *blockSelf = self;
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
     
-    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] WithSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:YES WithSuccess:^(NSMutableArray *array) {
         
         blockSelf.notifications = array;
         
         self.notificationCountLabel.text = [NSString stringWithFormat:@"%d",(unsigned int)self.notifications.count];
        
+        [self getAcceptedNotifications];
+        
+        [KVNProgress dismiss];
+        
+    } Failure:^(NSString *error) {
+        NSLog(@"Error in Notifications");
+        [KVNProgress dismiss];
+        [KVNProgress showErrorWithStatus:@"Error"];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+        } afterDelay:3];
+    }];
+}
+
+- (void)getAcceptedNotifications
+{
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    
+    __block HomeViewController *blockSelf = self;
+    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    
+    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:NO WithSuccess:^(NSMutableArray *array) {
+        
+        [self.notifications addObjectsFromArray:array];
+     
+        self.notificationCountLabel.text = [NSString stringWithFormat:@"%d",(unsigned int)self.notifications.count];
+        
         [KVNProgress dismiss];
         
     } Failure:^(NSString *error) {

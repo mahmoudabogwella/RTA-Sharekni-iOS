@@ -486,10 +486,15 @@
 }
 
 
-- (void)getRequestNotifications:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+- (void)getRequestNotifications:(NSString *)accountID isDriver:(BOOL)isDriver WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Driver_AlertsForRequest?d_AccountId=%@",accountID];
-    
+    NSString *path ;
+    if (isDriver) {
+        path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Driver_AlertsForRequest?d_AccountId=%@",accountID];
+    }else{
+        path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Passenger_GetAcceptedRequestsFromDriver?accountId=%@",accountID];
+    }
+
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -505,7 +510,6 @@
         NSMutableArray *notifications = [NSMutableArray array];
         for (NSDictionary *dictionary in resultDictionaries) {
             Notification *notification = [Notification gm_mappedObjectWithJsonRepresentation:dictionary];
-            notification.isRequest = YES ;
             [notifications addObject:notification];
         }
         success(notifications);
@@ -515,35 +519,6 @@
     }];
 }
 
-- (void) GetRegionsByID:(NSString *)ID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    NSArray *savedRegions = [self getRegionsForEmirateID:ID];
-    if (savedRegions) {
-        success([savedRegions mutableCopy]);
-    }
-    else{
-        NSDictionary *parameters = @{id_KEY:ID};
-        __block MasterDataManager *blockSelf = self;
-        [self.operationManager GET:GetRegionById_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            responseString = [self jsonStringFromResponse:responseString];
-            NSError *jsonError;
-            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-            NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                          options:NSJSONReadingMutableContainers
-                                                                            error:&jsonError];
-            NSMutableArray *regions = [NSMutableArray array];
-            for (NSDictionary *dictionary in resultDictionaries) {
-                Region *region= [Region gm_mappedObjectWithJsonRepresentation:dictionary];
-                [regions addObject:region];
-            }
-            [blockSelf setRegions:regions forEmirateWithID:ID];
-            success(regions);
-        } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-            NSLog(@"Error %@",error.description);
-            failure(error.description);
-        }];
-    }
-}
 
 - (void) GetRegionsByEmirateID:(NSString *)emirateID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     NSArray *savedRegions = [self getRegionsForEmirateID:emirateID];
