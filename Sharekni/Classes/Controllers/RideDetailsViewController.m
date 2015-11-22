@@ -125,7 +125,7 @@
         [label setTextColor:Red_UIColor];
     }
     
-    passengersList.separatorColor = Red_UIColor;
+    passengersList.separatorColor = [UIColor lightGrayColor];
     
     [passengersList registerClass:[PassengerCell class] forCellReuseIdentifier:PASSENGER_CELLID];
     [passengersList registerNib:[UINib nibWithNibName:@"PassengerCell" bundle:nil] forCellReuseIdentifier:PASSENGER_CELLID];

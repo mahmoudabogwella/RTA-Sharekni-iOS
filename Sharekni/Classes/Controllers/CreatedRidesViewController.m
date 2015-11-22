@@ -120,7 +120,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 0) {
+    if (buttonIndex == 1) {
         [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
         __block CreatedRidesViewController *blockSelf = self;
         [[MobAccountManager sharedMobAccountManager] deleteRideWithID:self.toBeDeletedRide.RouteID.stringValue withSuccess:^(BOOL deletedSuccessfully) {
