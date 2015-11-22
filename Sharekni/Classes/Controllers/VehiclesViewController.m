@@ -131,13 +131,17 @@
     
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
     
-    [[MasterDataManager sharedMasterDataManager] getVehicleById:@"20027" WithSuccess:^(NSMutableArray *array) {
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    
+    [[MasterDataManager sharedMasterDataManager] getVehicleById:[NSString stringWithFormat:@"%@",user.ID] WithSuccess:^(NSMutableArray *array) {
         
         blockSelf.vehiclesArray = array;
         
         [KVNProgress dismiss];
-        
         self.vehiclesView.hidden = NO ;
+        if (array.count == 0) {
+            self.vehiclesView.hidden = YES ;
+        }
         self.vehiclesList.dataSource = self ;
         self.vehiclesList.delegate = self ;
         
@@ -162,12 +166,17 @@
 {
     [KVNProgress showWithStatus:@"Loading.."];
     
-    [[MobAccountManager sharedMobAccountManager] registerVehicle:@"144449" TrafficFileNo:self.traficFileNo.text BirthDate:self.dateLabel.text WithSuccess:^(NSString *user) {
+    User *sharedUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
+
+    [[MobAccountManager sharedMobAccountManager] registerVehicle:[NSString stringWithFormat:@"%@",sharedUser.ID] TrafficFileNo:self.traficFileNo.text BirthDate:self.dateLabel.text WithSuccess:^(NSString *user) {
         
         [KVNProgress dismiss];
         
         //If success
-        self.view = self.vehiclesView;
+        self.vehiclesView.hidden = YES ;
+        containerView.hidden = YES ;
+        titleLabel.hidden = YES ;
+        
         self.vehiclesTitleLabel.textColor = Red_UIColor;
         [self.vehiclesTitleLabel addRightBorderWithColor:Red_UIColor];
         [self.vehiclesTitleLabel addLeftBorderWithColor:Red_UIColor];

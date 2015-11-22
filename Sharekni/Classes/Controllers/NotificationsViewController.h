@@ -10,4 +10,6 @@
 
 @interface NotificationsViewController : UIViewController
 
+@property (nonatomic ,strong) NSMutableArray *notifications;
+
 @end

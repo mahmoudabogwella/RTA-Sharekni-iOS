@@ -295,6 +295,30 @@
     }];
 }
 
+- (void) joinRidePassenger:(NSString *)PassengerID RouteID:(NSString *)RouteID DriverID:(NSString *)DriverID Remark:(NSString *)remark WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
+{
+    NSDictionary *parameters = @{@"DriverId":DriverID,
+                                 @"PassengerId":PassengerID,
+                                 @"RouteId":RouteID,
+                                 @"s_Remarks":remark
+                                 };
+    
+    [self.operationManager POST:Passenger_SendAlert parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject)
+     {
+         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+         responseString = [self jsonStringFromResponse:responseString];
+         
+         if (![responseString containsString:@"1"]){
+             failure(@"Error");
+         }
+         success(responseString);
+         
+     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+         failure(@"incorrect");
+     }];
+
+}
+
 - (void) registerVehicle:(NSString *)AccountId TrafficFileNo:(NSString *)TrafficFileNo BirthDate:(NSString *)BirthDate WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
 {
     NSDictionary *parameters = @{@"AccountId":AccountId,

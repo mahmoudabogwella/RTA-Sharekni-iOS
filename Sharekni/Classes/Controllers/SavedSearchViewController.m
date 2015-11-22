@@ -19,6 +19,8 @@
 #import "SearchResultsViewController.h"
 #import "MobDriverManager.h"
 #import "HelpManager.h"
+#import "User.h"
+#import "MobAccountManager.h"
 
 @interface SavedSearchViewController ()
 
@@ -57,9 +59,11 @@
 
 - (void)getRideDetails
 {
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    
     __block SavedSearchViewController *blockSelf = self;
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-    [[MasterDataManager sharedMasterDataManager] getSavedSearch:@"144450" withSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] getSavedSearch:[NSString stringWithFormat:@"%@",user.ID] withSuccess:^(NSMutableArray *array) {
         
         blockSelf.savedData = array;
         [KVNProgress dismiss];

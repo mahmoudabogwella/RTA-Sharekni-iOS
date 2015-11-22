@@ -27,6 +27,7 @@
 #import "Vehicle.h"
 #import "MobAccountManager.h"
 #import "Passenger.h"
+#import "Notification.h"
 
 
 #define AccountId @"AccountID"
@@ -483,6 +484,36 @@
             failure(error.localizedDescription);
         }];
     }
+}
+
+
+- (void)getRequestNotifications:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+{
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Driver_AlertsForRequest?d_AccountId=%@",accountID];
+    
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        
+        NSMutableArray *notifications = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            Notification *notification = [Notification gm_mappedObjectWithJsonRepresentation:dictionary];
+            notification.isRequest = YES ;
+            [notifications addObject:notification];
+        }
+        success(notifications);
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        failure(error.localizedDescription);
+    }];
 }
 
 - (void) GetRegionsByID:(NSString *)ID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
