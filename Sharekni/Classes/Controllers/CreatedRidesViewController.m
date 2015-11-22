@@ -77,6 +77,9 @@
     [rideCell setCreatedRide:ride];
     
     [rideCell setEditHandler:^{
+        CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
+        editRideViewController.ride = ride;
+        [blockSelf.navigationController pushViewController:editRideViewController animated:YES];
         
     }];
     [rideCell setDeleteHandler:^{

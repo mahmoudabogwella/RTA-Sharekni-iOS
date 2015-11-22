@@ -85,10 +85,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = NSLocalizedString(@"rideDetails", nil);
-    
-//    reviewList.rowHeight = UITableViewAutomaticDimension ;
-//    reviewList.estimatedRowHeight = 55;
-    
+
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
     [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
@@ -115,10 +112,6 @@
     passengersHeader.backgroundColor = [UIColor whiteColor];
     
     reviewsView.layer.borderColor  = Red_UIColor.CGColor;
-    
-//    passengersView.layer.cornerRadius = 20;
-//    passengersView.layer.borderWidth  = 1;
-//    passengersView.layer.borderColor  = Red_UIColor.CGColor;
     
     [passengersHeader addBottomBorderWithColor:[UIColor lightGrayColor]];
     for (UILabel *label in self.passengersHeaderLabels) {
@@ -218,29 +211,36 @@
        [blockSelf focusMapToShowAllMarkers];
        [blockSelf showRideDetailsData];
        
-       [[MasterDataManager sharedMasterDataManager] getPassengersByRouteId:routeID withSuccess:^(NSMutableArray *array) {
-           blockSelf.passengers = array;
-           [blockPassengersList reloadData];
-           [[MasterDataManager sharedMasterDataManager] getReviewList:accountID andRoute:routeID withSuccess:^(NSMutableArray *array) {
-               blockSelf.reviews = array;
-               
-               if (array.count == 0) {
-                   reviewLbl.hidden = YES ;
-               }
+       [[MasterDataManager sharedMasterDataManager] getReviewList:accountID andRoute:routeID withSuccess:^(NSMutableArray *array) {
+           blockSelf.reviews = array;
+           
+           if (array.count == 0) {
+               reviewLbl.hidden = YES ;
+           }
+           [blockReviewsList reloadData];
+           
+           if (blockSelf.createdRide) {
+               [[MasterDataManager sharedMasterDataManager] getPassengersByRouteId:routeID withSuccess:^(NSMutableArray *array) {
+                   blockSelf.passengers = array;
+                   [blockPassengersList reloadData];
+                   [KVNProgress dismiss];
+                   [blockSelf configureFrames];
+                   
+               } Failure:^(NSString *error) {
+                   [blockSelf handleResponseError];
+                   [blockSelf configureFrames];
+               }];
+           }
+           else{
                [KVNProgress dismiss];
-               [blockReviewsList reloadData];
-               
                [blockSelf configureFrames];
-               
-           } Failure:^(NSString *error) {
-               [blockSelf handleResponseError];
-               [blockSelf configureFrames];
-           }];
+           }
            
        } Failure:^(NSString *error) {
            [blockSelf handleResponseError];
            [blockSelf configureFrames];
        }];
+       
     } Failure:^(NSString *error) {
        [blockSelf handleResponseError];
        [blockSelf configureFrames];

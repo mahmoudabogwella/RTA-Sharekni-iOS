@@ -46,7 +46,7 @@
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
-//    [self getNotifications];
+    [self getNotifications];
 }
 
 - (void)popViewController
