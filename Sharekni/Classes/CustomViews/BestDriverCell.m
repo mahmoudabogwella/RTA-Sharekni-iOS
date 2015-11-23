@@ -21,7 +21,7 @@
 {
     self.driverName.text = driver.AccountName ;
     self.driverCountry.text = driver.NationalityEnName ;
-    self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+    self.driverImage.image = driver.image;
     self.phone = driver.AccountMobile ;
     self.rateLbl.text = [NSString stringWithFormat:@"%ld",driver.Rating];
 }

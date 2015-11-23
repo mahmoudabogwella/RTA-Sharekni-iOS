@@ -304,15 +304,15 @@
     else{
         __block AdvancedSearchViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
-        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ? YES : NO saveSearch:NO WithSuccess:^(NSArray *searchResults) {
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ?@(YES):@(NO) saveSearch:NO WithSuccess:^(NSArray *searchResults) {
             [KVNProgress dismiss];
             if(searchResults){
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
-                resultViewController.fromEmirate = blockSelf.fromEmirate;
-                resultViewController.toEmirate = blockSelf.toEmirate;
-                resultViewController.fromRegion = blockSelf.fromRegion;
-                resultViewController.toRegion = blockSelf.toRegion;
+                resultViewController.fromEmirate = blockSelf.fromEmirate.EmirateEnName;
+                resultViewController.toEmirate = blockSelf.toEmirate.EmirateEnName;
+                resultViewController.fromRegion = blockSelf.fromRegion.RegionEnName;
+                resultViewController.toRegion = blockSelf.toRegion.RegionEnName;
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
             else{

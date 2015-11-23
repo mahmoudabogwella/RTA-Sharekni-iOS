@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface BestDriver : NSObject
 
@@ -20,5 +21,8 @@
 @property (nonatomic,strong) NSString *NationalityChName;
 @property (nonatomic,strong) NSString *NationalityUrName;
 @property (nonatomic,assign) long Rating;
+
+@property (nonatomic ,strong) UIImage *image ;
+@property (nonatomic ,strong) NSString *imagePath ;
 
 @end

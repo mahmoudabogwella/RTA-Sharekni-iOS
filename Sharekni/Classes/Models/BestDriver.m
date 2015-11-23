@@ -7,6 +7,7 @@
 //
 
 #import "BestDriver.h"
+#import "MobAccountManager.h"
 
 @implementation BestDriver
 
@@ -23,6 +24,17 @@
     mapping[@"NationalityUrName"] = @"NationalityUrName";
     mapping[@"Rating"] = @"Rating";
     return mapping;
+}
+
+- (void)setAccountPhoto:(NSString *)AccountPhoto
+{
+    _AccountPhoto = AccountPhoto ;
+    [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:_AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
+        self.image = image ;
+        self.imagePath = filePath;
+    } Failure:^(NSString *error) {
+        
+    }];
 }
 
 @end

@@ -57,7 +57,7 @@
     if (self.bestDriver) {
         self.driverName.text = _bestDriver.AccountName ;
         self.country.text = _bestDriver.NationalityEnName ;
-        self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+        self.driverImage.image = _bestDriver.image;
         self.rate.text = [NSString stringWithFormat:@"%ld",_bestDriver.Rating];
     }else if (self.mostRideDetails){
         self.driverName.text = _mostRideDetails.DriverName ;

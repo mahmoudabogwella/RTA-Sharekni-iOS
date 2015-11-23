@@ -237,7 +237,7 @@
     else{
         __block SearchViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
-        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:nil nationality:nil ageRange:nil date:self.pickupDate isPeriodic:NO saveSearch:self.saveSearchEnabled WithSuccess:^(NSArray *searchResults) {
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:nil nationality:nil ageRange:nil date:self.pickupDate isPeriodic:nil saveSearch:self.saveSearchEnabled WithSuccess:^(NSArray *searchResults) {
             [KVNProgress dismiss];
             if(searchResults){
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];

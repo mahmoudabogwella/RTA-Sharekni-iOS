@@ -52,7 +52,8 @@
     self.driverName.text = driver.AccountName;
     self.country.text = driver.Nationality_en;
     self.phone = driver.AccountMobile ;
-    
+    self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",driver.SDG_Route_Start_FromTime];
+
     NSString *daysText = @"";
     if (driver.SDG_RouteDays_Sunday.boolValue) {
         daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sun,", nil)];
