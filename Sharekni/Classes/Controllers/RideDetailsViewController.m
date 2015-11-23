@@ -29,6 +29,8 @@
 #import "MobAccountManager.h"
 #import "PassengerCell.h"
 #import "Passenger.h"
+#import "AddRemarksViewController.h"
+#import "LoginViewController.h"
 #import "CreateRideViewController.h"
 #import "HCSStarRatingView.h"
 
@@ -37,7 +39,7 @@
 #define PASSENGER_ALERT_TAG  1199
 #define DELETE_RIDE_ALERT_TAG  1188
 
-@interface RideDetailsViewController ()<GMSMapViewDelegate,MJDetailPopupDelegate,MFMessageComposeViewControllerDelegate,UIAlertViewDelegate>
+@interface RideDetailsViewController ()<GMSMapViewDelegate,MJDetailPopupDelegate,MJAddRemarkPopupDelegate,MFMessageComposeViewControllerDelegate,UIAlertViewDelegate>
 {
     __weak IBOutlet UIScrollView *contentView ;
     __weak IBOutlet UITableView *reviewList ;
@@ -490,9 +492,30 @@
     [self configureData];
 }
 
-- (IBAction)joinThisRide:(id)sender{
+- (void)dismissButtonClicked:(AddRemarksViewController *)addRemarksViewController
+{
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 
 }
+
+- (IBAction)joinThisRide:(id)sender{
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user != nil)
+    {
+        AddRemarksViewController *addRemark = [[AddRemarksViewController alloc] initWithNibName:@"AddRemarksViewController" bundle:nil];
+        addRemark.driverDetails = self.driverDetails ;
+        addRemark.delegate = self;
+        [self presentPopupViewController:addRemark animationType:MJPopupViewAnimationSlideBottomBottom];
+    }
+    else
+    {
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
+}
+
 
 - (void) deleteRide{
     [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];

@@ -392,6 +392,34 @@
     }];
 }
 
+- (void) getUser:(NSString *)userID WithSuccess:(void (^)(User *user))success Failure:(void (^)(NSString *error))failure
+{
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Get?id=%@",userID];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        NSMutableArray *users = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            User *user= [User gm_mappedObjectWithJsonRepresentation:dictionary];
+            [users addObject:user];
+        }
+        if (users.count >0) {
+            success(users[0]);
+        }
+
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        NSLog(@"Error %@",error.description);
+        failure(error.description);
+    }];
+
+}
+
 - (void) deleteRideWithID:(NSString *)rideID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure{
     NSString *path =[NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Route_Delete?RouteId=%@",rideID];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
@@ -408,6 +436,7 @@
         failure(error.localizedDescription);
     }];
 }
+
 
 - (void) leaveRideWithID:(NSString *) routeID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure{
     NSString *path =[NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Route_Delete?RouteId=%@",routeID];
