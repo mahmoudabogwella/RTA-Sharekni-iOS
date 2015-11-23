@@ -448,7 +448,8 @@
 
 - (void)getVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    if (!accountID) {
+    if (!accountID)
+    {
         accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
     }
     

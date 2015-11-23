@@ -322,12 +322,9 @@
 
 - (void) registerVehicle:(NSString *)AccountId TrafficFileNo:(NSString *)TrafficFileNo BirthDate:(NSString *)BirthDate WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
 {
-    NSDictionary *parameters = @{@"AccountId":AccountId,
-                                 @"TrafficFileNo":TrafficFileNo,
-                                 @"BirthDate":BirthDate
-                                 };
-    
-    [self.operationManager POST:RegisterVehicleWithETService parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject)
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Driver_RegisterVehicleWithETService?AccountId=%@&TrafficFileNo=%@&BirthDate=%@",AccountId,TrafficFileNo,BirthDate];
+
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject)
      {
          NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
          responseString = [self jsonStringFromResponse:responseString];
@@ -353,11 +350,7 @@
              failure(@"Invalid data please check again");
          }
          else if ([responseString containsString:@"-6"]){
-//             failure(@"Invalid data please check again");
-             [[NSUserDefaults standardUserDefaults] setValue:TrafficFileNo forKey:@"TrafficFileNo"];
-             [[NSUserDefaults standardUserDefaults] setValue:AccountId forKey:@"AccountId"];
-             [[NSUserDefaults standardUserDefaults] setValue:BirthDate forKey:@"BirthDate"];
-             [[NSUserDefaults standardUserDefaults] synchronize];
+             failure(@"Invalid data please check again");
              success(responseString);
          }
      } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {

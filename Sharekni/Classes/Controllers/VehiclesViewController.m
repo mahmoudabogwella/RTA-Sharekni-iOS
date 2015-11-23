@@ -168,7 +168,10 @@
     
     User *sharedUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
 
-    [[MobAccountManager sharedMobAccountManager] registerVehicle:[NSString stringWithFormat:@"%@",sharedUser.ID] TrafficFileNo:self.traficFileNo.text BirthDate:self.dateLabel.text WithSuccess:^(NSString *user) {
+    self.dateFormatter.dateFormat = @"dd/MM/yyyy";
+    NSString *dateString = [self.dateFormatter stringFromDate:self.date];
+    
+    [[MobAccountManager sharedMobAccountManager] registerVehicle:[NSString stringWithFormat:@"%@",sharedUser.ID] TrafficFileNo:self.traficFileNo.text BirthDate:dateString WithSuccess:^(NSString *user) {
         
         [KVNProgress dismiss];
         
