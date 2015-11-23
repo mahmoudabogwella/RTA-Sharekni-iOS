@@ -15,6 +15,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self = [[[NSBundle mainBundle] loadNibNamed:@"DriverRideCell" owner:nil options:nil] objectAtIndex:0];
+        
         [_RouteName addRightBorderWithColor:Red_UIColor];
         [_RouteName addLeftBorderWithColor:Red_UIColor];
         
@@ -25,7 +26,8 @@
     return self;
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
     
     [_RouteName addRightBorderWithColor:Red_UIColor];
@@ -36,7 +38,8 @@
     _containerView.layer.borderColor = Red_UIColor.CGColor;
 }
 
-- (void)setDriverRideDetails:(DriverDetails *)driverRideDetails{
+- (void)setDriverRideDetails:(DriverDetails *)driverRideDetails
+{
     _driverRideDetails = driverRideDetails;
     _RouteName.text = _driverRideDetails.RouteEnName ;
     _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",_driverRideDetails.FromEmirateEnName,_driverRideDetails.FromRegionEnName];
@@ -56,7 +59,8 @@
     
 }
 
-- (void)setJoinedRide:(Ride *)joinedRide{
+- (void)setJoinedRide:(Ride *)joinedRide
+{
     _joinedRide = joinedRide;
     _RouteName.text = joinedRide.RouteEnName;
     _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",joinedRide.FromEmirateEnName,joinedRide.FromRegionEnName];
@@ -67,7 +71,8 @@
     [self.thirdButton setTitle:NSLocalizedString(@"Leave", nil) forState:UIControlStateNormal];
 }
 
-- (void)setCreatedRide:(CreatedRide *)createdRide{
+- (void)setCreatedRide:(CreatedRide *)createdRide
+{
     _createdRide = createdRide;
     _RouteName.text = createdRide.Name_en;
     _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",createdRide.FromEmirateEnName,createdRide.FromRegionEnName];

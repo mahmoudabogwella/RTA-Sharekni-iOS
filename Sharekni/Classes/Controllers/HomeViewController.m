@@ -23,6 +23,7 @@
 #import "NotificationsViewController.h"
 #import "RidesJoinedViewController.h"
 #import "PermitsViewController.h"
+#import "HistoryViewController.h"
 
 @interface HomeViewController ()
 
@@ -173,7 +174,6 @@
     self.profileImageView.clipsToBounds = YES;
     
     
-    
     self.ridesCreatedLabel.text = ridesCreatedText;
     self.ridesJoinedLabel.text = ridesJoinedText;
     self.vehiclesLabel.text = vehiclesCountText;
@@ -196,7 +196,8 @@
 }
 
 - (void) historyAction{
-    
+    HistoryViewController *historyView = [[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil];
+    [self.navigationController pushViewController:historyView animated:YES];
 }
 
 - (void) permitAction{

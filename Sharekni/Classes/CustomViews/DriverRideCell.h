@@ -31,8 +31,6 @@
 @property (nonatomic, copy) void (^leaveHandler)(void);
 @property (nonatomic, copy) void (^driverHandler)(void);
 
-
-
 @property (nonatomic,strong) DriverDetails *driverRideDetails;
 @property (nonatomic,strong) Ride *joinedRide;
 @property (nonatomic,strong) CreatedRide *createdRide;
