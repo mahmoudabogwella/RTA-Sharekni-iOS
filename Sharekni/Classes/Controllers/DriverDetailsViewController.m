@@ -89,7 +89,7 @@
     NSString *accountID = self.bestDriver ? self.bestDriver.AccountId : self.mostRideDetails ? self.mostRideDetails.AccountId : self.driverSearchResult.DriverId;
     
     if (self.joinedRide){
-        accountID = [NSString stringWithFormat:@"%@",self.joinedRide.DriverId];
+        accountID = [NSString stringWithFormat:@"%@",self.joinedRide.Account.stringValue];
     }
     
     [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:accountID WithSuccess:^(NSMutableArray *array)

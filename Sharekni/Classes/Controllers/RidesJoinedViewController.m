@@ -99,7 +99,7 @@
 #pragma mark UITableView Delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 210;
+    return 220;
 }
 
 - (void)leaveRide:(Ride *)ride{

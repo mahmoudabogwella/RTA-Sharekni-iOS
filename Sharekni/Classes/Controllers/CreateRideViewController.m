@@ -224,8 +224,8 @@
     
     //Vehicle
     if (self.vehicles && (self.ride || self.routeDetails)) {
-        NSString *ID = self.routeDetails.VehicelId.stringValue;
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID == %@",ID];
+        NSNumber *ID = self.routeDetails.VehicelId;
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID == %ld",ID.integerValue];
         NSArray *result = [self.vehicles filteredArrayUsingPredicate:predicate];
         self.selectedVehicle = result.count > 0 ? result[0]:nil;
         if (self.selectedVehicle) {

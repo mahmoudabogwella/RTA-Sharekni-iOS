@@ -16,7 +16,7 @@
 
 - (void)setJoinedRide:(Ride *)joinedRide
 {
-    _RouteName.text = joinedRide.RouteEnName;
+    _RouteName.text = joinedRide.Name_en;
     _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",joinedRide.FromEmirateEnName,joinedRide.FromRegionEnName];
     _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",joinedRide.ToEmirateEnName,joinedRide.ToRegionEnName];
 }

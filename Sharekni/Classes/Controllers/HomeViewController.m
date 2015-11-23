@@ -78,6 +78,11 @@
     [self getNotifications];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = NO;
+}
+
 #pragma Data
 - (void) configureData{
     self.sharedUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
@@ -150,9 +155,6 @@
         [self.bottomRightView addGestureRecognizer:bottomRightGesture];
     }
     
-    
-    
-    
 }
 
 - (void) configureUI{
@@ -209,16 +211,13 @@
     
 }
 
-
-- (IBAction)openNotifications:(id)sender
-{
+- (IBAction)openNotifications:(id)sender{
     NotificationsViewController *notificationsView = [[NotificationsViewController alloc] initWithNibName:@"NotificationsViewController" bundle:nil];
     notificationsView.notifications = self.notifications ;
     [self.navigationController pushViewController:notificationsView animated:YES];
 }
 
-- (void)getNotifications
-{
+- (void)getNotifications{
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block HomeViewController *blockSelf = self;
@@ -244,8 +243,7 @@
     }];
 }
 
-- (void)getAcceptedNotifications
-{
+- (void)getAcceptedNotifications{
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block HomeViewController *blockSelf = self;
@@ -269,8 +267,7 @@
     }];
 }
 
-- (void)showVeichles:(id)sender
-{
+- (void)showVeichles:(id)sender{
 //    SavedSearchViewController *savedView = [[SavedSearchViewController alloc] initWithNibName:@"SavedSearchViewController" bundle:nil];
 //    [self.navigationController pushViewController:savedView animated:YES];
     
@@ -282,6 +279,7 @@
     CreatedRidesViewController *createdRideViewController = [[CreatedRidesViewController alloc] initWithNibName:@"CreatedRidesViewController" bundle:nil];
     [self.navigationController pushViewController:createdRideViewController animated:YES];
 }
+
 - (void) showJoinedRides{
     RidesJoinedViewController *joinedRidesViewController =  [[RidesJoinedViewController alloc] initWithNibName:@"RidesJoinedViewController" bundle:nil];
     [self.navigationController pushViewController:joinedRidesViewController animated:YES];
