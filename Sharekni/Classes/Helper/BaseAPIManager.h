@@ -17,4 +17,7 @@
 
 - (void) GetPhotoWithName:(NSString *)name withSuccess:(void (^)(UIImage *image,NSString *filePath))success Failure:(void (^)(NSString *error))failure;
 
+- (void) uploadPhoto:(UIImage *)image withSuccess:(void (^)(NSString *fileName))success
+             Failure:(void (^)(NSString *error))failure;
+
 @end

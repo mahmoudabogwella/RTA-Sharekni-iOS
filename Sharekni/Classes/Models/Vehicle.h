@@ -28,7 +28,6 @@
 @property (nonatomic,strong) NSString *TypeEnName;
 @property (nonatomic,strong) NSString *ClassArName;
 @property (nonatomic,strong) NSString *ClassEnName;
-
 @property (nonatomic,strong) NSString *NoOfSeats;
 @property (nonatomic,strong) NSString *VehcileArStatus;
 @property (nonatomic,strong) NSString *VehcileEnStatus;

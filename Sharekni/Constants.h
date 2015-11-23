@@ -57,16 +57,16 @@
 #define GetMostRideDetails_URL @"cls_mobios.asmx/GetMostDesiredRideDetails"
 #define GetDriverRideDetails_URL @"cls_mobios.asmx/GetDriverDetailsByAccountId"
 #define GetRouteByRouteId_URL @"cls_mobios.asmx/GetRouteByRouteId"
-#define GetReviewList_URL @"CLS_Mobios.asmx/Driver_GetReviewList"
-#define Passenger_ReviewDriver @"CLS_Mobios.asmx/Passenger_ReviewDriver"
-#define Passenger_SendAlert @"CLS_Mobios.asmx/Passenger_SendAlert"
-#define Driver_AcceptRequest @"CLS_Mobios.asmx/Driver_AcceptRequest"
+#define GetReviewList_URL @"cls_mobios.asmx/Driver_GetReviewList"
+#define Passenger_ReviewDriver @"cls_mobios.asmx/Passenger_ReviewDriver"
+#define Passenger_SendAlert @"cls_mobios.asmx/Passenger_SendAlert"
+#define Driver_AcceptRequest @"cls_mobios.asmx/Driver_AcceptRequest"
 
 
 
-#define Passenger_GetSavedSearch @"CLS_Mobios.asmx/Passenger_GetSavedSearch"
-#define RegisterVehicleWithETService @"CLS_Mobios.asmx/Driver_RegisterVehicleWithETService"
-#define GetVehicleById @"CLS_Mobios.asmx/GetVehicleById"
+#define Passenger_GetSavedSearch @"cls_mobios.asmx/Passenger_GetSavedSearch"
+#define RegisterVehicleWithETService @"cls_mobios.asmx/Driver_RegisterVehicleWithETService"
+#define GetVehicleById @"cls_mobios.asmx/GetVehicleById"
 
 
 

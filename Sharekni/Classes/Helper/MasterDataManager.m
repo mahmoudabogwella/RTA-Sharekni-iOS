@@ -305,7 +305,7 @@
 
 - (void) getRideDetails:(NSString *)accountID FromEmirateID:(NSString *)fromEmirateID FromRegionID:(NSString *)fromRegionID ToEmirateID:(NSString *)toEmirateID ToRegionID:(NSString *)toRegionID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/GetMostDesiredRideDetails?AccountID=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@",accountID,fromEmirateID,fromRegionID,toEmirateID,toRegionID];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetMostDesiredRideDetails?AccountID=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@",accountID,fromEmirateID,fromRegionID,toEmirateID,toRegionID];
 
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
       
@@ -334,7 +334,7 @@
 
 - (void) getDriverRideDetails:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/GetDriverDetailsByAccountId?AccountId=%@",accountID];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetDriverDetailsByAccountId?AccountId=%@",accountID];
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -363,7 +363,7 @@
 
 - (void) GetRouteByRouteId:(NSString *)routeID withSuccess:(void (^)(RouteDetails *routeDetails))success Failure:(void (^)(NSString *error))failure{
     
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/GetRouteByRouteId?RouteId=%@",routeID];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetRouteByRouteId?RouteId=%@",routeID];
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -393,7 +393,7 @@
 
 - (void) getReviewList:(NSString *)driverID andRoute:(NSString *)routeID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Driver_GetReviewList?DriverId=%@&RouteId=%@",driverID,routeID];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_GetReviewList?DriverId=%@&RouteId=%@",driverID,routeID];
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -420,7 +420,7 @@
 
 - (void) getSavedSearch:(NSString *)accountID withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Passenger_GetSavedSearch?AccountId=%@",accountID];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_GetSavedSearch?AccountId=%@",accountID];
     
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
@@ -458,7 +458,7 @@
         success(savedVehicles);
     }
     else{
-        NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/GetByDriverId?id=%@",accountID];
+        NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetByDriverId?id=%@",accountID];
         
         __block MasterDataManager *blockSelf = self;
         [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
@@ -492,9 +492,9 @@
 {
     NSString *path ;
     if (isDriver) {
-        path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Driver_AlertsForRequest?d_AccountId=%@",accountID];
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_AlertsForRequest?d_AccountId=%@",accountID];
     }else{
-        path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Passenger_GetAcceptedRequestsFromDriver?accountId=%@",accountID];
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_GetAcceptedRequestsFromDriver?accountId=%@",accountID];
     }
 
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
@@ -523,7 +523,7 @@
 
 - (void)getPermits:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/GetPermitByDriverId?id=%@",accountID];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetPermitByDriverId?id=%@",accountID];
 
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
@@ -620,7 +620,7 @@
 }
 
 - (void) deletePassengerWithID:(NSString *)passengerID withSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Driver_RemovePassenger?RoutePassengerId=%@",passengerID];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_RemovePassenger?RoutePassengerId=%@",passengerID];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];

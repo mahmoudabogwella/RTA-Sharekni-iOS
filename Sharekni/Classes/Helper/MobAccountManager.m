@@ -252,7 +252,7 @@
 }
 
 - (void) getCreatedRidesWithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Driver_MyRides?AccountId=%@",self.applicationUser.ID.stringValue];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_MyRides?AccountId=%@",self.applicationUser.ID.stringValue];
     
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -387,7 +387,7 @@
 
 - (void) getUser:(NSString *)userID WithSuccess:(void (^)(User *user))success Failure:(void (^)(NSString *error))failure
 {
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/CLS_Mobios.asmx/Get?id=%@",userID];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Get?id=%@",userID];
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -414,7 +414,7 @@
 }
 
 - (void) deleteRideWithID:(NSString *)rideID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure{
-    NSString *path =[NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Route_Delete?RouteId=%@",rideID];
+    NSString *path =[NSString stringWithFormat:@"cls_mobios.asmx/Route_Delete?RouteId=%@",rideID];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
@@ -432,7 +432,7 @@
 
 
 - (void) leaveRideWithID:(NSString *) routeID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure{
-    NSString *path =[NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Route_Delete?RouteId=%@",routeID];
+    NSString *path =[NSString stringWithFormat:@"cls_mobios.asmx/Route_Delete?RouteId=%@",routeID];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
@@ -454,7 +454,7 @@
         Passenger *passenger = passengers[i];
         passengersString = [passengersString stringByAppendingString:[NSString stringWithFormat:@",%@",passenger.ID.stringValue]];
     }
-    NSString *path =[NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Permit_Insert?AccountId=%@&RouteId=%@&VehicleId=%@&_passengerIDs=%@",self.applicationUserID,routeID,vehicleId,passengersString];
+    NSString *path =[NSString stringWithFormat:@"cls_mobios.asmx/Permit_Insert?AccountId=%@&RouteId=%@&VehicleId=%@&_passengerIDs=%@",self.applicationUserID,routeID,vehicleId,passengersString];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
@@ -466,7 +466,7 @@
 
 - (void) addPassengerRatingWithPassengerID:(NSString *)PassengerID inRouteID:(NSString *)routeID noOfStars:(NSInteger)noOfStars WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
     NSString *driverID = self.applicationUserID;
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Driver_RatePassenger?DriverId=%@&PassengerId=%@&RouteId=%@&NoOfStars=%ld",driverID,PassengerID,routeID,(long)noOfStars];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_RatePassenger?DriverId=%@&PassengerId=%@&RouteId=%@&NoOfStars=%ld",driverID,PassengerID,routeID,(long)noOfStars];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
@@ -478,7 +478,7 @@
 
 - (void) addDriverRatingWithDriverID:(NSString *)driverID inRouteID:(NSString *)routeID noOfStars:(NSInteger)noOfStars WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
     NSString *passengerID = self.applicationUserID;
-    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Passenger_RateDriver?PassengerId=%@&DriverId=%@&RouteId=%@&NoOfStars=%ld",passengerID,driverID,routeID,(long)noOfStars];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_RateDriver?PassengerId=%@&DriverId=%@&RouteId=%@&NoOfStars=%ld",passengerID,driverID,routeID,(long)noOfStars];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];

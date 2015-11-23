@@ -193,10 +193,10 @@
     NSString *fri = friday    ? @"1":@"0";
     NSString *path;
     if (isEdit) {
-        path =[NSString stringWithFormat:@"cls_mobios.asmx/Driver_CreateCarpool?AccountID=%@",accountID];
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_EditCarpool?RouteID=%@",routeID];
     }
     else{
-        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_EditCarpool?RouteID=%@",routeID];
+        path =[NSString stringWithFormat:@"cls_mobios.asmx/Driver_CreateCarpool?AccountID=%@",accountID];
     }
     NSString *requestBody = [NSString stringWithFormat:@"%@&EnName=%@&FromEmirateID=%@&ToEmirateID=%@&FromRegionID=%@&ToRegionID=%@&IsRounded=%@&Time=%@&Saturday=%@&Sunday=%@&Monday=%@&Tuesday=%@&Wednesday=%@&Thursday=%@&Friday=%@&PreferredGender=%@&VehicleID=%@&NoOfSeats=%@&StartLat=&StartLng=&EndLat=&EndLng=&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@",path,name,fromEmirateID,toEmirateID,fromRegionID,toRegionID,_isRounded,timeString,sat,sun,mon,tue,wed,thu,fri,gender,vehicleID,_noOfSeats,languageId,nationalityId,ageRangeId,dateString];
     
