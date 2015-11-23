@@ -22,6 +22,7 @@
                 <outlet property="passengersHeader" destination="BlE-VM-j4C" id="NWf-zu-0Y1"/>
                 <outlet property="passengersList" destination="97m-7E-oqK" id="aQF-i1-3wf"/>
                 <outlet property="passengersView" destination="vjd-hS-iMq" id="m5g-KK-T4y"/>
+                <outlet property="placeholderRatingView" destination="YP5-MH-Aqo" id="89D-M8-xa2"/>
                 <outlet property="preferenceLbl" destination="oCf-Pl-KTs" id="PSw-Zq-YxI"/>
                 <outlet property="preferenceView" destination="U8L-oZ-DXX" id="KT4-ue-AgB"/>
                 <outlet property="reviewLbl" destination="o27-7B-X0W" id="WTv-S6-8wf"/>
@@ -108,8 +109,8 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nlI-jg-Wm7">
-                                    <rect key="frame" x="219" y="185" width="90" height="40"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="213" y="185" width="90" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
@@ -123,8 +124,8 @@
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vNr-el-GSR">
-                                    <rect key="frame" x="121" y="185" width="90" height="40"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="115" y="185" width="90" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
@@ -136,13 +137,10 @@
                                             <integer key="value" value="4"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="addReview:" destination="-1" eventType="touchUpInside" id="2qD-F3-1fy"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="anw-dn-P5a">
-                                    <rect key="frame" x="23" y="185" width="90" height="40"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="17" y="185" width="90" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
@@ -154,10 +152,13 @@
                                             <integer key="value" value="4"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="addReview:" destination="-1" eventType="touchUpInside" id="wZg-1D-57o"/>
-                                    </connections>
                                 </button>
+                                <view alpha="0.0" contentMode="scaleToFill" id="YP5-MH-Aqo">
+                                    <rect key="frame" x="17" y="185" width="186" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                             </subviews>
                             <animations/>
                             <color key="backgroundColor" white="0.33333333333333331" alpha="0.85478251689189189" colorSpace="calibratedWhite"/>

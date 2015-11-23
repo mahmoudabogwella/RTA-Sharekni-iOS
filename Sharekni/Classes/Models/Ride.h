@@ -12,11 +12,19 @@
 @property (nonatomic,strong) NSNumber *RoutePassengerId;
 @property (nonatomic,strong) NSNumber *DriverAccept;
 @property (nonatomic,strong) NSNumber *RouteID;
-@property (nonatomic,strong) NSNumber *DriverId;
+@property (nonatomic,strong) NSNumber *Account;
 
-@property (nonatomic,strong) NSString *RouteArName;
-@property (nonatomic,strong) NSString *RouteEnName;
-@property (nonatomic,strong) NSString *JoinDate;
+@property (nonatomic,strong) NSString *Name_ar;
+@property (nonatomic,strong) NSString *Name_en;
+
+@property (nonatomic,strong) NSString *Vehicle_ManufactureModel_ar;
+@property (nonatomic,strong) NSString *Vehicle_ManufactureModel_en;
+@property (nonatomic,strong) NSString *Vehicle_ManufactureName_ar;
+@property (nonatomic,strong) NSString *Vehicle_ManufactureName_en;
+
+@property (nonatomic,strong) NSNumber *NoOfSeats;
+@property (nonatomic,strong) NSNumber *NoOfSeatsAvailable;
+
 @property (nonatomic,strong) NSString *DriverMobile;
 @property (nonatomic,strong) NSString *DriverName;
 @property (nonatomic,strong) NSString *DriverPhoto;

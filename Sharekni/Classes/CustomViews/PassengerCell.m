@@ -19,6 +19,7 @@
         self.ratingView.maximumValue = 5;
         self.ratingView.minimumValue = 0;
         self.ratingView.value = 0;
+        self.ratingView.spacing = 5;
         self.ratingView.tintColor = Yellow_UIColor;
         [self.ratingView addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
         self.ratingView.accurateHalfStars = YES;

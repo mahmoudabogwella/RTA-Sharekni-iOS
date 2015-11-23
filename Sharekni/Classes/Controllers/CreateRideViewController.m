@@ -117,7 +117,7 @@
 @property (assign,nonatomic) BOOL thrActive;
 @property (assign,nonatomic) BOOL friActive;
 @property (assign, nonatomic) NSInteger noOfSeats;
-@property (strong, nonatomic) RouteDetails *routeDetails;
+
 @end
 
 @implementation CreateRideViewController
@@ -144,25 +144,41 @@
 - (void) configureEditMode{
     
     //Emirates and regions view
-    self.helpLabel.alpha = 0;
-    self.emiratesAndRegionsView.alpha = 1;
-    NSString *fromText = [NSString stringWithFormat:@"%@,%@",self.ride.FromEmirateEnName,self.ride.FromRegionEnName];
     
-    self.startPointLabel.text = fromText;
-    
-    NSString *toText = [NSString stringWithFormat:@"%@,%@",self.ride.ToEmirateEnName,self.ride.ToRegionEnName];
-    self.destinationLabel.text = toText;
-    
-    __block CreateRideViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
-    [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:self.ride.RouteID.stringValue withSuccess:^(RouteDetails *routeDetails) {
+    if (self.routeDetails) {
         [KVNProgress dismiss];
-        blockSelf.routeDetails = routeDetails;
-        [blockSelf configureUIWithRouteDetails];
-    } Failure:^(NSString *error) {
-        [KVNProgress dismiss];
-        [blockSelf handleManagerFailure];
-    }];
+        self.helpLabel.alpha = 0;
+        self.emiratesAndRegionsView.alpha = 1;
+        
+        NSString *fromText = [NSString stringWithFormat:@"%@,%@",self.routeDetails.FromEmirateEnName,self.routeDetails.FromRegionEnName];
+        
+        self.startPointLabel.text = fromText;
+        
+        NSString *toText = [NSString stringWithFormat:@"%@,%@",self.routeDetails.ToEmirateEnName,self.routeDetails.ToRegionEnName];
+        self.destinationLabel.text = toText;
+        [self configureUIWithRouteDetails];
+    }
+    else{
+        self.helpLabel.alpha = 0;
+        self.emiratesAndRegionsView.alpha = 1;
+        NSString *fromText = [NSString stringWithFormat:@"%@,%@",self.ride.FromEmirateEnName,self.ride.FromRegionEnName];
+        
+        self.startPointLabel.text = fromText;
+        
+        NSString *toText = [NSString stringWithFormat:@"%@,%@",self.ride.ToEmirateEnName,self.ride.ToRegionEnName];
+        self.destinationLabel.text = toText;
+        
+        __block CreateRideViewController *blockSelf = self;
+        [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+        [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:self.ride.RouteID.stringValue withSuccess:^(RouteDetails *routeDetails_) {
+            [KVNProgress dismiss];
+            blockSelf.routeDetails = routeDetails_;
+            [blockSelf configureUIWithRouteDetails];
+        } Failure:^(NSString *error) {
+            [KVNProgress dismiss];
+            [blockSelf handleManagerFailure];
+        }];
+    }
 }
 
 - (void) configureUIWithRouteDetails{
@@ -181,7 +197,7 @@
     dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSDate *startDate = [dateFormatter dateFromString:self.routeDetails.StartDate];
     
-    dateFormatter.dateFormat = @"EEE,  dd/MM/yyyy";
+    dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [dateFormatter stringFromDate:startDate];
     self.dateLabel.text  = dateString;
     
@@ -207,9 +223,9 @@
     self.timeLabel.text = timeString;
     
     //Vehicle
-    if (self.vehicles && self.ride) {
+    if (self.vehicles && (self.ride || self.routeDetails)) {
         NSString *ID = self.routeDetails.VehicelId.stringValue;
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID ==%@",ID];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID == %@",ID];
         NSArray *result = [self.vehicles filteredArrayUsingPredicate:predicate];
         self.selectedVehicle = result.count > 0 ? result[0]:nil;
         if (self.selectedVehicle) {
@@ -658,7 +674,7 @@
                 blockSelf.ageRanges = array;
                 [[MasterDataManager sharedMasterDataManager] GetPrefferedLanguagesWithSuccess:^(NSMutableArray *array) {
                     blockSelf.languages = array;
-                    if (blockSelf.isEdit) {
+                    if (blockSelf.isEdit || self.routeDetails) {
                         [blockSelf configureEditMode];
                     }
                     else{
@@ -879,7 +895,7 @@
     __block CreateRideViewController *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select",nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
-        blockSelf.dateFormatter.dateFormat = @"EEE,  dd/MM/yyyy";
+        blockSelf.dateFormatter.dateFormat = @"dd/MM/yyyy";
         NSString *dateString = [self.dateFormatter stringFromDate:date];
         blockSelf.dateLabel.text = dateString;
         
