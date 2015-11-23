@@ -102,6 +102,8 @@
     [self configureUI];
     [self configrueNationalityAutoCompelete];
     [self configureData];
+    
+    self.isMale = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
