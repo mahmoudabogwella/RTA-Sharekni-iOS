@@ -17,6 +17,8 @@
 #import "UIView+Borders.h"
 #import "Constants.h"
 #import <UIColor+Additions/UIColor+Additions.h>
+#import "RideDetailsViewController.h"
+#import "DriverDetailsViewController.h"
 
 @interface HistoryViewController ()
 {
@@ -47,8 +49,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.title = @"History";
+    
+    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setHighlighted:NO];
+    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+   
     [self configureUI];
     [self getCreatedRides];
+}
+
+- (void)popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)configureUI
@@ -91,7 +107,8 @@
     }];
 }
 
-- (void) getJoinedRides{
+- (void) getJoinedRides
+{
     __block HistoryViewController *blockSelf = self;
     [[MobAccountManager sharedMobAccountManager] getJoinedRidesWithSuccess:^(NSMutableArray *array) {
         blockSelf.joinRides = array;
@@ -105,8 +122,8 @@
             
             [self.contentView setContentSize:CGSizeMake(self.contentView.frame.size.width,createdView.frame.origin.y + createdView.frame.size.height)];
             
-            if (self.joinRides.count > 0){
-                
+            if (self.joinRides.count > 0)
+            {
                 joinedLblName.frame = CGRectMake(joinedLblName.frame.origin.x, createdView.frame.origin.y + createdView.frame.size.height + 9.0f, joinedLblName.frame.size.width, joinedLblName.frame.size.height);
                 
                 self.joinRidesList.frame = CGRectMake(self.joinRidesList.frame.origin.x, self.joinRidesList.frame.origin.y, self.joinRidesList.frame.size.width, self.joinRides.count *183.0f);
@@ -181,7 +198,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //    CreatedRide *ride = self.createdRides[indexPath.row];
-    
+    if (tableView.tag == 0)
+    {
+        CreatedRide *ride = self.createdRides[indexPath.row];
+        RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:@"RideDetailsViewController" bundle:nil];
+        rideDetails.createdRide = ride ;
+        [self.navigationController pushViewController:rideDetails animated:YES];
+    }
+    else
+    {
+        Ride *ride = self.joinRides[indexPath.row];
+        DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
+        driverDetails.joinedRide = ride ;
+        [self.navigationController pushViewController:driverDetails animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

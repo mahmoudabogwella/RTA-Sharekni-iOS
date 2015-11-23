@@ -16,7 +16,7 @@
 #import <UIColor+Additions.h>
 #import "MasterDataManager.h"
 #import "RideDetailsViewController.h"
-
+#import "MobAccountManager.h"
 
 @interface DriverDetailsViewController () <MFMessageComposeViewControllerDelegate>
 
@@ -86,9 +86,13 @@
 {
     __block DriverDetailsViewController *blockSelf = self;
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-    NSString *ID = self.bestDriver ? self.bestDriver.AccountId : self.mostRideDetails ? self.mostRideDetails.AccountId : self.driverSearchResult.DriverId;
+    NSString *accountID = self.bestDriver ? self.bestDriver.AccountId : self.mostRideDetails ? self.mostRideDetails.AccountId : self.driverSearchResult.DriverId;
     
-    [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:ID WithSuccess:^(NSMutableArray *array)
+    if (self.joinedRide){
+        accountID = [NSString stringWithFormat:@"%@",self.joinedRide.DriverId];
+    }
+    
+    [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:accountID WithSuccess:^(NSMutableArray *array)
     {
         blockSelf.driverRides = array;
         [KVNProgress dismiss];
