@@ -29,6 +29,8 @@
 #import "MobAccountManager.h"
 #import "PassengerCell.h"
 #import "Passenger.h"
+#import "CreateRideViewController.h"
+#import "HCSStarRatingView.h"
 
 #define VERTICAL_SPACE 15
 #define REVIEWS_CELL_HEIGHT  110
@@ -62,11 +64,14 @@
     __weak IBOutlet UIButton *secondButton;
     __weak IBOutlet UIView *reviewsView ;
     __weak IBOutlet UITableView *passengersList;
+    __weak IBOutlet UIView *placeholderRatingView;
     GMSMapView *_mapView;
     __weak IBOutlet UIButton *firstButton;
     __weak IBOutlet UIView *passengersView;
     __weak IBOutlet UIButton *thirdButton;
 }
+
+@property (nonatomic ,strong) HCSStarRatingView *driverRatingsView ;
 
 @property (nonatomic ,strong) NSMutableArray *reviews ;
 @property (nonatomic ,strong) NSMutableArray *markers ;
@@ -129,8 +134,55 @@
     firstButton.alpha = 0;
     secondButton.alpha = 0;
     thirdButton.alpha = 0;
+
     [self configureMapView];
     [self configureData];
+}
+
+- (HCSStarRatingView *)driverRatingsView{
+    if (!_driverRatingsView) {
+        _driverRatingsView = [[HCSStarRatingView alloc] initWithFrame:placeholderRatingView.frame];
+        _driverRatingsView.maximumValue = 5;
+        _driverRatingsView.minimumValue = 0;
+        _driverRatingsView.value = 0;
+        _driverRatingsView.tintColor = [UIColor whiteColor];
+        _driverRatingsView.backgroundColor = [UIColor clearColor];
+        [_driverRatingsView addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
+        _driverRatingsView.accurateHalfStars = YES;
+        _driverRatingsView.emptyStarImage = [[UIImage imageNamed:@"star-empty"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        _driverRatingsView.filledStarImage = [[UIImage imageNamed:@"start-filled"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [placeholderRatingView removeFromSuperview];
+    }
+    return _driverRatingsView;
+}
+
+- (void)didChangeValue:(HCSStarRatingView *)sender {
+ //Rate Driver
+    __block RideDetailsViewController *blockSelf = self;
+    NSString *driverID = self.driverDetails ? self.driverDetails.ID : self.joinedRide.Account.stringValue;
+    NSString *routeID;
+    if (self.driverDetails) {
+        routeID = self.driverDetails.RouteId;
+    }
+    else if (self.createdRide){
+        routeID = self.createdRide.RouteID.stringValue;
+    }
+    else if (self.joinedRide){
+        routeID = self.joinedRide.RouteID.stringValue;
+    }
+    
+    [[MobAccountManager sharedMobAccountManager] addDriverRatingWithDriverID:driverID inRouteID:routeID noOfStars:sender.value WithSuccess:^(NSString *response) {
+        [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Rating added successfully", nil)];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+        } afterDelay:3];
+        
+    } Failure:^(NSString *error) {
+        [KVNProgress showErrorWithStatus:NSLocalizedString(@"Unable to add Rating now", nil)];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+        } afterDelay:3];
+    }];
 }
 
 - (void) popViewController{
@@ -275,6 +327,7 @@
         firstButton.alpha = 1;
         secondButton.alpha = 0;
         thirdButton.alpha = 0;
+        [locationsView addSubview:self.driverRatingsView];
     }
 }
 
@@ -402,11 +455,32 @@
 }
 
 - (void) editRideAction{
-    
+    CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
+    editRideViewController.routeDetails = self.routeDetails;
+    [self.navigationController pushViewController:editRideViewController animated:YES];
 }
 
 - (void) permitRideAction{
-    
+    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    __block RideDetailsViewController *blockSelf = self;
+    NSMutableArray *passengersIDS = [NSMutableArray array];
+    for (Passenger *passenger in self.passengers) {
+        [passengersIDS addObject:passenger.ID.stringValue];
+    }
+    [[MobAccountManager sharedMobAccountManager] addPermitForRouteID:self.routeDetails.ID.stringValue vehicleId:self.routeDetails.VehicelId.stringValue passengerIDs:passengersIDS withSuccess:^(NSString *addedSuccessfully) {
+        [KVNProgress dismiss];
+        [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Permit added successfully.", nil)];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+            [blockSelf configureData];
+        } afterDelay:3];
+    } Failure:^(NSString *error) {
+        [KVNProgress showErrorWithStatus:NSLocalizedString(@"an error occured when permit this ride", nil)];
+        [blockSelf configureData];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+        } afterDelay:3];
+    }];
 }
 
 - (void) cancelButtonClicked:(AddReviewViewController *)addReviewViewController{
@@ -419,7 +493,6 @@
 - (IBAction)joinThisRide:(id)sender{
 
 }
-
 
 - (void) deleteRide{
     [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
@@ -532,6 +605,7 @@
             [alertView show];
         }];
         [passengerCell setRatingHandler:^(float rating) {
+            [blockSelf addRatingForPassenger:blockPasseger noOfStars:rating];
             NSLog(@"Rating handler");
         }];
         return passengerCell ;
@@ -586,6 +660,31 @@
     endMarker.icon = [UIImage imageNamed:@"Location"];
     endMarker.map = _mapView;
     [self.markers addObject:endMarker];
+    
+    GMSMutablePath *path = [GMSMutablePath path];
+    [path addCoordinate:CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue)];
+    [path addCoordinate:CLLocationCoordinate2DMake(self.routeDetails.EndLat.doubleValue,self.routeDetails.EndLng.doubleValue)];
+    
+    GMSPolyline *rectangle = [GMSPolyline polylineWithPath:path];
+    rectangle.strokeWidth = 2.f;
+    rectangle.strokeColor = Red_UIColor;
+    rectangle.map = _mapView;
+}
+
+- (void) addRatingForPassenger:(Passenger *)passenger noOfStars:(NSInteger)noOfStars{
+    __block RideDetailsViewController *blockSelf = self;
+[[MobAccountManager sharedMobAccountManager] addPassengerRatingWithPassengerID:passenger.ID.stringValue inRouteID:self.routeDetails.ID.stringValue noOfStars:noOfStars WithSuccess:^(NSString *response) {
+    [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Rating added successfully", nil)];
+    [blockSelf performBlock:^{
+        [KVNProgress dismiss];
+    } afterDelay:3];
+
+} Failure:^(NSString *error) {
+    [KVNProgress showErrorWithStatus:NSLocalizedString(@"Unable to add Rating now", nil)];
+    [blockSelf performBlock:^{
+        [KVNProgress dismiss];
+    } afterDelay:3];
+}];
 }
 
 //- (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
@@ -617,8 +716,7 @@
 
 
 #pragma mark - Message Delegate
-- (void)sendSMSFromPhone:(NSString *)phone
-{
+- (void)sendSMSFromPhone:(NSString *)phone{
     if(![MFMessageComposeViewController canSendText])
     {
         UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -636,8 +734,7 @@
     [self presentViewController:messageController animated:YES completion:nil];
 }
 
-- (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{
+- (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     switch(result)
     {
         case MessageComposeResultCancelled: break; //handle cancelled event

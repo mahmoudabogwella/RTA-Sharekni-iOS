@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CreateRideViewController.h"
 #import "CreatedRide.h"
+#import "RouteDetails.h"
 
 @interface CreateRideViewController : UIViewController
 
 @property (nonatomic,strong) CreatedRide *ride;
+@property (strong, nonatomic) RouteDetails *routeDetails;
 @property (nonatomic, copy) void (^doneHandler)(void);
 
 @end

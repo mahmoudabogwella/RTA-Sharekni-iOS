@@ -42,7 +42,7 @@
 @property (strong,nonatomic) NSArray *languages;
 @property (strong,nonatomic) NSArray *ageRanges;
 @property (strong,nonatomic) NSArray *emirates;
-@property (strong,nonatomic) NSDictionary *vehiclesDictionary;
+@property (strong,nonatomic) NSMutableDictionary *vehiclesDictionary;
 
 @property (strong,nonatomic) TermsAndCondition *termsAndCondition;
 @property (strong,nonatomic) NSMutableDictionary *regionsDictionary;

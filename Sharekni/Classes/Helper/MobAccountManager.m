@@ -12,6 +12,7 @@
 #import "Ride.h"
 #import "Sharekni.pch"
 #import "CreatedRide.h"
+
 #define ID_KEY @"id"
 
 #define FirstName_KEY @"firstName"
@@ -229,7 +230,7 @@
 
 - (void) getJoinedRidesWithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
 
-    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_GetJoinedRides?AccountId=%@",self.applicationUser.ID.stringValue];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_MyApprovedRides?AccountId=%@",self.applicationUser.ID.stringValue];
     
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -420,6 +421,46 @@
         else{
             success(NO);
         }
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+}
+
+- (void) addPermitForRouteID:(NSString *)routeID vehicleId:(NSString *)vehicleId passengerIDs:(NSArray *)passengers withSuccess:(void (^)(NSString *addedSuccessfully))success Failure:(void (^)(NSString *error))failure{
+    NSString *passengersString = [NSString stringWithFormat:@"%@",((Passenger *)passengers[0]).ID.stringValue];
+    for (int i=1; i<passengers.count; i++) {
+        Passenger *passenger = passengers[i];
+        passengersString = [passengersString stringByAppendingString:[NSString stringWithFormat:@",%@",passenger.ID.stringValue]];
+    }
+    NSString *path =[NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Permit_Insert?AccountId=%@&RouteId=%@&VehicleId=%@&_passengerIDs=%@",self.applicationUserID,routeID,vehicleId,passengersString];
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+            success(responseObject);
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+}
+
+- (void) addPassengerRatingWithPassengerID:(NSString *)PassengerID inRouteID:(NSString *)routeID noOfStars:(NSInteger)noOfStars WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
+    NSString *driverID = self.applicationUserID;
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Driver_RatePassenger?DriverId=%@&PassengerId=%@&RouteId=%@&NoOfStars=%ld",driverID,PassengerID,routeID,(long)noOfStars];
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        success(responseObject);
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+}
+
+- (void) addDriverRatingWithDriverID:(NSString *)driverID inRouteID:(NSString *)routeID noOfStars:(NSInteger)noOfStars WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
+    NSString *passengerID = self.applicationUserID;
+    NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Passenger_RateDriver?PassengerId=%@&DriverId=%@&RouteId=%@&NoOfStars=%ld",passengerID,driverID,routeID,(long)noOfStars];
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        success(responseObject);
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         failure(error.localizedDescription);
     }];
