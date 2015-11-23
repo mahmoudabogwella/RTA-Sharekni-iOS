@@ -35,7 +35,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void) configureTableView{
@@ -46,7 +46,9 @@
 
 - (void) configureData{
     __block RidesJoinedViewController *blockSelf = self;
+    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
     [[MobAccountManager sharedMobAccountManager] getJoinedRidesWithSuccess:^(NSMutableArray *array) {
+        [KVNProgress dismiss];
         blockSelf.rides = array;
         [blockSelf.tableView reloadData];
         

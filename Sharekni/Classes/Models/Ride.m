@@ -16,19 +16,21 @@
     mapping[@"RoutePassengerId"] = @"RoutePassengerId";
     mapping[@"DriverAccept"] = @"DriverAccept";
     mapping[@"RouteID"] = @"RouteID";
-    mapping[@"DriverId"] = @"DriverId";
-    mapping[@"RouteArName"] = @"RouteArName";
-    mapping[@"RouteEnName"] = @"RouteEnName";
-    mapping[@"JoinDate"] = @"JoinDate";
+    mapping[@"Account"] = @"Account";
+    mapping[@"Name_ar"] = @"Name_ar";
+    mapping[@"Name_en"] = @"Name_en";
+    
+    mapping[@"Vehicle_ManufactureModel_ar"] = @"Vehicle_ManufactureModel_ar";
+    mapping[@"Vehicle_ManufactureModel_en"] = @"Vehicle_ManufactureModel_en";
+    mapping[@"Vehicle_ManufactureName_ar"] = @"Vehicle_ManufactureName_ar";
+    mapping[@"Vehicle_ManufactureName_en"] = @"Vehicle_ManufactureName_en";
+    
+    mapping[@"NoOfSeats"] = @"NoOfSeats";
+    mapping[@"NoOfSeatsAvailable"] = @"NoOfSeatsAvailable";
+    
     mapping[@"DriverMobile"] = @"DriverMobile";
     mapping[@"DriverName"] = @"DriverName";
     mapping[@"DriverPhoto"] = @"DriverPhoto";
-    mapping[@"DriverNationalityId"] = @"DriverNationalityId";
-    mapping[@"DriverNationalityArName"] = @"DriverNationalityArName";
-    mapping[@"DriverNationalityEnName"] = @"DriverNationalityEnName";
-    mapping[@"DriverNationalityFrName"] = @"DriverNationalityFrName";
-    mapping[@"DriverNationalityChName"] = @"DriverNationalityChName";
-    mapping[@"DriverNationalityUrName"] = @"DriverNationalityUrName";
     
     mapping[@"FromEmirateArName"] = @"FromEmirateArName";
     mapping[@"FromEmirateEnName"] = @"FromEmirateEnName";
@@ -53,7 +55,7 @@
     mapping[@"ToRegionNameFr"] = @"ToRegionNameFr";
     mapping[@"ToRegionNameCh"] = @"ToRegionNameCh";
     mapping[@"ToRegionNameUr"] = @"ToRegionNameUr";
-
+    
     return mapping;
 }
 

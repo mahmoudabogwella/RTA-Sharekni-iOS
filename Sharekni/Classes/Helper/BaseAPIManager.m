@@ -92,6 +92,57 @@
     }
 }
 
+/*- (void) uploadPhoto:(UIImage *)image withSuccess:(void (^)(NSString *fileName))success
+                  Failure:(void (^)(NSString *error))failure{
+    if([name isEqualToString:@"NoImage.png"]){
+        success(nil,nil);
+    }
+    else{
+        NSString *imagesDirectory = [[HelpManager sharedHelpManager] imagesDirectory];
+        NSString *path = [imagesDirectory stringByAppendingPathComponent:name];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+            success(image,path);
+        }
+        else{
+            NSDictionary *parameters = @{fileName_KEY:name};
+            [self.operationManager GET:GetPhoto_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+                NSLog(@"%@",responseObject);
+                NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                NSString *base64Tag1 = @"<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+                NSString *base64Tag2 = @"<base64Binary xmlns=\"http://MobAccount.org/\">";
+                NSString *base64Tag3 = @"</base64Binary>";
+                NSString *base64tag4 = @"<base64Binary xmlns=\"http://tempuri.org/\">";
+                NSString *base64tag5 = @"<base64Binary xmlns=\"http://Sharekni-MobIOS-Data.org/\">";
+                
+                responseString = [responseString stringByReplacingOccurrencesOfString:base64Tag1 withString:@""];
+                responseString = [responseString stringByReplacingOccurrencesOfString:base64Tag2 withString:@""];
+                responseString = [responseString stringByReplacingOccurrencesOfString:base64Tag3 withString:@""];
+                responseString = [responseString stringByReplacingOccurrencesOfString:base64tag4 withString:@""];
+                responseString = [responseString stringByReplacingOccurrencesOfString:@"\r" withString:@" "];
+                responseString = [responseString stringByReplacingOccurrencesOfString:base64tag5 withString:@""];
+                responseString = [responseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                
+                NSLog(@"string %@",responseString);
+                //                NSString *test = @"asdasdasdasdasdasdqweqweqweqwejkbnjknknk";
+                //                NSString * x = [self encodeStringTo64:test];
+                //                responseString = [self encodeStringTo64:responseString];
+                responseString = [responseString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                NSData* data = [Base64 decode:responseString];
+                UIImage *image = [UIImage imageWithData:data];
+                NSData *pngData = UIImagePNGRepresentation(image);
+                [pngData writeToFile:path atomically:YES];
+                success(image,path);
+            } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+                NSLog(@"Error %@",error.description);
+                failure(error.description);
+            }];
+        }
+    }
+}
+ */
+
+
 - (NSString*)encodeStringTo64:(NSString*)fromString
 {
     NSData *plainData = [fromString dataUsingEncoding:NSUTF8StringEncoding];
