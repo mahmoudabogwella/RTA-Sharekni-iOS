@@ -90,6 +90,15 @@
     
     if (self.joinedRide){
         accountID = [NSString stringWithFormat:@"%@",self.joinedRide.DriverId];
+        [[MobAccountManager sharedMobAccountManager] getUser:accountID WithSuccess:^(User *user) {
+            [KVNProgress dismiss];
+            self.driverName.text = [NSString stringWithFormat:@"%@ %@",user.FirstName,user.LastName] ;
+            self.country.text = user.NationalityEnName ;
+            self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+            self.rate.text = [NSString stringWithFormat:@"%@",user.AccountRating];
+        } Failure:^(NSString *error) {
+            [KVNProgress dismiss];
+        }];
     }
     
     [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:accountID WithSuccess:^(NSMutableArray *array)

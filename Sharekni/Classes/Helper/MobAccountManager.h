@@ -43,5 +43,7 @@
 
 - (void) leaveRideWithID:(NSString *) routeID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure;
 
+- (void) getUser:(NSString *)userID WithSuccess:(void (^)(User *user))success Failure:(void (^)(NSString *error))failure;
+
 
 @end

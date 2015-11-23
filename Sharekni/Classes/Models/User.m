@@ -24,6 +24,7 @@
     mapping[@"GenderEn"] = @"GenderEn";
     mapping[@"Username"] = @"Username";
     mapping[@"Password"] = @"Password";
+    mapping[@"AccountRating"] = @"AccountRating";
     mapping[@"Active"] = @"Active";
     mapping[@"DateAdded"] = @"DateAdded";
     mapping[@"NationalityId"] = @"NationalityId";
