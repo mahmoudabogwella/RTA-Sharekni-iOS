@@ -10,6 +10,7 @@
 #import "MobAccountManager.h"
 #import "Constants.h"
 #import <KVNProgress/KVNProgress.h>
+#import "User.h"
 
 @implementation AddReviewViewController
 
@@ -34,8 +35,10 @@
         return ;
     }
     
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    
     [KVNProgress showWithStatus:@"Loading...."];
-    [[MobAccountManager sharedMobAccountManager] reviewDriver:_driverDetails.AccountId PassengerId:self.accountID RouteId:_driverDetails.RouteId ReviewText:viewText.text WithSuccess:^(NSString *user) {
+    [[MobAccountManager sharedMobAccountManager] reviewDriver:_driverDetails.AccountId PassengerId:[NSString stringWithFormat:@"%@",user.ID] RouteId:_driverDetails.RouteId ReviewText:viewText.text WithSuccess:^(NSString *user) {
     
         [KVNProgress dismiss];
 

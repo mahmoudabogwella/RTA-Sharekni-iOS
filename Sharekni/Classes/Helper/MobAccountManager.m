@@ -298,6 +298,8 @@
 
 - (void) joinRidePassenger:(NSString *)PassengerID RouteID:(NSString *)RouteID DriverID:(NSString *)DriverID Remark:(NSString *)remark WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
 {
+//    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_SendAlert?DriverId=%@&PassengerId=%@&RouteId=%@&s_Remarks=%@",DriverID,PassengerID,RouteID,remark];
+    
     NSDictionary *parameters = @{@"DriverId":DriverID,
                                  @"PassengerId":PassengerID,
                                  @"RouteId":RouteID,

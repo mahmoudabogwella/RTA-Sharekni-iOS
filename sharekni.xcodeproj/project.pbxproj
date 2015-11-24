@@ -1278,7 +1278,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rta.ae.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "30e41b80-40f6-4538-8001-37f38e36971d";
+				PROVISIONING_PROFILE = "aeb7e39d-f01b-49ff-971f-f4060d71e837";
 			};
 			name = Release;
 		};

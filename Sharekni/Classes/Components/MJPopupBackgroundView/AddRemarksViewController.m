@@ -10,6 +10,7 @@
 #import "MobAccountManager.h"
 #import "Constants.h"
 #import <KVNProgress/KVNProgress.h>
+#import "User.h"
 
 @interface AddRemarksViewController ()
 
@@ -39,7 +40,10 @@
     }
     
     [KVNProgress showWithStatus:@"Loading...."];
-    [[MobAccountManager sharedMobAccountManager] reviewDriver:_driverDetails.AccountId PassengerId:self.accountID RouteId:_driverDetails.RouteId ReviewText:viewText.text WithSuccess:^(NSString *user) {
+    
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    
+    [[MobAccountManager sharedMobAccountManager] joinRidePassenger:[NSString stringWithFormat:@"%@",user.ID] RouteID:self.driverDetails.RouteId DriverID:self.driverDetails.AccountId Remark:viewText.text WithSuccess:^(NSString *user) {
         
         [KVNProgress dismiss];
         
