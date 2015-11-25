@@ -12,6 +12,7 @@
 #import "Ride.h"
 #import "Sharekni.pch"
 #import "CreatedRide.h"
+#import "HelpManager.h"
 
 #define ID_KEY @"id"
 
@@ -115,6 +116,8 @@
             User *user = [User gm_mappedObjectWithJsonRepresentation:resultDictionary];
             self.applicationUser = user;
             __block MobAccountManager *blockSelf = self;
+            [[HelpManager sharedHelpManager] saveUserNameInUserDefaults:userName];
+            [[HelpManager sharedHelpManager] saveUserPasswordInUserDefaults:password];
             [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
                 blockSelf.applicationUser.userImage = image;
                 blockSelf.applicationUser.imageLocalPath = filePath;
@@ -489,6 +492,7 @@
         failure(error.localizedDescription);
     }];
 }
+
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MobAccountManager);
 @end

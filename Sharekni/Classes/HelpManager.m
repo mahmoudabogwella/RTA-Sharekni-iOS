@@ -12,6 +12,9 @@
 #import "Constants.h"
 #import "NSObject+Blocks.h"
 
+#define USERNAME_KEY @"APPLICATION_USER_NAME"
+#define PASSWORD_KEY @"APPLICATION_USER_PASSWORD"
+
 @implementation HelpManager
 
 - (void) showAlertWithMessage:(NSString *)message{
@@ -58,6 +61,31 @@
     return yearsBetweenDates;
 }
 
+- (void) saveUserPasswordInUserDefaults:(NSString *)password{
+    [[NSUserDefaults standardUserDefaults] setValue:password forKey:PASSWORD_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *) getUserPasswordFromUserDefaults{
+    NSString *password = [[NSUserDefaults standardUserDefaults] valueForKey:PASSWORD_KEY];
+    return password;
+}
+
+- (void) saveUserNameInUserDefaults:(NSString *)userName{
+    [[NSUserDefaults standardUserDefaults] setValue:userName forKey:USERNAME_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *) getUserNameFromUserDefaults{
+    NSString *userName = [[NSUserDefaults standardUserDefaults] valueForKey:USERNAME_KEY];
+    return userName;
+}
+
+- (void) deleteUserFromUSerDefaults{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERNAME_KEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:PASSWORD_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(HelpManager);
 @end

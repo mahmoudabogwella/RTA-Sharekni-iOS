@@ -60,8 +60,7 @@
     self.navigationController.navigationBar.translucent = YES;
 }
 
-- (void)popViewController
-{
+- (void)popViewController{
     if (_isLogged) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }else{
@@ -87,8 +86,7 @@
     
 }
 
-- (IBAction)loginAction:(id)sender
-{
+- (IBAction)loginAction:(id)sender{
     [self.view endEditing:YES];
     if(self.usernameTextField.text.length == 0)
     {
@@ -120,15 +118,13 @@
     }
 }
 
-- (IBAction)signupAction:(id)sender
-{
+- (IBAction)signupAction:(id)sender{
     [self.view endEditing:YES];
     RegisterViewController *registerView = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
     [self.navigationController pushViewController:registerView animated:YES];
 }
 
-- (IBAction)forgotPasswordAction:(id)sender
-{
+- (IBAction)forgotPasswordAction:(id)sender{
     ForgetPasswordViewController *forgetPass = [[ForgetPasswordViewController alloc] initWithNibName:@"ForgetPasswordViewController" bundle:nil];
     [self.navigationController pushViewController:forgetPass animated:YES];
 }
@@ -143,25 +139,21 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
 static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 220;
 static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 //when clicking the return button in the keybaord
-- (BOOL)textFieldShouldEndEditing:(UITextField*)textField
-{
+- (BOOL)textFieldShouldEndEditing:(UITextField*)textField{
     return [self textSouldEndEditing];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField*)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField*)textField{
     [textField  resignFirstResponder];
     return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
     CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
     [self textDidBeginEditing:textFieldRect];
 }
 
-- (void)textDidBeginEditing:(CGRect)textRect
-{
+- (void)textDidBeginEditing:(CGRect)textRect{
     CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
     CGFloat midline = textRect.origin.y + 0.5 * textRect.size.height;
     CGFloat numerator = midline - viewRect.origin.y - MINIMUM_SCROLL_FRACTION * viewRect.size.height;
@@ -195,8 +187,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     [UIView commitAnimations];
 }
 
-- (BOOL)textSouldEndEditing
-{
+- (BOOL)textSouldEndEditing{
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
     [UIView beginAnimations:nil context:NULL];
@@ -208,8 +199,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     return YES;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     for (UIView* view in self.view.subviews) {
         for (UIGestureRecognizer* recognizer in view.gestureRecognizers) {
             [recognizer addTarget:self action:@selector(touchEvent:)];
@@ -219,8 +209,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }
 }
 
-- (void)touchEvent:(id)sender
-{
+- (void)touchEvent:(id)sender{
     
 }
 
