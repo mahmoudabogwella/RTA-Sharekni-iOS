@@ -32,7 +32,7 @@
 #import "MobDriverManager.h"
 #import "HelpManager.h"
 #import "SearchResultsViewController.h"
-
+#import "MobAccountManager.h"
 @interface SearchViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *setDirectionButton;
 
@@ -108,7 +108,7 @@
     self.pickupTitleLabel.textColor  = [UIColor blackColor];
     self.dropoffTitleLabel.textColor = [UIColor blackColor];
     self.startPointLabel.textColor     = Red_UIColor;
-    self.startPointLabel.textColor    = Red_UIColor;
+    self.destinationLabel.textColor    = Red_UIColor;
     
     self.dateLabel.textColor = Red_UIColor;
     self.timeLabel.textColor = Red_UIColor;
@@ -130,6 +130,14 @@
     
     self.emiratesRegionsView.alpha = 0;
     self.helpLabel.alpha = 1;
+    
+    User *applicationUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (!applicationUser) {
+        self.saveSearchView.alpha = 0;
+        CGRect frame = self.searchButton.frame;
+        frame.origin.y = self.saveSearchView.frame.origin.y;
+        self.searchButton.frame = frame;
+    }
 }
 
 - (void) saveSearchViewTapped {
@@ -154,12 +162,13 @@
         blockSelf.dateFormatter.dateFormat = @"dd/MM/yyyy";
         NSString *dateString = [self.dateFormatter stringFromDate:date];
         blockSelf.dateLabel.text = dateString;
-
-        
-        NSInteger hour = blockSelf.pickupDate.hour;
-        NSInteger minutes = blockSelf.pickupDate.minute;
-        
-        blockSelf.pickupDate = [[date dateBySettingHour:10] dateBySettingMinute:0];
+        NSInteger hour = [[NSDate date] hour];
+        NSInteger minutes  = [[NSDate date] minute];
+        if (blockSelf.pickupTime) {
+            hour = blockSelf.pickupTime.hour;
+            minutes = blockSelf.pickupTime.minute;
+        }
+        blockSelf.pickupDate = [[date dateBySettingHour:hour] dateBySettingMinute:minutes];
     }];
     
     //Create cancel action
@@ -171,7 +180,7 @@
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
     dateSelectionController.title = @"select Pickup Date";
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
-    dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [[NSDate date] dateByAddingHour:10];;
+    dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [NSDate date];
     
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
@@ -216,7 +225,8 @@
             blockSelf.fromEmirate = fromEmirate;
             blockSelf.fromRegion = fromRegion;
             blockSelf.startPointLabel.text = fromText;
-            blockSelf.destinationLabel.text = @"";
+        
+        blockSelf.destinationLabel.text = @"...";
         if (toEmirate && toRegion) {
             NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
             blockSelf.toEmirate = toEmirate;
@@ -231,13 +241,32 @@
 #pragma TextFieldDelegate
 
 - (IBAction) quickSearchAction:(id)sender {
+    NSDate *todayDate_;
+    NSDate *pickupDate_;
+    NSComparisonResult compareResult = NSOrderedDescending;
+    if (self.pickupDate) {
+        if (!self.pickupTime) {
+            pickupDate_ = [self.pickupDate dateBySettingHour:0 minute:0 second:0];
+            todayDate_ = [[NSDate date] dateBySettingHour:0 minute:0 second:0];
+        }
+        else{
+            pickupDate_ = self.pickupDate;
+            todayDate_   = [NSDate date];
+        }
+        
+        compareResult = [pickupDate_ compare:todayDate_];
+    }
+    
     if (!self.fromEmirate) {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please set direction ",nil)];
+    }
+    else if (compareResult == NSOrderedAscending){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"invalid start date or time ",nil)];
     }
     else{
         __block SearchViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
-        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:nil nationality:nil ageRange:nil date:self.pickupDate isPeriodic:nil saveSearch:self.saveSearchEnabled WithSuccess:^(NSArray *searchResults) {
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:nil nationality:nil ageRange:nil date:self.pickupDate isPeriodic:nil saveSearch:self.saveSearchEnabled Gender:nil    WithSuccess:^(NSArray *searchResults) {
             [KVNProgress dismiss];
             if(searchResults){
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];

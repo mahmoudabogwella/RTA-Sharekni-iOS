@@ -32,10 +32,14 @@
 #import "MLPAutoCompleteTextField.h"
 #import "MLPAutoCompleteTextFieldDataSource.h"
 #import "MLPAutoCompleteTextFieldDelegate.h"
+#import "MobAccountManager.h"
 
 @interface AdvancedSearchViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,MLPAutoCompleteTextFieldDelegate,MLPAutoCompleteTextFieldDataSource>
 //Outlets
+@property (weak, nonatomic) IBOutlet UIView *saveSearchView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView ;
+@property (weak, nonatomic) IBOutlet UILabel *saveSearchLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *saveSearchSwitchImage;
 
 @property (weak, nonatomic) IBOutlet UIButton *setDirectionBtuton;
 @property (weak, nonatomic) IBOutlet UIButton *languageButton;
@@ -75,6 +79,7 @@
 @property (assign, nonatomic)  RoadType selectedType;
 @property (assign, nonatomic)  BOOL isFemaleOnly;
 @property (strong,nonatomic) NSDate *pickupDate;
+@property (strong,nonatomic) NSDate *pickupTime;
 
 @property (strong,nonatomic) NSArray *nationalties;
 @property (strong,nonatomic) NSMutableArray *nationaltiesStringsArray;
@@ -91,6 +96,8 @@
 @property (strong,nonatomic) Region *fromRegion;
 @property (strong,nonatomic) Region *toRegion;
 
+@property (nonatomic,assign) BOOL saveSearchEnabled;
+
 @end
 
 @implementation AdvancedSearchViewController
@@ -102,8 +109,7 @@
     return _dateFormatter;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTranslucent:NO];
 }
@@ -122,16 +128,14 @@
     
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 660)];
     self.selectedType = SingleRideType;
-    self.isFemaleOnly = false;
+    self.isFemaleOnly = NO;
     [self configureData];
     [self configureRoadTypeView];
     [self configureGenderView];
     [self configureUI];
 }
 
-
-- (void)popViewController
-{
+- (void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -217,6 +221,9 @@
     [self.ageRangeButton setTitle:NSLocalizedString(@"Choose age range", nil) forState:UIControlStateNormal];
     
     
+    UITapGestureRecognizer *saveSearchTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveSearchViewTapped)];
+    [self.saveSearchView addGestureRecognizer:saveSearchTapGestureRecognizer];
+    
     UITapGestureRecognizer *dateTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
     [self.dateView addGestureRecognizer:dateTapGestureRecognizer];
     
@@ -246,6 +253,18 @@
     
     self.helpLabel.alpha = 1;
     self.emiratesAndRegionsView.alpha = 0;
+    
+    User *applicationUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (!applicationUser) {
+        self.saveSearchView.alpha = 0;
+        CGRect frame = self.searchButton.frame;
+        frame.origin.y = self.saveSearchView.frame.origin.y;
+        self.searchButton.frame = frame;
+        
+        CGSize contentSize = self.scrollView.contentSize;
+        contentSize.height = self.searchButton.frame.origin.y + self.searchButton.frame.size.height + 15;
+        self.scrollView.contentSize = contentSize;
+    }
 }
 
 - (void) configureRoadTypeView{
@@ -297,14 +316,45 @@
     [self.view endEditing:YES];
 }
 
+- (void) saveSearchViewTapped {
+    self.saveSearchEnabled = !self.saveSearchEnabled;
+    if (self.saveSearchEnabled) {
+        self.saveSearchLabel.textColor = Red_UIColor;
+        self.saveSearchSwitchImage.image = [UIImage imageNamed:@"select_Right"];
+    }
+    else{
+        self.saveSearchLabel.textColor = [UIColor blackColor];
+        self.saveSearchSwitchImage.image = [UIImage imageNamed:@"select_Left"];
+    }
+}
+
 - (IBAction)searchAction:(id)sender {
+    NSDate *todayDate_;
+    NSDate *pickupDate_;
+    NSComparisonResult compareResult = NSOrderedDescending;
+    if (self.pickupDate) {
+        if (!self.pickupTime) {
+            pickupDate_ = [self.pickupDate dateBySettingHour:0 minute:0 second:0];
+            todayDate_ = [[NSDate date] dateBySettingHour:0 minute:0 second:0];
+        }
+        else{
+            pickupDate_ = self.pickupDate;
+            todayDate_   = [NSDate date];
+        }
+        
+        compareResult = [pickupDate_ compare:todayDate_];
+    }
+    
     if (!self.fromEmirate) {
           [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
+    }
+    else if (compareResult == NSOrderedAscending){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"invalid start date or time ",nil)];
     }
     else{
         __block AdvancedSearchViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
-        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ?@(YES):@(NO) saveSearch:NO WithSuccess:^(NSArray *searchResults) {
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ?@(YES):@(NO) saveSearch:self.saveSearchEnabled Gender:@(self.isFemaleOnly) WithSuccess:^(NSArray *searchResults) {
             [KVNProgress dismiss];
             if(searchResults){
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
@@ -327,16 +377,19 @@
 #pragma Pickers
 
 - (void) showDatePicker{
-    __block AdvancedSearchViewController *blockSelf = self;
+    //    self.pickupDate = [[NSDate date] dateBySettingHour:10];
+    __block AdvancedSearchViewController  *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.dateFormatter.dateFormat = @"dd/MM/yyyy";
         NSString *dateString = [self.dateFormatter stringFromDate:date];
         blockSelf.dateLabel.text = dateString;
-        
-        NSInteger hour = blockSelf.pickupDate.hour;
-        NSInteger minutes = blockSelf.pickupDate.minute;
-        
+        NSInteger hour = [[NSDate date] hour];
+        NSInteger minutes  = [[NSDate date] minute];
+        if (blockSelf.pickupTime) {
+            hour = blockSelf.pickupTime.hour;
+            minutes = blockSelf.pickupTime.minute;
+        }
         blockSelf.pickupDate = [[date dateBySettingHour:hour] dateBySettingMinute:minutes];
     }];
     
@@ -347,9 +400,9 @@
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = NSLocalizedString(@"select Pickup Date", nil) ;
+    dateSelectionController.title = @"select Pickup Date";
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
-    dateSelectionController.datePicker.date = self.pickupDate;
+    dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [NSDate date];
     
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
@@ -360,6 +413,7 @@
     __block AdvancedSearchViewController *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
+        blockSelf.pickupTime = date;
         blockSelf.dateFormatter.dateFormat = @"HH:mm a";
         NSString *time = [self.dateFormatter stringFromDate:date];
         blockSelf.timeLabel.text = time;
@@ -370,14 +424,14 @@
     
     //Create cancel action
     RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
-
+        
     }];
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
     dateSelectionController.title = @"select Pickup Time";
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
-    dateSelectionController.datePicker.date = self.pickupDate;
+    dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [NSDate date];
     
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
@@ -467,7 +521,7 @@
             blockSelf.fromRegion = fromRegion;
             blockSelf.startPointLabel.text = fromText;
         
-        blockSelf.destinationLabel.text = @"";
+        blockSelf.destinationLabel.text = @"...";
         if (toEmirate && toRegion) {
             NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
             blockSelf.toEmirate = toEmirate;

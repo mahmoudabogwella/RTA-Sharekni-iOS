@@ -56,13 +56,13 @@ typedef enum DirectionType : NSUInteger {
 
 @implementation SelectLocationViewController
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     [self configureData];
     [self configureUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = YES;
 }
@@ -184,8 +184,7 @@ typedef enum DirectionType : NSUInteger {
     [self.DoneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
-- (void)popViewController
-{
+- (void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
