@@ -60,7 +60,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
 }
 
 #pragma mark - APPEARANCE
@@ -125,12 +124,16 @@
     return frostedViewController;
 }
 
--(UINavigationController *)welcomeNavigationController{
+- (UINavigationController *)welcomeNavigationController{
     if (!_welcomeNavigationController) {
         WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
                _welcomeNavigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
         }
     return _welcomeNavigationController;
+}
+
+- (void)showWelcomeNavigationController{
+    self.window.rootViewController = self.welcomeNavigationController;
 }
 
 

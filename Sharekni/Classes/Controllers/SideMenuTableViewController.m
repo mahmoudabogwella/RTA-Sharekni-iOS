@@ -18,9 +18,11 @@
 #import <REFrostedViewController.h>
 #import <UIViewController+REFrostedViewController.h>
 #import "SideMenuCell.h"
-
+#import "AppDelegate.h"
 #define Title_Key @"Title"
 #define Image_Key @"ImageName"
+
+
 
 @interface SideMenuTableViewController ()
 @property (nonatomic,strong) NSMutableArray *items;
@@ -117,23 +119,19 @@
 #pragma mark -
 #pragma mark UITableView Datasource
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 54;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex{
     return self.items.count;
 }
 
-- (SideMenuCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (SideMenuCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier  = @"SideMenuCell";
     
     SideMenuCell *sideCell = (SideMenuCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -174,6 +172,9 @@
         }
     }
     else{
+        [[HelpManager sharedHelpManager] deleteUserFromUSerDefaults];
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [delegate showWelcomeNavigationController];
         //Logout
     }
 }
@@ -187,7 +188,6 @@
     }
     return _bestDriversNavigationController;
 }
-
 
 - (UINavigationController *)searchNavigationController{
     if (!_searchNavigationController) {
