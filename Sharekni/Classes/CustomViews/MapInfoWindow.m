@@ -36,6 +36,7 @@
     return self;
 }
 
+
 - (void)configureUI{
 
         for (UILabel *label in self.headerLabels) {

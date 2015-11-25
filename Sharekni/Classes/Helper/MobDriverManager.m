@@ -87,7 +87,7 @@
     
 }
 
-- (void) findRidesFromEmirateID:(NSString *)fromEmirateID andFromRegionID:(NSString *)fromRegionID toEmirateID:(NSString *)toEmirateID andToRegionID:(NSString *)toRegionID PerfferedLanguageID:(NSString *)languageID nationalityID:(NSString *)nationalityID ageRangeID:(NSString *)ageRangeID date:(NSDate *)date isPeriodic:(BOOL)isPeriodic saveSearch:(BOOL)saveSearch WithSuccess:(void (^)(NSArray *searchResults))success Failure:(void (^)(NSString *error))failure{
+- (void) findRidesFromEmirateID:(NSString *)fromEmirateID andFromRegionID:(NSString *)fromRegionID toEmirateID:(NSString *)toEmirateID andToRegionID:(NSString *)toRegionID PerfferedLanguageID:(NSString *)languageID nationalityID:(NSString *)nationalityID ageRangeID:(NSString *)ageRangeID date:(NSDate *)date isPeriodic:(NSNumber *)isPeriodic saveSearch:(NSNumber *)saveSearch WithSuccess:(void (^)(NSArray *searchResults))success Failure:(void (^)(NSString *error))failure{
     
     NSString *dateString;
     NSString *timeString;
@@ -104,8 +104,8 @@
     }
 
     
-    NSString *saveSearchString = saveSearch ? @"1":@"0";
-    NSString *isPeriodicString = isPeriodic ? @"1":@"0";
+    NSString *saveSearchString = saveSearch.boolValue ? @"1":@"0";
+    NSString *isPeriodicString = isPeriodic.boolValue ? @"1":@"0";
     
     NSString *accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
     if (accountID.length == 0) {

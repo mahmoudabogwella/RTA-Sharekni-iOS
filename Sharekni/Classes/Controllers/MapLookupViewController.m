@@ -15,10 +15,15 @@
 #import "MapItemView.h"
 #import "MapItemPopupViewController.h"
 #import "MapInfoWindow.h"
+#import "MobDriverManager.h"
+#import "SearchResultsViewController.h"
+#import "HelpManager.h"
+
 @import GoogleMaps;
 @interface MapLookupViewController ()<GMSMapViewDelegate>
 {
-    GMSMapView *mapView_;    
+    GMSMapView *mapView_;
+    BOOL firstLocationUpdate_;
 }
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic,strong) NSArray *mapLookups;
@@ -38,8 +43,34 @@
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user-Location"] style:UIBarButtonItemStylePlain target:self action:@selector(currentLocationHanlder)];
     [self configureMapView];
     [self configureData];
+}
+
+- (void) currentLocationHanlder{
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.mapView removeObserver:self forKeyPath:@"myLocation"];
+}
+
+#pragma mark - KVO updates
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    if (!firstLocationUpdate_) {
+        // If the first location update has not yet been recieved, then jump to that
+        // location.
+        firstLocationUpdate_ = YES;
+        CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
+        mapView_.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
+                                                         zoom:10];
+    }
 }
 
 - (void) configureMapView{
@@ -49,7 +80,18 @@
     mapView_ = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
     mapView_.myLocationEnabled = YES;
     [self.view addSubview:mapView_];
-
+    mapView_.settings.compassButton = YES;
+    mapView_.settings.myLocationButton = YES;
+    
+    // Listen to the myLocation property of GMSMapView.
+    [mapView_ addObserver:self
+               forKeyPath:@"myLocation"
+                  options:NSKeyValueObservingOptionNew
+                  context:NULL];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        mapView_.myLocationEnabled = YES;
+    });
     mapView_.delegate = self;
 }
 
@@ -61,23 +103,24 @@
         startItem.arabicName = mapLookUp.FromRegionArName;
         startItem.englishName = mapLookUp.FromRegionEnName;
         startItem.rides = mapLookUp.NoOfSeats;
+        startItem.lookup = mapLookUp;
         startMarker.userData = startItem;
         startMarker.title = mapLookUp.FromEmirateArName;
         startMarker.icon = [UIImage imageNamed:@"Location"];
         startMarker.map = mapView_;
         [self.markers addObject:startMarker];
-        
-        CLLocationCoordinate2D endPosition = CLLocationCoordinate2DMake(mapLookUp.StartLatitude.doubleValue, mapLookUp.StartLongitude.doubleValue);
-        GMSMarker *endMarker = [GMSMarker markerWithPosition:endPosition];
-        MapItemView *endItem = [[MapItemView alloc] initWithLat:mapLookUp.EndLatitude lng:mapLookUp.EndLongitude address:mapLookUp.ToStreetName name:mapLookUp.ToEmirateArName];
-        endItem.arabicName = mapLookUp.ToRegionArName;
-        endItem.englishName = mapLookUp.ToRegionEnName;
-        endItem.rides = mapLookUp.NoOfSeats;
-        endMarker.userData = endItem;
-        endMarker.title = mapLookUp.ToEmirateArName;
-        endMarker.icon = [UIImage imageNamed:@"Location"];
-        endMarker.map = mapView_;
-        [self.markers addObject:endMarker];
+//        
+//        CLLocationCoordinate2D endPosition = CLLocationCoordinate2DMake(mapLookUp.StartLatitude.doubleValue, mapLookUp.StartLongitude.doubleValue);
+//        GMSMarker *endMarker = [GMSMarker markerWithPosition:endPosition];
+//        MapItemView *endItem = [[MapItemView alloc] initWithLat:mapLookUp.EndLatitude lng:mapLookUp.EndLongitude address:mapLookUp.ToStreetName name:mapLookUp.ToEmirateArName];
+//        endItem.arabicName = mapLookUp.ToRegionArName;
+//        endItem.englishName = mapLookUp.ToRegionEnName;
+//        endItem.rides = mapLookUp.NoOfSeats;
+//        endMarker.userData = endItem;
+//        endMarker.title = mapLookUp.ToEmirateArName;
+//        endMarker.icon = [UIImage imageNamed:@"Location"];
+//        endMarker.map = mapView_;
+//        [self.markers addObject:endMarker];
     }
 }
 
@@ -87,7 +130,37 @@
     return infoWindow;
 }
 
-- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    [self showDetailsForMapItem:((MapItemView *)marker.userData)];
+}
+
+- (void) showDetailsForMapItem:(MapItemView *)mapitem{
+    __block MapLookupViewController *blockSelf = self;
+    [KVNProgress showWithStatus:@"Loading..."];
+    MapLookUp *lookup = mapitem.lookup;
+    [[MobDriverManager sharedMobDriverManager] findRidesFromEmirateID:lookup.FromEmirateId andFromRegionID:lookup.FromRegionId toEmirateID:lookup.ToEmirateId andToRegionID:lookup.ToRegionId PerfferedLanguageID:@"0" nationalityID:@"" ageRangeID:@"0" date:nil isPeriodic:nil saveSearch:nil WithSuccess:^(NSArray *searchResults) {
+        
+        [KVNProgress dismiss];
+        if(searchResults){
+            SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
+            resultViewController.results = searchResults;
+            resultViewController.fromEmirate = lookup.FromEmirateEnName;
+            resultViewController.toEmirate = lookup.ToEmirateEnName;
+            resultViewController.fromRegion = lookup.FromRegionEnName;
+            resultViewController.toRegion = lookup.ToRegionEnName;
+            [blockSelf.navigationController pushViewController:resultViewController animated:YES];
+        }
+        else{
+            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
+        }
+    } Failure:^(NSString *error) {
+        [KVNProgress dismiss];
+    }];
+
+
+}
+
+- (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
     CGPoint point = [mapView.projection pointForCoordinate:marker.position];
     point.y = point.y - 100;
     GMSCameraUpdate *camera =
@@ -98,14 +171,14 @@
     return YES;
 }
 
-- (void)focusMapToShowAllMarkers{
+- (void) focusMapToShowAllMarkers{
     CLLocationCoordinate2D myLocation = ((GMSMarker *)_markers.firstObject).position;
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:myLocation coordinate:myLocation];
     
     for (GMSMarker *marker in self.markers)
         bounds = [bounds includingCoordinate:marker.position];
     
-    [mapView_ animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:15.0f]];
+    [mapView_ animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:40.0f]];
 }
 
 - (void) popViewController{
@@ -125,68 +198,4 @@
         [KVNProgress dismiss];
     }];
 }
-/*
-- (void) fitAllPins{
-    CLLocationDegrees maxLat = -90.0f;
-    CLLocationDegrees maxLon = -180.0f;
-    CLLocationDegrees minLat = 90.0f;
-    CLLocationDegrees minLon = 180.0f;
-    
-    for (id <MKAnnotation> annotation in self.mapView.annotations) {
-        CLLocationDegrees lat = annotation.coordinate.latitude;
-        CLLocationDegrees lon = annotation.coordinate.longitude;
-        
-        maxLat = MAX(maxLat, lat);
-        maxLon = MAX(maxLon, lon);
-        minLat = MIN(minLat, lat);
-        minLon = MIN(minLon, lon);
-    }
-    MKCoordinateRegion region;
-    region.center.latitude     = (maxLat + minLat) / 2;
-    region.center.longitude    = (maxLon + minLon) / 2;
-    region.span.latitudeDelta  = maxLat - minLat + 1;
-    region.span.longitudeDelta = maxLon - minLon + 1;
-    
-    [self.mapView setRegion:region animated:YES];
-}
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    static NSString *identifier = @"MyLocation";
-    if ([annotation isKindOfClass:[MapItemView class]]) {
-        
-        MKAnnotationView *annotationView = (MKAnnotationView *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-        if (annotationView == nil) {
-            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-            annotationView.enabled = YES;
-            annotationView.canShowCallout = NO;
-            annotationView.image = [UIImage imageNamed:@"Location"];
-            
-        } else {
-            annotationView.annotation = annotation;
-        }
-        
-        return annotationView;
-    }
-    
-    return nil;
-}
-
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
-    [self.mapView deselectAnnotation:view.annotation animated:YES];
-    if([view.annotation isKindOfClass:[MapItemView class]]) {
-        MapItemView *annotation = view.annotation;
-        MapItemPopupViewController *viewController = [[MapItemPopupViewController alloc] initWithNibName:@"MapItemPopupViewController" bundle:nil];
-        viewController.arabicName = annotation.arabicName;
-        viewController.englishName = annotation.englishName;
-        viewController.rides = annotation.rides;
-        viewController.lat = annotation.lat;
-        viewController.lng = annotation.lng;
-        
-        self.popover = [[WYPopoverController alloc] initWithContentViewController:viewController];
-        self.popover.popoverContentSize = CGSizeMake(200, 226);
-        self.popover.theme = [WYPopoverTheme themeForIOS7];
-        [self.popover presentPopoverFromRect:view.bounds inView:view permittedArrowDirections:WYPopoverArrowDirectionAny animated:TRUE  options:WYPopoverAnimationOptionFadeWithScale];
-    }
-}
-*/
 @end
