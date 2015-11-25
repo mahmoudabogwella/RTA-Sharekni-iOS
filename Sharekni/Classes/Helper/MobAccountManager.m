@@ -70,6 +70,7 @@
 }
 
 - (void) registerDriverWithFirstName:(NSString *)firstName lastName:(NSString *)lastName mobile:(NSString *)mobile username:(NSString *)username password:(NSString *)password gender:(NSString *)gender imagePath:(NSString *)photoName birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
+    
  
     NSString *body = [NSString stringWithFormat:@"cls_mobios.asmx/RegisterDriver?firstName=%@&lastName=%@&mobile=%@&username=%@&password=%@&gender=%@&photoName=%@&licenseScannedFileName=%@&TrafficFileNo=%@&BirthDate=%@&NationalityId=%@&PreferredLanguageId=%@",firstName,lastName,mobile,username,password,gender,@"",@"",@"",birthDate,nationalityId,langID];
     
@@ -91,10 +92,12 @@
 }
 
 - (void) changeOldPassword:(NSString *)oldPassword toNewPassword:(NSString *) newPassword WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    NSDictionary *parameters = @{ID_KEY:@"",
-                                 OldPassword_KEY:oldPassword,
-                                 NewPassword_KEY:newPassword};
-    [self.operationManager POST:ChangePassword_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+//    NSDictionary *parameters = @{ID_KEY:@"",
+//                                 OldPassword_KEY:oldPassword,
+//                                 NewPassword_KEY:newPassword};
+
+NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=%@&oldPassword=%@&newPassword=%@",self.applicationUserID,oldPassword,newPassword];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         
@@ -162,20 +165,9 @@
 }
 
 - (void) confirmMobileWithCode:(NSString *)code WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    NSDictionary *parameters = @{AccountID_KEY:@"",
-                                 Code_KEY:code};
-    
-    [self.operationManager POST:ConfirmMobile_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-        
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
-    }];
-}
 
-- (void) GetDriverReviewListWithDriverID:(NSString *)driverID andRouteId:(NSString *)routeId WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    NSDictionary *parameters = @{DriverId_KEY:driverID,
-                                 RouteId_KEY:routeId};
-    [self.operationManager POST:DriverReviewList_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Confirm_Mobile?AccountID=%@&Code=%@",self.applicationUserID,code];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         
@@ -183,9 +175,9 @@
 }
 
 - (void) GetPassengerReviewListWithPassengerId:(NSString *)passengerId andRouteId:(NSString *)routeId WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    NSDictionary *parameters = @{PassengerId_KEY:passengerId,
-                                 RouteId_KEY:routeId};
-    [self.operationManager POST:PassengerReviewList_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_GetReviewList?PassengerId=%@&RouteId=%@",passengerId,routeId];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         
@@ -194,37 +186,30 @@
 
 - (void) editProfileWithFirstName:(NSString *)firstName lastName:(NSString *)lastName gender:(NSString *)gender birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID imagePath:(NSString *)photoName WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     
-    NSDictionary *parameters = @{ID_KEY:@"",
-                                 FirstName_KEY:firstName,
-                                 LastName_KEY:lastName,
-                                 Gender_KEY:gender,
-                                 NewPhotoName_KEY:photoName,
-                                 BirthDate_KEY:birthDate,
-                                 NationalityId_KEY:nationalityId,
-                                 PreferredLanguageId_KEY:langID};
-    
-    
-    [self.operationManager POST:EditProfile_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+    NSString *path;
+    //= [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_GetReviewList?PassengerId=%@&RouteId=%@",passengerId,routeId];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         
     }];
+
 }
 
 - (void) forgotPasswordWithMobile:(NSString *)mobile email:(NSString *)email WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    NSDictionary *parameters = @{Mobile_KEY:mobile,
-                                 Email_KEY:email};
-    
-    [self.operationManager POST:ForgotPassword_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ForgetPassword?mobile=%@&email=%@",mobile,email];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         
     }];
+
 }
 
 - (void) GetCalculatedRatingsForAccountID:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
-    NSDictionary *parameters = @{AccountID_KEY:accountID};
-    [self.operationManager POST:GetCalculatedRating_URL parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetCalculatedRating?AccountId=%@",accountID];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         
@@ -278,13 +263,8 @@
 
 - (void) reviewDriver:(NSString *)driverId PassengerId:(NSString *)passengerId RouteId:(NSString *)routeId ReviewText:(NSString *)reviewText WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
 {
-    NSDictionary *parameters = @{@"DriverId":driverId,
-                                 @"PassengerId":passengerId,
-                                 @"RouteId":routeId,
-                                 @"ReviewText":reviewText
-                                 };
-
-    [self.operationManager POST:Passenger_ReviewDriver parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject)
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_ReviewDriver?PassengerId=%@&DriverId=%@&RouteId=%@&ReviewText=%@",passengerId,driverId,routeId,reviewText];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject)
     {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
@@ -302,14 +282,9 @@
 - (void) joinRidePassenger:(NSString *)PassengerID RouteID:(NSString *)RouteID DriverID:(NSString *)DriverID Remark:(NSString *)remark WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
 {
 //    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_SendAlert?DriverId=%@&PassengerId=%@&RouteId=%@&s_Remarks=%@",DriverID,PassengerID,RouteID,remark];
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_SendAlert?RouteID=%@&PassengerID=%@&DriverID=%@&s_Remarks=%@",RouteID,PassengerID,DriverID,remark];
     
-    NSDictionary *parameters = @{@"DriverId":DriverID,
-                                 @"PassengerId":PassengerID,
-                                 @"RouteId":RouteID,
-                                 @"s_Remarks":remark
-                                 };
-    
-    [self.operationManager POST:Passenger_SendAlert parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject)
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject)
      {
          NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
          responseString = [self jsonStringFromResponse:responseString];
@@ -365,11 +340,8 @@
 
 - (void) acceptRequest:(NSString *)RequestId andIsAccepted:(NSString *)IsAccept WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure
 {
-    NSDictionary *parameters = @{@"IsAccept":IsAccept,
-                                 @"RequestId":RequestId
-                                 };
-    
-    [self.operationManager POST:Driver_AcceptRequest parameters:parameters success:^void(AFHTTPRequestOperation * operation, id responseObject)
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_AcceptRequest?RequestId=%@&IsAccept=%@",RequestId,IsAccept];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject)
     {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];

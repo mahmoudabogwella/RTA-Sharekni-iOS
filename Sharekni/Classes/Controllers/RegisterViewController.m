@@ -25,6 +25,7 @@
 
 @interface RegisterViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 //O
 @property (weak,nonatomic) IBOutlet UIScrollView *container;
 @property (weak,nonatomic)  IBOutlet UIButton *driverBtn;
@@ -124,6 +125,7 @@
     self.dateLabel.textColor = [UIColor blackColor];
     
     [self.termsButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
+    [self.privacyButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
     
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
     [self.datePickerView addGestureRecognizer:gesture];
@@ -212,7 +214,6 @@
         [KVNProgress dismiss];
     } afterDelay:3];
 }
-
 #pragma TextFieldDelegate
 #pragma mark - TextFieldDelegate
 
@@ -238,6 +239,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
             [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select nationality from list", nil)];
             return NO;
         }
+    }
+    else if (textField == self.firstNametxt){
+        [self isValidFirstName];
+    }
+    else if (textField == self.lastNametxt){
+        [self isValidLastName];
+    }
+    else if (textField == self.mobileNumberTxt){
+        [self isValidMobileNumber];
     }
     return [self textSouldEndEditing];
 }
@@ -445,6 +455,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [alertView show];
         [self configureBorders];
     }
+    else if (![self isValidFirstName]){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"First name mustn't have numbers", nil)];
+    }
+    else if (![self isValidLastName]){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Last name mustn't have numbers", nil)];
+    }
+    else if (![self isValidMobileNumber]){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52] and ", nil)];
+    }
     else if (![self IsValidEmail:self.userName]){
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Please enter a valid email address", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         self.userName = @"";
@@ -452,7 +471,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [self configureBorders];
     }
     else if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:self.date] < 18)){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"invalid birthdate", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"You should be older than 18 Years", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
         self.date = nil;
         [self configureBorders];
@@ -528,6 +547,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 - (IBAction)termsAction:(id)sender {
     SharekniWebViewController *webViewController = [[SharekniWebViewController alloc] initWithNibName:@"SharekniWebViewController" bundle:nil];
     webViewController.type = WebViewTermsAndConditionsType;
+    [self.navigationController pushViewController:webViewController animated:YES];
+}
+
+- (IBAction)privacyAction:(id)sender {
+    SharekniWebViewController *webViewController = [[SharekniWebViewController alloc] initWithNibName:@"SharekniWebViewController" bundle:nil];
+    webViewController.type = WebViewPrivacyType;
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
@@ -616,18 +641,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 
 - (void) mainViewController{
     
-}
-
-#pragma Validation
-
--(BOOL) IsValidEmail:(NSString *)checkString
-{
-    BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
-    NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
-    NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
-    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    return [emailTest evaluateWithObject:checkString];
 }
 
 #pragma Borders
@@ -838,6 +851,60 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     return results;
 }
 
+#pragma Validation
 
+- (BOOL) isValidFirstName{
+    
+    NSString *firstName = self.firstNametxt.text;
+    NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    
+    if ([firstName rangeOfCharacterFromSet:set].location != NSNotFound) {
+        [self addRedBorderToView:self.firstNameView];
+        return NO;
+    }
+   [self addGreyBorderToView:self.firstNameView];
+    return YES;
+}
 
+- (BOOL) isValidLastName{
+    
+    NSString *lastName = self.lastNametxt.text;
+    NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    
+    if ([lastName rangeOfCharacterFromSet:set].location != NSNotFound) {
+        [self addRedBorderToView:self.lastNameView];
+        return NO;
+    }
+    [self addGreyBorderToView:self.lastNameView];
+    return YES;
+}
+
+- (BOOL) isValidMobileNumber{
+    NSArray *begins = @[@"50",@"55",@"56",@"52"];
+    NSString *mobileNumber = self.mobileNumberTxt.text;
+    NSString *begin = [mobileNumber substringToIndex:mobileNumber.length > 2 ? 2 : 0];
+    
+    if (mobileNumber.length != 9) {
+        [self addRedBorderToView:self.mobileNumberView];
+        return NO;
+    }
+    else if (![begins containsObject:begin]){
+        [self addRedBorderToView:self.mobileNumberView];
+        return NO;
+    }
+    else{
+        [self addGreyBorderToView:self.mobileNumberView];
+        return YES;
+    }
+    return YES;
+}
+
+-(BOOL) IsValidEmail:(NSString *)checkString{
+    BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
+    NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
+    NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
 @end

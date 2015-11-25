@@ -17,8 +17,8 @@
         self.operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:Sharkeni_BASEURL]];
         
         AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
-//        [requestSerializer setValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-        [requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [requestSerializer setValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+//        [requestSerializer setValue:@"application/x-www-form-urlencoded " forHTTPHeaderField:@"Content-Type"];
 
         [requestSerializer setValue:@"application/xml" forHTTPHeaderField:@"Accept"];
         self.operationManager.requestSerializer = requestSerializer;
