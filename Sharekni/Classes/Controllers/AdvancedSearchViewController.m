@@ -126,7 +126,8 @@
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
-    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 660)];
+    int height = self.searchButton.frame.origin.y + self.searchButton.frame.size.height + 15;
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, height)];
     self.selectedType = SingleRideType;
     self.isFemaleOnly = NO;
     [self configureData];
@@ -254,6 +255,8 @@
     self.helpLabel.alpha = 1;
     self.emiratesAndRegionsView.alpha = 0;
     
+    self.saveSearchLabel.textColor = [UIColor darkGrayColor];
+    
     User *applicationUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
     if (!applicationUser) {
         self.saveSearchView.alpha = 0;
@@ -323,7 +326,7 @@
         self.saveSearchSwitchImage.image = [UIImage imageNamed:@"select_Right"];
     }
     else{
-        self.saveSearchLabel.textColor = [UIColor blackColor];
+        self.saveSearchLabel.textColor = [UIColor darkGrayColor];
         self.saveSearchSwitchImage.image = [UIImage imageNamed:@"select_Left"];
     }
 }

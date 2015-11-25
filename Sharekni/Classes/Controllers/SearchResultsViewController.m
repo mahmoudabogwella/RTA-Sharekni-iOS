@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *fromLabel;
+@property (weak, nonatomic) IBOutlet UILabel *toTitleLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *toLabel;
 @end
@@ -48,6 +49,16 @@
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    
+    if (!self.toEmirate) {
+        self.toLabel.alpha = 0;
+        self.toTitleLabel.alpha = 0;
+        int difference = self.tableView.frame.origin.y - self.toTitleLabel.frame.origin.y - 10;
+        CGRect frame = self.tableView.frame;
+        frame.origin.y = self.toTitleLabel.frame.origin.y + 10;
+        frame.size.height = frame.size.height +difference;
+        self.tableView.frame = frame;
+    }
 }
 
 #pragma mark - Methods

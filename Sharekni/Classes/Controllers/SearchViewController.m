@@ -131,6 +131,8 @@
     self.emiratesRegionsView.alpha = 0;
     self.helpLabel.alpha = 1;
     
+    self.saveSearchLabel.textColor = [UIColor darkGrayColor];
+    
     User *applicationUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
     if (!applicationUser) {
         self.saveSearchView.alpha = 0;
@@ -147,7 +149,7 @@
         self.SwitchImage.image = [UIImage imageNamed:@"select_Right"];
     }
     else{
-        self.saveSearchLabel.textColor = [UIColor blackColor];
+        self.saveSearchLabel.textColor = [UIColor darkGrayColor];
         self.SwitchImage.image = [UIImage imageNamed:@"select_Left"];
     }
 }
