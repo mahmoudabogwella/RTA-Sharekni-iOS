@@ -97,30 +97,20 @@
 
 - (void) configurePins{
     for (MapLookUp *mapLookUp in self.mapLookups) {
-        CLLocationCoordinate2D position = CLLocationCoordinate2DMake(mapLookUp.StartLatitude.doubleValue, mapLookUp.StartLongitude.doubleValue);
+        CLLocationCoordinate2D position = CLLocationCoordinate2DMake(mapLookUp.FromLat.doubleValue, mapLookUp.FromLng.doubleValue);
+        NSString *addressArabic = [NSString stringWithFormat:@"%@ - %@",mapLookUp.FromEmirateNameAr,mapLookUp.FromRegionNameAr];
+        NSString *addressEnglish = [NSString stringWithFormat:@"%@ - %@",mapLookUp.FromEmirateNameEn,mapLookUp.FromRegionNameEn];
         GMSMarker *startMarker = [GMSMarker markerWithPosition:position];
-        MapItemView *startItem = [[MapItemView alloc] initWithLat:mapLookUp.StartLatitude lng:mapLookUp.StartLongitude address:mapLookUp.FromStreetName name:mapLookUp.FromEmirateArName];
-        startItem.arabicName = mapLookUp.FromRegionArName;
-        startItem.englishName = mapLookUp.FromRegionEnName;
-        startItem.rides = mapLookUp.NoOfSeats;
+        MapItemView *startItem = [[MapItemView alloc] initWithLat:mapLookUp.FromLng lng:mapLookUp.FromLng address:mapLookUp.FromRegionNameEn name:mapLookUp.FromEmirateNameEn];
+        startItem.arabicName = addressArabic;
+        startItem.englishName = addressEnglish;
+        startItem.rides = mapLookUp.NoOfPassengers.stringValue;
         startItem.lookup = mapLookUp;
         startMarker.userData = startItem;
-        startMarker.title = mapLookUp.FromEmirateArName;
+        startMarker.title = addressEnglish;
         startMarker.icon = [UIImage imageNamed:@"Location"];
         startMarker.map = mapView_;
         [self.markers addObject:startMarker];
-//        
-//        CLLocationCoordinate2D endPosition = CLLocationCoordinate2DMake(mapLookUp.StartLatitude.doubleValue, mapLookUp.StartLongitude.doubleValue);
-//        GMSMarker *endMarker = [GMSMarker markerWithPosition:endPosition];
-//        MapItemView *endItem = [[MapItemView alloc] initWithLat:mapLookUp.EndLatitude lng:mapLookUp.EndLongitude address:mapLookUp.ToStreetName name:mapLookUp.ToEmirateArName];
-//        endItem.arabicName = mapLookUp.ToRegionArName;
-//        endItem.englishName = mapLookUp.ToRegionEnName;
-//        endItem.rides = mapLookUp.NoOfSeats;
-//        endMarker.userData = endItem;
-//        endMarker.title = mapLookUp.ToEmirateArName;
-//        endMarker.icon = [UIImage imageNamed:@"Location"];
-//        endMarker.map = mapView_;
-//        [self.markers addObject:endMarker];
     }
 }
 
@@ -138,16 +128,16 @@
     __block MapLookupViewController *blockSelf = self;
     [KVNProgress showWithStatus:@"Loading..."];
     MapLookUp *lookup = mapitem.lookup;
-    [[MobDriverManager sharedMobDriverManager] findRidesFromEmirateID:lookup.FromEmirateId andFromRegionID:lookup.FromRegionId toEmirateID:lookup.ToEmirateId andToRegionID:lookup.ToRegionId PerfferedLanguageID:@"0" nationalityID:@"" ageRangeID:@"0" date:nil isPeriodic:nil saveSearch:nil WithSuccess:^(NSArray *searchResults) {
+    [[MobDriverManager sharedMobDriverManager] findRidesFromEmirateID:lookup.FromEmirateId.stringValue andFromRegionID:lookup.FromRegionId.stringValue toEmirateID:@"0" andToRegionID:@"0" PerfferedLanguageID:@"0" nationalityID:@"" ageRangeID:@"0" date:nil isPeriodic:nil saveSearch:nil WithSuccess:^(NSArray *searchResults) {
         
         [KVNProgress dismiss];
         if(searchResults){
             SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
             resultViewController.results = searchResults;
-            resultViewController.fromEmirate = lookup.FromEmirateEnName;
-            resultViewController.toEmirate = lookup.ToEmirateEnName;
-            resultViewController.fromRegion = lookup.FromRegionEnName;
-            resultViewController.toRegion = lookup.ToRegionEnName;
+            resultViewController.fromEmirate = lookup.FromEmirateNameEn;
+            resultViewController.toEmirate = nil;
+            resultViewController.fromRegion = lookup.FromRegionNameEn;
+            resultViewController.toRegion = nil;
             [blockSelf.navigationController pushViewController:resultViewController animated:YES];
         }
         else{

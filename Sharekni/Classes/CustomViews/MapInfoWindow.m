@@ -27,8 +27,8 @@
     if (self) {
         self.arabicName = arabicName;
         self.englishName = englishName;
-        self.lat = lat;
-        self.lng = lng;
+        self.lat = [lat substringToIndex:6];
+        self.lng = [lng substringToIndex:5];
         self.rides = rides;
         self.comingRides = comingRides;
         [self configureUI];

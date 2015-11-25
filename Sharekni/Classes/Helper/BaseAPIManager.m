@@ -112,7 +112,7 @@
 }
 
 - (NSString *) stringFromImage:(UIImage *)image{
-    NSData* data = UIImageJPEGRepresentation(image, 1.0f);
+    NSData* data = UIImageJPEGRepresentation(image, 0.0f);
     NSString *strEncoded = [Base64 encode:data];
     return strEncoded;
 }

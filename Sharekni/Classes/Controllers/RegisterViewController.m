@@ -477,37 +477,68 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [self configureBorders];
     }
     else{
-        self.dateFormatter.dateFormat = @"dd/MM/yyyy";
-        NSString *dateString = [self.dateFormatter stringFromDate:self.date];
-        [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
-     if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
-            [[MobAccountManager sharedMobAccountManager] registerDriverWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
-                if (self.profileImage) {
-                    [[MobAccountManager sharedMobAccountManager] uploadPhoto:self.profileImage withSuccess:^(NSString *fileName) {
-                        
-                    } Failure:^(NSString *error) {
-                        
-                    }];
-                }
-                [KVNProgress dismiss];
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration as a driver Compeleted. ",nil)];
-                [self loginAfterRegisteration];
-            } Failure:^(NSString *error) {
-                [KVNProgress dismiss];
-                [[HelpManager sharedHelpManager] showAlertWithMessage:error];
-            }];
+        if (self.profileImage) {
+                [[MobAccountManager sharedMobAccountManager] uploadPhoto:self.profileImage withSuccess:^(NSString *fileName) {
+                    if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
+                        [self registerDriverWithPhotoName:fileName];
+                    }
+                    else if (self.accountType == AccountTypePassenger){
+                        [self registerPassengerWithPhotoName:fileName];
+                    }
+                } Failure:^(NSString *error) {
+                    if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
+                        [self registerDriverWithPhotoName:@""];
+                    }
+                    else if (self.accountType == AccountTypePassenger){
+                        [self registerPassengerWithPhotoName:@""];
+                    }
+                }];
         }
-        else if (self.accountType == AccountTypePassenger){
-            [[MobAccountManager sharedMobAccountManager] registerPassengerWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
-                [KVNProgress dismiss];
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration as a passenger Compeleted. ",nil)];
-                [self loginAfterRegisteration];
-            } Failure:^(NSString *error) {
-                [KVNProgress dismiss];
-                [[HelpManager sharedHelpManager] showAlertWithMessage:error];
-            }];
+        else{
+            if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
+                [self registerDriverWithPhotoName:@""];
+            }
+            else if (self.accountType == AccountTypePassenger){
+                [self registerPassengerWithPhotoName:@""];
+            }
         }
     }
+}
+
+
+- (void) registerDriverWithPhotoName:(NSString *)photoName{
+    self.dateFormatter.dateFormat = @"dd/MM/yyyy";
+    NSString *dateString = [self.dateFormatter stringFromDate:self.date];
+    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [[MobAccountManager sharedMobAccountManager] registerDriverWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
+        if (self.profileImage) {
+            [[MobAccountManager sharedMobAccountManager] uploadPhoto:self.profileImage withSuccess:^(NSString *fileName) {
+                
+            } Failure:^(NSString *error) {
+                
+            }];
+        }
+        [KVNProgress dismiss];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration as a driver Compeleted. ",nil)];
+        [self loginAfterRegisteration];
+    } Failure:^(NSString *error) {
+        [KVNProgress dismiss];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:error];
+    }];
+}
+- (void) registerPassengerWithPhotoName:(NSString *)photoName{
+    self.dateFormatter.dateFormat = @"dd/MM/yyyy";
+    NSString *dateString = [self.dateFormatter stringFromDate:self.date];
+    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];    
+    [[MobAccountManager sharedMobAccountManager] registerPassengerWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
+        [KVNProgress dismiss];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration as a passenger Compeleted. ",nil)];
+        [self loginAfterRegisteration];
+    } Failure:^(NSString *error) {
+        [KVNProgress dismiss];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:error];
+    }];
+    
 }
 
 - (IBAction)selectHumanType:(id)sender{
