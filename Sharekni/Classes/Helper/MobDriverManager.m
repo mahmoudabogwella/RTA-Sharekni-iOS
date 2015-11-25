@@ -105,7 +105,7 @@
 
     
     NSString *saveSearchString = saveSearch.boolValue ? @"1":@"0";
-    NSString *isPeriodicString = isPeriodic.boolValue ? @"1":@"0";
+    NSString *isPeriodicString = isPeriodic ? isPeriodic.boolValue ? @"1":@"0" : @"";
     
     NSString *accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
     if (accountID.length == 0) {

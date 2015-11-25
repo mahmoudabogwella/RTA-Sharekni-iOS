@@ -54,7 +54,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.mapView removeObserver:self forKeyPath:@"myLocation"];
+//    [self.mapView removeObserver:self forKeyPath:@"myLocation"];
 }
 
 #pragma mark - KVO updates
@@ -76,7 +76,7 @@
 - (void) configureMapView{
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:24.4667
                                                             longitude:54.3667
-                                                                 zoom:15];
+                                                                 zoom:14];
     mapView_ = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
     mapView_.myLocationEnabled = YES;
     [self.view addSubview:mapView_];
@@ -84,10 +84,10 @@
     mapView_.settings.myLocationButton = YES;
     
     // Listen to the myLocation property of GMSMapView.
-    [mapView_ addObserver:self
-               forKeyPath:@"myLocation"
-                  options:NSKeyValueObservingOptionNew
-                  context:NULL];
+//    [mapView_ addObserver:self
+//               forKeyPath:@"myLocation"
+//                  options:NSKeyValueObservingOptionNew
+//                  context:NULL];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         mapView_.myLocationEnabled = YES;
@@ -178,7 +178,7 @@
     for (GMSMarker *marker in self.markers)
         bounds = [bounds includingCoordinate:marker.position];
     
-    [mapView_ animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:40.0f]];
+    [mapView_ animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:100.0f]];
 }
 
 - (void) popViewController{
