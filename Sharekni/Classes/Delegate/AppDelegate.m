@@ -69,11 +69,6 @@
     [[MZFormSheetBackgroundWindow appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
     [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
     
-    [[MasterDataManager sharedMasterDataManager] GetEmiratesWithSuccess:^(NSMutableArray *array) {
-        
-    } Failure:^(NSString *error) {
-        
-    }];
     
     [[UINavigationBar appearance] setBarTintColor:RGBA(230, 0, 10, 1)];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -84,7 +79,6 @@
     progressConfiguration.backgroundType = KVNProgressBackgroundTypeSolid;
     
     [GMSServices provideAPIKey:GoogleMapsAPIKey];
-
 }
 
 - (UINavigationController *)splashNavigationController{
