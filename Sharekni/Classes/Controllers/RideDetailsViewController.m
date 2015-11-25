@@ -267,7 +267,7 @@
        [blockSelf focusMapToShowAllMarkers];
        [blockSelf showRideDetailsData];
        
-       [[MasterDataManager sharedMasterDataManager] getReviewList:accountID andRoute:routeID withSuccess:^(NSMutableArray *array) {
+       [[MasterDataManager sharedMasterDataManager] getReviewList:routeDetails.AccountId.stringValue andRoute:routeDetails.ID.stringValue withSuccess:^(NSMutableArray *array) {
            blockSelf.reviews = array;
            
            if (array.count == 0) {
