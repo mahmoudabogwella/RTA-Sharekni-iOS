@@ -452,10 +452,19 @@
 
 #pragma mark - Event Handler
 - (void) addReviewAction{
-    AddReviewViewController *addReview = [[AddReviewViewController alloc] initWithNibName:@"AddReviewViewController" bundle:nil];
-    addReview.driverDetails = self.driverDetails ;
-    addReview.delegate = self;
-    [self presentPopupViewController:addReview animationType:MJPopupViewAnimationSlideBottomBottom];
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user) {
+        AddReviewViewController *addReview = [[AddReviewViewController alloc] initWithNibName:@"AddReviewViewController" bundle:nil];
+        addReview.driverDetails = self.driverDetails ;
+        addReview.delegate = self;
+        [self presentPopupViewController:addReview animationType:MJPopupViewAnimationSlideBottomBottom];
+    }
+    else{
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
 }
 
 - (void) deleteRideAction{
@@ -500,7 +509,7 @@
     [self configureData];
 }
 
-- (void)dismissButtonClicked:(AddRemarksViewController *)addRemarksViewController{
+- (void) dismissButtonClicked:(AddRemarksViewController *)addRemarksViewController{
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 
 }

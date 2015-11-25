@@ -173,6 +173,7 @@
     }
     else{
         [[HelpManager sharedHelpManager] deleteUserFromUSerDefaults];
+        [MobAccountManager sharedMobAccountManager].applicationUser = nil;
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [delegate showWelcomeNavigationController];
         //Logout
