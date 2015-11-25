@@ -202,19 +202,21 @@
     self.dateLabel.text  = dateString;
     
     //Start Time
-    if ([self.routeDetails.StartFromTime containsString:@"AM"]) {
-        self.routeDetails.StartFromTime = [self.routeDetails.StartFromTime stringByReplacingOccurrencesOfString:@"AM" withString:@" AM"];
-    }
-    else if ([self.routeDetails.StartFromTime containsString:@"PM"]) {
-        self.routeDetails.StartFromTime = [self.routeDetails.StartFromTime stringByReplacingOccurrencesOfString:@"PM" withString:@" PM"];
-    }
-    
-    dateFormatter.dateFormat = @"MMM dd yyy hh:mm a";
-    NSDate *startTime = [dateFormatter dateFromString:self.routeDetails.StartFromTime];
-    
-
+//    if ([self.routeDetails.StartFromTime containsString:@"AM"]) {
+//        self.routeDetails.StartFromTime = [self.routeDetails.StartFromTime stringByReplacingOccurrencesOfString:@"AM" withString:@" AM"];
+//    }
+//    else if ([self.routeDetails.StartFromTime containsString:@"PM"]) {
+//        self.routeDetails.StartFromTime = [self.routeDetails.StartFromTime stringByReplacingOccurrencesOfString:@"PM" withString:@" PM"];
+//    }
+//    
+//    dateFormatter.dateFormat = @"MMM dd yyy hh:mm a";
+//    NSDate *startTime = [dateFormatter dateFromString:self.routeDetails.StartFromTime];
+//    
+//
+//    dateFormatter.dateFormat = @"hh:mm a";
+    NSString *timeString = self.routeDetails.StartFromTime;
     dateFormatter.dateFormat = @"hh:mm a";
-    NSString *timeString = [dateFormatter stringFromDate:startTime];
+    NSDate *startTime = [dateFormatter dateFromString:timeString];
     
     self.pickupDate = startDate;
     self.pickupDate = [self.pickupDate dateByAddingHour:startTime.hour];

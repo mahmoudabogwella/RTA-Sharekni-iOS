@@ -7,7 +7,7 @@
 //
 
 #import "RouteDetails.h"
-
+#import "HelpManager.h"
 @implementation RouteDetails
 
 + (NSDictionary *)mapping {
@@ -110,4 +110,35 @@
     return mapping;
 }
 
+- (void) setStartFromTime:(NSString *)StartFromTime{
+    _StartFromTime = StartFromTime;
+    _StartFromTime = [[HelpManager sharedHelpManager] timeFormateFromTimeString:_StartFromTime];
+}
+
+- (void) setEndFromTime:(NSString *)EndFromTime{
+    _EndFromTime = EndFromTime;
+    _EndFromTime = [[HelpManager sharedHelpManager] timeFormateFromTimeString:_EndFromTime];
+}
+
+- (void) setStartToTime:(NSString *)StartToTime{
+    _StartToTime = StartToTime;
+    _StartToTime = [[HelpManager sharedHelpManager] timeFormateFromTimeString:_StartToTime];
+}
+
+- (void) setEndToTime_:(NSString *)EndToTime_{
+    _EndToTime_ = EndToTime_;
+    _EndToTime_ = [[HelpManager sharedHelpManager] timeFormateFromTimeString:_EndToTime_];
+}
+
+- (void)setPreferredGender:(NSString *)PreferredGender{
+    if ([PreferredGender containsString:@"M"]) {
+        _PreferredGender = @"Male";
+    }
+    else if ([PreferredGender containsString:@"F"]){
+        _PreferredGender = @"Female";
+    }
+    else{
+        _PreferredGender = @"No Specified";
+    }
+}
 @end

@@ -107,8 +107,11 @@
     
     [preferenceLbl addRightBorderWithColor:Red_UIColor];
     [preferenceLbl addLeftBorderWithColor:Red_UIColor];
+    [preferenceLbl setTextColor:Red_UIColor];
+    
     [reviewLbl addRightBorderWithColor:Red_UIColor];
     [reviewLbl addLeftBorderWithColor:Red_UIColor];
+    [reviewLbl setTextColor:Red_UIColor];
 
     
     preferenceView.layer.cornerRadius = 20;
@@ -122,6 +125,8 @@
     
     reviewsView.layer.borderColor  = Red_UIColor.CGColor;
     
+    joinRideBtn.layer.cornerRadius = 8;
+
     [passengersHeader addBottomBorderWithColor:[UIColor lightGrayColor]];
     for (UILabel *label in self.passengersHeaderLabels) {
         [label setTextColor:Red_UIColor];
@@ -141,7 +146,7 @@
     [self configureData];
 }
 
-- (HCSStarRatingView *)driverRatingsView{
+- (HCSStarRatingView *) driverRatingsView{
     if (!_driverRatingsView) {
         _driverRatingsView = [[HCSStarRatingView alloc] initWithFrame:placeholderRatingView.frame];
         _driverRatingsView.maximumValue = 5;
@@ -192,9 +197,10 @@
 }
 
 - (void) showRideDetailsData{
+    
     FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",self.routeDetails.FromEmirateEnName,self.routeDetails.FromRegionEnName];
     ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",self.routeDetails.ToEmirateEnName,self.routeDetails.ToRegionEnName];
-    startingTime.text = [NSString stringWithFormat:@"Time %@ : %@",self.routeDetails.StartFromTime,self.routeDetails.EndFromTime];
+    startingTime.text = [NSString stringWithFormat:@"From %@ To %@",self.routeDetails.StartFromTime,self.routeDetails.EndFromTime];
     availableDays.text = [NSString stringWithFormat:@"Ride Days : %@",[self getAvailableDays]];
     
     if ([NSStringEmpty isNullOrEmpty:self.routeDetails.NationalityEnName])
@@ -329,7 +335,9 @@
         firstButton.alpha = 1;
         secondButton.alpha = 0;
         thirdButton.alpha = 0;
-        [locationsView addSubview:self.driverRatingsView];
+        if (self.joinedRide) {
+            [locationsView addSubview:self.driverRatingsView];
+        }
     }
 }
 
@@ -492,8 +500,7 @@
     [self configureData];
 }
 
-- (void)dismissButtonClicked:(AddRemarksViewController *)addRemarksViewController
-{
+- (void)dismissButtonClicked:(AddRemarksViewController *)addRemarksViewController{
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
 
 }
@@ -515,7 +522,6 @@
         [self presentViewController:navg animated:YES completion:nil];
     }
 }
-
 
 - (void) deleteRide{
     [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];

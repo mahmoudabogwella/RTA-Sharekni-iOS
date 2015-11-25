@@ -87,5 +87,29 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (NSDateFormatter *)dateFormatter{
+    if (!_dateFormatter) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+    }
+    return _dateFormatter;
+}
+
+- (NSString *) timeFormateFromTimeString:(NSString *)inputString {
+    if ([inputString containsString:@"AM"]) {
+         inputString = [inputString stringByReplacingOccurrencesOfString:@"AM" withString:@" AM"];
+    }
+    else if ([inputString containsString:@"PM"]) {
+        inputString = [inputString stringByReplacingOccurrencesOfString:@"PM" withString:@" PM"];
+    }
+    
+    self.dateFormatter.dateFormat = @"MMM dd yyy hh:mm a";
+    NSDate *startTime = [self.dateFormatter dateFromString:inputString];
+    
+    
+    self.dateFormatter.dateFormat = @"hh:mm a";
+    NSString *timeString = [self.dateFormatter stringFromDate:startTime];
+    return timeString;
+}
+
 SYNTHESIZE_SINGLETON_FOR_CLASS(HelpManager);
 @end
