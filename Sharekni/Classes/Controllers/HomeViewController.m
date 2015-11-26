@@ -61,8 +61,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *vehiclesView;
 
-//Notifications
-@property (nonatomic ,strong) NSMutableArray *notifications ;
 
 @property (nonatomic,strong) User *sharedUser;
 @end
@@ -157,13 +155,19 @@
     
 }
 
-- (void) configureUI{
+- (void) configureUI
+{
     self.navigationItem.title = NSLocalizedString(@"Home Page", nil);
     self.notificationCountLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.DriverMyAlertsCount];
     
     self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.FirstName,self.sharedUser.LastName];
     self.nationalityLabel.text = self.sharedUser.NationalityEnName;
-
+    if (self.sharedUser.AccountRating) {
+        self.ratingLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.AccountRating];
+    }else{
+        self.ratingLabel.text = @"0";
+    }
+    
     NSString *ridesCreatedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Created", nil),self.sharedUser.DriverMyRidesCount];
     NSString *ridesJoinedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Joined", nil),self.sharedUser.PassengerJoinedRidesCount];
     NSString *vehiclesCountText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Vehicles", nil),@"0"];
@@ -213,7 +217,6 @@
 
 - (IBAction)openNotifications:(id)sender{
     NotificationsViewController *notificationsView = [[NotificationsViewController alloc] initWithNibName:@"NotificationsViewController" bundle:nil];
-    notificationsView.notifications = self.notifications ;
     [self.navigationController pushViewController:notificationsView animated:YES];
 }
 
@@ -225,9 +228,7 @@
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:YES WithSuccess:^(NSMutableArray *array) {
         
-        blockSelf.notifications = array;
-        
-        self.notificationCountLabel.text = [NSString stringWithFormat:@"%d",(unsigned int)self.notifications.count];
+        self.notificationCountLabel.text = [NSString stringWithFormat:@"%d",(unsigned int)array.count];
        
         [self getAcceptedNotifications];
         
@@ -251,9 +252,7 @@
     
     [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:NO WithSuccess:^(NSMutableArray *array) {
         
-        [self.notifications addObjectsFromArray:array];
-     
-        self.notificationCountLabel.text = [NSString stringWithFormat:@"%d",(unsigned int)self.notifications.count];
+        self.notificationCountLabel.text = [NSString stringWithFormat:@"%d",(unsigned int)array.count];
         
         [KVNProgress dismiss];
         

@@ -11,7 +11,10 @@
 #import "DriverSearchResult.h"
 #import "MostRideDetailsCell.h"
 #import "DriverDetailsViewController.h"
-@interface SearchResultsViewController ()
+#import "MessageUI/MessageUI.h"
+
+
+@interface SearchResultsViewController () <SendMSGDelegate,MFMessageComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *fromLabel;
@@ -79,6 +82,7 @@
         cell = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:0];
         cell.contentView.backgroundColor = [UIColor clearColor];
     }
+    cell.delegate = self ;
     DriverSearchResult *driver = [self.results objectAtIndex:indexPath.row];
     [cell setDriver:driver];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -88,6 +92,39 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 147;
+}
+
+
+
+#pragma mark - Message Delegate
+- (void)sendSMSFromPhone:(NSString *)phone
+{
+    if(![MFMessageComposeViewController canSendText])
+    {
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [warningAlert show];
+        return;
+    }
+    
+    NSArray *recipents = @[phone];
+    
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    [messageController setRecipients:recipents];
+    
+    // Present message view controller on screen
+    [self presentViewController:messageController animated:YES completion:nil];
+}
+
+- (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    switch(result)
+    {
+        case MessageComposeResultCancelled: break; //handle cancelled event
+        case MessageComposeResultFailed: break; //handle failed event
+        case MessageComposeResultSent: break; //handle sent event
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -

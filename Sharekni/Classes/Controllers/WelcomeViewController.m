@@ -14,6 +14,7 @@
 #import "MostRidesViewController.h"
 #import <UIColor+Additions.h>
 #import "Constants.h"
+#import "TourViewController.h"
 
 @interface WelcomeViewController ()
 @property (weak, nonatomic) IBOutlet UIView *mostRidesView;
@@ -74,6 +75,12 @@
     SearchViewController *searchView = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
     searchView.enableBackButton = YES;
     [self.navigationController pushViewController:searchView animated:YES];
+}
+
+- (IBAction)makeATour:(id)sender
+{
+    TourViewController *tourView = [[TourViewController alloc] initWithNibName:@"TourViewController" bundle:nil];
+    [self.navigationController pushViewController:tourView animated:YES];
 }
 
 - (void)mostRidesTapped

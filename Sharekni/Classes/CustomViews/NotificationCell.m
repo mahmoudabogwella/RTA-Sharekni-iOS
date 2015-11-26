@@ -19,11 +19,24 @@
 - (void)setNotification:(Notification *)notification
 {
     if ([notification.DriverAccept boolValue]) {
-        self.notificationLbl.text = [NSString stringWithFormat:@"%@ Has Accepted your request",notification.PassengerName] ;
+        if (notification.PassengerName) {
+            self.notificationLbl.text = [NSString stringWithFormat:@"%@ Has Accepted your request",notification.PassengerName] ;
+        }else{
+            self.notificationLbl.text = [NSString stringWithFormat:@"Has Accepted your request"] ;
+        }
     }else{
-        self.notificationLbl.text = [NSString stringWithFormat:@"%@ Send you a join request",notification.PassengerName] ;
+        if (notification.PassengerName) {
+            self.notificationLbl.text = [NSString stringWithFormat:@"%@ Send you a join request",notification.PassengerName] ;
+        }else{
+            self.notificationLbl.text = [NSString stringWithFormat:@"Send you a join request"] ;
+        }
     }
     self.nationality.text = notification.NationalityEnName ;
+    if (notification.image) {
+        self.userImage.image = notification.image ;
+    }else{
+        self.userImage.image = [UIImage imageNamed:@"thumbnail.png"];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

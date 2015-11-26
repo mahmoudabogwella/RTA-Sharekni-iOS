@@ -13,7 +13,8 @@
 #import "HelpManager.h"
 #import "MobAccountManager.h"
 #define SPLASH_IMAGE1 @"Splash1"
-#define SPLASH_IMAGE2 @"Splash2"
+#define SPLASH_IMAGE2 @"splash2"
+
 @interface SplashViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) User *user;

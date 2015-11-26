@@ -35,7 +35,15 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_permitWebView setScalesPageToFit:YES];
     [_permitWebView loadRequest:request];
+    
+    [ActivatePermitViewController attemptRotationToDeviceOrientation];
 }
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 
 - (void)popViewController
 {

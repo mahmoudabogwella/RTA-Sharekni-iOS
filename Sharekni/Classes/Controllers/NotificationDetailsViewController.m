@@ -21,7 +21,7 @@
     __weak IBOutlet UILabel *requestDate;
     __weak IBOutlet UILabel *passengerPhone;
     __weak IBOutlet UILabel *nationality;
-    
+    __weak IBOutlet UIImageView *userImage ;
     __weak IBOutlet UIButton *acceptBtn;
     __weak IBOutlet UIButton *declineBtn;
 }
@@ -49,12 +49,20 @@
         declineBtn.hidden = YES ;
     }
     
+    userImage.layer.cornerRadius = userImage.frame.size.width / 2.0f ;
+    userImage.clipsToBounds = YES ;
+    
     passengerName.text = self.notification.PassengerName ;
     nationality.text = self.notification.NationalityEnName ;
     passengerPhone.text = self.notification.PassengerMobile ;
     routeName.text = self.notification.RouteName ;
     requestDate.text = self.notification.RequestDate ;
     remarks.text = self.notification.Remarks ;
+    if (self.notification.image) {
+        userImage.image = self.notification.image ;
+    }else{
+        userImage.image = [UIImage imageNamed:@"thumbnail.png"] ;
+    }
 }
 
 - (void)popViewController
