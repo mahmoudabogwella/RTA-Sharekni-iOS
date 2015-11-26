@@ -98,6 +98,12 @@
 		14D3E9491C06AD1B0047F415 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E9481C06AD1B0047F415 /* QuartzCore.framework */; };
 		14D3E94B1C06AD220047F415 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E94A1C06AD220047F415 /* CoreGraphics.framework */; };
 		14D3E9591C06C0440047F415 /* PHPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9581C06C0440047F415 /* PHPageScrollView.m */; };
+		14D3E9611C06C5530047F415 /* iOS_0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E95A1C06C5530047F415 /* iOS_0.jpg */; };
+		14D3E9621C06C5530047F415 /* iOS_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E95B1C06C5530047F415 /* iOS_1.jpg */; };
+		14D3E9631C06C5530047F415 /* iOS_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E95C1C06C5530047F415 /* iOS_2.jpg */; };
+		14D3E9641C06C5530047F415 /* iOS_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E95D1C06C5530047F415 /* iOS_3.jpg */; };
+		14D3E9651C06C5530047F415 /* iOS_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E95E1C06C5530047F415 /* iOS_4.jpg */; };
+		14D3E9661C06C5530047F415 /* iOS_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E95F1C06C5530047F415 /* iOS_5.jpg */; };
 		14E5D79B1C01A2E80089054A /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D79A1C01A2E80089054A /* Notification.m */; };
 		14E5D79F1C01A6F10089054A /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D79D1C01A6F10089054A /* NotificationCell.m */; };
 		14E5D7A01C01A6F10089054A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D79E1C01A6F10089054A /* NotificationCell.xib */; };
@@ -329,6 +335,12 @@
 		14D3E94A1C06AD220047F415 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		14D3E9571C06C0440047F415 /* PHPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHPageScrollView.h; sourceTree = "<group>"; };
 		14D3E9581C06C0440047F415 /* PHPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHPageScrollView.m; sourceTree = "<group>"; };
+		14D3E95A1C06C5530047F415 /* iOS_0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iOS_0.jpg; sourceTree = "<group>"; };
+		14D3E95B1C06C5530047F415 /* iOS_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iOS_1.jpg; sourceTree = "<group>"; };
+		14D3E95C1C06C5530047F415 /* iOS_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iOS_2.jpg; sourceTree = "<group>"; };
+		14D3E95D1C06C5530047F415 /* iOS_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iOS_3.jpg; sourceTree = "<group>"; };
+		14D3E95E1C06C5530047F415 /* iOS_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iOS_4.jpg; sourceTree = "<group>"; };
+		14D3E95F1C06C5530047F415 /* iOS_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iOS_5.jpg; sourceTree = "<group>"; };
 		14E5D7991C01A2E80089054A /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
 		14E5D79A1C01A2E80089054A /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		14E5D79C1C01A6F10089054A /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCell.h; sourceTree = "<group>"; };
@@ -667,6 +679,12 @@
 				14D3E9391C06A2290047F415 /* TourViewController.xib */,
 				14D3E9571C06C0440047F415 /* PHPageScrollView.h */,
 				14D3E9581C06C0440047F415 /* PHPageScrollView.m */,
+				14D3E95A1C06C5530047F415 /* iOS_0.jpg */,
+				14D3E95B1C06C5530047F415 /* iOS_1.jpg */,
+				14D3E95C1C06C5530047F415 /* iOS_2.jpg */,
+				14D3E95D1C06C5530047F415 /* iOS_3.jpg */,
+				14D3E95E1C06C5530047F415 /* iOS_4.jpg */,
+				14D3E95F1C06C5530047F415 /* iOS_5.jpg */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -937,6 +955,7 @@
 				14E5D7BE1C0271090089054A /* PermitCell.xib in Resources */,
 				8787E1F21BF7534100CCD53B /* policy.html in Resources */,
 				047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */,
+				14D3E9641C06C5530047F415 /* iOS_3.jpg in Resources */,
 				0451C3AC1C05B76D009CA1FC /* SplashViewController.xib in Resources */,
 				873E4C5E1BED3086006C42F8 /* MapInfoWindow.xib in Resources */,
 				1425F80E1BFF48BE00AD086B /* VehicleViewCell.xib in Resources */,
@@ -953,6 +972,7 @@
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				14E7A8AC1BDF11F900255D86 /* WelcomeViewController.xib in Resources */,
 				14C3F3A01C029A8300CEF11C /* RideHistoryCell.xib in Resources */,
+				14D3E9651C06C5530047F415 /* iOS_4.jpg in Resources */,
 				87E5F7691BFB6914004FF688 /* RidesCreatedViewController.xib in Resources */,
 				14E5D7C31C0276900089054A /* ActivatePermitViewController.xib in Resources */,
 				14E692661BE8B7180041A999 /* DriverDetailsViewController.xib in Resources */,
@@ -978,8 +998,10 @@
 				8787E1EF1BF74EBC00CCD53B /* SharekniWebViewController.xib in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				14E5D7C81C0283890089054A /* HistoryViewController.xib in Resources */,
+				14D3E9661C06C5530047F415 /* iOS_5.jpg in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				14E5D7A51C01B3BC0089054A /* NotificationDetailsViewController.xib in Resources */,
+				14D3E9611C06C5530047F415 /* iOS_0.jpg in Resources */,
 				047E45841BC59DE0000B5151 /* SelectLocationViewController.xib in Resources */,
 				87B58B5E1BD388D100E73E55 /* MapLookupViewController.xib in Resources */,
 				87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */,
@@ -988,8 +1010,10 @@
 				14D3E93B1C06A2290047F415 /* TourViewController.xib in Resources */,
 				04C3E0341BE09EF000698227 /* HomeViewController.xib in Resources */,
 				14E5D7A01C01A6F10089054A /* NotificationCell.xib in Resources */,
+				14D3E9621C06C5530047F415 /* iOS_1.jpg in Resources */,
 				1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */,
 				14B0EFCE1BEF96F100937011 /* SearchViewController.xib in Resources */,
+				14D3E9631C06C5530047F415 /* iOS_2.jpg in Resources */,
 				04CFC7061BE52C6B0009BBDA /* RegisterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1304,7 +1328,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Roads & Transport Authority (89SHAPC6FM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Roads & Transport Authority (89SHAPC6FM)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Sharekni/Info.plist;
@@ -1312,7 +1336,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rta.ae.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aeb7e39d-f01b-49ff-971f-f4060d71e837";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
