@@ -279,6 +279,8 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
 - (void) reviewDriver:(NSString *)driverId PassengerId:(NSString *)passengerId RouteId:(NSString *)routeId ReviewText:(NSString *)reviewText WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
 {
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_ReviewDriver?PassengerId=%@&DriverId=%@&RouteId=%@&ReviewText=%@",passengerId,driverId,routeId,reviewText];
+    path = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject)
     {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -298,6 +300,7 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
 {
 //    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_SendAlert?DriverId=%@&PassengerId=%@&RouteId=%@&s_Remarks=%@",DriverID,PassengerID,RouteID,remark];
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_SendAlert?RouteID=%@&PassengerID=%@&DriverID=%@&s_Remarks=%@",RouteID,PassengerID,DriverID,remark];
+    path = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject)
      {

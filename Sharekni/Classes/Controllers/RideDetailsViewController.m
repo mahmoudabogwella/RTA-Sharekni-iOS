@@ -730,23 +730,6 @@
 }];
 }
 
-//- (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
-//    MapItemView *mapItem = (MapItemView *)marker.userData;
-//    MapInfoWindow *infoWindow = [[MapInfoWindow alloc] initWithArabicName:mapItem.arabicName englishName:mapItem.englishName rides:mapItem.rides lat:mapItem.lat lng:mapItem.lng time:mapItem.comingRides];
-//    return infoWindow;
-//}
-
-//- (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
-//    CGPoint point = [mapView.projection pointForCoordinate:marker.position];
-//    point.y = point.y - 100;
-//    GMSCameraUpdate *camera =
-//    [GMSCameraUpdate setTarget:[mapView.projection coordinateForPoint:point]];
-//    [mapView animateWithCameraUpdate:camera];
-//    
-//    mapView.selectedMarker = marker;
-//    return YES;
-//}
-
 - (void) focusMapToShowAllMarkers{
     CLLocationCoordinate2D myLocation = ((GMSMarker *)_markers.firstObject).position;
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:myLocation coordinate:myLocation];
@@ -756,7 +739,6 @@
     
     [_mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:40.0f]];
 }
-
 
 #pragma mark - Message Delegate
 - (void)sendSMSFromPhone:(NSString *)phone{
