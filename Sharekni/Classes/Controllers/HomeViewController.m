@@ -24,6 +24,7 @@
 #import "RidesJoinedViewController.h"
 #import "PermitsViewController.h"
 #import "HistoryViewController.h"
+#import "VehiclesViewController.h"
 
 @interface HomeViewController ()
 
@@ -164,8 +165,7 @@
     }
 }
 
-- (void) configureUI
-{
+- (void) configureUI{
     self.navigationItem.title = NSLocalizedString(@"Home Page", nil);
     self.notificationCountLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.DriverMyAlertsCount];
     
@@ -238,17 +238,17 @@
     [self.navigationController pushViewController:savedSearchViewController animated:YES];
 }
 
-- (IBAction)editAction:(id)sender {
+- (IBAction) editAction:(id)sender {
     
 }
 
-- (IBAction)openNotifications:(id)sender{
+- (IBAction) openNotifications:(id)sender{
     NotificationsViewController *notificationsView = [[NotificationsViewController alloc] initWithNibName:@"NotificationsViewController" bundle:nil];
     notificationsView.enableBackButton = YES;
     [self.navigationController pushViewController:notificationsView animated:YES];
 }
 
-- (void)getNotifications{
+- (void) getNotifications{
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block HomeViewController *blockSelf = self;
@@ -272,7 +272,7 @@
     }];
 }
 
-- (void)getAcceptedNotifications{
+- (void) getAcceptedNotifications{
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block HomeViewController *blockSelf = self;
@@ -294,12 +294,9 @@
     }];
 }
 
-- (void)showVeichles:(id)sender{
-//    SavedSearchViewController *savedView = [[SavedSearchViewController alloc] initWithNibName:@"SavedSearchViewController" bundle:nil];
-//    [self.navigationController pushViewController:savedView animated:YES];
-    
-    VehiclesViewController *registerVehicle = [[VehiclesViewController alloc] initWithNibName:@"VehiclesViewController" bundle:nil];
-    [self.navigationController pushViewController:registerVehicle animated:YES];
+- (void) showVeichles:(id)sender{
+        VehiclesViewController *registerVehicle = [[VehiclesViewController alloc] initWithNibName:@"VehiclesViewController" bundle:nil];
+        [self.navigationController pushViewController:registerVehicle animated:YES];
 }
 
 - (void) showCreatedRides{

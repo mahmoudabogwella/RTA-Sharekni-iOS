@@ -93,6 +93,7 @@
                 else{
                     blockSelf.window.rootViewController = blockSelf.welcomeNavigationController;
                 }
+            [blockSelf.window makeKeyAndVisible];
 //            } completion:nil];
         }];
         _splashNavigationController = [[UINavigationController alloc] initWithRootViewController:splashViewController];

@@ -65,7 +65,7 @@
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"TrafficFileNo"] != nil) {
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"TrafficFileNo"] != nil || [[[MobAccountManager sharedMobAccountManager] applicationUser] DriverTrafficFileNo].length != 0) {
         self.vehiclesView.hidden = YES ;
         containerView.hidden = YES ;
         titleLabel.hidden = YES ;

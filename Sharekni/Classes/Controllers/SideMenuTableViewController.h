@@ -16,7 +16,8 @@
 @property (nonatomic,strong) UINavigationController * bestDriversNavigationController;
 @property (nonatomic,strong) UINavigationController * searchNavigationController;
 @property (nonatomic,strong) UINavigationController * savedSearchNavigationController;
-@property (nonatomic,strong) UINavigationController *notificationsViewController;
+@property (nonatomic,strong) UINavigationController * notificationsViewController;
+@property (nonatomic,strong) UINavigationController * welcomeNavigationController;
 
 
 - (instancetype) initWithNavigationController:(UINavigationController *) navigationController;

@@ -69,7 +69,7 @@
         self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
         self.rate.text = [NSString stringWithFormat:@"%ld",_mostRideDetails.Rating];
     }else if (self.driverSearchResult){
-        self.driverName.text = self.driverSearchResult.DriverEnName ;
+        self.driverName.text = self.driverSearchResult.AccountName ;
         self.country.text = self.driverSearchResult.Nationality_en ;
         self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
         self.rate.text = [NSString stringWithFormat:@"%@",self.driverSearchResult.Rating];
@@ -209,17 +209,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
 
 @end

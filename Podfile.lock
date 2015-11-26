@@ -22,7 +22,23 @@ PODS:
     - AFNetworking/NSURLSession
   - CRToast (0.0.8)
   - Genome (0.1)
+  - Google/Analytics (1.2.1):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (1.2.1):
+    - GoogleInterchangeUtilities (~> 1.0)
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.1)
+  - GoogleAnalytics (3.14.0)
+  - GoogleInterchangeUtilities (1.1.0):
+    - GoogleSymbolUtilities (~> 1.0)
   - GoogleMaps (1.10.5)
+  - GoogleNetworkingUtilities (1.0.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.0.3)
+  - GoogleUtilities (1.1.0):
+    - GoogleSymbolUtilities (~> 1.0.0)
   - HSDatePickerViewController (1.0.1)
   - JVFloatLabeledTextField (1.1.0)
   - KLCPopup (1.0)
@@ -57,6 +73,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - CRToast (~> 0.0.7)
   - Genome
+  - Google/Analytics
   - GoogleMaps
   - HSDatePickerViewController (~> 1.0)
   - JVFloatLabeledTextField
@@ -78,7 +95,13 @@ SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   CRToast: b087127369b4c603726ef6249d74d0d737629ab8
   Genome: 7aa8b47f7275df8d6e65afe1f35799a7177675f9
+  Google: fd33b5fa40fa3aaee5176de49c873a74e3d11dce
+  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
+  GoogleInterchangeUtilities: d7f7174176fbcf9710f696f1acebad4dbd98ac03
   GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
+  GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
+  GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
+  GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   HSDatePickerViewController: b292f2a53b2644a68aa5e1343053d2f3554de64c
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   KLCPopup: 76c5a19227977f1e53d85236f9ef42257c168d98
@@ -100,4 +123,4 @@ SPEC CHECKSUMS:
   UIColor+Additions: 8b14f4851a4da23ef60be123454f4f30fafdb5c2
   WYPopoverController: 00d879c25bddd1fd873dcc21aa98c8308d7f1555
 
-COCOAPODS: 0.39.0
+COCOAPODS: 0.38.2

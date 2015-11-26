@@ -7,7 +7,7 @@
 //
 
 #import "User.h"
-
+#import "MobAccountManager.h"
 @implementation User
 
 + (NSDictionary *)mapping {
@@ -64,6 +64,18 @@
     else if ([_AccountStatus containsString:@"B"]){
         self.accountType = AccountTypeBoth;
     }
+}
+
+- (void)setPhotoPath:(NSString *)PhotoPath{
+    _PhotoPath = PhotoPath;
+    __block User *blockSelf = self;
+    [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
+        blockSelf.userImage = image;
+        blockSelf.imageLocalPath = filePath;
+    } Failure:^(NSString *error) {
+        blockSelf.userImage = [UIImage imageNamed:@"thumbnail"];
+        blockSelf.imageLocalPath = nil;
+    }];
 }
 
 

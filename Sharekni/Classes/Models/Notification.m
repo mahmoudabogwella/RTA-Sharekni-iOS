@@ -43,7 +43,7 @@
         blockSelf.image = image ;
         blockSelf.imagePath = filePath;
     } Failure:^(NSString *error) {
-        
+        NSLog(@"Failed to download notification profile image");
     }];
 }
 

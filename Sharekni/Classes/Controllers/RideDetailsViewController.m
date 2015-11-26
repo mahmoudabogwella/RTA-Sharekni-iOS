@@ -405,10 +405,17 @@
 //    CGRect scrollViewFrame = contentView.frame;
 //    scrollViewFrame.size.height = joinRideBtn.frame.origin.y + joinRideBtn.frame.size.height + VERTICAL_SPACE;
 //    contentView.frame = scrollViewFrame;
-    
-    CGSize contentSize = contentView.contentSize ;
-    contentSize.height = joinRideBtn.frame.origin.y + joinRideBtn.frame.size.height + VERTICAL_SPACE;
-    contentView.contentSize = contentSize;
+    if (self.joinedRide) {
+        joinRideBtn.alpha = 0;
+        CGSize contentSize = contentView.contentSize ;
+        contentSize.height = joinRideBtn.frame.origin.y;
+        contentView.contentSize = contentSize;
+    }
+    else{
+        CGSize contentSize = contentView.contentSize ;
+        contentSize.height = joinRideBtn.frame.origin.y + joinRideBtn.frame.size.height + VERTICAL_SPACE;
+        contentView.contentSize = contentSize;
+    }
 }
 
 - (void) handleResponseError{

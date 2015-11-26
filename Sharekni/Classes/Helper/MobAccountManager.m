@@ -123,15 +123,8 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
             [[HelpManager sharedHelpManager] saveUserPasswordInUserDefaults:password];
             [self getUser:user.ID.stringValue WithSuccess:^(User *user) {
                 blockSelf.applicationUser = user;
-                [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
-                    blockSelf.applicationUser.userImage = image;
-                    blockSelf.applicationUser.imageLocalPath = filePath;
-                    success(blockSelf.applicationUser);
-                } Failure:^(NSString *error) {
-                    blockSelf.applicationUser.userImage = [UIImage imageNamed:@"Man"];
-                    blockSelf.applicationUser.imageLocalPath = nil;
-                    success(blockSelf.applicationUser);
-                }];
+                success(blockSelf.applicationUser);
+             
             } Failure:^(NSString *error) {
                 [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
                     blockSelf.applicationUser.userImage = image;
@@ -143,8 +136,6 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
                     success(blockSelf.applicationUser);
                 }];
             }];
-            
- 
         }
         else if ([responseString containsString:@"-2"]){
             failure(@"Mobile number already exists");
@@ -375,7 +366,7 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
 
         
         } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
+            failure(error);
     }];
 }
 
@@ -443,10 +434,10 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
 }
 
 - (void) addPermitForRouteID:(NSString *)routeID vehicleId:(NSString *)vehicleId passengerIDs:(NSArray *)passengers withSuccess:(void (^)(NSString *addedSuccessfully))success Failure:(void (^)(NSString *error))failure{
-    NSString *passengersString = [NSString stringWithFormat:@"%@",((Passenger *)passengers[0]).ID.stringValue];
+    NSString *passengersString = [NSString stringWithFormat:@"%@",passengers[0]];
     for (int i=1; i<passengers.count; i++) {
-        Passenger *passenger = passengers[i];
-        passengersString = [passengersString stringByAppendingString:[NSString stringWithFormat:@",%@",passenger.ID.stringValue]];
+        NSString *passenger = passengers[i];
+        passengersString = [passengersString stringByAppendingString:[NSString stringWithFormat:@",%@",passenger]];
     }
     NSString *path =[NSString stringWithFormat:@"cls_mobios.asmx/Permit_Insert?AccountId=%@&RouteId=%@&VehicleId=%@&_passengerIDs=%@",self.applicationUserID,routeID,vehicleId,passengersString];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {

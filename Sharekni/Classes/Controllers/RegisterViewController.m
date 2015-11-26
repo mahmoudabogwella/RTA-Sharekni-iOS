@@ -22,8 +22,10 @@
 #import "HomeViewController.h"
 #import "SharekniWebViewController.h"
 #import "MLPAutoCompleteTextField.h"
+#import <REFrostedViewController.h>
+#import "SideMenuTableViewController.h"
 
-@interface RegisterViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate>
+@interface RegisterViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate,REFrostedViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 //O
@@ -612,12 +614,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:self.userName andPassword:self.password WithSuccess:^(User *user) {
         [KVNProgress dismiss];
         if (user) {
-            HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
-            //                CreateRideViewController  *createRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
-            [self.navigationController pushViewController:homeViewControlle animated:YES];
+//            HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+//            //                CreateRideViewController  *createRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
+            [self.navigationController pushViewController:[self homeViewController] animated:YES];
         }
-        
-        
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];
     }];
@@ -950,5 +950,23 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     }
     [self addGreyBorderToView:self.nationalityView];
     return YES;
+}
+
+- (REFrostedViewController *) homeViewController {
+    
+    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
+    SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
+    
+    
+    // Create frosted view controller
+    //
+    REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
+    frostedViewController.direction = REFrostedViewControllerDirectionLeft;
+    frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+    frostedViewController.liveBlur = YES;
+    frostedViewController.delegate = self;
+    
+    return frostedViewController;
 }
 @end

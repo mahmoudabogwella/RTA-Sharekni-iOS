@@ -80,9 +80,9 @@
         [self.delegate reloadNotifications];
 
     } Failure:^(NSString *error) {
-        NSLog(@"Error in Best Drivers");
+//        NSLog(@"Error in Best Drivers");
         [KVNProgress dismiss];
-        [KVNProgress showErrorWithStatus:@"Error"];
+        [KVNProgress showErrorWithStatus:@"an error occured when trying to accept request please try again ."];
     }];
 }
 

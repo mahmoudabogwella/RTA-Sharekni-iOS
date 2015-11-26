@@ -20,7 +20,7 @@
 #import "SideMenuCell.h"
 #import "AppDelegate.h"
 #import "SavedSearchViewController.h"
-
+#import "WelcomeViewController.h"
 #import "NotificationsViewController.h"
 
 #define Title_Key @"Title"
@@ -216,8 +216,7 @@
         else if ([title isEqualToString:NSLocalizedString(@"Logout", nil)]){
             [[HelpManager sharedHelpManager] deleteUserFromUSerDefaults];
             [MobAccountManager sharedMobAccountManager].applicationUser = nil;
-            AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            [delegate showWelcomeNavigationController];
+            [self presentViewController:self.welcomeNavigationController animated:YES completion:nil];
         }
     
 }
@@ -266,6 +265,14 @@
         _notificationsNavigationController = [[UINavigationController alloc] initWithRootViewController:notificationsView];
     }
     return _notificationsNavigationController;
+}
+
+- (UINavigationController *)welcomeNavigationController{
+    if (!_welcomeNavigationController) {
+        WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
+     _welcomeNavigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
+    }
+    return _welcomeNavigationController;
 }
 
 @end
