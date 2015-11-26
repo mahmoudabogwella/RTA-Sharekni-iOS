@@ -26,9 +26,9 @@
     [self.pageScrollView reloadData];
 }
 
-- (IBAction)deleteButtonTouch:(id)sender
-{
-    [self.pageScrollView deleteViewAtIndex:self.pageScrollView.currentPageIndex animated:YES];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 #pragma mark -
@@ -38,15 +38,17 @@
     return 6;
 }
 
-//- (CGSize)sizeCellForPageScrollView:(PHPageScrollView*)pageScrollView
-//{
-//    return CGSizeMake(280, 280);
-//}
+- (CGSize)sizeCellForPageScrollView:(PHPageScrollView*)pageScrollView
+{
+    return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-50);
+}
 
 - (UIView*)pageScrollView:(PHPageScrollView*)pageScrollView viewForRowAtIndex:(int)index
 {
     UIView * view = [[UIView alloc] initWithFrame:self.view.frame];
-    view.backgroundColor = [UIColor yellowColor];
+    UIImageView *image = [[UIImageView alloc] initWithFrame:view.frame];
+    image.image = [UIImage imageNamed:[NSString stringWithFormat:@"iOS_%d.jpg",index]];
+    [view addSubview:image];
     return view;
 }
 
