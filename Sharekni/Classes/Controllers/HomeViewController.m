@@ -83,6 +83,14 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = NO;
+    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [[MobAccountManager sharedMobAccountManager] getUser:self.sharedUser.ID.stringValue WithSuccess:^(User *user) {
+        self.sharedUser = user;
+        [self configureUI];
+        [KVNProgress dismiss];
+    } Failure:^(NSString *error) {
+        [KVNProgress dismiss];
+    }];
 }
 
 #pragma Data
@@ -230,6 +238,7 @@
 - (IBAction)openNotifications:(id)sender{
     NotificationsViewController *notificationsView = [[NotificationsViewController alloc] initWithNibName:@"NotificationsViewController" bundle:nil];
     notificationsView.notifications = self.notifications ;
+    notificationsView.enableBackButton = YES;
     [self.navigationController pushViewController:notificationsView animated:YES];
 }
 
