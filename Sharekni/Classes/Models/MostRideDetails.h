@@ -71,4 +71,7 @@
 @property (nonatomic,strong) NSString *StartTime;
 @property (nonatomic,strong) NSString *EndTime;
 
+//@property (nonatomic ,strong) UIImage *image ;
+//@property (nonatomic ,strong) NSString *imagePath ;
+
 @end

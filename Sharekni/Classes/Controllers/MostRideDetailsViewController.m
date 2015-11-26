@@ -100,6 +100,7 @@
     }
     
     MostRideDetails *ride = self.rides[indexPath.row];
+    rideCell.delegate = self ;
     [rideCell setMostRide:ride];
     
     return rideCell ;

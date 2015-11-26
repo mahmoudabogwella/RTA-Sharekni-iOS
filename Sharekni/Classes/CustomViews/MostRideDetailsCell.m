@@ -33,7 +33,7 @@
     _mostRide = mostRide;
     self.driverName.text = mostRide.DriverName ;
     self.country.text = mostRide.NationalityEnName ;
-    self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+    self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
     self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",mostRide.StartTime];
     self.availableDays.text = [self getAvailableDays:mostRide];
     self.rate.text = [NSString stringWithFormat:@"%ld",mostRide.Rating];
@@ -42,7 +42,7 @@
 
 - (void)setDriver:(DriverSearchResult *)driver{
     _driver = driver;
-    self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+    self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
     [[MasterDataManager sharedMasterDataManager] GetPhotoWithName:driver.AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
         
     } Failure:^(NSString *error) {
@@ -88,7 +88,7 @@
 
 - (IBAction)call:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",self.phone]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",[NSString stringWithFormat:@"0%@",self.phone]]]];
 }
 
 - (NSString *)getAvailableDays:(MostRideDetails *)mostRide

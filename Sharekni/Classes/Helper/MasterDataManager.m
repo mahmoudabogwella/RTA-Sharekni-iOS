@@ -265,6 +265,7 @@
         NSMutableArray *bestDrivers = [NSMutableArray array];
         for (NSDictionary *dictionary in resultDictionaries) {
             BestDriver *driver= [BestDriver gm_mappedObjectWithJsonRepresentation:dictionary];
+
             [self GetPhotoWithName:driver.AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
                 
             } Failure:^(NSString *error) {

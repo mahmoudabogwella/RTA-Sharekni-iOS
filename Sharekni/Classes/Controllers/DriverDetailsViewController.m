@@ -57,17 +57,21 @@
     if (self.bestDriver) {
         self.driverName.text = _bestDriver.AccountName ;
         self.country.text = _bestDriver.NationalityEnName ;
-        self.driverImage.image = _bestDriver.image;
+        if (_bestDriver.image) {
+            self.driverImage.image = _bestDriver.image;
+        }else{
+            self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+        }
         self.rate.text = [NSString stringWithFormat:@"%ld",_bestDriver.Rating];
     }else if (self.mostRideDetails){
         self.driverName.text = _mostRideDetails.DriverName ;
-        self.country.text = _mostRideDetails.NationalityArName ;
-        self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+        self.country.text = _mostRideDetails.NationalityEnName ;
+        self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
         self.rate.text = [NSString stringWithFormat:@"%ld",_mostRideDetails.Rating];
     }else if (self.driverSearchResult){
         self.driverName.text = self.driverSearchResult.DriverEnName ;
         self.country.text = self.driverSearchResult.Nationality_en ;
-        self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
+        self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
         self.rate.text = [NSString stringWithFormat:@"%@",self.driverSearchResult.Rating];
     }
     

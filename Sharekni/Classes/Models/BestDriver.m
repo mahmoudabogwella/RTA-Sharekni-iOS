@@ -28,10 +28,11 @@
 
 - (void)setAccountPhoto:(NSString *)AccountPhoto
 {
+    __block BestDriver *blockSelf = self;
     _AccountPhoto = AccountPhoto ;
     [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:_AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
-        self.image = image ;
-        self.imagePath = filePath;
+        blockSelf.image = image ;
+        blockSelf.imagePath = filePath;
     } Failure:^(NSString *error) {
         
     }];

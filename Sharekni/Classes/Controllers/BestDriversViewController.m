@@ -90,9 +90,9 @@
     if (driverCell == nil) {
         driverCell = [[BestDriverCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:driverIdentifier];
         driverCell.contentView.backgroundColor = [UIColor clearColor];
-        driverCell.delegate = self ;
     }
     
+    driverCell.delegate = self ;
     BestDriver *driver = self.bestDrivers[indexPath.row];
     [driverCell setDriver:driver];
     
