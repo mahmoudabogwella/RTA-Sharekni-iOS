@@ -37,16 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
     self.title = @"Notifications";
     
-//    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _backBtn.frame = CGRectMake(0, 0, 22, 22);
-//    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
-//    [_backBtn setHighlighted:NO];
-//    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
 }
 
 - (void)popViewController
