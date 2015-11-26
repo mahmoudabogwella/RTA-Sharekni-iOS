@@ -104,8 +104,11 @@
         MapItemView *startItem = [[MapItemView alloc] initWithLat:mapLookUp.FromLng lng:mapLookUp.FromLng address:mapLookUp.FromRegionNameEn name:mapLookUp.FromEmirateNameEn];
         startItem.arabicName = addressArabic;
         startItem.englishName = addressEnglish;
-        startItem.rides = mapLookUp.NoOfPassengers.stringValue;
+        startItem.passengers = mapLookUp.NoOfPassengers.stringValue;
+        startItem.drivers = mapLookUp.NoOfRoutes.stringValue;
+        
         startItem.lookup = mapLookUp;
+        
         startMarker.userData = startItem;
         startMarker.title = addressEnglish;
         startMarker.icon = [UIImage imageNamed:@"Location"];
@@ -116,7 +119,7 @@
 
 - (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
     MapItemView *mapItem = (MapItemView *)marker.userData;
-    MapInfoWindow *infoWindow = [[MapInfoWindow alloc] initWithArabicName:mapItem.arabicName englishName:mapItem.englishName rides:mapItem.rides lat:mapItem.lat lng:mapItem.lng time:mapItem.comingRides];
+    MapInfoWindow *infoWindow = [[MapInfoWindow alloc] initWithArabicName:mapItem.arabicName englishName:mapItem.englishName passengers:mapItem.passengers drivers:mapItem.drivers lat:mapItem.lat lng:mapItem.lng time:mapItem.comingRides];
     return infoWindow;
 }
 

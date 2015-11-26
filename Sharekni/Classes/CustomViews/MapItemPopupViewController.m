@@ -30,7 +30,7 @@
     }
     self.arabicNameLabel.text = self.arabicName;
     self.englishNameLabel.text = self.englishName;
-    self.ridesLabel.text = [NSString stringWithFormat:@"%@ Rides",self.rides];
+    self.ridesLabel.text = self.rides;
     self.coordinatesLabel.text = [NSString stringWithFormat:@"%@ , %@",self.lat,self.lng];
     self.time.text = self.comingRides;
     self.containerView.layer.cornerRadius = 5;

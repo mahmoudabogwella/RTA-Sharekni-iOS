@@ -93,13 +93,11 @@
 		14B0EFCE1BEF96F100937011 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0EFCD1BEF96F100937011 /* SearchViewController.xib */; };
 		14C3F39F1C029A8300CEF11C /* RideHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C3F39D1C029A8200CEF11C /* RideHistoryCell.m */; };
 		14C3F3A01C029A8300CEF11C /* RideHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C3F39E1C029A8200CEF11C /* RideHistoryCell.xib */; };
-		14D3E9351C06A2000047F415 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9321C06A2000047F415 /* EAIntroPage.m */; };
-		14D3E9361C06A2000047F415 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9341C06A2000047F415 /* EAIntroView.m */; };
 		14D3E93A1C06A2290047F415 /* TourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9381C06A2290047F415 /* TourViewController.m */; };
 		14D3E93B1C06A2290047F415 /* TourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E9391C06A2290047F415 /* TourViewController.xib */; };
-		14D3E93E1C06A28B0047F415 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E93D1C06A28B0047F415 /* SMPageControl.m */; };
-		14D3E9411C06A3FB0047F415 /* EARestrictedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9401C06A3FB0047F415 /* EARestrictedScrollView.m */; };
-		14D3E9441C06A83B0047F415 /* KCHorizontalScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9431C06A83B0047F415 /* KCHorizontalScroller.m */; };
+		14D3E9491C06AD1B0047F415 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E9481C06AD1B0047F415 /* QuartzCore.framework */; };
+		14D3E94B1C06AD220047F415 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E94A1C06AD220047F415 /* CoreGraphics.framework */; };
+		14D3E9591C06C0440047F415 /* PHPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9581C06C0440047F415 /* PHPageScrollView.m */; };
 		14E5D79B1C01A2E80089054A /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D79A1C01A2E80089054A /* Notification.m */; };
 		14E5D79F1C01A6F10089054A /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D79D1C01A6F10089054A /* NotificationCell.m */; };
 		14E5D7A01C01A6F10089054A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D79E1C01A6F10089054A /* NotificationCell.xib */; };
@@ -324,19 +322,13 @@
 		14C3F39C1C029A8200CEF11C /* RideHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideHistoryCell.h; sourceTree = "<group>"; };
 		14C3F39D1C029A8200CEF11C /* RideHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideHistoryCell.m; sourceTree = "<group>"; };
 		14C3F39E1C029A8200CEF11C /* RideHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideHistoryCell.xib; sourceTree = "<group>"; };
-		14D3E9311C06A2000047F415 /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
-		14D3E9321C06A2000047F415 /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
-		14D3E9331C06A2000047F415 /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
-		14D3E9341C06A2000047F415 /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
 		14D3E9371C06A2290047F415 /* TourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourViewController.h; sourceTree = "<group>"; };
 		14D3E9381C06A2290047F415 /* TourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourViewController.m; sourceTree = "<group>"; };
 		14D3E9391C06A2290047F415 /* TourViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourViewController.xib; sourceTree = "<group>"; };
-		14D3E93C1C06A28B0047F415 /* SMPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPageControl.h; sourceTree = "<group>"; };
-		14D3E93D1C06A28B0047F415 /* SMPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPageControl.m; sourceTree = "<group>"; };
-		14D3E93F1C06A3FB0047F415 /* EARestrictedScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EARestrictedScrollView.h; sourceTree = "<group>"; };
-		14D3E9401C06A3FB0047F415 /* EARestrictedScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EARestrictedScrollView.m; sourceTree = "<group>"; };
-		14D3E9421C06A83B0047F415 /* KCHorizontalScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCHorizontalScroller.h; sourceTree = "<group>"; };
-		14D3E9431C06A83B0047F415 /* KCHorizontalScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCHorizontalScroller.m; sourceTree = "<group>"; };
+		14D3E9481C06AD1B0047F415 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		14D3E94A1C06AD220047F415 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		14D3E9571C06C0440047F415 /* PHPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHPageScrollView.h; sourceTree = "<group>"; };
+		14D3E9581C06C0440047F415 /* PHPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHPageScrollView.m; sourceTree = "<group>"; };
 		14E5D7991C01A2E80089054A /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
 		14E5D79A1C01A2E80089054A /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		14E5D79C1C01A6F10089054A /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCell.h; sourceTree = "<group>"; };
@@ -438,6 +430,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D3E94B1C06AD220047F415 /* CoreGraphics.framework in Frameworks */,
+				14D3E9491C06AD1B0047F415 /* QuartzCore.framework in Frameworks */,
 				87FFDDAE1BFD65040031CE61 /* MapKit.framework in Frameworks */,
 				143F30F61BC86DE7006A6A21 /* MessageUI.framework in Frameworks */,
 				F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */,
@@ -457,7 +451,6 @@
 		047E455D1BC59C4C000B5151 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				14D3E9301C06A2000047F415 /* EAIntroView */,
 				87E5E5441C0277B5008F5684 /* HCSStarRatingView */,
 				140960891BFEB0C700BA3268 /* MJPopupBackgroundView */,
 				047E45851BC5A4D8000B5151 /* MLPAutoCompleteTextField */,
@@ -672,6 +665,8 @@
 				14D3E9371C06A2290047F415 /* TourViewController.h */,
 				14D3E9381C06A2290047F415 /* TourViewController.m */,
 				14D3E9391C06A2290047F415 /* TourViewController.xib */,
+				14D3E9571C06C0440047F415 /* PHPageScrollView.h */,
+				14D3E9581C06C0440047F415 /* PHPageScrollView.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -772,23 +767,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		14D3E9301C06A2000047F415 /* EAIntroView */ = {
-			isa = PBXGroup;
-			children = (
-				14D3E9421C06A83B0047F415 /* KCHorizontalScroller.h */,
-				14D3E9431C06A83B0047F415 /* KCHorizontalScroller.m */,
-				14D3E93F1C06A3FB0047F415 /* EARestrictedScrollView.h */,
-				14D3E9401C06A3FB0047F415 /* EARestrictedScrollView.m */,
-				14D3E93C1C06A28B0047F415 /* SMPageControl.h */,
-				14D3E93D1C06A28B0047F415 /* SMPageControl.m */,
-				14D3E9311C06A2000047F415 /* EAIntroPage.h */,
-				14D3E9321C06A2000047F415 /* EAIntroPage.m */,
-				14D3E9331C06A2000047F415 /* EAIntroView.h */,
-				14D3E9341C06A2000047F415 /* EAIntroView.m */,
-			);
-			path = EAIntroView;
-			sourceTree = "<group>";
-		};
 		87C1AF831BB866DC00E21838 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -863,6 +841,8 @@
 		EB0896A2D090EB584EC82226 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14D3E94A1C06AD220047F415 /* CoreGraphics.framework */,
+				14D3E9481C06AD1B0047F415 /* QuartzCore.framework */,
 				87FFDDAD1BFD65030031CE61 /* MapKit.framework */,
 				143F30F51BC86DE7006A6A21 /* MessageUI.framework */,
 				072E520A66E22BABE4DD7235 /* libPods.a */,
@@ -1078,8 +1058,6 @@
 			files = (
 				87D9D32A1BEE555B0096E17A /* SideMenuTableViewController.m in Sources */,
 				14E5D7C21C0276900089054A /* ActivatePermitViewController.m in Sources */,
-				14D3E9361C06A2000047F415 /* EAIntroView.m in Sources */,
-				14D3E9441C06A83B0047F415 /* KCHorizontalScroller.m in Sources */,
 				87D9D3291BEE55530096E17A /* BaseAPIManager.m in Sources */,
 				14E5D7BD1C0271090089054A /* PermitCell.m in Sources */,
 				0429B1C31BB9C84400161222 /* NSObject+Blocks.m in Sources */,
@@ -1105,7 +1083,6 @@
 				1425F8121BFF9C9F00AD086B /* NotificationsViewController.m in Sources */,
 				14B00C971BFB921E004F46F7 /* ForgetPasswordViewController.m in Sources */,
 				14E5D7B81C0270E80089054A /* PermitsViewController.m in Sources */,
-				14D3E9411C06A3FB0047F415 /* EARestrictedScrollView.m in Sources */,
 				1425F8031BFF11A200AD086B /* VehiclesViewController.m in Sources */,
 				140960931BFEB0C700BA3268 /* MJPopupBackgroundView.m in Sources */,
 				0451C3AB1C05B76D009CA1FC /* SplashViewController.m in Sources */,
@@ -1125,9 +1102,9 @@
 				044ECE941BC08A6000AF3E2D /* SearchResultsViewController.m in Sources */,
 				048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */,
 				87B58B591BD3842800E73E55 /* Base64.m in Sources */,
+				14D3E9591C06C0440047F415 /* PHPageScrollView.m in Sources */,
 				148795D11BEA685800B940D8 /* DriverDetails.m in Sources */,
 				143BE6C41BB68F1D009F6496 /* BestDriverCell.m in Sources */,
-				14D3E93E1C06A28B0047F415 /* SMPageControl.m in Sources */,
 				048912A41BB92458005E4E02 /* Language.m in Sources */,
 				048912A71BB92539005E4E02 /* Employer.m in Sources */,
 				048912B01BB933B8005E4E02 /* User.m in Sources */,
@@ -1164,7 +1141,6 @@
 				87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */,
 				04931B211BAAF814000F5434 /* main.m in Sources */,
 				144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */,
-				14D3E9351C06A2000047F415 /* EAIntroPage.m in Sources */,
 				146815541BFBB61000A78430 /* SideMenuCell.m in Sources */,
 				87B58B611BD38DD700E73E55 /* MapItemView.m in Sources */,
 				143BE6AF1BB14BD2009F6496 /* AppDelegate.m in Sources */,

@@ -52,4 +52,8 @@
 @property (nonatomic,strong) NSString *imageLocalPath;
 @property (nonatomic,assign) AccountType accountType;
 
+@property (nonatomic,strong) NSNumber *IsMobileVerified;
+@property (nonatomic,strong) NSNumber *IsPhotoVerified;
+@property (nonatomic,assign) NSString *DriverTrafficFileNo;
+@property (nonatomic,strong) NSNumber *VehiclesCount;
 @end

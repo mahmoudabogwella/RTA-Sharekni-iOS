@@ -150,6 +150,15 @@ typedef enum TextFieldType : NSUInteger {
 
 #define Driver_Ride_CELLHEIGHT 170
 
+#define VIEWS_OFFSET 0
+#define VIEW_PADDING_DEFAULT 0
+#define VIEW_PADDING_STATUS 20
+#define VIEW_DIMENSIONS 320
+#define VIEW_DIMENSIONS_IPad 768
+#define VIEW_PADDING 44
+#define VIEW_PADDING_IOS7 64
+#define VIEW_HIEGHT 480
+#define VIEW_HIEGHT_IPHONE5 528
 
 #define GoogleMapsAPIKey @"AIzaSyBxG-5UNm22YqbwQZReb7Yv6eJ02ztjpxQ"
 #define GoogleMaps_ProjectNumber @"308520536406

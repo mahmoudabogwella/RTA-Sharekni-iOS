@@ -9,6 +9,7 @@
 #import "User.h"
 
 @implementation User
+
 + (NSDictionary *)mapping {
     NSMutableDictionary *mapping = [NSMutableDictionary dictionary];
     mapping[@"ID"] = @"ID";
@@ -45,9 +46,12 @@
     mapping[@"DriverMyAlertsCount"] = @"DriverMyAlertsCount";
     mapping[@"PassengerJoinedRidesCount"] = @"PassengerJoinedRidesCount";
     mapping[@"PassengerMyRidesCount"] = @"PassengerMyRidesCount";
+    mapping[@"IsMobileVerified"] = @"IsMobileVerified";
+    mapping[@"IsPhotoVerified"] = @"IsPhotoVerified";
+    mapping[@"DriverTrafficFileNo"] = @"DriverTrafficFileNo";
+    mapping[@"VehiclesCount"] = @"VehiclesCount";
     return mapping;
 }
-
 
 - (void)setAccountStatus:(NSString *)AccountStatus{
     _AccountStatus = AccountStatus;
@@ -61,5 +65,6 @@
         self.accountType = AccountTypeBoth;
     }
 }
+
 
 @end

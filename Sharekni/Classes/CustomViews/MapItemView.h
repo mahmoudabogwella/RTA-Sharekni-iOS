@@ -16,6 +16,7 @@
 @property (nonatomic,strong) NSString *lng;
 @property (nonatomic,strong) NSString *rides;
 @property (nonatomic,strong) NSString *passengers;
+@property (nonatomic,strong) NSString *drivers;
 @property (nonatomic,strong) NSString *comingRides;
 @property (nonatomic,strong) MapLookUp *lookup;
 
