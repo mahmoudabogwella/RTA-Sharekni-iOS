@@ -476,6 +476,9 @@
 - (void) editRideAction{
     CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
     editRideViewController.routeDetails = self.routeDetails;
+    [editRideViewController setEditHandler:^{
+        
+    }];
     [self.navigationController pushViewController:editRideViewController animated:YES];
 }
 
@@ -563,6 +566,7 @@
             [blockSelf performBlock:^{
                 [KVNProgress dismiss];
             } afterDelay:3];
+            [blockSelf configureData];
         }
         else{
             [KVNProgress showErrorWithStatus:NSLocalizedString(@"Unable to remover passenger", nil)];
@@ -674,6 +678,7 @@
 }
 
 - (void) configurePins{
+    [_mapView clear];
     self.markers = [NSMutableArray array];
         CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);
         GMSMarker *startMarker = [GMSMarker markerWithPosition:startPosition];
@@ -725,23 +730,6 @@
 }];
 }
 
-//- (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
-//    MapItemView *mapItem = (MapItemView *)marker.userData;
-//    MapInfoWindow *infoWindow = [[MapInfoWindow alloc] initWithArabicName:mapItem.arabicName englishName:mapItem.englishName rides:mapItem.rides lat:mapItem.lat lng:mapItem.lng time:mapItem.comingRides];
-//    return infoWindow;
-//}
-
-//- (BOOL) mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
-//    CGPoint point = [mapView.projection pointForCoordinate:marker.position];
-//    point.y = point.y - 100;
-//    GMSCameraUpdate *camera =
-//    [GMSCameraUpdate setTarget:[mapView.projection coordinateForPoint:point]];
-//    [mapView animateWithCameraUpdate:camera];
-//    
-//    mapView.selectedMarker = marker;
-//    return YES;
-//}
-
 - (void) focusMapToShowAllMarkers{
     CLLocationCoordinate2D myLocation = ((GMSMarker *)_markers.firstObject).position;
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:myLocation coordinate:myLocation];
@@ -751,7 +739,6 @@
     
     [_mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:40.0f]];
 }
-
 
 #pragma mark - Message Delegate
 - (void)sendSMSFromPhone:(NSString *)phone{

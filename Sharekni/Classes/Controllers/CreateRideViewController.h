@@ -16,5 +16,7 @@
 @property (nonatomic,strong) CreatedRide *ride;
 @property (strong, nonatomic) RouteDetails *routeDetails;
 @property (nonatomic, copy) void (^doneHandler)(void);
+@property (nonatomic, copy) void (^editHandler)(void);
+
 
 @end

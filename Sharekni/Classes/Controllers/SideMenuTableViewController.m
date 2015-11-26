@@ -20,6 +20,9 @@
 #import "SideMenuCell.h"
 #import "AppDelegate.h"
 #import "SavedSearchViewController.h"
+
+#import "NotificationsViewController.h"
+
 #define Title_Key @"Title"
 #define Image_Key @"ImageName"
 
@@ -180,7 +183,7 @@
     NSDictionary *dictionary = [self.items objectAtIndex:indexPath.row];
     NSString *title = [dictionary valueForKey:Title_Key];
     
-        if ([title isEqualToString:NSLocalizedString(@"Home Page", nil)])
+        if ([title isEqualToString:NSLocalizedString(@"Home Page", nil)])
         { //Home
             [self.frostedViewController setContentViewController:self.homeNavigationController];
             [self.frostedViewController hideMenuViewController];
@@ -204,6 +207,10 @@
         }
         else if ([title isEqualToString:NSLocalizedString(@"Saved Search", nil)]){
             [self.frostedViewController setContentViewController:self.savedSearchNavigationController];
+            [self.frostedViewController hideMenuViewController];
+        }
+        else if ([title isEqualToString:NSLocalizedString(@"Notifications", nil)]){
+            [self.frostedViewController setContentViewController:self.notificationsNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
         else if ([title isEqualToString:NSLocalizedString(@"Logout", nil)]){
@@ -253,6 +260,12 @@
     return _savedSearchNavigationController;
 }
 
-
+- (UINavigationController *)notificationsNavigationController{
+    if (!_notificationsNavigationController) {
+        NotificationsViewController *notificationsView = [[NotificationsViewController alloc] initWithNibName:@"NotificationsViewController" bundle:nil];
+        _notificationsNavigationController = [[UINavigationController alloc] initWithRootViewController:notificationsView];
+    }
+    return _notificationsNavigationController;
+}
 
 @end

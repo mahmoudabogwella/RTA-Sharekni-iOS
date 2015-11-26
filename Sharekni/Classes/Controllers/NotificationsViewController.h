@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface NotificationsViewController : UIViewController
+@interface NotificationsViewController : BaseViewController
 
 
 @end

@@ -23,6 +23,7 @@
 #import "MobAccountManager.h"
 
 @interface SavedSearchViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *noResultLabel;
 
 @property (nonatomic ,weak) IBOutlet UITableView *driverList ;
 @property (nonatomic ,strong) NSMutableArray *savedData ;
@@ -42,13 +43,14 @@
     
     self.title = @"Saved Search";
     
-    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
-    [_backBtn setHighlighted:NO];
-    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
-  
+//    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+//    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+//    [_backBtn setHighlighted:NO];
+//    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    self.noResultLabel.textColor = Red_UIColor;
+    self.noResultLabel.alpha = 0;
     [self getRideDetails];
 }
 
@@ -68,6 +70,12 @@
         blockSelf.savedData = array;
         [KVNProgress dismiss];
         [self.driverList reloadData];
+        if (array.count == 0) {
+            self.noResultLabel.alpha = 1;
+        }
+        else{
+            self.noResultLabel.alpha = 0;
+        }
         
     } Failure:^(NSString *error) {
         NSLog(@"Error in Best Drivers");

@@ -81,6 +81,14 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = NO;
+    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [[MobAccountManager sharedMobAccountManager] getUser:self.sharedUser.ID.stringValue WithSuccess:^(User *user) {
+        self.sharedUser = user;
+        [self configureUI];
+        [KVNProgress dismiss];
+    } Failure:^(NSString *error) {
+        [KVNProgress dismiss];
+    }];
 }
 
 #pragma Data
@@ -99,7 +107,7 @@
     self.bottomLeftView.backgroundColor = Red_UIColor;
     self.bottomRightView.backgroundColor = Red_UIColor;
     
-    if (self.sharedUser.AccountTypeId.integerValue == 1) {      //Driver
+    if ([self.sharedUser.AccountStatus containsString:@"D"] || [self.sharedUser.AccountStatus containsString:@"B"]) {      //Driver
         self.topLeftIcon.image = [UIImage imageNamed:@"search-icon"];
         self.topLeftLabel.text = NSLocalizedString(@"Search", nil);
         UITapGestureRecognizer *topLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction)];
@@ -139,9 +147,9 @@
         UITapGestureRecognizer *topLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction)];
         [self.topLeftView addGestureRecognizer:topLeftGesture];
         
-        self.topRightIcon.image = [UIImage imageNamed:@"create-ride"];
-        self.topRightLabel.text = NSLocalizedString(@"Create Ride", nil);
-        UITapGestureRecognizer *topRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(createRideAction)];
+        self.topRightIcon.image = [UIImage imageNamed:@"RidesJoined_home"];
+        self.topRightLabel.text = NSLocalizedString(@"Rides Joined", nil);
+        UITapGestureRecognizer *topRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showJoinedRides)];
         [self.topRightView addGestureRecognizer:topRightGesture];
         
         self.bottomLeftIcon.image = [UIImage imageNamed:@"history"];
@@ -149,12 +157,11 @@
         UITapGestureRecognizer *bottomLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(historyAction)];
         [self.bottomLeftView addGestureRecognizer:bottomLeftGesture];
         
-        self.bottomRightIcon.image = [UIImage imageNamed:@"permit"];
-        self.bottomRightLabel.text = NSLocalizedString(@"Permit", nil);
-        UITapGestureRecognizer *bottomRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(permitAction)];
+        self.bottomRightIcon.image = [UIImage imageNamed:@"SavedSearch_Home"];
+        self.bottomRightLabel.text = NSLocalizedString(@"Saved Search", nil);
+        UITapGestureRecognizer *bottomRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(savedSearchAction)];
         [self.bottomRightView addGestureRecognizer:bottomRightGesture];
     }
-    
 }
 
 - (void) configureUI
@@ -165,6 +172,7 @@
     self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.FirstName,self.sharedUser.LastName];
     self.nameLabel.text = [self.nameLabel.text capitalizedString];
     self.nationalityLabel.text = self.sharedUser.NationalityEnName;
+    
     if (self.sharedUser.AccountRating) {
         self.ratingLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.AccountRating];
     }else{
@@ -224,12 +232,19 @@
     [self.navigationController pushViewController:permitsView animated:YES];
 }
 
+- (void) savedSearchAction{
+    SavedSearchViewController *savedSearchViewController = [[SavedSearchViewController alloc] initWithNibName:@"SavedSearchViewController" bundle:nil];
+    savedSearchViewController.enableBackButton = YES;
+    [self.navigationController pushViewController:savedSearchViewController animated:YES];
+}
+
 - (IBAction)editAction:(id)sender {
     
 }
 
 - (IBAction)openNotifications:(id)sender{
     NotificationsViewController *notificationsView = [[NotificationsViewController alloc] initWithNibName:@"NotificationsViewController" bundle:nil];
+    notificationsView.enableBackButton = YES;
     [self.navigationController pushViewController:notificationsView animated:YES];
 }
 

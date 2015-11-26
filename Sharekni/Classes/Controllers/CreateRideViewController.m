@@ -32,8 +32,9 @@
 #import "Vehicle.h"
 #import "MasterDataManager.h"
 #import "MobDriverManager.h"
+#import "MLPAutoCompleteTextField.h"
+@interface CreateRideViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate,UITextFieldDelegate>
 
-@interface CreateRideViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *seat4ImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *seat3ImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *seat2ImageView;
@@ -64,7 +65,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UITextField *nationalityTextField;
+@property (weak, nonatomic) IBOutlet MLPAutoCompleteTextField *nationalityTextField;
 @property (weak, nonatomic) IBOutlet UIView *typeView;
 @property (weak, nonatomic) IBOutlet UIButton *createButton;
 @property (weak, nonatomic) IBOutlet UIImageView *genderSwitchImage;
@@ -84,8 +85,10 @@
 @property (assign, nonatomic)  RoadType selectedType;
 @property (assign, nonatomic)  BOOL isFemaleOnly;
 @property (strong,nonatomic)   NSDate *pickupDate;
+@property (strong,nonatomic)   NSDate *pickupTime;
 
 @property (strong,nonatomic) NSArray *nationalties;
+@property (nonatomic,strong) NSMutableArray *nationaltiesStringsArray;
 @property (strong,nonatomic) NSArray *languages;
 @property (strong,nonatomic) NSArray *ageRanges;
 @property (strong,nonatomic) NSArray *vehicles;
@@ -131,7 +134,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    self.isEdit = (self.ride != nil);
+    self.isEdit = (self.ride != nil) || (self.routeDetails !=nil);
 
     [self configureUI];
     [self configureSeats];
@@ -217,6 +220,7 @@
     NSString *timeString = self.routeDetails.StartFromTime;
     dateFormatter.dateFormat = @"hh:mm a";
     NSDate *startTime = [dateFormatter dateFromString:timeString];
+    self.pickupTime = startTime;
     
     self.pickupDate = startDate;
     self.pickupDate = [self.pickupDate dateByAddingHour:startTime.hour];
@@ -360,7 +364,6 @@
     UITapGestureRecognizer *seat4Gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seat4GestureHandler)];
     [self.seat4ImageView addGestureRecognizer:seat4Gesture];
 }
-
 
 - (void) seat1GestureHandler{
     self.seat1Active = !self.seat1Active;
@@ -672,6 +675,10 @@
         blockSelf.vehicles = array;
         [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"0" WithSuccess:^(NSMutableArray *array) {
             blockSelf.nationalties = array;
+            blockSelf.nationaltiesStringsArray = [NSMutableArray array];
+            for (Nationality *nationality in blockSelf.nationalties) {
+                [blockSelf.nationaltiesStringsArray addObject:nationality.NationalityEnName];
+            }
             [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
                 blockSelf.ageRanges = array;
                 [[MasterDataManager sharedMasterDataManager] GetPrefferedLanguagesWithSuccess:^(NSMutableArray *array) {
@@ -787,6 +794,19 @@
         self.helpLabel.alpha = 1;
         self.emiratesAndRegionsView.alpha = 0;
     }
+    [self configrueNationalityAutoCompelete];
+}
+
+- (void) configrueNationalityAutoCompelete{
+    self.nationalityTextField.delegate = self;
+    self.nationalityTextField.autoCompleteDataSource = self;
+    self.nationalityTextField.autoCompleteDelegate = self;
+    self.nationalityTextField.autoCompleteTableBorderColor = Red_UIColor;
+    self.nationalityTextField.autoCompleteTableBorderWidth = 2;
+    self.nationalityTextField.autoCompleteTableBackgroundColor = [UIColor whiteColor];
+    self.nationalityTextField.autoCompleteTableAppearsAsKeyboardAccessory = YES;
+    self.nationalityTextField.autoCompleteTableCellTextColor = [UIColor blackColor];
+    [self.nationalityTextField setTintColor:Red_UIColor];
 }
 
 - (void) configureRoadTypeView{
@@ -843,6 +863,22 @@
 }
 
 - (IBAction) creatRideAction:(id)sender {
+    NSDate *todayDate_;
+    NSDate *pickupDate_;
+    NSComparisonResult compareResult = NSOrderedDescending;
+    if (self.pickupDate && !self.isEdit) {
+        if (!self.pickupTime) {
+            pickupDate_ = [self.pickupDate dateBySettingHour:0 minute:0 second:0];
+            todayDate_ = [[NSDate date] dateBySettingHour:0 minute:0 second:0];
+        }
+        else{
+            pickupDate_ = self.pickupDate;
+            todayDate_   = [NSDate date];
+        }
+        
+        compareResult = [pickupDate_ compare:todayDate_];
+    }
+    
     if ((!self.fromEmirate || !self.toEmirate)&& !self.isEdit) {
             [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please set startpoint and destination.",nil)];
     }
@@ -854,7 +890,34 @@
     else if (self.rideNameTextField.text.length == 0){
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter ride name.",nil)];
     }
+    else if (!self.pickupDate){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"please select start date ",nil)];
+    }
+    else if (!self.pickupTime){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"please select start time ",nil)];
+    }
+    else if (compareResult == NSOrderedAscending){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"invalid start date or time ",nil)];
+    }
+    else if (self.noOfSeats == 0){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select number of available seats.",nil)];
+        
+    }
+    else if (!self.satActive && !self.sunActive && !self.monActive && !self.tueActive && !self.wedActive && !self.thrActive && !self.friActive){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select days of week.",nil)];
+    }
     else{
+        
+        if (self.nationalityTextField.text.length > 0) {
+            BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTextField.text];
+            if (validNationality){
+                self.selectedNationality = [self.nationalties objectAtIndex:[self.nationaltiesStringsArray indexOfObject:self.nationalityTextField.text]];
+            }
+            else{
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Choose a valid nationality.", nil)];
+                return;
+            }
+        }
         __block CreateRideViewController *blockSelf = self;
         [KVNProgress showWithStatus:@"Loading..."];
         BOOL isRounded = self.selectedType == PeriodicType ? YES : NO;
@@ -874,6 +937,9 @@
                     [KVNProgress dismiss];
                     [blockSelf.navigationController popViewControllerAnimated:YES];
                 } afterDelay:3];
+                if (blockSelf.isEdit && blockSelf.editHandler) {
+                    blockSelf.editHandler();
+                }
             }
             else if ([response containsString:@"0"]){
                 [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Error.", nil)];
@@ -901,9 +967,12 @@
         NSString *dateString = [self.dateFormatter stringFromDate:date];
         blockSelf.dateLabel.text = dateString;
         
-        NSInteger hour = blockSelf.pickupDate.hour;
-        NSInteger minutes = blockSelf.pickupDate.minute;
-        
+        NSInteger hour = [[NSDate date] hour];
+        NSInteger minutes  = [[NSDate date] minute];
+        if (blockSelf.pickupTime) {
+            hour = blockSelf.pickupTime.hour;
+            minutes = blockSelf.pickupTime.minute;
+        }
         blockSelf.pickupDate = [[date dateBySettingHour:hour] dateBySettingMinute:minutes];
     }];
     
@@ -927,12 +996,14 @@
     __block CreateRideViewController *blockSelf = self;
     RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select",nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
+        blockSelf.pickupTime = date;
         blockSelf.dateFormatter.dateFormat = @"HH:mm a";
         NSString *time = [self.dateFormatter stringFromDate:date];
         blockSelf.timeLabel.text = time;
         NSInteger hour = date.hour;
         NSInteger minutes = date.minute;
         blockSelf.pickupDate = [blockSelf.pickupDate dateBySettingHour:hour minute:minutes second:0];
+
     }];
     
     //Create cancel action
@@ -1067,13 +1138,20 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
-    if (textField == self.nationalityTextField){
-        [self showPickerWithTextFieldType:NationalityTextField];
-    }
-    return NO;
+//    if (textField == self.nationalityTextField){
+////        [self showPickerWithTextFieldType:NationalityTextField];
+//    }
+    return YES;
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+//    if (textField == self.nationalityTextField) {
+//        BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTextField.text];
+//        if (!validNationality) {
+//            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select nationality from list", nil)];
+//            return NO;
+//        }
+//    }
     [textField resignFirstResponder];
     return YES;
 }
@@ -1153,6 +1231,29 @@
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
+}
+
+#pragma AutoCompelete_Delegate
+- (BOOL)autoCompleteTextField:(MLPAutoCompleteTextField *)textField
+shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
+               forBorderStyle:(UITextBorderStyle)borderStyle{
+    return YES;
+}
+
+- (NSArray *)autoCompleteTextField:(MLPAutoCompleteTextField *)textField
+      possibleCompletionsForString:(NSString *)string{
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",string]; // if you need case sensitive search avoid '[c]' in the predicate
+    NSArray *results = [self.nationaltiesStringsArray filteredArrayUsingPredicate:predicate];
+    return results;
+}
+
+- (BOOL) isValidNationality{
+    BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTextField.text];
+    if (!validNationality) {
+        return NO;
+    }
+    return YES;
 }
 
 @end

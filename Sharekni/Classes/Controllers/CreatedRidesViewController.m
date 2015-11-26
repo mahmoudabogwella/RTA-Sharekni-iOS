@@ -19,6 +19,7 @@
 
 
 @interface CreatedRidesViewController ()<UIAlertViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *noResultLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSArray *createdRides;
 @property (nonatomic,strong) CreatedRide *toBeDeletedRide;
@@ -38,8 +39,10 @@
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
-    self.navigationItem.title = NSLocalizedString(@"Created Rides", nil);
-
+    self.noResultLabel.textColor = Red_UIColor;
+    self.noResultLabel.alpha = 0;
+    
+    self.navigationItem.title = NSLocalizedString(@"Rides Created", nil);
 }
 
 - (void)popViewController
@@ -65,6 +68,9 @@
     [[MobAccountManager sharedMobAccountManager] getCreatedRidesWithSuccess:^(NSMutableArray *array) {
         [KVNProgress dismiss];
         blockSelf.createdRides = array;
+        if (blockSelf.createdRides.count == 0) {
+            blockSelf.noResultLabel.alpha = 1;
+        }
         [blockSelf.tableView reloadData];
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];
@@ -128,6 +134,10 @@
 - (void)editRide:(CreatedRide *)ride{
     CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
     editRideViewController.ride = ride;
+    __block CreatedRidesViewController *blockSelf = self;
+    [editRideViewController setEditHandler:^{
+        [blockSelf configureData];
+    }];
     [self.navigationController pushViewController:editRideViewController animated:YES];
 }
 

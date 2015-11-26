@@ -233,14 +233,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     else{
         [self addGreyBorderToView:textField.superview];
     }
-    if (textField == self.nationalityTxt) {
-    BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
-        if (!validNationality) {
-            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select nationality from list", nil)];
-            return NO;
-        }
-    }
-    else if (textField == self.firstNametxt){
+    
+    if (textField == self.firstNametxt){
         [self isValidFirstName];
     }
     else if (textField == self.lastNametxt){
@@ -248,6 +242,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }
     else if (textField == self.mobileNumberTxt){
         [self isValidMobileNumber];
+    }
+    else if (textField == self.nationalityTxt){
+        [self isValidNationality];
     }
     return [self textSouldEndEditing];
 }
@@ -441,17 +438,23 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     self.firstName = self.firstNametxt.text;
     self.lastName = self.lastNametxt.text;
     self.mobileNumber = self.mobileNumberTxt.text;
+
     BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
     if (validNationality){
         self.selectedNationality = [self.nationalties objectAtIndex:[self.nationaltiesStringsArray indexOfObject:self.nationalityTxt.text]];
     }
+    else{
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose a valid nationality.", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
     
     if(self.accountType == AccountTypeNone){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Please Choose acconut type.", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose acconut type.", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
     }
-    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 || !validNationality || !self.selectedLanguage || !self.date){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Please fill all fields", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0  || !self.selectedLanguage || !self.date){
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please fill all fields", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
         [self configureBorders];
     }
@@ -465,13 +468,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52] and ", nil)];
     }
     else if (![self IsValidEmail:self.userName]){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Please enter a valid email address", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please enter a valid email address", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         self.userName = @"";
         [alertView show];
         [self configureBorders];
     }
     else if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:self.date] < 18)){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"You should be older than 18 Years", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"You should be older than 18 Years", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
         self.date = nil;
         [self configureBorders];
@@ -937,5 +940,15 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:checkString];
+}
+
+- (BOOL) isValidNationality{
+    BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
+    if (!validNationality) {
+        [self addRedBorderToView:self.nationalityView];
+        return NO;
+    }
+    [self addGreyBorderToView:self.nationalityView];
+    return YES;
 }
 @end
