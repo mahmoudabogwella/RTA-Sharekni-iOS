@@ -107,6 +107,7 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
 - (void) checkLoginWithUserName:(NSString *)userName andPassword:(NSString *)password WithSuccess:(void (^)(User *user))success Failure:(void (^)(NSString *error))failure{
    
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/CheckLogin?username=%@&password=%@",userName,password];
+    __block MobAccountManager *blockSelf = self;
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
@@ -117,19 +118,33 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
                                                                              options:NSJSONReadingMutableContainers
                                                                                error:&jsonError];
             User *user = [User gm_mappedObjectWithJsonRepresentation:resultDictionary];
-            self.applicationUser = user;
-            __block MobAccountManager *blockSelf = self;
+            blockSelf.applicationUser = user;
             [[HelpManager sharedHelpManager] saveUserNameInUserDefaults:userName];
             [[HelpManager sharedHelpManager] saveUserPasswordInUserDefaults:password];
-            [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
-                blockSelf.applicationUser.userImage = image;
-                blockSelf.applicationUser.imageLocalPath = filePath;
-                success(user);
+            [self getUser:user.ID.stringValue WithSuccess:^(User *user) {
+                blockSelf.applicationUser = user;
+                [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
+                    blockSelf.applicationUser.userImage = image;
+                    blockSelf.applicationUser.imageLocalPath = filePath;
+                    success(blockSelf.applicationUser);
+                } Failure:^(NSString *error) {
+                    blockSelf.applicationUser.userImage = [UIImage imageNamed:@"Man"];
+                    blockSelf.applicationUser.imageLocalPath = nil;
+                    success(blockSelf.applicationUser);
+                }];
             } Failure:^(NSString *error) {
-                blockSelf.applicationUser.userImage = [UIImage imageNamed:@"Man"];
-                blockSelf.applicationUser.imageLocalPath = nil;
-                success(user);
+                [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
+                    blockSelf.applicationUser.userImage = image;
+                    blockSelf.applicationUser.imageLocalPath = filePath;
+                    success(blockSelf.applicationUser);
+                } Failure:^(NSString *error) {
+                    blockSelf.applicationUser.userImage = [UIImage imageNamed:@"Man"];
+                    blockSelf.applicationUser.imageLocalPath = nil;
+                    success(blockSelf.applicationUser);
+                }];
             }];
+            
+ 
         }
         else if ([responseString containsString:@"-2"]){
             failure(@"Mobile number already exists");

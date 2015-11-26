@@ -19,6 +19,7 @@
 #import <UIViewController+REFrostedViewController.h>
 #import "SideMenuCell.h"
 #import "AppDelegate.h"
+#import "SavedSearchViewController.h"
 #define Title_Key @"Title"
 #define Image_Key @"ImageName"
 
@@ -38,7 +39,7 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     self.applicationUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
     [self configureDataSourceArray];
@@ -47,24 +48,52 @@
 
 - (void) configureDataSourceArray{
     self.items = [NSMutableArray array];
-    
-    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home", nil),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
-    [self.items addObject:dictionary];
-    
-    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Most Rides", nil),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];
-    [self.items addObject:dictionary];
-    
-    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Best Drivers", nil),@"Side_bestdriver"] forKeys:@[Title_Key,Image_Key]];
-    [self.items addObject:dictionary];
-    
-    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Search", nil),@"Side_search"] forKeys:@[Title_Key,Image_Key]];
-    [self.items addObject:dictionary];
-    
-    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Notifications", nil),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
-    [self.items addObject:dictionary];
-    
-    dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Logout", nil),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
-    [self.items addObject:dictionary];
+    NSDictionary *dictionary;
+    if ([self.applicationUser.AccountStatus containsString:@"D"] || [self.applicationUser.AccountStatus containsString:@"B"]) {
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home Page", nil),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Vehicles", nil),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Most Rides", nil),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Best Drivers", nil),@"Side_bestdriver"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Search", nil),@"Side_search"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Notifications", nil),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Logout", nil),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+    }
+    else{
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home Page", nil),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Saved Search", nil),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Most Rides", nil),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Best Drivers", nil),@"Side_bestdriver"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Search", nil),@"Side_search"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Notifications", nil),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Logout", nil),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+    }
+
 }
 
 - (void) configureTableView{
@@ -77,14 +106,13 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 184.0f)];
 //        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, 100, 100)];
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 51, 100, 79)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, 100, 100)];
         imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        imageView.image = self.applicationUser.userImage ? self.applicationUser.userImage : [UIImage imageNamed:@"Man"];
-        imageView.image = [UIImage imageNamed:@"man.png"];
+        imageView.image = self.applicationUser.userImage ? self.applicationUser.userImage : [UIImage imageNamed:@"thumbnail"];
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = 50.0;
-//        imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-//        imageView.layer.borderWidth = 3.0f;
+        imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+        imageView.layer.borderWidth = 3.0f;
         imageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         imageView.layer.shouldRasterize = YES;
         imageView.clipsToBounds = YES;
@@ -149,35 +177,42 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row < 5) {
-        if (indexPath.row == 0) { //Home
+    NSDictionary *dictionary = [self.items objectAtIndex:indexPath.row];
+    NSString *title = [dictionary valueForKey:Title_Key];
+    
+        if ([title isEqualToString:NSLocalizedString(@"Home Page", nil)])
+        { //Home
             [self.frostedViewController setContentViewController:self.homeNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        if (indexPath.row == 1) { //Most Rides
+        else if ([title isEqualToString:NSLocalizedString(@"Most Rides", nil)])
+        { //Most Rides
             [self.frostedViewController setContentViewController:self.mostRidesNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        if (indexPath.row == 2) { //Best Drivers
+        else if ([title isEqualToString:NSLocalizedString(@"Best Drivers", nil)]){
             [self.frostedViewController setContentViewController:self.bestDriversNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        if (indexPath.row == 3) { //Search
+        else if ([title isEqualToString:NSLocalizedString(@"Search", nil)]){
             [self.frostedViewController setContentViewController:self.searchNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-        if (indexPath.row == 4) { //Notifications
+        else if ([title isEqualToString:NSLocalizedString(@"Notificationsrivers", nil)]){
             [self.frostedViewController setContentViewController:self.searchNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
-    }
-    else{
-        [[HelpManager sharedHelpManager] deleteUserFromUSerDefaults];
-        [MobAccountManager sharedMobAccountManager].applicationUser = nil;
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        [delegate showWelcomeNavigationController];
-        //Logout
-    }
+        else if ([title isEqualToString:NSLocalizedString(@"Saved Search", nil)]){
+            [self.frostedViewController setContentViewController:self.savedSearchNavigationController];
+            [self.frostedViewController hideMenuViewController];
+        }
+        else if ([title isEqualToString:NSLocalizedString(@"Logout", nil)]){
+            [[HelpManager sharedHelpManager] deleteUserFromUSerDefaults];
+            [MobAccountManager sharedMobAccountManager].applicationUser = nil;
+            AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [delegate showWelcomeNavigationController];
+        }
+    
 }
 
 - (UINavigationController *)bestDriversNavigationController{
@@ -208,6 +243,14 @@
 
     }
     return _mostRidesNavigationController;
+}
+
+- (UINavigationController *)savedSearchNavigationController{
+    if (!_savedSearchNavigationController) {
+        SavedSearchViewController *savedSearchViewController = [[SavedSearchViewController alloc] initWithNibName:@"SavedSearchViewController" bundle:nil];
+        _savedSearchNavigationController = [[UINavigationController alloc] initWithRootViewController:savedSearchViewController];
+    }
+    return _savedSearchNavigationController;
 }
 
 

@@ -28,7 +28,9 @@
 @interface HomeViewController ()
 
 #pragma Outlets
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UILabel *mobileNumberLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *ridesCreatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ridesJoinedLabel;
@@ -134,7 +136,7 @@
         self.ridesCreatedView.alpha = 0;
         self.vehiclesView.alpha = 0;
         self.ridesJoinedView.alpha = 0;
-        self.topLeftIcon.image = [UIImage imageNamed:@""];
+        self.topLeftIcon.image = [UIImage imageNamed:@"search-icon"];
         self.topLeftLabel.text = NSLocalizedString(@"Search", nil);
         UITapGestureRecognizer *topLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction)];
         [self.topLeftView addGestureRecognizer:topLeftGesture];
@@ -162,11 +164,16 @@
     self.notificationCountLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.DriverMyAlertsCount];
     
     self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.FirstName,self.sharedUser.LastName];
+    self.nameLabel.text = [self.nameLabel.text capitalizedString];
     self.nationalityLabel.text = self.sharedUser.NationalityEnName;
+    self.emailLabel.text = self.sharedUser.Username;
+    self.mobileNumberLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.Mobile,self.sharedUser.IsMobileVerified.boolValue ? @"Verfied" : @"Verfiy"];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(verfiyMobileAction)];
+    [self.mobileNumberLabel addGestureRecognizer:tapGestureRecognizer];
 
     NSString *ridesCreatedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Created", nil),self.sharedUser.DriverMyRidesCount];
     NSString *ridesJoinedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Joined", nil),self.sharedUser.PassengerJoinedRidesCount];
-    NSString *vehiclesCountText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Vehicles", nil),@"0"];
+    NSString *vehiclesCountText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Vehicles", nil),self.sharedUser.VehiclesCount.stringValue];
     
     
     self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"thumbnail"];
@@ -179,6 +186,10 @@
     self.ridesCreatedLabel.text = ridesCreatedText;
     self.ridesJoinedLabel.text = ridesJoinedText;
     self.vehiclesLabel.text = vehiclesCountText;
+}
+
+- (void) verfiyMobileAction{
+    
 }
 
 - (void) configureNavigationBar{

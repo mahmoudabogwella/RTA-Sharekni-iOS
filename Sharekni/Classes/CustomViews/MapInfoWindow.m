@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *englishNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *arabicNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *coordinatesLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ridesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *driversLabel;
 @property (weak, nonatomic) IBOutlet UILabel *passengersLabel;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 
@@ -22,14 +22,15 @@
 @end
 @implementation MapInfoWindow
 
--(instancetype)initWithArabicName:(NSString *)arabicName englishName:(NSString *)englishName rides:(NSString *)rides lat:(NSString *)lat lng:(NSString *)lng time:(NSString *)comingRides {
+-(instancetype)initWithArabicName:(NSString *)arabicName englishName:(NSString *)englishName passengers:(NSString *)passengers drivers:(NSString *)drivers lat:(NSString *)lat lng:(NSString *)lng time:(NSString *)comingRides {
     self =  [[[NSBundle mainBundle] loadNibNamed:@"MapInfoWindow" owner:self options:nil] objectAtIndex:0];
     if (self) {
         self.arabicName = arabicName;
         self.englishName = englishName;
         self.lat = [lat substringToIndex:6];
         self.lng = [lng substringToIndex:5];
-        self.rides = rides;
+        self.passengers = passengers;
+        self.driversCount = drivers;
         self.comingRides = comingRides;
         [self configureUI];
     }
@@ -44,9 +45,10 @@
         }
         self.arabicNameLabel.text = self.arabicName;
         self.englishNameLabel.text = self.englishName;
-        self.ridesLabel.text = [NSString stringWithFormat:@"%@ Rides",self.rides];
+        self.driversLabel.text = self.driversCount;
         self.coordinatesLabel.text = [NSString stringWithFormat:@"%@ , %@",self.lat,self.lng];
         self.time.text = self.comingRides;
+        self.passengersLabel.text = self.passengers;
         self.containerView.layer.cornerRadius = 5;
 }
 
