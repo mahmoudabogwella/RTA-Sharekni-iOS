@@ -20,6 +20,7 @@
 
 #define JOINED_RIDE_CELLHEIGHT 210
 @interface RidesJoinedViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *noResultLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSArray *rides;
 @property (nonatomic,strong) Ride *toBeLeavedRide;
@@ -27,13 +28,30 @@
 
 @implementation RidesJoinedViewController
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = NSLocalizedString(@"Rides Joined", nil);
+    
+    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setHighlighted:NO];
+    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    
+    self.noResultLabel.textColor = Red_UIColor;
+    self.noResultLabel.alpha = 0;
+    
     [self configureTableView];
     [self configureData];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = NO;
 }
@@ -50,6 +68,9 @@
     [[MobAccountManager sharedMobAccountManager] getJoinedRidesWithSuccess:^(NSMutableArray *array) {
         [KVNProgress dismiss];
         blockSelf.rides = array;
+        if (blockSelf.rides.count == 0) {
+            blockSelf.noResultLabel.alpha = 1;
+        }
         [blockSelf.tableView reloadData];
         
     } Failure:^(NSString *error) {

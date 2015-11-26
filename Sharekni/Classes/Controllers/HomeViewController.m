@@ -101,7 +101,7 @@
     self.bottomLeftView.backgroundColor = Red_UIColor;
     self.bottomRightView.backgroundColor = Red_UIColor;
     
-    if (self.sharedUser.AccountTypeId.integerValue == 1) {      //Driver
+    if ([self.sharedUser.AccountStatus containsString:@"D"] || [self.sharedUser.AccountStatus containsString:@"B"]) {      //Driver
         self.topLeftIcon.image = [UIImage imageNamed:@"search-icon"];
         self.topLeftLabel.text = NSLocalizedString(@"Search", nil);
         UITapGestureRecognizer *topLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction)];
@@ -141,9 +141,9 @@
         UITapGestureRecognizer *topLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction)];
         [self.topLeftView addGestureRecognizer:topLeftGesture];
         
-        self.topRightIcon.image = [UIImage imageNamed:@"create-ride"];
-        self.topRightLabel.text = NSLocalizedString(@"Create Ride", nil);
-        UITapGestureRecognizer *topRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(createRideAction)];
+        self.topRightIcon.image = [UIImage imageNamed:@"RidesJoined_home"];
+        self.topRightLabel.text = NSLocalizedString(@"Rides Joined", nil);
+        UITapGestureRecognizer *topRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showJoinedRides)];
         [self.topRightView addGestureRecognizer:topRightGesture];
         
         self.bottomLeftIcon.image = [UIImage imageNamed:@"history"];
@@ -151,12 +151,11 @@
         UITapGestureRecognizer *bottomLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(historyAction)];
         [self.bottomLeftView addGestureRecognizer:bottomLeftGesture];
         
-        self.bottomRightIcon.image = [UIImage imageNamed:@"permit"];
-        self.bottomRightLabel.text = NSLocalizedString(@"Permit", nil);
-        UITapGestureRecognizer *bottomRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(permitAction)];
+        self.bottomRightIcon.image = [UIImage imageNamed:@"SavedSearch_Home"];
+        self.bottomRightLabel.text = NSLocalizedString(@"Saved Search", nil);
+        UITapGestureRecognizer *bottomRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(savedSearchAction)];
         [self.bottomRightView addGestureRecognizer:bottomRightGesture];
     }
-    
 }
 
 - (void) configureUI{
@@ -216,6 +215,11 @@
 - (void) permitAction{
     PermitsViewController *permitsView = [[PermitsViewController alloc] initWithNibName:@"PermitsViewController" bundle:nil];
     [self.navigationController pushViewController:permitsView animated:YES];
+}
+
+- (void) savedSearchAction{
+    SavedSearchViewController *savedSearchViewController = [[SavedSearchViewController alloc] initWithNibName:@"SavedSearchViewController" bundle:nil];
+    [self.navigationController pushViewController:savedSearchViewController animated:YES];
 }
 
 - (IBAction)editAction:(id)sender {

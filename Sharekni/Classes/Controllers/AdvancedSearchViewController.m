@@ -556,8 +556,7 @@
 }
 
 #pragma PickerViewDeelgate&DataSource
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     NSString *title = @"";
     switch (pickerView.tag) {
         case NationalityTextField:
@@ -586,8 +585,7 @@
     return title;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     switch (pickerView.tag) {
         case NationalityTextField:
         {
@@ -612,10 +610,10 @@
 
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }
+
 - (IBAction)setDirectionButtonHandler:(id)sender {
     self.helpLabel.alpha = 0;
     self.emiratesAndRegionsView.alpha = 1;

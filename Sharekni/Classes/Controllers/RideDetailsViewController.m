@@ -476,6 +476,9 @@
 - (void) editRideAction{
     CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
     editRideViewController.routeDetails = self.routeDetails;
+    [editRideViewController setEditHandler:^{
+        
+    }];
     [self.navigationController pushViewController:editRideViewController animated:YES];
 }
 
@@ -563,6 +566,7 @@
             [blockSelf performBlock:^{
                 [KVNProgress dismiss];
             } afterDelay:3];
+            [blockSelf configureData];
         }
         else{
             [KVNProgress showErrorWithStatus:NSLocalizedString(@"Unable to remover passenger", nil)];
@@ -674,6 +678,7 @@
 }
 
 - (void) configurePins{
+    [_mapView clear];
     self.markers = [NSMutableArray array];
         CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);
         GMSMarker *startMarker = [GMSMarker markerWithPosition:startPosition];
