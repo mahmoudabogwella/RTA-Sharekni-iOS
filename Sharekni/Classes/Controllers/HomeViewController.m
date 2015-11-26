@@ -219,6 +219,7 @@
 
 - (void) savedSearchAction{
     SavedSearchViewController *savedSearchViewController = [[SavedSearchViewController alloc] initWithNibName:@"SavedSearchViewController" bundle:nil];
+    savedSearchViewController.enableBackButton = YES;
     [self.navigationController pushViewController:savedSearchViewController animated:YES];
 }
 
