@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Notification : NSObject
 
@@ -27,5 +28,8 @@
 @property (nonatomic,strong) NSString *NationalityFrName;
 @property (nonatomic,strong) NSString *NationalityChName;
 @property (nonatomic,strong) NSString *NationalityUrName;
+
+@property (nonatomic ,strong) UIImage *image ;
+@property (nonatomic ,strong) NSString *imagePath ;
 
 @end

@@ -20,6 +20,7 @@
 #import "SideMenuCell.h"
 #import "AppDelegate.h"
 #import "SavedSearchViewController.h"
+
 #import "NotificationsViewController.h"
 
 #define Title_Key @"Title"
@@ -254,7 +255,6 @@
 - (UINavigationController *)savedSearchNavigationController{
     if (!_savedSearchNavigationController) {
         SavedSearchViewController *savedSearchViewController = [[SavedSearchViewController alloc] initWithNibName:@"SavedSearchViewController" bundle:nil];
-//        savedSearchViewController.enableBackButton= NO;
         _savedSearchNavigationController = [[UINavigationController alloc] initWithRootViewController:savedSearchViewController];
     }
     return _savedSearchNavigationController;

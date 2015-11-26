@@ -75,5 +75,16 @@
     self.daysLabel.text = daysText;
 }
 
+- (IBAction)sendMail:(id)sender
+{
+    [self.delegate sendSMSFromPhone:self.phone];
+}
+
+- (IBAction)call:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",self.phone]]];
+}
+
+
 
 @end

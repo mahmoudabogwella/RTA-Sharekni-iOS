@@ -30,6 +30,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+
     self.navigationItem.title = NSLocalizedString(@"Rides Joined", nil);
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -51,7 +52,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = NO;
 }

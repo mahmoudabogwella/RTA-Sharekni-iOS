@@ -93,6 +93,11 @@
 		14B0EFCE1BEF96F100937011 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0EFCD1BEF96F100937011 /* SearchViewController.xib */; };
 		14C3F39F1C029A8300CEF11C /* RideHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C3F39D1C029A8200CEF11C /* RideHistoryCell.m */; };
 		14C3F3A01C029A8300CEF11C /* RideHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C3F39E1C029A8200CEF11C /* RideHistoryCell.xib */; };
+		14D3E93A1C06A2290047F415 /* TourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9381C06A2290047F415 /* TourViewController.m */; };
+		14D3E93B1C06A2290047F415 /* TourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E9391C06A2290047F415 /* TourViewController.xib */; };
+		14D3E9491C06AD1B0047F415 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E9481C06AD1B0047F415 /* QuartzCore.framework */; };
+		14D3E94B1C06AD220047F415 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E94A1C06AD220047F415 /* CoreGraphics.framework */; };
+		14D3E9591C06C0440047F415 /* PHPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9581C06C0440047F415 /* PHPageScrollView.m */; };
 		14E5D79B1C01A2E80089054A /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D79A1C01A2E80089054A /* Notification.m */; };
 		14E5D79F1C01A6F10089054A /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D79D1C01A6F10089054A /* NotificationCell.m */; };
 		14E5D7A01C01A6F10089054A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D79E1C01A6F10089054A /* NotificationCell.xib */; };
@@ -317,6 +322,13 @@
 		14C3F39C1C029A8200CEF11C /* RideHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideHistoryCell.h; sourceTree = "<group>"; };
 		14C3F39D1C029A8200CEF11C /* RideHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideHistoryCell.m; sourceTree = "<group>"; };
 		14C3F39E1C029A8200CEF11C /* RideHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideHistoryCell.xib; sourceTree = "<group>"; };
+		14D3E9371C06A2290047F415 /* TourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourViewController.h; sourceTree = "<group>"; };
+		14D3E9381C06A2290047F415 /* TourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourViewController.m; sourceTree = "<group>"; };
+		14D3E9391C06A2290047F415 /* TourViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourViewController.xib; sourceTree = "<group>"; };
+		14D3E9481C06AD1B0047F415 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		14D3E94A1C06AD220047F415 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		14D3E9571C06C0440047F415 /* PHPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHPageScrollView.h; sourceTree = "<group>"; };
+		14D3E9581C06C0440047F415 /* PHPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHPageScrollView.m; sourceTree = "<group>"; };
 		14E5D7991C01A2E80089054A /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
 		14E5D79A1C01A2E80089054A /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		14E5D79C1C01A6F10089054A /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCell.h; sourceTree = "<group>"; };
@@ -418,6 +430,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D3E94B1C06AD220047F415 /* CoreGraphics.framework in Frameworks */,
+				14D3E9491C06AD1B0047F415 /* QuartzCore.framework in Frameworks */,
 				87FFDDAE1BFD65040031CE61 /* MapKit.framework in Frameworks */,
 				143F30F61BC86DE7006A6A21 /* MessageUI.framework in Frameworks */,
 				F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */,
@@ -648,6 +662,11 @@
 				0451C3A81C05B76D009CA1FC /* SplashViewController.h */,
 				0451C3A91C05B76D009CA1FC /* SplashViewController.m */,
 				0451C3AA1C05B76D009CA1FC /* SplashViewController.xib */,
+				14D3E9371C06A2290047F415 /* TourViewController.h */,
+				14D3E9381C06A2290047F415 /* TourViewController.m */,
+				14D3E9391C06A2290047F415 /* TourViewController.xib */,
+				14D3E9571C06C0440047F415 /* PHPageScrollView.h */,
+				14D3E9581C06C0440047F415 /* PHPageScrollView.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -822,6 +841,8 @@
 		EB0896A2D090EB584EC82226 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14D3E94A1C06AD220047F415 /* CoreGraphics.framework */,
+				14D3E9481C06AD1B0047F415 /* QuartzCore.framework */,
 				87FFDDAD1BFD65030031CE61 /* MapKit.framework */,
 				143F30F51BC86DE7006A6A21 /* MessageUI.framework */,
 				072E520A66E22BABE4DD7235 /* libPods.a */,
@@ -964,6 +985,7 @@
 				87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */,
 				1425F8181BFFCB5500AD086B /* AddRemarksViewController.xib in Resources */,
 				14022BEB1BE56B8B00585042 /* MostRideDetailsCell.xib in Resources */,
+				14D3E93B1C06A2290047F415 /* TourViewController.xib in Resources */,
 				04C3E0341BE09EF000698227 /* HomeViewController.xib in Resources */,
 				14E5D7A01C01A6F10089054A /* NotificationCell.xib in Resources */,
 				1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */,
@@ -1080,6 +1102,7 @@
 				044ECE941BC08A6000AF3E2D /* SearchResultsViewController.m in Sources */,
 				048912A11BB922A2005E4E02 /* TermsAndCondition.m in Sources */,
 				87B58B591BD3842800E73E55 /* Base64.m in Sources */,
+				14D3E9591C06C0440047F415 /* PHPageScrollView.m in Sources */,
 				148795D11BEA685800B940D8 /* DriverDetails.m in Sources */,
 				143BE6C41BB68F1D009F6496 /* BestDriverCell.m in Sources */,
 				048912A41BB92458005E4E02 /* Language.m in Sources */,
@@ -1107,6 +1130,7 @@
 				1425F8171BFFCB5500AD086B /* AddRemarksViewController.m in Sources */,
 				047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */,
 				143BE6D91BB82363009F6496 /* CALayer+RuntimeAttribute.m in Sources */,
+				14D3E93A1C06A2290047F415 /* TourViewController.m in Sources */,
 				140960911BFEB0C700BA3268 /* AddReviewViewController.m in Sources */,
 				8777FA601C00C4B20022E368 /* CreatedRidesViewController.m in Sources */,
 				143BE6B21BB14BE5009F6496 /* WelcomeViewController.m in Sources */,
@@ -1266,7 +1290,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Sharekni/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rta.ae.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1284,7 +1308,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Roads & Transport Authority (89SHAPC6FM)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Sharekni/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rta.ae.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -23,6 +23,7 @@
 @interface NotificationsViewController () <ReloadNotificationsDelegate>
 
 @property (nonatomic ,weak) IBOutlet UITableView *notificationsList ;
+@property (nonatomic ,strong) NSMutableArray *notifications;
 
 @end
 
@@ -38,7 +39,9 @@
 {
     [super viewDidLoad];
     self.title = @"Notifications";
-    
+
+    self.notifications = [NSMutableArray new];
+    [self getNotifications];
 }
 
 - (void)popViewController
@@ -46,16 +49,47 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
 - (void)getNotifications
 {
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block NotificationsViewController *blockSelf = self;
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-    [[MasterDataManager sharedMasterDataManager] getSavedSearch:[NSString stringWithFormat:@"%@",user.ID] withSuccess:^(NSMutableArray *array) {
+    
+    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:YES WithSuccess:^(NSMutableArray *array) {
         
+
         blockSelf.notifications = array;
         [KVNProgress dismiss];
+
+        [self.notificationsList reloadData];
+        
+        [self getAcceptedNotifications];
+        
+        
+    } Failure:^(NSString *error) {
+        NSLog(@"Error in Notifications");
+        [KVNProgress dismiss];
+        [KVNProgress showErrorWithStatus:@"Error"];
+        [blockSelf performBlock:^{
+            [KVNProgress dismiss];
+        } afterDelay:3];
+    }];
+}
+
+- (void)getAcceptedNotifications{
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    
+    __block NotificationsViewController *blockSelf = self;
+    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    
+    [[MasterDataManager sharedMasterDataManager] getRequestNotifications:[NSString stringWithFormat:@"%@",user.ID] isDriver:NO WithSuccess:^(NSMutableArray *array) {
+        
+        [self.notifications addObjectsFromArray:array];
+
+        [KVNProgress dismiss];
+        
         [self.notificationsList reloadData];
         
     } Failure:^(NSString *error) {

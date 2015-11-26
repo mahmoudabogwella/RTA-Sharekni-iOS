@@ -7,6 +7,7 @@
 //
 
 #import "Notification.h"
+#import "MobAccountManager.h"
 
 @implementation Notification
 
@@ -32,6 +33,18 @@
     mapping[@"NationalityUrName"] = @"NationalityUrName";
 
     return mapping;
+}
+
+- (void)setAccountPhoto:(NSString *)AccountPhoto
+{
+    __block Notification *blockSelf = self;
+    _AccountPhoto = AccountPhoto ;
+    [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:_AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
+        blockSelf.image = image ;
+        blockSelf.imagePath = filePath;
+    } Failure:^(NSString *error) {
+        
+    }];
 }
 
 @end

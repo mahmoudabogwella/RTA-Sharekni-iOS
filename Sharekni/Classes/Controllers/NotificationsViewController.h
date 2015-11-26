@@ -11,6 +11,5 @@
 
 @interface NotificationsViewController : BaseViewController
 
-@property (nonatomic ,strong) NSMutableArray *notifications;
 
 @end

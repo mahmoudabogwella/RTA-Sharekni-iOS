@@ -133,6 +133,9 @@
                 [self.contentView setContentSize:CGSizeMake(self.contentView.frame.size.width,joinedView.frame.origin.y + joinedView.frame.size.height + 20.0f)];
                 
                 [self.joinRidesList reloadData];
+            }else{
+                joinedView.hidden = YES ;
+                joinedLblName.hidden = YES ;
             }
         }
         

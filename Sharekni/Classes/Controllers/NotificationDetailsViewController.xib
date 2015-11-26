@@ -15,6 +15,7 @@
                 <outlet property="remarks" destination="eNM-dw-wcg" id="pon-hZ-JmL"/>
                 <outlet property="requestDate" destination="JON-oj-gr6" id="zqe-QC-Him"/>
                 <outlet property="routeName" destination="BZY-n7-8RK" id="sho-In-3gO"/>
+                <outlet property="userImage" destination="chf-LH-SQw" id="tae-ea-iYj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
