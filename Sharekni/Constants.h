@@ -161,7 +161,15 @@ typedef enum TextFieldType : NSUInteger {
 #define VIEW_HIEGHT_IPHONE5 528
 
 #define GoogleMapsAPIKey @"AIzaSyBxG-5UNm22YqbwQZReb7Yv6eJ02ztjpxQ"
-#define GoogleMaps_ProjectNumber @"308520536406
-#define GoogleMaps_ApplicationID @"sharekni-1121""
+#define GoogleMaps_ProjectNumber @"308520536406"
+#define GoogleMaps_ApplicationID @"sharekni-1121"
+
+#define KIS_ARABIC ([[KUSER_DEFAULTS valueForKey:KUSER_LANGUAGE_KEY] isEqualToString:@"ar"])
+#define KIS_SYS_LANGUAGE_ARABIC ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"ar"])
+#define KUSER_DEFAULTS ([NSUserDefaults standardUserDefaults])
+#define KUSER_TOKEN_KEY @"KUSER_TOKEN_KEY"
+#define KUSER_LANGUAGE_KEY @"KUSER_LANGUAGE_KEY"
+#define KNEEDS_TO_COMPLETE_PROFILE_KEY @"KNEEDS_TO_COMPLETE_PROFILE_KEY"
+
 
 #endif

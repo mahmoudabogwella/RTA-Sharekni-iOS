@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Controllers/ActivatePermitViewController.m"
-            timestampString = "470193874.632125"
+            filePath = "Sharekni/Classes/Components/AOTutorialViewController.m"
+            timestampString = "470223622.185803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "-supportedInterfaceOrientations"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "-layoutViews"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Models/Notification.m"
-            timestampString = "470194255.353359"
+            filePath = "Sharekni/Classes/Components/AOTutorialViewController.m"
+            timestampString = "470223788.706572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "-setAccountPhoto:"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "-initWithBackgroundImages:andInformations:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Models/Notification.m"
-            timestampString = "470194257.125357"
+            filePath = "Sharekni/Classes/Controllers/WelcomeViewController.m"
+            timestampString = "470954025.015901"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "-setAccountPhoto:"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-selectArabic:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,76 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Models/Notification.m"
-            timestampString = "470194416.885628"
+            filePath = "Sharekni/Classes/Controllers/WelcomeViewController.m"
+            timestampString = "470911378.413825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "-setAccountPhoto:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[Notification setAccountPhoto:]"
-                  moduleName = "Sharekni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ahmedaskar/Work/inCore/Sharekni/Sharekni/Classes/Models/Notification.m"
-                  timestampString = "470222467.784989"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "39">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__Block_byref_object_copy_"
-                  moduleName = "Sharekni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ahmedaskar/Work/inCore/Sharekni/Sharekni/Classes/Models/Notification.m"
-                  timestampString = "470222467.785205"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__Block_byref_object_dispose_"
-                  moduleName = "Sharekni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ahmedaskar/Work/inCore/Sharekni/Sharekni/Classes/Models/Notification.m"
-                  timestampString = "470222467.785418"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Controllers/KCTourViewController.m"
-            timestampString = "470204342.899735"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "-numberOfViewsForHorizontalScroller:"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "-selectEnglish:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -146,13 +83,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Controllers/KCTourViewController.m"
-            timestampString = "470204344.565645"
+            filePath = "Sharekni/Classes/Controllers/WelcomeViewController.m"
+            timestampString = "470914033.493455"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "-horizontalScroller:viewAtIndex:"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-selectEnglish:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

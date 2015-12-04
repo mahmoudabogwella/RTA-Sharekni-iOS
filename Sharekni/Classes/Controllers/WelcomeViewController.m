@@ -15,6 +15,7 @@
 #import <UIColor+Additions.h>
 #import "Constants.h"
 #import "TourViewController.h"
+#import "Constants.h"
 
 @interface WelcomeViewController ()
 @property (weak, nonatomic) IBOutlet UIView *mostRidesView;
@@ -98,6 +99,32 @@
     driversView.enableBackButton = YES;
     [self.navigationController pushViewController:driversView animated:YES];
 }
+
+- (IBAction)selectEnglish:(id)sender
+{
+    if (KIS_SYS_LANGUAGE_ARABIC)
+    {
+        NSArray* language = [NSArray arrayWithObject:@"en"];
+        [self updateUser:language];
+    }
+}
+
+- (IBAction)selectArabic:(id)sender
+{
+    if (!KIS_SYS_LANGUAGE_ARABIC)
+    {
+        NSArray* language = [NSArray arrayWithObject:@"ar"];
+        [self updateUser:language];
+    }
+}
+
+- (void)updateUser:(NSArray *)lang
+{
+    [KUSER_DEFAULTS setObject:lang forKey:@"AppleLanguages"];
+    [KUSER_DEFAULTS synchronize];
+    exit(0);
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
