@@ -7,9 +7,10 @@
 */
 
 "username" = "اسم المستخدم";
-"password" = "كلمة المرور";
+"Username (Your Email)" = "اسم المستخدم (البريد الإلكتروني)";
+"Password" = "كلمة المرور";
 "firstName" = "الاسم الاول";
-"lastName"  = "اسم العائلة";
+"lastName"  = "الاسم الأخير";
 "mobile"    = "رقم الهاتف";
 "nationality" = "الجنسية";
 "pLanguage" = "اللغة المفضلة";
@@ -39,4 +40,11 @@
 "submit" = "تأكيد";
 "forget" = "نسيت كلمة المرور";
 "preferedLang" = "اللغة المفضلة";
+
+
+//Registeration
+//"Driver" = "سائق";
+//"Driver" = "سائق";
+//"Driver" = "سائق";
+
 

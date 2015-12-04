@@ -25,7 +25,7 @@
 #import <REFrostedViewController.h>
 #import "SideMenuTableViewController.h"
 
-@interface RegisterViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate,REFrostedViewControllerDelegate>
+@interface RegisterViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate,REFrostedViewControllerDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 //O
@@ -137,14 +137,18 @@
     
     [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"driver_icon"]    forState:UIControlStateNormal];
     [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"driverActive_icon"]      forState:UIControlStateSelected];
+//    [self.driverLbl setText:NSLocalizedString(@"Driver", nil)];
     [self.driverBtn    setSelected:NO];
    
     [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"passenger_icon"] forState:UIControlStateNormal];
     [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"passengerActive_icon"]   forState:UIControlStateSelected];
+    [self.passengerLbl setText:NSLocalizedString(@"Driver", nil)];
+
     [self.passengerBtn    setSelected:NO];
 
     [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"both_icon"]      forState:UIControlStateNormal];
     [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"bothAcive_icon"]        forState:UIControlStateSelected];
+    [self.bothLbl setText:NSLocalizedString(@"Driver", nil)];
     [self.bothBtn    setSelected:NO];
     self.accountType = AccountTypeNone;
 
@@ -163,7 +167,7 @@
         self.lastNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"lastName", nil) attributes:@{NSForegroundColorAttributeName: color}];
         self.mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mobile", nil) attributes:@{NSForegroundColorAttributeName: color}];
         self.usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"username", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.passwordTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"password", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.passwordTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Password", nil) attributes:@{NSForegroundColorAttributeName: color}];
         self.nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"nationality", nil) attributes:@{NSForegroundColorAttributeName: color}];
         self.preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"pLanguage", nil) attributes:@{NSForegroundColorAttributeName: color}];
     } else {
@@ -480,8 +484,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [alertView show];
         self.date = nil;
         [self configureBorders];
-    }
-    else{
+    }else{
         if (self.profileImage) {
                 [[MobAccountManager sharedMobAccountManager] uploadPhoto:self.profileImage withSuccess:^(NSString *fileName) {
                     if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
@@ -543,7 +546,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [KVNProgress dismiss];
         [[HelpManager sharedHelpManager] showAlertWithMessage:error];
     }];
-    
 }
 
 - (IBAction)selectHumanType:(id)sender{

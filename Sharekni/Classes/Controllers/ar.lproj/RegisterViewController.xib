@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
@@ -12,7 +13,7 @@
                 <outlet property="dateLabel" destination="8c0-Zc-Vj0" id="yu7-0Y-jrH"/>
                 <outlet property="datePickerView" destination="n8x-Rr-lxQ" id="wRx-nv-Wtw"/>
                 <outlet property="driverBtn" destination="Oco-Jf-4sM" id="Cj1-KP-iEa"/>
-                <outlet property="driverLbl" destination="D5L-ck-wID" id="E3l-df-bJF"/>
+                <outlet property="driverLbl" destination="LZz-Ar-S5k" id="cHB-lr-JEI"/>
                 <outlet property="femaleLabel" destination="HgN-xn-dEs" id="YNp-Wf-ndK"/>
                 <outlet property="firstNameView" destination="Hih-Wp-bbd" id="bcw-5C-TvX"/>
                 <outlet property="firstNametxt" destination="TmR-D4-R8s" id="PjA-UP-Qs7"/>
@@ -55,9 +56,9 @@
                     <subviews>
                         <button opaque="NO" tag="99" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oco-Jf-4sM">
                             <rect key="frame" x="30" y="3" width="70" height="70"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
-                            <state key="normal" backgroundImage="DriverActive">
+                            <state key="normal" backgroundImage="driver_icon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -68,7 +69,7 @@
                             <rect key="frame" x="130" y="3" width="70" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
-                            <state key="normal" backgroundImage="PassengerActive">
+                            <state key="normal" backgroundImage="passenger_icon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -77,9 +78,9 @@
                         </button>
                         <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uLw-ZQ-FNa">
                             <rect key="frame" x="230" y="3" width="70" height="70"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
-                            <state key="normal" backgroundImage="BothActive">
+                            <state key="normal" backgroundImage="both_icon">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -409,17 +410,9 @@
                                 <action selector="registerAction:" destination="-1" eventType="touchUpInside" id="CHI-Kl-9Mw"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D5L-ck-wID">
-                            <rect key="frame" x="42" y="41" width="46" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Both" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7p7-En-CEc">
                             <rect key="frame" x="247" y="43" width="37" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -430,6 +423,14 @@
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LZz-Ar-S5k">
+                            <rect key="frame" x="42" y="44" width="46" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -468,11 +469,11 @@
         </view>
     </objects>
     <resources>
-        <image name="BothActive" width="128" height="128"/>
         <image name="CalendarIcon" width="78" height="78"/>
-        <image name="DriverActive" width="128" height="128"/>
-        <image name="PassengerActive" width="128" height="128"/>
         <image name="RegistrationBg" width="640" height="1039"/>
+        <image name="both_icon" width="60" height="60"/>
+        <image name="driver_icon" width="60" height="60"/>
+        <image name="passenger_icon" width="60" height="60"/>
         <image name="select_Left" width="108" height="59"/>
     </resources>
 </document>
