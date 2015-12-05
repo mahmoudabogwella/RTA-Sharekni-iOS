@@ -221,7 +221,6 @@
     [self.languageButton setTitle:NSLocalizedString(@"Choose a language", nil) forState:UIControlStateNormal];
     [self.ageRangeButton setTitle:NSLocalizedString(@"Choose age range", nil) forState:UIControlStateNormal];
     
-    
     UITapGestureRecognizer *saveSearchTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveSearchViewTapped)];
     [self.saveSearchView addGestureRecognizer:saveSearchTapGestureRecognizer];
     
@@ -287,13 +286,14 @@
     }
 }
 
-- (void) configureGenderView{
-    if (self.isFemaleOnly) {
-        self.genderSwitchImage.image = [UIImage imageNamed:@"select_Right"];
+- (void) configureGenderView
+{
+    if (self.isFemaleOnly)
+    {
+        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_Right"];
         self.genderLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
-    }
-    else{
-        self.genderSwitchImage.image = [UIImage imageNamed:@"select_Left"];
+    }else{
+        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Right":@"select_Left"];
         self.genderLabel.textColor = [UIColor darkGrayColor];
     }
 }
@@ -319,15 +319,16 @@
     [self.view endEditing:YES];
 }
 
-- (void) saveSearchViewTapped {
+- (void) saveSearchViewTapped
+{
     self.saveSearchEnabled = !self.saveSearchEnabled;
-    if (self.saveSearchEnabled) {
+    if (self.saveSearchEnabled)
+    {
         self.saveSearchLabel.textColor = Red_UIColor;
-        self.saveSearchSwitchImage.image = [UIImage imageNamed:@"select_Right"];
-    }
-    else{
+        self.saveSearchSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_Right"];
+    }else{
         self.saveSearchLabel.textColor = [UIColor darkGrayColor];
-        self.saveSearchSwitchImage.image = [UIImage imageNamed:@"select_Left"];
+        self.saveSearchSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Right":@"select_Left"];
     }
 }
 

@@ -25,7 +25,7 @@
 "registration" = "مستخدم جديد";
 "login" = "الدخول";
 "bestDrivers" = "أفضل السائقين";
-"searchOptions" = "خيارات البحث";
+"searchOptions" = "البحث";
 "mostRides" = "معظم الجولات";
 "advancedSearch" = "بحث متقدم";
 "quickSearch" = "بحث";
@@ -43,8 +43,21 @@
 
 
 //Registeration
-//"Driver" = "سائق";
-//"Driver" = "سائق";
-//"Driver" = "سائق";
+"Please Choose a valid nationality." = "يرجي اختيار الجنيسة";
+"Please Choose acconut type." = "يرجي اختيار نوع الحساب";
+"Please fill all fields" = "جميع الحقول الزامية";
+"First name mustn't have numbers" = "الاسم الاول يجب ألا يحتوي علي ارقام";
+"Last name mustn't have numbers" = "الاسم الاخير يجب ألا يحتوي علي أرقام";
+"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]" = "رقم الجوال يجب أن يكون ٩ أرقام ويبدأ ب [50 – 55 – 56 – 52]";
+"Please enter a valid email address" = "يرجي إدخال بريد إلكتروني صحيح";
+"You should be older than 18 Years"  = "يجب أن تكون أكبر من ١٨ سنة";
+"Select" = "اختر";
+"Cancel" = "إلغاء";
+"Ok" = "موافق";
+"Email already exists" = "البريد الإلكتروني موجود بالفعل";
+"Mobile number already exists" = "رقم الجوال موجود بالفعل";
+"Registration done successfully" = "تم التسجيل بنجاح";
 
+"Choose a language" = "اختيار اللغة";
+"Choose age range" = "اختيار الفئة العمرية";
 

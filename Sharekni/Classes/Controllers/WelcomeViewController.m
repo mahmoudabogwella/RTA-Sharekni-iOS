@@ -105,6 +105,8 @@
     if (KIS_SYS_LANGUAGE_ARABIC)
     {
         NSArray* language = [NSArray arrayWithObject:@"en"];
+        [KUSER_DEFAULTS setObject:@"en" forKey:KUSER_LANGUAGE_KEY];
+        [KUSER_DEFAULTS synchronize];
         [self updateUser:language];
     }
 }
@@ -113,6 +115,8 @@
 {
     if (!KIS_SYS_LANGUAGE_ARABIC)
     {
+        [KUSER_DEFAULTS setObject:@"ar" forKey:KUSER_LANGUAGE_KEY];
+        [KUSER_DEFAULTS synchronize];
         NSArray* language = [NSArray arrayWithObject:@"ar"];
         [self updateUser:language];
     }
