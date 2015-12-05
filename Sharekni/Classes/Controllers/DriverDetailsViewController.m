@@ -17,6 +17,7 @@
 #import "MasterDataManager.h"
 #import "RideDetailsViewController.h"
 #import "MobAccountManager.h"
+#import "RZDataBinding.h"   
 
 @interface DriverDetailsViewController () <MFMessageComposeViewControllerDelegate>
 
@@ -26,19 +27,18 @@
 @property (nonatomic ,weak) IBOutlet UILabel *rate ;
 @property (nonatomic ,weak) IBOutlet UITableView *ridesList ;
 @property (nonatomic ,strong) NSMutableArray *driverRides ;
+@property (nonatomic ,strong) User *driver ;
 
 @end
 
 @implementation DriverDetailsViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTranslucent:NO];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -54,98 +54,165 @@
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
     
-    if (self.bestDriver) {
-        self.driverName.text = _bestDriver.AccountName ;
-        self.country.text = _bestDriver.NationalityEnName ;
-        if (_bestDriver.image) {
-            self.driverImage.image = _bestDriver.image;
-        }else{
-            self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
-        }
-        self.rate.text = [NSString stringWithFormat:@"%ld",_bestDriver.Rating];
-    }else if (self.mostRideDetails){
-        self.driverName.text = _mostRideDetails.DriverName ;
-        self.country.text = _mostRideDetails.NationalityEnName ;
-        self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
-        self.rate.text = [NSString stringWithFormat:@"%ld",_mostRideDetails.Rating];
-    }else if (self.driverSearchResult){
-        self.driverName.text = self.driverSearchResult.AccountName ;
-        self.country.text = self.driverSearchResult.Nationality_en ;
-        self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
-        self.rate.text = [NSString stringWithFormat:@"%@",self.driverSearchResult.Rating];
-    }
-    
     [self.ridesList registerClass:[DriverRideCell class] forCellReuseIdentifier:RIDE_CELLID];
-//    [self.ridesList registerNib:[UINib nibWithNibName:@"DriverRideCell" bundle:nil] forCellReuseIdentifier:RIDE_CELLID];
-    
-    [self getDriverRides];
+    [self configureData];
+//  [self.ridesList registerNib:[UINib nibWithNibName:@"DriverRideCell" bundle:nil] forCellReuseIdentifier:RIDE_CELLID];
 }
 
-- (void)popViewController
-{
+- (void) configureData{
+    
+    //configure Image
+    NSString *driverID;
+    if (self.bestDriver) {
+        driverID = self.bestDriver.AccountId;
+    }
+    else if (self.mostRideDetails){
+        driverID = self.mostRideDetails.AccountId;
+    }
+    else if (self.driverSearchResult){
+        driverID = self.driverSearchResult.DriverId;
+    }
+    else if (self.joinedRide){
+        driverID = self.joinedRide.Account.stringValue;
+    }
+    
+    if (self.bestDriver) {
+        
+        self.driverName.text = self.bestDriver.AccountName ;
+        self.country.text = self.bestDriver.NationalityArName ;
+        if (self.bestDriver.image) {
+            self.driverImage.image = self.bestDriver.image;
+        }else{
+            self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+            [self.bestDriver rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"image"];
+        }
+        [self.bestDriver rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
+        
+    }else if (self.mostRideDetails){
+        
+        self.driverName.text = _mostRideDetails.DriverName ;
+        self.country.text = _mostRideDetails.NationalityArName ;
+        if (self.mostRideDetails.driverImage) {
+            self.driverImage.image = self.mostRideDetails.driverImage;
+        }
+        else{
+            self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+            [self.mostRideDetails rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage"];
+
+        }
+        [self.mostRideDetails rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
+        
+    }else if (self.driverSearchResult){
+        self.driverName.text = self.driverSearchResult.AccountName ;
+        self.country.text = self.driverSearchResult.Nationality_ar ;
+        if (self.driverSearchResult.driverImage) {
+            self.driverImage.image = self.driverSearchResult.driverImage;
+        }else{
+            self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+            [self.driverSearchResult rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage"];
+        }
+     [self.driverSearchResult rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
+    }else if (self.joinedRide){
+        self.driverName.text = self.joinedRide.DriverName ;
+        self.country.text = self.joinedRide.DriverNationalityArName ;
+        if (self.joinedRide.driverImage) {
+            self.driverImage.image = self.joinedRide.driverImage;
+        }else{
+            self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+            [self.driverSearchResult rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage"];
+        }
+        [self.joinedRide rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"DriverRating" callImmediately:YES];
+    }
+    [self configureDriverData:driverID];
+}
+
+- (void) ratingChanged{
+    if(self.bestDriver){
+        self.rate.text = _bestDriver.Rating;
+    }
+    else if (self.mostRideDetails){
+        self.rate.text = _mostRideDetails.Rating;
+    }
+    else if (self.driverSearchResult){
+        self.rate.text = self.driverSearchResult.Rating;
+    }
+    else if (self.joinedRide){
+        self.rate.text = self.joinedRide.DriverRating;
+    }
+}
+
+- (void) imageChanged{
+    if(self.bestDriver){
+        self.driverImage.image = self.bestDriver.image;
+    }
+    else if (self.mostRideDetails){
+        self.driverImage.image = self.mostRideDetails.driverImage;
+    }
+    else if (self.driverSearchResult){
+        self.driverImage.image = self.driverSearchResult.driverImage;
+    }
+    else if (self.joinedRide){
+        self.driverImage.image = self.joinedRide.driverImage;
+    }
+}
+
+//
+//- (void) configureUIData{
+//    self.driverName.text = self.driver.Username ;
+//    self.country.text = self.driver.NationalityEnName;
+//    if (self.driver.userImage) {
+//        self.driverImage.image = self.driver.userImage;
+//    }
+//    else{
+//        self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+//    }
+//    self.rate.text = self.driver.AccountRating;
+//}
+
+
+- (void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)getDriverRides
-{
+- (void)configureDriverData:(NSString *)driverID{
     __block DriverDetailsViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-    NSString *accountID = self.bestDriver ? self.bestDriver.AccountId : self.mostRideDetails ? self.mostRideDetails.AccountId : self.driverSearchResult.DriverId;
-    
-    if (self.joinedRide){
-
-        accountID = [NSString stringWithFormat:@"%@",self.joinedRide.Account.stringValue];
-
-        [[MobAccountManager sharedMobAccountManager] getUser:accountID WithSuccess:^(User *user) {
-            [KVNProgress dismiss];
-            self.driverName.text = [NSString stringWithFormat:@"%@ %@",user.FirstName,user.LastName] ;
-            self.country.text = user.NationalityEnName ;
-            self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
-            self.rate.text = [NSString stringWithFormat:@"%@",user.AccountRating];
-        } Failure:^(NSString *error) {
-            [KVNProgress dismiss];
-        }];
-    }
-    
-    [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:accountID WithSuccess:^(NSMutableArray *array)
-    {
-        blockSelf.driverRides = array;
-        [KVNProgress dismiss];
-        [self.ridesList reloadData];
-        
-    } Failure:^(NSString *error) {
-        
-        NSLog(@"Error in Best Drivers");
-        [KVNProgress dismiss];
-        [KVNProgress showErrorWithStatus:@"Error"];
-        [blockSelf performBlock:^{
-            [KVNProgress dismiss];
-        } afterDelay:3];
-    }];
+        [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+        NSString *accountID = driverID;
+        [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:accountID WithSuccess:^(NSMutableArray *array)
+         {
+             blockSelf.driverRides = array;
+             [KVNProgress dismiss];
+             [self.ridesList reloadData];
+             
+         } Failure:^(NSString *error) {
+             
+             NSLog(@"Error in Best Drivers");
+             [KVNProgress dismiss];
+             [KVNProgress showErrorWithStatus:@"Error"];
+             [blockSelf performBlock:^{
+                 [KVNProgress dismiss];
+             } afterDelay:3];
+         }];
 }
 
 
 #pragma mark - Event Handler
-- (IBAction)sendMail:(id)sender
-{
+- (IBAction)sendMail:(id)sender{
     [self sendSMSFromPhone:_mostRideDetails.DriverMobile];
 }
 
-- (IBAction)call:(id)sender
-{
+- (IBAction)call:(id)sender{
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",(_isBestDriver)?_bestDriver.AccountMobile:_mostRideDetails.DriverMobile]]];
 }
 
 #pragma mark -
 #pragma mark UITableView Datasource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex{
     return self.driverRides.count;
 }
 
-- (DriverRideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (DriverRideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DriverRideCell *driverCell = (DriverRideCell *)[tableView dequeueReusableCellWithIdentifier:RIDE_CELLID];
     
     if (driverCell == nil)
@@ -162,8 +229,7 @@
 #pragma mark -
 #pragma mark UITableView Delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DriverDetails *driver = self.driverRides[indexPath.row];
     RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:@"RideDetailsViewController" bundle:nil];
     rideDetails.driverDetails = driver ;
@@ -175,8 +241,7 @@
 }
 
 #pragma mark - Message Delegate
-- (void)sendSMSFromPhone:(NSString *)phone
-{
+- (void)sendSMSFromPhone:(NSString *)phone{
     if(![MFMessageComposeViewController canSendText])
     {
         UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -194,8 +259,7 @@
     [self presentViewController:messageController animated:YES completion:nil];
 }
 
-- (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{
+- (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     switch(result)
     {
         case MessageComposeResultCancelled: break; //handle cancelled event

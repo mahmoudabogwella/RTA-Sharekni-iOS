@@ -69,6 +69,7 @@
 @end
 
 @implementation HomeViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
@@ -77,15 +78,23 @@
     [self configureUI];
     [self configureActionsUI];
     [self getNotifications];
+    
+    __block HomeViewController *blockSelf = self;
+    [[MobAccountManager sharedMobAccountManager] getCalculatedRatingForAccount:self.sharedUser.ID.stringValue WithSuccess:^(NSString *rating) {
+        blockSelf.ratingLabel.text = rating;
+    } Failure:^(NSString *error) {
+        blockSelf.ratingLabel.text = 0;
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = NO;
     [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    __block HomeViewController *blockSelf = self;
     [[MobAccountManager sharedMobAccountManager] getUser:self.sharedUser.ID.stringValue WithSuccess:^(User *user) {
-        self.sharedUser = user;
-        [self configureUI];
+        blockSelf.sharedUser = user;
+        [blockSelf configureUI];
         [KVNProgress dismiss];
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];
@@ -98,7 +107,6 @@
     if(!self.sharedUser){
         //handle open home without user
     }
-    
 }
 #pragma UI
 
@@ -172,6 +180,7 @@
     
     self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.FirstName,self.sharedUser.LastName];
     self.nameLabel.text = [self.nameLabel.text capitalizedString];
+
     self.nationalityLabel.text = (KIS_ARABIC)?self.sharedUser.NationalityArName:self.sharedUser.NationalityEnName;
     
     if (self.sharedUser.AccountRating) {
@@ -180,7 +189,6 @@
         self.ratingLabel.text = @"0";
     }
     
-
     self.emailLabel.text = self.sharedUser.Username;
     self.mobileNumberLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.Mobile,self.sharedUser.IsMobileVerified.boolValue ? @"Verfied" : @"Verfiy"];
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(verfiyMobileAction)];

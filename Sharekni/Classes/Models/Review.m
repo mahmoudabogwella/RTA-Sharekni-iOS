@@ -7,7 +7,7 @@
 //
 
 #import "Review.h"
-
+#import "MobAccountManager.h"
 @implementation Review
 
 + (NSDictionary *)mapping
@@ -25,6 +25,18 @@
     mapping[@"AccountNationalityUr"] = @"AccountNationalityUr";
     mapping[@"AccountNationalityCh"] = @"AccountNationalityCh";
     return mapping;
+}
+
+-  (void)setAccountPhoto:(NSString *)AccountPhoto{
+    _AccountPhoto = AccountPhoto;
+    __block Review *blockSelf = self;
+    [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
+        blockSelf.AccountImage = image;
+        blockSelf.AccountImageLocalPath = filePath;
+    } Failure:^(NSString *error) {
+        blockSelf.AccountImage = [UIImage imageNamed:@"thumbnail"];
+        blockSelf.AccountImageLocalPath = nil;
+    }];
 }
 
 @end

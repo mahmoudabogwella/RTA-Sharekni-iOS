@@ -15,7 +15,7 @@
 #import "MobAccountManager.h"
 #import <KVNProgress.h>
 #import "NSObject+Blocks.h"
-
+#import "DriverDetailsViewController.h"
 #import "UIView+Borders.h"
 
 #define JOINED_RIDE_CELLHEIGHT 210
@@ -112,7 +112,7 @@
         [blockSelf showDetailsViewControllerWithRide:blockRide];
     }];
     [rideCell setDriverHandler:^{
-        NSLog(@"not implemented");
+        [blockSelf showDriverDetailsForRide:blockRide];
     }];
     return rideCell ;
 }
@@ -135,6 +135,12 @@
     RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:@"RideDetailsViewController" bundle:nil];
     rideDetails.joinedRide = createdRide ;
     [self.navigationController pushViewController:rideDetails animated:YES];
+}
+
+- (void) showDriverDetailsForRide:(Ride *)ride{
+    DriverDetailsViewController *driverDetailsViewController = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
+    driverDetailsViewController.joinedRide = ride;
+    [self.navigationController pushViewController:driverDetailsViewController animated:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

@@ -65,7 +65,7 @@
             success(nil);
         }
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        
+        failure(error.localizedDescription);        
     }];
 }
 
@@ -417,7 +417,7 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
 
 
 - (void) leaveRideWithID:(NSString *) routeID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure{
-    NSString *path =[NSString stringWithFormat:@"cls_mobios.asmx/Route_Delete?RouteId=%@",routeID];
+    NSString *path =[NSString stringWithFormat:@"cls_mobios.asmx/Passenger_RemovePassenger?RoutePassengerId=%@",routeID];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
@@ -455,7 +455,7 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
-        success(responseObject);
+        success(responseString);
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         failure(error.localizedDescription);
     }];
@@ -467,7 +467,19 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
-        success(responseObject);
+        success(responseString);
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+}
+
+- (void) getCalculatedRatingForAccount:(NSString *)accountID WithSuccess:(void (^)(NSString *rating))success Failure:(void (^)(NSString *error))failure{
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetCalculatedRating?AccountId=%@",accountID];
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSString *rating = [NSString stringWithFormat:@"%li",(long)responseString.integerValue];
+        success(rating);
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         failure(error.localizedDescription);
     }];

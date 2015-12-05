@@ -27,6 +27,7 @@
     self.ToEmirateName.text = @"To";
     self.ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",ride.ToEmirateNameEn,ride.ToRegionNameEn];
     self.noOfDrivers.text = [NSString stringWithFormat:@"%ld",ride.RoutesCount] ;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

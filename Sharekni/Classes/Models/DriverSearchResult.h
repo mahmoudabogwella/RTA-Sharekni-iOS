@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface DriverSearchResult : NSObject
 @property (nonatomic,strong) NSString *AccountEmail;
@@ -86,5 +87,8 @@
 @property (nonatomic,strong) NSNumber *SDG_RouteDays_Thursday;
 @property (nonatomic,strong) NSNumber *SDG_RouteDays_Friday;
 @property (nonatomic,strong) NSNumber *PassengersCountPerRoute;
+
+@property (nonatomic,strong) UIImage *driverImage;
+@property (nonatomic,strong) NSString *driverImageLocalPath;
 
 @end

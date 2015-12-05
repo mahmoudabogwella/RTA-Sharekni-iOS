@@ -25,7 +25,7 @@
         
         AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
         [responseSerializer.acceptableContentTypes setByAddingObject:@"application/xml"];
-        
+        [responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain; charset=utf-8"];
         self.operationManager.responseSerializer = responseSerializer;
     }
     return self;

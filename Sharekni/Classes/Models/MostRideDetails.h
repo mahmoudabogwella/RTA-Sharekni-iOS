@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @interface MostRideDetails : NSObject
 
 @property (nonatomic,strong) NSString *RouteId;
@@ -17,8 +17,9 @@
 @property (nonatomic,strong) NSString *AccountId;
 @property (nonatomic,strong) NSString *DriverName;
 @property (nonatomic,strong) NSString *DriverMobile;
+@property (nonatomic,strong) NSString *DriverPhoto;
 
-@property (nonatomic,assign) long Rating;
+@property (nonatomic,strong) NSString *Rating;
 
 @property (nonatomic,strong) NSString *NationalityArName;
 @property (nonatomic,strong) NSString *NationalityEnName;
@@ -71,7 +72,7 @@
 @property (nonatomic,strong) NSString *StartTime;
 @property (nonatomic,strong) NSString *EndTime;
 
-//@property (nonatomic ,strong) UIImage *image ;
-//@property (nonatomic ,strong) NSString *imagePath ;
+@property (nonatomic ,strong) UIImage *driverImage ;
+@property (nonatomic ,strong) NSString *driverImagePath ;
 
 @end

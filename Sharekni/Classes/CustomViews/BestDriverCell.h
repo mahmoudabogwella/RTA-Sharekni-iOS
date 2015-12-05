@@ -22,10 +22,10 @@
 @property (nonatomic ,weak) IBOutlet UILabel *driverCountry ;
 @property (nonatomic ,weak) IBOutlet UILabel *rateLbl ;
 @property (nonatomic ,strong) NSString *phone;
+@property (nonatomic ,strong) BestDriver *driver;
 
 - (IBAction)sendMail:(id)sender ;
 - (IBAction)call:(id)sender ;
 
-- (void)setDriver:(BestDriver *)driver;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "Ride.h"
-
+#import "MobAccountManager.h"
 @implementation Ride
 + (NSDictionary *)mapping
 {
@@ -57,6 +57,35 @@
     mapping[@"ToRegionNameUr"] = @"ToRegionNameUr";
     
     return mapping;
+}
+
+- (void)setAccount:(NSNumber *)Account{
+    _Account = Account;
+    __block Ride *blockSelf = self  ;
+    [[MobAccountManager sharedMobAccountManager] getCalculatedRatingForAccount:Account.stringValue WithSuccess:^(NSString *rating) {
+        blockSelf.DriverRating = rating;
+    } Failure:^(NSString *error) {
+        blockSelf.DriverRating = @"0.0";
+    }];
+}
+- (void)setDriverPhoto:(NSString *)DriverPhoto
+{
+    __block Ride *blockSelf = self;
+    _DriverPhoto = DriverPhoto ;
+    [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:DriverPhoto withSuccess:^(UIImage *image, NSString *filePath) {
+        if(image){
+            blockSelf.driverImage = image;
+            blockSelf.driverImageLocalPath = filePath;
+        }
+        else{
+            blockSelf.driverImage = [UIImage imageNamed:@"thumbnail"];
+            blockSelf.driverImageLocalPath = nil;
+        }
+    } Failure:^(NSString *error) {
+        blockSelf.driverImage = [UIImage imageNamed:@"thumbnail"];
+        blockSelf.driverImageLocalPath = nil;
+    }];
+    
 }
 
 @end

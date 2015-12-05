@@ -81,6 +81,7 @@
 @property (nonatomic ,strong) Passenger *toBeDeletedpassenger ;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *passengersHeaderLabels;
 @property (nonatomic ,strong) RouteDetails *routeDetails ;
+@property (nonatomic ,strong) UIBarButtonItem *loadingBarButton;
 @end
 
 @implementation RideDetailsViewController
@@ -163,7 +164,7 @@
     return _driverRatingsView;
 }
 
-- (void)didChangeValue:(HCSStarRatingView *)sender {
+- (void) didChangeValue:(HCSStarRatingView *)sender {
  //Rate Driver
     __block RideDetailsViewController *blockSelf = self;
     NSString *driverID = self.driverDetails ? self.driverDetails.ID : self.joinedRide.Account.stringValue;
@@ -177,8 +178,9 @@
     else if (self.joinedRide){
         routeID = self.joinedRide.RouteID.stringValue;
     }
-    
+    self.navigationItem.rightBarButtonItem = self.loadingBarButton;
     [[MobAccountManager sharedMobAccountManager] addDriverRatingWithDriverID:driverID inRouteID:routeID noOfStars:sender.value WithSuccess:^(NSString *response) {
+        blockSelf.navigationItem.rightBarButtonItem = nil;
         [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Rating added successfully", nil)];
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
@@ -189,6 +191,7 @@
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
         } afterDelay:3];
+        blockSelf.navigationItem.rightBarButtonItem = nil;
     }];
 }
 
@@ -276,7 +279,7 @@
            [blockReviewsList reloadData];
            
            if (blockSelf.createdRide) {
-               [[MasterDataManager sharedMasterDataManager] getPassengersByRouteId:routeID withSuccess:^(NSMutableArray *array) {
+               [[MasterDataManager sharedMasterDataManager] getPassengersByRouteId:blockSelf.routeDetails.ID.stringValue withSuccess:^(NSMutableArray *array) {
                    blockSelf.passengers = array;
                    [blockPassengersList reloadData];
                    [KVNProgress dismiss];
@@ -405,7 +408,7 @@
 //    CGRect scrollViewFrame = contentView.frame;
 //    scrollViewFrame.size.height = joinRideBtn.frame.origin.y + joinRideBtn.frame.size.height + VERTICAL_SPACE;
 //    contentView.frame = scrollViewFrame;
-    if (self.joinedRide) {
+    if (self.joinedRide || self.createdRide) {
         joinRideBtn.alpha = 0;
         CGSize contentSize = contentView.contentSize ;
         contentSize.height = joinRideBtn.frame.origin.y;
@@ -462,7 +465,8 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     if (user) {
         AddReviewViewController *addReview = [[AddReviewViewController alloc] initWithNibName:@"AddReviewViewController" bundle:nil];
-        addReview.driverDetails = self.driverDetails ;
+        
+        addReview.routeDetails = self.routeDetails ;
         addReview.delegate = self;
         [self presentPopupViewController:addReview animationType:MJPopupViewAnimationSlideBottomBottom];
     }
@@ -483,8 +487,9 @@
 - (void) editRideAction{
     CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
     editRideViewController.routeDetails = self.routeDetails;
+    __block RideDetailsViewController *blockSelf = self;
     [editRideViewController setEditHandler:^{
-        
+        [blockSelf refreshInfo];
     }];
     [self.navigationController pushViewController:editRideViewController animated:YES];
 }
@@ -496,6 +501,7 @@
     for (Passenger *passenger in self.passengers) {
         [passengersIDS addObject:passenger.ID.stringValue];
     }
+    
     [[MobAccountManager sharedMobAccountManager] addPermitForRouteID:self.routeDetails.ID.stringValue vehicleId:self.routeDetails.VehicelId.stringValue passengerIDs:passengersIDS withSuccess:^(NSString *addedSuccessfully) {
         [KVNProgress dismiss];
         [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Permit added successfully.", nil)];
@@ -515,8 +521,7 @@
 - (void) cancelButtonClicked:(AddReviewViewController *)addReviewViewController{
 
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
- 
-    [self configureData];
+    [self refreshReviews];
 }
 
 - (void) dismissButtonClicked:(AddRemarksViewController *)addRemarksViewController{
@@ -573,7 +578,7 @@
             [blockSelf performBlock:^{
                 [KVNProgress dismiss];
             } afterDelay:3];
-            [blockSelf configureData];
+            [blockSelf refreshPassengers];
         }
         else{
             [KVNProgress showErrorWithStatus:NSLocalizedString(@"Unable to remover passenger", nil)];
@@ -723,7 +728,9 @@
 
 - (void) addRatingForPassenger:(Passenger *)passenger noOfStars:(NSInteger)noOfStars{
     __block RideDetailsViewController *blockSelf = self;
+    self.navigationItem.rightBarButtonItem = self.loadingBarButton;
 [[MobAccountManager sharedMobAccountManager] addPassengerRatingWithPassengerID:passenger.ID.stringValue inRouteID:self.routeDetails.ID.stringValue noOfStars:noOfStars WithSuccess:^(NSString *response) {
+    blockSelf.navigationItem.rightBarButtonItem = nil;
     [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Rating added successfully", nil)];
     [blockSelf performBlock:^{
         [KVNProgress dismiss];
@@ -748,7 +755,7 @@
 }
 
 #pragma mark - Message Delegate
-- (void)sendSMSFromPhone:(NSString *)phone{
+- (void) sendSMSFromPhone:(NSString *)phone{
     if(![MFMessageComposeViewController canSendText])
     {
         UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -776,7 +783,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == PASSENGER_ALERT_TAG && buttonIndex == 1) {
         [self deletePassenger:self.toBeDeletedpassenger];
     }
@@ -786,7 +793,83 @@
 
 }
 
+- (void) refreshReviews{
+    __block RideDetailsViewController *blockSelf = self;
+    __block UITableView *blockReviewsList = reviewList;
+    [KVNProgress showWithStatus:NSLocalizedString(@"loading...", nil)];
+    [[MasterDataManager sharedMasterDataManager] getReviewList:self.routeDetails.AccountId.stringValue andRoute:self.routeDetails.ID.stringValue withSuccess:^(NSMutableArray *array) {
+        [KVNProgress dismiss];
+        blockSelf.reviews = array;
+        
+        
+        if (array.count == 0) {
+            reviewLbl.hidden = YES ;
+        }
+        [blockReviewsList reloadData];
+        [blockSelf configureFrames];
+    }Failure:^(NSString *error) {
+        [KVNProgress dismiss];
+        [blockSelf handleResponseError];
+    }];
+}
 
+- (void) refreshPassengers{
+    __block RideDetailsViewController *blockSelf = self;
+    __block UITableView *blockPassengersList = passengersList;
+    [KVNProgress showWithStatus:NSLocalizedString(@"loading...", nil)];
+    
+    if (blockSelf.createdRide) {
+        [[MasterDataManager sharedMasterDataManager] getPassengersByRouteId:self.routeDetails.ID.stringValue withSuccess:^(NSMutableArray *array) {
+            blockSelf.passengers = array;
+            [blockPassengersList reloadData];
+            [KVNProgress dismiss];
+            [blockSelf configureFrames];
+        } Failure:^(NSString *error) {
+            [blockSelf handleResponseError];
+            [blockSelf configureFrames];
+            [blockSelf configureActionsButtons];
+        }];
+    }
+}
 
+- (void) refreshInfo{
+    __block RideDetailsViewController *blockSelf = self;
+    [KVNProgress showWithStatus:NSLocalizedString(@"loading...", nil)];
+    
+    NSString *routeID;
+    NSString *accountID ;
+    if (self.driverDetails) {
+        routeID = self.driverDetails.RouteId;
+        accountID = self.driverDetails.ID;
+    }
+    else if (self.createdRide){
+        routeID = self.createdRide.RouteID.stringValue;
+        accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+    }
+    else if (self.joinedRide){
+        routeID = self.joinedRide.RouteID.stringValue;
+        accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+    }
+    
+    [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:routeID withSuccess:^(RouteDetails *routeDetails) {
+        blockSelf.routeDetails = routeDetails;
+        [blockSelf configurePins];
+        [blockSelf focusMapToShowAllMarkers];
+        [blockSelf showRideDetailsData];
+    } Failure:^(NSString *error) {
+        [blockSelf handleResponseError];
+        [blockSelf configureFrames];
+        [blockSelf configureActionsButtons];
+    }];
+}
 
+- (UIBarButtonItem *) loadingBarButton{
+    if (!_loadingBarButton) {
+        UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
+        activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+        [activityIndicatorView startAnimating];
+        _loadingBarButton  = [[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView];
+    }
+    return _loadingBarButton;
+}
 @end
