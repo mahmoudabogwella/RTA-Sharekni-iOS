@@ -34,6 +34,7 @@
 @property (nonatomic,strong) NSString *DriverNationalityFrName;
 @property (nonatomic,strong) NSString *DriverNationalityChName;
 @property (nonatomic,strong) NSString *DriverNationalityUrName;
+@property (nonatomic,strong) NSString *DriverRating;
 
 @property (nonatomic,strong) NSNumber *FromEmirateId;
 @property (nonatomic,strong) NSString *FromEmirateArName;

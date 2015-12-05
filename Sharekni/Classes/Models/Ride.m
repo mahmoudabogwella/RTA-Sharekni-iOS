@@ -7,7 +7,7 @@
 //
 
 #import "Ride.h"
-
+#import "MobAccountManager.h"
 @implementation Ride
 + (NSDictionary *)mapping
 {
@@ -57,6 +57,16 @@
     mapping[@"ToRegionNameUr"] = @"ToRegionNameUr";
     
     return mapping;
+}
+
+- (void)setAccount:(NSNumber *)Account{
+    _Account = Account;
+    __block Ride *blockSelf = self  ;
+    [[MobAccountManager sharedMobAccountManager] getCalculatedRatingForAccount:Account.stringValue WithSuccess:^(NSString *rating) {
+        blockSelf.DriverRating = rating;
+    } Failure:^(NSString *error) {
+        blockSelf.DriverRating = @"0.0";
+    }];
 }
 
 @end

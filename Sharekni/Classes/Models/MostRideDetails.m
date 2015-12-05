@@ -7,7 +7,7 @@
 //
 
 #import "MostRideDetails.h"
-
+#import "MobAccountManager.h"
 @implementation MostRideDetails
 
 + (NSDictionary *)mapping {
@@ -20,7 +20,7 @@
     mapping[@"AccountId"] = @"AccountId";
     mapping[@"DriverName"] = @"DriverName";
     mapping[@"DriverMobile"] = @"DriverMobile";
-    mapping[@"Rating"] = @"Rating";
+//    mapping[@"Rating"] = @"Rating";
     
     mapping[@"NationalityArName"] = @"NationalityArName";
     mapping[@"NationalityEnName"] = @"NationalityEnName";
@@ -74,6 +74,28 @@
     mapping[@"StartTime"] = @"StartTime";
     mapping[@"EndTime"] = @"EndTime";
     return mapping;
+}
+
+- (void)setAccountId:(NSString *)AccountId{
+    _AccountId = AccountId;
+    __block MostRideDetails *blockSelf = self;
+    [[MobAccountManager sharedMobAccountManager] getCalculatedRatingForAccount:AccountId WithSuccess:^(NSString *rating) {
+        blockSelf.Rating = rating;
+    } Failure:^(NSString *error) {
+        blockSelf.Rating = @"0.0";
+    }];
+}
+
+- (void)setDriverPhoto:(NSString *)DriverPhoto{
+    _DriverPhoto = DriverPhoto;
+    __block MostRideDetails *blockSelf = self;
+    [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:DriverPhoto withSuccess:^(UIImage *image, NSString *filePath) {
+        blockSelf.driverImage = image;
+        blockSelf.driverImagePath = filePath;
+    } Failure:^(NSString *error) {
+        blockSelf.driverImage = [UIImage imageNamed:@"thumbnail"];
+        blockSelf.driverImagePath = nil;
+    }];
 }
 
 @end

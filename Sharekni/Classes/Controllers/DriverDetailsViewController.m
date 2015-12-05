@@ -26,6 +26,7 @@
 @property (nonatomic ,weak) IBOutlet UILabel *rate ;
 @property (nonatomic ,weak) IBOutlet UITableView *ridesList ;
 @property (nonatomic ,strong) NSMutableArray *driverRides ;
+@property (nonatomic ,strong) User *driver ;
 
 @end
 
@@ -54,73 +55,113 @@
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
     
-    if (self.bestDriver) {
-        self.driverName.text = _bestDriver.AccountName ;
-        self.country.text = _bestDriver.NationalityEnName ;
-        if (_bestDriver.image) {
-            self.driverImage.image = _bestDriver.image;
-        }else{
-            self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
-        }
-        self.rate.text = [NSString stringWithFormat:@"%ld",_bestDriver.Rating];
-    }else if (self.mostRideDetails){
-        self.driverName.text = _mostRideDetails.DriverName ;
-        self.country.text = _mostRideDetails.NationalityEnName ;
-        self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
-        self.rate.text = [NSString stringWithFormat:@"%ld",_mostRideDetails.Rating];
-    }else if (self.driverSearchResult){
-        self.driverName.text = self.driverSearchResult.AccountName ;
-        self.country.text = self.driverSearchResult.Nationality_en ;
-        self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
-        self.rate.text = [NSString stringWithFormat:@"%@",self.driverSearchResult.Rating];
-    }
-    
     [self.ridesList registerClass:[DriverRideCell class] forCellReuseIdentifier:RIDE_CELLID];
-//    [self.ridesList registerNib:[UINib nibWithNibName:@"DriverRideCell" bundle:nil] forCellReuseIdentifier:RIDE_CELLID];
-    
-    [self getDriverRides];
+    [self configureData];
+//  [self.ridesList registerNib:[UINib nibWithNibName:@"DriverRideCell" bundle:nil] forCellReuseIdentifier:RIDE_CELLID];
 }
+
+- (void) configureData{
+    
+    //configure Image
+    NSString *driverID;
+    if (self.bestDriver) {
+        driverID = self.bestDriver.AccountId;
+    }
+    else if (self.mostRideDetails){
+        driverID = self.mostRideDetails.AccountId;
+    }
+    else if (self.driverSearchResult){
+        driverID = self.driverSearchResult.DriverId;
+    }
+    else if (self.joinedRide){
+        driverID = self.joinedRide.Account.stringValue;
+    }
+    [self configureDriverData:driverID];
+}
+
+- (void) configureUIData{
+    self.driverName.text = self.driver.Username ;
+    self.country.text = self.driver.NationalityEnName;
+    if (self.driver.userImage) {
+        self.driverImage.image = self.driver.userImage;
+    }
+    else{
+        self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+    }
+    self.rate.text = self.driver.AccountRating;
+}
+
 
 - (void)popViewController
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)getDriverRides
+- (void)configureDriverData:(NSString *)driverID
 {
     __block DriverDetailsViewController *blockSelf = self;
+
+    NSString *accountID = driverID;
     [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
-    NSString *accountID = self.bestDriver ? self.bestDriver.AccountId : self.mostRideDetails ? self.mostRideDetails.AccountId : self.driverSearchResult.DriverId;
-    
-    if (self.joinedRide){
-
-        accountID = [NSString stringWithFormat:@"%@",self.joinedRide.Account.stringValue];
-
-        [[MobAccountManager sharedMobAccountManager] getUser:accountID WithSuccess:^(User *user) {
-            [KVNProgress dismiss];
-            self.driverName.text = [NSString stringWithFormat:@"%@ %@",user.FirstName,user.LastName] ;
-            self.country.text = user.NationalityEnName ;
-            self.driverImage.image = [UIImage imageNamed:@"BestDriverImage"];
-            self.rate.text = [NSString stringWithFormat:@"%@",user.AccountRating];
-        } Failure:^(NSString *error) {
-            [KVNProgress dismiss];
-        }];
-    }
-    
-    [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:accountID WithSuccess:^(NSMutableArray *array)
-    {
-        blockSelf.driverRides = array;
-        [KVNProgress dismiss];
-        [self.ridesList reloadData];
-        
+    [[MobAccountManager sharedMobAccountManager] getUser:driverID WithSuccess:^(User *user) {
+        blockSelf.driver = user;
+        [blockSelf configureUIData];
+        [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:accountID WithSuccess:^(NSMutableArray *array)
+         {
+             blockSelf.driverRides = array;
+             [KVNProgress dismiss];
+             [self.ridesList reloadData];
+             
+         } Failure:^(NSString *error) {
+             
+             NSLog(@"Error in Best Drivers");
+             [KVNProgress dismiss];
+             [KVNProgress showErrorWithStatus:@"Error"];
+             [blockSelf performBlock:^{
+                 [KVNProgress dismiss];
+             } afterDelay:3];
+         }];
     } Failure:^(NSString *error) {
+        [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:accountID WithSuccess:^(NSMutableArray *array)
+         {
+             blockSelf.driverRides = array;
+             [KVNProgress dismiss];
+             [self.ridesList reloadData];
+             
+         } Failure:^(NSString *error) {
+             
+             NSLog(@"Error in Best Drivers");
+             [KVNProgress dismiss];
+             [KVNProgress showErrorWithStatus:@"Error"];
+             [blockSelf performBlock:^{
+                 [KVNProgress dismiss];
+             } afterDelay:3];
+         }];
         
-        NSLog(@"Error in Best Drivers");
-        [KVNProgress dismiss];
-        [KVNProgress showErrorWithStatus:@"Error"];
-        [blockSelf performBlock:^{
-            [KVNProgress dismiss];
-        } afterDelay:3];
+        if (blockSelf.bestDriver) {
+            blockSelf.driverName.text = blockSelf.bestDriver.AccountName ;
+            blockSelf.country.text = blockSelf.bestDriver.NationalityArName ;
+            if (blockSelf.bestDriver.image) {
+                blockSelf.driverImage.image = blockSelf.bestDriver.image;
+            }else{
+                blockSelf.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+            }
+            blockSelf.rate.text = [NSString stringWithFormat:@"%ld",_bestDriver.Rating];
+        }else if (blockSelf.mostRideDetails){
+            blockSelf.driverName.text = _mostRideDetails.DriverName ;
+            blockSelf.country.text = _mostRideDetails.NationalityEnName ;
+            blockSelf.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+            blockSelf.rate.text = _mostRideDetails.Rating;
+        }else if (blockSelf.driverSearchResult){
+            blockSelf.driverName.text = self.driverSearchResult.AccountName ;
+            blockSelf.country.text = self.driverSearchResult.Nationality_en ;
+            blockSelf.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+            blockSelf.rate.text = [NSString stringWithFormat:@"%@",self.driverSearchResult.Rating];
+        }else if (blockSelf.joinedRide){
+            blockSelf.driverName.text = self.joinedRide.DriverName ;
+            blockSelf.country.text = self.joinedRide.DriverNationalityEnName ;
+            blockSelf.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+            blockSelf.rate.text = self.joinedRide.DriverRating;        }
     }];
 }
 

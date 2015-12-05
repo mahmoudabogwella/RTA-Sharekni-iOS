@@ -30,7 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureTableView];
-    [self configureData];
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
@@ -53,6 +52,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = YES;
+    [self configureData];
 }
 
 - (void) configureTableView{

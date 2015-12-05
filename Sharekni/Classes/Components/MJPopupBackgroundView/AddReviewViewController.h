@@ -20,6 +20,7 @@
 
 @property (nonatomic ,strong) DriverDetails *driverDetails;
 @property (nonatomic ,strong) NSString *accountID ;
+@property (nonatomic, copy) void (^reviewAdded)(void);
 @end
 
 @protocol MJDetailPopupDelegate<NSObject>

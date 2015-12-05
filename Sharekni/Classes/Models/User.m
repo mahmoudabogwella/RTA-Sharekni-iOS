@@ -25,7 +25,7 @@
     mapping[@"GenderEn"] = @"GenderEn";
     mapping[@"Username"] = @"Username";
     mapping[@"Password"] = @"Password";
-    mapping[@"AccountRating"] = @"AccountRating";
+//    mapping[@"AccountRating"] = @"AccountRating";
     mapping[@"Active"] = @"Active";
     mapping[@"DateAdded"] = @"DateAdded";
     mapping[@"NationalityId"] = @"NationalityId";
@@ -75,6 +75,16 @@
     } Failure:^(NSString *error) {
         blockSelf.userImage = [UIImage imageNamed:@"thumbnail"];
         blockSelf.imageLocalPath = nil;
+    }];
+}
+
+- (void)setID:(NSNumber *)ID{
+    _ID = ID;
+    __block User *blockSelf = self  ;
+    [[MobAccountManager sharedMobAccountManager] getCalculatedRatingForAccount:ID.stringValue WithSuccess:^(NSString *rating) {
+        blockSelf.AccountRating = rating;
+    } Failure:^(NSString *error) {
+        
     }];
 }
 

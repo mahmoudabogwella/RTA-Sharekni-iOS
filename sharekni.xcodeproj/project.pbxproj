@@ -159,6 +159,7 @@
 		87E5F7641BFB68DE004FF688 /* RidesJoinedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E5F7621BFB68DE004FF688 /* RidesJoinedViewController.xib */; };
 		87E5F7681BFB6914004FF688 /* RidesCreatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F7661BFB6914004FF688 /* RidesCreatedViewController.m */; };
 		87E5F7691BFB6914004FF688 /* RidesCreatedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */; };
+		87ED1B331C1221EF00EB58EB /* SoapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED1B321C1221EF00EB58EB /* SoapManager.m */; };
 		87FFDDAE1BFD65040031CE61 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FFDDAD1BFD65030031CE61 /* MapKit.framework */; };
 		87FFDDB11BFD6A570031CE61 /* RouteDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFDDB01BFD6A570031CE61 /* RouteDetails.m */; };
 		F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E520A66E22BABE4DD7235 /* libPods.a */; };
@@ -431,6 +432,8 @@
 		87E5F7651BFB6914004FF688 /* RidesCreatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesCreatedViewController.h; sourceTree = "<group>"; };
 		87E5F7661BFB6914004FF688 /* RidesCreatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RidesCreatedViewController.m; sourceTree = "<group>"; };
 		87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RidesCreatedViewController.xib; sourceTree = "<group>"; };
+		87ED1B311C1221EF00EB58EB /* SoapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapManager.h; sourceTree = "<group>"; };
+		87ED1B321C1221EF00EB58EB /* SoapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapManager.m; sourceTree = "<group>"; };
 		87FFDDAD1BFD65030031CE61 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		87FFDDAF1BFD6A570031CE61 /* RouteDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteDetails.h; sourceTree = "<group>"; };
 		87FFDDB01BFD6A570031CE61 /* RouteDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteDetails.m; sourceTree = "<group>"; };
@@ -772,6 +775,8 @@
 				87C571D81BDBD07700EFB618 /* MobVehicleManager.m */,
 				140960861BFEACC100BA3268 /* NSStringEmpty.h */,
 				140960871BFEACC100BA3268 /* NSStringEmpty.m */,
+				87ED1B311C1221EF00EB58EB /* SoapManager.h */,
+				87ED1B321C1221EF00EB58EB /* SoapManager.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -926,7 +931,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 04931B161BAAF814000F5434 /* Build configuration list for PBXProject "sharekni" */;
+			buildConfigurationList = 04931B161BAAF814000F5434 /* Build configuration list for PBXProject "Sharekni" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1086,6 +1091,7 @@
 				87C571D91BDBD07700EFB618 /* MobVehicleManager.m in Sources */,
 				047E45501BC0960F000B5151 /* SearchViewController.m in Sources */,
 				873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */,
+				87ED1B331C1221EF00EB58EB /* SoapManager.m in Sources */,
 				14C3F39F1C029A8300CEF11C /* RideHistoryCell.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
 				1425F8121BFF9C9F00AD086B /* NotificationsViewController.m in Sources */,
@@ -1361,7 +1367,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04931B161BAAF814000F5434 /* Build configuration list for PBXProject "sharekni" */ = {
+		04931B161BAAF814000F5434 /* Build configuration list for PBXProject "Sharekni" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04931B3F1BAAF815000F5434 /* Debug */,

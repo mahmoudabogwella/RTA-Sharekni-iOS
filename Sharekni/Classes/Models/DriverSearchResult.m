@@ -7,8 +7,10 @@
 //
 
 #import "DriverSearchResult.h"
+#import "MobAccountManager.h"
 
 @implementation DriverSearchResult
+
 + (NSDictionary *)mapping {
     NSMutableDictionary *mapping = [NSMutableDictionary dictionary];
     mapping[@"AccountEmail"] = @"AccountEmail";
@@ -37,7 +39,7 @@
     mapping[@"From_RegionName_ch"] = @"From_RegionName_ch";
     mapping[@"From_RegionName_ur"] = @"From_RegionName_ur";
     
-    mapping[@"Rating"] = @"Rating";
+//    mapping[@"Rating"] = @"Rating";
     
     mapping[@"SDG_Route_Coordinates_End_Lat"] = @"SDG_Route_Coordinates_End_Lat";
     mapping[@"SDG_Route_Coordinates_End_Lng"] = @"SDG_Route_Coordinates_End_Lng";
@@ -89,6 +91,16 @@
     mapping[@"PassengersCountPerRoute"] = @"PassengersCountPerRoute";
     
     return mapping;
+}
+
+- (void)setDriverId:(NSString *)DriverId{
+    _DriverId = DriverId;
+    __block DriverSearchResult*blockSelf = self;
+    [[MobAccountManager sharedMobAccountManager] getCalculatedRatingForAccount:DriverId WithSuccess:^(NSString *rating) {
+        blockSelf.Rating = rating;
+    } Failure:^(NSString *error) {
+        blockSelf.Rating = @"0.0";
+    }];
 }
 
 @end

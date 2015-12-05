@@ -104,7 +104,7 @@
 
 - (void)reloadNotifications
 {
-    [self reloadNotifications];
+    [self getNotifications];
 }
 
 #pragma mark -

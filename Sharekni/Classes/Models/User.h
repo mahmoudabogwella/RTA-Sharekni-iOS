@@ -41,7 +41,7 @@
 @property (nonatomic,strong) NSString *AccountTypeEnName;
 @property (nonatomic,strong) NSString *AccountStatus;
 @property (nonatomic,strong) NSNumber *PrefferedLanguage;
-@property (nonatomic,strong) NSNumber *AccountRating;
+@property (nonatomic,strong) NSString *AccountRating;
 @property (nonatomic,strong) NSNumber *DriverMyRidesCount;
 @property (nonatomic,strong) NSNumber *DriverMyAlertsCount;
 

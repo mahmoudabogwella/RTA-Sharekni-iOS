@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Review : NSObject
 
@@ -20,5 +21,9 @@
 @property (nonatomic,strong) NSString *AccountNationalityFr;
 @property (nonatomic,strong) NSString *AccountNationalityUr;
 @property (nonatomic,strong) NSString *AccountNationalityCh;
+
+
+@property (nonatomic,strong) UIImage *AccountImage;
+@property (nonatomic,strong) NSString *AccountImageLocalPath;
 
 @end

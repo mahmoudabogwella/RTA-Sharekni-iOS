@@ -8,6 +8,8 @@
 
 #import "MostRideDetailsCell.h"
 #import "MasterDataManager.h"
+static void* const MyKVOContext = (void *)&MyKVOContext;
+
 @implementation MostRideDetailsCell
 
 
@@ -28,26 +30,22 @@
     self.driverImage.clipsToBounds = YES ;
 }
 
-- (void)setMostRide:(MostRideDetails *)mostRide
-{
+- (void)setMostRide:(MostRideDetails *)mostRide{
     _mostRide = mostRide;
     self.driverName.text = mostRide.DriverName ;
-    self.country.text = mostRide.NationalityEnName ;
-    self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+    self.country.text = mostRide.NationalityArName ;
+    self.driverImage.image = mostRide.driverImage;
     self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",mostRide.StartTime];
     self.availableDays.text = [self getAvailableDays:mostRide];
-    self.rate.text = [NSString stringWithFormat:@"%ld",mostRide.Rating];
+    self.rate.text = mostRide.Rating; //[NSString stringWithFormat:@"%@",];
     self.phone = mostRide.DriverMobile ;
+    [self.mostRide addObserver:self forKeyPath:@"driverImage" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:MyKVOContext];
 }
 
 - (void)setDriver:(DriverSearchResult *)driver{
     _driver = driver;
     self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
-    [[MasterDataManager sharedMasterDataManager] GetPhotoWithName:driver.AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
-        
-    } Failure:^(NSString *error) {
-        
-    }];
+
     
     self.driverName.text = driver.AccountName;
     self.country.text = driver.Nationality_en;
@@ -81,18 +79,15 @@
     }
 }
 
-- (IBAction)sendMail:(id)sender
-{
+- (IBAction)sendMail:(id)sender{
     [self.delegate sendSMSFromPhone:self.phone];
 }
 
-- (IBAction)call:(id)sender
-{
+- (IBAction)call:(id)sender{
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",[NSString stringWithFormat:@"0%@",self.phone]]]];
 }
 
-- (NSString *)getAvailableDays:(MostRideDetails *)mostRide
-{
+- (NSString *)getAvailableDays:(MostRideDetails *)mostRide{
     NSMutableString *str = [[NSMutableString alloc] init];
     
     if (mostRide.Saturday.boolValue) {
@@ -122,10 +117,34 @@
     return str ;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if ( context == MyKVOContext ) {
+        if ( [object isEqual:self.mostRide] ) {
+            if ( [keyPath isEqualToString:@"driverImage"] ) {
+                self.driverImage.image = self.mostRide.driverImage;
+            }
+            else if ( [keyPath isEqualToString:@"Rating"] ) {
+                // onSwitch is a UISwitch
+                self.rate.text = self.mostRide.Rating;
+            }
+        }
+    }
+    else {
+        // if the context doesn’t match, pass it up to super in case the superclass is observing this key path as well
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+- (void)prepareForReuse{
+    [super prepareForReuse];
+    if (self.mostRide) {
+        [self.mostRide removeObserver:self.mostRide forKeyPath:@"driverImage"];
+        [self.mostRide removeObserver:self.mostRide forKeyPath:@"Rating"];
+    }
 }
 
 @end
