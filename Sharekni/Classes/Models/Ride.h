@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @interface Ride : NSObject
 @property (nonatomic,strong) NSNumber *RoutePassengerId;
 @property (nonatomic,strong) NSNumber *DriverAccept;
@@ -63,6 +63,9 @@
 @property (nonatomic,strong) NSString *ToRegionNameFr;
 @property (nonatomic,strong) NSString *ToRegionNameCh;
 @property (nonatomic,strong) NSString *ToRegionNameUr;
+
+@property (nonatomic,strong) UIImage *driverImage;
+@property (nonatomic,strong) NSString *driverImageLocalPath;
 
 @end
 

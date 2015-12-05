@@ -31,10 +31,27 @@
     __block BestDriver *blockSelf = self;
     _AccountPhoto = AccountPhoto ;
     [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:_AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
-        blockSelf.image = image ;
-        blockSelf.imagePath = filePath;
+        if(image){
+            blockSelf.image = image;
+            blockSelf.imagePath = filePath;
+        }
+        else{
+            blockSelf.image = [UIImage imageNamed:@"thumbnail"];
+            blockSelf.imagePath = nil;
+        }
     } Failure:^(NSString *error) {
-        
+        blockSelf.image = [UIImage imageNamed:@"thumbnail"];
+        blockSelf.imagePath = nil;
+    }];
+}
+
+- (void)setAccountId:(NSString *)AccountId{
+    _AccountId = AccountId;
+    __block BestDriver*blockSelf = self;
+    [[MobAccountManager sharedMobAccountManager] getCalculatedRatingForAccount:AccountId WithSuccess:^(NSString *rating) {
+        blockSelf.Rating = rating;
+    } Failure:^(NSString *error) {
+        blockSelf.Rating = @"0.0";
     }];
 }
 

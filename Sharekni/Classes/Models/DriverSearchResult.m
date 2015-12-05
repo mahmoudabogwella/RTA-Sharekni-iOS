@@ -103,4 +103,24 @@
     }];
 }
 
+
+- (void)setAccountPhoto:(NSString *)AccountPhoto{
+    _AccountPhoto = AccountPhoto;
+    __block DriverSearchResult *blockSelf = self;
+    [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
+        if(image){
+            blockSelf.driverImage = image;
+            blockSelf.driverImageLocalPath = filePath;
+        }
+        else{
+            blockSelf.driverImage = [UIImage imageNamed:@"thumbnail"];
+            blockSelf.driverImageLocalPath = nil;
+        }
+    } Failure:^(NSString *error) {
+        blockSelf.driverImage = [UIImage imageNamed:@"thumbnail"];
+        blockSelf.driverImageLocalPath = nil;
+    }];
+    
+}
+
 @end

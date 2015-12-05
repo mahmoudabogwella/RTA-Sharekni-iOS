@@ -20,6 +20,7 @@
     mapping[@"AccountId"] = @"AccountId";
     mapping[@"DriverName"] = @"DriverName";
     mapping[@"DriverMobile"] = @"DriverMobile";
+    mapping[@"DriverPhoto"] = @"DriverPhoto";    
 //    mapping[@"Rating"] = @"Rating";
     
     mapping[@"NationalityArName"] = @"NationalityArName";
@@ -90,8 +91,14 @@
     _DriverPhoto = DriverPhoto;
     __block MostRideDetails *blockSelf = self;
     [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:DriverPhoto withSuccess:^(UIImage *image, NSString *filePath) {
-        blockSelf.driverImage = image;
-        blockSelf.driverImagePath = filePath;
+        if(image){
+            blockSelf.driverImage = image;
+            blockSelf.driverImagePath = filePath;
+        }
+        else{
+            blockSelf.driverImage = [UIImage imageNamed:@"thumbnail"];
+            blockSelf.driverImagePath = nil;
+        }
     } Failure:^(NSString *error) {
         blockSelf.driverImage = [UIImage imageNamed:@"thumbnail"];
         blockSelf.driverImagePath = nil;

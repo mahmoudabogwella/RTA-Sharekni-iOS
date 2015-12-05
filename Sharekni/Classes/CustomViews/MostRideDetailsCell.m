@@ -8,6 +8,7 @@
 
 #import "MostRideDetailsCell.h"
 #import "MasterDataManager.h"
+#import "RZDataBinding.h"
 static void* const MyKVOContext = (void *)&MyKVOContext;
 
 @implementation MostRideDetailsCell
@@ -39,19 +40,20 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     self.availableDays.text = [self getAvailableDays:mostRide];
     self.rate.text = mostRide.Rating; //[NSString stringWithFormat:@"%@",];
     self.phone = mostRide.DriverMobile ;
-    [self.mostRide addObserver:self forKeyPath:@"driverImage" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:MyKVOContext];
+    [self.mostRide rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage" callImmediately:YES];
+    [self.mostRide rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
 }
 
 - (void)setDriver:(DriverSearchResult *)driver{
     _driver = driver;
     self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
-
+    
     
     self.driverName.text = driver.AccountName;
     self.country.text = driver.Nationality_en;
     self.phone = driver.AccountMobile ;
     self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",driver.SDG_Route_Start_FromTime];
-
+    
     NSString *daysText = @"";
     if (driver.SDG_RouteDays_Sunday.boolValue) {
         daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sun,", nil)];
@@ -75,7 +77,29 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
         daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sat,", nil)];
     }
     if (daysText.length > 0) {
-        self.availableDays.text = daysText;        
+        self.availableDays.text = daysText;
+    }
+    
+    [self.mostRide rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage" callImmediately:YES];
+    [self.mostRide rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
+}
+
+- (void) imageChanged{
+    if(self.mostRide){
+        self.driverImage.image = self.mostRide.driverImage;
+    }
+    else if (self.driver){
+        self.driverImage.image = self.driver.driverImage;
+    }
+}
+
+- (void) ratingChanged{
+    if(self.mostRide){
+        self.rate.text = self.mostRide.Rating;
+
+    }
+    else if (self.driver){
+        self.rate.text = self.driver.Rating;
     }
 }
 
@@ -115,36 +139,6 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     }
     
     return str ;
-}
-
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object change:(NSDictionary *)change
-                       context:(void *)context
-{
-    if ( context == MyKVOContext ) {
-        if ( [object isEqual:self.mostRide] ) {
-            if ( [keyPath isEqualToString:@"driverImage"] ) {
-                self.driverImage.image = self.mostRide.driverImage;
-            }
-            else if ( [keyPath isEqualToString:@"Rating"] ) {
-                // onSwitch is a UISwitch
-                self.rate.text = self.mostRide.Rating;
-            }
-        }
-    }
-    else {
-        // if the context doesn’t match, pass it up to super in case the superclass is observing this key path as well
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-}
-
-- (void)prepareForReuse{
-    [super prepareForReuse];
-    if (self.mostRide) {
-        [self.mostRide removeObserver:self.mostRide forKeyPath:@"driverImage"];
-        [self.mostRide removeObserver:self.mostRide forKeyPath:@"Rating"];
-    }
 }
 
 @end

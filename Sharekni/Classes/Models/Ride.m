@@ -68,5 +68,24 @@
         blockSelf.DriverRating = @"0.0";
     }];
 }
+- (void)setDriverPhoto:(NSString *)DriverPhoto
+{
+    __block Ride *blockSelf = self;
+    _DriverPhoto = DriverPhoto ;
+    [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:DriverPhoto withSuccess:^(UIImage *image, NSString *filePath) {
+        if(image){
+            blockSelf.driverImage = image;
+            blockSelf.driverImageLocalPath = filePath;
+        }
+        else{
+            blockSelf.driverImage = [UIImage imageNamed:@"thumbnail"];
+            blockSelf.driverImageLocalPath = nil;
+        }
+    } Failure:^(NSString *error) {
+        blockSelf.driverImage = [UIImage imageNamed:@"thumbnail"];
+        blockSelf.driverImageLocalPath = nil;
+    }];
+    
+}
 
 @end

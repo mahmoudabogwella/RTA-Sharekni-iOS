@@ -125,6 +125,9 @@
 		87196D461BF0A30500A94370 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87196D451BF0A30500A94370 /* Launch Screen.storyboard */; };
 		873E4C5E1BED3086006C42F8 /* MapInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 873E4C5D1BED3085006C42F8 /* MapInfoWindow.xib */; };
 		873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 873E4C601BED30E4006C42F8 /* MapInfoWindow.m */; };
+		873E7BF31C12C8C000B9A68D /* NSObject+RZDataBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 873E7BEC1C12C8C000B9A68D /* NSObject+RZDataBinding.m */; };
+		873E7BF41C12C8C100B9A68D /* RZDBCoalesce.m in Sources */ = {isa = PBXBuildFile; fileRef = 873E7BEF1C12C8C000B9A68D /* RZDBCoalesce.m */; };
+		873E7BF51C12C8C100B9A68D /* RZDBTransforms.m in Sources */ = {isa = PBXBuildFile; fileRef = 873E7BF21C12C8C000B9A68D /* RZDBTransforms.m */; };
 		8777FA5C1C00C1750022E368 /* CreatedRide.m in Sources */ = {isa = PBXBuildFile; fileRef = 8777FA5B1C00C1750022E368 /* CreatedRide.m */; };
 		8777FA601C00C4B20022E368 /* CreatedRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8777FA5E1C00C4B20022E368 /* CreatedRidesViewController.m */; };
 		8777FA611C00C4B20022E368 /* CreatedRidesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8777FA5F1C00C4B20022E368 /* CreatedRidesViewController.xib */; };
@@ -378,6 +381,14 @@
 		873E4C5D1BED3085006C42F8 /* MapInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapInfoWindow.xib; sourceTree = "<group>"; };
 		873E4C5F1BED30E4006C42F8 /* MapInfoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapInfoWindow.h; sourceTree = "<group>"; };
 		873E4C601BED30E4006C42F8 /* MapInfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapInfoWindow.m; sourceTree = "<group>"; };
+		873E7BEB1C12C8C000B9A68D /* NSObject+RZDataBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RZDataBinding.h"; sourceTree = "<group>"; };
+		873E7BEC1C12C8C000B9A68D /* NSObject+RZDataBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RZDataBinding.m"; sourceTree = "<group>"; };
+		873E7BED1C12C8C000B9A68D /* RZDataBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZDataBinding.h; sourceTree = "<group>"; };
+		873E7BEE1C12C8C000B9A68D /* RZDBCoalesce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZDBCoalesce.h; sourceTree = "<group>"; };
+		873E7BEF1C12C8C000B9A68D /* RZDBCoalesce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZDBCoalesce.m; sourceTree = "<group>"; };
+		873E7BF01C12C8C000B9A68D /* RZDBMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZDBMacros.h; sourceTree = "<group>"; };
+		873E7BF11C12C8C000B9A68D /* RZDBTransforms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZDBTransforms.h; sourceTree = "<group>"; };
+		873E7BF21C12C8C000B9A68D /* RZDBTransforms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZDBTransforms.m; sourceTree = "<group>"; };
 		8777FA5A1C00C1740022E368 /* CreatedRide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatedRide.h; sourceTree = "<group>"; };
 		8777FA5B1C00C1750022E368 /* CreatedRide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatedRide.m; sourceTree = "<group>"; };
 		8777FA5D1C00C4B20022E368 /* CreatedRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatedRidesViewController.h; sourceTree = "<group>"; };
@@ -470,6 +481,7 @@
 		047E455D1BC59C4C000B5151 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				873E7BEA1C12C8C000B9A68D /* RZDataBinding */,
 				87E5E5441C0277B5008F5684 /* HCSStarRatingView */,
 				140960891BFEB0C700BA3268 /* MJPopupBackgroundView */,
 				047E45851BC5A4D8000B5151 /* MLPAutoCompleteTextField */,
@@ -794,6 +806,21 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		873E7BEA1C12C8C000B9A68D /* RZDataBinding */ = {
+			isa = PBXGroup;
+			children = (
+				873E7BEB1C12C8C000B9A68D /* NSObject+RZDataBinding.h */,
+				873E7BEC1C12C8C000B9A68D /* NSObject+RZDataBinding.m */,
+				873E7BED1C12C8C000B9A68D /* RZDataBinding.h */,
+				873E7BEE1C12C8C000B9A68D /* RZDBCoalesce.h */,
+				873E7BEF1C12C8C000B9A68D /* RZDBCoalesce.m */,
+				873E7BF01C12C8C000B9A68D /* RZDBMacros.h */,
+				873E7BF11C12C8C000B9A68D /* RZDBTransforms.h */,
+				873E7BF21C12C8C000B9A68D /* RZDBTransforms.m */,
+			);
+			path = RZDataBinding;
+			sourceTree = "<group>";
+		};
 		87C1AF831BB866DC00E21838 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -935,7 +962,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 04931B161BAAF814000F5434 /* Build configuration list for PBXProject "Sharekni" */;
+			buildConfigurationList = 04931B161BAAF814000F5434 /* Build configuration list for PBXProject "sharekni" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1098,6 +1125,7 @@
 				87ED1B331C1221EF00EB58EB /* SoapManager.m in Sources */,
 				14C3F39F1C029A8300CEF11C /* RideHistoryCell.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
+				873E7BF51C12C8C100B9A68D /* RZDBTransforms.m in Sources */,
 				1425F8121BFF9C9F00AD086B /* NotificationsViewController.m in Sources */,
 				14B00C971BFB921E004F46F7 /* ForgetPasswordViewController.m in Sources */,
 				14E5D7B81C0270E80089054A /* PermitsViewController.m in Sources */,
@@ -1115,6 +1143,7 @@
 				87C571D61BDBCCA900EFB618 /* UIView+Borders.m in Sources */,
 				143BE6C71BB69327009F6496 /* MostRidesCell.m in Sources */,
 				1425F8081BFF11B300AD086B /* SavedSearchViewController.m in Sources */,
+				873E7BF31C12C8C000B9A68D /* NSObject+RZDataBinding.m in Sources */,
 				14022BEA1BE56B8B00585042 /* MostRideDetailsCell.m in Sources */,
 				14E5D79F1C01A6F10089054A /* NotificationCell.m in Sources */,
 				044ECE941BC08A6000AF3E2D /* SearchResultsViewController.m in Sources */,
@@ -1130,6 +1159,7 @@
 				14E5D79B1C01A2E80089054A /* Notification.m in Sources */,
 				047E45831BC59DE0000B5151 /* SelectLocationViewController.m in Sources */,
 				87B58B651BD3983800E73E55 /* MapItemPopupViewController.m in Sources */,
+				873E7BF41C12C8C100B9A68D /* RZDBCoalesce.m in Sources */,
 				048912AA1BB92609005E4E02 /* Emirate.m in Sources */,
 				87E5F7681BFB6914004FF688 /* RidesCreatedViewController.m in Sources */,
 				8777FA681C01AD120022E368 /* PassengerCell.m in Sources */,
@@ -1407,7 +1437,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04931B161BAAF814000F5434 /* Build configuration list for PBXProject "Sharekni" */ = {
+		04931B161BAAF814000F5434 /* Build configuration list for PBXProject "sharekni" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04931B3F1BAAF815000F5434 /* Debug */,

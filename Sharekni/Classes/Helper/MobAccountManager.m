@@ -417,7 +417,7 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
 
 
 - (void) leaveRideWithID:(NSString *) routeID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure{
-    NSString *path =[NSString stringWithFormat:@"cls_mobios.asmx/Route_Delete?RouteId=%@",routeID];
+    NSString *path =[NSString stringWithFormat:@"cls_mobios.asmx/Passenger_RemovePassenger?RoutePassengerId=%@",routeID];
     [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
