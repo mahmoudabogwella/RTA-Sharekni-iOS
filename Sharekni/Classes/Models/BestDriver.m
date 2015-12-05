@@ -22,7 +22,7 @@
     mapping[@"NationalityFrName"] = @"NationalityFrName";
     mapping[@"NationalityChName"] = @"NationalityChName";
     mapping[@"NationalityUrName"] = @"NationalityUrName";
-    mapping[@"Rating"] = @"Rating";
+//    mapping[@"Rating"] = @"Rating";
     return mapping;
 }
 

@@ -38,14 +38,12 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     [KVNProgress showWithStatus:@"Loading...."];
-    [[MobAccountManager sharedMobAccountManager] reviewDriver:_driverDetails.AccountId PassengerId:[NSString stringWithFormat:@"%@",user.ID] RouteId:_driverDetails.RouteId ReviewText:viewText.text WithSuccess:^(NSString *user) {
-    
+    [[MobAccountManager sharedMobAccountManager] reviewDriver:self.routeDetails.AccountId.stringValue PassengerId:user.ID.stringValue RouteId:self.routeDetails.ID.stringValue ReviewText:viewText.text WithSuccess:^(NSString *user) {
         [KVNProgress dismiss];
-
+        
         if (self.delegate && [self.delegate respondsToSelector:@selector(cancelButtonClicked:)]) {
             [self.delegate cancelButtonClicked:self];
         }
-    
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];
     }];

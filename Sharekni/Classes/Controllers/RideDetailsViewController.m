@@ -191,6 +191,7 @@
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
         } afterDelay:3];
+        blockSelf.navigationItem.rightBarButtonItem = nil;
     }];
 }
 
@@ -464,7 +465,8 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     if (user) {
         AddReviewViewController *addReview = [[AddReviewViewController alloc] initWithNibName:@"AddReviewViewController" bundle:nil];
-        addReview.driverDetails = self.driverDetails ;
+        
+        addReview.routeDetails = self.routeDetails ;
         addReview.delegate = self;
         [self presentPopupViewController:addReview animationType:MJPopupViewAnimationSlideBottomBottom];
     }

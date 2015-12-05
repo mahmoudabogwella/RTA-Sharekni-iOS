@@ -7,6 +7,7 @@
 //
 
 #import "BestDriverCell.h"
+#import "RZDataBinding.h"
 
 @implementation BestDriverCell
 
@@ -19,12 +20,27 @@
 
 - (void)setDriver:(BestDriver *)driver
 {
+    _driver = driver;
     self.driverName.text = driver.AccountName ;
     self.driverCountry.text = driver.NationalityEnName ;
-    self.driverImage.image = driver.image;
+    if (driver.image) {
+        self.driverImage.image = self.driver.image;
+    }
+    else{
+        self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
+        [self.driver rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage" callImmediately:YES];
+    }
+   [self.driver rz_addTarget:self action:@selector(RatingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
     self.phone = driver.AccountMobile ;
-    self.rateLbl.text = [NSString stringWithFormat:@"%ld",driver.Rating];
 }
+
+- (void) imageChanged{
+     self.driverImage.image = self.driver.image;
+}
+- (void) RatingChanged{
+     self.rateLbl.text = self.driver.Rating;
+}
+
 
 - (IBAction)sendMail:(id)sender
 {
@@ -35,9 +51,6 @@
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",self.phone]]];
 }
-
-
-
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
