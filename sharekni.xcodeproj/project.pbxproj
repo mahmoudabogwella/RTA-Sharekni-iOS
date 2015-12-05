@@ -960,7 +960,7 @@
 				TargetAttributes = {
 					04931B1A1BAAF814000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 89SHAPC6FM;
+						DevelopmentTeam = FN9NQZP477;
 					};
 					04931B361BAAF815000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -968,7 +968,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 04931B161BAAF814000F5434 /* Build configuration list for PBXProject "sharekni" */;
+			buildConfigurationList = 04931B161BAAF814000F5434 /* Build configuration list for PBXProject "Sharekni" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1497,7 +1497,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04931B161BAAF814000F5434 /* Build configuration list for PBXProject "sharekni" */ = {
+		04931B161BAAF814000F5434 /* Build configuration list for PBXProject "Sharekni" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04931B3F1BAAF815000F5434 /* Debug */,

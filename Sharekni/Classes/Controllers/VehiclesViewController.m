@@ -44,6 +44,9 @@
 @end
 
 @implementation VehiclesViewController
+- (IBAction)refreshAction:(id)sender {
+       [self getAllVehicles];
+}
 
 - (void) viewWillAppear:(BOOL)animated
 {
