@@ -165,13 +165,14 @@
     }
 }
 
-- (void) configureUI{
+- (void) configureUI
+{
     self.navigationItem.title = NSLocalizedString(@"Home Page", nil);
     self.notificationCountLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.DriverMyAlertsCount];
     
     self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.FirstName,self.sharedUser.LastName];
     self.nameLabel.text = [self.nameLabel.text capitalizedString];
-    self.nationalityLabel.text = self.sharedUser.NationalityEnName;
+    self.nationalityLabel.text = (KIS_ARABIC)?self.sharedUser.NationalityArName:self.sharedUser.NationalityEnName;
     
     if (self.sharedUser.AccountRating) {
         self.ratingLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.AccountRating];
