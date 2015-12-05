@@ -91,7 +91,6 @@
 
 - (void) configureUI{
     
-    [self.setDirectionButton setTitle:NSLocalizedString(@"Set Direction", nil) forState:UIControlStateNormal];
     [self.setDirectionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.setDirectionButton.layer.cornerRadius = 10;
     [self.setDirectionButton setBackgroundColor:Red_UIColor];
@@ -114,10 +113,6 @@
     self.timeLabel.textColor = Red_UIColor;
     
     [self.searchButton setBackgroundColor:Red_UIColor];
-    [self.searchButton setTitle:NSLocalizedString(@"Search", nil) forState:UIControlStateNormal];
-    
-    self.helpLabel.text = NSLocalizedString(@"Please click on set direction button to set start and end point", nil);
-    self.helpLabel.textColor = [UIColor blackColor];
 
     UITapGestureRecognizer *saveSearchTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveSearchViewTapped)];
     [self.saveSearchView addGestureRecognizer:saveSearchTapGestureRecognizer];
@@ -146,11 +141,11 @@
     self.saveSearchEnabled = !self.saveSearchEnabled;
     if (self.saveSearchEnabled) {
         self.saveSearchLabel.textColor = Red_UIColor;
-        self.SwitchImage.image = [UIImage imageNamed:@"select_Right"];
+        self.SwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_Right"];
     }
     else{
         self.saveSearchLabel.textColor = [UIColor darkGrayColor];
-        self.SwitchImage.image = [UIImage imageNamed:@"select_Left"];
+        self.SwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Right":@"select_Left"];
     }
 }
 

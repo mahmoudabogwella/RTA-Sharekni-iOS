@@ -148,7 +148,7 @@
         blockSelf.nationalties = array;
         blockSelf.nationaltiesStringsArray = [NSMutableArray array];
         for (Nationality *nationality in array) {
-            [blockSelf.nationaltiesStringsArray addObject:nationality.NationalityEnName];
+            [blockSelf.nationaltiesStringsArray addObject:(KIS_ARABIC)?nationality.NationalityArName:nationality.NationalityEnName];
         }
         [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
             blockSelf.ageRanges = array;
@@ -221,7 +221,6 @@
     [self.languageButton setTitle:NSLocalizedString(@"Choose a language", nil) forState:UIControlStateNormal];
     [self.ageRangeButton setTitle:NSLocalizedString(@"Choose age range", nil) forState:UIControlStateNormal];
     
-    
     UITapGestureRecognizer *saveSearchTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveSearchViewTapped)];
     [self.saveSearchView addGestureRecognizer:saveSearchTapGestureRecognizer];
     
@@ -287,13 +286,14 @@
     }
 }
 
-- (void) configureGenderView{
-    if (self.isFemaleOnly) {
-        self.genderSwitchImage.image = [UIImage imageNamed:@"select_Right"];
+- (void) configureGenderView
+{
+    if (self.isFemaleOnly)
+    {
+        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_Right"];
         self.genderLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
-    }
-    else{
-        self.genderSwitchImage.image = [UIImage imageNamed:@"select_Left"];
+    }else{
+        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Right":@"select_Left"];
         self.genderLabel.textColor = [UIColor darkGrayColor];
     }
 }
@@ -319,15 +319,16 @@
     [self.view endEditing:YES];
 }
 
-- (void) saveSearchViewTapped {
+- (void) saveSearchViewTapped
+{
     self.saveSearchEnabled = !self.saveSearchEnabled;
-    if (self.saveSearchEnabled) {
+    if (self.saveSearchEnabled)
+    {
         self.saveSearchLabel.textColor = Red_UIColor;
-        self.saveSearchSwitchImage.image = [UIImage imageNamed:@"select_Right"];
-    }
-    else{
+        self.saveSearchSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_Right"];
+    }else{
         self.saveSearchLabel.textColor = [UIColor darkGrayColor];
-        self.saveSearchSwitchImage.image = [UIImage imageNamed:@"select_Left"];
+        self.saveSearchSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Right":@"select_Left"];
     }
 }
 
@@ -362,10 +363,10 @@
             if(searchResults){
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
-                resultViewController.fromEmirate = blockSelf.fromEmirate.EmirateEnName;
-                resultViewController.toEmirate = blockSelf.toEmirate.EmirateEnName;
-                resultViewController.fromRegion = blockSelf.fromRegion.RegionEnName;
-                resultViewController.toRegion = blockSelf.toRegion.RegionEnName;
+                resultViewController.fromEmirate =(KIS_ARABIC)?blockSelf.fromEmirate.EmirateArName:blockSelf.fromEmirate.EmirateEnName;
+                resultViewController.toEmirate = (KIS_ARABIC)? blockSelf.toEmirate.EmirateArName:blockSelf.toEmirate.EmirateEnName;
+                resultViewController.fromRegion = (KIS_ARABIC)?blockSelf.fromRegion.RegionArName:blockSelf.fromRegion.RegionEnName;
+                resultViewController.toRegion = (KIS_ARABIC)?blockSelf.toRegion.RegionArName:blockSelf.toRegion.RegionEnName;
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
             else{
@@ -382,7 +383,7 @@
 - (void) showDatePicker{
     //    self.pickupDate = [[NSDate date] dateBySettingHour:10];
     __block AdvancedSearchViewController  *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.dateFormatter.dateFormat = @"dd/MM/yyyy";
         NSString *dateString = [self.dateFormatter stringFromDate:date];
@@ -397,7 +398,7 @@
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
@@ -414,7 +415,7 @@
 - (void) showTimePicker{
     
     __block AdvancedSearchViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.pickupTime = date;
         blockSelf.dateFormatter.dateFormat = @"HH:mm a";
@@ -426,7 +427,7 @@
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
@@ -442,21 +443,21 @@
 //http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/Passenger_FindRide?AccountID=0&PreferredGender=N&Time=&FromEmirateID=2&FromRegionID=5&ToEmirateID=3&ToRegionID=8&PrefferedLanguageId=0&PrefferedNationlaities=&AgeRangeId=0&StartDate=&SaveFind=0&IsPeriodic=
 
 - (void) showPickerWithTextFieldType:(TextFieldType)type{
-    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
             case NationalityTextField:
             {
                 Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
-                self.nationalityTextField.text = nationality.NationalityArName;
+                self.nationalityTextField.text = (KIS_ARABIC)?nationality.NationalityArName:nationality.NationalityEnName;
                 self.selectedNationality = nationality;
             }
             break;
             case LanguageTextField:
             {
                 Language *language = [self.languages objectAtIndex:selectedRow];
-                [self.languageButton setTitle:language.LanguageEnName forState:UIControlStateNormal];
+                [self.languageButton setTitle:(KIS_ARABIC)?language.LanguageArName:language.LanguageEnName forState:UIControlStateNormal];
                 self.selectedLanguage = language;
             }
             break;
@@ -473,7 +474,7 @@
     }];
     
     
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         NSLog(@"Row selection was canceled");
     }];
     
@@ -518,7 +519,7 @@
     __block AdvancedSearchViewController *blockSelf = self;
     [selectLocationViewController setSelectionHandler:^(Emirate *fromEmirate, Region *fromRegion,Emirate *toEmirate, Region *toRegion) {
         
-        NSString *fromText = [NSString stringWithFormat:@"%@,%@",fromEmirate.EmirateEnName,fromRegion.RegionEnName];
+        NSString *fromText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?fromEmirate.EmirateArName:fromEmirate.EmirateEnName,(KIS_ARABIC)?fromRegion.RegionArName:fromRegion.RegionEnName];
         
             blockSelf.fromEmirate = fromEmirate;
             blockSelf.fromRegion = fromRegion;
@@ -526,7 +527,7 @@
         
         blockSelf.destinationLabel.text = @"...";
         if (toEmirate && toRegion) {
-            NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
+            NSString *toText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?toEmirate.EmirateArName:toEmirate.EmirateEnName,(KIS_ARABIC)?toRegion.RegionArName:toRegion.RegionEnName];
             blockSelf.toEmirate = toEmirate;
             blockSelf.toRegion = toRegion;
             blockSelf.destinationLabel.text = toText;
@@ -562,7 +563,7 @@
         case NationalityTextField:
         {
             Nationality *nationality = [self.nationalties objectAtIndex:row];
-            title = nationality.NationalityArName;
+            title = (KIS_ARABIC)?nationality.NationalityArName:nationality.NationalityEnName;
         }
         break;
         case AgeRangeTextField:
@@ -574,7 +575,7 @@
         case LanguageTextField:
         {
             Language *language = [self.languages objectAtIndex:row];
-            title = language.LanguageEnName;
+            title = (KIS_ARABIC)?language.LanguageArName:language.LanguageEnName;
         }
         break;
             

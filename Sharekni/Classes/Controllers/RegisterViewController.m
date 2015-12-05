@@ -25,7 +25,7 @@
 #import <REFrostedViewController.h>
 #import "SideMenuTableViewController.h"
 
-@interface RegisterViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate,REFrostedViewControllerDelegate>
+@interface RegisterViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate,REFrostedViewControllerDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 //O
@@ -137,14 +137,18 @@
     
     [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"driver_icon"]    forState:UIControlStateNormal];
     [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"driverActive_icon"]      forState:UIControlStateSelected];
+//    [self.driverLbl setText:NSLocalizedString(@"Driver", nil)];
     [self.driverBtn    setSelected:NO];
    
     [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"passenger_icon"] forState:UIControlStateNormal];
     [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"passengerActive_icon"]   forState:UIControlStateSelected];
+    [self.passengerLbl setText:NSLocalizedString(@"Driver", nil)];
+
     [self.passengerBtn    setSelected:NO];
 
     [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"both_icon"]      forState:UIControlStateNormal];
     [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"bothAcive_icon"]        forState:UIControlStateSelected];
+    [self.bothLbl setText:NSLocalizedString(@"Driver", nil)];
     [self.bothBtn    setSelected:NO];
     self.accountType = AccountTypeNone;
 
@@ -163,7 +167,7 @@
         self.lastNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"lastName", nil) attributes:@{NSForegroundColorAttributeName: color}];
         self.mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mobile", nil) attributes:@{NSForegroundColorAttributeName: color}];
         self.usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"username", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.passwordTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"password", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.passwordTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Password", nil) attributes:@{NSForegroundColorAttributeName: color}];
         self.nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"nationality", nil) attributes:@{NSForegroundColorAttributeName: color}];
         self.preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"pLanguage", nil) attributes:@{NSForegroundColorAttributeName: color}];
     } else {
@@ -194,7 +198,11 @@
         blockSelf.nationalties = array;
         blockSelf.nationaltiesStringsArray = [NSMutableArray array];
         for (Nationality *nationality in blockSelf.nationalties) {
-            [blockSelf.nationaltiesStringsArray addObject:nationality.NationalityEnName];
+            if (KIS_ARABIC) {
+                [blockSelf.nationaltiesStringsArray addObject:nationality.NationalityArName];
+            }else{
+                [blockSelf.nationaltiesStringsArray addObject:nationality.NationalityEnName];
+            }
         }
         [[MasterDataManager sharedMasterDataManager] GetPrefferedLanguagesWithSuccess:^(NSMutableArray *array) {
             [KVNProgress dismiss];
@@ -340,14 +348,19 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 
 #pragma Pickers
 - (void) showPickerWithTextFieldType:(TextFieldType)type{
-    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
             case NationalityTextField:
             {
                 Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
-                self.nationalityTxt.text = nationality.NationalityEnName;
+                if (KIS_ARABIC) {
+                    self.nationalityTxt.text = nationality.NationalityArName;
+                }else{
+                    self.nationalityTxt.text = nationality.NationalityEnName;
+                }
+
                 self.selectedNationality = nationality;
                 [self configureBorders];
             }
@@ -355,7 +368,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
             case LanguageTextField:
             {
                 Language *language = [self.languages objectAtIndex:selectedRow];
-                self.preferredLanguageTxt.text = language.LanguageEnName;
+                if (KIS_ARABIC) {
+                    self.preferredLanguageTxt.text = language.LanguageArName;
+
+                }else{
+                    self.preferredLanguageTxt.text = language.LanguageEnName;
+
+                }
                 self.selectedLanguage = language;
             }
                 break;
@@ -366,7 +385,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }];
     
     
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         NSLog(@"Row selection was canceled");
     }];
     
@@ -403,7 +422,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     
     [self.view endEditing:YES];
     __block RegisterViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         
         blockSelf.dateFormatter.dateFormat = @"dd, MMM, yyyy";
@@ -411,7 +430,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         self.dateLabel.text = dateString;
         blockSelf.date = date;
         if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:blockSelf.date] < 18)){
-            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"invalid birthdate", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"You should be older than 18 Years", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
             [alertView show];
             self.date = nil;
             [self configureBorders];
@@ -419,7 +438,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
@@ -446,17 +465,17 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         self.selectedNationality = [self.nationalties objectAtIndex:[self.nationaltiesStringsArray indexOfObject:self.nationalityTxt.text]];
     }
     else{
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose a valid nationality.", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose a valid nationality.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
         [alertView show];
         return;
     }
     
     if(self.accountType == AccountTypeNone){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose acconut type.", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose acconut type.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
         [alertView show];
     }
     else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0  || !self.selectedLanguage || !self.date){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please fill all fields", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please fill all fields", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
         [alertView show];
         [self configureBorders];
     }
@@ -467,21 +486,20 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Last name mustn't have numbers", nil)];
     }
     else if (![self isValidMobileNumber]){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52] and ", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]", nil)];
     }
     else if (![self IsValidEmail:self.userName]){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please enter a valid email address", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please enter a valid email address", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
         self.userName = @"";
         [alertView show];
         [self configureBorders];
     }
     else if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:self.date] < 18)){
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"You should be older than 18 Years", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"You should be older than 18 Years", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
         [alertView show];
         self.date = nil;
         [self configureBorders];
-    }
-    else{
+    }else{
         if (self.profileImage) {
                 [[MobAccountManager sharedMobAccountManager] uploadPhoto:self.profileImage withSuccess:^(NSString *fileName) {
                     if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
@@ -524,7 +542,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
             }];
         }
         [KVNProgress dismiss];
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration as a driver Compeleted. ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registration done successfully",nil)];
         [self loginAfterRegisteration];
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];
@@ -537,13 +555,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];    
     [[MobAccountManager sharedMobAccountManager] registerPassengerWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
         [KVNProgress dismiss];
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registeration as a passenger Compeleted. ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registration done successfully",nil)];
         [self loginAfterRegisteration];
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];
         [[HelpManager sharedHelpManager] showAlertWithMessage:error];
     }];
-    
+
 }
 
 - (IBAction)selectHumanType:(id)sender{
@@ -630,13 +648,23 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         case NationalityTextField:
         {
             Nationality *nationality = [self.nationalties objectAtIndex:row];
-            title = nationality.NationalityEnName;
+            if (KIS_ARABIC) {
+                title = nationality.NationalityArName;
+            }else{
+                title = nationality.NationalityEnName;
+            }
         }
             break;
         case LanguageTextField:
         {
             Language *language = [self.languages objectAtIndex:row];
-            title = language.LanguageEnName;
+            if (KIS_ARABIC)
+            {
+                title = language.LanguageArName;
+            }else{
+                title = language.LanguageEnName;
+            }
+
         }
             break;
             
@@ -809,7 +837,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     {
         if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
-            [[[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"No camera on device", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+            [[[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"No camera on device", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil] show];
             return;
         }
         source = UIImagePickerControllerSourceTypeCamera;

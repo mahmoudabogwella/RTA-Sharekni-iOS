@@ -26,10 +26,10 @@
     [self.pageScrollView reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.translucent = YES;
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    self.navigationController.navigationBar.translucent = YES;
+//}
 
 #pragma mark -
 
@@ -40,7 +40,7 @@
 
 - (CGSize)sizeCellForPageScrollView:(PHPageScrollView*)pageScrollView
 {
-    return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-50);
+    return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
 }
 
 - (UIView*)pageScrollView:(PHPageScrollView*)pageScrollView viewForRowAtIndex:(int)index

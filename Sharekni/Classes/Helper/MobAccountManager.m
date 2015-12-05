@@ -78,10 +78,10 @@
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
         if ([responseString containsString:@"-2"]){
-            failure(@"Mobile number already exists");
+            failure(NSLocalizedString(@"Mobile number already exists", nil));
         }
         else if ([responseString containsString:@"-1"]){
-            failure(@"Email already exists");
+            failure(NSLocalizedString(@"Email already exists",nil));
         }
         else{
             success(nil);

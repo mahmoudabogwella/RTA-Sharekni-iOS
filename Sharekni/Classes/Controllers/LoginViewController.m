@@ -51,8 +51,8 @@
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     [self configureUI];
 
-    self.usernameTextField.text = @"yasmin@gmail.com";
-    self.passwordTextField.text = @"12345";
+//    self.usernameTextField.text = @"yasmin@gmail.com";
+//    self.passwordTextField.text = @"12345";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -72,8 +72,8 @@
 - (void) configureUI{
     if ([self.usernameTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"example@gmail.com ",nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"password", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Username (Your Email)",nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Password", nil) attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
