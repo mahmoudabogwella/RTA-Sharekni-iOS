@@ -20,7 +20,6 @@
 		047E455A1BC5831D000B5151 /* PickupLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45591BC5831D000B5151 /* PickupLocationView.m */; };
 		047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047E455B1BC58330000B5151 /* PickupLocationView.xib */; };
 		047E45831BC59DE0000B5151 /* SelectLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45811BC59DE0000B5151 /* SelectLocationViewController.m */; };
-		047E45841BC59DE0000B5151 /* SelectLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047E45821BC59DE0000B5151 /* SelectLocationViewController.xib */; };
 		047E458D1BC5A4D8000B5151 /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45871BC5A4D8000B5151 /* MLPAutoCompleteTextField.m */; };
 		047E458E1BC5A4D8000B5151 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E458C1BC5A4D8000B5151 /* NSString+Levenshtein.m */; };
 		047E45911BC63686000B5151 /* MobDriverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E45901BC63686000B5151 /* MobDriverManager.m */; };
@@ -87,6 +86,7 @@
 		14C3F39F1C029A8300CEF11C /* RideHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C3F39D1C029A8200CEF11C /* RideHistoryCell.m */; };
 		14C8CB761C14483900AA16DF /* BestDriverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C8CB751C14483900AA16DF /* BestDriverCell.xib */; };
 		14C8CB781C1448C000AA16DF /* BestDriversViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C8CB771C1448C000AA16DF /* BestDriversViewController.xib */; };
+		14C8CB791C14D77C00AA16DF /* SelectLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C8CB7B1C14D77C00AA16DF /* SelectLocationViewController.xib */; };
 		14D3E93A1C06A2290047F415 /* TourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9381C06A2290047F415 /* TourViewController.m */; };
 		14D3E93B1C06A2290047F415 /* TourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E9391C06A2290047F415 /* TourViewController.xib */; };
 		14D3E9491C06AD1B0047F415 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E9481C06AD1B0047F415 /* QuartzCore.framework */; };
@@ -205,7 +205,6 @@
 		047E455B1BC58330000B5151 /* PickupLocationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickupLocationView.xib; sourceTree = "<group>"; };
 		047E45801BC59DE0000B5151 /* SelectLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLocationViewController.h; sourceTree = "<group>"; };
 		047E45811BC59DE0000B5151 /* SelectLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLocationViewController.m; sourceTree = "<group>"; };
-		047E45821BC59DE0000B5151 /* SelectLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectLocationViewController.xib; sourceTree = "<group>"; };
 		047E45861BC5A4D8000B5151 /* MLPAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextField.h; sourceTree = "<group>"; };
 		047E45871BC5A4D8000B5151 /* MLPAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPAutoCompleteTextField.m; sourceTree = "<group>"; };
 		047E45881BC5A4D8000B5151 /* MLPAutoCompleteTextFieldDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDataSource.h; sourceTree = "<group>"; };
@@ -327,6 +326,8 @@
 		14C3F39D1C029A8200CEF11C /* RideHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideHistoryCell.m; sourceTree = "<group>"; };
 		14C8CB751C14483900AA16DF /* BestDriverCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BestDriverCell.xib; sourceTree = "<group>"; };
 		14C8CB771C1448C000AA16DF /* BestDriversViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BestDriversViewController.xib; sourceTree = "<group>"; };
+		14C8CB7A1C14D77C00AA16DF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SelectLocationViewController.xib; sourceTree = "<group>"; };
+		14C8CB7E1C14D78300AA16DF /* ar */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ar; path = ar.lproj/SelectLocationViewController.xib; sourceTree = "<group>"; };
 		14D3E9371C06A2290047F415 /* TourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourViewController.h; sourceTree = "<group>"; };
 		14D3E9381C06A2290047F415 /* TourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourViewController.m; sourceTree = "<group>"; };
 		14D3E9391C06A2290047F415 /* TourViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourViewController.xib; sourceTree = "<group>"; };
@@ -644,7 +645,7 @@
 				044ECE981BC08A8000AF3E2D /* SearchResultCell.xib */,
 				047E45801BC59DE0000B5151 /* SelectLocationViewController.h */,
 				047E45811BC59DE0000B5151 /* SelectLocationViewController.m */,
-				047E45821BC59DE0000B5151 /* SelectLocationViewController.xib */,
+				14C8CB7B1C14D77C00AA16DF /* SelectLocationViewController.xib */,
 				87B58B5A1BD388D100E73E55 /* MapLookupViewController.h */,
 				87B58B5B1BD388D100E73E55 /* MapLookupViewController.m */,
 				87B58B5C1BD388D100E73E55 /* MapLookupViewController.xib */,
@@ -1055,7 +1056,7 @@
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				14F251F01C132A5B00D8184E /* NotificationDetailsViewController.xib in Resources */,
 				14D3E9611C06C5530047F415 /* iOS_0.jpg in Resources */,
-				047E45841BC59DE0000B5151 /* SelectLocationViewController.xib in Resources */,
+				14C8CB791C14D77C00AA16DF /* SelectLocationViewController.xib in Resources */,
 				87B58B5E1BD388D100E73E55 /* MapLookupViewController.xib in Resources */,
 				87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */,
 				1425F8181BFFCB5500AD086B /* AddRemarksViewController.xib in Resources */,
@@ -1263,6 +1264,15 @@
 				14F251DA1C1234A600D8184E /* ar */,
 			);
 			name = LoginViewController.xib;
+			sourceTree = "<group>";
+		};
+		14C8CB7B1C14D77C00AA16DF /* SelectLocationViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14C8CB7A1C14D77C00AA16DF /* en */,
+				14C8CB7E1C14D78300AA16DF /* ar */,
+			);
+			name = SelectLocationViewController.xib;
 			sourceTree = "<group>";
 		};
 		14F251C01C11905A00D8184E /* WelcomeViewController.xib */ = {
