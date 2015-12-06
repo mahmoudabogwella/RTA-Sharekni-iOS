@@ -162,7 +162,6 @@
         <!--Navigation Controller-->
         <scene sceneID="AWr-oQ-HWQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CSF-zX-CAM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="MainNavigationController" id="mI9-uV-K0N" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jsj-9K-FZv">
@@ -175,13 +174,13 @@
                         </textAttributes>
                     </navigationBar>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CSF-zX-CAM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-197" y="322"/>
         </scene>
         <!--Video Splash View Controller-->
         <scene sceneID="Y5Z-mE-tl7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s18-O3-Irm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="xx9-WW-IOZ" customClass="VideoSplashViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cMh-2j-K1v"/>
@@ -206,6 +205,7 @@
                         <outlet property="movieView" destination="eAN-su-7iK" id="PBg-Zy-XC1"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s18-O3-Irm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="186" y="322"/>
         </scene>
