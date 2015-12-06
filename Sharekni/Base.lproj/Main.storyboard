@@ -323,7 +323,6 @@
         <!--Video Splash View Controller-->
         <scene sceneID="Y5Z-mE-tl7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s18-O3-Irm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="xx9-WW-IOZ" customClass="VideoSplashViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cMh-2j-K1v"/>
@@ -348,14 +347,15 @@
                         <outlet property="movieView" destination="eAN-su-7iK" id="PBg-Zy-XC1"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s18-O3-Irm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="186" y="322"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Call_Btn" width="56" height="42"/>
+        <image name="Call_Btn" width="38" height="38"/>
         <image name="Login_bg" width="640" height="1039"/>
-        <image name="Msg_Btn" width="57" height="37"/>
+        <image name="Msg_Btn" width="45" height="32"/>
         <image name="rate" width="50" height="50"/>
     </resources>
 </document>

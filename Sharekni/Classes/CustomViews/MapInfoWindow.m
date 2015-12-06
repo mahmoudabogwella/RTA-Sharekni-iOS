@@ -17,6 +17,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *passengersLabel;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 
+@property (weak, nonatomic) IBOutlet UILabel *driverHeader;
+@property (weak, nonatomic) IBOutlet UILabel *passengerHeader;
+@property (weak, nonatomic) IBOutlet UILabel *ridesHeader;
+
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *headerLabels;
 @end
@@ -38,8 +42,14 @@
 }
 
 
-- (void)configureUI{
-
+- (void)configureUI
+{
+    self.layer.cornerRadius = 3.0f;
+    
+    self.driverHeader.text = NSLocalizedString(@"Drivers :", nil);
+    self.passengerHeader.text = NSLocalizedString(@"Passengers :", nil);
+    self.ridesHeader.text = NSLocalizedString(@"Coming Rides :", nil);
+    
         for (UILabel *label in self.headerLabels) {
             label.textColor = Red_UIColor;
         }

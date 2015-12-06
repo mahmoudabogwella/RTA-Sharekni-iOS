@@ -45,14 +45,14 @@
     if (KIS_ARABIC)
     {
         _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",_driverRideDetails.FromEmirateArName,_driverRideDetails.FromRegionArName];
-        _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",_driverRideDetails.ToEmirateArName,_driverRideDetails.ToRegionArName];
+        _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",_driverRideDetails.ToEmirateArName,_driverRideDetails.ToRegionArName];
         _RouteName.text = _driverRideDetails.RouteArName ;
     }
     else
     {
         _RouteName.text = _driverRideDetails.RouteEnName ;
         _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",_driverRideDetails.FromEmirateEnName,_driverRideDetails.FromRegionEnName];
-        _ToRegionName.text = [NSString stringWithFormat:@"To %@ - %@",_driverRideDetails.ToEmirateEnName,_driverRideDetails.ToRegionEnName];
+        _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",_driverRideDetails.ToEmirateEnName,_driverRideDetails.ToRegionEnName];
     }
 }
 

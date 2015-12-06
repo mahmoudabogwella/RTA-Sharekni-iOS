@@ -45,23 +45,29 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="thumbnail" translatesAutoresizingMaskIntoConstraints="NO" id="5nP-eD-gpv">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail" translatesAutoresizingMaskIntoConstraints="NO" id="5nP-eD-gpv">
                         <rect key="frame" x="8" y="8" width="66" height="66"/>
                         <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="66" id="7Js-3M-eB4"/>
+                            <constraint firstAttribute="height" constant="66" id="SK9-il-Vzy"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <animations/>
                 <constraints>
-                    <constraint firstItem="PTX-xa-j4w" firstAttribute="leading" secondItem="yee-kC-MKL" secondAttribute="leadingMargin" constant="80" id="EHn-ms-pYD"/>
+                    <constraint firstItem="PTX-xa-j4w" firstAttribute="leading" secondItem="5nP-eD-gpv" secondAttribute="trailing" constant="14" id="7l8-Rb-btu"/>
                     <constraint firstAttribute="trailingMargin" secondItem="PTX-xa-j4w" secondAttribute="trailing" constant="6" id="FoM-24-qBn"/>
                     <constraint firstItem="4Um-G6-l1i" firstAttribute="trailing" secondItem="yee-kC-MKL" secondAttribute="trailingMargin" constant="-6" id="IBo-lP-YDj"/>
                     <constraint firstItem="PTX-xa-j4w" firstAttribute="top" secondItem="yee-kC-MKL" secondAttribute="topMargin" constant="1" id="KG5-NZ-Mgf"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="5nP-eD-gpv" secondAttribute="leading" id="Kn8-ur-lj7"/>
                     <constraint firstItem="dGY-ZS-0ZB" firstAttribute="top" secondItem="4Um-G6-l1i" secondAttribute="bottom" constant="7" id="Lkc-LM-egB"/>
+                    <constraint firstAttribute="topMargin" secondItem="5nP-eD-gpv" secondAttribute="top" id="Qhd-GQ-I4i"/>
                     <constraint firstItem="dGY-ZS-0ZB" firstAttribute="trailing" secondItem="yee-kC-MKL" secondAttribute="trailingMargin" constant="-6" id="Sfb-pq-xSY"/>
                     <constraint firstAttribute="bottomMargin" secondItem="dGY-ZS-0ZB" secondAttribute="bottom" constant="-3.5" id="YmF-Zt-ehf"/>
                     <constraint firstItem="4Um-G6-l1i" firstAttribute="top" secondItem="yee-kC-MKL" secondAttribute="topMargin" constant="36" id="hmN-Nf-Jbt"/>
                     <constraint firstItem="dGY-ZS-0ZB" firstAttribute="leading" secondItem="yee-kC-MKL" secondAttribute="leadingMargin" constant="80" id="spZ-Tg-6a9"/>
-                    <constraint firstItem="4Um-G6-l1i" firstAttribute="leading" secondItem="yee-kC-MKL" secondAttribute="leadingMargin" constant="80" id="zn1-ct-AQY"/>
+                    <constraint firstItem="4Um-G6-l1i" firstAttribute="leading" secondItem="5nP-eD-gpv" secondAttribute="trailing" constant="14" id="zk5-Zh-wBu"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>

@@ -90,7 +90,8 @@
 "Write Your Review" = "اكتب تعليقك";
 "Your Review" = "تعليقك";
 
-
+"Map Lookup" = "الخريطة";
+"Starting Time :" = "وقت البداية :";
 "Set Direction" = "الوجهة";
 "Please set direction" = "من فضلك اختر الوجهة";
 "No Rides Found" = "لا توجد رحلات";
@@ -100,3 +101,7 @@
 "Please select to Emirate first" = "من فضلك اختر الإمارة أولا";
 "Please enter a valid to region name" = "من فضلك أدخل اسم المنطقة بطريقة صحيحة";
 "invalid start date or time" = "تاريخ البدء أو وقت البدء غير صحيح";
+
+"Drivers :" = "السائقين :";
+"Passengers :" = "الركاب :";
+"Coming Rides :" = "الرحلات القادمة :";

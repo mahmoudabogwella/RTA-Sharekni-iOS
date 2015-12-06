@@ -31,6 +31,11 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     // Initialization code
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
+    
+    self.driverName.textAlignment = NSTextAlignmentNatural ;
+    self.country.textAlignment = NSTextAlignmentNatural ;
+    self.startingTime.textAlignment = NSTextAlignmentNatural ;
+    self.availableDays.textAlignment = NSTextAlignmentNatural ;
 }
 
 - (void)setMostRide:(MostRideDetails *)mostRide
@@ -39,7 +44,7 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     self.driverName.text = mostRide.DriverName ;
     self.country.text = (KIS_ARABIC)?mostRide.NationalityArName:mostRide.NationlityEnName ;
     self.driverImage.image = mostRide.driverImage;
-    self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",mostRide.StartTime];
+    self.startingTime.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"Starting Time :", nil),mostRide.StartTime];
     self.availableDays.text = [self getAvailableDays:mostRide];
     self.rate.text = mostRide.Rating;
     self.phone = mostRide.DriverMobile ;

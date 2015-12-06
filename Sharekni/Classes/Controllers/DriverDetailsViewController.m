@@ -76,7 +76,8 @@
     }
     [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
 
-
+    self.driverName.textAlignment = NSTextAlignmentNatural ;
+    self.country.textAlignment = NSTextAlignmentNatural ;
     
     if (self.bestDriver) {
         
@@ -180,13 +181,8 @@
                  blockSelf.country.text = (KIS_ARABIC)?blockSelf.driver.NationalityArName:blockSelf.driver.NationalityEnName ;
                  [blockSelf.driver rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"AccountRating"];
              [KVNProgress dismiss];
-                 //        [KVNProgress dismiss];
+
              } Failure:^(NSString *error) {
-                 //        [KVNProgress dismiss];
-                 //        [KVNProgress showErrorWithStatus:@"Error"];
-                 //        [blockSelf performBlock:^{
-                 //            [KVNProgress dismiss];
-                 //        } afterDelay:3];
              [KVNProgress dismiss];
              }];
          } Failure:^(NSString *error) {

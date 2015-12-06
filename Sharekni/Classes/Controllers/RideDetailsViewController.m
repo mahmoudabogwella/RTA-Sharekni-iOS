@@ -681,7 +681,7 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:24.4667
                                                             longitude:54.3667
                                                                  zoom:15];
-    CGRect frame = _MKmapView.frame;
+    CGRect frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, self.view.frame.size.width, 280);
     _mapView = [GMSMapView mapWithFrame:frame camera:camera];
     _mapView.myLocationEnabled = YES;
     _mapView.delegate = self;
@@ -689,7 +689,8 @@
     [_MKmapView removeFromSuperview];
 }
 
-- (void) configurePins{
+- (void) configurePins
+{
     [_mapView clear];
     self.markers = [NSMutableArray array];
         CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);
