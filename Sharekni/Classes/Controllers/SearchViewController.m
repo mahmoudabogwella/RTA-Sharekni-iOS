@@ -218,14 +218,14 @@
     [selectLocationViewController setSelectionHandler:^(Emirate *fromEmirate, Region *fromRegion,Emirate *toEmirate, Region *toRegion) {
         blockSelf.helpLabel.alpha = 0;
         blockSelf.emiratesRegionsView.alpha = 1;
-        NSString *fromText = [NSString stringWithFormat:@"%@,%@",fromEmirate.EmirateEnName,fromRegion.RegionEnName];
+        NSString *fromText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?fromEmirate.EmirateArName:fromEmirate.EmirateEnName,(KIS_ARABIC)?fromRegion.RegionArName:fromRegion.RegionEnName];
             blockSelf.fromEmirate = fromEmirate;
             blockSelf.fromRegion = fromRegion;
             blockSelf.startPointLabel.text = fromText;
         
         blockSelf.destinationLabel.text = @"...";
         if (toEmirate && toRegion) {
-            NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
+            NSString *toText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?toEmirate.EmirateArName:toEmirate.EmirateEnName,(KIS_ARABIC)?toRegion.RegionArName:toRegion.RegionEnName];
             blockSelf.toEmirate = toEmirate;
             blockSelf.toRegion = toRegion;
             blockSelf.destinationLabel.text = toText;
@@ -255,10 +255,10 @@
     }
     
     if (!self.fromEmirate) {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please set direction ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please set direction",nil)];
     }
     else if (compareResult == NSOrderedAscending){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"invalid start date or time ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"invalid start date or time",nil)];
     }
     else{
         __block SearchViewController *blockSelf = self;
@@ -268,7 +268,7 @@
             if(searchResults){
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
-                resultViewController.fromEmirate = blockSelf.fromEmirate.EmirateEnName;
+                resultViewController.fromEmirate = (KIS_ARABIC)?blockSelf.fromEmirate.EmirateArName:blockSelf.fromEmirate.EmirateEnName;
                 resultViewController.toEmirate = blockSelf.toEmirate.EmirateEnName;
                 resultViewController.fromRegion = blockSelf.fromRegion.RegionEnName;
                 resultViewController.toRegion = blockSelf.toRegion.RegionEnName;

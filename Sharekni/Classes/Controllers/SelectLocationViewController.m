@@ -93,14 +93,14 @@ typedef enum DirectionType : NSUInteger {
                 blockSelf.fromRegions = array;
                 blockSelf.fromRegionsStringsArray=  [NSMutableArray array];
                 for (Region *region in array) {
-                    [blockSelf.fromRegionsStringsArray addObject:region.RegionEnName];
+                    [blockSelf.fromRegionsStringsArray addObject:(KIS_ARABIC)?region.RegionArName:region.RegionEnName];
                 }
             }
             else{
                 blockSelf.toRegions = array;
                 blockSelf.toRegionsStringsArray=  [NSMutableArray array];
                 for (Region *region in array) {
-                    [blockSelf.toRegionsStringsArray addObject:region.RegionEnName];
+                    [blockSelf.toRegionsStringsArray addObject:(KIS_ARABIC)?region.RegionArName:region.RegionEnName];
                 }
             }
             [KVNProgress dismiss];
@@ -190,10 +190,10 @@ typedef enum DirectionType : NSUInteger {
 
 - (IBAction)DoneAction:(id)sender {
     if (!self.selectedFromEmirate) {
-      [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select from Emirate ",nil)];
+      [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select from Emirate",nil)];
     }
     else if (self.fromRegionTextField.text.length == 0){
-      [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter from Region ",nil)];
+      [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter from Region",nil)];
     }
     else if (![self.fromRegionsStringsArray containsObject:self.fromRegionTextField.text]){
       [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter Valid from Region Name",nil)];
@@ -208,7 +208,7 @@ typedef enum DirectionType : NSUInteger {
                 
             }
             else if (![self.toRegionsStringsArray containsObject:self.toRegionTextField.text]){
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter Valid to Region Name",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter a valid to region name",nil)];
             }
             else{
                 NSInteger fromRegionIndex = [self.fromRegionsStringsArray indexOfObject:self.fromRegionTextField.text];
@@ -238,15 +238,15 @@ typedef enum DirectionType : NSUInteger {
 
 - (void) showEmiratePickerForType:(DirectionType)type{
     __block SelectLocationViewController *blockSelf = self;
-    RMAction * selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Selec Emirate", Nil)  style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction * selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select Emirate", Nil)  style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         if (type == DirectionTypeFrom) {
             self.selectedFromEmirate = [self.emirates objectAtIndex:[picker selectedRowInComponent:0]];
-            [blockSelf.fromEmirateButton setTitle:self.selectedFromEmirate.EmirateEnName forState:UIControlStateNormal];
+            [blockSelf.fromEmirateButton setTitle:(KIS_ARABIC)?self.selectedFromEmirate.EmirateArName:self.selectedFromEmirate.EmirateEnName forState:UIControlStateNormal];
         }
         else{
             self.selectedToEmirate = [self.emirates objectAtIndex:[picker selectedRowInComponent:0]];
-            [blockSelf.toEmirateButton setTitle:self.selectedToEmirate.EmirateEnName forState:UIControlStateNormal];
+            [blockSelf.toEmirateButton setTitle:(KIS_ARABIC)?self.selectedToEmirate.EmirateArName:self.selectedToEmirate.EmirateEnName forState:UIControlStateNormal];
         }
         [blockSelf configureRegionsWithDirectionType:type];
     }];
@@ -280,7 +280,7 @@ typedef enum DirectionType : NSUInteger {
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     Emirate *emirate = [self.emirates objectAtIndex:row];
-    return  emirate.EmirateEnName;
+    return  (KIS_ARABIC)?emirate.EmirateArName:emirate.EmirateEnName;
 }
 
 #pragma TextFieldDelegate
