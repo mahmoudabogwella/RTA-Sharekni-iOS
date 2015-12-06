@@ -21,6 +21,7 @@
 @property (nonatomic ,weak) IBOutlet UILabel *driverName ;
 @property (nonatomic ,weak) IBOutlet UILabel *driverCountry ;
 @property (nonatomic ,weak) IBOutlet UILabel *rateLbl ;
+
 @property (nonatomic ,strong) NSString *phone;
 @property (nonatomic ,strong) BestDriver *driver;
 
