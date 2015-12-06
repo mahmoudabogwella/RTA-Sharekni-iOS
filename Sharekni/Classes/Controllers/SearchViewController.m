@@ -242,16 +242,9 @@
     NSDate *pickupDate_;
     NSComparisonResult compareResult = NSOrderedDescending;
     if (self.pickupDate) {
-        if (!self.pickupTime) {
             pickupDate_ = [self.pickupDate dateBySettingHour:0 minute:0 second:0];
             todayDate_ = [[NSDate date] dateBySettingHour:0 minute:0 second:0];
-        }
-        else{
-            pickupDate_ = self.pickupDate;
-            todayDate_   = [NSDate date];
-        }
-        
-        compareResult = [pickupDate_ compare:todayDate_];
+            compareResult = [pickupDate_ compare:todayDate_];
     }
     
     if (!self.fromEmirate) {

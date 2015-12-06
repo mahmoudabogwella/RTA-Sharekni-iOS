@@ -286,8 +286,7 @@
     }
 }
 
-- (void) configureGenderView
-{
+- (void) configureGenderView{
     if (self.isFemaleOnly)
     {
         self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_Right"];
@@ -319,8 +318,7 @@
     [self.view endEditing:YES];
 }
 
-- (void) saveSearchViewTapped
-{
+- (void) saveSearchViewTapped{
     self.saveSearchEnabled = !self.saveSearchEnabled;
     if (self.saveSearchEnabled)
     {
@@ -337,14 +335,14 @@
     NSDate *pickupDate_;
     NSComparisonResult compareResult = NSOrderedDescending;
     if (self.pickupDate) {
-        if (!self.pickupTime) {
+//        if (!self.pickupTime) {
             pickupDate_ = [self.pickupDate dateBySettingHour:0 minute:0 second:0];
             todayDate_ = [[NSDate date] dateBySettingHour:0 minute:0 second:0];
-        }
-        else{
-            pickupDate_ = self.pickupDate;
-            todayDate_   = [NSDate date];
-        }
+//        }
+//        else{
+//            pickupDate_ = self.pickupDate;
+//            todayDate_   = [NSDate date];
+//        }
         
         compareResult = [pickupDate_ compare:todayDate_];
     }
@@ -548,6 +546,14 @@
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     [textField resignFirstResponder];
+    if (textField == self.nationalityTextField) {
+        if([self.nationaltiesStringsArray containsObject:textField.text]){
+            self.selectedNationality  = self.nationalties[[self.nationaltiesStringsArray indexOfObject:textField.text] ];
+        }
+        else{
+            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Choose a valid nationality.", nil)];
+        }
+    }
     return YES;
 }
 

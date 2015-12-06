@@ -36,7 +36,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/VehiclesViewController.m"
-                  timestampString = "471131726.39675"
+                  timestampString = "471135349.249196"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "133"
@@ -47,26 +47,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__Block_byref_object_copy_"
-                  moduleName = "Sharekni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/VehiclesViewController.m"
-                  timestampString = "471131726.403456"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
                   symbolName = "__Block_byref_object_dispose_"
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/VehiclesViewController.m"
-                  timestampString = "471131726.403903"
+                  timestampString = "471135349.250551"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "133"
@@ -163,7 +148,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Helper/MobAccountManager.m"
-                  timestampString = "471131726.553103"
+                  timestampString = "471135349.267864"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "228"
@@ -178,7 +163,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Helper/MobAccountManager.m"
-                  timestampString = "471131726.553682"
+                  timestampString = "471135349.268408"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "228"
@@ -210,38 +195,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Controllers/HomeViewController.m"
-            timestampString = "471048859.335885"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sharekni/Classes/Controllers/HomeViewController.m"
-            timestampString = "471048860.166294"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/CustomViews/BestDriverCell.m"
             timestampString = "471131722.167453"
             startingColumnNumber = "9223372036854775807"
@@ -250,6 +203,150 @@
             endingLineNumber = "29"
             landmarkName = "-setDriver:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Helper/MobDriverManager.m"
+            timestampString = "471134065.641326"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "-findRidesFromEmirate:andFromRegion:toEmirate:andToRegion:PerfferedLanguage:nationality:ageRange:date:isPeriodic:saveSearch:Gender:WithSuccess:Failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Helper/MobDriverManager.m"
+            timestampString = "471134070.482279"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "-findRidesFromEmirate:andFromRegion:toEmirate:andToRegion:PerfferedLanguage:nationality:ageRange:date:isPeriodic:saveSearch:Gender:WithSuccess:Failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Helper/MobDriverManager.m"
+            timestampString = "471134080.658224"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "-findRidesFromEmirate:andFromRegion:toEmirate:andToRegion:PerfferedLanguage:nationality:ageRange:date:isPeriodic:saveSearch:Gender:WithSuccess:Failure:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MobDriverManager findRidesFromEmirate:andFromRegion:toEmirate:andToRegion:PerfferedLanguage:nationality:ageRange:date:isPeriodic:saveSearch:Gender:WithSuccess:Failure:]"
+                  moduleName = "Sharekni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Helper/MobDriverManager.m"
+                  timestampString = "471135349.283312"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "2465">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__170-[MobDriverManager findRidesFromEmirate:andFromRegion:toEmirate:andToRegion:PerfferedLanguage:nationality:ageRange:date:isPeriodic:saveSearch:Gender:WithSuccess:Failure:]_block_invoke"
+                  moduleName = "Sharekni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Helper/MobDriverManager.m"
+                  timestampString = "471135349.28385"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "109">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/SearchViewController.m"
+            timestampString = "471134538.818961"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "-quickSearchAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/AdvancedSearchViewController.m"
+            timestampString = "471135029.379859"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
+            landmarkName = "-searchAction:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[AdvancedSearchViewController searchAction:]"
+                  moduleName = "Sharekni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/AdvancedSearchViewController.m"
+                  timestampString = "471135349.290501"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "359"
+                  endingLineNumber = "359"
+                  offsetFromSymbolStart = "1115">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__45-[AdvancedSearchViewController searchAction:]_block_invoke"
+                  moduleName = "Sharekni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/AdvancedSearchViewController.m"
+                  timestampString = "471135349.291023"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "359"
+                  endingLineNumber = "359"
+                  offsetFromSymbolStart = "42">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -470,7 +470,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose acconut type.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
         [alertView show];
     }
-    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0  || !self.selectedLanguage || !self.date){
+    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 || !self.date){
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please fill all fields", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
         [alertView show];
         [self configureBorders];
@@ -524,7 +524,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }
 }
 
-
 - (void) registerDriverWithPhotoName:(NSString *)photoName{
     self.dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [self.dateFormatter stringFromDate:self.date];
@@ -545,6 +544,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [[HelpManager sharedHelpManager] showAlertWithMessage:error];
     }];
 }
+
 - (void) registerPassengerWithPhotoName:(NSString *)photoName{
     self.dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [self.dateFormatter stringFromDate:self.date];
@@ -752,12 +752,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [self addGreyBorderToView:self.nationalityView];
     }
     
-    if (!self.selectedLanguage){
-        [self addRedBorderToView:self.languageView];
-    }
-    else{
-        [self addGreyBorderToView:self.languageView];
-    }
+//    if (!self.selectedLanguage){
+//        [self addRedBorderToView:self.languageView];
+//    }
+//    else{
+//        [self addGreyBorderToView:self.languageView];
+//    }
     
     if (!self.date){
         [self addRedBorderToView:self.datePickerView];
