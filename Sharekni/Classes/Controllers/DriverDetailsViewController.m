@@ -172,13 +172,13 @@
         [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:accountID WithSuccess:^(NSMutableArray *array)
          {
              blockSelf.driverRides = array;
-             [KVNProgress dismiss];
              [self.ridesList reloadData];
              
              [[MobAccountManager sharedMobAccountManager] getUser:driverID WithSuccess:^(User *user) {
                  blockSelf.driver = user;
-                 blockSelf.country.text = user.NationalityEnName;
+                 blockSelf.country.text = (KIS_ARABIC)?blockSelf.driver.NationalityArName:blockSelf.driver.NationalityEnName ;
                  [blockSelf.driver rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"AccountRating"];
+             [KVNProgress dismiss];
                  //        [KVNProgress dismiss];
              } Failure:^(NSString *error) {
                  //        [KVNProgress dismiss];
@@ -186,8 +186,8 @@
                  //        [blockSelf performBlock:^{
                  //            [KVNProgress dismiss];
                  //        } afterDelay:3];
+             [KVNProgress dismiss];
              }];
-             
          } Failure:^(NSString *error) {
              
              NSLog(@"Error in Best Drivers");
