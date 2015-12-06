@@ -518,14 +518,15 @@
     SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
     __block AdvancedSearchViewController *blockSelf = self;
     [selectLocationViewController setSelectionHandler:^(Emirate *fromEmirate, Region *fromRegion,Emirate *toEmirate, Region *toRegion) {
-        
+        self.helpLabel.alpha = 0;
+        self.emiratesAndRegionsView.alpha = 1;
         NSString *fromText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?fromEmirate.EmirateArName:fromEmirate.EmirateEnName,(KIS_ARABIC)?fromRegion.RegionArName:fromRegion.RegionEnName];
         
             blockSelf.fromEmirate = fromEmirate;
             blockSelf.fromRegion = fromRegion;
             blockSelf.startPointLabel.text = fromText;
         
-        blockSelf.destinationLabel.text = @"...";
+        blockSelf.destinationLabel.text = @"";
         if (toEmirate && toRegion) {
             NSString *toText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?toEmirate.EmirateArName:toEmirate.EmirateEnName,(KIS_ARABIC)?toRegion.RegionArName:toRegion.RegionEnName];
             blockSelf.toEmirate = toEmirate;
@@ -616,8 +617,6 @@
 }
 
 - (IBAction)setDirectionButtonHandler:(id)sender {
-    self.helpLabel.alpha = 0;
-    self.emiratesAndRegionsView.alpha = 1;
     [self showLocationPicker];
 }
 - (IBAction)ageRangeButtonHandler:(id)sender {
