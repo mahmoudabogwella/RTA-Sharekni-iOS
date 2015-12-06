@@ -9,6 +9,8 @@
 #import "MostRideDetailsCell.h"
 #import "MasterDataManager.h"
 #import "RZDataBinding.h"
+#import "Constants.h"
+
 static void* const MyKVOContext = (void *)&MyKVOContext;
 
 @implementation MostRideDetailsCell
@@ -31,14 +33,15 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     self.driverImage.clipsToBounds = YES ;
 }
 
-- (void)setMostRide:(MostRideDetails *)mostRide{
+- (void)setMostRide:(MostRideDetails *)mostRide
+{
     _mostRide = mostRide;
     self.driverName.text = mostRide.DriverName ;
-    self.country.text = mostRide.NationalityArName ;
+    self.country.text = (KIS_ARABIC)?mostRide.NationalityArName:mostRide.NationalityEnName ;
     self.driverImage.image = mostRide.driverImage;
     self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",mostRide.StartTime];
     self.availableDays.text = [self getAvailableDays:mostRide];
-    self.rate.text = mostRide.Rating; //[NSString stringWithFormat:@"%@",];
+    self.rate.text = mostRide.Rating;
     self.phone = mostRide.DriverMobile ;
     [self.mostRide rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage" callImmediately:YES];
     [self.mostRide rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
@@ -48,9 +51,8 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     _driver = driver;
     self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
     
-    
     self.driverName.text = driver.AccountName;
-    self.country.text = driver.Nationality_en;
+    self.country.text = (KIS_ARABIC)?driver.Nationality_ar:driver.Nationality_en;
     self.phone = driver.AccountMobile ;
     self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",driver.SDG_Route_Start_FromTime];
     

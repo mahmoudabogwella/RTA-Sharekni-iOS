@@ -85,10 +85,12 @@
 
 - (BestDriverCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *driverIdentifier = @"BestDriverCell";
     BestDriverCell *driverCell = (BestDriverCell*)[tableView dequeueReusableCellWithIdentifier:driverIdentifier];
     if (driverCell == nil) {
-        driverCell = [[BestDriverCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:driverIdentifier];
+        driverCell = (BestDriverCell *)[[[NSBundle mainBundle] loadNibNamed:@"BestDriverCell" owner:nil options:nil] objectAtIndex:0];
+
         driverCell.contentView.backgroundColor = [UIColor clearColor];
     }
     

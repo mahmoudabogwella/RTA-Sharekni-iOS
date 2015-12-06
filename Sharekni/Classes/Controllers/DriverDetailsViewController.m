@@ -46,7 +46,7 @@
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -56,7 +56,6 @@
     
     [self.ridesList registerClass:[DriverRideCell class] forCellReuseIdentifier:RIDE_CELLID];
     [self configureData];
-//  [self.ridesList registerNib:[UINib nibWithNibName:@"DriverRideCell" bundle:nil] forCellReuseIdentifier:RIDE_CELLID];
 }
 
 - (void) configureData{
@@ -79,7 +78,8 @@
     if (self.bestDriver) {
         
         self.driverName.text = self.bestDriver.AccountName ;
-        self.country.text = self.bestDriver.NationalityArName ;
+        self.country.text = (KIS_ARABIC)?self.bestDriver.NationalityArName:self.bestDriver.NationalityEnName ;
+        
         if (self.bestDriver.image) {
             self.driverImage.image = self.bestDriver.image;
         }else{
@@ -91,7 +91,7 @@
     }else if (self.mostRideDetails){
         
         self.driverName.text = _mostRideDetails.DriverName ;
-        self.country.text = _mostRideDetails.NationalityArName ;
+        self.country.text = (KIS_ARABIC)?_mostRideDetails.NationalityArName:_mostRideDetails.NationalityEnName ;
         if (self.mostRideDetails.driverImage) {
             self.driverImage.image = self.mostRideDetails.driverImage;
         }
@@ -104,7 +104,7 @@
         
     }else if (self.driverSearchResult){
         self.driverName.text = self.driverSearchResult.AccountName ;
-        self.country.text = self.driverSearchResult.Nationality_ar ;
+        self.country.text = (KIS_ARABIC)?self.driverSearchResult.Nationality_ar:self.driverSearchResult.Nationality_en ;
         if (self.driverSearchResult.driverImage) {
             self.driverImage.image = self.driverSearchResult.driverImage;
         }else{
@@ -114,7 +114,7 @@
      [self.driverSearchResult rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
     }else if (self.joinedRide){
         self.driverName.text = self.joinedRide.DriverName ;
-        self.country.text = self.joinedRide.DriverNationalityArName ;
+        self.country.text = (KIS_ARABIC)?self.joinedRide.DriverNationalityArName:self.joinedRide.DriverNationalityEnName ;
         if (self.joinedRide.driverImage) {
             self.driverImage.image = self.joinedRide.driverImage;
         }else{
@@ -155,20 +155,6 @@
         self.driverImage.image = self.joinedRide.driverImage;
     }
 }
-
-//
-//- (void) configureUIData{
-//    self.driverName.text = self.driver.Username ;
-//    self.country.text = self.driver.NationalityEnName;
-//    if (self.driver.userImage) {
-//        self.driverImage.image = self.driver.userImage;
-//    }
-//    else{
-//        self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
-//    }
-//    self.rate.text = self.driver.AccountRating;
-//}
-
 
 - (void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];

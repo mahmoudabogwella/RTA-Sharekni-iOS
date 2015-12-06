@@ -97,7 +97,7 @@
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -137,18 +137,14 @@
     
     [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"driver_icon"]    forState:UIControlStateNormal];
     [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"driverActive_icon"]      forState:UIControlStateSelected];
-//    [self.driverLbl setText:NSLocalizedString(@"Driver", nil)];
     [self.driverBtn    setSelected:NO];
    
     [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"passenger_icon"] forState:UIControlStateNormal];
     [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"passengerActive_icon"]   forState:UIControlStateSelected];
-    [self.passengerLbl setText:NSLocalizedString(@"Driver", nil)];
-
     [self.passengerBtn    setSelected:NO];
 
     [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"both_icon"]      forState:UIControlStateNormal];
     [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"bothAcive_icon"]        forState:UIControlStateSelected];
-    [self.bothLbl setText:NSLocalizedString(@"Driver", nil)];
     [self.bothBtn    setSelected:NO];
     self.accountType = AccountTypeNone;
 

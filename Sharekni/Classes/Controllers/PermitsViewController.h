@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface PermitsViewController : UIViewController
+@interface PermitsViewController : BaseViewController
 
 @end

@@ -94,8 +94,7 @@
 
 - (void)bestDriverTapped
 {
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    BestDriversViewController *driversView = [storyboard instantiateViewControllerWithIdentifier:@"BestDriversViewController"];
+    BestDriversViewController *driversView = [[BestDriversViewController alloc] initWithNibName:@"BestDriversViewController" bundle:nil];
     driversView.enableBackButton = YES;
     [self.navigationController pushViewController:driversView animated:YES];
 }

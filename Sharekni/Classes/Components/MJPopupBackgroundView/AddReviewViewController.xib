@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddReviewViewController">
             <connections>
+                <outlet property="headerTitle" destination="7YZ-F6-4nO" id="HQ6-P7-zQo"/>
+                <outlet property="headerTitle2" destination="uKT-Tm-e1S" id="fwN-Av-Fda"/>
+                <outlet property="submitBtn" destination="DGH-FA-56r" id="A7U-Sk-j5w"/>
                 <outlet property="view" destination="1" id="BGW-tT-85k"/>
                 <outlet property="viewText" destination="NsS-TU-tFr" id="Gzy-wC-d6v"/>
             </connections>

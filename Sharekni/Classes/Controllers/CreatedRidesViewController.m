@@ -127,7 +127,7 @@
 
 - (void)deleteRide:(CreatedRide *)ride{
     self.toBeDeletedRide = ride;
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Confirm", nil) message:NSLocalizedString(@"Do you want to delete this ride", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Delete", nil), nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Confirm", nil) message:NSLocalizedString(@"Do you want to delete this ride ?", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Delete", nil), nil];
     [alertView show];
 }
 
@@ -153,7 +153,7 @@
         __block CreatedRidesViewController *blockSelf = self;
         [[MobAccountManager sharedMobAccountManager] deleteRideWithID:self.toBeDeletedRide.RouteID.stringValue withSuccess:^(BOOL deletedSuccessfully) {
             [KVNProgress dismiss];
-            [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Ride Delete successfully.", nil)];
+            [KVNProgress showSuccessWithStatus:NSLocalizedString(@"Ride Deleted successfully.", nil)];
             [blockSelf performBlock:^{
                 [KVNProgress dismiss];
                 [blockSelf configureData];                

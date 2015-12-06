@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface HistoryViewController : UIViewController
+@interface HistoryViewController : BaseViewController
 
 @end

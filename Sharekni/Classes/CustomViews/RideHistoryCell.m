@@ -7,6 +7,7 @@
 //
 
 #import "RideHistoryCell.h"
+#import "Constants.h"
 
 @implementation RideHistoryCell
 
@@ -17,15 +18,16 @@
 - (void)setJoinedRide:(Ride *)joinedRide
 {
     _RouteName.text = joinedRide.Name_en;
-    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",joinedRide.FromEmirateEnName,joinedRide.FromRegionEnName];
-    _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",joinedRide.ToEmirateEnName,joinedRide.ToRegionEnName];
+    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",(KIS_ARABIC)?joinedRide.FromEmirateArName:joinedRide.FromEmirateEnName,(KIS_ARABIC)?joinedRide.FromRegionArName:joinedRide.FromRegionEnName];
+    
+    _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",(KIS_ARABIC)?joinedRide.ToEmirateArName:joinedRide.ToEmirateEnName,(KIS_ARABIC)?joinedRide.ToRegionArName:joinedRide.ToRegionEnName];
 }
 
 - (void)setCreatedRide:(CreatedRide *)createdRide
 {
     _RouteName.text = createdRide.Name_en;
-    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",createdRide.FromEmirateEnName,createdRide.FromRegionEnName];
-    _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",createdRide.ToEmirateEnName,createdRide.ToRegionEnName];
+    _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",(KIS_ARABIC)?createdRide.FromEmirateArName:createdRide.FromEmirateEnName,(KIS_ARABIC)?createdRide.FromRegionArName:createdRide.FromRegionEnName];
+    _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",(KIS_ARABIC)?createdRide.ToEmirateArName:createdRide.ToEmirateEnName,(KIS_ARABIC)?createdRide.ToRegionArName:createdRide.ToRegionEnName];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
