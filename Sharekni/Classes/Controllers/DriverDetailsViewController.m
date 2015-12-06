@@ -81,12 +81,7 @@
     if (self.bestDriver) {
         
         self.driverName.text = self.bestDriver.AccountName ;
-<<<<<<< HEAD
-        self.country.text = self.bestDriver.NationalityEnName ;
-=======
         self.country.text = (KIS_ARABIC)?self.bestDriver.NationalityArName:self.bestDriver.NationalityEnName ;
-        
->>>>>>> origin/master
         if (self.bestDriver.image) {
             self.driverImage.image = self.bestDriver.image;
         }else{
@@ -95,14 +90,10 @@
         }
         [self.bestDriver rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
         
-    }else if (self.mostRideDetails){
+    } else if (self.mostRideDetails){
         
         self.driverName.text = _mostRideDetails.DriverName ;
-<<<<<<< HEAD
-        self.country.text = _mostRideDetails.NationlityEnName ;
-=======
-        self.country.text = (KIS_ARABIC)?_mostRideDetails.NationalityArName:_mostRideDetails.NationalityEnName ;
->>>>>>> origin/master
+        self.country.text = (KIS_ARABIC)?_mostRideDetails.NationalityArName:_mostRideDetails.NationlityEnName;
         if (self.mostRideDetails.driverImage) {
             self.driverImage.image = self.mostRideDetails.driverImage;
         }
@@ -113,7 +104,7 @@
         }
         [self.mostRideDetails rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
         
-    }else if (self.driverSearchResult){
+    } else if (self.driverSearchResult){
         self.driverName.text = self.driverSearchResult.AccountName ;
         self.country.text = (KIS_ARABIC)?self.driverSearchResult.Nationality_ar:self.driverSearchResult.Nationality_en ;
         if (self.driverSearchResult.driverImage) {
@@ -123,7 +114,7 @@
             [self.driverSearchResult rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage"];
         }
      [self.driverSearchResult rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
-    }else if (self.joinedRide){
+    } else if (self.joinedRide){
         self.driverName.text = self.joinedRide.DriverName ;
         self.country.text = (KIS_ARABIC)?self.joinedRide.DriverNationalityArName:self.joinedRide.DriverNationalityEnName ;
         if (self.joinedRide.driverImage) {
