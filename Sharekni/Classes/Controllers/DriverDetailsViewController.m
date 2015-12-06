@@ -100,7 +100,6 @@
         else{
             self.driverImage.image = [UIImage imageNamed:@"thumbnail.png"];
             [self.mostRideDetails rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage"];
-
         }
         [self.mostRideDetails rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
         
@@ -114,6 +113,7 @@
             [self.driverSearchResult rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage"];
         }
      [self.driverSearchResult rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"Rating" callImmediately:YES];
+        
     } else if (self.joinedRide){
         self.driverName.text = self.joinedRide.DriverName ;
         self.country.text = (KIS_ARABIC)?self.joinedRide.DriverNationalityArName:self.joinedRide.DriverNationalityEnName ;
@@ -124,6 +124,7 @@
             [self.driverSearchResult rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage"];
         }
         [self.joinedRide rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"DriverRating" callImmediately:YES];
+        
     }
     [self configureDriverData:driverID];
 }
