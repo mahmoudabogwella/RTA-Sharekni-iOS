@@ -19,6 +19,11 @@
 {
     [super viewDidLoad];
     
+    viewText.textAlignment = NSTextAlignmentNatural ;
+    [self.headerTitle setText:NSLocalizedString(@"Write Your Review", nil)];
+    [self.headerTitle2 setText:NSLocalizedString(@"Your Review", nil)];
+    [self.submitBtn setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
+    
     [viewText becomeFirstResponder];
 }
 

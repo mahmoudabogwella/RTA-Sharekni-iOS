@@ -21,11 +21,14 @@
 
 - (void)setRide:(MostRide *)ride
 {
-    
-    self.FromEmirateName.text = @"From";
-    self.FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",ride.FromEmirateNameEn,ride.FromRegionNameEn];
-    self.ToEmirateName.text = @"To";
-    self.ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",ride.ToEmirateNameEn,ride.ToRegionNameEn];
+    if (KIS_ARABIC)
+    {
+        self.FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",ride.FromEmirateNameAr,ride.FromRegionNameAr];
+        self.ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",ride.ToEmirateNameAr,ride.ToRegionNameAr];
+    }else{
+        self.FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",ride.FromEmirateNameEn,ride.FromRegionNameEn];
+        self.ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",ride.ToEmirateNameEn,ride.ToRegionNameEn];
+    }
     self.noOfDrivers.text = [NSString stringWithFormat:@"%ld",ride.RoutesCount] ;
     
 }

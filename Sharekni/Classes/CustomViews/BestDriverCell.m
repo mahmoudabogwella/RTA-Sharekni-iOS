@@ -8,6 +8,7 @@
 
 #import "BestDriverCell.h"
 #import "RZDataBinding.h"
+#import "Constants.h"
 
 @implementation BestDriverCell
 
@@ -16,13 +17,16 @@
     // Initialization code
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
+    
+    self.driverName.textAlignment = NSTextAlignmentNatural ;
+    self.driverCountry.textAlignment = NSTextAlignmentNatural ;
 }
 
 - (void)setDriver:(BestDriver *)driver
 {
     _driver = driver;
     self.driverName.text = driver.AccountName ;
-    self.driverCountry.text = driver.NationalityEnName ;
+    self.driverCountry.text = (KIS_ARABIC)?driver.NationalityArName:driver.NationalityEnName ;
     if (driver.image) {
         self.driverImage.image = self.driver.image;
     }

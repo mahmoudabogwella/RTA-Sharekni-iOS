@@ -16,6 +16,11 @@
     __weak IBOutlet UITextView *viewText;
 }
 
+@property (weak, nonatomic) IBOutlet UILabel *headerTitle;
+@property (weak, nonatomic) IBOutlet UILabel *headerTitle2;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
+
+
 @property (assign, nonatomic) id <MJDetailPopupDelegate> delegate;
 
 @property (nonatomic ,strong) RouteDetails *routeDetails;
