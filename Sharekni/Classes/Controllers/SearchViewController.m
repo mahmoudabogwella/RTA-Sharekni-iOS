@@ -223,7 +223,7 @@
             blockSelf.fromRegion = fromRegion;
             blockSelf.startPointLabel.text = fromText;
         
-        blockSelf.destinationLabel.text = @"...";
+        blockSelf.destinationLabel.text = @"";
         if (toEmirate && toRegion) {
             NSString *toText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?toEmirate.EmirateArName:toEmirate.EmirateEnName,(KIS_ARABIC)?toRegion.RegionArName:toRegion.RegionEnName];
             blockSelf.toEmirate = toEmirate;
@@ -269,13 +269,13 @@
                 SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
                 resultViewController.fromEmirate = (KIS_ARABIC)?blockSelf.fromEmirate.EmirateArName:blockSelf.fromEmirate.EmirateEnName;
-                resultViewController.toEmirate = blockSelf.toEmirate.EmirateEnName;
-                resultViewController.fromRegion = blockSelf.fromRegion.RegionEnName;
-                resultViewController.toRegion = blockSelf.toRegion.RegionEnName;
+                resultViewController.toEmirate = (KIS_ARABIC)?blockSelf.toEmirate.EmirateArName:blockSelf.toEmirate.EmirateEnName;
+                resultViewController.fromRegion = (KIS_ARABIC)?blockSelf.fromRegion.RegionArName:blockSelf.fromRegion.RegionEnName;
+                resultViewController.toRegion = (KIS_ARABIC)?blockSelf.toRegion.RegionArName:blockSelf.toRegion.RegionEnName;
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
             else{
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"No Rides Found",nil)];
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
