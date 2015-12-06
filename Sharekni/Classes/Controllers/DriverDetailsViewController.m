@@ -124,7 +124,6 @@
             [self.driverSearchResult rz_addTarget:self action:@selector(imageChanged) forKeyPathChange:@"driverImage"];
         }
         [self.joinedRide rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"DriverRating" callImmediately:YES];
-        
     }
     [self configureDriverData:driverID];
 }

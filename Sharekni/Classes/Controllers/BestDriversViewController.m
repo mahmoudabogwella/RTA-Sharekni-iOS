@@ -114,6 +114,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 91;
+}
+
 #pragma mark - Message Delegate
 - (void)sendSMSFromPhone:(NSString *)phone
 {
