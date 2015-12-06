@@ -75,11 +75,14 @@
     else if (self.joinedRide){
         driverID = self.joinedRide.Account.stringValue;
     }
+    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+
+
     
     if (self.bestDriver) {
         
         self.driverName.text = self.bestDriver.AccountName ;
-        self.country.text = self.bestDriver.NationalityArName ;
+        self.country.text = self.bestDriver.NationalityEnName ;
         if (self.bestDriver.image) {
             self.driverImage.image = self.bestDriver.image;
         }else{
@@ -91,7 +94,7 @@
     }else if (self.mostRideDetails){
         
         self.driverName.text = _mostRideDetails.DriverName ;
-        self.country.text = _mostRideDetails.NationalityArName ;
+        self.country.text = _mostRideDetails.NationlityEnName ;
         if (self.mostRideDetails.driverImage) {
             self.driverImage.image = self.mostRideDetails.driverImage;
         }
@@ -127,7 +130,10 @@
 }
 
 - (void) ratingChanged{
-    if(self.bestDriver){
+    if (self.driver) {
+        self.rate.text = self.driver.AccountRating;
+    }
+    else if(self.bestDriver){
         self.rate.text = _bestDriver.Rating;
     }
     else if (self.mostRideDetails){
@@ -184,6 +190,19 @@
              [KVNProgress dismiss];
              [self.ridesList reloadData];
              
+             [[MobAccountManager sharedMobAccountManager] getUser:driverID WithSuccess:^(User *user) {
+                 blockSelf.driver = user;
+                 blockSelf.country.text = user.NationalityEnName;
+                 [blockSelf.driver rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"AccountRating"];
+                 //        [KVNProgress dismiss];
+             } Failure:^(NSString *error) {
+                 //        [KVNProgress dismiss];
+                 //        [KVNProgress showErrorWithStatus:@"Error"];
+                 //        [blockSelf performBlock:^{
+                 //            [KVNProgress dismiss];
+                 //        } afterDelay:3];
+             }];
+             
          } Failure:^(NSString *error) {
              
              NSLog(@"Error in Best Drivers");
@@ -198,11 +217,37 @@
 
 #pragma mark - Event Handler
 - (IBAction)sendMail:(id)sender{
-    [self sendSMSFromPhone:_mostRideDetails.DriverMobile];
+    NSString *driverMobile ;
+    if(self.mostRideDetails){
+        driverMobile = self.mostRideDetails.DriverMobile;
+    }
+    else if (self.bestDriver){
+        driverMobile = self.bestDriver.AccountMobile;
+    }
+    else if (self.driverSearchResult){
+        driverMobile = self.driverSearchResult.AccountMobile;
+    }
+    else if (self.joinedRide){
+        driverMobile = self.joinedRide.DriverMobile;
+    }
+    [self sendSMSFromPhone:driverMobile];
 }
 
 - (IBAction)call:(id)sender{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",(_isBestDriver)?_bestDriver.AccountMobile:_mostRideDetails.DriverMobile]]];
+    NSString *driverMobile ;
+    if(self.mostRideDetails){
+        driverMobile = self.mostRideDetails.DriverMobile;
+    }
+    else if (self.bestDriver){
+        driverMobile = self.bestDriver.AccountMobile;
+    }
+    else if (self.driverSearchResult){
+        driverMobile = self.driverSearchResult.AccountMobile;
+    }
+    else if (self.joinedRide){
+        driverMobile = self.joinedRide.DriverMobile;
+    }
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",driverMobile]]];
 }
 
 #pragma mark -

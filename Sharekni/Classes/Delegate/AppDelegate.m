@@ -20,6 +20,9 @@
 #import <REFrostedViewController.h>
 #import "HomeViewController.h"
 #import "SideMenuTableViewController.h"
+
+//com.sharekni.sharekni
+//rta.ae.sharekni
 @import GoogleMaps;
 @interface AppDelegate ()<REFrostedViewControllerDelegate>
 @property (nonatomic,strong) UINavigationController *splashNavigationController;

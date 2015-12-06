@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @interface MostRideDetails : NSObject
-
 @property (nonatomic,strong) NSString *RouteId;
 @property (nonatomic,strong) NSString *RouteArName;
 @property (nonatomic,strong) NSString *RouteEnName;
@@ -22,10 +21,10 @@
 @property (nonatomic,strong) NSString *Rating;
 
 @property (nonatomic,strong) NSString *NationalityArName;
-@property (nonatomic,strong) NSString *NationalityEnName;
-@property (nonatomic,strong) NSString *NationalityFrName;
-@property (nonatomic,strong) NSString *NationalityChName;
-@property (nonatomic,strong) NSString *NationalityUrName;
+@property (nonatomic,strong) NSString *NationlityEnName;
+@property (nonatomic,strong) NSString *NationlityFrName;
+@property (nonatomic,strong) NSString *NationlityChName;
+@property (nonatomic,strong) NSString *NationlityUrName;
 
 @property (nonatomic,strong) NSString *FromEmirateId;
 @property (nonatomic,strong) NSString *ToEmirateId;

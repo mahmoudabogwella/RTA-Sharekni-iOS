@@ -446,9 +446,8 @@
         failure(error.localizedDescription);
     }];
 }
-
-- (void)getVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
-{
+- (void) getSavedVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
+    
     if (!accountID)
     {
         accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
@@ -486,6 +485,48 @@
             failure(error.localizedDescription);
         }];
     }
+    
+}
+
+- (void)getVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+{
+//    if (!accountID)
+//    {
+//        accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+//    }
+//    
+//    NSMutableArray *savedVehicles = [self.vehiclesDictionary valueForKey:accountID];
+//    if (savedVehicles) {
+//        success(savedVehicles);
+//    }
+//    else{
+        NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetByDriverId?id=%@",accountID];
+        
+        __block MasterDataManager *blockSelf = self;
+        [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+            
+            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            
+            responseString = [self jsonStringFromResponse:responseString];
+            
+            NSError *jsonError;
+            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                          options:NSJSONReadingMutableContainers
+                                                                            error:&jsonError];
+            
+            NSMutableArray *vehicles = [NSMutableArray array];
+            for (NSDictionary *dictionary in resultDictionaries) {
+                Vehicle *vehicle = [Vehicle gm_mappedObjectWithJsonRepresentation:dictionary];
+                [vehicles addObject:vehicle];
+            }
+            [blockSelf.vehiclesDictionary setValue:vehicles forKey:accountID];
+            success(vehicles);
+            
+        } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+            failure(error.localizedDescription);
+        }];
+//    }
 }
 
 

@@ -49,6 +49,8 @@
 
 - (void)getVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 
+- (void)getSavedVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
+
 - (void)getRequestNotifications:(NSString *)accountID isDriver:(BOOL)isDriver WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
 
 - (void) getPassengersByRouteId:(NSString *)routeId withSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure;

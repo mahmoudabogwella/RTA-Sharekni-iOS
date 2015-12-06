@@ -34,7 +34,7 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 - (void)setMostRide:(MostRideDetails *)mostRide{
     _mostRide = mostRide;
     self.driverName.text = mostRide.DriverName ;
-    self.country.text = mostRide.NationalityArName ;
+    self.country.text = mostRide.NationlityEnName ;
     self.driverImage.image = mostRide.driverImage;
     self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",mostRide.StartTime];
     self.availableDays.text = [self getAvailableDays:mostRide];

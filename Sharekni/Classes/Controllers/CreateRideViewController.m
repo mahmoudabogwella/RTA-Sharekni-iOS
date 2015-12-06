@@ -671,7 +671,7 @@
 - (void) configureData{
     __block CreateRideViewController *blockSelf = self;
     [KVNProgress showWithStatus:@"Loading"];
-    [[MasterDataManager sharedMasterDataManager] getVehicleById:nil WithSuccess:^(NSMutableArray *array) {
+    [[MasterDataManager sharedMasterDataManager] getSavedVehicleById:nil WithSuccess:^(NSMutableArray *array) {
         blockSelf.vehicles = array;
         [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"0" WithSuccess:^(NSMutableArray *array) {
             blockSelf.nationalties = array;
