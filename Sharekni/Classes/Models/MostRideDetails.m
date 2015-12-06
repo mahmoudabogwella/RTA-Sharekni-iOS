@@ -11,7 +11,6 @@
 @implementation MostRideDetails
 
 + (NSDictionary *)mapping {
-    
     NSMutableDictionary *mapping = [NSMutableDictionary dictionary];
     mapping[@"RouteId"] = @"RouteId";
     mapping[@"RouteArName"] = @"RouteArName";
@@ -24,10 +23,10 @@
 //    mapping[@"Rating"] = @"Rating";
     
     mapping[@"NationalityArName"] = @"NationalityArName";
-    mapping[@"NationalityEnName"] = @"NationalityEnName";
-    mapping[@"NationalityFrName"] = @"NationalityFrName";
-    mapping[@"NationalityChName"] = @"NationalityChName";
-    mapping[@"NationalityUrName"] = @"NationalityUrName";
+    mapping[@"NationlityEnName"] = @"NationlityEnName";
+    mapping[@"NationlityFrName"] = @"NationlityFrName";
+    mapping[@"NationlityChName"] = @"NationlityChName";
+    mapping[@"NationlityUrName"] = @"NationlityUrName";
     
     mapping[@"FromEmirateId"] = @"FromEmirateId";
     mapping[@"ToEmirateId"] = @"ToEmirateId";
