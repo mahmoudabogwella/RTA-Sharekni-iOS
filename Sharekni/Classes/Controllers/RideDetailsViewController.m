@@ -278,7 +278,14 @@
            blockSelf.reviews = array;
            
            if (array.count == 0) {
-               reviewLbl.hidden = YES ;
+               reviewLbl.alpha = 0 ;
+               reviewList.alpha = 0 ;
+               reviewsView.alpha = 0 ;
+           }
+           else{
+               reviewLbl.alpha = 1 ;
+               reviewList.alpha = 1 ;
+               reviewsView.alpha = 1 ;
            }
            [blockReviewsList reloadData];
            
@@ -383,6 +390,10 @@
     
     
     if(self.reviews.count > 0){
+
+            reviewLbl.alpha = 1 ;
+            reviewList.alpha = 1 ;
+            reviewsView.alpha = 1 ;
         CGRect reviewsLabelFrame = reviewLbl.frame;
         reviewsLabelFrame.origin.y = preferenceView.frame.origin.y + preferenceView.frame.size.height + VERTICAL_SPACE;
         reviewLbl.frame = reviewsLabelFrame;
@@ -401,9 +412,10 @@
         joinRideBtn.frame = buttonFrame;
     }
     else{
-        reviewLbl.hidden = YES;
-        reviewsView.hidden = YES;
-        
+            reviewLbl.alpha = 0 ;
+            reviewList.alpha = 0 ;
+            reviewsView.alpha = 0 ;
+
         CGRect buttonFrame = joinRideBtn.frame;
         buttonFrame.origin.y = preferenceView.frame.origin.y + preferenceView.frame.size.height + VERTICAL_SPACE;
         joinRideBtn.frame = buttonFrame;
@@ -811,7 +823,14 @@
         
         
         if (array.count == 0) {
-            reviewLbl.hidden = YES ;
+            reviewLbl.alpha = 0 ;
+            reviewList.alpha = 0 ;
+            reviewsView.alpha = 0 ;
+        }
+        else{
+            reviewLbl.alpha = 1 ;
+            reviewList.alpha = 1 ;
+            reviewsView.alpha = 1 ;
         }
         [blockReviewsList reloadData];
         [blockSelf configureFrames];
