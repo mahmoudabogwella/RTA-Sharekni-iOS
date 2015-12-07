@@ -34,6 +34,7 @@
         self.failureHandler(@"No Image ");
     }
     else{
+        NSString *imageString = [self stringFromImage:self.image];
         self.webResponseData = [[NSMutableData alloc ] init];
         NSString *soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Header><SharekniAuthenticationI xmlns=\"http://Sharekni-MobIOS-Data.org/\"><username></username><password></password></SharekniAuthenticationI></soap:Header><soap:Body><UploadImage xmlns=\"http://Sharekni-MobIOS-Data.org/\"><ImageContent>%@</ImageContent><imageExtenstion>png</imageExtenstion></UploadImage></soap:Body></soap:Envelope>"];
         
