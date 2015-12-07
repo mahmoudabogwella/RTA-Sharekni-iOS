@@ -49,7 +49,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" id="0R2-qQ-Sdr">
-                            <rect key="frame" x="167" y="278" width="140" height="50"/>
+                            <rect key="frame" x="167" y="272" width="140" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CalendarIcon" id="8lN-0d-UJ7">
@@ -81,7 +81,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" id="ZLy-Rt-HDh">
-                            <rect key="frame" x="13" y="278" width="140" height="50"/>
+                            <rect key="frame" x="13" y="272" width="140" height="50"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="وقت البدء" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FO4-Od-dIz">
@@ -126,7 +126,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" id="jAB-i3-cvH">
-                            <rect key="frame" x="13" y="357" width="288" height="45"/>
+                            <rect key="frame" x="13" y="351" width="288" height="45"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select_Right" id="apc-Ob-xVA">
@@ -158,7 +158,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ST2-yP-uff">
-                            <rect key="frame" x="94" y="426" width="127" height="36"/>
+                            <rect key="frame" x="94" y="412" width="127" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <color key="backgroundColor" red="1" green="0.0" blue="0.06479849268" alpha="1" colorSpace="calibratedRGB"/>
