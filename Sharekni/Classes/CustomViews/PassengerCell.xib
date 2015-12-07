@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,49 +12,51 @@
             <rect key="frame" x="0.0" y="0.0" width="304" height="85"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="304" height="84"/>
+                <rect key="frame" x="0.0" y="0.0" width="304" height="84.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mostafa farouk" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" id="FeK-t7-y45">
-                        <rect key="frame" x="2" y="7" width="147" height="42"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mostafa farouk" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="FeK-t7-y45">
+                        <rect key="frame" x="8" y="9" width="103" height="33"/>
                         <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="PTd-UB-yxY"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gGm-Qm-YL9">
-                        <rect key="frame" x="256" y="5" width="40" height="40"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGm-Qm-YL9">
+                        <rect key="frame" x="256" y="8" width="32" height="32"/>
                         <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="8QB-wb-fTc"/>
+                            <constraint firstAttribute="width" constant="32" id="vbf-Av-DuD"/>
+                        </constraints>
                         <state key="normal" image="Delete_ICON"/>
                         <connections>
                             <action selector="deleteHandler:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CGn-pq-sVm"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="etE-5c-ETb">
-                        <rect key="frame" x="157" y="8" width="40" height="34"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etE-5c-ETb">
+                        <rect key="frame" x="167" y="8" width="32" height="32"/>
                         <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="ahn-aI-dE9"/>
+                            <constraint firstAttribute="width" constant="32" id="bQ1-MK-LWV"/>
+                        </constraints>
                         <state key="normal" backgroundImage="Call_Btn"/>
                         <connections>
                             <action selector="callHandler:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jl2-Cb-PiE"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zKO-8v-2da">
-                        <rect key="frame" x="198" y="10" width="50" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <animations/>
-                        <state key="normal" image="Msg_Btn"/>
-                        <connections>
-                            <action selector="messageHandler:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KFR-my-aMF"/>
-                        </connections>
-                    </button>
-                    <view contentMode="scaleToFill" id="c8Y-im-Rqt">
-                        <rect key="frame" x="62" y="48" width="180" height="35"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-im-Rqt">
+                        <rect key="frame" x="8" y="48" width="160" height="31"/>
                         <animations/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="160" id="lDA-E7-ooQ"/>
+                            <constraint firstAttribute="height" constant="31" id="tB1-K5-uCf"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="value">
                                 <real key="value" value="3"/>
@@ -71,8 +74,32 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYc-F1-WvY">
+                        <rect key="frame" x="207" y="8" width="43" height="32"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="ejv-qZ-ghu"/>
+                            <constraint firstAttribute="width" constant="43" id="lEZ-w9-hpN"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="Msg_Btn"/>
+                        <connections>
+                            <action selector="messageHandler:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rQN-zA-Rf3"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <animations/>
+                <constraints>
+                    <constraint firstItem="gGm-Qm-YL9" firstAttribute="leading" secondItem="pYc-F1-WvY" secondAttribute="trailing" constant="6" id="5rP-Oj-yl5"/>
+                    <constraint firstAttribute="topMargin" secondItem="etE-5c-ETb" secondAttribute="top" id="FEx-D2-wAg"/>
+                    <constraint firstItem="FeK-t7-y45" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="FUU-TX-15Q"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gGm-Qm-YL9" secondAttribute="trailing" constant="8" id="KyS-Ek-NuI"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="c8Y-im-Rqt" secondAttribute="leading" id="LcX-RZ-TJl"/>
+                    <constraint firstItem="pYc-F1-WvY" firstAttribute="leading" secondItem="etE-5c-ETb" secondAttribute="trailing" constant="8" id="Tdn-f8-5je"/>
+                    <constraint firstAttribute="topMargin" secondItem="pYc-F1-WvY" secondAttribute="top" id="Xpm-Je-R2a"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="FeK-t7-y45" secondAttribute="leading" id="iZl-Gg-swM"/>
+                    <constraint firstAttribute="topMargin" secondItem="gGm-Qm-YL9" secondAttribute="top" id="lE6-QM-Srs"/>
+                    <constraint firstItem="c8Y-im-Rqt" firstAttribute="top" secondItem="FeK-t7-y45" secondAttribute="bottom" constant="6" id="zu0-hz-5S7"/>
+                </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>
@@ -83,9 +110,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Call_Btn" width="56" height="42"/>
+        <image name="Call_Btn" width="38" height="38"/>
         <image name="Delete_ICON" width="102" height="102"/>
-        <image name="Msg_Btn" width="57" height="37"/>
+        <image name="Msg_Btn" width="45" height="32"/>
         <image name="star-empty" width="100" height="100"/>
         <image name="star-filled" width="100" height="100"/>
     </resources>
