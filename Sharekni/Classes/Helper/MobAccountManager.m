@@ -137,21 +137,15 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
                 }];
             }];
         }
-        else if ([responseString containsString:@"-2"]){
-            failure(@"Mobile number already exists");
+        else if ([responseString containsString:@"-"]){
+            failure(NSLocalizedString(@"Please check your username and password", nil));
         }
-        else if ([responseString containsString:@"-1"]){
-            failure(@"Email already exists");
-        }
-//        else if ([responseString containsString:@"0"]){
-//            failure(@"Email already exists");
-//        }
         else{
-            failure(@"invalid email or password");
+            failure(NSLocalizedString(@"Please check your username and password", nil));
         }
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        failure(@"invalid email or password");
+            failure(NSLocalizedString(@"Please check your username and password", nil));
     }];
 }
 

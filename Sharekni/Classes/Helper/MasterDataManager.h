@@ -12,6 +12,7 @@
 #import "TermsAndCondition.h"
 #import <UIKit/UIKit.h>
 #import "RouteDetails.h"
+#import "Region.h"
 
 @interface MasterDataManager : BaseAPIManager
 
@@ -58,5 +59,7 @@
 - (void) deletePassengerWithID:(NSString *)passengerID withSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure;
 
 - (void)getPermits:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
+
+- (Region *) getRegionByID:(NSString *)regionID inEmirateWithID:(NSString *)emirateID;
 
 @end

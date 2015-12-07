@@ -110,9 +110,10 @@
                 }
             }
             else{
-                
+            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please check your username and password", nil)];
             }
         } Failure:^(NSString *error) {
+            [[HelpManager sharedHelpManager] showAlertWithMessage:error];
             [KVNProgress dismiss];
         }];
     }

@@ -673,5 +673,22 @@
     }];
 }
 
+- (Region *) getRegionByID:(NSString *)regionID inEmirateWithID:(NSString *)emirateID{
+    NSArray *regions = [self.regionsDictionary valueForKey:emirateID];
+    if (regions.count > 0) {
+        Region *selectedRegion ;
+        for (Region *region in regions) {
+            if([region.ID isEqualToString:regionID]){
+                selectedRegion = region;
+                break;
+            }
+        }
+        return selectedRegion;
+    }
+    else{
+        return nil;
+    }
+}
+
 SYNTHESIZE_SINGLETON_FOR_CLASS(MasterDataManager);
 @end
