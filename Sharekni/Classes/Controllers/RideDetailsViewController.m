@@ -206,7 +206,7 @@
     
     ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",(KIS_ARABIC)?self.routeDetails.ToEmirateArName:self.routeDetails.ToEmirateEnName,(KIS_ARABIC)?self.routeDetails.ToRegionArName:self.routeDetails.ToRegionEnName];
     
-    startingTime.text = [NSString stringWithFormat:@"%@ %@ %@ %@",NSLocalizedString(@"From", nil),self.routeDetails.StartFromTime,NSLocalizedString(@"To", nil),self.routeDetails.EndFromTime];
+    startingTime.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"From", nil),self.routeDetails.StartFromTime];
     
     availableDays.text = [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Ride Days", nil),[self getAvailableDays]];
     

@@ -33,19 +33,21 @@
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
-    if (self.type == WebViewTermsAndConditionsType) {
-    self.navigationItem.title = self.type == WebViewPrivacyType ? NSLocalizedString(@"Policy",nil) : NSLocalizedString(@"Terms And Conditions",nil);
+   
+//    if (self.type == WebViewTermsAndConditionsType) {
+  
+        self.navigationItem.title = self.type == WebViewPrivacyType ? NSLocalizedString(@"Policy",nil) : NSLocalizedString(@"Terms And Conditions",nil);
         [self.acceptButton setBackgroundColor:Red_UIColor];
         NSString *acceptTitle = self.type == WebViewPrivacyType ? NSLocalizedString(@"Accept", nil) :NSLocalizedString(@"Accept", nil);
         [self.acceptButton setTitle:acceptTitle forState:UIControlStateNormal];
-    }
-    else{
+//    }
+//    else{
         CGRect webViewFrame = self.webView.frame;
         CGRect buttonFrame = self.acceptButton.frame;
         webViewFrame.size.height += buttonFrame.size.height;
         self.webView.frame = webViewFrame;
         self.acceptButton.alpha = 0;
-    }
+//    }
     
     NSString *resourceName;
     if (self.type == WebViewPrivacyType) {

@@ -20,15 +20,15 @@
 {
     if ([notification.DriverAccept boolValue]) {
         if (notification.PassengerName) {
-            self.notificationLbl.text = [NSString stringWithFormat:@"%@ Has Accepted your request",notification.PassengerName] ;
+            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.PassengerName,NSLocalizedString(@"Has Accepted your request", nil)] ;
         }else{
-            self.notificationLbl.text = [NSString stringWithFormat:@"Has Accepted your request"] ;
+            self.notificationLbl.text = NSLocalizedString(@"Has Accepted your request", nil) ;
         }
     }else{
         if (notification.PassengerName) {
-            self.notificationLbl.text = [NSString stringWithFormat:@"%@ Send you a join request",notification.PassengerName] ;
+            self.notificationLbl.text = [NSString stringWithFormat:@"%@ %@",notification.PassengerName,NSLocalizedString(@"Send you a join request", nil)] ;
         }else{
-            self.notificationLbl.text = [NSString stringWithFormat:@"Send you a join request"] ;
+            self.notificationLbl.text = NSLocalizedString(@"Send you a join request", nil);
         }
     }
     self.nationality.text = notification.NationalityEnName ;

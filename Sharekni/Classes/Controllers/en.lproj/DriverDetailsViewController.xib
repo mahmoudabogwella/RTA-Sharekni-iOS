@@ -38,12 +38,12 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auY-1U-r6E">
-                    <rect key="frame" x="286" y="33" width="26" height="26"/>
+                    <rect key="frame" x="280" y="33" width="32" height="32"/>
                     <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="26" id="9b4-CR-Wb3"/>
-                        <constraint firstAttribute="height" constant="26" id="DHw-fh-9qH"/>
+                        <constraint firstAttribute="width" constant="32" id="9b4-CR-Wb3"/>
+                        <constraint firstAttribute="height" constant="32" id="DHw-fh-9qH"/>
                     </constraints>
                     <state key="normal" backgroundImage="Call_Btn">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -88,12 +88,12 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0o-8E-msL">
-                    <rect key="frame" x="245" y="33" width="35" height="26"/>
+                    <rect key="frame" x="232" y="33" width="43" height="32"/>
                     <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="26" id="hAB-CC-xy1"/>
-                        <constraint firstAttribute="width" constant="35" id="ul1-Df-nTo"/>
+                        <constraint firstAttribute="height" constant="32" id="hAB-CC-xy1"/>
+                        <constraint firstAttribute="width" constant="43" id="ul1-Df-nTo"/>
                     </constraints>
                     <state key="normal" backgroundImage="Msg_Btn">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -107,7 +107,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="S9c-d2-TUI" firstAttribute="top" secondItem="czS-6k-pH3" secondAttribute="bottom" constant="5" id="41R-M5-8BF"/>
-                <constraint firstItem="auY-1U-r6E" firstAttribute="leading" secondItem="G0o-8E-msL" secondAttribute="trailing" constant="6" id="Bq6-CQ-o75"/>
+                <constraint firstItem="auY-1U-r6E" firstAttribute="leading" secondItem="G0o-8E-msL" secondAttribute="trailing" constant="5" id="Bq6-CQ-o75"/>
                 <constraint firstItem="LBn-Mc-ZA6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EWs-j1-Vrg"/>
                 <constraint firstItem="eh1-er-7hk" firstAttribute="leading" secondItem="2BR-5s-UIj" secondAttribute="trailing" constant="5" id="GVH-Nh-KlP"/>
                 <constraint firstItem="G0o-8E-msL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="33" id="IgY-Es-kIf"/>
@@ -119,13 +119,13 @@
                 <constraint firstItem="FIp-K9-OOv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="bBg-tp-ght"/>
                 <constraint firstItem="LBn-Mc-ZA6" firstAttribute="top" secondItem="eh1-er-7hk" secondAttribute="bottom" constant="31" id="caj-dR-Xst"/>
                 <constraint firstItem="2BR-5s-UIj" firstAttribute="top" secondItem="S9c-d2-TUI" secondAttribute="bottom" constant="8" id="dVU-Oi-vH2"/>
-                <constraint firstItem="G0o-8E-msL" firstAttribute="leading" secondItem="S9c-d2-TUI" secondAttribute="trailing" constant="25" id="fUR-CB-hhK"/>
+                <constraint firstItem="G0o-8E-msL" firstAttribute="leading" secondItem="S9c-d2-TUI" secondAttribute="trailing" constant="12" id="fUR-CB-hhK"/>
                 <constraint firstAttribute="bottom" secondItem="LBn-Mc-ZA6" secondAttribute="bottom" id="gnG-O7-U4v"/>
                 <constraint firstItem="2BR-5s-UIj" firstAttribute="leading" secondItem="FIp-K9-OOv" secondAttribute="trailing" constant="10" id="icw-Y7-DNj"/>
                 <constraint firstItem="S9c-d2-TUI" firstAttribute="leading" secondItem="FIp-K9-OOv" secondAttribute="trailing" constant="10" id="oxh-DH-mWI"/>
                 <constraint firstItem="auY-1U-r6E" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="33" id="pzV-DJ-dLe"/>
                 <constraint firstItem="FIp-K9-OOv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="qtE-SD-9lc"/>
-                <constraint firstItem="G0o-8E-msL" firstAttribute="leading" secondItem="czS-6k-pH3" secondAttribute="trailing" constant="25" id="rTl-Zl-vVi"/>
+                <constraint firstItem="G0o-8E-msL" firstAttribute="leading" secondItem="czS-6k-pH3" secondAttribute="trailing" constant="12" id="rTl-Zl-vVi"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

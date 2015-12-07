@@ -47,7 +47,7 @@
 
 - (void)setScrollUserGuide
 {
-    scroller = [[KCHorizontalScroller alloc] initWithFrame:CGRectMake(0,0,375,667)];
+    scroller = [[KCHorizontalScroller alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height)];
     scroller.dataSource = self ;
     scroller.delegate = self ;
     scroller.scrollWidth = 375;
@@ -75,7 +75,7 @@
 - (UIView *)horizontalScroller:(KCHorizontalScroller*)scroller viewAtIndex:(int)index
 {
     Tour *tourObj = [allImages objectAtIndex:index];
-    return [[PageView alloc] initWithFrame:CGRectMake(0,0,375,667-64) tour:tourObj];
+    return [[PageView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height-64) tour:tourObj];
 }
 
 

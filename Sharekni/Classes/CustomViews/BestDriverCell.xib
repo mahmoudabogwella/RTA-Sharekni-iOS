@@ -24,12 +24,12 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7LR-In-tlG">
-                        <rect key="frame" x="284" y="33" width="26" height="26"/>
+                        <rect key="frame" x="278" y="33" width="32" height="32"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="26" id="toG-NW-4Si"/>
-                            <constraint firstAttribute="width" constant="26" id="vQ9-xJ-bcO"/>
+                            <constraint firstAttribute="height" constant="32" id="toG-NW-4Si"/>
+                            <constraint firstAttribute="width" constant="32" id="vQ9-xJ-bcO"/>
                         </constraints>
                         <state key="normal" backgroundImage="Call_Btn">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,12 +67,12 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vk-Hx-iSf">
-                        <rect key="frame" x="243" y="32" width="35" height="26"/>
+                        <rect key="frame" x="227" y="33" width="43" height="32"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="Jjy-Hi-aGs"/>
-                            <constraint firstAttribute="height" constant="26" id="nDi-lv-XeF"/>
+                            <constraint firstAttribute="width" constant="43" id="Jjy-Hi-aGs"/>
+                            <constraint firstAttribute="height" constant="32" id="nDi-lv-XeF"/>
                         </constraints>
                         <state key="normal" backgroundImage="Msg_Btn">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -96,19 +96,19 @@
                 <constraints>
                     <constraint firstItem="Tl4-m4-KEw" firstAttribute="leading" secondItem="x00-hq-JZc" secondAttribute="trailing" constant="10" id="0xg-MT-PfQ"/>
                     <constraint firstItem="x00-hq-JZc" firstAttribute="centerY" secondItem="E2r-Zn-Yua" secondAttribute="centerY" id="1h7-75-pmN"/>
-                    <constraint firstItem="2vk-Hx-iSf" firstAttribute="leading" secondItem="18K-wz-Sl8" secondAttribute="trailing" constant="25" id="9iq-iA-2os"/>
+                    <constraint firstItem="2vk-Hx-iSf" firstAttribute="leading" secondItem="18K-wz-Sl8" secondAttribute="trailing" constant="9" id="9iq-iA-2os"/>
                     <constraint firstItem="UK1-6i-YtW" firstAttribute="leading" secondItem="x00-hq-JZc" secondAttribute="trailing" constant="10" id="FLh-Wk-aol"/>
-                    <constraint firstItem="2vk-Hx-iSf" firstAttribute="centerY" secondItem="E2r-Zn-Yua" secondAttribute="centerY" id="Gxx-9C-I0f"/>
+                    <constraint firstItem="2vk-Hx-iSf" firstAttribute="centerY" secondItem="E2r-Zn-Yua" secondAttribute="centerY" constant="3.75" id="Gxx-9C-I0f"/>
                     <constraint firstItem="UK1-6i-YtW" firstAttribute="top" secondItem="Tl4-m4-KEw" secondAttribute="bottom" constant="8" id="HGc-Zg-DlS"/>
                     <constraint firstItem="Tl4-m4-KEw" firstAttribute="top" secondItem="18K-wz-Sl8" secondAttribute="bottom" constant="5" id="He3-Yd-xvv"/>
-                    <constraint firstItem="7LR-In-tlG" firstAttribute="leading" secondItem="2vk-Hx-iSf" secondAttribute="trailing" constant="6" id="JeO-v3-AEU"/>
-                    <constraint firstItem="7LR-In-tlG" firstAttribute="centerY" secondItem="E2r-Zn-Yua" secondAttribute="centerY" id="Qdh-0n-xlH"/>
+                    <constraint firstItem="7LR-In-tlG" firstAttribute="leading" secondItem="2vk-Hx-iSf" secondAttribute="trailing" constant="8" id="JeO-v3-AEU"/>
+                    <constraint firstItem="7LR-In-tlG" firstAttribute="centerY" secondItem="E2r-Zn-Yua" secondAttribute="centerY" constant="3.75" id="Qdh-0n-xlH"/>
                     <constraint firstItem="YsJ-VB-LqW" firstAttribute="top" secondItem="Tl4-m4-KEw" secondAttribute="bottom" constant="3" id="Xc0-9j-3Ze"/>
                     <constraint firstAttribute="trailingMargin" secondItem="7LR-In-tlG" secondAttribute="trailing" constant="2" id="awN-6Z-TeV"/>
                     <constraint firstAttribute="leadingMargin" secondItem="x00-hq-JZc" secondAttribute="leading" id="cFN-t4-jyE"/>
                     <constraint firstItem="YsJ-VB-LqW" firstAttribute="leading" secondItem="UK1-6i-YtW" secondAttribute="trailing" constant="5" id="cy5-rJ-kTU"/>
                     <constraint firstItem="18K-wz-Sl8" firstAttribute="leading" secondItem="x00-hq-JZc" secondAttribute="trailing" constant="10" id="faI-f3-Uen"/>
-                    <constraint firstItem="2vk-Hx-iSf" firstAttribute="leading" secondItem="Tl4-m4-KEw" secondAttribute="trailing" constant="25" id="iw7-Go-oaR"/>
+                    <constraint firstItem="2vk-Hx-iSf" firstAttribute="leading" secondItem="Tl4-m4-KEw" secondAttribute="trailing" constant="9" id="iw7-Go-oaR"/>
                     <constraint firstItem="18K-wz-Sl8" firstAttribute="top" secondItem="E2r-Zn-Yua" secondAttribute="topMargin" constant="2" id="xMu-C5-FML"/>
                 </constraints>
             </tableViewCellContentView>

@@ -44,12 +44,12 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2p-nx-ONQ">
-                        <rect key="frame" x="285" y="89" width="26" height="26"/>
+                        <rect key="frame" x="279" y="89" width="32" height="32"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="26" id="W4U-gB-RAs"/>
-                            <constraint firstAttribute="width" constant="26" id="pWL-0l-CI8"/>
+                            <constraint firstAttribute="height" constant="32" id="W4U-gB-RAs"/>
+                            <constraint firstAttribute="width" constant="32" id="pWL-0l-CI8"/>
                         </constraints>
                         <state key="normal" backgroundImage="Call_Btn">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -97,12 +97,12 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38u-52-wnU">
-                        <rect key="frame" x="244" y="89" width="35" height="26"/>
+                        <rect key="frame" x="230" y="89" width="43" height="32"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="7PH-Jk-FUE"/>
-                            <constraint firstAttribute="height" constant="26" id="AEH-Ub-8Ho"/>
+                            <constraint firstAttribute="width" constant="43" id="7PH-Jk-FUE"/>
+                            <constraint firstAttribute="height" constant="32" id="AEH-Ub-8Ho"/>
                         </constraints>
                         <state key="normal" backgroundImage="Msg_Btn">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,11 +127,11 @@
                     <constraint firstAttribute="trailingMargin" secondItem="bgX-sh-ZBG" secondAttribute="trailing" id="SYC-YH-pUb"/>
                     <constraint firstItem="J3x-Dm-RkW" firstAttribute="top" secondItem="16R-2f-Msc" secondAttribute="bottom" constant="11" id="Xb2-V0-a2H"/>
                     <constraint firstItem="f4Z-iH-9OY" firstAttribute="leading" secondItem="dDb-bb-wSs" secondAttribute="trailing" constant="5" id="YYG-pt-94N"/>
-                    <constraint firstItem="f2p-nx-ONQ" firstAttribute="leading" secondItem="16R-2f-Msc" secondAttribute="trailing" constant="-27" id="cEH-wN-DCM"/>
+                    <constraint firstItem="f2p-nx-ONQ" firstAttribute="leading" secondItem="16R-2f-Msc" secondAttribute="trailing" constant="-33" id="cEH-wN-DCM"/>
                     <constraint firstAttribute="trailingMargin" secondItem="16R-2f-Msc" secondAttribute="trailing" id="cEu-Z4-Yns"/>
-                    <constraint firstItem="38u-52-wnU" firstAttribute="leading" secondItem="qzK-j0-wHM" secondAttribute="trailing" constant="25" id="cif-up-bkM"/>
+                    <constraint firstItem="38u-52-wnU" firstAttribute="leading" secondItem="qzK-j0-wHM" secondAttribute="trailing" constant="11" id="cif-up-bkM"/>
                     <constraint firstItem="qzK-j0-wHM" firstAttribute="top" secondItem="J3x-Dm-RkW" secondAttribute="bottom" constant="5" id="d31-eh-FxY"/>
-                    <constraint firstItem="38u-52-wnU" firstAttribute="leading" secondItem="J3x-Dm-RkW" secondAttribute="trailing" constant="25" id="gQJ-hf-6mO"/>
+                    <constraint firstItem="38u-52-wnU" firstAttribute="leading" secondItem="J3x-Dm-RkW" secondAttribute="trailing" constant="11" id="gQJ-hf-6mO"/>
                     <constraint firstItem="f2p-nx-ONQ" firstAttribute="leading" secondItem="38u-52-wnU" secondAttribute="trailing" constant="6" id="jHI-zC-zbl"/>
                     <constraint firstItem="16R-2f-Msc" firstAttribute="top" secondItem="bgX-sh-ZBG" secondAttribute="bottom" constant="5" id="mAs-3b-lGg"/>
                     <constraint firstItem="f4Z-iH-9OY" firstAttribute="top" secondItem="qzK-j0-wHM" secondAttribute="bottom" constant="3" id="ngN-ri-llv"/>

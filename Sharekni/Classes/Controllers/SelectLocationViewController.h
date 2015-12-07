@@ -10,7 +10,9 @@
 #import "Emirate.h"
 #import "Region.h"
 @interface SelectLocationViewController : UIViewController
-
+{
+    float animatedDistance ;
+}
 @property (nonatomic,strong) NSString *viewTitle;
 @property (strong, nonatomic) void (^selectionHandler) (Emirate*,Region*,Emirate*,Region*) ;
 @property (nonatomic,assign) BOOL validateDestination;

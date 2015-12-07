@@ -23,6 +23,7 @@
 #import "WelcomeViewController.h"
 #import "NotificationsViewController.h"
 #import "VehiclesViewController.h"
+#import "HomeViewController.h"
 
 #define Title_Key @"Title"
 #define Image_Key @"ImageName"
@@ -189,11 +190,12 @@
     return sideCell ;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSDictionary *dictionary = [self.items objectAtIndex:indexPath.row];
     NSString *title = [dictionary valueForKey:Title_Key];
     
-        if ([title isEqualToString:NSLocalizedString(@"Home Page", nil)])
+        if ([title isEqualToString:NSLocalizedString(@"Home Page", nil)])
         { //Home
             [self.frostedViewController setContentViewController:self.homeNavigationController];
             [self.frostedViewController hideMenuViewController];
@@ -292,6 +294,19 @@
     [KUSER_DEFAULTS synchronize];
     exit(0);
 }
+
+
+
+- (UINavigationController *)homeNavigationController
+{
+    if (!_homeNavigationController) {
+        HomeViewController *viewController = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+        viewController.enableBackButton = NO;
+        _homeNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    }
+    return _homeNavigationController;
+}
+
 
 - (UINavigationController *)bestDriversNavigationController
 {

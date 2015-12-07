@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = NO ;
-    self.title = NSLocalizedString(@"mostRides", nil);
+    self.title = NSLocalizedString(@"Most Rides", nil);
     
     if (self.enableBackButton) {
         UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];

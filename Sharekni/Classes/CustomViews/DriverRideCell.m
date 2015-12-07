@@ -46,7 +46,7 @@
     {
         _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",_driverRideDetails.FromEmirateArName,_driverRideDetails.FromRegionArName];
         _ToRegionName.text = [NSString stringWithFormat:@"%@ - %@",_driverRideDetails.ToEmirateArName,_driverRideDetails.ToRegionArName];
-        _RouteName.text = _driverRideDetails.RouteArName ;
+        _RouteName.text = _driverRideDetails.RouteEnName ;
     }
     else
     {
@@ -56,8 +56,8 @@
     }
 }
 
-- (void)setSavedResultRideDetails:(MostRideDetails *)rideDetails{
-    
+- (void)setSavedResultRideDetails:(MostRideDetails *)rideDetails
+{
     if (KIS_ARABIC)
     {
         _RouteName.text = [NSString stringWithFormat:@"%@ : %@",rideDetails.FromEmirateArName,rideDetails.ToEmirateArName] ;
@@ -107,7 +107,7 @@
 {
     _createdRide = createdRide;
     
-    _RouteName.text = (KIS_ARABIC)?createdRide.Name_ar:createdRide.Name_en;
+    _RouteName.text = createdRide.Name_en;
     
     if (KIS_ARABIC) {
         _FromRegionName.text = [NSString stringWithFormat:@"%@ - %@",createdRide.FromEmirateArName,createdRide.FromRegionArName];

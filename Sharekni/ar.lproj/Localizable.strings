@@ -126,6 +126,11 @@
 "Please set direction" = "من فضلك اختر الوجهة";
 "No Rides Found" = "لا توجد رحلات";
 "Please select from Emirate" = "من فضلك اختر الإمارة";
+"Please Enter from Region" = "يرجي اختيار المنطقة";
+"Please Enter to Region" = "يرجي اختيار المنطقة";
+"Please select to Emirate" = "من فضلك اختر الإمارة";
+
+
 "Select Emirate" = "اختر الإمارة";
 "Please select from Emirate first" = "من فضلك اختر الإمارة أولا";
 "Please select to Emirate first" = "من فضلك اختر الإمارة أولا";
@@ -140,3 +145,19 @@
 "To" = "إلي";
 "Not Set" = "غير محدد";
 "Ride Days" = "أيام الرحلة";
+
+"Sat " = " السبت";
+"Sun " = " الأحد";
+"Mon " = " الأثنين";
+"Tue " = " الثلاثاء";
+"Wed " = " الأربعاء";
+"Thu " = " الخميس";
+"Fri " = " الجمعة";
+
+"Terms And Conditions" = "الشروط والأحكام";
+"Accept" = "موافق";
+"Policy" = "سياسة الخصوصية";
+"Search Results" = "نتائج البحث";
+"Has Accepted your request" = "وافق علي طلب الإنضمام";
+"Send you a join request" = "قام بإرسال طلب انضمام";
+

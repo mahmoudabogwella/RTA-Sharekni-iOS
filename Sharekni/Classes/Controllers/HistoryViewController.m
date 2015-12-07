@@ -148,8 +148,8 @@
             createdView.hidden = YES ;
             createdLblName.hidden = YES ;
         }else{
-            createdView.hidden = YES ;
-            createdLblName.hidden = YES ;
+            createdView.hidden = NO ;
+            createdLblName.hidden = NO ;
         }
         
         if (self.joinRides.count == 0) {

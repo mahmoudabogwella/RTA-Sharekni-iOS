@@ -59,29 +59,29 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     self.driverName.text = driver.AccountName;
     self.country.text = (KIS_ARABIC)?driver.Nationality_ar:driver.Nationality_en;
     self.phone = driver.AccountMobile ;
-    self.startingTime.text = [NSString stringWithFormat:@"Starting Time : %@",driver.SDG_Route_Start_FromTime];
+    self.startingTime.text = [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Starting Time :", nil),driver.SDG_Route_Start_FromTime];
     
     NSString *daysText = @"";
     if (driver.SDG_RouteDays_Sunday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sun,", nil)];
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sun ", nil)];
     }
     if (driver.SDG_RouteDays_Monday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon,", nil)];
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Mon ", nil)];
     }
     if (driver.SDG_RouteDays_Tuesday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Tue,", nil)];
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Tue ", nil)];
     }
     if (driver.SDG_RouteDays_Wednesday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Wed,", nil)];
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Wed ", nil)];
     }
     if (driver.SDG_RouteDays_Thursday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Thu,", nil)];
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Thu ", nil)];
     }
     if (driver.SDG_RouteDays_Friday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Fri,", nil)];
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Fri ", nil)];
     }
     if (driver.Saturday.boolValue) {
-        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sat,", nil)];
+        daysText = [daysText stringByAppendingString:NSLocalizedString(@"Sat ", nil)];
     }
     if (daysText.length > 0) {
         self.availableDays.text = daysText;
