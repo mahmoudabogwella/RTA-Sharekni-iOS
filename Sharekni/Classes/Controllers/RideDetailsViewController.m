@@ -300,7 +300,7 @@
                        NSString * applicationUserID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
                        if (applicationUserID.length > 0) {
                            for (Passenger *passenger in array) {
-                               if([passenger.ID.stringValue isEqualToString:applicationUserID]){
+                               if([passenger.AccountId.stringValue isEqualToString:applicationUserID]){
                                    blockSelf.alreadyJoined = YES;
                                    break;
                                }
