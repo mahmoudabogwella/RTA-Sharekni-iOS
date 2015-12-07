@@ -126,15 +126,15 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
                 success(blockSelf.applicationUser);
              
             } Failure:^(NSString *error) {
-                [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
-                    blockSelf.applicationUser.userImage = image;
-                    blockSelf.applicationUser.imageLocalPath = filePath;
-                    success(blockSelf.applicationUser);
-                } Failure:^(NSString *error) {
-                    blockSelf.applicationUser.userImage = [UIImage imageNamed:@"Man"];
-                    blockSelf.applicationUser.imageLocalPath = nil;
-                    success(blockSelf.applicationUser);
-                }];
+//                [self GetPhotoWithName:user.PhotoPath withSuccess:^(UIImage *image, NSString *filePath) {
+//                    blockSelf.applicationUser.userImage = image;
+//                    blockSelf.applicationUser.imageLocalPath = filePath;
+//                    success(blockSelf.applicationUser);
+//                } Failure:^(NSString *error) {
+//                    blockSelf.applicationUser.userImage = [UIImage imageNamed:@"Man"];
+//                    blockSelf.applicationUser.imageLocalPath = nil;
+//                    success(blockSelf.applicationUser);
+//                }];
             }];
         }
         else if ([responseString containsString:@"-"]){

@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Helper/MobAccountManager.m"
-            timestampString = "471216618.001975"
+            timestampString = "471219003.825893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "-GetCalculatedRatingsForAccountID:WithSuccess:Failure:"
             landmarkType = "5">
             <Locations>
@@ -148,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Helper/MobAccountManager.m"
-            timestampString = "471216618.001975"
+            timestampString = "471219003.825893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "-getJoinedRidesWithSuccess:Failure:"
             landmarkType = "5">
          </BreakpointContent>
