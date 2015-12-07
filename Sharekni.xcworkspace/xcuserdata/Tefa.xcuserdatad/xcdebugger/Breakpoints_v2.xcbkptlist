@@ -164,7 +164,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Helper/MobDriverManager.m"
-                  timestampString = "471221465.089467"
+                  timestampString = "471223383.736223"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
@@ -179,7 +179,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Helper/MobDriverManager.m"
-                  timestampString = "471221465.089958"
+                  timestampString = "471223383.736774"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
@@ -228,7 +228,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/AdvancedSearchViewController.m"
-                  timestampString = "471221465.094404"
+                  timestampString = "471223383.741155"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "359"
@@ -243,7 +243,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/AdvancedSearchViewController.m"
-                  timestampString = "471221465.094837"
+                  timestampString = "471223383.741612"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "359"
@@ -324,7 +324,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/RegisterViewController.m"
-                  timestampString = "471221465.097294"
+                  timestampString = "471223383.744522"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "524"
@@ -339,7 +339,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/RegisterViewController.m"
-                  timestampString = "471221465.097722"
+                  timestampString = "471223383.74504"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "524"
@@ -532,7 +532,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/CreateRideViewController.m"
-                  timestampString = "471221465.113714"
+                  timestampString = "471223383.761828"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "180"
@@ -547,7 +547,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/CreateRideViewController.m"
-                  timestampString = "471221465.114119"
+                  timestampString = "471223383.762253"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "180"
@@ -562,7 +562,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/CreateRideViewController.m"
-                  timestampString = "471221465.114524"
+                  timestampString = "471223383.762643"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -577,7 +577,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/CreateRideViewController.m"
-                  timestampString = "471221465.114926"
+                  timestampString = "471223383.763036"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -592,7 +592,7 @@
                   moduleName = "Sharekni"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tefa/Desktop/sharekni/Distribution_Prov.mobileprovision/Sharekni/Classes/Controllers/CreateRideViewController.m"
-                  timestampString = "471221465.115339"
+                  timestampString = "471223383.763461"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "180"
@@ -625,11 +625,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Controllers/RideDetailsViewController.m"
-            timestampString = "471222340.913591"
+            timestampString = "471223382.323001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "-configureFrames"
             landmarkType = "5">
          </BreakpointContent>
@@ -641,11 +641,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Controllers/RideDetailsViewController.m"
-            timestampString = "471222340.913591"
+            timestampString = "471223382.323001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
             landmarkName = "-configureFrames"
             landmarkType = "5">
          </BreakpointContent>
@@ -657,11 +657,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Controllers/RideDetailsViewController.m"
-            timestampString = "471222340.913591"
+            timestampString = "471223382.323001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "508"
-            endingLineNumber = "508"
+            startingLineNumber = "521"
+            endingLineNumber = "521"
             landmarkName = "-editRideAction"
             landmarkType = "5">
          </BreakpointContent>
@@ -673,12 +673,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sharekni/Classes/Controllers/RideDetailsViewController.m"
-            timestampString = "471222340.913591"
+            timestampString = "471223382.323001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "839"
-            endingLineNumber = "839"
+            startingLineNumber = "854"
+            endingLineNumber = "854"
             landmarkName = "-refreshReviews"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/RideDetailsViewController.m"
+            timestampString = "471223259.596532"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "513"
+            endingLineNumber = "513"
+            landmarkName = "-editRideAction"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/RideDetailsViewController.m"
+            timestampString = "471223614.047397"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
+            landmarkName = "-configureData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/RideDetailsViewController.m"
+            timestampString = "471223615.871393"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "-configureData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sharekni/Classes/Controllers/RideDetailsViewController.m"
+            timestampString = "471223620.959206"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "-configureData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -82,6 +82,7 @@
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *passengersHeaderLabels;
 @property (nonatomic ,strong) RouteDetails *routeDetails ;
 @property (nonatomic ,strong) UIBarButtonItem *loadingBarButton;
+@property (nonatomic ,assign) BOOL alreadyJoined;
 @end
 
 @implementation RideDetailsViewController
@@ -94,6 +95,7 @@
 - (void) viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.alreadyJoined = NO;
     self.title = NSLocalizedString(@"rideDetails", nil);
 
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -200,8 +202,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) showRideDetailsData
-{
+- (void) showRideDetailsData{
     FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",(KIS_ARABIC)?self.routeDetails.FromEmirateArName:self.routeDetails.FromEmirateEnName,(KIS_ARABIC)?self.routeDetails.FromRegionArName:self.routeDetails.FromRegionEnName];
     
     ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",(KIS_ARABIC)?self.routeDetails.ToEmirateArName:self.routeDetails.ToEmirateEnName,(KIS_ARABIC)?self.routeDetails.ToRegionArName:self.routeDetails.ToRegionEnName];
@@ -289,14 +290,25 @@
            }
            [blockReviewsList reloadData];
            
-           if (blockSelf.createdRide) {
+           if (blockSelf.createdRide || blockSelf.driverDetails) {
                [[MasterDataManager sharedMasterDataManager] getPassengersByRouteId:blockSelf.routeDetails.ID.stringValue withSuccess:^(NSMutableArray *array) {
                    blockSelf.passengers = array;
                    [blockPassengersList reloadData];
                    [KVNProgress dismiss];
-                   [blockSelf configureFrames];
                    [blockSelf configureActionsButtons];
-                   
+                   if(blockSelf.driverDetails){
+                       NSString * applicationUserID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+                       if (applicationUserID.length > 0) {
+                           for (Passenger *passenger in array) {
+                               if([passenger.ID.stringValue isEqualToString:applicationUserID]){
+                                   blockSelf.alreadyJoined = YES;
+                                   break;
+                               }
+                            }
+                           
+                       }
+                   }
+                   [blockSelf configureFrames];
                } Failure:^(NSString *error) {
                    [blockSelf handleResponseError];
                    [blockSelf configureFrames];
@@ -421,7 +433,7 @@
         joinRideBtn.frame = buttonFrame;
     }
 
-    if (self.joinedRide || self.createdRide) {
+    if (self.joinedRide || self.createdRide || self.alreadyJoined) {
         joinRideBtn.alpha = 0;
         CGSize contentSize = contentView.contentSize ;
         contentSize.height = joinRideBtn.frame.origin.y;
@@ -539,7 +551,10 @@
 
 - (void) dismissButtonClicked:(AddRemarksViewController *)addRemarksViewController{
     [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
 
+- (void)didJoinToRideSuccesfully{
+    joinRideBtn.alpha = 0;
 }
 
 - (IBAction)joinThisRide:(id)sender{
@@ -708,8 +723,7 @@
     [_MKmapView removeFromSuperview];
 }
 
-- (void) configurePins
-{
+- (void) configurePins{
     [_mapView clear];
     self.markers = [NSMutableArray array];
         CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);

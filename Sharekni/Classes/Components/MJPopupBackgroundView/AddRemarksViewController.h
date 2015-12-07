@@ -33,5 +33,6 @@
 @optional
 
 - (void)dismissButtonClicked:(AddRemarksViewController*)addRemarksViewController;
+- (void)didJoinToRideSuccesfully;
 
 @end

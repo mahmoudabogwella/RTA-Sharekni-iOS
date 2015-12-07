@@ -54,6 +54,9 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(dismissButtonClicked:)]) {
             [self.delegate dismissButtonClicked:self];
         }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didJoinToRideSuccesfully)]) {
+            [self.delegate didJoinToRideSuccesfully];
+        }
         
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];
