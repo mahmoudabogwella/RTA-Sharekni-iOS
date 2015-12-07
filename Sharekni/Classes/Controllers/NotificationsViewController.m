@@ -38,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Notifications";
+    self.title = NSLocalizedString(@"Notifications", nil);
 
     self.notifications = [NSMutableArray new];
     [self getNotifications];

@@ -6,6 +6,10 @@
 
 */
 
+"App needs restart" = "سيحتاج التطبيق لإعادة التشغيل";
+"Restart" = "اعد التشغيل";
+"No" = "لا";
+
 "Back_icn" = "Back_icn_right";
 "username" = "اسم المستخدم";
 "Username (Your Email)" = "اسم المستخدم (البريد الإلكتروني)";
@@ -32,6 +36,8 @@
 "quickSearch" = "بحث";
 
 "loading" = "تحميل";
+"Loading..." = "...تحميل";
+
 "sharkni" = "شاركني";
 
 "driverDetails" = "تفاصيل السائق";
@@ -64,22 +70,40 @@
 
 //Home
 "Home Page" = "الصفحة الرئيسية";
-"Rides Created" = "الرحلات";
+"Most Rides" = "أكثر الرحلات طلبا";
+"Best Drivers" = "أفضل السائقين";
+"Logout" = "تسجيل الخروج";
+"Language" = "اللغة";
+
+"Rides Created" = "الرحلات المنشأة";
 "Rides Joined" = "الرحلات المشتركة";
 "Vehicles" = "المركبات";
-"History" = "الأرشيف";
-"Permit" = "التصاريح";
+"History" = "التاريخ";
+"Permits" = "التصاريح";
 "Search" = "بحث";
 "Saved Search" = "حفظ البحث";
 "Create Ride"  = "إنشاء رحلة";
 
+"No permits found" = "عفوا لاتوجد تصاريح";
 //Create Rides
-
+"No rides joined yet" = "عفوا لاتوجد رحلات مشتركة حتي الآن";
+"Do you want to leave this ride?" = "هل تريد مغادرة هذه الرحلة ؟";
+"Ride leaved successfully." = "تم مغادرة الرحلة";
+"Select vehicle" = "اختر المركبة";
 "Confirm" = "موافق";
 "Delete" = "حذف";
 "Do you want to delete this ride ?" = "هل تريد حذف هذه الرحلة؟";
 "Ride Deleted successfully." = "تم حذف الرحلة بنجاح";
 "Saved Search" = "حفظ البحث";
+"Edit Ride" = "تعديل الرحلة";
+"Please configure your vehicles first" = "من فضلك أدخل المركبات الخاصة بك أولا";
+"Days Of Week" = "أيام الأسبوع";
+
+
+"Notifications" = "التنبيهات";
+"Attention" = "انتبه";
+"You must write your review first" = "يجب كتابة التعليق أولا";
+"You must write your remark first" = "يجب كتابة رسالتك أولا";
 
 //Driver Ride
 "Details" = "التفاصيل";
@@ -89,6 +113,11 @@
 //Add review
 "Write Your Review" = "اكتب تعليقك";
 "Your Review" = "تعليقك";
+"Review" = "تعليق";
+"I’d like to join your ride" = "أريد الإنضمام إلي هذه الرحلة";
+"Write Your Remarks" = "اكتب ملاحظتك";
+"Your Remarks" = "ملاحظتك";
+
 
 "Map Lookup" = "الخريطة";
 "Starting Time :" = "وقت البداية :";
@@ -105,3 +134,8 @@
 "Drivers :" = "السائقين :";
 "Passengers :" = "الركاب :";
 "Coming Rides :" = "الرحلات القادمة :";
+
+"From" = "من";
+"To" = "إلي";
+"Not Set" = "غير محدد";
+"Ride Days" = "أيام الرحلة";

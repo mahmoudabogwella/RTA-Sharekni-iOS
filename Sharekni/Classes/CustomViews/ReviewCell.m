@@ -7,6 +7,7 @@
 //
 
 #import "ReviewCell.h"
+#import "Constants.h"
 
 @implementation ReviewCell
 
@@ -19,9 +20,9 @@
 
 - (void)setReview:(Review *)review
 {
-    self.driverPhoto.image = [UIImage imageNamed:@"BestDriverImage"];
+    self.driverPhoto.image = [UIImage imageNamed:@"thumbnail"];
     self.driverName.text = review.AccountName ;
-    self.nationality.text = review.AccountNationalityEn ;
+    self.nationality.text = (KIS_ARABIC)?review.AccountNationalityAr:review.AccountNationalityEn ;
     self.comment.text = review.Review ;
 }
 

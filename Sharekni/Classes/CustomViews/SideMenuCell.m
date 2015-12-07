@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.cellTitle.textAlignment = NSTextAlignmentNatural ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -153,22 +153,22 @@
         self.helpLabel.alpha = 0;
         self.emiratesAndRegionsView.alpha = 1;
         
-        NSString *fromText = [NSString stringWithFormat:@"%@,%@",self.routeDetails.FromEmirateEnName,self.routeDetails.FromRegionEnName];
+        NSString *fromText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?self.routeDetails.FromEmirateArName:self.routeDetails.FromEmirateEnName,(KIS_ARABIC)?self.routeDetails.FromRegionArName:self.routeDetails.FromRegionEnName];
         
         self.startPointLabel.text = fromText;
         
-        NSString *toText = [NSString stringWithFormat:@"%@,%@",self.routeDetails.ToEmirateEnName,self.routeDetails.ToRegionEnName];
+        NSString *toText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?self.routeDetails.ToEmirateArName:self.routeDetails.ToEmirateEnName,(KIS_ARABIC)?self.routeDetails.ToRegionArName:self.routeDetails.ToRegionEnName];
         self.destinationLabel.text = toText;
         [self configureUIWithRouteDetails];
     }
     else{
         self.helpLabel.alpha = 0;
         self.emiratesAndRegionsView.alpha = 1;
-        NSString *fromText = [NSString stringWithFormat:@"%@,%@",self.ride.FromEmirateEnName,self.ride.FromRegionEnName];
+        NSString *fromText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?self.ride.FromEmirateArName:self.ride.FromEmirateEnName,(KIS_ARABIC)?self.ride.FromRegionArName:self.ride.FromRegionEnName];
         
         self.startPointLabel.text = fromText;
         
-        NSString *toText = [NSString stringWithFormat:@"%@,%@",self.ride.ToEmirateEnName,self.ride.ToRegionEnName];
+        NSString *toText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?self.ride.ToEmirateArName:self.ride.ToEmirateEnName,(KIS_ARABIC)?self.ride.ToRegionArName:self.ride.ToRegionEnName];
         self.destinationLabel.text = toText;
         
         __block CreateRideViewController *blockSelf = self;
@@ -187,7 +187,7 @@
 - (void) configureUIWithRouteDetails{
     
     //Ride Name
-    self.rideNameTextField.text = self.routeDetails.RouteEnName;
+    self.rideNameTextField.text = (KIS_ARABIC)?self.routeDetails.RouteArName:self.routeDetails.RouteEnName;
     
     //RoadType
     self.selectedType = self.routeDetails.IsRounded.boolValue ? PeriodicType : SingleRideType;
@@ -235,7 +235,7 @@
         NSArray *result = [self.vehicles filteredArrayUsingPredicate:predicate];
         self.selectedVehicle = result.count > 0 ? result[0]:nil;
         if (self.selectedVehicle) {
-            [self.selectVehicleButton setTitle:self.selectedVehicle.ModelEnName forState:UIControlStateNormal];
+            [self.selectVehicleButton setTitle:(KIS_ARABIC)?self.selectedVehicle.ModelArName:self.selectedVehicle.ModelEnName forState:UIControlStateNormal];
         }
         else{
         [self.selectVehicleButton setTitle:NSLocalizedString(@"Select vehicle", nil)  forState:UIControlStateNormal];
@@ -300,7 +300,7 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"LanguageId ==%d",languageID.integerValue];
         NSArray *result = [self.languages filteredArrayUsingPredicate:predicate];
         self.selectedLanguage = result.count > 0 ? result[0]:nil;
-        [self.selectLanguageButton setTitle:self.selectedLanguage.LanguageEnName forState:UIControlStateNormal];
+        [self.selectLanguageButton setTitle:(KIS_ARABIC)?self.selectedLanguage.LanguageArName:self.selectedLanguage.LanguageEnName forState:UIControlStateNormal];
     }
     else{
         self.selectedLanguage = nil;
@@ -324,7 +324,7 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID ==%d",nationalityID.integerValue];
         NSArray *result = [self.nationalties filteredArrayUsingPredicate:predicate];
         self.selectedNationality = result.count > 0 ? result[0]:nil;;
-        [self.nationalityTextField setText:self.selectedNationality.NationalityEnName];
+        [self.nationalityTextField setText:(KIS_ARABIC)?self.selectedNationality.NationalityArName:self.selectedNationality.NationalityEnName];
     }
     else{
         self.selectedNationality = nil;
@@ -337,7 +337,7 @@
     //Days Of Week
     [self configureDaysLabels];
     
-    [self.createButton setTitle:@"Edit Ride" forState:UIControlStateNormal];
+    [self.createButton setTitle:NSLocalizedString(@"Edit Ride", nil) forState:UIControlStateNormal];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -417,7 +417,7 @@
 #pragma ACTIONS
 - (IBAction) selectVehilceAction:(id)sender {
     if(self.vehicles.count == 0){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"please configure your vehicles first", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please configure your vehicles first", nil)];
     }
     else{
         [self showPickerWithTextFieldType:VehiclesTextField];
@@ -677,7 +677,7 @@
             blockSelf.nationalties = array;
             blockSelf.nationaltiesStringsArray = [NSMutableArray array];
             for (Nationality *nationality in blockSelf.nationalties) {
-                [blockSelf.nationaltiesStringsArray addObject:nationality.NationalityEnName];
+                [blockSelf.nationaltiesStringsArray addObject:(KIS_ARABIC)?nationality.NationalityArName:nationality.NationalityEnName];
             }
             [[MasterDataManager sharedMasterDataManager] GetAgeRangesWithSuccess:^(NSMutableArray *array) {
                 blockSelf.ageRanges = array;
@@ -720,7 +720,7 @@
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -828,11 +828,11 @@
 
 - (void) configureGenderView{
     if (self.isFemaleOnly) {
-        self.genderSwitchImage.image = [UIImage imageNamed:@"select_Right"];
+        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_Right"];
         self.genderLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
     }
     else{
-        self.genderSwitchImage.image = [UIImage imageNamed:@"select_Left"];
+        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Right":@"select_Left"];
         self.genderLabel.textColor = [UIColor darkGrayColor];
     }
 }
@@ -1020,24 +1020,23 @@
     //Now just present the date selection controller using the standard iOS presentation method
     [self presentViewController:dateSelectionController animated:YES completion:nil];
 }
-//http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/Passenger_FindRide?AccountID=0&PreferredGender=N&Time=&FromEmirateID=2&FromRegionID=5&ToEmirateID=3&ToRegionID=8&PrefferedLanguageId=0&PrefferedNationlaities=&AgeRangeId=0&StartDate=&SaveFind=0&IsPeriodic=
 
 - (void) showPickerWithTextFieldType:(TextFieldType)type{
-    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select",nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
             case NationalityTextField:
             {
                 Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
-                self.nationalityTextField.text = nationality.NationalityEnName;
+                self.nationalityTextField.text = (KIS_ARABIC)?nationality.NationalityArName:nationality.NationalityEnName;
                 self.selectedNationality = nationality;
             }
                 break;
             case LanguageTextField:
             {
                 Language *language = [self.languages objectAtIndex:selectedRow];
-                [self.selectLanguageButton setTitle:language.LanguageEnName forState:UIControlStateNormal];
+                [self.selectLanguageButton setTitle:(KIS_ARABIC)?language.LanguageArName:language.LanguageEnName forState:UIControlStateNormal];
                 self.selectedLanguage = language;
             }
                 break;
@@ -1051,7 +1050,7 @@
             case VehiclesTextField:
             {
                 Vehicle *vehicle = [self.vehicles objectAtIndex:selectedRow];
-                [self.selectVehicleButton setTitle:vehicle.ModelEnName forState:UIControlStateNormal];
+                [self.selectVehicleButton setTitle:(KIS_ARABIC)?vehicle.ModelArName:vehicle.ModelEnName forState:UIControlStateNormal];
                 self.selectedVehicle = vehicle;
             }
                 break;
@@ -1062,7 +1061,7 @@
     }];
     
     
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         NSLog(@"Row selection was canceled");
     }];
     
@@ -1119,13 +1118,13 @@
         blockSelf.helpLabel.alpha = 0;
         blockSelf.emiratesAndRegionsView.alpha = 1;
         
-        NSString *fromText = [NSString stringWithFormat:@"%@,%@",fromEmirate.EmirateEnName,fromRegion.RegionEnName];
+        NSString *fromText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?fromEmirate.EmirateArName:fromEmirate.EmirateEnName,(KIS_ARABIC)?fromRegion.RegionArName:fromRegion.RegionEnName];
         
         blockSelf.fromEmirate = fromEmirate;
         blockSelf.fromRegion = fromRegion;
         blockSelf.startPointLabel.text = fromText;
         
-        NSString *toText = [NSString stringWithFormat:@"%@,%@",toEmirate.EmirateEnName,toRegion.RegionEnName];
+        NSString *toText = [NSString stringWithFormat:@"%@,%@",(KIS_ARABIC)?toEmirate.EmirateArName:toEmirate.EmirateEnName,(KIS_ARABIC)?toRegion.RegionArName:toRegion.RegionEnName];
         blockSelf.toEmirate = toEmirate;
         blockSelf.toRegion = toRegion;
         blockSelf.destinationLabel.text = toText;
@@ -1168,7 +1167,7 @@
         case NationalityTextField:
         {
             Nationality *nationality = [self.nationalties objectAtIndex:row];
-            title = nationality.NationalityEnName;
+            title = (KIS_ARABIC)?nationality.NationalityArName:nationality.NationalityEnName;
         }
             break;
         case AgeRangeTextField:
@@ -1180,13 +1179,13 @@
         case LanguageTextField:
         {
             Language *language = [self.languages objectAtIndex:row];
-            title = language.LanguageEnName;
+            title = (KIS_ARABIC)?language.LanguageArName:language.LanguageEnName;
         }
             break;
         case VehiclesTextField:
         {
             Vehicle *vehicle = [self.vehicles objectAtIndex:row];
-            title = vehicle.ModelEnName;
+            title = (KIS_ARABIC)?vehicle.ModelArName:vehicle.ModelEnName;
         }
             break;
             

@@ -22,6 +22,7 @@
 #import "SavedSearchViewController.h"
 #import "WelcomeViewController.h"
 #import "NotificationsViewController.h"
+#import "VehiclesViewController.h"
 
 #define Title_Key @"Title"
 #define Image_Key @"ImageName"
@@ -29,6 +30,9 @@
 
 
 @interface SideMenuTableViewController ()
+{
+    NSArray *language ;
+}
 @property (nonatomic,strong) NSMutableArray *items;
 @property (nonatomic,strong) User *applicationUser;
 @end
@@ -45,6 +49,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.applicationUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    language = [NSArray new];
     [self configureDataSourceArray];
     [self configureTableView];
 }
@@ -53,7 +58,7 @@
     self.items = [NSMutableArray array];
     NSDictionary *dictionary;
     if ([self.applicationUser.AccountStatus containsString:@"D"] || [self.applicationUser.AccountStatus containsString:@"B"]) {
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home Page", nil),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home Page", nil),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
         dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Vehicles", nil),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
@@ -71,11 +76,14 @@
         dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Notifications", nil),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Language", nil),(KIS_ARABIC)?@"Language_En":@"Language_Ar"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+
         dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Logout", nil),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
     }
     else{
-        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home Page", nil),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Home Page", nil),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
         dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Saved Search", nil),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
@@ -93,10 +101,12 @@
         dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Notifications", nil),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
+        dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Language", nil),(KIS_ARABIC)?@"Language_En":@"Language_Ar"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+
         dictionary = [[NSDictionary alloc] initWithObjects:@[NSLocalizedString(@"Logout", nil),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
     }
-
 }
 
 - (void) configureTableView{
@@ -213,25 +223,88 @@
             [self.frostedViewController setContentViewController:self.notificationsNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
+        else if ([title isEqualToString:NSLocalizedString(@"Vehicles", nil)]){
+            [self.frostedViewController setContentViewController:self.vehiclesNavigationController];
+            [self.frostedViewController hideMenuViewController];
+        }
         else if ([title isEqualToString:NSLocalizedString(@"Logout", nil)]){
             [[HelpManager sharedHelpManager] deleteUserFromUSerDefaults];
             [MobAccountManager sharedMobAccountManager].applicationUser = nil;
             [self presentViewController:self.welcomeNavigationController animated:YES completion:nil];
+        }else if ([title isEqualToString:NSLocalizedString(@"Language", nil)]){
+
+            if (KIS_ARABIC)
+            {
+                [self selectLangaugeEn];
+            }else{
+                [self selectLangaugeAr];
+            }
         }
-    
 }
 
-- (UINavigationController *)bestDriversNavigationController{
+- (void)selectLangaugeEn
+{
+    if (KIS_SYS_LANGUAGE_ARABIC)
+    {
+        language = [NSArray arrayWithObject:@"en"];
+        [self userDidFinishSelectingLanguage];
+    }
+}
+
+- (void)selectLangaugeAr
+{
+    if (!KIS_SYS_LANGUAGE_ARABIC)
+    {
+        language = [NSArray arrayWithObject:@"ar"];
+        [self userDidFinishSelectingLanguage];
+    }
+}
+
+- (void) userDidFinishSelectingLanguage
+{
+    UIAlertView * al = [[UIAlertView alloc] initWithTitle:nil
+                                                  message:NSLocalizedString(@"App needs restart", nil)
+                                                 delegate:self
+                                        cancelButtonTitle:NSLocalizedString(@"No", nil)
+                                        otherButtonTitles: NSLocalizedString(@"Restart", nil), nil];
+    [al show];
+}
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        
+        [self updateUser:language];
+    }
+}
+
+- (void)updateUser:(NSArray *)lang
+{
+    if ([lang[0] isEqualToString:@"ar"]) {
+        [KUSER_DEFAULTS setObject:@"ar"
+                           forKey:KUSER_LANGUAGE_KEY];
+        [KUSER_DEFAULTS synchronize];
+    }else{
+        [KUSER_DEFAULTS setObject:@"en"
+                           forKey:KUSER_LANGUAGE_KEY];
+        [KUSER_DEFAULTS synchronize];
+    }
+    [KUSER_DEFAULTS setObject:lang forKey:@"AppleLanguages"];
+    [KUSER_DEFAULTS synchronize];
+    exit(0);
+}
+
+- (UINavigationController *)bestDriversNavigationController
+{
     if (!_bestDriversNavigationController) {
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        BestDriversViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"BestDriversViewController"];
-            viewController.enableBackButton = NO;        
+        BestDriversViewController *viewController = [[BestDriversViewController alloc] initWithNibName:@"BestDriversViewController" bundle:nil];
+        viewController.enableBackButton = NO;
         _bestDriversNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     }
     return _bestDriversNavigationController;
 }
 
-- (UINavigationController *)searchNavigationController{
+- (UINavigationController *)searchNavigationController
+{
     if (!_searchNavigationController) {
         SearchViewController *viewController = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
         viewController.enableBackButton = NO;
@@ -240,7 +313,8 @@
     return _searchNavigationController;
 }
 
-- (UINavigationController *)mostRidesNavigationController{
+- (UINavigationController *)mostRidesNavigationController
+{
     if (!_mostRidesNavigationController) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         MostRidesViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
@@ -265,6 +339,16 @@
         _notificationsNavigationController = [[UINavigationController alloc] initWithRootViewController:notificationsView];
     }
     return _notificationsNavigationController;
+}
+
+- (UINavigationController *)vehiclesNavigationController
+{
+    if (!_vehiclesNavigationController)
+    {
+        VehiclesViewController *vehiclesView = [[VehiclesViewController alloc] initWithNibName:@"VehiclesViewController" bundle:nil];
+        _vehiclesNavigationController = [[UINavigationController alloc] initWithRootViewController:vehiclesView];
+    }
+    return _vehiclesNavigationController;
 }
 
 - (UINavigationController *)welcomeNavigationController{

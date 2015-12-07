@@ -8,11 +8,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="eTV-Fv-4Na" customClass="MapInfoWindow">
-            <rect key="frame" x="0.0" y="0.0" width="200" height="220"/>
+            <rect key="frame" x="0.0" y="0.0" width="200" height="226"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkO-iG-0kH">
-                    <rect key="frame" x="2" y="63" width="196" height="154"/>
+                    <rect key="frame" x="9" y="63" width="182" height="154"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googleMapsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="BMT-m4-zLL">
                             <rect key="frame" x="8" y="8" width="25" height="25"/>
@@ -23,7 +23,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oOw-IP-eA1">
-                            <rect key="frame" x="39" y="10" width="152" height="21"/>
+                            <rect key="frame" x="39" y="10" width="135" height="21"/>
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="mnV-Oo-NqZ"/>
@@ -63,12 +63,12 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="56a-EK-V4v">
-                            <rect key="frame" x="6" y="45" width="58" height="29"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_Vehicles" translatesAutoresizingMaskIntoConstraints="NO" id="56a-EK-V4v">
+                            <rect key="frame" x="6" y="45" width="81" height="28"/>
                             <animations/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="58" id="HIP-M4-0e6"/>
-                                <constraint firstAttribute="height" constant="29" id="hvN-ii-ey5"/>
+                                <constraint firstAttribute="width" constant="81" id="HIP-M4-0e6"/>
+                                <constraint firstAttribute="height" constant="28" id="hvN-ii-ey5"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drivers :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nN4-Qn-8Lw">
@@ -101,6 +101,13 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jf0-3a-ckx">
+                            <rect key="frame" x="6" y="48" width="26" height="21"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,15 +119,15 @@
                         <constraint firstItem="4tL-VZ-AVB" firstAttribute="leading" secondItem="ug9-NN-5br" secondAttribute="trailing" constant="2" id="Nk4-hF-yRa"/>
                         <constraint firstItem="BMT-m4-zLL" firstAttribute="top" secondItem="lkO-iG-0kH" secondAttribute="top" constant="8" id="P3H-ah-H5v"/>
                         <constraint firstItem="56a-EK-V4v" firstAttribute="top" secondItem="BMT-m4-zLL" secondAttribute="bottom" constant="12" id="RjQ-Bo-cmH"/>
-                        <constraint firstAttribute="trailing" secondItem="oOw-IP-eA1" secondAttribute="trailing" constant="5" id="SKw-6e-shd"/>
+                        <constraint firstAttribute="trailing" secondItem="oOw-IP-eA1" secondAttribute="trailing" constant="8" id="SKw-6e-shd"/>
                         <constraint firstItem="ug9-NN-5br" firstAttribute="top" secondItem="E99-uv-3x7" secondAttribute="bottom" constant="3" id="X52-HJ-Abu"/>
                         <constraint firstItem="oOw-IP-eA1" firstAttribute="top" secondItem="lkO-iG-0kH" secondAttribute="top" constant="10" id="XBR-o3-HXu"/>
                         <constraint firstItem="ug9-NN-5br" firstAttribute="leading" secondItem="lkO-iG-0kH" secondAttribute="leading" constant="8" id="XuQ-zj-JI0"/>
-                        <constraint firstItem="YL0-xo-bVY" firstAttribute="top" secondItem="56a-EK-V4v" secondAttribute="bottom" constant="7" id="Zdm-qX-fhB"/>
+                        <constraint firstItem="YL0-xo-bVY" firstAttribute="top" secondItem="56a-EK-V4v" secondAttribute="bottom" constant="8" id="Zdm-qX-fhB"/>
                         <constraint firstItem="oOw-IP-eA1" firstAttribute="leading" secondItem="BMT-m4-zLL" secondAttribute="trailing" constant="6" id="kkg-OV-HiZ"/>
                         <constraint firstItem="nN4-Qn-8Lw" firstAttribute="leading" secondItem="lkO-iG-0kH" secondAttribute="leading" constant="8" id="lFJ-HM-je3"/>
                         <constraint firstItem="kb4-bM-HRe" firstAttribute="leading" secondItem="E99-uv-3x7" secondAttribute="trailing" constant="7" id="ljG-Md-4VC"/>
-                        <constraint firstItem="nN4-Qn-8Lw" firstAttribute="top" secondItem="56a-EK-V4v" secondAttribute="bottom" constant="7" id="pit-UX-VYV"/>
+                        <constraint firstItem="nN4-Qn-8Lw" firstAttribute="top" secondItem="56a-EK-V4v" secondAttribute="bottom" constant="8" id="pit-UX-VYV"/>
                         <constraint firstItem="56a-EK-V4v" firstAttribute="leading" secondItem="lkO-iG-0kH" secondAttribute="leading" constant="6" id="qUJ-8t-ztX"/>
                         <constraint firstItem="E99-uv-3x7" firstAttribute="top" secondItem="nN4-Qn-8Lw" secondAttribute="bottom" constant="3" id="rs5-jk-7qK"/>
                         <constraint firstItem="YL0-xo-bVY" firstAttribute="leading" secondItem="nN4-Qn-8Lw" secondAttribute="trailing" constant="10" id="tyu-9y-GvV"/>
@@ -155,11 +162,11 @@
                 <constraint firstItem="Raj-th-lbS" firstAttribute="top" secondItem="eJh-Kv-y6b" secondAttribute="bottom" constant="8" id="TsR-Bw-7bJ"/>
                 <constraint firstItem="Raj-th-lbS" firstAttribute="leading" secondItem="eTV-Fv-4Na" secondAttribute="leading" constant="8" id="ZJ9-Ns-5nb"/>
                 <constraint firstAttribute="trailing" secondItem="eJh-Kv-y6b" secondAttribute="trailing" constant="8" id="a6s-ih-gkL"/>
-                <constraint firstItem="lkO-iG-0kH" firstAttribute="leading" secondItem="eTV-Fv-4Na" secondAttribute="leading" constant="2" id="cSV-XP-bCn"/>
-                <constraint firstAttribute="bottom" secondItem="lkO-iG-0kH" secondAttribute="bottom" constant="3" id="eA0-xv-39N"/>
+                <constraint firstItem="lkO-iG-0kH" firstAttribute="leading" secondItem="eTV-Fv-4Na" secondAttribute="leading" constant="9" id="cSV-XP-bCn"/>
+                <constraint firstAttribute="bottom" secondItem="lkO-iG-0kH" secondAttribute="bottom" constant="9" id="eA0-xv-39N"/>
                 <constraint firstItem="lkO-iG-0kH" firstAttribute="top" secondItem="Raj-th-lbS" secondAttribute="bottom" constant="8" id="fHZ-Kx-3yG"/>
                 <constraint firstAttribute="trailing" secondItem="Raj-th-lbS" secondAttribute="trailing" constant="8" id="ost-ed-9KG"/>
-                <constraint firstAttribute="trailing" secondItem="lkO-iG-0kH" secondAttribute="trailing" constant="2" id="saa-wJ-aPn"/>
+                <constraint firstAttribute="trailing" secondItem="lkO-iG-0kH" secondAttribute="trailing" constant="9" id="saa-wJ-aPn"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -170,6 +177,7 @@
                 <outlet property="coordinatesLabel" destination="oOw-IP-eA1" id="I0N-ip-ava"/>
                 <outlet property="driverHeader" destination="nN4-Qn-8Lw" id="Wko-4B-jlh"/>
                 <outlet property="driversLabel" destination="YL0-xo-bVY" id="Bg4-qO-PBO"/>
+                <outlet property="driversLabel2" destination="jf0-3a-ckx" id="5vv-DI-nns"/>
                 <outlet property="englishNameLabel" destination="eJh-Kv-y6b" id="MYZ-fI-0XN"/>
                 <outlet property="passengerHeader" destination="E99-uv-3x7" id="rR5-4d-WLw"/>
                 <outlet property="passengersLabel" destination="kb4-bM-HRe" id="XVd-K3-CAA"/>
@@ -179,10 +187,11 @@
                 <outletCollection property="headerLabels" destination="ug9-NN-5br" id="ecK-K1-Lde"/>
                 <outletCollection property="headerLabels" destination="nN4-Qn-8Lw" id="EEQ-TK-Bj3"/>
             </connections>
-            <point key="canvasLocation" x="299" y="272"/>
+            <point key="canvasLocation" x="299" y="275"/>
         </view>
     </objects>
     <resources>
         <image name="googleMapsIcon" width="90" height="90"/>
+        <image name="map_Vehicles" width="70" height="24"/>
     </resources>
 </document>

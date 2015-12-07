@@ -23,6 +23,7 @@
 
 @property (nonatomic ,strong) NSArray *permits ;
 @property (nonatomic ,weak)   IBOutlet UITableView *permitsList ;
+@property (nonatomic ,weak) IBOutlet UILabel *noPermits ;
 
 @end
 
@@ -39,7 +40,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = @"Permits";
+    self.title = NSLocalizedString(@"Permits", nil);
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
@@ -48,6 +49,7 @@
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
+    self.noPermits.text = NSLocalizedString(@"No permits found", nil);
     [self getPermits];
 }
 
@@ -65,6 +67,11 @@
     [[MasterDataManager sharedMasterDataManager] getPermits:[NSString stringWithFormat:@"%@",user.ID] WithSuccess:^(NSMutableArray *array) {
         
         blockSelf.permits = array;
+        if (array.count == 0) {
+            self.noPermits.hidden = NO ;
+        }else{
+            self.noPermits.hidden = YES ;
+        }
         [KVNProgress dismiss];
         [self.permitsList reloadData];
         

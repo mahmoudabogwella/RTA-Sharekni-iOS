@@ -88,6 +88,7 @@
 		14C8CB791C14D77C00AA16DF /* SelectLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C8CB7B1C14D77C00AA16DF /* SelectLocationViewController.xib */; };
 		14C8CB7F1C14F07E00AA16DF /* MapInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C8CB811C14F07E00AA16DF /* MapInfoWindow.xib */; };
 		14C8CB851C14F3BC00AA16DF /* RideDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C8CB871C14F3BC00AA16DF /* RideDetailsViewController.xib */; };
+		14C8CB8B1C15C93D00AA16DF /* CreateRideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C8CB8D1C15C93D00AA16DF /* CreateRideViewController.xib */; };
 		14D3E93A1C06A2290047F415 /* TourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3E9381C06A2290047F415 /* TourViewController.m */; };
 		14D3E93B1C06A2290047F415 /* TourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D3E9391C06A2290047F415 /* TourViewController.xib */; };
 		14D3E9491C06AD1B0047F415 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3E9481C06AD1B0047F415 /* QuartzCore.framework */; };
@@ -153,7 +154,6 @@
 		87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF7E1BB831A300E21838 /* MasterDataManager.m */; };
 		87C1AF861BB8670C00E21838 /* AgeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1AF851BB8670C00E21838 /* AgeRange.m */; };
 		87C571D21BDBB08000EFB618 /* CreateRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D01BDBB08000EFB618 /* CreateRideViewController.m */; };
-		87C571D31BDBB08000EFB618 /* CreateRideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C571D11BDBB08000EFB618 /* CreateRideViewController.xib */; };
 		87C571D61BDBCCA900EFB618 /* UIView+Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D51BDBCCA900EFB618 /* UIView+Borders.m */; };
 		87C571D91BDBD07700EFB618 /* MobVehicleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571D81BDBD07700EFB618 /* MobVehicleManager.m */; };
 		87C571DC1BDBD33F00EFB618 /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C571DB1BDBD33F00EFB618 /* Vehicle.m */; };
@@ -333,6 +333,8 @@
 		14C8CB841C14F09500AA16DF /* ar */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ar; path = ar.lproj/MapInfoWindow.xib; sourceTree = "<group>"; };
 		14C8CB861C14F3BC00AA16DF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RideDetailsViewController.xib; sourceTree = "<group>"; };
 		14C8CB8A1C14F3C400AA16DF /* ar */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ar; path = ar.lproj/RideDetailsViewController.xib; sourceTree = "<group>"; };
+		14C8CB8C1C15C93D00AA16DF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CreateRideViewController.xib; sourceTree = "<group>"; };
+		14C8CB901C15C94600AA16DF /* ar */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ar; path = ar.lproj/CreateRideViewController.xib; sourceTree = "<group>"; };
 		14D3E9371C06A2290047F415 /* TourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourViewController.h; sourceTree = "<group>"; };
 		14D3E9381C06A2290047F415 /* TourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourViewController.m; sourceTree = "<group>"; };
 		14D3E9391C06A2290047F415 /* TourViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourViewController.xib; sourceTree = "<group>"; };
@@ -448,7 +450,6 @@
 		87C1AF851BB8670C00E21838 /* AgeRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgeRange.m; sourceTree = "<group>"; };
 		87C571CF1BDBB07F00EFB618 /* CreateRideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRideViewController.h; sourceTree = "<group>"; };
 		87C571D01BDBB08000EFB618 /* CreateRideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideViewController.m; sourceTree = "<group>"; };
-		87C571D11BDBB08000EFB618 /* CreateRideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateRideViewController.xib; sourceTree = "<group>"; };
 		87C571D41BDBCCA900EFB618 /* UIView+Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Borders.h"; sourceTree = "<group>"; };
 		87C571D51BDBCCA900EFB618 /* UIView+Borders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Borders.m"; sourceTree = "<group>"; };
 		87C571D71BDBD07700EFB618 /* MobVehicleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobVehicleManager.h; sourceTree = "<group>"; };
@@ -657,7 +658,7 @@
 				87B58B5C1BD388D100E73E55 /* MapLookupViewController.xib */,
 				87C571CF1BDBB07F00EFB618 /* CreateRideViewController.h */,
 				87C571D01BDBB08000EFB618 /* CreateRideViewController.m */,
-				87C571D11BDBB08000EFB618 /* CreateRideViewController.xib */,
+				14C8CB8D1C15C93D00AA16DF /* CreateRideViewController.xib */,
 				04C3E0301BE09EF000698227 /* HomeViewController.h */,
 				04C3E0311BE09EF000698227 /* HomeViewController.m */,
 				14F251F81C132C5E00D8184E /* HomeViewController.xib */,
@@ -1052,7 +1053,7 @@
 				1425F8041BFF11A200AD086B /* VehiclesViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				140960921BFEB0C700BA3268 /* AddReviewViewController.xib in Resources */,
-				87C571D31BDBB08000EFB618 /* CreateRideViewController.xib in Resources */,
+				14C8CB8B1C15C93D00AA16DF /* CreateRideViewController.xib in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				14F251FC1C132DDC00D8184E /* SearchResultsViewController.xib in Resources */,
@@ -1299,6 +1300,15 @@
 				14C8CB8A1C14F3C400AA16DF /* ar */,
 			);
 			name = RideDetailsViewController.xib;
+			sourceTree = "<group>";
+		};
+		14C8CB8D1C15C93D00AA16DF /* CreateRideViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14C8CB8C1C15C93D00AA16DF /* en */,
+				14C8CB901C15C94600AA16DF /* ar */,
+			);
+			name = CreateRideViewController.xib;
 			sourceTree = "<group>";
 		};
 		14F251C01C11905A00D8184E /* WelcomeViewController.xib */ = {

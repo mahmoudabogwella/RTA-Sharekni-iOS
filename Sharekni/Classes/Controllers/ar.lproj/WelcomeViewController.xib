@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController">
             <connections>
                 <outlet property="bestDriversView" destination="PxC-jE-2qJ" id="AbF-Bk-esM"/>
+                <outlet property="enBtn" destination="mdX-nY-9ph" id="6Ih-NZ-Axa"/>
                 <outlet property="mostRidesView" destination="y4V-HN-rDg" id="UFz-pe-AZ1"/>
                 <outlet property="view" destination="fEs-t3-EbW" id="G27-iI-ILe"/>
             </connections>
@@ -113,24 +114,6 @@
                         <action selector="makeATour:" destination="-1" eventType="touchUpInside" id="dnK-cb-nLN"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JIY-cG-9Qa">
-                    <rect key="frame" x="51" y="74" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <animations/>
-                    <state key="normal" title="ar"/>
-                    <connections>
-                        <action selector="selectArabic:" destination="-1" eventType="touchUpInside" id="fBS-2N-oVY"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XHS-fN-Tch">
-                    <rect key="frame" x="8" y="74" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <animations/>
-                    <state key="normal" title="en"/>
-                    <connections>
-                        <action selector="selectEnglish:" destination="-1" eventType="touchUpInside" id="9J0-v2-gAc"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="تسجيل" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ak2-jM-46t">
                     <rect key="frame" x="261" y="537" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -163,6 +146,15 @@
                     <color key="textColor" red="0.90196078431372551" green="0.0" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mdX-nY-9ph">
+                    <rect key="frame" x="275" y="71" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                    <state key="normal" backgroundImage="Language_En"/>
+                    <connections>
+                        <action selector="selectEnglish:" destination="-1" eventType="touchUpInside" id="1IV-N3-nya"/>
+                    </connections>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -173,6 +165,7 @@
     </objects>
     <resources>
         <image name="Best_Driver" width="25" height="25"/>
+        <image name="Language_En" width="50" height="50"/>
         <image name="Logo" width="600" height="600"/>
         <image name="Most_Ride" width="40" height="40"/>
         <image name="login_icon" width="75" height="75"/>

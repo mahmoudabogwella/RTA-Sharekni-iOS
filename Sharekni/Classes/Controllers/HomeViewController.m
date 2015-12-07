@@ -133,7 +133,7 @@
         [self.bottomLeftView addGestureRecognizer:bottomLeftGesture];
         
         self.bottomRightIcon.image = [UIImage imageNamed:@"permit"];
-        self.bottomRightLabel.text = NSLocalizedString(@"Permit", nil);
+        self.bottomRightLabel.text = NSLocalizedString(@"Permits", nil);
         UITapGestureRecognizer *bottomRightGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(permitAction)];
         [self.bottomRightView addGestureRecognizer:bottomRightGesture];
         

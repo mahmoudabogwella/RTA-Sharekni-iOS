@@ -49,7 +49,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = @"History";
+    self.title = NSLocalizedString(@"History", nil);
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
@@ -71,6 +71,11 @@
 {
     self.createdRidesList.tag = 0 ;
     self.joinRidesList.tag = 1 ;
+    
+    createdLblName.hidden = YES ;
+    joinedLblName.hidden = YES ;
+    createdView.hidden = YES ;
+    joinedView.hidden = YES ;
     
     [createdLblName addRightBorderWithColor:Red_UIColor];
     [createdLblName addLeftBorderWithColor:Red_UIColor];
@@ -138,6 +143,23 @@
                 joinedLblName.hidden = YES ;
             }
         }
+        
+        if (self.createdRides.count == 0) {
+            createdView.hidden = YES ;
+            createdLblName.hidden = YES ;
+        }else{
+            createdView.hidden = YES ;
+            createdLblName.hidden = YES ;
+        }
+        
+        if (self.joinRides.count == 0) {
+            joinedLblName.hidden = YES ;
+            joinedView.hidden = YES ;
+        }else{
+            joinedLblName.hidden = NO ;
+            joinedView.hidden = NO ;
+        }
+        
         
     } Failure:^(NSString *error) {
         [blockSelf handleManagerFailure];

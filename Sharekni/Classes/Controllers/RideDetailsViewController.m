@@ -199,25 +199,28 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) showRideDetailsData{
+- (void) showRideDetailsData
+{
+    FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",(KIS_ARABIC)?self.routeDetails.FromEmirateArName:self.routeDetails.FromEmirateEnName,(KIS_ARABIC)?self.routeDetails.FromRegionArName:self.routeDetails.FromRegionEnName];
     
-    FromRegionName.text = [NSString stringWithFormat:@"%@ : %@",self.routeDetails.FromEmirateEnName,self.routeDetails.FromRegionEnName];
-    ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",self.routeDetails.ToEmirateEnName,self.routeDetails.ToRegionEnName];
-    startingTime.text = [NSString stringWithFormat:@"From %@ To %@",self.routeDetails.StartFromTime,self.routeDetails.EndFromTime];
-    availableDays.text = [NSString stringWithFormat:@"Ride Days : %@",[self getAvailableDays]];
+    ToRegionName.text = [NSString stringWithFormat:@"%@ : %@",(KIS_ARABIC)?self.routeDetails.ToEmirateArName:self.routeDetails.ToEmirateEnName,(KIS_ARABIC)?self.routeDetails.ToRegionArName:self.routeDetails.ToRegionEnName];
     
-    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.NationalityEnName])
+    startingTime.text = [NSString stringWithFormat:@"%@ %@ %@ %@",NSLocalizedString(@"From", nil),self.routeDetails.StartFromTime,NSLocalizedString(@"To", nil),self.routeDetails.EndFromTime];
+    
+    availableDays.text = [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Ride Days", nil),[self getAvailableDays]];
+    
+    if ([NSStringEmpty isNullOrEmpty:(KIS_ARABIC)?self.routeDetails.NationalityArName:self.routeDetails.NationalityEnName])
     {
-        nationality.text = @"Not Set";
+        nationality.text = NSLocalizedString(@"Not Set", nil);
     }
     else
     {
-        nationality.text = self.routeDetails.NationalityEnName ;
+        nationality.text = (KIS_ARABIC)?self.routeDetails.NationalityArName:self.routeDetails.NationalityEnName ;
     }
     
     if ([NSStringEmpty isNullOrEmpty:self.routeDetails.AgeRange])
     {
-        ageRange.text = @"Not Set";
+        ageRange.text = NSLocalizedString(@"Not Set", nil);
     }
     else
     {
@@ -230,13 +233,13 @@
         smoking.text = @"No";
     }
     
-    if ([NSStringEmpty isNullOrEmpty:self.routeDetails.PrefLanguageEnName])
+    if ([NSStringEmpty isNullOrEmpty:(KIS_ARABIC)?self.routeDetails.PrefLanguageArName:self.routeDetails.PrefLanguageEnName])
     {
-        language.text = @"Not Set";
+        language.text = NSLocalizedString(@"Not Set", nil);
     }
     else
     {
-        language.text = self.routeDetails.PrefLanguageEnName;
+        language.text = (KIS_ARABIC)?self.routeDetails.PrefLanguageArName:self.routeDetails.PrefLanguageEnName;
     }
     
     gender.text = self.routeDetails.PreferredGender;
@@ -404,10 +407,7 @@
         buttonFrame.origin.y = preferenceView.frame.origin.y + preferenceView.frame.size.height + VERTICAL_SPACE;
         joinRideBtn.frame = buttonFrame;
     }
-    
-//    CGRect scrollViewFrame = contentView.frame;
-//    scrollViewFrame.size.height = joinRideBtn.frame.origin.y + joinRideBtn.frame.size.height + VERTICAL_SPACE;
-//    contentView.frame = scrollViewFrame;
+
     if (self.joinedRide || self.createdRide) {
         joinRideBtn.alpha = 0;
         CGSize contentSize = contentView.contentSize ;
@@ -695,24 +695,24 @@
     self.markers = [NSMutableArray array];
         CLLocationCoordinate2D startPosition = CLLocationCoordinate2DMake(self.routeDetails.StartLat.doubleValue, self.routeDetails.StartLng.doubleValue);
         GMSMarker *startMarker = [GMSMarker markerWithPosition:startPosition];
-        MapItemView *startItem = [[MapItemView alloc] initWithLat:self.routeDetails.StartLat lng:self.routeDetails.StartLng address:self.routeDetails.FromStreetName name:self.routeDetails.FromEmirateEnName];
-        startItem.arabicName = self.routeDetails.FromRegionArName;
-        startItem.englishName = self.routeDetails.FromRegionEnName;
+    MapItemView *startItem = [[MapItemView alloc] initWithLat:self.routeDetails.StartLat lng:self.routeDetails.StartLng address:self.routeDetails.FromStreetName name:(KIS_ARABIC)?self.routeDetails.FromEmirateArName:self.routeDetails.FromEmirateEnName];
+        startItem.arabicName = (KIS_ARABIC)?self.routeDetails.FromRegionArName:self.routeDetails.FromRegionEnName;
+    startItem.englishName = (KIS_ARABIC)?self.routeDetails.FromRegionArName:self.routeDetails.FromRegionEnName;
         startItem.rides = self.routeDetails.NoOfSeats.stringValue;
         startMarker.userData = startItem;
-        startMarker.title = self.routeDetails.FromEmirateEnName;
+    startMarker.title = (KIS_ARABIC)?self.routeDetails.FromEmirateArName:self.routeDetails.FromEmirateEnName;
         startMarker.icon = [UIImage imageNamed:@"Location"];
         startMarker.map = _mapView;
         [self.markers addObject:startMarker];
     
     CLLocationCoordinate2D endPosition = CLLocationCoordinate2DMake(self.routeDetails.EndLat.doubleValue, self.routeDetails.EndLng.doubleValue);
     GMSMarker *endMarker = [GMSMarker markerWithPosition:endPosition];
-    MapItemView *endItem = [[MapItemView alloc] initWithLat:self.routeDetails.EndLat lng:self.routeDetails.EndLng address:self.routeDetails.ToStreetName name:self.routeDetails.ToEmirateEnName];
-    endItem.arabicName = self.routeDetails.ToRegionArName;
-    endItem.englishName = self.routeDetails.ToRegionEnName;
+    MapItemView *endItem = [[MapItemView alloc] initWithLat:self.routeDetails.EndLat lng:self.routeDetails.EndLng address:self.routeDetails.ToStreetName name:(KIS_ARABIC)?self.routeDetails.ToEmirateArName:self.routeDetails.ToEmirateEnName];
+    endItem.arabicName = (KIS_ARABIC)?self.routeDetails.ToRegionArName:self.routeDetails.ToRegionEnName;
+    endItem.englishName = (KIS_ARABIC)?self.routeDetails.ToRegionArName:self.routeDetails.ToRegionEnName;
     endItem.rides = self.routeDetails.NoOfSeats.stringValue;
     endMarker.userData = endItem;
-    endMarker.title = self.routeDetails.ToEmirateEnName;
+    endMarker.title = (KIS_ARABIC)?self.routeDetails.ToEmirateArName:self.routeDetails.ToEmirateEnName;
     endMarker.icon = [UIImage imageNamed:@"Location"];
     endMarker.map = _mapView;
     [self.markers addObject:endMarker];

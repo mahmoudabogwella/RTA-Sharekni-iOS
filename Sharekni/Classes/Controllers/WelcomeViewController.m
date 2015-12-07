@@ -18,8 +18,14 @@
 #import "Constants.h"
 
 @interface WelcomeViewController ()
+{
+    NSArray* language ;
+}
 @property (weak, nonatomic) IBOutlet UIView *mostRidesView;
 @property (weak, nonatomic) IBOutlet UIView *bestDriversView;
+
+@property (weak, nonatomic) IBOutlet UIButton *enBtn;
+@property (weak, nonatomic) IBOutlet UIButton *arBtn;
 
 @end
 
@@ -46,6 +52,14 @@
     
     self.navigationController.navigationBar.translucent = YES;
     
+    language = [NSArray new];
+    
+//    if (KIS_ARABIC) {
+//        self.arBtn.hidden = YES ;
+//    }else{
+//        self.enBtn.hidden = YES ;
+//    }
+
     self.bestDriversView.layer.cornerRadius = 10;
     self.bestDriversView.layer.borderWidth = 1.5;
     self.bestDriversView.layer.borderColor = Red_UIColor.CGColor;
@@ -103,10 +117,8 @@
 {
     if (KIS_SYS_LANGUAGE_ARABIC)
     {
-        NSArray* language = [NSArray arrayWithObject:@"en"];
-        [KUSER_DEFAULTS setObject:@"en" forKey:KUSER_LANGUAGE_KEY];
-        [KUSER_DEFAULTS synchronize];
-        [self updateUser:language];
+        language = [NSArray arrayWithObject:@"en"];
+        [self userDidFinishSelectingLanguage];
     }
 }
 
@@ -114,15 +126,38 @@
 {
     if (!KIS_SYS_LANGUAGE_ARABIC)
     {
-        [KUSER_DEFAULTS setObject:@"ar" forKey:KUSER_LANGUAGE_KEY];
-        [KUSER_DEFAULTS synchronize];
-        NSArray* language = [NSArray arrayWithObject:@"ar"];
-        [self updateUser:language];
+        language = [NSArray arrayWithObject:@"ar"];
+        [self userDidFinishSelectingLanguage];
+    }
+}
+
+-(void) userDidFinishSelectingLanguage {
+    UIAlertView * al = [[UIAlertView alloc] initWithTitle:nil
+                                                  message:NSLocalizedString(@"App needs restart", nil)
+                                                 delegate:self
+                                        cancelButtonTitle:NSLocalizedString(@"No", nil)
+                                        otherButtonTitles: NSLocalizedString(@"Restart", nil), nil];
+    [al show];
+}
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        
+       [self updateUser:language];
     }
 }
 
 - (void)updateUser:(NSArray *)lang
 {
+    if ([lang[0] isEqualToString:@"ar"]) {
+        [KUSER_DEFAULTS setObject:@"ar"
+                           forKey:KUSER_LANGUAGE_KEY];
+        [KUSER_DEFAULTS synchronize];
+    }else{
+        [KUSER_DEFAULTS setObject:@"en"
+                           forKey:KUSER_LANGUAGE_KEY];
+        [KUSER_DEFAULTS synchronize];
+    }
     [KUSER_DEFAULTS setObject:lang forKey:@"AppleLanguages"];
     [KUSER_DEFAULTS synchronize];
     exit(0);

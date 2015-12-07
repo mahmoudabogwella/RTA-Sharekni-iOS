@@ -35,7 +35,7 @@
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-//    sleep(1);
+    sleep(1);
     [self configureAppearance];
     self.window.rootViewController = self.splashNavigationController;
     [self.window makeKeyAndVisible];

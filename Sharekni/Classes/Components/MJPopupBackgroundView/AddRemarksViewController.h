@@ -21,6 +21,10 @@
 @property (nonatomic ,strong) DriverDetails *driverDetails;
 @property (nonatomic ,strong) NSString *accountID ;
 
+@property (weak, nonatomic) IBOutlet UILabel *headerTitle;
+@property (weak, nonatomic) IBOutlet UILabel *headerTitle2;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
+
 @end
 
 

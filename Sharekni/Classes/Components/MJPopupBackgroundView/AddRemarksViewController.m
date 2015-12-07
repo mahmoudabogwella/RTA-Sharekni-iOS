@@ -24,6 +24,10 @@
     
     [viewText becomeFirstResponder];
     viewText.text = NSLocalizedString(@"I’d like to join your ride", nil);
+    viewText.textAlignment = NSTextAlignmentNatural ;
+    [self.headerTitle setText:NSLocalizedString(@"Write Your Remarks", nil)];
+    [self.headerTitle2 setText:NSLocalizedString(@"Your Remarks", nil)];
+    [self.submitBtn setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
 }
 
 - (void)HideKeyboard
@@ -34,7 +38,7 @@
 - (IBAction)closePopup:(id)sender
 {
     if (viewText.text.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warining" message:@"You must write your remark first" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attention", nil) message:NSLocalizedString(@"You must write your remark first", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
         [alert show];
         return ;
     }

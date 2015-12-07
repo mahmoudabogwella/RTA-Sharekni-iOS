@@ -167,7 +167,7 @@
 #pragma mark - Event Handler
 - (IBAction)submit:(id)sender
 {
-    [KVNProgress showWithStatus:@"Loading.."];
+    [KVNProgress showWithStatus:@"Loading..."];
     
     User *sharedUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
 

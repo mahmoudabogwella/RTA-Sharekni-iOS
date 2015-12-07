@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *arabicNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *coordinatesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *driversLabel;
+@property (weak, nonatomic) IBOutlet UILabel *driversLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *passengersLabel;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 
@@ -44,8 +45,8 @@
 
 - (void)configureUI
 {
-    self.layer.cornerRadius = 3.0f;
-    
+    self.layer.cornerRadius = 15.0f;
+ 
     self.driverHeader.text = NSLocalizedString(@"Drivers :", nil);
     self.passengerHeader.text = NSLocalizedString(@"Passengers :", nil);
     self.ridesHeader.text = NSLocalizedString(@"Coming Rides :", nil);
@@ -56,10 +57,14 @@
         self.arabicNameLabel.text = self.arabicName;
         self.englishNameLabel.text = self.englishName;
         self.driversLabel.text = self.driversCount;
+        self.driversLabel2.text = self.driversCount;
         self.coordinatesLabel.text = [NSString stringWithFormat:@"%@ , %@",self.lat,self.lng];
         self.time.text = self.comingRides;
         self.passengersLabel.text = self.passengers;
-        self.containerView.layer.cornerRadius = 5;
+        self.containerView.layer.cornerRadius = 7;
+    self.containerView.layer.borderWidth = 2 ;
+    self.containerView.layer.borderColor = [[UIColor whiteColor] CGColor];
+    
 }
 
 @end
