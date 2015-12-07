@@ -24,7 +24,7 @@
 #import "MLPAutoCompleteTextField.h"
 #import <REFrostedViewController.h>
 #import "SideMenuTableViewController.h"
-
+#import "UploadImageManager.h"
 @interface RegisterViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate,REFrostedViewControllerDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *privacyButton;
@@ -154,6 +154,14 @@
     
     self.maleLabel.textColor = Red_UIColor;
     self.femaleLabel.textColor = [UIColor darkGrayColor];
+    self.maleLabel.userInteractionEnabled = YES;
+    self.femaleLabel.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *maleGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(maleTapped)];
+    [self.maleLabel addGestureRecognizer:maleGesture];
+    
+    UITapGestureRecognizer *femaleGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(femaleTapped)];
+    [self.femaleLabel addGestureRecognizer:femaleGesture];
     
     [self.container setContentSize:self.container.frame.size];
 
@@ -174,6 +182,21 @@
     self.dateLabel.textColor = Red_UIColor;
     
     [self configureProfileImageView];
+}
+
+- (void) femaleTapped{
+
+    self.isMale = NO;
+    self.switchBtn.selected = YES ;
+    self.maleLabel.textColor =  [UIColor darkGrayColor];
+    self.femaleLabel.textColor = Red_UIColor;
+}
+
+- (void) maleTapped{
+    self.switchBtn.selected = NO ;
+    self.maleLabel.textColor = Red_UIColor;
+    self.femaleLabel.textColor = [UIColor darkGrayColor];
+    self.isMale = YES;
 }
 
 - (void) configrueNationalityAutoCompelete{
@@ -460,11 +483,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     if (validNationality){
         self.selectedNationality = [self.nationalties objectAtIndex:[self.nationaltiesStringsArray indexOfObject:self.nationalityTxt.text]];
     }
-    else{
-        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose a valid nationality.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
-        [alertView show];
-        return;
-    }
     
     if(self.accountType == AccountTypeNone){
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose acconut type.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
@@ -495,23 +513,30 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [alertView show];
         self.date = nil;
         [self configureBorders];
-    }else{
+    }
+    else if (!validNationality){
+        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:NSLocalizedString(@"Please Choose a valid nationality.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+        [alertView show];
+    }
+    else{
         if (self.profileImage) {
-                [[MobAccountManager sharedMobAccountManager] uploadPhoto:self.profileImage withSuccess:^(NSString *fileName) {
-                    if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
-                        [self registerDriverWithPhotoName:fileName];
-                    }
-                    else if (self.accountType == AccountTypePassenger){
-                        [self registerPassengerWithPhotoName:fileName];
-                    }
-                } Failure:^(NSString *error) {
-                    if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
-                        [self registerDriverWithPhotoName:@""];
-                    }
-                    else if (self.accountType == AccountTypePassenger){
-                        [self registerPassengerWithPhotoName:@""];
-                    }
-                }];
+            
+            UploadImageManager *imageManager = [[UploadImageManager alloc] initWithImage:self.profileImage Success:^(NSString *fileName) {
+                if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
+                    [self registerDriverWithPhotoName:fileName];
+                }
+                else if (self.accountType == AccountTypePassenger){
+                    [self registerPassengerWithPhotoName:fileName];
+                }
+            } Failure:^(NSString *error) {
+                if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
+                    [self registerDriverWithPhotoName:@""];
+                }
+                else if (self.accountType == AccountTypePassenger){
+                    [self registerPassengerWithPhotoName:@""];
+                }
+            }];
+            [imageManager uploadPhoto];
         }
         else{
             if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
@@ -528,14 +553,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     self.dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [self.dateFormatter stringFromDate:self.date];
     [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
-    [[MobAccountManager sharedMobAccountManager] registerDriverWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
-        if (self.profileImage) {
-            [[MobAccountManager sharedMobAccountManager] uploadPhoto:self.profileImage withSuccess:^(NSString *fileName) {
-                
-            } Failure:^(NSString *error) {
-                
-            }];
-        }
+    [[MobAccountManager sharedMobAccountManager] registerDriverWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:photoName birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
         [KVNProgress dismiss];
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registration done successfully",nil)];
         [self loginAfterRegisteration];

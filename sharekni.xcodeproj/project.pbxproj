@@ -140,6 +140,8 @@
 		8787E1EF1BF74EBC00CCD53B /* SharekniWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8787E1ED1BF74EBC00CCD53B /* SharekniWebViewController.xib */; };
 		8787E1F21BF7534100CCD53B /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = 8787E1F01BF7534100CCD53B /* policy.html */; };
 		8787E1F31BF7534100CCD53B /* terms_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 8787E1F11BF7534100CCD53B /* terms_en.html */; };
+		879AA9CA1C151E7F005466F5 /* terms_condition_Ar.html in Resources */ = {isa = PBXBuildFile; fileRef = 879AA9C91C151E7F005466F5 /* terms_condition_Ar.html */; };
+		879AA9CC1C151E95005466F5 /* privacyPolicy_ar.html in Resources */ = {isa = PBXBuildFile; fileRef = 879AA9CB1C151E95005466F5 /* privacyPolicy_ar.html */; };
 		87A1133B1BB6FB370092E870 /* MobAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A1133A1BB6FB370092E870 /* MobAccountManager.m */; };
 		87B58B561BD36F7900E73E55 /* MostRideDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B551BD36F7900E73E55 /* MostRideDetails.m */; };
 		87B58B591BD3842800E73E55 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B58B581BD3842800E73E55 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -164,7 +166,7 @@
 		87E5F7641BFB68DE004FF688 /* RidesJoinedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E5F7621BFB68DE004FF688 /* RidesJoinedViewController.xib */; };
 		87E5F7681BFB6914004FF688 /* RidesCreatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5F7661BFB6914004FF688 /* RidesCreatedViewController.m */; };
 		87E5F7691BFB6914004FF688 /* RidesCreatedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */; };
-		87ED1B331C1221EF00EB58EB /* SoapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED1B321C1221EF00EB58EB /* SoapManager.m */; };
+		87ED1B331C1221EF00EB58EB /* UploadImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87ED1B321C1221EF00EB58EB /* UploadImageManager.m */; };
 		87FFDDAE1BFD65040031CE61 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FFDDAD1BFD65030031CE61 /* MapKit.framework */; };
 		87FFDDB11BFD6A570031CE61 /* RouteDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FFDDB01BFD6A570031CE61 /* RouteDetails.m */; };
 		F0111D2A36E3A2CF7875CF72 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E520A66E22BABE4DD7235 /* libPods.a */; };
@@ -420,6 +422,8 @@
 		8787E1ED1BF74EBC00CCD53B /* SharekniWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SharekniWebViewController.xib; sourceTree = "<group>"; };
 		8787E1F01BF7534100CCD53B /* policy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = policy.html; sourceTree = "<group>"; };
 		8787E1F11BF7534100CCD53B /* terms_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms_en.html; sourceTree = "<group>"; };
+		879AA9C91C151E7F005466F5 /* terms_condition_Ar.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms_condition_Ar.html; sourceTree = "<group>"; };
+		879AA9CB1C151E95005466F5 /* privacyPolicy_ar.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacyPolicy_ar.html; sourceTree = "<group>"; };
 		87A113381BB6FAC70092E870 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		87A113391BB6FB370092E870 /* MobAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobAccountManager.h; sourceTree = "<group>"; };
 		87A1133A1BB6FB370092E870 /* MobAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobAccountManager.m; sourceTree = "<group>"; };
@@ -463,8 +467,8 @@
 		87E5F7651BFB6914004FF688 /* RidesCreatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesCreatedViewController.h; sourceTree = "<group>"; };
 		87E5F7661BFB6914004FF688 /* RidesCreatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RidesCreatedViewController.m; sourceTree = "<group>"; };
 		87E5F7671BFB6914004FF688 /* RidesCreatedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RidesCreatedViewController.xib; sourceTree = "<group>"; };
-		87ED1B311C1221EF00EB58EB /* SoapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapManager.h; sourceTree = "<group>"; };
-		87ED1B321C1221EF00EB58EB /* SoapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapManager.m; sourceTree = "<group>"; };
+		87ED1B311C1221EF00EB58EB /* UploadImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageManager.h; sourceTree = "<group>"; };
+		87ED1B321C1221EF00EB58EB /* UploadImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageManager.m; sourceTree = "<group>"; };
 		87FFDDAD1BFD65030031CE61 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		87FFDDAF1BFD6A570031CE61 /* RouteDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteDetails.h; sourceTree = "<group>"; };
 		87FFDDB01BFD6A570031CE61 /* RouteDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteDetails.m; sourceTree = "<group>"; };
@@ -542,6 +546,8 @@
 		04931B1D1BAAF814000F5434 /* Sharekni */ = {
 			isa = PBXGroup;
 			children = (
+				879AA9CB1C151E95005466F5 /* privacyPolicy_ar.html */,
+				879AA9C91C151E7F005466F5 /* terms_condition_Ar.html */,
 				8787E1F01BF7534100CCD53B /* policy.html */,
 				8787E1F11BF7534100CCD53B /* terms_en.html */,
 				143BE6A71BB14BD2009F6496 /* Classes */,
@@ -809,8 +815,8 @@
 				87C571D81BDBD07700EFB618 /* MobVehicleManager.m */,
 				140960861BFEACC100BA3268 /* NSStringEmpty.h */,
 				140960871BFEACC100BA3268 /* NSStringEmpty.m */,
-				87ED1B311C1221EF00EB58EB /* SoapManager.h */,
-				87ED1B321C1221EF00EB58EB /* SoapManager.m */,
+				87ED1B311C1221EF00EB58EB /* UploadImageManager.h */,
+				87ED1B321C1221EF00EB58EB /* UploadImageManager.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1036,6 +1042,7 @@
 				14C8CB781C1448C000AA16DF /* BestDriversViewController.xib in Resources */,
 				144869FB1BC0968E00804C26 /* QuickSearchViewController.xib in Resources */,
 				14F251C21C11905A00D8184E /* WelcomeViewController.xib in Resources */,
+				879AA9CC1C151E95005466F5 /* privacyPolicy_ar.html in Resources */,
 				14C8CB851C14F3BC00AA16DF /* RideDetailsViewController.xib in Resources */,
 				14F2520E1C1339F900D8184E /* MostRideDetailsViewController.xib in Resources */,
 				14E5D7B91C0270E80089054A /* PermitsViewController.xib in Resources */,
@@ -1068,6 +1075,7 @@
 				1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */,
 				14F251D21C1232CC00D8184E /* SearchViewController.xib in Resources */,
 				14C8CB761C14483900AA16DF /* BestDriverCell.xib in Resources */,
+				879AA9CA1C151E7F005466F5 /* terms_condition_Ar.html in Resources */,
 				14D3E9631C06C5530047F415 /* iOS_2.jpg in Resources */,
 				14F251CC1C122EBD00D8184E /* RegisterViewController.xib in Resources */,
 			);
@@ -1142,7 +1150,7 @@
 				87C571D91BDBD07700EFB618 /* MobVehicleManager.m in Sources */,
 				047E45501BC0960F000B5151 /* SearchViewController.m in Sources */,
 				873E4C611BED30E4006C42F8 /* MapInfoWindow.m in Sources */,
-				87ED1B331C1221EF00EB58EB /* SoapManager.m in Sources */,
+				87ED1B331C1221EF00EB58EB /* UploadImageManager.m in Sources */,
 				14C3F39F1C029A8300CEF11C /* RideHistoryCell.m in Sources */,
 				048912AD1BB926A6005E4E02 /* Region.m in Sources */,
 				873E7BF51C12C8C100B9A68D /* RZDBTransforms.m in Sources */,

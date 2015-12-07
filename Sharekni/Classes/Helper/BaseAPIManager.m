@@ -92,42 +92,6 @@
     }
 }
 
-- (void) uploadPhoto:(UIImage *)image withSuccess:(void (^)(NSString *fileName))success
-                  Failure:(void (^)(NSString *error))failure{
-    if(!image){
-        failure(@"No Image ");
-    }
-    else{
-        NSString *imageString = [self stringFromImage:image];
-        NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/UploadImage?ImageContent=%@&ImageContent=%@&imageExtenstion=png",imageString,imageString];
-        [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            NSLog(@"Image Uploaded YES");
-            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            responseString = [self jsonStringFromResponse:responseString];
-            
-        } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-            NSLog(@"Image Uploaded NO");
-        }];
-    }
-}
-
-- (NSString *) stringFromImage:(UIImage *)image{
-    NSData* data = UIImageJPEGRepresentation(image, 0.0f);
-    NSString *strEncoded = [Base64 encode:data];
-    return strEncoded;
-}
-
-- (NSString*)encodeStringTo64:(NSString*)fromString
-{
-    NSData *plainData = [fromString dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *base64String;
-    if ([plainData respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
-        base64String = [plainData base64EncodedStringWithOptions:kNilOptions];  // iOS 7+
-    } else {
-        base64String = [plainData base64Encoding];                              // pre iOS7
-    }
-    return base64String;
-}
 
 
 

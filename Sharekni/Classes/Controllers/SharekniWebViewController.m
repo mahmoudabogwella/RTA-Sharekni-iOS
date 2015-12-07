@@ -27,7 +27,12 @@
 
 - (void) configureUI{
     self.navigationController.navigationBar.translucent = YES;
-    
+    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
+    [_backBtn setHighlighted:NO];
+    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     if (self.type == WebViewTermsAndConditionsType) {
     self.navigationItem.title = self.type == WebViewPrivacyType ? NSLocalizedString(@"Policy",nil) : NSLocalizedString(@"Terms And Conditions",nil);
         [self.acceptButton setBackgroundColor:Red_UIColor];
@@ -41,7 +46,16 @@
         self.webView.frame = webViewFrame;
         self.acceptButton.alpha = 0;
     }
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:self.type == WebViewPrivacyType ? @"policy" : @"terms_en" ofType:@"html"]isDirectory:NO]]];
+    
+    NSString *resourceName;
+    if (self.type == WebViewPrivacyType) {
+        resourceName = (KIS_ARABIC) ? @"privacyPolicy_ar" : @"policy";
+    }
+    else{
+        resourceName = (KIS_ARABIC) ? @"terms_condition_Ar" : @"terms_en";
+    }
+    
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:resourceName ofType:@"html"]isDirectory:NO]]];
     self.webView.backgroundColor = [UIColor clearColor];
     self.webView.delegate = self;
 }
@@ -51,7 +65,6 @@
     KVNProgressConfiguration *progressConfiguration = [KVNProgress configuration];
     progressConfiguration.fullScreen = NO;
     [KVNProgress setConfiguration:progressConfiguration];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -60,29 +73,32 @@
     progressConfiguration.fullScreen = NO;
     [KVNProgress setConfiguration:progressConfiguration];
 }
+
 - (IBAction)acceptAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
-    
+}
 
-    
+- (void) popViewController{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
     return YES;
 }
+
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     
 }
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [KVNProgress dismiss];
     
 }
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error{
     [KVNProgress dismiss];
 }
-
-
 
 /*
 #pragma mark - Navigation
