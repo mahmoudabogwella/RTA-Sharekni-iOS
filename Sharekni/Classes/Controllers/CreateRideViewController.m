@@ -425,7 +425,12 @@
 }
 
 - (IBAction) setDirectionAction:(id)sender {
-    [self showLocationPicker];
+    if(self.isEdit){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"directions can't be edited .", nil)];
+    }
+    else{
+        [self showLocationPicker];
+    }
 }
 
 - (IBAction) selectLanguageAction:(id)sender {
