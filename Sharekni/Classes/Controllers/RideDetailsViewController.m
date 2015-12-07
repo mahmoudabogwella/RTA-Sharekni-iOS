@@ -108,6 +108,7 @@
     
     [preferenceLbl addRightBorderWithColor:Red_UIColor];
     [preferenceLbl addLeftBorderWithColor:Red_UIColor];
+//    preferenceLbl.layer.
     [preferenceLbl setTextColor:Red_UIColor];
     
     [reviewLbl addRightBorderWithColor:Red_UIColor];
@@ -681,7 +682,13 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:24.4667
                                                             longitude:54.3667
                                                                  zoom:15];
-    CGRect frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, self.view.frame.size.width, 280);
+    
+    CGRect frame ;
+    if (IS_IPHONE_6) {
+        frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, 375.0f, 280);
+    }else if (IS_IPHONE_6P){
+        frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, 414.0f, 280);
+    }
     _mapView = [GMSMapView mapWithFrame:frame camera:camera];
     _mapView.myLocationEnabled = YES;
     _mapView.delegate = self;

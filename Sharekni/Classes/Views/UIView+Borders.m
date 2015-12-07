@@ -16,6 +16,7 @@
     rightBorder.frame = CGRectMake(CGRectGetWidth(self.frame), 0, 1, CGRectGetHeight(self.frame));
     [self.layer addSublayer:rightBorder];
 }
+
 - (void)addLeftBorderWithColor:(UIColor *)color{
     CALayer *leftBorder = [CALayer layer];
     leftBorder.backgroundColor = [color CGColor];

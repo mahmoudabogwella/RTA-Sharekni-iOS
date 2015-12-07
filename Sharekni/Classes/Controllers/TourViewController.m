@@ -8,11 +8,16 @@
 
 #import "TourViewController.h"
 #import "PHPageScrollView.h"
+#import "KCHorizontalScroller.h"
+#import "Constants.h"
+#import "Tour.h"
+#import "PageView.h"
 
-@interface TourViewController () <PHPageScrollViewDataSource, PHPageScrollViewDelegate>
-
-@property (weak, nonatomic) IBOutlet PHPageScrollView *pageScrollView;
-
+@interface TourViewController () <KCHorizontalScrollerDataSource ,KCHorizontalScrollerDelegate>
+{
+    NSArray *allImages;
+    KCHorizontalScroller *scroller ;
+}
 @end
 
 @implementation TourViewController
@@ -20,47 +25,60 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.pageScrollView.delegate = self;
-    self.pageScrollView.dataSource = self;
-    [self.pageScrollView reloadData];
+    
+    self.title = NSLocalizedString(@"Take a tour", nil);
+    
+    allImages = [[Tour getInstance] getTourImages];
+
+    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(0, 0, 22, 22);
+    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+    [_backBtn setHighlighted:NO];
+    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    
+    [self setScrollUserGuide];
 }
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    self.navigationController.navigationBar.translucent = YES;
-//}
-
-#pragma mark -
-
-- (NSInteger)numberOfPageInPageScrollView:(PHPageScrollView*)pageScrollView
+- (void)popViewController
 {
-    return 6;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (CGSize)sizeCellForPageScrollView:(PHPageScrollView*)pageScrollView
+- (void)setScrollUserGuide
 {
-    return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+    scroller = [[KCHorizontalScroller alloc] initWithFrame:CGRectMake(0,0,375,667)];
+    scroller.dataSource = self ;
+    scroller.delegate = self ;
+    scroller.scrollWidth = 375;
+    [self.view addSubview:scroller];
 }
 
-- (UIView*)pageScrollView:(PHPageScrollView*)pageScrollView viewForRowAtIndex:(int)index
-{
-    UIView * view = [[UIView alloc] initWithFrame:self.view.frame];
-    UIImageView *image = [[UIImageView alloc] initWithFrame:view.frame];
-    image.image = [UIImage imageNamed:[NSString stringWithFormat:@"iOS_%d.jpg",index]];
-    [view addSubview:image];
-    return view;
-}
 
-- (void)pageScrollView:(PHPageScrollView*)pageScrollView didScrollToPageAtIndex:(NSInteger)index
+#pragma mark - KCHorizontalScrollerDelegate
+- (void) horizontalScrollerDidScrollView:(float)fractional
 {
     
 }
 
-- (void)pageScrollView:(PHPageScrollView *)pageScrollView didTapPageAtIndex:(NSInteger)index
+- (void)horizontalScroller:(KCHorizontalScroller *)scroller clickedViewAtIndex:(int)index
 {
-    
+    NSLog(@"index %d",index);
 }
+
+#pragma mark - KCHorizontalScrollerDataSource
+- (NSInteger)numberOfViewsForHorizontalScroller:(KCHorizontalScroller*)scroller
+{
+    return allImages.count;
+}
+
+- (UIView *)horizontalScroller:(KCHorizontalScroller*)scroller viewAtIndex:(int)index
+{
+    Tour *tourObj = [allImages objectAtIndex:index];
+    return [[PageView alloc] initWithFrame:CGRectMake(0,0,375,667-64) tour:tourObj];
+}
+
+
 
 /*
 #pragma mark - Navigation

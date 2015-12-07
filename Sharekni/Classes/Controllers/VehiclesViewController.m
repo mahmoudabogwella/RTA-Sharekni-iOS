@@ -22,6 +22,8 @@
 #import "UIView+Borders.h"
 #import "VehicleViewCell.h"
 #import "Vehicle.h"
+#import <UIViewController+REFrostedViewController.h>
+#import <REFrostedViewController.h>
 
 @interface VehiclesViewController () <UITableViewDataSource ,UITableViewDelegate>
 {
@@ -59,14 +61,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = @"Register Vehicles";
+    self.title = NSLocalizedString(@"Vehicles", nil);
     
-    UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
-    [_backBtn setHighlighted:NO];
-    [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    if (self.enableBackButton) {
+        UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backBtn.frame = CGRectMake(0, 0, 22, 22);
+        [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+        [_backBtn setHighlighted:NO];
+        [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
+    }
+    else {
+        UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(menuItemTapped)];
+        self.navigationItem.leftBarButtonItem = menuItem;
+    }
     
     if ([[NSUserDefaults standardUserDefaults] valueForKey:@"TrafficFileNo"] != nil || [[[MobAccountManager sharedMobAccountManager] applicationUser] DriverTrafficFileNo].length != 0) {
         self.vehiclesView.hidden = YES ;
@@ -92,6 +100,11 @@
         
         [self configureUI];
     }
+}
+
+- (void) menuItemTapped
+{
+    [self.frostedViewController presentMenuViewController];
 }
 
 - (void) popViewController
