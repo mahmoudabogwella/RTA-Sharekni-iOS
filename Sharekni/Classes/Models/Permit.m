@@ -18,6 +18,7 @@
     mapping[@"IssueDate"] = @"IssueDate";
     mapping[@"ExpireDate"] = @"ExpireDate";
     mapping[@"MaxPassengers"] = @"MaxPassengers";
+    mapping[@"CurrentPassengers"] = @"CurrentPassengers";
     mapping[@"Remarks"] = @"Remarks";
     mapping[@"DriverId"] = @"DriverId";
     mapping[@"RouteId"] = @"RouteId";

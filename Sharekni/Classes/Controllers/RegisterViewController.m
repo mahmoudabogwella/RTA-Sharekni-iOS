@@ -646,9 +646,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     [[MobAccountManager sharedMobAccountManager] checkLoginWithUserName:self.userName andPassword:self.password WithSuccess:^(User *user) {
         [KVNProgress dismiss];
         if (user) {
-//            HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
-//            //                CreateRideViewController  *createRideViewController = [[CreateRideViewController alloc] initWithNibName:@"CreateRideViewController" bundle:nil];
-            [self.navigationController pushViewController:[self homeViewController] animated:YES];
+            [self presentViewController:[self homeViewController] animated:YES completion:nil];
         }
     } Failure:^(NSString *error) {
         [KVNProgress dismiss];

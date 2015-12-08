@@ -34,27 +34,29 @@
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
    
-//    if (self.type == WebViewTermsAndConditionsType) {
+    if (self.type == WebViewTermsAndConditionsType) {
   
         self.navigationItem.title = self.type == WebViewPrivacyType ? NSLocalizedString(@"Policy",nil) : NSLocalizedString(@"Terms And Conditions",nil);
         [self.acceptButton setBackgroundColor:Red_UIColor];
         NSString *acceptTitle = self.type == WebViewPrivacyType ? NSLocalizedString(@"Accept", nil) :NSLocalizedString(@"Accept", nil);
         [self.acceptButton setTitle:acceptTitle forState:UIControlStateNormal];
-//    }
-//    else{
+    }
+    else{
         CGRect webViewFrame = self.webView.frame;
         CGRect buttonFrame = self.acceptButton.frame;
         webViewFrame.size.height += buttonFrame.size.height;
         self.webView.frame = webViewFrame;
         self.acceptButton.alpha = 0;
-//    }
+    }
     
     NSString *resourceName;
     if (self.type == WebViewPrivacyType) {
         resourceName = (KIS_ARABIC) ? @"privacyPolicy_ar" : @"policy";
+        self.navigationItem.title = NSLocalizedString(@"Policy",nil) ;
     }
     else{
         resourceName = (KIS_ARABIC) ? @"terms_condition_Ar" : @"terms_en";
+        self.navigationItem.title = NSLocalizedString(@"Terms And Conditions",nil);
     }
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:resourceName ofType:@"html"]isDirectory:NO]]];

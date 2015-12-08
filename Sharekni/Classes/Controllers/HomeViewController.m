@@ -25,8 +25,11 @@
 #import "PermitsViewController.h"
 #import "HistoryViewController.h"
 #import "VehiclesViewController.h"
+#import "HelpManager.h"
+#import "VerifyMobileViewController.h"
+#import "UIViewController+MJPopupViewController.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () <VerifyMobilePopupDelegate>
 
 #pragma Outlets
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
@@ -63,6 +66,10 @@
 @property (weak, nonatomic) IBOutlet UIView *ridesJoinedView;
 
 @property (weak, nonatomic) IBOutlet UIView *vehiclesView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *verifiedImgOne;
+@property (weak, nonatomic) IBOutlet UIImageView *verifiedImgTwo;
+@property (weak, nonatomic) IBOutlet UIButton *verifyBtn;
 
 
 @property (nonatomic,strong) User *sharedUser;
@@ -183,17 +190,28 @@
 
     self.nationalityLabel.text = (KIS_ARABIC)?self.sharedUser.NationalityArName:self.sharedUser.NationalityEnName;
     
-    if (self.sharedUser.AccountRating) {
-        self.ratingLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.AccountRating];
-    }else{
-        self.ratingLabel.text = @"0";
-    }
+//    if (self.sharedUser.AccountRating) {
+//        self.ratingLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.AccountRating];
+//    }else{
+//        self.ratingLabel.text = @"0";
+//    }
     
     self.emailLabel.text = self.sharedUser.Username;
-    self.mobileNumberLabel.text = [NSString stringWithFormat:@"%@ %@",self.sharedUser.Mobile,self.sharedUser.IsMobileVerified.boolValue ? @"Verfied" : @"Verfiy"];
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(verfiyMobileAction)];
-    [self.mobileNumberLabel addGestureRecognizer:tapGestureRecognizer];
-
+    self.mobileNumberLabel.text = [NSString stringWithFormat:@"%@",self.sharedUser.Mobile];
+    if ([self.sharedUser.IsPhotoVerified boolValue])
+    {
+        self.verifiedImgOne.hidden = NO ;
+    }
+    
+    if ([self.sharedUser.IsMobileVerified boolValue])
+    {
+        self.verifiedImgTwo.hidden = NO ;
+        self.verifyBtn.hidden = YES ;
+    }else{
+        self.verifiedImgTwo.hidden = YES ;
+        self.verifyBtn.hidden = NO ;
+    }
+    
     NSString *ridesCreatedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Created", nil),self.sharedUser.DriverMyRidesCount];
     NSString *ridesJoinedText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Rides Joined", nil),self.sharedUser.PassengerJoinedRidesCount];
     NSString *vehiclesCountText = [NSString stringWithFormat:@"%@ (%@)",NSLocalizedString(@"Vehicles", nil),self.sharedUser.VehiclesCount.stringValue];
@@ -211,8 +229,35 @@
     self.vehiclesLabel.text = vehiclesCountText;
 }
 
-- (void) verfiyMobileAction{
-    
+- (IBAction) verfiyMobileAction:(id)sender
+{
+    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+
+    [[MobAccountManager sharedMobAccountManager] verifyMobileNumber:[NSString stringWithFormat:@"%@",self.sharedUser.ID] WithSuccess:^(NSString *user)
+    {
+        [KVNProgress dismiss];
+
+        if ([user containsString:@"1"]) {
+            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Mobile verification code has been sent to your mobile", nil)];
+            
+            VerifyMobileViewController *verifyView = [[VerifyMobileViewController alloc] initWithNibName:@"VerifyMobileViewController" bundle:nil];
+            
+            verifyView.accountID = [NSString stringWithFormat:@"%@",self.sharedUser.ID] ;
+            verifyView.delegate = self;
+            [self presentPopupViewController:verifyView animationType:MJPopupViewAnimationSlideBottomBottom];
+            
+        }else{
+            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please check your mobile number", nil)];
+        }
+    } Failure:^(NSString *error) {
+        [KVNProgress dismiss];
+    }];
+}
+
+- (void)dismissButtonClicked:(VerifyMobileViewController *)verifyMobileNumber
+{
+    self.verifiedImgTwo.hidden = NO ;
+    self.verifyBtn.hidden = YES ;
 }
 
 - (void) configureNavigationBar{
@@ -232,8 +277,16 @@
 }
 
 - (void) historyAction{
-    HistoryViewController *historyView = [[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil];
-    [self.navigationController pushViewController:historyView animated:YES];
+
+    if ([[[[MobAccountManager sharedMobAccountManager] applicationUser] AccountStatus] isEqualToString:@"P"]) {
+        RidesJoinedViewController *joinedRidesViewController =  [[RidesJoinedViewController alloc] initWithNibName:@"RidesJoinedViewController" bundle:nil];
+        joinedRidesViewController.title =  NSLocalizedString(@"History", nil);
+        [self.navigationController pushViewController:joinedRidesViewController animated:YES];
+    }
+    else{
+        HistoryViewController *historyView = [[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil];
+        [self.navigationController pushViewController:historyView animated:YES];
+    }
 }
 
 - (void) permitAction{

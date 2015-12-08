@@ -122,7 +122,7 @@
     
     if ([self.traficFileNo respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.traficFileNo.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Traffic File No." attributes:@{NSForegroundColorAttributeName: color}];
+        self.traficFileNo.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Traffic File No.", nil) attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         

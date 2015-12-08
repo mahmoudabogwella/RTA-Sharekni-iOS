@@ -26,7 +26,7 @@
 - (void)setPermit:(Permit *)permit
 {
     self.routeName.text = permit.RouteEnName ;
-    self.passengerNo.text = [NSString stringWithFormat:@"%@",permit.MaxPassengers] ;
+    self.passengerNo.text = [NSString stringWithFormat:@"%@",permit.CurrentPassengers] ;
     
     NSDate *issueDate = [self mfDateFromDotNetJSONString:permit.IssueDate] ;
     self.issueDate.text = [self getDate:issueDate];

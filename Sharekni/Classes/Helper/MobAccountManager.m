@@ -479,6 +479,45 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
     }];
 }
 
+- (void) verifyMobileNumber:(NSString *)accountId WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
+{
+    NSString *path =[NSString stringWithFormat:@"cls_mobios.asmx/SendMobileVerification?AccountID=%@",accountId];
+    
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSLog(@"delete response :%@",responseString);
+        if ([responseString containsString:@"1"]) {
+            
+            success(responseString);
+        }
+        else{
+            success(responseString);
+        }
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+}
+
+- (void) confirmMobileNumber:(NSString *)accountId andCode:(NSString *)code WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
+{
+    NSString *path =[NSString stringWithFormat:@"CLS_Mobios.asmx/Confirm_Mobile?AccountID=%@&Code=%@",accountId,code];
+    
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        NSLog(@"delete response :%@",responseString);
+        if ([responseString containsString:@"1"]) {
+            
+            success(responseString);
+        }
+        else{
+            success(responseString);
+        }
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+}
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MobAccountManager);
 @end

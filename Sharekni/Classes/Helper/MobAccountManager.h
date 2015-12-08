@@ -55,6 +55,10 @@
 
 - (void) getCalculatedRatingForAccount:(NSString *)accountID WithSuccess:(void (^)(NSString *rating))success Failure:(void (^)(NSString *error))failure;
 
+- (void) verifyMobileNumber:(NSString *)accountId WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
+
+- (void) confirmMobileNumber:(NSString *)accountId andCode:(NSString *)code WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
+
 
 
 @end

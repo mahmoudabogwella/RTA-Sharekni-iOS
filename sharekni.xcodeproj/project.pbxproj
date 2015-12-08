@@ -45,6 +45,8 @@
 		140960921BFEB0C700BA3268 /* AddReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1409608C1BFEB0C700BA3268 /* AddReviewViewController.xib */; };
 		140960931BFEB0C700BA3268 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409608E1BFEB0C700BA3268 /* MJPopupBackgroundView.m */; };
 		140960941BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140960901BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m */; };
+		140B97B01C164E1A0030E266 /* VerifyMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140B97AE1C164E1A0030E266 /* VerifyMobileViewController.m */; };
+		140B97B11C164E1A0030E266 /* VerifyMobileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140B97AF1C164E1A0030E266 /* VerifyMobileViewController.xib */; };
 		1425F8031BFF11A200AD086B /* VehiclesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F8011BFF11A200AD086B /* VehiclesViewController.m */; };
 		1425F8081BFF11B300AD086B /* SavedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F8061BFF11B300AD086B /* SavedSearchViewController.m */; };
 		1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1425F8071BFF11B300AD086B /* SavedSearchViewController.xib */; };
@@ -263,6 +265,9 @@
 		1409608E1BFEB0C700BA3268 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
 		1409608F1BFEB0C700BA3268 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
 		140960901BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		140B97AD1C164E1A0030E266 /* VerifyMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyMobileViewController.h; sourceTree = "<group>"; };
+		140B97AE1C164E1A0030E266 /* VerifyMobileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyMobileViewController.m; sourceTree = "<group>"; };
+		140B97AF1C164E1A0030E266 /* VerifyMobileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyMobileViewController.xib; sourceTree = "<group>"; };
 		1425F8001BFF11A200AD086B /* VehiclesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehiclesViewController.h; sourceTree = "<group>"; };
 		1425F8011BFF11A200AD086B /* VehiclesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehiclesViewController.m; sourceTree = "<group>"; };
 		1425F8051BFF11B300AD086B /* SavedSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedSearchViewController.h; sourceTree = "<group>"; };
@@ -613,6 +618,9 @@
 				1425F8141BFFCB5500AD086B /* AddRemarksViewController.h */,
 				1425F8151BFFCB5500AD086B /* AddRemarksViewController.m */,
 				1425F8161BFFCB5500AD086B /* AddRemarksViewController.xib */,
+				140B97AD1C164E1A0030E266 /* VerifyMobileViewController.h */,
+				140B97AE1C164E1A0030E266 /* VerifyMobileViewController.m */,
+				140B97AF1C164E1A0030E266 /* VerifyMobileViewController.xib */,
 			);
 			path = MJPopupBackgroundView;
 			sourceTree = "<group>";
@@ -1039,6 +1047,7 @@
 				1425F8131BFF9C9F00AD086B /* NotificationsViewController.xib in Resources */,
 				14F251C61C122E7800D8184E /* AdvancedSearchViewController.xib in Resources */,
 				8787E1F31BF7534100CCD53B /* terms_en.html in Resources */,
+				140B97B11C164E1A0030E266 /* VerifyMobileViewController.xib in Resources */,
 				8777FA611C00C4B20022E368 /* CreatedRidesViewController.xib in Resources */,
 				143F30E01BC83F70006A6A21 /* Images.xcassets in Resources */,
 				14B00C981BFB921E004F46F7 /* ForgetPasswordViewController.xib in Resources */,
@@ -1211,6 +1220,7 @@
 				8777FA681C01AD120022E368 /* PassengerCell.m in Sources */,
 				14022BE01BE56A9300585042 /* MostRideDetailsViewController.m in Sources */,
 				0429B1C61BB9DC5F00161222 /* HelpManager.m in Sources */,
+				140B97B01C164E1A0030E266 /* VerifyMobileViewController.m in Sources */,
 				87E5E5481C0277B5008F5684 /* HCSStarRatingView.m in Sources */,
 				148795D71BEA97EF00B940D8 /* Review.m in Sources */,
 				14E5D7C71C0283890089054A /* HistoryViewController.m in Sources */,

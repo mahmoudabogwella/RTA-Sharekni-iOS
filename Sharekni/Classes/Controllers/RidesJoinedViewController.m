@@ -30,8 +30,14 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-
-    self.navigationItem.title = NSLocalizedString(@"Rides Joined", nil);
+    if (self.title.length > 0) {
+        self.navigationItem.title = self.title;
+        self.noResultLabel.text = NSLocalizedString(@"No history", nil);
+    }
+    else{
+        self.navigationItem.title = NSLocalizedString(@"Rides Joined", nil);
+        self.noResultLabel.text = NSLocalizedString(@"No rides joined yet", nil);
+    }
     
     self.noResultLabel.text = NSLocalizedString(@"No rides joined yet", nil);
     

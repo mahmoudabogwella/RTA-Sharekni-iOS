@@ -7,6 +7,7 @@
 //
 
 #import "NotificationCell.h"
+#import "Constants.h"
 
 @implementation NotificationCell
 
@@ -14,6 +15,7 @@
     // Initialization code
     self.userImage.layer.cornerRadius = self.userImage.frame.size.width / 2.0f ;
     self.userImage.clipsToBounds = YES ;
+    self.notificationLbl.textAlignment = NSTextAlignmentNatural ;
 }
 
 - (void)setNotification:(Notification *)notification
@@ -31,7 +33,7 @@
             self.notificationLbl.text = NSLocalizedString(@"Send you a join request", nil);
         }
     }
-    self.nationality.text = notification.NationalityEnName ;
+    self.nationality.text = (KIS_ARABIC)?notification.NationalityArName:notification.NationalityEnName ;
     if (notification.image) {
         self.userImage.image = notification.image ;
     }else{

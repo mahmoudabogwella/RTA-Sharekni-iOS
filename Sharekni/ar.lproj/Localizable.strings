@@ -163,3 +163,13 @@
 "Has Accepted your request" = "وافق علي طلب الإنضمام";
 "Send you a join request" = "قام بإرسال طلب انضمام";
 "Notification Details" = "تفاصيل التنبيهات";
+
+"Mobile verification code has been sent to your mobile" = "تم أرسال كود التفعيل للرقم الحالي";
+"Please check your mobile number" = "يرجي التأكد من رقم الجوال الخاص بك";
+
+"Please write your verification code" = "من فضلك أدخل كود التفعيل";
+"Write Your Code" = "ادخل كود التفعيل";
+"Your Code" = "كود التفعيل";
+"Resend verification code" = "أعد إرسال كود التفعيل";
+"Enter verification code"  = "أدخل كود التفعيل";
+"Traffic File No." = "رقم الملف المروري";

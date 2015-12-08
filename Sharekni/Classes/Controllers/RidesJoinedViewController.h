@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RidesJoinedViewController : UIViewController
-
+@property (nonatomic,strong) NSString *title;
 @end

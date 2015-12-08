@@ -865,6 +865,12 @@
             [blockPassengersList reloadData];
             [KVNProgress dismiss];
             [blockSelf configureFrames];
+            if (blockSelf.passengers.count == 0) {
+                thirdButton.alpha = 0;
+            }
+            else{
+                thirdButton.alpha = 1;
+            }
         } Failure:^(NSString *error) {
             [blockSelf handleResponseError];
             [blockSelf configureFrames];
