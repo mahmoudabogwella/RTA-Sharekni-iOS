@@ -49,7 +49,7 @@
 
 - (void) registerPassengerWithFirstName:(NSString *)firstName lastName:(NSString *)lastName mobile:(NSString *)mobile username:(NSString *)username password:(NSString *)password gender:(NSString *)gender imagePath:(NSString *)photoName birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
 
-    NSString *body = [NSString stringWithFormat:@"cls_mobios.asmx/RegisterPassenger?firstName=%@&lastName=%@&mobile=%@&username=%@&password=%@&gender=%@&photoName=%@&BirthDate=%@&NationalityId=%@&PreferredLanguageId=%@",firstName,lastName,mobile,username,password,gender,@"",birthDate,nationalityId,langID];
+    NSString *body = [NSString stringWithFormat:@"cls_mobios.asmx/RegisterPassenger?firstName=%@&lastName=%@&mobile=%@&username=%@&password=%@&gender=%@&photoName=%@&BirthDate=%@&NationalityId=%@&PreferredLanguageId=%@",firstName,lastName,mobile,username,password,gender,photoName,birthDate,nationalityId,langID];
     
     [self.operationManager GET:body parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -65,14 +65,15 @@
             success(nil);
         }
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-        failure(error.localizedDescription);        
+        failure(@"cannot register");
     }];
+    ///cls_mobios.asmx/RegisterPassenger?firstName=ahmedta&lastName=ahmed&mobile=551100552&username=ahmes.fa@gmail.com&password=12345&gender=M&photoName=cdce99b9-a7bc-43d9-88ec-2d06ce0f0ec82015-14153204851-978.png&BirthDate=08/12/1991&NationalityId=139&PreferredLanguageId=1
 }
 
 - (void) registerDriverWithFirstName:(NSString *)firstName lastName:(NSString *)lastName mobile:(NSString *)mobile username:(NSString *)username password:(NSString *)password gender:(NSString *)gender imagePath:(NSString *)photoName birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure{
     
  
-    NSString *body = [NSString stringWithFormat:@"cls_mobios.asmx/RegisterDriver?firstName=%@&lastName=%@&mobile=%@&username=%@&password=%@&gender=%@&photoName=%@&licenseScannedFileName=%@&TrafficFileNo=%@&BirthDate=%@&NationalityId=%@&PreferredLanguageId=%@",firstName,lastName,mobile,username,password,gender,@"",@"",@"",birthDate,nationalityId,langID];
+    NSString *body = [NSString stringWithFormat:@"cls_mobios.asmx/RegisterDriver?firstName=%@&lastName=%@&mobile=%@&username=%@&password=%@&gender=%@&photoName=%@&licenseScannedFileName=%@&TrafficFileNo=%@&BirthDate=%@&NationalityId=%@&PreferredLanguageId=%@",firstName,lastName,mobile,username,password,gender,photoName,@"",@"",birthDate,nationalityId,langID];
     
     [self.operationManager GET:body parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -305,7 +306,7 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
 - (void) registerVehicle:(NSString *)AccountId TrafficFileNo:(NSString *)TrafficFileNo BirthDate:(NSString *)BirthDate WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure
 {
     NSString *path = [NSString stringWithFormat:@"/_mobfiles/cls_mobios.asmx/Driver_RegisterVehicleWithETService?AccountId=%@&TrafficFileNo=%@&BirthDate=%@",AccountId,TrafficFileNo,BirthDate];
-
+    
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject)
      {
          NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];

@@ -269,7 +269,7 @@
                                                   message:NSLocalizedString(@"App needs to open it again", nil)
                                                  delegate:self
                                         cancelButtonTitle:NSLocalizedString(@"No", nil)
-                                        otherButtonTitles: NSLocalizedString(@"Restart", nil), nil];
+                                        otherButtonTitles: NSLocalizedString(@"Ok", nil), nil];
     [al show];
 }
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

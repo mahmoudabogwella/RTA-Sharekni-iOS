@@ -247,11 +247,12 @@
     gender.text = self.routeDetails.PreferredGender;
 }
 
-- (void) configureData{
+- (void) configureData
+{
     __block RideDetailsViewController *blockSelf = self;
     __block UITableView *blockPassengersList = passengersList;
     __block UITableView *blockReviewsList = reviewList;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading...", nil)];
+    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
     
     NSString *routeID;
     NSString *accountID ;
@@ -307,6 +308,9 @@
                             }
                            
                        }
+                   }
+                   if (blockSelf.driverDetails) {
+                       blockSelf.passengers = nil ;
                    }
                    [blockSelf configureFrames];
                } Failure:^(NSString *error) {
@@ -711,10 +715,13 @@
                                                                  zoom:15];
     
     CGRect frame ;
+    
     if (IS_IPHONE_6) {
         frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, 375.0f, 280);
     }else if (IS_IPHONE_6P){
         frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, 414.0f, 280);
+    }else{
+        frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, 320.0f, 280);
     }
     _mapView = [GMSMapView mapWithFrame:frame camera:camera];
     _mapView.myLocationEnabled = YES;

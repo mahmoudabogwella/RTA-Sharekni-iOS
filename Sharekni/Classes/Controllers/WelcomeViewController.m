@@ -36,6 +36,7 @@
     [super viewWillAppear:animated];
     self.title = NSLocalizedString(@"sharkni", nil);
     self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBarHidden = NO ;
 }
 
 - (void)viewDidLoad
@@ -46,6 +47,10 @@
     [self.navigationItem setHidesBackButton:YES];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     [self configureUI];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return NO;
 }
 
 - (void) configureUI{
@@ -136,7 +141,7 @@
                                                   message:NSLocalizedString(@"App needs to open it again", nil)
                                                  delegate:self
                                         cancelButtonTitle:NSLocalizedString(@"No", nil)
-                                        otherButtonTitles: NSLocalizedString(@"Restart", nil), nil];
+                                        otherButtonTitles: NSLocalizedString(@"Ok", nil), nil];
     [al show];
 }
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

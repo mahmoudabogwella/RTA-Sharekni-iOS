@@ -36,13 +36,18 @@
     else{
         NSString *imageString = [self stringFromImage:self.image];
         self.webResponseData = [[NSMutableData alloc ] init];
-        NSString *soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Header><SharekniAuthenticationI xmlns=\"http://Sharekni-MobIOS-Data.org/\"><username></username><password></password></SharekniAuthenticationI></soap:Header><soap:Body><UploadImage xmlns=\"http://Sharekni-MobIOS-Data.org/\"><ImageContent>%@</ImageContent><imageExtenstion>png</imageExtenstion></UploadImage></soap:Body></soap:Envelope>"];
         
-        NSURL *url = [NSURL URLWithString:Sharkeni_BASEURL];
+        NSString *soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><UploadImage xmlns=\"http://Sharekni-MobIOS-Data.org/\"><ImageContent>%@</ImageContent><imageExtenstion>png</imageExtenstion></UploadImage></soap:Body></soap:Envelope>",imageString];
+        
+        NSURL *url = [NSURL URLWithString:@"https://www.sharekni.ae/_mobfiles/cls_mobios.asmx"];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
         NSString *messageLength = [NSString stringWithFormat:@"%lu",(unsigned long)[soapMessage length]];
         [request addValue:@"www.sharekni.ae" forHTTPHeaderField:@"Host"];
-        [request addValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        [request addValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
+        [request addValue:@"keep-alive" forHTTPHeaderField:@"Connection"];
+        [request addValue:@"True" forHTTPHeaderField:@"SendChunked"];
+        [request addValue:@"True" forHTTPHeaderField:@"UseCookieContainer"];
+
         [request addValue:messageLength forHTTPHeaderField:@"Content-Length"];
         [request addValue:@"http://Sharekni-MobIOS-Data.org/UploadImage" forHTTPHeaderField:@"SOAPAction"];
         [request setHTTPMethod:@"POST"];
@@ -130,6 +135,10 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
+
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser{
     if(result.length > 0){
         self.successHandler(result);
         NSLog(@"Parsed Element : %@", currentElement);

@@ -82,7 +82,7 @@
     }
 
     // 5
-    [scroller setContentSize:CGSizeMake(xValue+VIEWS_OFFSET, self.frame.size.height-64)];
+    [scroller setContentSize:CGSizeMake(xValue+VIEWS_OFFSET, self.frame.size.height)];
 
 }
 

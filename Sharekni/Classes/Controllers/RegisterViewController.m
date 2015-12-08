@@ -520,7 +520,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }
     else{
         if (self.profileImage) {
-            
+            [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
             UploadImageManager *imageManager = [[UploadImageManager alloc] initWithImage:self.profileImage Success:^(NSString *fileName) {
                 if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
                     [self registerDriverWithPhotoName:fileName];
@@ -529,6 +529,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
                     [self registerPassengerWithPhotoName:fileName];
                 }
             } Failure:^(NSString *error) {
+                [KVNProgress dismiss];
                 if (self.accountType == AccountTypeDriver ||self.accountType == AccountTypeBoth){
                     [self registerDriverWithPhotoName:@""];
                 }
@@ -567,7 +568,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     self.dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [self.dateFormatter stringFromDate:self.date];
     [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];    
-    [[MobAccountManager sharedMobAccountManager] registerPassengerWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:nil birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
+    [[MobAccountManager sharedMobAccountManager] registerPassengerWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:photoName birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
         [KVNProgress dismiss];
         [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registration done successfully",nil)];
         [self loginAfterRegisteration];
@@ -874,7 +875,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     self.profileImage = [info valueForKey:UIImagePickerControllerEditedImage];
-    
     self.profileImageView.image = self.profileImage;
     self.profileImageView.hidden = NO;
     self.uploadButton.hidden = YES;

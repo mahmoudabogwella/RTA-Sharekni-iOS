@@ -21,10 +21,24 @@
 #import "HomeViewController.h"
 #import "SideMenuTableViewController.h"
 
+
+@import AdSupport;
+@import CoreTelephony;
+@import MobileCoreServices;
+@import iAd;
+@import StoreKit;
+@import SystemConfiguration;
+@import MobileAppTracker;
+
 //com.sharekni.sharekni
 //rta.ae.sharekni
+
+NSString * const TUNE_ADVERTISER_ID  = @"189698";
+NSString * const TUNE_CONVERSION_KEY = @"172510cf81e7148e5a01851f65fb0c7e";
+NSString * const TUNE_PACKAGE_NAME   = @"com.sharekni.Sharekni";
+
 @import GoogleMaps;
-@interface AppDelegate ()<REFrostedViewControllerDelegate>
+@interface AppDelegate ()<REFrostedViewControllerDelegate,TuneDelegate>
 @property (nonatomic,strong) UINavigationController *splashNavigationController;
 @property (nonatomic,strong) REFrostedViewController *homeViewController;
 @property (nonatomic,strong) UINavigationController *welcomeNavigationController;
@@ -36,6 +50,19 @@
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     sleep(1);
+    [Tune initializeWithTuneAdvertiserId:TUNE_ADVERTISER_ID
+                       tuneConversionKey:TUNE_CONVERSION_KEY
+                         tunePackageName:TUNE_PACKAGE_NAME
+                                wearable:NO];
+    
+    [Tune setDelegate:self];
+    
+    [Tune setDebugMode:NO];
+    [Tune setAllowDuplicateRequests:NO];
+    
+    [Tune checkForDeferredDeeplink:self];
+    
+    [Tune startAppToAppMeasurement:@"abc" advertiserId:TUNE_ADVERTISER_ID offerId:@"12345" publisherId:@"321" redirect:YES];
     [self configureAppearance];
     self.window.rootViewController = self.splashNavigationController;
     [self.window makeKeyAndVisible];

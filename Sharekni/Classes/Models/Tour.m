@@ -39,7 +39,7 @@ Tour *tourInstance = nil ;
 
     for (int i = 0; i < IMAGESCOUNT; i++)
     {
-        NSString *imageName = [NSString stringWithFormat:@"tour_%d",i];
+        NSString *imageName = [NSString stringWithFormat:(KIS_ARABIC)?@"tourar_%d":@"touren_%d",i];
         UIImage *image = [UIImage imageNamed:imageName];
         Tour *tourObject = [[Tour alloc] initWithImage:image];
         [resultArray addObject:tourObject];

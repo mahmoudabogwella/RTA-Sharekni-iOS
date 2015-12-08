@@ -47,6 +47,25 @@
 		140960941BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140960901BFEB0C700BA3268 /* UIViewController+MJPopupViewController.m */; };
 		140B97B01C164E1A0030E266 /* VerifyMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140B97AE1C164E1A0030E266 /* VerifyMobileViewController.m */; };
 		140B97B11C164E1A0030E266 /* VerifyMobileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140B97AF1C164E1A0030E266 /* VerifyMobileViewController.xib */; };
+		140B97B31C167E680030E266 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140B97B21C167E670030E266 /* iAd.framework */; };
+		140B97B51C167E8F0030E266 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140B97B41C167E8F0030E266 /* StoreKit.framework */; };
+		140B97B71C167E9E0030E266 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140B97B61C167E9E0030E266 /* CoreTelephony.framework */; };
+		140B97B91C167EA60030E266 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140B97B81C167EA60030E266 /* AdSupport.framework */; };
+		140B97BB1C167EBB0030E266 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140B97BA1C167EBB0030E266 /* MobileCoreServices.framework */; };
+		140B97BD1C167EC40030E266 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140B97BC1C167EC40030E266 /* SystemConfiguration.framework */; };
+		140B97C31C1680BA0030E266 /* MobileAppTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140B97C21C1680BA0030E266 /* MobileAppTracker.framework */; };
+		140B97CA1C1686B90030E266 /* tourar_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97C41C1686B90030E266 /* tourar_0.png */; };
+		140B97CB1C1686B90030E266 /* tourar_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97C51C1686B90030E266 /* tourar_1.png */; };
+		140B97CC1C1686B90030E266 /* tourar_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97C61C1686B90030E266 /* tourar_2.png */; };
+		140B97CD1C1686B90030E266 /* tourar_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97C71C1686B90030E266 /* tourar_3.png */; };
+		140B97CE1C1686B90030E266 /* tourar_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97C81C1686B90030E266 /* tourar_4.png */; };
+		140B97CF1C1686B90030E266 /* tourar_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97C91C1686B90030E266 /* tourar_5.png */; };
+		140B97D61C1686C30030E266 /* touren_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97D01C1686C20030E266 /* touren_0.png */; };
+		140B97D71C1686C30030E266 /* touren_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97D11C1686C20030E266 /* touren_1.png */; };
+		140B97D81C1686C30030E266 /* touren_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97D21C1686C20030E266 /* touren_2.png */; };
+		140B97D91C1686C30030E266 /* touren_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97D31C1686C30030E266 /* touren_3.png */; };
+		140B97DA1C1686C30030E266 /* touren_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97D41C1686C30030E266 /* touren_4.png */; };
+		140B97DB1C1686C30030E266 /* touren_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 140B97D51C1686C30030E266 /* touren_5.png */; };
 		1425F8031BFF11A200AD086B /* VehiclesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F8011BFF11A200AD086B /* VehiclesViewController.m */; };
 		1425F8081BFF11B300AD086B /* SavedSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425F8061BFF11B300AD086B /* SavedSearchViewController.m */; };
 		1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1425F8071BFF11B300AD086B /* SavedSearchViewController.xib */; };
@@ -77,12 +96,6 @@
 		145C846F1C15E6AB0051FDCB /* KCHorizontalScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 145C846E1C15E6AB0051FDCB /* KCHorizontalScroller.m */; };
 		145C84721C15E8390051FDCB /* Tour.m in Sources */ = {isa = PBXBuildFile; fileRef = 145C84711C15E8390051FDCB /* Tour.m */; };
 		145C84751C15E8900051FDCB /* PageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 145C84741C15E8900051FDCB /* PageView.m */; };
-		145C847C1C15EF840051FDCB /* tour_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 145C84761C15EF840051FDCB /* tour_2.png */; };
-		145C847D1C15EF840051FDCB /* tour_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 145C84771C15EF840051FDCB /* tour_3.png */; };
-		145C847E1C15EF840051FDCB /* tour_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 145C84781C15EF840051FDCB /* tour_4.png */; };
-		145C847F1C15EF840051FDCB /* tour_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 145C84791C15EF840051FDCB /* tour_5.png */; };
-		145C84801C15EF840051FDCB /* tour_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 145C847A1C15EF840051FDCB /* tour_1.png */; };
-		145C84811C15EF840051FDCB /* tour_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 145C847B1C15EF840051FDCB /* tour_0.png */; };
 		146815541BFBB61000A78430 /* SideMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146815521BFBB61000A78430 /* SideMenuCell.m */; };
 		146815551BFBB61000A78430 /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146815531BFBB61000A78430 /* SideMenuCell.xib */; };
 		148795CD1BEA679800B940D8 /* DriverRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148795CB1BEA679800B940D8 /* DriverRideCell.m */; };
@@ -268,6 +281,25 @@
 		140B97AD1C164E1A0030E266 /* VerifyMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyMobileViewController.h; sourceTree = "<group>"; };
 		140B97AE1C164E1A0030E266 /* VerifyMobileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyMobileViewController.m; sourceTree = "<group>"; };
 		140B97AF1C164E1A0030E266 /* VerifyMobileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyMobileViewController.xib; sourceTree = "<group>"; };
+		140B97B21C167E670030E266 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		140B97B41C167E8F0030E266 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		140B97B61C167E9E0030E266 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		140B97B81C167EA60030E266 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		140B97BA1C167EBB0030E266 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		140B97BC1C167EC40030E266 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		140B97C21C1680BA0030E266 /* MobileAppTracker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobileAppTracker.framework; sourceTree = "<group>"; };
+		140B97C41C1686B90030E266 /* tourar_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tourar_0.png; sourceTree = "<group>"; };
+		140B97C51C1686B90030E266 /* tourar_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tourar_1.png; sourceTree = "<group>"; };
+		140B97C61C1686B90030E266 /* tourar_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tourar_2.png; sourceTree = "<group>"; };
+		140B97C71C1686B90030E266 /* tourar_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tourar_3.png; sourceTree = "<group>"; };
+		140B97C81C1686B90030E266 /* tourar_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tourar_4.png; sourceTree = "<group>"; };
+		140B97C91C1686B90030E266 /* tourar_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tourar_5.png; sourceTree = "<group>"; };
+		140B97D01C1686C20030E266 /* touren_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touren_0.png; sourceTree = "<group>"; };
+		140B97D11C1686C20030E266 /* touren_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touren_1.png; sourceTree = "<group>"; };
+		140B97D21C1686C20030E266 /* touren_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touren_2.png; sourceTree = "<group>"; };
+		140B97D31C1686C30030E266 /* touren_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touren_3.png; sourceTree = "<group>"; };
+		140B97D41C1686C30030E266 /* touren_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touren_4.png; sourceTree = "<group>"; };
+		140B97D51C1686C30030E266 /* touren_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touren_5.png; sourceTree = "<group>"; };
 		1425F8001BFF11A200AD086B /* VehiclesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehiclesViewController.h; sourceTree = "<group>"; };
 		1425F8011BFF11A200AD086B /* VehiclesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehiclesViewController.m; sourceTree = "<group>"; };
 		1425F8051BFF11B300AD086B /* SavedSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedSearchViewController.h; sourceTree = "<group>"; };
@@ -321,12 +353,6 @@
 		145C84711C15E8390051FDCB /* Tour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tour.m; sourceTree = "<group>"; };
 		145C84731C15E8900051FDCB /* PageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageView.h; sourceTree = "<group>"; };
 		145C84741C15E8900051FDCB /* PageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageView.m; sourceTree = "<group>"; };
-		145C84761C15EF840051FDCB /* tour_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour_2.png; sourceTree = "<group>"; };
-		145C84771C15EF840051FDCB /* tour_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour_3.png; sourceTree = "<group>"; };
-		145C84781C15EF840051FDCB /* tour_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour_4.png; sourceTree = "<group>"; };
-		145C84791C15EF840051FDCB /* tour_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour_5.png; sourceTree = "<group>"; };
-		145C847A1C15EF840051FDCB /* tour_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour_1.png; sourceTree = "<group>"; };
-		145C847B1C15EF840051FDCB /* tour_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tour_0.png; sourceTree = "<group>"; };
 		146815511BFBB61000A78430 /* SideMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuCell.h; sourceTree = "<group>"; };
 		146815521BFBB61000A78430 /* SideMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuCell.m; sourceTree = "<group>"; };
 		146815531BFBB61000A78430 /* SideMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
@@ -496,6 +522,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				140B97BD1C167EC40030E266 /* SystemConfiguration.framework in Frameworks */,
+				140B97BB1C167EBB0030E266 /* MobileCoreServices.framework in Frameworks */,
+				140B97B91C167EA60030E266 /* AdSupport.framework in Frameworks */,
+				140B97C31C1680BA0030E266 /* MobileAppTracker.framework in Frameworks */,
+				140B97B71C167E9E0030E266 /* CoreTelephony.framework in Frameworks */,
+				140B97B51C167E8F0030E266 /* StoreKit.framework in Frameworks */,
+				140B97B31C167E680030E266 /* iAd.framework in Frameworks */,
 				14D3E94B1C06AD220047F415 /* CoreGraphics.framework in Frameworks */,
 				14D3E9491C06AD1B0047F415 /* QuartzCore.framework in Frameworks */,
 				87FFDDAE1BFD65040031CE61 /* MapKit.framework in Frameworks */,
@@ -837,12 +870,18 @@
 		143BE6AE1BB14BD2009F6496 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				145C847B1C15EF840051FDCB /* tour_0.png */,
-				145C847A1C15EF840051FDCB /* tour_1.png */,
-				145C84761C15EF840051FDCB /* tour_2.png */,
-				145C84771C15EF840051FDCB /* tour_3.png */,
-				145C84781C15EF840051FDCB /* tour_4.png */,
-				145C84791C15EF840051FDCB /* tour_5.png */,
+				140B97D01C1686C20030E266 /* touren_0.png */,
+				140B97D11C1686C20030E266 /* touren_1.png */,
+				140B97D21C1686C20030E266 /* touren_2.png */,
+				140B97D31C1686C30030E266 /* touren_3.png */,
+				140B97D41C1686C30030E266 /* touren_4.png */,
+				140B97D51C1686C30030E266 /* touren_5.png */,
+				140B97C41C1686B90030E266 /* tourar_0.png */,
+				140B97C51C1686B90030E266 /* tourar_1.png */,
+				140B97C61C1686B90030E266 /* tourar_2.png */,
+				140B97C71C1686B90030E266 /* tourar_3.png */,
+				140B97C81C1686B90030E266 /* tourar_4.png */,
+				140B97C91C1686B90030E266 /* tourar_5.png */,
 				87C571D41BDBCCA900EFB618 /* UIView+Borders.h */,
 				87C571D51BDBCCA900EFB618 /* UIView+Borders.m */,
 				145C846D1C15E6AB0051FDCB /* KCHorizontalScroller.h */,
@@ -944,6 +983,13 @@
 		EB0896A2D090EB584EC82226 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				140B97C21C1680BA0030E266 /* MobileAppTracker.framework */,
+				140B97BC1C167EC40030E266 /* SystemConfiguration.framework */,
+				140B97BA1C167EBB0030E266 /* MobileCoreServices.framework */,
+				140B97B81C167EA60030E266 /* AdSupport.framework */,
+				140B97B61C167E9E0030E266 /* CoreTelephony.framework */,
+				140B97B41C167E8F0030E266 /* StoreKit.framework */,
+				140B97B21C167E670030E266 /* iAd.framework */,
 				14D3E94A1C06AD220047F415 /* CoreGraphics.framework */,
 				14D3E9481C06AD1B0047F415 /* QuartzCore.framework */,
 				87FFDDAD1BFD65030031CE61 /* MapKit.framework */,
@@ -1003,7 +1049,7 @@
 				TargetAttributes = {
 					04931B1A1BAAF814000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = FN9NQZP477;
+						DevelopmentTeam = 89SHAPC6FM;
 					};
 					04931B361BAAF815000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -1036,6 +1082,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				140B97CF1C1686B90030E266 /* tourar_5.png in Resources */,
 				14F251EA1C130AC800D8184E /* PermitCell.xib in Resources */,
 				8787E1F21BF7534100CCD53B /* policy.html in Resources */,
 				047E455C1BC58330000B5151 /* PickupLocationView.xib in Resources */,
@@ -1045,35 +1092,37 @@
 				146815551BFBB61000A78430 /* SideMenuCell.xib in Resources */,
 				87196D461BF0A30500A94370 /* Launch Screen.storyboard in Resources */,
 				1425F8131BFF9C9F00AD086B /* NotificationsViewController.xib in Resources */,
+				140B97D81C1686C30030E266 /* touren_2.png in Resources */,
 				14F251C61C122E7800D8184E /* AdvancedSearchViewController.xib in Resources */,
+				140B97D61C1686C30030E266 /* touren_0.png in Resources */,
 				8787E1F31BF7534100CCD53B /* terms_en.html in Resources */,
+				140B97DB1C1686C30030E266 /* touren_5.png in Resources */,
 				140B97B11C164E1A0030E266 /* VerifyMobileViewController.xib in Resources */,
 				8777FA611C00C4B20022E368 /* CreatedRidesViewController.xib in Resources */,
 				143F30E01BC83F70006A6A21 /* Images.xcassets in Resources */,
+				140B97D71C1686C30030E266 /* touren_1.png in Resources */,
 				14B00C981BFB921E004F46F7 /* ForgetPasswordViewController.xib in Resources */,
 				0453B2EC1BE55E1000007271 /* MostRidesCell.xib in Resources */,
 				044ECE9A1BC08A8000AF3E2D /* SearchResultCell.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
-				145C847D1C15EF840051FDCB /* tour_3.png in Resources */,
 				14F251DE1C1307E500D8184E /* RideHistoryCell.xib in Resources */,
-				145C84801C15EF840051FDCB /* tour_1.png in Resources */,
 				87E5F7691BFB6914004FF688 /* RidesCreatedViewController.xib in Resources */,
+				140B97CE1C1686B90030E266 /* tourar_4.png in Resources */,
 				14E5D7C31C0276900089054A /* ActivatePermitViewController.xib in Resources */,
 				14F252191C133D4B00D8184E /* DriverDetailsViewController.xib in Resources */,
 				143F30EE1BC8488D006A6A21 /* Localizable.strings in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
-				145C847F1C15EF840051FDCB /* tour_5.png in Resources */,
 				87E5F7641BFB68DE004FF688 /* RidesJoinedViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
-				145C847E1C15EF840051FDCB /* tour_4.png in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				14C8CB781C1448C000AA16DF /* BestDriversViewController.xib in Resources */,
 				144869FB1BC0968E00804C26 /* QuickSearchViewController.xib in Resources */,
-				145C847C1C15EF840051FDCB /* tour_2.png in Resources */,
 				14F251C21C11905A00D8184E /* WelcomeViewController.xib in Resources */,
 				879AA9CC1C151E95005466F5 /* privacyPolicy_ar.html in Resources */,
 				14C8CB851C14F3BC00AA16DF /* RideDetailsViewController.xib in Resources */,
+				140B97CC1C1686B90030E266 /* tourar_2.png in Resources */,
 				14F2520E1C1339F900D8184E /* MostRideDetailsViewController.xib in Resources */,
+				140B97CA1C1686B90030E266 /* tourar_0.png in Resources */,
 				14E5D7B91C0270E80089054A /* PermitsViewController.xib in Resources */,
 				14F252021C1330E700D8184E /* DriverRideCell.xib in Resources */,
 				148795DC1BEA9CF900B940D8 /* ReviewCell.xib in Resources */,
@@ -1084,25 +1133,28 @@
 				14C8CB8B1C15C93D00AA16DF /* CreateRideViewController.xib in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
+				140B97CB1C1686B90030E266 /* tourar_1.png in Resources */,
 				14F251FC1C132DDC00D8184E /* SearchResultsViewController.xib in Resources */,
 				8787E1EF1BF74EBC00CCD53B /* SharekniWebViewController.xib in Resources */,
 				144869ED1BC0844B00804C26 /* LoginViewController.xib in Resources */,
 				14F251E41C13082D00D8184E /* HistoryViewController.xib in Resources */,
 				04931B2D1BAAF814000F5434 /* Main.storyboard in Resources */,
 				14F251F01C132A5B00D8184E /* NotificationDetailsViewController.xib in Resources */,
+				140B97DA1C1686C30030E266 /* touren_4.png in Resources */,
 				14C8CB791C14D77C00AA16DF /* SelectLocationViewController.xib in Resources */,
 				87B58B5E1BD388D100E73E55 /* MapLookupViewController.xib in Resources */,
 				87B58B661BD3983800E73E55 /* MapItemPopupViewController.xib in Resources */,
 				1425F8181BFFCB5500AD086B /* AddRemarksViewController.xib in Resources */,
 				14F252081C13399400D8184E /* MostRideDetailsCell.xib in Resources */,
+				140B97D91C1686C30030E266 /* touren_3.png in Resources */,
 				14D3E93B1C06A2290047F415 /* TourViewController.xib in Resources */,
 				14F251F61C132C5E00D8184E /* HomeViewController.xib in Resources */,
 				14E5D7A01C01A6F10089054A /* NotificationCell.xib in Resources */,
+				140B97CD1C1686B90030E266 /* tourar_3.png in Resources */,
 				1425F8091BFF11B300AD086B /* SavedSearchViewController.xib in Resources */,
 				14F251D21C1232CC00D8184E /* SearchViewController.xib in Resources */,
 				14C8CB761C14483900AA16DF /* BestDriverCell.xib in Resources */,
 				879AA9CA1C151E7F005466F5 /* terms_condition_Ar.html in Resources */,
-				145C84811C15EF840051FDCB /* tour_0.png in Resources */,
 				14F251CC1C122EBD00D8184E /* RegisterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1565,6 +1617,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Sharekni/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1583,6 +1639,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Sharekni/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

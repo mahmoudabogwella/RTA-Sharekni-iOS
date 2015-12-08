@@ -34,7 +34,9 @@
 
 - (IBAction)closePopup:(id)sender
 {
-    if (viewText.text.length == 0) {
+    NSString *str = viewText.text ;
+    str = [str stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]];
+    if (str.length == 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attention", nil) message:NSLocalizedString(@"You must write your review first", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
         [alert show];
         return ;

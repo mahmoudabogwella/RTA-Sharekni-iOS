@@ -275,6 +275,19 @@
     return vehicleCell ;
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    for (UIView* view in self.view.subviews) {
+        for (UIGestureRecognizer* recognizer in view.gestureRecognizers) {
+            [recognizer addTarget:self action:@selector(touchEvent:)];
+        }
+        
+        [self.view endEditing:YES];
+    }
+}
+
+- (void)touchEvent:(id)sender{
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

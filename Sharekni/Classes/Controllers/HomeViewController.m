@@ -29,6 +29,8 @@
 #import "VerifyMobileViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 
+@import MobileAppTracker;
+
 @interface HomeViewController () <VerifyMobilePopupDelegate>
 
 #pragma Outlets
@@ -77,10 +79,13 @@
 
 @implementation HomeViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 
+    [Tune measureSession];
+    
     [self configureData];
     [self configureUI];
     [self configureActionsUI];
@@ -358,6 +363,7 @@
 
 - (void) showVeichles:(id)sender{
         VehiclesViewController *registerVehicle = [[VehiclesViewController alloc] initWithNibName:@"VehiclesViewController" bundle:nil];
+    registerVehicle.enableBackButton = YES;
         [self.navigationController pushViewController:registerVehicle animated:YES];
 }
 
