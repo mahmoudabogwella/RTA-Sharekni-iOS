@@ -187,7 +187,7 @@
 - (void) configureUIWithRouteDetails{
     
     //Ride Name
-    self.rideNameTextField.text = (KIS_ARABIC)?self.routeDetails.RouteArName:self.routeDetails.RouteEnName;
+    self.rideNameTextField.text = self.routeDetails.RouteEnName;
     
     //RoadType
     self.selectedType = self.routeDetails.IsRounded.boolValue ? PeriodicType : SingleRideType;
@@ -1174,7 +1174,8 @@
     return YES;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     [textField resignFirstResponder];
     return YES;
 }

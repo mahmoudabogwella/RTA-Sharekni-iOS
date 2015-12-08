@@ -133,7 +133,7 @@
 
 -(void) userDidFinishSelectingLanguage {
     UIAlertView * al = [[UIAlertView alloc] initWithTitle:nil
-                                                  message:NSLocalizedString(@"App needs restart", nil)
+                                                  message:NSLocalizedString(@"App needs to open it again", nil)
                                                  delegate:self
                                         cancelButtonTitle:NSLocalizedString(@"No", nil)
                                         otherButtonTitles: NSLocalizedString(@"Restart", nil), nil];

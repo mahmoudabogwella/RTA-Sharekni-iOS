@@ -110,7 +110,8 @@
     }
 }
 
-- (void) configureTableView{
+- (void) configureTableView
+{
     self.tableView.separatorColor = Red_UIColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -131,7 +132,7 @@
         imageView.layer.shouldRasterize = YES;
         imageView.clipsToBounds = YES;
         imageView.contentMode  =UIViewContentModeScaleAspectFit;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 135, 0, 24)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 145, 0, 24)];
         label.text = [NSString stringWithFormat:@"%@ %@",self.applicationUser.FirstName,self.applicationUser.LastName];
         label.font = [UIFont fontWithName:@"HelveticaNeue" size:21];
         label.backgroundColor = [UIColor clearColor];
@@ -265,7 +266,7 @@
 - (void) userDidFinishSelectingLanguage
 {
     UIAlertView * al = [[UIAlertView alloc] initWithTitle:nil
-                                                  message:NSLocalizedString(@"App needs restart", nil)
+                                                  message:NSLocalizedString(@"App needs to open it again", nil)
                                                  delegate:self
                                         cancelButtonTitle:NSLocalizedString(@"No", nil)
                                         otherButtonTitles: NSLocalizedString(@"Restart", nil), nil];
