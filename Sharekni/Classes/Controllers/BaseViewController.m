@@ -9,6 +9,8 @@
 #import "BaseViewController.h"
 #import <UIViewController+REFrostedViewController.h>
 #import <REFrostedViewController.h>
+#import "Constants.h"
+
 @interface BaseViewController ()
 
 @end
@@ -34,7 +36,13 @@
     }
     else {
         UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(menuItemTapped)];
-        self.navigationItem.leftBarButtonItem = menuItem;
+        if (KIS_ARABIC) {
+            self.navigationItem.rightBarButtonItem = menuItem;
+
+        }else{
+            self.navigationItem.leftBarButtonItem = menuItem;
+
+        }
     }
 }
 
