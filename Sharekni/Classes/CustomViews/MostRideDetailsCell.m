@@ -115,7 +115,7 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 }
 
 - (IBAction)call:(id)sender{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",[NSString stringWithFormat:@"0%@",self.phone]]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",[NSString stringWithFormat:@"%@",self.phone]]]];
 }
 
 - (NSString *)getAvailableDays:(MostRideDetails *)mostRide{
