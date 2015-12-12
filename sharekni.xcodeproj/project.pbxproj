@@ -130,6 +130,8 @@
 		14E5D7C31C0276900089054A /* ActivatePermitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E5D7C11C0276900089054A /* ActivatePermitViewController.xib */; };
 		14E5D7C71C0283890089054A /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D7C51C0283890089054A /* HistoryViewController.m */; };
 		14E692651BE8B7180041A999 /* DriverDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E692631BE8B7180041A999 /* DriverDetailsViewController.m */; };
+		14ECD2431C1AAF170013FE1D /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ECD2411C1AAF170013FE1D /* EditProfileViewController.m */; };
+		14ECD2451C1B39500013FE1D /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14ECD2471C1B39500013FE1D /* EditProfileViewController.xib */; };
 		14F251C21C11905A00D8184E /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F251C01C11905A00D8184E /* WelcomeViewController.xib */; };
 		14F251C61C122E7800D8184E /* AdvancedSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F251C81C122E7800D8184E /* AdvancedSearchViewController.xib */; };
 		14F251CC1C122EBD00D8184E /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F251CE1C122EBD00D8184E /* RegisterViewController.xib */; };
@@ -410,6 +412,10 @@
 		14E5D7C51C0283890089054A /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		14E692621BE8B7180041A999 /* DriverDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverDetailsViewController.h; sourceTree = "<group>"; };
 		14E692631BE8B7180041A999 /* DriverDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverDetailsViewController.m; sourceTree = "<group>"; };
+		14ECD2401C1AAF170013FE1D /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		14ECD2411C1AAF170013FE1D /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		14ECD2461C1B39500013FE1D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EditProfileViewController.xib; sourceTree = "<group>"; };
+		14ECD24A1C1B39560013FE1D /* ar */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ar; path = ar.lproj/EditProfileViewController.xib; sourceTree = "<group>"; };
 		14F251C11C11905A00D8184E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/WelcomeViewController.xib; sourceTree = "<group>"; };
 		14F251C51C11908500D8184E /* ar */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ar; path = ar.lproj/WelcomeViewController.xib; sourceTree = "<group>"; };
 		14F251C71C122E7800D8184E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AdvancedSearchViewController.xib; sourceTree = "<group>"; };
@@ -773,6 +779,9 @@
 				14D3E9391C06A2290047F415 /* TourViewController.xib */,
 				14D3E9571C06C0440047F415 /* PHPageScrollView.h */,
 				14D3E9581C06C0440047F415 /* PHPageScrollView.m */,
+				14ECD2401C1AAF170013FE1D /* EditProfileViewController.h */,
+				14ECD2411C1AAF170013FE1D /* EditProfileViewController.m */,
+				14ECD2471C1B39500013FE1D /* EditProfileViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1049,7 +1058,7 @@
 				TargetAttributes = {
 					04931B1A1BAAF814000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 89SHAPC6FM;
+						DevelopmentTeam = FN9NQZP477;
 					};
 					04931B361BAAF815000F5434 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -1099,6 +1108,7 @@
 				140B97DB1C1686C30030E266 /* touren_5.png in Resources */,
 				140B97B11C164E1A0030E266 /* VerifyMobileViewController.xib in Resources */,
 				8777FA611C00C4B20022E368 /* CreatedRidesViewController.xib in Resources */,
+				14ECD2451C1B39500013FE1D /* EditProfileViewController.xib in Resources */,
 				143F30E01BC83F70006A6A21 /* Images.xcassets in Resources */,
 				140B97D71C1686C30030E266 /* touren_1.png in Resources */,
 				14B00C981BFB921E004F46F7 /* ForgetPasswordViewController.xib in Resources */,
@@ -1298,6 +1308,7 @@
 				87C1AF7F1BB831A300E21838 /* MasterDataManager.m in Sources */,
 				145C84751C15E8900051FDCB /* PageView.m in Sources */,
 				04931B211BAAF814000F5434 /* main.m in Sources */,
+				14ECD2431C1AAF170013FE1D /* EditProfileViewController.m in Sources */,
 				144869FA1BC0968E00804C26 /* QuickSearchViewController.m in Sources */,
 				146815541BFBB61000A78430 /* SideMenuCell.m in Sources */,
 				87B58B611BD38DD700E73E55 /* MapItemView.m in Sources */,
@@ -1399,6 +1410,15 @@
 				14C8CB901C15C94600AA16DF /* ar */,
 			);
 			name = CreateRideViewController.xib;
+			sourceTree = "<group>";
+		};
+		14ECD2471C1B39500013FE1D /* EditProfileViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14ECD2461C1B39500013FE1D /* en */,
+				14ECD24A1C1B39560013FE1D /* ar */,
+			);
+			name = EditProfileViewController.xib;
 			sourceTree = "<group>";
 		};
 		14F251C01C11905A00D8184E /* WelcomeViewController.xib */ = {
@@ -1624,7 +1644,7 @@
 				INFOPLIST_FILE = Sharekni/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = rta.ae.sharekni;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharekni.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1646,9 +1666,9 @@
 				INFOPLIST_FILE = Sharekni/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = rta.ae.sharekni;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharekni.sharekni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b054ef99-a906-44dd-b171-34ecf318754b";
+				PROVISIONING_PROFILE = "f3cdcb57-91c7-47e4-b71d-56bffbd6a427";
 			};
 			name = Release;
 		};

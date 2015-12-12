@@ -266,12 +266,13 @@
 - (void) userDidFinishSelectingLanguage
 {
     UIAlertView * al = [[UIAlertView alloc] initWithTitle:nil
-                                                  message:NSLocalizedString(@"App needs to open it again", nil)
+                                                  message:NSLocalizedString(@"In order to change language you have to re-open the application", nil)
                                                  delegate:self
                                         cancelButtonTitle:NSLocalizedString(@"No", nil)
-                                        otherButtonTitles: NSLocalizedString(@"Ok", nil), nil];
+                                        otherButtonTitles: NSLocalizedString(@"Close Now", nil), nil];
     [al show];
 }
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     
     if (buttonIndex != alertView.cancelButtonIndex) {

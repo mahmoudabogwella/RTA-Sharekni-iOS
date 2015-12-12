@@ -31,7 +31,8 @@
 
 @implementation ForgetPasswordViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -69,7 +70,7 @@
         // TODO: Add fall-back code to set placeholder color.
     }
     
-    [self.submitButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
+    [self.submitButton setBackgroundColor:Red_UIColor];
     [self.submitButton setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
     self.submitButton.layer.cornerRadius = 8;
     
@@ -89,7 +90,7 @@
     }
     else
     {
-        [KVNProgress showWithStatus:@"Loading...."];
+        [KVNProgress showWithStatus:@"Loading..."];
         
         [[MobAccountManager sharedMobAccountManager] forgetPassword:self.mobileTextField.text andEmail:self.emailTextField.text WithSuccess:^(NSMutableArray *array) {
             

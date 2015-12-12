@@ -6,8 +6,8 @@
 
 */
 
-"App needs to open it again" =  "سيحتاج التطبيق لأعادة التشغيل مرة أخري";
-"Restart" = "اعد التشغيل";
+"In order to change language you have to re-open the application" =  "لكي تتمكن من تغيير اللغة يجب إعادة فتح التطبيق مرة أخري";
+"Close Now" = "إغلاق الآن";
 "No" = "لا";
 "Take a tour" = "جولة في شاركني";
 
@@ -20,7 +20,7 @@
 "mobile"    = "رقم الهاتف";
 "nationality" = "الجنسية";
 "pLanguage" = "اللغة المفضلة";
-"Submit" = "أرسل";
+"Submit" = "تأكيد";
 
 "nameReq" = "من فضلك أدخل اسم المستخدم";
 "passReq" = "من فضلك أدخل كلمة المرور";
@@ -173,3 +173,7 @@
 "Resend verification code" = "أعد إرسال كود التفعيل";
 "Enter verification code"  = "أدخل كود التفعيل";
 "Traffic File No." = "رقم الملف المروري";
+
+"Edit Profile" = "تعديل الحساب";
+"Nationalty must be selected" = "يجب عليك اختيار الجنسية";
+"Please check your username and password" = "يزجي التأكد من الاسم وكلمة المرور";

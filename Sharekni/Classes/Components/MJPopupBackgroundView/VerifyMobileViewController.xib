@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VerifyMobileViewController">
             <connections>
+                <outlet property="container" destination="yK6-GW-ZwA" id="YuW-4A-GR1"/>
                 <outlet property="headerTitle" destination="pMX-3A-Auv" id="Yy0-QJ-4le"/>
                 <outlet property="headerTitle2" destination="KTy-HQ-hWc" id="vQa-SO-g3h"/>
                 <outlet property="resendBtn" destination="hDI-L0-9mc" id="5IZ-TW-PWJ"/>
@@ -90,17 +91,6 @@
                         <constraint firstAttribute="bottom" secondItem="Vho-EI-uNf" secondAttribute="bottom" constant="9" id="feQ-ch-FtZ"/>
                         <constraint firstItem="Vho-EI-uNf" firstAttribute="leading" secondItem="yK6-GW-ZwA" secondAttribute="leading" constant="8" id="rFn-O0-mwe"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                            <integer key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                            <color key="value" red="0.341796875" green="0.341796875" blue="0.341796875" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <animations/>

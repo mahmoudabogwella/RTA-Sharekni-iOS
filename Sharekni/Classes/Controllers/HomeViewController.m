@@ -28,6 +28,7 @@
 #import "HelpManager.h"
 #import "VerifyMobileViewController.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "EditProfileViewController.h"
 
 @import MobileAppTracker;
 
@@ -305,8 +306,10 @@
     [self.navigationController pushViewController:savedSearchViewController animated:YES];
 }
 
-- (IBAction) editAction:(id)sender {
-    
+- (IBAction) editAction:(id)sender
+{
+    EditProfileViewController *profileView = [[EditProfileViewController alloc] initWithNibName:@"EditProfileViewController" bundle:nil];
+    [self.navigationController pushViewController:profileView animated:YES];
 }
 
 - (IBAction) openNotifications:(id)sender{
