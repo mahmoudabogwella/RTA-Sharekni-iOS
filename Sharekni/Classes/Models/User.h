@@ -47,6 +47,10 @@
 
 @property (nonatomic,strong) NSNumber *PassengerJoinedRidesCount;
 @property (nonatomic,strong) NSNumber *PassengerMyRidesCount;
+@property (nonatomic,strong) NSNumber *PendingInvitationCount;
+@property (nonatomic,strong) NSNumber *Passenger_Invitation_Count;
+@property (nonatomic,strong) NSNumber *PassengerMyAlertsCount;
+@property (nonatomic,strong) NSNumber *PendingRequestsCount;
 
 @property (nonatomic,strong) UIImage *userImage;
 @property (nonatomic,strong) NSString *imageLocalPath;
@@ -56,4 +60,11 @@
 @property (nonatomic,strong) NSNumber *IsPhotoVerified;
 @property (nonatomic,assign) NSString *DriverTrafficFileNo;
 @property (nonatomic,strong) NSNumber *VehiclesCount;
+
+@property (nonatomic,strong) NSNumber *CO2Saved;
+@property (nonatomic,strong) NSNumber *GreenPoints;
+@property (nonatomic,strong) NSNumber *TotalDistance;
+
+
+
 @end

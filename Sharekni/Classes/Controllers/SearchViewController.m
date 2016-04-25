@@ -7,7 +7,6 @@
 //
 
 #import "SearchViewController.h"
-#import "QuickSearchViewController.h"
 #import "AdvancedSearchViewController.h"
 #import "MostRidesViewController.h"
 #import "MapLookupViewController.h"
@@ -79,14 +78,25 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.title = NSLocalizedString(@"searchOptions", nil);
+   
+    self.title = GET_STRING(@"searchOptions");
     self.navigationController.navigationBarHidden = NO ;
     [self configureUI];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.translucent = YES;
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
 }
 
 - (void) configureUI{
@@ -141,11 +151,11 @@
     self.saveSearchEnabled = !self.saveSearchEnabled;
     if (self.saveSearchEnabled) {
         self.saveSearchLabel.textColor = Red_UIColor;
-        self.SwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_Right"];
+        self.SwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_right"];
     }
     else{
         self.saveSearchLabel.textColor = [UIColor darkGrayColor];
-        self.SwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Right":@"select_Left"];
+        self.SwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_right":@"select_Left"];
     }
 }
 
@@ -154,7 +164,7 @@
 - (void) showDatePicker{
 //    self.pickupDate = [[NSDate date] dateBySettingHour:10];
     __block SearchViewController  *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.dateFormatter.dateFormat = @"dd/MM/yyyy";
         NSString *dateString = [self.dateFormatter stringFromDate:date];
@@ -169,13 +179,13 @@
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = @"select Pickup Date";
+    dateSelectionController.title = GET_STRING(@"Select Pickup Date");
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
     dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [NSDate date];
     
@@ -186,7 +196,7 @@
 - (void) showTimePicker{
     
     __block SearchViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.pickupTime = date;
         blockSelf.dateFormatter.dateFormat = @"HH:mm a";
@@ -198,13 +208,13 @@
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = @"select Pickup Time";
+    dateSelectionController.title = GET_STRING(@"Select Pickup Time");
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
     dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [NSDate date];
     
@@ -213,7 +223,7 @@
 }
 
 - (void) showLocationPicker{
-    SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
+    SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:(KIS_ARABIC)?@"SelectLocationViewController_ar":@"SelectLocationViewController" bundle:nil];
     __block SearchViewController *blockSelf = self;
     [selectLocationViewController setSelectionHandler:^(Emirate *fromEmirate, Region *fromRegion,Emirate *toEmirate, Region *toRegion) {
         blockSelf.helpLabel.alpha = 0;
@@ -247,19 +257,62 @@
             compareResult = [pickupDate_ compare:todayDate_];
     }
     
-    if (!self.fromEmirate) {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please set direction",nil)];
+  /*
+   if (!self.fromEmirate || !self.toRegion ) {
+   if (!self.saveSearchEnabled) {
+   if (!self.fromEmirate ) {
+   [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please set direction")];}
+   }else if (self.saveSearchEnabled) {
+   if (!self.fromEmirate || !self.toRegion) {
+   [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please set direction for both Pick up and Drop off")];
+   }
+   }
+   }
+   */
+    if (!self.fromEmirate ) {
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please set direction")];
+    }else if (!self.self.toRegion && self.saveSearchEnabled) {
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please set direction for both Pick up and Drop off")];
+    }
+    else if (!self.self.toRegion && self.saveSearchEnabled) {
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please set direction for both Pick up and Drop off")];
     }
     else if (compareResult == NSOrderedAscending){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"invalid start date or time",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"invalid start date or time")];
     }
     else{
         __block SearchViewController *blockSelf = self;
-        [KVNProgress showWithStatus:@"Loading..."];
-        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:nil nationality:nil ageRange:nil date:self.pickupDate isPeriodic:nil saveSearch:self.saveSearchEnabled Gender:nil    WithSuccess:^(NSArray *searchResults) {
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
+        //GonMade New passenger_FindRide?AccountID with the new coors
+        Region *fromRegion = self.fromRegion;
+        Region *toRegion = self.toRegion;
+        
+        NSString *startLat ;
+        NSString *startLng ;
+        
+        NSString *endLat ;
+        NSString *endLng ;
+        
+        if (self.saveSearchEnabled) {
+            startLat = fromRegion.RegionLatitude;
+            startLng = fromRegion.RegionLongitude;
+            endLat = toRegion.RegionLatitude;
+            endLng = toRegion.RegionLongitude;
+        }
+        else{
+            startLat = @"0";
+            startLng = @"0";
+            endLat = @"0";
+            endLng = @"0";
+        }
+        NSLog(@"Start Lat %@",startLat);
+        NSLog(@"startLng Lat %@",startLng);
+        NSLog(@"endLat Lat %@",endLat);
+        NSLog(@"endLng Lat %@",endLng);
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:nil nationality:nil ageRange:nil date:self.pickupDate isPeriodic:nil saveSearch:self.saveSearchEnabled Gender:@"N" Smoke:@"" startLat:startLat startLng:startLng EndLat:endLat EndLng:endLng WithSuccess:^(NSArray *searchResults){
             [KVNProgress dismiss];
             if(searchResults){
-                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
+                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchResultsViewController_ar":@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
                 resultViewController.fromEmirate = (KIS_ARABIC)?blockSelf.fromEmirate.EmirateArName:blockSelf.fromEmirate.EmirateEnName;
                 resultViewController.toEmirate = (KIS_ARABIC)?blockSelf.toEmirate.EmirateArName:blockSelf.toEmirate.EmirateEnName;
@@ -267,8 +320,8 @@
                 resultViewController.toRegion = (KIS_ARABIC)?blockSelf.toRegion.RegionArName:blockSelf.toRegion.RegionEnName;
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
-            else{
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"No Rides Found",nil)];
+            else{ //GonMade Back To home view
+                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"No Rides Found")];
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
@@ -287,7 +340,7 @@
 }
 
 - (IBAction) advancedSearch:(id)sender{
-    AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] initWithNibName:@"AdvancedSearchViewController" bundle:nil];
+    AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] initWithNibName:(KIS_ARABIC)?@"AdvancedSearchViewController_ar":@"AdvancedSearchViewController" bundle:nil];
     [self.navigationController pushViewController:advancedSearchView animated:YES];
 }
 
@@ -297,8 +350,7 @@
 }
 
 - (IBAction) topRides:(id)sender{
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MostRidesViewController *mostRides = [storyboard instantiateViewControllerWithIdentifier:@"MostRidesViewController"];
+    MostRidesViewController *mostRides = [[MostRidesViewController alloc] initWithNibName:@"MostRidesViewController" bundle:nil];
     mostRides.enableBackButton = YES;
     [self.navigationController pushViewController:mostRides animated:YES];
 }

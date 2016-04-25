@@ -30,18 +30,25 @@
 
 - (void) deleteRideWithID:(NSString *)rideID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure;
 
-- (void) forgetPassword:(NSString *)number andEmail:(NSString *)email WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
+- (void) forgetPassword:(NSString *)number andEmail:(NSString *)email WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
 
 +(MobAccountManager *)sharedMobAccountManager;
 
 - (void) reviewDriver:(NSString *)driverId PassengerId:(NSString *)passengerId RouteId:(NSString *)routeId ReviewText:(NSString *)reviewText WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
 
+- (void) EditreviewWithID:(NSString *)reviewID ReviewText:(NSString *)reviewText WithSuccess:(void (^)(BOOL deleted))success Failure:(void (^)(NSString *error))failure;
+
 - (void) registerVehicle:(NSString *)AccountId TrafficFileNo:(NSString *)TrafficFileNo BirthDate:(NSString *)BirthDate WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
 
 - (void) joinRidePassenger:(NSString *)PassengerID RouteID:(NSString *)RouteID DriverID:(NSString *)DriverID Remark:(NSString *)remark WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
 
-- (void) acceptRequest:(NSString *)RequestId andIsAccepted:(NSString *)IsAccept WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure;
+//GonMade Calling WebServ Driver_SendInvitation
 
+- (void) DriverSendInvitation:(NSString *)PassengerID RouteID:(NSString *)RouteID DriverID:(NSString *)DriverID Remark:(NSString *)remark WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
+/*
+- (void) acceptRequest:(NSString *)RequestId andIsAccepted:(NSString *)IsAccept WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure;
+*/
+- (void) acceptRequest:(NSString *)RequestId andIsAccepted:(NSString *)IsAccept notificationType:(AcceptNotification)type WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure;
 - (void) leaveRideWithID:(NSString *) routeID withSuccess:(void (^)(BOOL deletedSuccessfully))success Failure:(void (^)(NSString *error))failure;
 
 
@@ -59,6 +66,8 @@
 
 - (void) confirmMobileNumber:(NSString *)accountId andCode:(NSString *)code WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
 
+- (void) updateUserProfileWithAccountID:(NSString *)accountID firstName:(NSString *)firstName lastName:(NSString *)lastName gender:(NSString *)gender imagePath:(NSString *)photoName birthDate:(NSString *)birthDate nationalityID:(NSString *)nationalityId PreferredLanguageId:(NSString *)langID Mobile:(NSString *)mobile WithSuccess:(void (^)(NSString *user))success Failure:(void (^)(NSString *error))failure ;
 
+- (void) getDriverRate:(NSString *)driverID inRouteID:(NSString *)routeID WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure ;
 
 @end

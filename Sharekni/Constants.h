@@ -44,11 +44,11 @@
 #define XML_Tag1 @"<string xmlns=\"http://Sharekni-MobIOS-Data.org/\">"
 #define XML_Tag3 @"<string xmlns=\"http://Sharekni-MobIOS-Data.org/\">"
 
-//#define Sharkeni_BASEURL @"http://sharekni.sdgstaff.com/_mobfiles/"
-//#define Sharkeni_BASEURL @"http://sharekni-web.sdg.ae/_mobfiles/"
-//#define Sharkeni_BASEURL @"https://www.sharekni.ae/_mobfiles/"
+#define Sharkeni_BASEURL @"https://www.sharekni.ae/_mobfiles/"
 
-#define Sharkeni_BASEURL @"http://213.42.51.219/_mobfiles/"
+//#define Sharkeni_BASEURL @"http://213.42.51.219/_mobfiles/"
+
+//#define Sharkeni_BASEURL @"http://sharekni-web.sdg.ae/_mobfiles/"
 
 #define GetAgeRanges_URL @"cls_mobios.asmx/GetAgeRanges"
 #define GetEmirates_URL @"cls_mobios.asmx/GetEmirates"
@@ -101,13 +101,21 @@
 #define Red_UIColor [UIColor add_colorWithRGBHexString:Red_HEX]
 #define Yellow_UIColor [UIColor add_colorWithRGBHexString:Yellow_HEX]
 
-
 #pragma ENUMS
 
 typedef enum RoadType : NSUInteger {
     PeriodicType,
     SingleRideType
 } RoadType;
+
+typedef enum NotificationType : NSUInteger {
+    NotificationTypeAccepted,
+    NotificationTypeAlert,
+    NotificationTypePending,
+    NotificationTypeAlertForPassenger,
+    Driver_GetAcceptedInvitationsFromPassenger,
+    Driver_GetPendingInvitationsFromPassenger,
+} NotificationType;
 
 typedef enum WebViewType : NSUInteger {
     WebViewPrivacyType,
@@ -130,6 +138,15 @@ typedef enum TextFieldType : NSUInteger {
     VehiclesTextField
 } TextFieldType;
 
+typedef enum AcceptNotification : NSUInteger {
+    DriverRequest,
+    PassengerJoin,
+} AcceptNotification;
+
+typedef enum deleteRequestWithID : NSUInteger {
+    Driver_RemoveInvitation,
+    Passenger_RemoveRequest,
+} deleteRequestWithID;
 
 #define API_PARAMETERS_KEYS
 
@@ -164,12 +181,14 @@ typedef enum TextFieldType : NSUInteger {
 #define GoogleMaps_ProjectNumber @"308520536406"
 #define GoogleMaps_ApplicationID @"sharekni-1121"
 
-#define KIS_ARABIC ([[KUSER_DEFAULTS valueForKey:KUSER_LANGUAGE_KEY] isEqualToString:@"ar"])
+//#define KIS_ARABIC ([[KUSER_DEFAULTS valueForKey:KUSER_LANGUAGE_KEY] isEqualToString:@"ar"])
 #define KIS_SYS_LANGUAGE_ARABIC ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"ar"])
 #define KUSER_DEFAULTS ([NSUserDefaults standardUserDefaults])
 #define KUSER_TOKEN_KEY @"KUSER_TOKEN_KEY"
 #define KUSER_LANGUAGE_KEY @"KUSER_LANGUAGE_KEY"
 #define KNEEDS_TO_COMPLETE_PROFILE_KEY @"KNEEDS_TO_COMPLETE_PROFILE_KEY"
+
+#import "Languages.h"
 
 
 #endif

@@ -17,13 +17,14 @@
 #import "HomeViewController.h"
 #import <REFrostedViewController.h>
 #import "SideMenuTableViewController.h"
+#import "NSObject+Blocks.h"
 
 @interface ForgetPasswordViewController ()<UITextFieldDelegate,REFrostedViewControllerDelegate>
 {
     float animatedDistance ;
+    NSString * EmailSpaceRemoved;
 }
 
-@property (weak, nonatomic) IBOutlet UITextField *mobileTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
@@ -36,19 +37,33 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"forget", nil);
+    self.title = GET_STRING(@"forget");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
     self.navigationController.navigationBarHidden = NO ;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    
+
+    
     [self configureUI];
 
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -61,43 +76,62 @@
 }
 
 - (void) configureUI{
-    if ([self.mobileTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+    
+    if ([self.emailTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mobileReq",nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mailReq", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"mailReq") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
     }
     
     [self.submitButton setBackgroundColor:Red_UIColor];
-    [self.submitButton setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
+    [self.submitButton setTitle:GET_STRING(@"Submit") forState:UIControlStateNormal];
     self.submitButton.layer.cornerRadius = 8;
     
 }
+
+-(NSString *)SpacesRemover :(NSString *)StringRemoveSpaces{
+    NSString *s = [StringRemoveSpaces stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    return s ;
+}
+
 
 - (IBAction)forgetAction:(id)sender
 {
     [self.view endEditing:YES];
 
-    if(self.mobileTextField.text.length == 0){
-  
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"mobileReq",nil)];
-    }
-    else if (self.emailTextField.text.length == 0)
+     if (self.emailTextField.text.length == 0)
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"mailReq", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"mailReq")];
     }
     else
     {
-        [KVNProgress showWithStatus:@"Loading..."];
+
+        EmailSpaceRemoved = self.emailTextField.text;
+        EmailSpaceRemoved = [self SpacesRemover:_emailTextField.text];
         
-        [[MobAccountManager sharedMobAccountManager] forgetPassword:self.mobileTextField.text andEmail:self.emailTextField.text WithSuccess:^(NSMutableArray *array) {
-            
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
+        
+        __block ForgetPasswordViewController *blockSelf = self;
+        [[MobAccountManager sharedMobAccountManager] forgetPassword:@"" andEmail: EmailSpaceRemoved WithSuccess:^(NSString *user) {
             [KVNProgress dismiss];
+            if (user) {
+                [KVNProgress showSuccessWithStatus:user];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popToRootViewControllerAnimated:true];
+                });
+            }else{
+                [KVNProgress dismiss];
+            }
             
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
+            [KVNProgress showErrorWithStatus:error];
+            [blockSelf performBlock:^{
+                [KVNProgress dismiss];
+            } afterDelay:3];
         }];
     }
 }

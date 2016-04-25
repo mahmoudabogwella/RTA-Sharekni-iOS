@@ -13,6 +13,10 @@
 @property (nonatomic,strong) NSString *RequestDate;
 @property (nonatomic,strong) NSNumber *IsRemoved;
 @property (nonatomic,strong) NSString *RemoveDate;
+//GonMade webServeSub 3
+@property (nonatomic,strong) NSString *RequestStatus;
+@property (nonatomic,strong) NSString *PassengerStatus;
+
 @property (nonatomic,strong) NSString *Remarks;
 @property (nonatomic,strong) NSNumber *AccountId;
 @property (nonatomic,strong) NSString *AccountName;

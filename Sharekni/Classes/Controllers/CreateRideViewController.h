@@ -18,5 +18,6 @@
 @property (nonatomic, copy) void (^doneHandler)(void);
 @property (nonatomic, copy) void (^editHandler)(void);
 
+@property (nonatomic,strong) NSString *UserID;
 
 @end

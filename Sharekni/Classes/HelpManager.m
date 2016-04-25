@@ -37,7 +37,7 @@
 //                                    NSLog(@"Completed");
 //                                    
 //                                }];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"", nil) message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"", nil) message:message delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
     [alertView show];
 }
 
@@ -45,6 +45,7 @@
     if (!_imagesDirectory) {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *basePath = paths.firstObject;
+        [self addSkipBackupAttributeToItemAtPath:basePath];
         _imagesDirectory = [basePath stringByAppendingPathComponent:@"CahcedImages"];
         if(![[NSFileManager defaultManager] fileExistsAtPath:_imagesDirectory]){
             [[NSFileManager defaultManager] createDirectoryAtPath:_imagesDirectory withIntermediateDirectories:NO attributes:0 error:nil];
@@ -54,11 +55,38 @@
 }
 
 
+- (void)addSkipBackupAttributeToItemAtPath:(NSString *) filePathString
+{
+    NSURL* URL= [NSURL fileURLWithPath: filePathString];
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+    
+    NSError *error = nil;
+    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    }else{
+        NSLog(@"Success");
+    }
+}
+
 - (NSInteger) yearsBetweenDate:(NSDate *)date1 andDate:(NSDate *)date2{
     NSTimeInterval distanceBetweenDates = [date1 timeIntervalSinceDate:date2];
     double secondsInyear = 60 * 60 * 24 * 365;
     NSInteger yearsBetweenDates = distanceBetweenDates / secondsInyear;
     return yearsBetweenDates;
+}
+
+- (BOOL) isDateBefor1900:(NSDate *)date{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSInteger desiredComponents = (NSCalendarUnitYear);
+    NSDateComponents *components = [calendar components:desiredComponents fromDate:date];
+    if (components.year > 1900) {
+        return NO;
+    }
+    else{
+        return YES;
+    }
 }
 
 - (void) saveUserPasswordInUserDefaults:(NSString *)password{

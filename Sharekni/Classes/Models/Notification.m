@@ -16,11 +16,12 @@
     NSMutableDictionary *mapping = [NSMutableDictionary dictionary];
     mapping[@"RequestId"] = @"RequestId";
     mapping[@"DriverAccept"] = @"DriverAccept";
-    mapping[@"PassengerName"] = @"PassengerName";
+    mapping[@"DriverName"] = @"DriverName";
     mapping[@"RouteName"] = @"RouteName";
     mapping[@"Remarks"] = @"Remarks";
     mapping[@"RequestDate"] = @"RequestDate";
     mapping[@"PassengerMobile"] = @"PassengerMobile";
+    mapping[@"PassengerName"] = @"PassengerName";    
     mapping[@"AccountPhoto"] = @"AccountPhoto";
     mapping[@"NationalityEnName"] = @"AccountGender";
     mapping[@"NationalityFrName"] = @"AccountGenderAr";
@@ -31,6 +32,9 @@
     mapping[@"NationalityChName"] = @"NationalityFrName";
     mapping[@"NationalityUrName"] = @"NationalityChName";
     mapping[@"NationalityUrName"] = @"NationalityUrName";
+    mapping[@"PassengerAccept"] = @"PassengerAccept";//
+    mapping[@"NotificationName"] = @"NotificationName";//
+
 
     return mapping;
 }
@@ -45,6 +49,11 @@
     } Failure:^(NSString *error) {
         NSLog(@"Failed to download notification profile image");
     }];
+    if (![_PassengerName  isEqual: @"nil"]) {
+        _IsITDorD = @"Driver";
+    }else if (![_DriverName  isEqual: @"nil"]) {
+        _IsITDorD = @"Passenger";
+    }
 }
 
 @end

@@ -50,6 +50,16 @@
     mapping[@"IsPhotoVerified"] = @"IsPhotoVerified";
     mapping[@"DriverTrafficFileNo"] = @"DriverTrafficFileNo";
     mapping[@"VehiclesCount"] = @"VehiclesCount";
+    
+    mapping[@"PendingInvitationCount"] = @"PendingInvitationCount";
+    mapping[@"Passenger_Invitation_Count"] = @"Passenger_Invitation_Count";
+    mapping[@"PassengerMyAlertsCount"] = @"PassengerMyAlertsCount";
+    mapping[@"PendingRequestsCount"] = @"PendingRequestsCount";
+
+    mapping[@"CO2Saved"] = @"CO2Saved";
+    mapping[@"GreenPoints"] = @"GreenPoints";
+    mapping[@"TotalDistance"] = @"TotalDistance";
+    
     return mapping;
 }
 

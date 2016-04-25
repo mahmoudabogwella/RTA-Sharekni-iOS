@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import "MapLookUp.h"
+#import "MapLookupForPassenger.h"
+
 @interface MapItemView : NSObject
 @property (nonatomic,strong) NSString *arabicName;
 @property (nonatomic,strong) NSString *englishName;
@@ -19,6 +21,9 @@
 @property (nonatomic,strong) NSString *drivers;
 @property (nonatomic,strong) NSString *comingRides;
 @property (nonatomic,strong) MapLookUp *lookup;
+@property (nonatomic,strong) MapLookupForPassenger *lookupForPassenger;
+
+
 
 - (instancetype) initWithLat:(NSString *)lat lng:(NSString *)lng address:(NSString *)address name:(NSString *)name;
 @end

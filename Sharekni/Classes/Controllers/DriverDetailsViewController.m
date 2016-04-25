@@ -18,6 +18,8 @@
 #import "RideDetailsViewController.h"
 #import "MobAccountManager.h"
 #import "RZDataBinding.h"   
+#import "LoginViewController.h"
+#import "User.h"
 
 @interface DriverDetailsViewController () <MFMessageComposeViewControllerDelegate>
 
@@ -42,11 +44,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"driverDetails", nil);
+    self.title = GET_STRING(@"driverDetails");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -54,12 +56,24 @@
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
     
+    
     [self.ridesList registerClass:[DriverRideCell class] forCellReuseIdentifier:RIDE_CELLID];
     [self configureData];
 }
 
-- (void) configureData{
-    
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
+}
+
+- (void) configureData
+{
     //configure Image
     NSString *driverID;
     if (self.bestDriver) {
@@ -74,11 +88,13 @@
     else if (self.joinedRide){
         driverID = self.joinedRide.Account.stringValue;
     }
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
 
-    self.driverName.textAlignment = NSTextAlignmentNatural ;
-    self.country.textAlignment = NSTextAlignmentNatural ;
-    
+    if (KIS_ARABIC) {
+        self.driverName.textAlignment = NSTextAlignmentRight ;
+        self.country.textAlignment = NSTextAlignmentRight ;
+    }
+   
     if (self.bestDriver) {
         
         self.driverName.text = self.bestDriver.AccountName ;
@@ -166,18 +182,71 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)configureDriverData:(NSString *)driverID{
+- (void)configureDriverData:(NSString *)driverID
+{
     __block DriverDetailsViewController *blockSelf = self;
-        [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
         NSString *accountID = driverID;
         [[MasterDataManager sharedMasterDataManager] getDriverRideDetails:accountID WithSuccess:^(NSMutableArray *array)
          {
              blockSelf.driverRides = array;
              [self.ridesList reloadData];
-             
+             //GreenPoint
              [[MobAccountManager sharedMobAccountManager] getUser:driverID WithSuccess:^(User *user) {
                  blockSelf.driver = user;
                  blockSelf.country.text = (KIS_ARABIC)?blockSelf.driver.NationalityArName:blockSelf.driver.NationalityEnName ;
+                 //GreenPoint
+                 NSNumber *test = blockSelf.driver.GreenPoints;
+                 NSNumber *test1 = blockSelf.driver.TotalDistance;
+                 NSNumber *test2 = blockSelf.driver.DriverMyRidesCount;
+                 NSNumber *test3 = blockSelf.driver.VehiclesCount;
+                 NSNumber *test4 = blockSelf.driver.CO2Saved;
+
+                 int number = [test4 intValue];
+                 NSLog(@"CO2 Saved BEfore : %d",number);
+                 int Co2Saved = (number/1000);
+                 NSLog(@"CO2 Saved BEfore : %d",Co2Saved);
+                                
+                 NSString *StringScorePlayer = [test stringValue];
+                 NSString *StringScorePlayer1 = [test1 stringValue];
+                 NSString *StringScorePlayer2 = [test2 stringValue];
+                 NSString *StringScorePlayer3 = [test3 stringValue];
+                 NSString *StringScorePlayer4 = [NSString stringWithFormat:@"%d",Co2Saved];
+
+//                 NSString *myString = [NSNumber stringValue];
+//                 NSString *myString = [NSNumber stringValue];
+//                 NSString *myString = [NSNumber stringValue];
+//                 NSString *myString = [NSNumber stringValue];
+                 blockSelf.PointsOutLet.text = StringScorePlayer;
+                 blockSelf.KmOutLet.text = StringScorePlayer1;
+                 blockSelf.RoutesOutLet.text = StringScorePlayer2;
+                 blockSelf.VehiclesOutLet.text = StringScorePlayer3;
+                 blockSelf.GreenPointKmOutLets.text = StringScorePlayer4;
+
+                 if (([self.KmOutLet.text length] > 5) ){
+                     // User cannot type more than 15 characters
+                     self.KmOutLet.text = [self.KmOutLet.text substringToIndex:5];
+                 } else if (([self.PointsOutLet.text length] > 5) ){
+                     // User cannot type more than 15 characters
+                     self.PointsOutLet.text = [self.PointsOutLet.text substringToIndex:5];
+                 }
+//                 else if (([self.GreenPointKmOutLets.text length] > 5) ){
+//                     // User cannot type more than 15 characters
+//                     self.GreenPointKmOutLets.text = [self.GreenPointKmOutLets.text substringToIndex:5];
+//                 } else if (([self.VehiclesOutLet.text length] > 5) ){
+//                     // User cannot type more than 15 characters
+//                     self.VehiclesOutLet.text = [self.VehiclesOutLet.text substringToIndex:5];
+//                 }else if (([self.RoutesOutLet.text length] > 5) ){
+//                     // User cannot type more than 15 characters
+//                     self.RoutesOutLet.text = [self.RoutesOutLet.text substringToIndex:5];
+//                 }
+                 
+//                 blockSelf.KmOutLet.text = blockSelf.driver.TotalDistance;
+//                 blockSelf.RoutesOutLet.text = blockSelf.driver.DriverMyRidesCount;
+//                 blockSelf.VehiclesOutLet.text = blockSelf.driver.VehiclesCount;
+//                 blockSelf.GreenPointKmOutLets.text = blockSelf.driver.CO2Saved;
+                 
+                 
                  [blockSelf.driver rz_addTarget:self action:@selector(ratingChanged) forKeyPathChange:@"AccountRating"];
              [KVNProgress dismiss];
 
@@ -197,24 +266,31 @@
 
 
 #pragma mark - Event Handler
-- (IBAction)sendMail:(id)sender{
+- (IBAction)sendMail:(id)sender
+{
     NSString *driverMobile ;
-    if(self.mostRideDetails){
+    if(self.mostRideDetails)
+    {
         driverMobile = self.mostRideDetails.DriverMobile;
     }
-    else if (self.bestDriver){
+    else if (self.bestDriver)
+    {
         driverMobile = self.bestDriver.AccountMobile;
     }
-    else if (self.driverSearchResult){
+    else if (self.driverSearchResult)
+    {
         driverMobile = self.driverSearchResult.AccountMobile;
     }
-    else if (self.joinedRide){
+    else if (self.joinedRide)
+    {
         driverMobile = self.joinedRide.DriverMobile;
     }
+    
     [self sendSMSFromPhone:driverMobile];
 }
 
-- (IBAction)call:(id)sender{
+- (IBAction)call:(id)sender
+{
     NSString *driverMobile ;
     if(self.mostRideDetails){
         driverMobile = self.mostRideDetails.DriverMobile;
@@ -228,7 +304,50 @@
     else if (self.joinedRide){
         driverMobile = self.joinedRide.DriverMobile;
     }
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",driverMobile]]];
+    
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",driverMobile]]];
+    }
+    else
+    {
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
+}
+
+- (void)sendSMSFromPhone:(NSString *)phone
+{
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user)
+    {
+        if(![MFMessageComposeViewController canSendText])
+        {
+            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [warningAlert show];
+            return;
+        }
+        
+        NSArray *recipents = @[phone];
+        
+        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+        messageController.messageComposeDelegate = self;
+        [messageController setRecipients:recipents];
+        
+        // Present message view controller on screen
+        [self presentViewController:messageController animated:YES completion:nil];
+        
+    }
+    else
+    {
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
 }
 
 #pragma mark -
@@ -257,7 +376,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DriverDetails *driver = self.driverRides[indexPath.row];
-    RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:@"RideDetailsViewController" bundle:nil];
+    RideDetailsViewController *rideDetails = [[RideDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"RideDetailsViewController_ar":@"RideDetailsViewController" bundle:nil];
     rideDetails.driverDetails = driver ;
     [self.navigationController pushViewController:rideDetails animated:YES];
 }
@@ -267,23 +386,6 @@
 }
 
 #pragma mark - Message Delegate
-- (void)sendSMSFromPhone:(NSString *)phone{
-    if(![MFMessageComposeViewController canSendText])
-    {
-        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [warningAlert show];
-        return;
-    }
-    
-    NSArray *recipents = @[phone];
-    
-    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-    messageController.messageComposeDelegate = self;
-    [messageController setRecipients:recipents];
-    
-    // Present message view controller on screen
-    [self presentViewController:messageController animated:YES completion:nil];
-}
 
 - (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     switch(result)

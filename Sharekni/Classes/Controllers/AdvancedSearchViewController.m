@@ -98,6 +98,13 @@
 
 @property (nonatomic,assign) BOOL saveSearchEnabled;
 
+@property (weak ,nonatomic) IBOutlet UIButton *bothBtn ;
+@property (weak ,nonatomic) IBOutlet UIButton *maleBtn ;
+@property (weak ,nonatomic) IBOutlet UIButton *femaleBtn ;
+
+@property (weak ,nonatomic) IBOutlet UIButton *acceptBtn ;
+@property (weak ,nonatomic) IBOutlet UIButton *notAcceptBtn ;
+
 @end
 
 @implementation AdvancedSearchViewController
@@ -117,7 +124,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
  
-    self.title = NSLocalizedString(@"advancedSearch", nil);
+    self.title = GET_STRING(@"advancedSearch");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
@@ -136,6 +143,17 @@
     [self configureUI];
 }
 
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
+}
+
 - (void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -143,7 +161,7 @@
 #pragma Data
 - (void) configureData{
     __block AdvancedSearchViewController *blockSelf = self;
-    [KVNProgress showWithStatus:@"Loading"];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"0" WithSuccess:^(NSMutableArray *array) {
         blockSelf.nationalties = array;
         blockSelf.nationaltiesStringsArray = [NSMutableArray array];
@@ -203,7 +221,7 @@
     
     self.nationalityTextField.textColor    = Red_UIColor;
     UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-    self.nationalityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"preferedLang",nil) attributes:@{NSForegroundColorAttributeName: color}];
+    self.nationalityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"preferedLang") attributes:@{NSForegroundColorAttributeName: color}];
     
     self.startPointLabel.textColor     = Red_UIColor;
     self.destinationLabel.textColor    = Red_UIColor;
@@ -213,13 +231,10 @@
     self.timeLabel.textColor = Red_UIColor;
     self.dateLabel.textColor = Red_UIColor;
     self.timeLabel.textColor = Red_UIColor;
+
     
-    
-//    self.dateLabel.text = NSLocalizedString(@"Starting when", nil);
-//    self.timeLabel.text = NSLocalizedString(@"schedule on", nil);
-    
-    [self.languageButton setTitle:NSLocalizedString(@"Choose a language", nil) forState:UIControlStateNormal];
-    [self.ageRangeButton setTitle:NSLocalizedString(@"Choose age range", nil) forState:UIControlStateNormal];
+    [self.languageButton setTitle:GET_STRING(@"Choose a language") forState:UIControlStateNormal];
+    [self.ageRangeButton setTitle:GET_STRING(@"Choose age range") forState:UIControlStateNormal];
     
     UITapGestureRecognizer *saveSearchTapGestureRecognizer  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveSearchViewTapped)];
     [self.saveSearchView addGestureRecognizer:saveSearchTapGestureRecognizer];
@@ -279,7 +294,7 @@
         case PeriodicType:
             self.periodicLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
             self.singleRideLabel.textColor = [UIColor darkGrayColor];
-            self.typeSwitchImage.image = [UIImage imageNamed:@"select_Right"];
+            self.typeSwitchImage.image = [UIImage imageNamed:@"select_right"];
             break;
         default:
             break;
@@ -289,10 +304,10 @@
 - (void) configureGenderView{
     if (self.isFemaleOnly)
     {
-        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_Right"];
+        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_right"];
         self.genderLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
     }else{
-        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Right":@"select_Left"];
+        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_right":@"select_Left"];
         self.genderLabel.textColor = [UIColor darkGrayColor];
     }
 }
@@ -323,10 +338,10 @@
     if (self.saveSearchEnabled)
     {
         self.saveSearchLabel.textColor = Red_UIColor;
-        self.saveSearchSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_Right"];
+        self.saveSearchSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_right"];
     }else{
         self.saveSearchLabel.textColor = [UIColor darkGrayColor];
-        self.saveSearchSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Right":@"select_Left"];
+        self.saveSearchSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_right":@"select_Left"];
     }
 }
 
@@ -347,19 +362,69 @@
         compareResult = [pickupDate_ compare:todayDate_];
     }
     
-    if (!self.fromEmirate) {
-          [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select start point ",nil)];
+    NSString *gender ;
+    if (self.bothBtn.selected) {
+        gender = @"N";
+    }else if (self.maleBtn.selected){
+        gender = @"M";
+    }else if (self.femaleBtn.selected){
+        gender = @"F";
+    }else{
+        gender = @"N";
+    }
+    
+    NSString *acceptSmoke ;
+    if (self.acceptBtn.selected) {
+        acceptSmoke = @"1";
+    }else if (self.notAcceptBtn.selected){
+        acceptSmoke = @"0";
+    }else{
+        acceptSmoke = @"";
+    }
+    
+    if (!self.fromEmirate ) {
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please set direction")];
+    }else if (!self.self.toRegion && self.saveSearchEnabled) {
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please set direction for both Pick up and Drop off")];
     }
     else if (compareResult == NSOrderedAscending){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"invalid start date or time ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"invalid start date or time ")];
     }
     else{
         __block AdvancedSearchViewController *blockSelf = self;
-        [KVNProgress showWithStatus:@"Loading..."];
-        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ?@(YES):@(NO) saveSearch:self.saveSearchEnabled Gender:@(self.isFemaleOnly) WithSuccess:^(NSArray *searchResults) {
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
+        //GonMade passenger_FindRide?AccountID
+        
+        Region *fromRegion = self.fromRegion;
+        Region *toRegion = self.toRegion;
+       
+        NSString *startLat ;
+        NSString *startLng ;
+        
+        NSString *endLat ;
+        NSString *endLng ;
+        
+        if (self.saveSearchEnabled) {
+            startLat = fromRegion.RegionLatitude;
+            startLng = fromRegion.RegionLongitude;
+            endLat = toRegion.RegionLatitude;
+            endLng = toRegion.RegionLongitude;
+        }
+        else{
+            startLat = @"0";
+            startLng = @"0";
+            endLat = @"0";
+            endLng = @"0";
+        }
+        NSLog(@"Start Lat %@",startLat);
+        NSLog(@"startLng Lat %@",startLng);
+        NSLog(@"endLat Lat %@",endLat);
+        NSLog(@"endLng Lat %@",endLng);
+
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirate:self.fromEmirate andFromRegion:self.fromRegion toEmirate:self.toEmirate andToRegion:self.toRegion PerfferedLanguage:self.selectedLanguage nationality:self.selectedNationality ageRange:self.selectedAgeRange date:self.pickupDate isPeriodic:(self.selectedType == PeriodicType) ?@(YES):@(NO) saveSearch:self.saveSearchEnabled Gender:gender Smoke:acceptSmoke  startLat:startLat startLng:startLng EndLat:endLat EndLng:endLng WithSuccess:^(NSArray *searchResults) {
             [KVNProgress dismiss];
             if(searchResults){
-                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
+                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchResultsViewController_ar":@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
                 resultViewController.fromEmirate =(KIS_ARABIC)?blockSelf.fromEmirate.EmirateArName:blockSelf.fromEmirate.EmirateEnName;
                 resultViewController.toEmirate = (KIS_ARABIC)? blockSelf.toEmirate.EmirateArName:blockSelf.toEmirate.EmirateEnName;
@@ -368,7 +433,7 @@
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
             else{
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"No Rides Found")];
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];            
@@ -381,7 +446,7 @@
 - (void) showDatePicker{
     //    self.pickupDate = [[NSDate date] dateBySettingHour:10];
     __block AdvancedSearchViewController  *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.dateFormatter.dateFormat = @"dd/MM/yyyy";
         NSString *dateString = [self.dateFormatter stringFromDate:date];
@@ -396,7 +461,7 @@
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
@@ -413,7 +478,7 @@
 - (void) showTimePicker{
     
     __block AdvancedSearchViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.pickupTime = date;
         blockSelf.dateFormatter.dateFormat = @"HH:mm a";
@@ -425,7 +490,7 @@
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
@@ -440,7 +505,7 @@
 }
 
 - (void) showPickerWithTextFieldType:(TextFieldType)type{
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
@@ -471,7 +536,7 @@
     }];
     
     
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         NSLog(@"Row selection was canceled");
     }];
     
@@ -512,7 +577,7 @@
 }
 
 - (void) showLocationPicker{
-    SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
+    SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:(KIS_ARABIC)?@"SelectLocationViewController_ar":@"SelectLocationViewController" bundle:nil];
     __block AdvancedSearchViewController *blockSelf = self;
     [selectLocationViewController setSelectionHandler:^(Emirate *fromEmirate, Region *fromRegion,Emirate *toEmirate, Region *toRegion) {
         self.helpLabel.alpha = 0;
@@ -551,7 +616,7 @@
             self.selectedNationality  = self.nationalties[[self.nationaltiesStringsArray indexOfObject:textField.text] ];
         }
         else{
-            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Choose a valid nationality.", nil)];
+            [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please Choose a valid nationality.")];
         }
     }
     return YES;
@@ -644,5 +709,71 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     NSArray *results = [self.nationaltiesStringsArray filteredArrayUsingPredicate:predicate];
     return results;
 }
+
+
+- (IBAction)selectGenderType:(id)sender
+{
+    switch ([sender tag])
+    {
+        case 0:
+            if (self.bothBtn.selected) {
+                self.bothBtn.selected = NO ;
+            }else{
+                self.bothBtn.selected = YES ;
+            }
+            self.maleBtn.selected = NO ;
+            self.femaleBtn.selected = NO;
+            break;
+        case 1:
+            self.bothBtn.selected = NO ;
+            if (self.maleBtn.selected) {
+                self.maleBtn.selected = NO ;
+            }else{
+                self.maleBtn.selected = YES ;
+            }
+            self.femaleBtn.selected = NO;
+            break;
+        case 2:
+            self.bothBtn.selected = NO ;
+            self.maleBtn.selected = NO ;
+            if (self.femaleBtn.selected)
+            {
+                self.femaleBtn.selected = NO;
+            }else{
+                self.femaleBtn.selected = YES;
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+- (IBAction)selectIsSmoke:(id)sender
+{
+    switch ([sender tag])
+    {
+        case 10:
+            if (self.acceptBtn.selected)
+            {
+                self.acceptBtn.selected = NO ;
+            }else{
+                self.acceptBtn.selected = YES ;
+            }
+            self.notAcceptBtn.selected = NO ;
+            break;
+        case 11:
+            self.acceptBtn.selected = NO ;
+            if (self.notAcceptBtn.selected)
+            {
+                self.notAcceptBtn.selected = NO ;
+            }else{
+                self.notAcceptBtn.selected = YES ;
+            }
+            break;
+        default:
+            break;
+    }
+}
+
 
 @end

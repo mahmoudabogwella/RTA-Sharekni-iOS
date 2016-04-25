@@ -17,9 +17,6 @@
     // Initialization code
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
-    
-    self.driverName.textAlignment = NSTextAlignmentNatural ;
-    self.driverCountry.textAlignment = NSTextAlignmentNatural ;
 }
 
 - (void)setDriver:(BestDriver *)driver
@@ -27,6 +24,32 @@
     _driver = driver;
     self.driverName.text = driver.AccountName ;
     self.driverCountry.text = (KIS_ARABIC)?driver.NationalityArName:driver.NationalityEnName ;
+    self.LastSeen.text = driver.LastSeen;
+    //GreenPoint
+    NSNumber *test = driver.GreenPoints;
+    NSNumber *test4 = driver.CO2Saved;
+    
+    int number = [test4 intValue];
+    NSLog(@"CO2 Saved BEfore : %d",number);
+    int Co2Saved = (number/1000);
+    NSLog(@"CO2 Saved BEfore : %d",Co2Saved);
+    
+    NSString *StringScorePlayer = [test stringValue];
+    NSString *StringScorePlayer4 = [NSString stringWithFormat:@"%d",Co2Saved];
+    
+    self.GreenPointPoints.text =  StringScorePlayer;
+    self.GreenPointCo2.text = StringScorePlayer4;
+    
+//    if (([self.GreenPointCo2.text length] > 2) ){
+//        // User cannot type more than 15 characters
+//        self.GreenPointCo2.text = [self.GreenPointCo2.text substringToIndex:5];
+//    } else if (([self.GreenPointPoints.text length] > 5) ){
+//        // User cannot type more than 15 characters
+//        self.GreenPointPoints.text = [self.GreenPointPoints.text substringToIndex:5];
+//    }
+    
+    NSLog(@"GreenPoint : %@ and %@", StringScorePlayer,StringScorePlayer4);
+
     if (driver.image) {
         self.driverImage.image = self.driver.image;
     }
@@ -53,7 +76,7 @@
 
 - (IBAction)call:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",self.phone]]];
+    [self.delegate callMobileNumber:self.phone];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

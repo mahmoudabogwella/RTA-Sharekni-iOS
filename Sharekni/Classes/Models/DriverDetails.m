@@ -24,6 +24,10 @@
     mapping[@"DriverMobile"] = @"DriverMobile";
     mapping[@"PreferredGender"] = @"PreferredGender";
     mapping[@"Rating"] = @"Rating";
+    //GonMade WebServe 2
+    mapping[@"RequestStatus"] = @"RequestStatus";
+
+    
     
     mapping[@"AgeRangeId"] = @"AgeRangeId";
     mapping[@"AgeRange"] = @"AgeRange";

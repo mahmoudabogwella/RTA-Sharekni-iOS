@@ -25,4 +25,12 @@
 @property (nonatomic ,strong) UIImage *image ;
 @property (nonatomic ,strong) NSString *imagePath ;
 
+//GreenPoint
+@property (nonatomic,strong) NSNumber *GreenPoints;
+@property (nonatomic,strong) NSNumber *CO2Saved;
+
+//LastSeen
+@property (nonatomic,strong) NSString* LastSeen;
+
+
 @end

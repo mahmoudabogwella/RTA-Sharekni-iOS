@@ -28,12 +28,14 @@
 @interface VehiclesViewController () <UITableViewDataSource ,UITableViewDelegate>
 {
     __weak IBOutlet UILabel *titleLabel ;
+    __weak IBOutlet UIView *titleLabelView ;
     __weak IBOutlet UIView *containerView ;
 }
 
 @property (weak ,nonatomic) IBOutlet UIView  *vehiclesView ;
 @property (weak ,nonatomic) IBOutlet UIView  *vehiclesContainerView ;
 @property (weak ,nonatomic) IBOutlet UILabel *vehiclesTitleLabel ;
+@property (weak ,nonatomic) IBOutlet UIView *vehiclesTitleLabelView ;
 @property (weak ,nonatomic) IBOutlet UITableView *vehiclesList ;
 @property (nonatomic ,strong) NSMutableArray *vehiclesArray ;
 
@@ -61,17 +63,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"Vehicles", nil);
+    self.title = GET_STRING(@"Vehicles");
     
-    if (self.enableBackButton) {
+    if (self.enableBackButton)
+    {
         UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _backBtn.frame = CGRectMake(0, 0, 22, 22);
-        [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+        [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
         [_backBtn setHighlighted:NO];
         [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
-    }
-    else {
+    }else {
         UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(menuItemTapped)];
         self.navigationItem.leftBarButtonItem = menuItem;
     }
@@ -80,11 +82,11 @@
         self.vehiclesView.hidden = YES ;
         containerView.hidden = YES ;
         titleLabel.hidden = YES ;
+        titleLabelView.hidden = YES ;
         
         self.vehiclesTitleLabel.textColor = Red_UIColor;
         [self.vehiclesTitleLabel addRightBorderWithColor:Red_UIColor];
         [self.vehiclesTitleLabel addLeftBorderWithColor:Red_UIColor];
-        self.vehiclesTitleLabel.backgroundColor = [UIColor whiteColor];
         
         self.vehiclesContainerView.layer.cornerRadius = 20;
         self.vehiclesContainerView.layer.borderWidth = 1;
@@ -99,6 +101,17 @@
         self.dateFormatter = [[NSDateFormatter alloc] init];
         
         [self configureUI];
+    }
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
     }
 }
 
@@ -122,7 +135,7 @@
     
     if ([self.traficFileNo respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.traficFileNo.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Traffic File No.", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.traficFileNo.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"Traffic File No.") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         
@@ -145,7 +158,7 @@
 {
     __block VehiclesViewController *blockSelf = self;
     
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
@@ -171,7 +184,7 @@
 - (void) handleResponseError{
     NSLog(@"Error in Best Drivers");
     [KVNProgress dismiss];
-    [KVNProgress showErrorWithStatus:@"Error"];
+    [KVNProgress showErrorWithStatus:GET_STRING(@"Error")];
     [self performBlock:^{
         [KVNProgress dismiss];
     } afterDelay:3];
@@ -180,14 +193,14 @@
 #pragma mark - Event Handler
 - (IBAction)submit:(id)sender
 {
-    [KVNProgress showWithStatus:@"Loading..."];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     
     User *sharedUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
 
     self.dateFormatter.dateFormat = @"dd/MM/yyyy";
     NSString *dateString = [self.dateFormatter stringFromDate:self.date];
     
-    [[MobAccountManager sharedMobAccountManager] registerVehicle:[NSString stringWithFormat:@"%@",sharedUser.ID] TrafficFileNo:self.traficFileNo.text BirthDate:dateString WithSuccess:^(NSString *user) {
+    [[MobAccountManager sharedMobAccountManager] registerVehicle:[NSString stringWithFormat:@"%@",sharedUser.ID] TrafficFileNo:self.traficFileNo.text BirthDate:dateString WithSuccess:^(NSString *user){
         
         [KVNProgress dismiss];
         
@@ -199,7 +212,6 @@
         self.vehiclesTitleLabel.textColor = Red_UIColor;
         [self.vehiclesTitleLabel addRightBorderWithColor:Red_UIColor];
         [self.vehiclesTitleLabel addLeftBorderWithColor:Red_UIColor];
-        self.vehiclesTitleLabel.backgroundColor = [UIColor whiteColor];
         
         self.vehiclesContainerView.layer.cornerRadius = 20;
         self.vehiclesContainerView.layer.borderWidth = 1;
@@ -222,7 +234,7 @@
 {
     [self.view endEditing:YES];
     __block VehiclesViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         
         blockSelf.dateFormatter.dateFormat = @"dd, MMM, yyyy";
@@ -230,20 +242,20 @@
         self.dateLabel.text = dateString;
         blockSelf.date = date;
         if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:blockSelf.date] < 18)){
-            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"invalid birthdate", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:GET_STRING(@"Error") message:GET_STRING(@"Invalid birthdate") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
             [alertView show];
             self.date = nil;
         }
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = @"select date of birth";
+    dateSelectionController.title = GET_STRING(@"Select date of birth");
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
     dateSelectionController.datePicker.date = [NSDate date];
     
@@ -269,13 +281,14 @@
     }
     
     Vehicle *vehicle = self.vehiclesArray[indexPath.row];
-    vehicleCell.countryLbl.text = @"Dubai";
-    vehicleCell.numberLbl.text = [NSString stringWithFormat:@"%@ %@",vehicle.PlateCode,vehicle.PlateNumber];
+    vehicleCell.countryLbl.text = GET_STRING(@"Dubai");
+    vehicleCell.numberLbl.text = [NSString stringWithFormat:@"%@ %@",(vehicle.PlateCode)?vehicle.PlateCode:@"",(vehicle.PlateNumber)?vehicle.PlateNumber:@""];
     
     return vehicleCell ;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     for (UIView* view in self.view.subviews) {
         for (UIGestureRecognizer* recognizer in view.gestureRecognizers) {
             [recognizer addTarget:self action:@selector(touchEvent:)];

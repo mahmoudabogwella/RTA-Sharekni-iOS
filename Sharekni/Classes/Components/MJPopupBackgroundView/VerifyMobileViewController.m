@@ -14,7 +14,7 @@
 #import "HelpManager.h"
 
 @interface VerifyMobileViewController ()
-
+@property (nonatomic,strong) UIToolbar *inputAccessoryView;
 @end
 
 @implementation VerifyMobileViewController
@@ -28,57 +28,62 @@
     self.container.layer.cornerRadius = 4;
     
     [verificationCodeTxt becomeFirstResponder];
-    verificationCodeTxt.textAlignment = NSTextAlignmentNatural ;
+    if (KIS_ARABIC)
+    {
+        verificationCodeTxt.textAlignment = NSTextAlignmentRight ;
+        self.headerTitle2.textAlignment = NSTextAlignmentRight ;
+    }
     
-    verificationCodeTxt.placeholder = NSLocalizedString(@"Enter verification code", nil);
-    [self.headerTitle setText:NSLocalizedString(@"Write Your Code", nil)];
-    [self.headerTitle2 setText:NSLocalizedString(@"Your Code", nil)];
-    [self.submitBtn setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
-    [self.resendBtn setTitle:NSLocalizedString(@"Resend verification code", nil) forState:UIControlStateNormal];
+    [verificationCodeTxt setInputAccessoryView:self.inputAccessoryView];
+    
+    verificationCodeTxt.placeholder = GET_STRING(@"Enter verification code");
+    [self.headerTitle setText:GET_STRING(@"Write Your Code")];
+    [self.headerTitle2 setText:GET_STRING(@"Your Code")];
+    [self.submitBtn setTitle:GET_STRING(@"Submit") forState:UIControlStateNormal];
+    [self.resendBtn setTitle:GET_STRING(@"Resend verification code") forState:UIControlStateNormal];
 }
 
-- (void)HideKeyboard
-{
+- (void)HideKeyboard{
     [verificationCodeTxt resignFirstResponder];
 }
 
-- (IBAction)closePopup:(id)sender
-{
+- (IBAction)closePopup:(id)sender{
     if (verificationCodeTxt.text.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attention", nil) message:NSLocalizedString(@"Please write your verification code", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:GET_STRING(@"Attention") message:GET_STRING(@"Please write your verification code") delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alert show];
         return ;
     }
     
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     
-    [[MobAccountManager sharedMobAccountManager] confirmMobileNumber:self.accountID andCode:verificationCodeTxt.text WithSuccess:^(NSString *user) {
-        
+    [[MobAccountManager sharedMobAccountManager] confirmMobileNumber:self.accountID andCode:verificationCodeTxt.text WithSuccess:^(NSString *user)
+    {
         [KVNProgress dismiss];
-
-        if ([user containsString:@"1"]) {
+        
+        if ([user containsString:@"1"])
+        {
+            [KVNProgress showSuccessWithStatus:GET_STRING(@"Mobile Verified")];
             if (self.delegate && [self.delegate respondsToSelector:@selector(dismissButtonClicked:)]) {
                 [self.delegate dismissButtonClicked:self];
             }
         }else{
-        
+            [KVNProgress showErrorWithStatus:GET_STRING(@"Verification Code is wrong")];
         }
 
-    } Failure:^(NSString *error) {
+    } Failure:^(NSString *error){
         [KVNProgress dismiss];
     }];
 }
 
-- (IBAction)resendVerification:(id)sender
-{
+- (IBAction)resendVerification:(id)sender{
     [[MobAccountManager sharedMobAccountManager] verifyMobileNumber:self.accountID WithSuccess:^(NSString *user)
      {
          if ([user isEqualToString:@"1"]) {
-             [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Mobile verification code has been sent to your mobile", nil)];
+             [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Mobile verification code has been sent to your mobile")];
          }
          else
          {
-             [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please check your mobile number", nil)];
+             [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please check your mobile number")];
          }
      } Failure:^(NSString *error)
     {
@@ -89,6 +94,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIToolbar *)inputAccessoryView{
+    if (!_inputAccessoryView) {
+        _inputAccessoryView = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+        _inputAccessoryView.barStyle = UIBarStyleDefault;
+        _inputAccessoryView.items = [NSArray arrayWithObjects:
+                                     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTapped)],
+                                     nil];
+        [_inputAccessoryView sizeToFit];
+    }
+    return _inputAccessoryView;
+}
+
+- (void) doneTapped {
+    [self.view endEditing:YES];
 }
 
 /*

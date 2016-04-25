@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchResultCell"/>
@@ -11,13 +11,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="06:30 am  - 07:55 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ebn-Ae-OKo">
                         <rect key="frame" x="6" y="0.0" width="231" height="21"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -25,7 +24,6 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OSE-VD-zoG">
                         <rect key="frame" x="6" y="19" width="231" height="21"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <string key="text" base64-UTF8="YES">
 U3VuICwgTW9uICwgVHVlECAsIFdlZCAsIFRodSAsIEZyaQ
 </string>
@@ -36,12 +34,10 @@ U3VuICwgTW9uICwgVHVlECAsIFdlZCAsIFRodSAsIEZyaQ
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wge-Di-t3m">
                         <rect key="frame" x="6" y="39" width="55" height="55"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Khaled Farouk" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ugi-zh-obq">
                         <rect key="frame" x="69" y="41" width="168" height="21"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -49,7 +45,6 @@ U3VuICwgTW9uICwgVHVlECAsIFdlZCAsIFRodSAsIEZyaQ
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="syria" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vKI-6s-DHe">
                         <rect key="frame" x="69" y="56" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -57,7 +52,6 @@ U3VuICwgTW9uICwgVHVlECAsIFdlZCAsIFRodSAsIEZyaQ
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Snm-z6-fdi">
                         <rect key="frame" x="239" y="67" width="75" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <state key="normal" title="History">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -65,7 +59,6 @@ U3VuICwgTW9uICwgVHVlECAsIFdlZCAsIFRodSAsIEZyaQ
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7aR-R9-r75">
                         <rect key="frame" x="239" y="38" width="75" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <state key="normal" title="Reviews">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -73,7 +66,6 @@ U3VuICwgTW9uICwgVHVlECAsIFdlZCAsIFRodSAsIEZyaQ
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="l5G-C4-sxW">
                         <rect key="frame" x="245" y="5" width="34" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <state key="normal" backgroundImage="Call_Btn"/>
                         <connections>
                             <action selector="call:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="B5w-HX-33I"/>
@@ -82,16 +74,13 @@ U3VuICwgTW9uICwgVHVlECAsIFdlZCAsIFRodSAsIEZyaQ
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yl7-9w-2hJ">
                         <rect key="frame" x="276" y="5" width="36" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <animations/>
                         <state key="normal" backgroundImage="Msg_Btn"/>
                         <connections>
                             <action selector="sendMail:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="GUQ-e0-T9O"/>
                         </connections>
                     </button>
                 </subviews>
-                <animations/>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="daysLabel" destination="OSE-VD-zoG" id="p3e-yA-dej"/>
                 <outlet property="historyButton" destination="Snm-z6-fdi" id="geL-C7-9qM"/>
@@ -105,7 +94,7 @@ U3VuICwgTW9uICwgVHVlECAsIFdlZCAsIFRodSAsIEZyaQ
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Call_Btn" width="56" height="42"/>
-        <image name="Msg_Btn" width="57" height="37"/>
+        <image name="Call_Btn" width="38" height="38"/>
+        <image name="Msg_Btn" width="45" height="32"/>
     </resources>
 </document>

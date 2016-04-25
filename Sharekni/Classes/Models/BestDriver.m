@@ -22,7 +22,13 @@
     mapping[@"NationalityFrName"] = @"NationalityFrName";
     mapping[@"NationalityChName"] = @"NationalityChName";
     mapping[@"NationalityUrName"] = @"NationalityUrName";
+    //GreenPoint
+    mapping[@"CO2Saved"] = @"CO2Saved";
+    mapping[@"GreenPoints"] = @"GreenPoints";
 //    mapping[@"Rating"] = @"Rating";
+    
+    mapping[@"LastSeen"] = @"LastSeen";
+
     return mapping;
 }
 

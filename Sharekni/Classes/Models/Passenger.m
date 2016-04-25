@@ -16,6 +16,9 @@
     
     mapping[@"ID"] = @"ID";
     mapping[@"RequestDate"] = @"RequestDate";
+    //GonMade WebServe 3
+    mapping[@"RequestStatus"] = @"RequestStatus";
+    
     mapping[@"IsRemoved"] = @"IsRemoved";
     mapping[@"RemoveDate"] = @"RemoveDate";
     mapping[@"Remarks"] = @"Remarks";
@@ -28,7 +31,9 @@
     mapping[@"AccountNationalityUr"] = @"AccountNationalityUr";
     mapping[@"AccountNationalityCh"] = @"AccountNationalityCh";
     mapping[@"PassenegerRateByDriver"] = @"PassenegerRateByDriver";
+    mapping[@"PassengerStatus"] = @"PassengerStatus";
 
+    
     return mapping;
 }
 @end

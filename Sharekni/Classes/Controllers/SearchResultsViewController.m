@@ -12,7 +12,10 @@
 #import "MostRideDetailsCell.h"
 #import "DriverDetailsViewController.h"
 #import "MessageUI/MessageUI.h"
-
+#import "Constants.h"
+#import "User.h"
+#import "LoginViewController.h"
+#import "MobAccountManager.h"
 
 @interface SearchResultsViewController () <SendMSGDelegate,MFMessageComposeViewControllerDelegate>
 
@@ -25,19 +28,33 @@
 
 @implementation SearchResultsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self configureUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = NO;
 }
 
-- (void) configureUI{
-    
-   self.title = NSLocalizedString(@"Search Results", nil);
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait)
+    {
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
+}
+
+- (void) configureUI
+{
+   self.title = GET_STRING(@"Search Results");
     self.fromLabel.text = [NSString stringWithFormat:@"%@ : %@",self.fromEmirate , self.fromRegion];
     self.toLabel.text = (self.toEmirate&&self.toRegion) ? [NSString stringWithFormat:@"%@ : %@",self.toEmirate , self.toRegion] : @"Not specified";
 
@@ -65,7 +82,8 @@
 }
 
 #pragma mark - Methods
-- (void)popViewController{
+- (void)popViewController
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -76,7 +94,8 @@
     return self.results.count;
 }
 
-- (MostRideDetailsCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (MostRideDetailsCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
    MostRideDetailsCell *cell = (MostRideDetailsCell*)[tableView dequeueReusableCellWithIdentifier:MOST_RIDE_DETAILS_CELLID];
     if (cell == nil) {
         cell = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:0];
@@ -86,34 +105,66 @@
     DriverSearchResult *driver = [self.results objectAtIndex:indexPath.row];
     [cell setDriver:driver];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    __block SearchResultsViewController  *blockSelf = self;
+    [cell setReloadHandler:^{
+        [blockSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 147;
+    return 223;
 }
 
 
 
 #pragma mark - Message Delegate
+- (void)callPhone:(NSString *)phone
+{
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"tel:%@",phone]]];
+    }
+    else
+    {
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
+}
+
 - (void)sendSMSFromPhone:(NSString *)phone
 {
-    if(![MFMessageComposeViewController canSendText])
+    User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (user)
     {
-        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [warningAlert show];
-        return;
+        if(![MFMessageComposeViewController canSendText])
+        {
+            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [warningAlert show];
+            return;
+        }
+        
+        NSArray *recipents = @[phone];
+        
+        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+        messageController.messageComposeDelegate = self;
+        [messageController setRecipients:recipents];
+        
+        // Present message view controller on screen
+        [self presentViewController:messageController animated:YES completion:nil];
+        
     }
-    
-    NSArray *recipents = @[phone];
-    
-    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-    messageController.messageComposeDelegate = self;
-    [messageController setRecipients:recipents];
-    
-    // Present message view controller on screen
-    [self presentViewController:messageController animated:YES completion:nil];
+    else
+    {
+        LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+        loginView.isLogged = YES ;
+        [self presentViewController:navg animated:YES completion:nil];
+    }
 }
 
 - (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
@@ -131,7 +182,7 @@
 #pragma mark UITableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:@"DriverDetailsViewController" bundle:nil];
+    DriverDetailsViewController *driverDetails = [[DriverDetailsViewController alloc] initWithNibName:(KIS_ARABIC)?@"DriverDetailsViewController_ar":@"DriverDetailsViewController" bundle:nil];
     DriverSearchResult *driver = [self.results objectAtIndex:indexPath.row];
     driverDetails.driverSearchResult = driver;
     [self.navigationController pushViewController:driverDetails animated:YES];

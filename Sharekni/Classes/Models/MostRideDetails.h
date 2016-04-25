@@ -74,4 +74,12 @@
 @property (nonatomic ,strong) UIImage *driverImage ;
 @property (nonatomic ,strong) NSString *driverImagePath ;
 
+
+@property (nonatomic,strong) NSNumber *GreenPoints;
+@property (nonatomic,strong) NSNumber *CO2Saved;
+
+@property (nonatomic ,strong) NSString *LastSeen ;
+
+
+
 @end

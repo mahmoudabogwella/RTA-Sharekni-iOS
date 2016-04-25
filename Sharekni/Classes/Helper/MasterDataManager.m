@@ -22,6 +22,8 @@
 #import "Base64.h"
 #import "Constants.h"
 #import "MostRideDetails.h"
+#import "MostRideDetailsDataForPassenger.h"
+
 #import "DriverDetails.h"
 #import "Review.h"
 #import "Vehicle.h"
@@ -52,7 +54,7 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-
+        
     }
     return self;
 }
@@ -85,7 +87,7 @@
                 [ageRanges addObject:range];
             }
             if (ageRanges.count > 0) {
-                blockSelf.ageRanges = ageRanges;                
+                blockSelf.ageRanges = ageRanges;
             }
             if (success) {
                 success(ageRanges);
@@ -125,7 +127,7 @@
             if (success) {
                 success(nationalities);
             }
-
+            
         } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
             NSLog(@"Error %@",error.description);
             failure(error.description);
@@ -185,11 +187,11 @@
             if(languages.count > 0){
                 blockSelf.languages = languages;
             }
-
+            
             if (success) {
                 success(languages);
             }
-
+            
         } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
             NSLog(@"Error %@",error.description);
             failure(error.description);
@@ -242,7 +244,7 @@
             if(emirates.count > 0){
                 self.emirates = emirates;
             }
-
+            
             success(emirates);
         } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
             NSLog(@"Error %@",error.description);
@@ -254,7 +256,7 @@
 - (void) GetBestDrivers:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
     [self.operationManager GET:GetBestDrivers_URL parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-     
+        
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
         NSError *jsonError;
@@ -265,7 +267,7 @@
         NSMutableArray *bestDrivers = [NSMutableArray array];
         for (NSDictionary *dictionary in resultDictionaries) {
             BestDriver *driver= [BestDriver gm_mappedObjectWithJsonRepresentation:dictionary];
-
+            
             [self GetPhotoWithName:driver.AccountPhoto withSuccess:^(UIImage *image, NSString *filePath) {
                 
             } Failure:^(NSString *error) {
@@ -303,15 +305,15 @@
         failure(error.description);
     }];
 }
-
+//GONMADE AHUGEMISTAKE
 - (void) getRideDetails:(NSString *)accountID FromEmirateID:(NSString *)fromEmirateID FromRegionID:(NSString *)fromRegionID ToEmirateID:(NSString *)toEmirateID ToRegionID:(NSString *)toRegionID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetMostDesiredRideDetails?AccountID=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@",accountID,fromEmirateID,fromRegionID,toEmirateID,toRegionID];
-
+    NSLog(@"GetMostDesiredRideDetails : %@%@",Sharkeni_BASEURL,path);
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-      
+        
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-      
+        
         responseString = [self jsonStringFromResponse:responseString];
         
         NSError *jsonError;
@@ -321,17 +323,53 @@
                                                                         error:&jsonError];
         
         NSMutableArray *mostRideDetails = [NSMutableArray array];
-        for (NSDictionary *dictionary in resultDictionaries) {
-            MostRideDetails *rideDetails= [MostRideDetails gm_mappedObjectWithJsonRepresentation:dictionary];
+        for (NSDictionary *dictionary in resultDictionaries)
+        {
+            MostRideDetails *rideDetails = [MostRideDetails gm_mappedObjectWithJsonRepresentation:dictionary];
             [mostRideDetails addObject:rideDetails];
         }
         success(mostRideDetails);
         
-    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error){
         failure(error.localizedDescription);
     }];
 }
 
+
+- (void) getRideDetailsFORPASSENGER:(NSString *)accountID FromEmirateID:(NSString *)fromEmirateID FromRegionID:(NSString *)fromRegionID ToEmirateID:(NSString *)toEmirateID ToRegionID:(NSString *)toRegionID  RouteID:(NSString *)RouteID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
+{
+    
+    
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetMatchedRoutesDetailsForPassengers?driverAccountId=%@&DriverRouteId=%@&FromEmirateId=%@&FromRegionId=%@&ToEmirateId=%@&ToRegionId=%@",accountID,RouteID,fromEmirateID,fromRegionID,toEmirateID,toRegionID];
+    /*
+         NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetMostDesiredRideDetailsForPassengers?AccountID=%@&FromEmirateID=%@&FromRegionID=%@&ToEmirateID=%@&ToRegionID=%@&RouteId=%@",accountID,fromEmirateID,fromRegionID,toEmirateID,toRegionID,RouteID];
+    */
+    NSLog(@"getRideDetailsFORPASSENGER  %@%@",Sharkeni_BASEURL,path);
+
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"getRideDetailsFORPASSENGER  %@%@",Sharkeni_BASEURL,path);
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        
+        NSMutableArray *mostRideDetails = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries)
+        {
+            MostRideDetailsDataForPassenger *rideDetails = [MostRideDetailsDataForPassenger gm_mappedObjectWithJsonRepresentation:dictionary];
+            [mostRideDetails addObject:rideDetails];
+        }
+        success(mostRideDetails);
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error){
+        failure(error.localizedDescription);
+    }];
+}
 
 - (void) getDriverRideDetails:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
@@ -357,7 +395,7 @@
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         failure(error.localizedDescription);
-
+        
     }];
 }
 
@@ -370,7 +408,7 @@
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
         responseString = [self jsonStringFromResponse:responseString];
-        
+        NSLog(@"The Error Might BE Here 1 : %@",Sharkeni_BASEURL,path);
         NSError *jsonError;
         NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
@@ -387,7 +425,7 @@
         
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         failure(error.localizedDescription);
-
+        
     }];
 }
 
@@ -398,7 +436,8 @@
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        
+        NSLog(@"That is the Get review list DownBelow ");
+        NSLog(@"The Eror is here 2: %@%@",Sharkeni_BASEURL,path);
         responseString = [self jsonStringFromResponse:responseString];
         
         NSError *jsonError;
@@ -410,10 +449,27 @@
         NSMutableArray *reviews = [NSMutableArray array];
         for (NSDictionary *dictionary in resultDictionaries) {
             Review *review = [Review gm_mappedObjectWithJsonRepresentation:dictionary];
-            [reviews addObject:review];
+            if(!([review.Review containsString:@"Nulll"] || review.Review.length == 0)){
+                [reviews addObject:review];
+            }
         }
         success(reviews);
         
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        failure(error.localizedDescription);
+    }];
+}
+
+- (void) deleteReviewWithId:(NSString  *)ID withSuccess:(void (^)(BOOL deleted))success Failure:(void (^)(NSString *error))failure{
+    
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_RemoveReview?ReviewId=%@",ID];
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        responseString = [self jsonStringFromResponse:responseString];
+        BOOL deleted = [responseString containsString:@"1"];
+        success(deleted);
     } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
         failure(error.localizedDescription);
     }];
@@ -490,55 +546,19 @@
 
 - (void)getVehicleById:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
-//    if (!accountID)
-//    {
-//        accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
-//    }
-//    
-//    NSMutableArray *savedVehicles = [self.vehiclesDictionary valueForKey:accountID];
-//    if (savedVehicles) {
-//        success(savedVehicles);
-//    }
-//    else{
-        NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetByDriverId?id=%@",accountID];
-        
-        __block MasterDataManager *blockSelf = self;
-        [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
-            
-            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            
-            responseString = [self jsonStringFromResponse:responseString];
-            
-            NSError *jsonError;
-            NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-            NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                          options:NSJSONReadingMutableContainers
-                                                                            error:&jsonError];
-            
-            NSMutableArray *vehicles = [NSMutableArray array];
-            for (NSDictionary *dictionary in resultDictionaries) {
-                Vehicle *vehicle = [Vehicle gm_mappedObjectWithJsonRepresentation:dictionary];
-                [vehicles addObject:vehicle];
-            }
-            [blockSelf.vehiclesDictionary setValue:vehicles forKey:accountID];
-            success(vehicles);
-            
-        } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
-            failure(error.localizedDescription);
-        }];
-//    }
-}
-
-
-- (void)getRequestNotifications:(NSString *)accountID isDriver:(BOOL)isDriver WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
-{
-    NSString *path ;
-    if (isDriver) {
-        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_AlertsForRequest?d_AccountId=%@",accountID];
-    }else{
-        path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_GetAcceptedRequestsFromDriver?accountId=%@",accountID];
-    }
-
+    //    if (!accountID)
+    //    {
+    //        accountID = [[MobAccountManager sharedMobAccountManager] applicationUserID];
+    //    }
+    //
+    //    NSMutableArray *savedVehicles = [self.vehiclesDictionary valueForKey:accountID];
+    //    if (savedVehicles) {
+    //        success(savedVehicles);
+    //    }
+    //    else{
+    NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetByDriverId?id=%@",accountID];
+    
+    __block MasterDataManager *blockSelf = self;
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -551,10 +571,60 @@
                                                                       options:NSJSONReadingMutableContainers
                                                                         error:&jsonError];
         
+        NSMutableArray *vehicles = [NSMutableArray array];
+        for (NSDictionary *dictionary in resultDictionaries) {
+            Vehicle *vehicle = [Vehicle gm_mappedObjectWithJsonRepresentation:dictionary];
+            [vehicles addObject:vehicle];
+        }
+        [blockSelf.vehiclesDictionary setValue:vehicles forKey:accountID];
+        success(vehicles);
+        
+    } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+        failure(error.localizedDescription);
+    }];
+    //    }
+}
+//GonHint WebServ Passenger
+- (void)getRequestNotifications:(NSString *)accountID notificationType:(NotificationType)type WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure ;
+{
+    NSString *path ;
+    if (type == NotificationTypeAlert) {
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_AlertsForRequest?d_AccountId=%@",accountID];
+    }else if (type == NotificationTypeAccepted) {
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_GetAcceptedRequestsFromDriver?accountId=%@",accountID];
+    }
+    else if (type == NotificationTypePending) {
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_GetPendingRequestsFromDriver?accountId=%@",accountID];
+    }else if (type == NotificationTypeAlertForPassenger){
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_AlertsForInvitation?d_AccountId=%@",accountID];
+    }else if (type == Driver_GetAcceptedInvitationsFromPassenger){
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_GetAcceptedInvitationsFromPassenger?accountId=%@",accountID];
+    }else if (type == Driver_GetPendingInvitationsFromPassenger){
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_GetPendingInvitationsFromPassenger?accountId=%@",accountID];
+    }
+    
+    
+    [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"AccountID For notifications: %@",accountID);
+        NSLog(@"NotificationsURL : %@%@",Sharkeni_BASEURL,path);
+        responseString = [self jsonStringFromResponse:responseString];
+        
+        NSError *jsonError;
+        NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *resultDictionaries = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                      options:NSJSONReadingMutableContainers
+                                                                        error:&jsonError];
+        
         NSMutableArray *notifications = [NSMutableArray array];
         for (NSDictionary *dictionary in resultDictionaries) {
             Notification *notification = [Notification gm_mappedObjectWithJsonRepresentation:dictionary];
+            if((type == NotificationTypePending) || (type == Driver_GetPendingInvitationsFromPassenger)){
+                notification.isPending = YES;
+            }
             [notifications addObject:notification];
+            
         }
         success(notifications);
         
@@ -566,7 +636,7 @@
 - (void)getPermits:(NSString *)accountID WithSuccess:(void (^)(NSMutableArray *array))success Failure:(void (^)(NSString *error))failure
 {
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/GetPermitByDriverId?id=%@",accountID];
-
+    
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -622,17 +692,21 @@
     }
 }
 
-- (void) setRegions:(NSArray *)regions forEmirateWithID:(NSString *)ID{
-    if(!self.regionsDictionary){
+- (void) setRegions:(NSArray *)regions forEmirateWithID:(NSString *)ID
+{
+    if(!self.regionsDictionary)
+    {
         self.regionsDictionary = [NSMutableDictionary dictionary];
     }
     [self.regionsDictionary setObject:regions forKey:ID];
 }
 
-- (NSArray *) getRegionsForEmirateID:(NSString *)ID{
+- (NSArray *) getRegionsForEmirateID:(NSString *)ID
+{
     NSArray *regions;
-    if(self.regionsDictionary){
-         regions = [self.regionsDictionary objectForKey:ID];
+    if(self.regionsDictionary)
+    {
+        regions = [self.regionsDictionary objectForKey:ID];
     }
     return regions;
 }
@@ -642,6 +716,7 @@
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"The Eror might is here for sure  here 3: %@%@",Sharkeni_BASEURL,path);
         responseString = [self jsonStringFromResponse:responseString];
         NSError *jsonError;
         NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
@@ -672,6 +747,38 @@
         failure(error.localizedDescription);
     }];
 }
+/*
+ - (void)deleteRequestWithID:(NSString *)ID WithSuccess:(void (^)(BOOL deleted))success Failure:(void (^)(NSString *error))failure {
+ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_RemoveRequest?RoutePassengerId=%@",ID];
+ [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+ NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+ responseString = [self jsonStringFromResponse:responseString];
+ success([responseString containsString:@"1"]);
+ } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+ failure(error.localizedDescription);
+ }];
+ }
+ */
+//GonMade Driver_RemoveInvitation
+- (void)deleteRequestWithID:(NSString *)ID notificationType:(deleteRequestWithID)type WithSuccess:(void (^)(BOOL deleted))success Failure:(void (^)(NSString *error))failure {
+    NSString *path;
+    
+    if (type == Driver_RemoveInvitation) {
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Driver_RemoveInvitation?RoutePassengerId=%@",ID];
+    }
+    else if (type == Passenger_RemoveRequest) {
+        path = [NSString stringWithFormat:@"cls_mobios.asmx/Passenger_RemoveRequest?RoutePassengerId=%@",ID];
+    }
+    
+    [self.operationManager GET:path parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        responseString = [self jsonStringFromResponse:responseString];
+        success([responseString containsString:@"1"]);
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        failure(error.localizedDescription);
+    }];
+}
+
 
 - (Region *) getRegionByID:(NSString *)regionID inEmirateWithID:(NSString *)emirateID{
     NSArray *regions = [self.regionsDictionary valueForKey:emirateID];

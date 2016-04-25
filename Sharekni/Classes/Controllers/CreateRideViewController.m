@@ -33,6 +33,9 @@
 #import "MasterDataManager.h"
 #import "MobDriverManager.h"
 #import "MLPAutoCompleteTextField.h"
+
+#import "MobAccountManager.h"
+#import "MostRideDetailsViewControllerForPassenger.h"
 @interface CreateRideViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *seat4ImageView;
@@ -68,9 +71,9 @@
 @property (weak, nonatomic) IBOutlet MLPAutoCompleteTextField *nationalityTextField;
 @property (weak, nonatomic) IBOutlet UIView *typeView;
 @property (weak, nonatomic) IBOutlet UIButton *createButton;
-@property (weak, nonatomic) IBOutlet UIImageView *genderSwitchImage;
 @property (weak, nonatomic) IBOutlet UILabel *genderLabel;
 @property (weak, nonatomic) IBOutlet UIView *genderView;
+@property (nonatomic,assign) float animatedDistance ;
 
 @property (weak, nonatomic) IBOutlet UILabel *satLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sunLabel;
@@ -121,6 +124,16 @@
 @property (assign,nonatomic) BOOL friActive;
 @property (assign, nonatomic) NSInteger noOfSeats;
 
+
+@property (weak ,nonatomic) IBOutlet UIButton *bothBtn ;
+@property (weak ,nonatomic) IBOutlet UIButton *maleBtn ;
+@property (weak ,nonatomic) IBOutlet UIButton *femaleBtn ;
+
+@property (weak ,nonatomic) IBOutlet UIButton *acceptBtn ;
+@property (weak ,nonatomic) IBOutlet UIButton *notAcceptBtn ;
+
+@property (nonatomic,strong) NSString *RouteID;
+
 @end
 
 @implementation CreateRideViewController
@@ -135,13 +148,24 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.isEdit = (self.ride != nil) || (self.routeDetails !=nil);
-
+    
     [self configureUI];
     [self configureSeats];
     [self configureDaysLabels];
     [self configureData];
     [self configureRoadTypeView];
     [self configureGenderView];
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
 }
 
 - (void) configureEditMode{
@@ -172,7 +196,7 @@
         self.destinationLabel.text = toText;
         
         __block CreateRideViewController *blockSelf = self;
-        [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
         [[MasterDataManager sharedMasterDataManager] GetRouteByRouteId:self.ride.RouteID.stringValue withSuccess:^(RouteDetails *routeDetails_) {
             [KVNProgress dismiss];
             blockSelf.routeDetails = routeDetails_;
@@ -193,7 +217,7 @@
     self.selectedType = self.routeDetails.IsRounded.boolValue ? PeriodicType : SingleRideType;
     [self configureRoadTypeView];
     
-
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     //Start Date
@@ -205,18 +229,18 @@
     self.dateLabel.text  = dateString;
     
     //Start Time
-//    if ([self.routeDetails.StartFromTime containsString:@"AM"]) {
-//        self.routeDetails.StartFromTime = [self.routeDetails.StartFromTime stringByReplacingOccurrencesOfString:@"AM" withString:@" AM"];
-//    }
-//    else if ([self.routeDetails.StartFromTime containsString:@"PM"]) {
-//        self.routeDetails.StartFromTime = [self.routeDetails.StartFromTime stringByReplacingOccurrencesOfString:@"PM" withString:@" PM"];
-//    }
-//    
-//    dateFormatter.dateFormat = @"MMM dd yyy hh:mm a";
-//    NSDate *startTime = [dateFormatter dateFromString:self.routeDetails.StartFromTime];
-//    
-//
-//    dateFormatter.dateFormat = @"hh:mm a";
+    //    if ([self.routeDetails.StartFromTime containsString:@"AM"]) {
+    //        self.routeDetails.StartFromTime = [self.routeDetails.StartFromTime stringByReplacingOccurrencesOfString:@"AM" withString:@" AM"];
+    //    }
+    //    else if ([self.routeDetails.StartFromTime containsString:@"PM"]) {
+    //        self.routeDetails.StartFromTime = [self.routeDetails.StartFromTime stringByReplacingOccurrencesOfString:@"PM" withString:@" PM"];
+    //    }
+    //
+    //    dateFormatter.dateFormat = @"MMM dd yyy hh:mm a";
+    //    NSDate *startTime = [dateFormatter dateFromString:self.routeDetails.StartFromTime];
+    //
+    //
+    //    dateFormatter.dateFormat = @"hh:mm a";
     NSString *timeString = self.routeDetails.StartFromTime;
     dateFormatter.dateFormat = @"hh:mm a";
     NSDate *startTime = [dateFormatter dateFromString:timeString];
@@ -227,8 +251,9 @@
     self.pickupDate = [self.pickupDate dateByAddingMinute:startTime.minute];
     
     self.timeLabel.text = timeString;
+    //GonFollowOrders
     
-    //Vehicle
+    //Vehicle GonFollowOrders
     if (self.vehicles && (self.ride || self.routeDetails)) {
         NSNumber *ID = self.routeDetails.VehicelId;
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ID == %ld",ID.integerValue];
@@ -238,12 +263,12 @@
             [self.selectVehicleButton setTitle:(KIS_ARABIC)?self.selectedVehicle.ModelArName:self.selectedVehicle.ModelEnName forState:UIControlStateNormal];
         }
         else{
-        [self.selectVehicleButton setTitle:NSLocalizedString(@"Select vehicle", nil)  forState:UIControlStateNormal];
+            [self.selectVehicleButton setTitle:GET_STRING(@"Select vehicle")  forState:UIControlStateNormal];
         }
     }
     else{
         self.selectedVehicle = nil;
-        [self.selectVehicleButton setTitle:NSLocalizedString(@"Select vehicle", nil)  forState:UIControlStateNormal];
+        [self.selectVehicleButton setTitle:GET_STRING(@"Select vehicle") forState:UIControlStateNormal];
     }
     
     //no of seats
@@ -333,11 +358,12 @@
     //Gender
     self.isFemaleOnly = NO;
     [self configureGenderView];
+    [self configureSmokingView];
     
     //Days Of Week
     [self configureDaysLabels];
     
-    [self.createButton setTitle:NSLocalizedString(@"Edit Ride", nil) forState:UIControlStateNormal];
+    [self.createButton setTitle:GET_STRING(@"Edit Ride") forState:UIControlStateNormal];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -415,9 +441,10 @@
 }
 
 #pragma ACTIONS
-- (IBAction) selectVehilceAction:(id)sender {
+- (IBAction) selectVehilceAction:(id)sender { //GonFollowOrders
+    
     if(self.vehicles.count == 0){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please configure your vehicles first", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please configure your vehicles first")];
     }
     else{
         [self showPickerWithTextFieldType:VehiclesTextField];
@@ -426,7 +453,7 @@
 
 - (IBAction) setDirectionAction:(id)sender {
     if(self.isEdit){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"directions can't be edited .", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Directions can't be edited.")];
     }
     else{
         [self showLocationPicker];
@@ -442,8 +469,10 @@
 }
 
 #pragma DAYSOFWEEK
-- (void) configureDaysLabels{
-    if (self.isEdit) {
+- (void) configureDaysLabels
+{
+    if (self.isEdit)
+    {
         self.satActive = self.routeDetails.Saturday.boolValue;
         self.sunActive = self.routeDetails.Sunday.boolValue;
         self.monActive = self.routeDetails.Monday.boolValue;
@@ -451,8 +480,31 @@
         self.wedActive = self.routeDetails.Wendenday.boolValue;
         self.thrActive = self.routeDetails.Thrursday.boolValue;
         self.friActive = self.routeDetails.Friday.boolValue;
+        
+        if ([self.routeDetails.IsSmoking intValue] == 1) {
+            self.acceptBtn.selected = YES;
+        }else{
+            self.acceptBtn.selected = NO ;
+        }
+        
+        if ([self.routeDetails.IsSmoking intValue] == 0) {
+            self.notAcceptBtn.selected = YES;
+        }else{
+            self.notAcceptBtn.selected = NO ;
+        }
+        
+        if ([self.routeDetails.PreferredGender isEqualToString:@"Male"]) {
+            self.maleBtn.selected = YES ;
+        }else if ([self.routeDetails.PreferredGender isEqualToString:@"Female"]){
+            self.femaleBtn.selected = YES ;
+        }else if ([self.routeDetails.PreferredGender isEqualToString:@"Both"])
+        {
+            self.bothBtn.selected = YES ;
+        }
+        
     }
-    else{
+    else
+    {
         self.satActive = NO;
         self.sunActive = NO;
         self.monActive = NO;
@@ -462,7 +514,7 @@
         self.friActive = NO;
     }
     self.daysOfWeek.textColor = Red_UIColor;
-    self.daysOfWeek.text = NSLocalizedString(@"Days Of Week", nil);
+    self.daysOfWeek.text = GET_STRING(@"Days Of Week");
     self.daysOfWeek.backgroundColor   = [UIColor whiteColor];
     
     
@@ -504,7 +556,7 @@
     self.monLabel.layer.cornerRadius = self.monLabel.frame.size.width/2;
     self.monLabel.clipsToBounds = YES;
     self.monLabel.layer.borderWidth = .4;
-
+    
     [self.monLabel addGestureRecognizer:monGesture];
     
     if(self.monActive){
@@ -675,7 +727,7 @@
 #pragma Data
 - (void) configureData{
     __block CreateRideViewController *blockSelf = self;
-    [KVNProgress showWithStatus:@"Loading"];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] getSavedVehicleById:nil WithSuccess:^(NSMutableArray *array) {
         blockSelf.vehicles = array;
         [[MasterDataManager sharedMasterDataManager] GetNationalitiesByID:@"0" WithSuccess:^(NSMutableArray *array) {
@@ -705,7 +757,7 @@
             [blockSelf handleManagerFailure];
         }];
     } Failure:^(NSString *error) {
-            [blockSelf handleManagerFailure];        
+        [blockSelf handleManagerFailure];
     }];
 }
 
@@ -719,13 +771,13 @@
 
 #pragma UI
 
-- (void) configureUI{
-    
-    self.title = NSLocalizedString(@"Create Ride", nil);
+- (void) configureUI
+{
+    self.title = GET_STRING(@"Create Ride");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -733,7 +785,7 @@
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.scrollView.frame.size.height)];
     self.selectedType = SingleRideType;
     self.isFemaleOnly = false;
-
+    
     
     self.dateView.layer.cornerRadius = 10;
     self.dateView.layer.masksToBounds = YES;
@@ -755,7 +807,7 @@
     self.nationalityTextField.textColor             = Red_UIColor;
     self.destinationLabel.textColor                 = Red_UIColor;
     self.startPointLabel.textColor                  = Red_UIColor;
-
+    
     self.rideDetailsSectionLabel.textColor          = Red_UIColor;
     self.optionalSectionLabel.textColor             = Red_UIColor;
     
@@ -785,7 +837,7 @@
     self.rideDetailsView.backgroundColor = [UIColor clearColor];
     self.rideDetailsView.layer.borderColor = Red_UIColor.CGColor;
     self.rideDetailsView.layer.borderWidth = 1.0f;
-
+    
     self.optionsView.layer.cornerRadius = 20;
     self.optionsView.backgroundColor = [UIColor clearColor];
     self.optionsView.layer.borderColor = Red_UIColor.CGColor;
@@ -824,21 +876,44 @@
         case PeriodicType:
             self.periodicLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
             self.singleRideLabel.textColor = [UIColor darkGrayColor];
-            self.switchImageView.image = [UIImage imageNamed:@"select_Right"];
+            self.switchImageView.image = [UIImage imageNamed:@"select_right"];
             break;
         default:
             break;
     }
 }
 
-- (void) configureGenderView{
-    if (self.isFemaleOnly) {
-        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Left":@"select_Right"];
-        self.genderLabel.textColor = [UIColor add_colorWithRGBHexString:Red_HEX];
+- (void) configureSmokingView{
+    if (self.routeDetails.IsSmoking.boolValue) {
+        self.acceptBtn.selected = YES;
+        self.notAcceptBtn.selected = NO;
     }
     else{
-        self.genderSwitchImage.image = [UIImage imageNamed:(KIS_ARABIC)?@"select_Right":@"select_Left"];
-        self.genderLabel.textColor = [UIColor darkGrayColor];
+        self.acceptBtn.selected = NO;
+        self.notAcceptBtn.selected = YES;
+    }
+}
+
+- (void) configureGenderView{
+    if ([self.routeDetails.PreferredGender isEqualToString:@"B"]) {
+        self.bothBtn.selected = YES;
+        self.femaleBtn.selected = NO;
+        self.maleBtn.selected = NO;
+    }
+    else if ([self.routeDetails.PreferredGender isEqualToString:@"M"]){
+        self.bothBtn.selected = NO;
+        self.maleBtn.selected = YES;
+        self.femaleBtn.selected = NO;
+    }
+    else if ([self.routeDetails.PreferredGender isEqualToString:@"F"]){
+        self.bothBtn.selected = NO;
+        self.maleBtn.selected = NO;
+        self.femaleBtn.selected = YES;
+    }
+    else{
+        self.bothBtn.selected = NO;
+        self.maleBtn.selected = NO;
+        self.femaleBtn.selected = NO;
     }
 }
 
@@ -867,6 +942,12 @@
     [self.view endEditing:YES];
 }
 
+-(NSString *)SpacesRemover :(NSString *)StringRemoveSpaces{
+    NSString *s = [StringRemoveSpaces stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    return s ;
+}
+
 - (IBAction) creatRideAction:(id)sender {
     NSDate *todayDate_;
     NSDate *pickupDate_;
@@ -885,31 +966,31 @@
     }
     
     if ((!self.fromEmirate || !self.toEmirate)&& !self.isEdit) {
-            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please set startpoint and destination.",nil)];
-    }
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please set startpoint and destination.")];
+    } //GonFollowOrders
     else if (!self.selectedVehicle &&!self.isEdit){
         if(!self.isEdit){
-            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select Vehicle.",nil)];
+            [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select Vehicle")];
         }
     }
     else if (self.rideNameTextField.text.length == 0){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter ride name.",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please enter ride name")];
     }
     else if (!self.pickupDate){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"please select start date ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select start date")];
     }
     else if (!self.pickupTime){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"please select start time ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select start time")];
     }
     else if (compareResult == NSOrderedAscending){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"invalid start date or time ",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"invalid start date or time")];
     }
     else if (self.noOfSeats == 0){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select number of available seats.",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select number of available seats.")];
         
     }
     else if (!self.satActive && !self.sunActive && !self.monActive && !self.tueActive && !self.wedActive && !self.thrActive && !self.friActive){
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select days of week.",nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select days of week.")];
     }
     else{
         
@@ -919,14 +1000,33 @@
                 self.selectedNationality = [self.nationalties objectAtIndex:[self.nationaltiesStringsArray indexOfObject:self.nationalityTextField.text]];
             }
             else{
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Choose a valid nationality.", nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please Choose a valid nationality.")];
                 return;
             }
         }
         __block CreateRideViewController *blockSelf = self;
-        [KVNProgress showWithStatus:@"Loading..."];
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
         BOOL isRounded = self.selectedType == PeriodicType ? YES : NO;
-        NSString *gender = self.isFemaleOnly ? @"F":@"M";
+        
+        NSString *gender ;
+        if (self.bothBtn.selected) {
+            gender = @"B";
+        }else if (self.maleBtn.selected){
+            gender = @"M";
+        }else if (self.femaleBtn.selected){
+            gender = @"F";
+        }else{
+            gender = @"N";
+        }
+        
+        NSString *acceptSmoke ;
+        if (self.acceptBtn.selected) {
+            acceptSmoke = @"1";
+        }else if (self.notAcceptBtn.selected){
+            acceptSmoke = @"0";
+        }else{
+            acceptSmoke = @"";
+        }
         
         NSString *fromEmirateID = self.isEdit ? self.routeDetails.FromEmirateId.stringValue : self.fromEmirate.EmirateId;
         NSString *toEmirateID = self.isEdit ? self.routeDetails.ToEmirateId.stringValue : self.toEmirate.EmirateId;
@@ -940,39 +1040,113 @@
             toRegion = [[MasterDataManager sharedMasterDataManager] getRegionByID:toRegionID inEmirateWithID:toEmirateID];
         }
         
-        NSString *startLat = fromRegion.RegionLatitude;
-        NSString *startLng = fromRegion.RegionLongitude;
+        NSString *startLat ;
+        NSString *startLng ;
         
-        NSString *endLat = toRegion.RegionLatitude;
-        NSString *endLng = toRegion.RegionLongitude;
+        NSString *endLat ;
+        NSString *endLng ;
         
+        if (self.isEdit) {
+            startLat = self.routeDetails.StartLat;
+            startLng = self.routeDetails.StartLng;
+            endLat = self.routeDetails.EndLat;
+            endLng = self.routeDetails.EndLng;
+        }
+        else{
+            startLat = fromRegion.RegionLatitude;
+            startLng = fromRegion.RegionLongitude;
+            endLat = toRegion.RegionLatitude;
+            endLng = toRegion.RegionLongitude;
+        }
+        //GonFollowOrders
         
-        [[MobDriverManager sharedMobDriverManager] createEditRideWithName:self.rideNameTextField.text fromEmirateID:fromEmirateID fromRegionID:fromRegionID toEmirateID:toEmirateID toRegionID:toRegionID isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicleID:self.isEdit ? self.routeDetails.VehicelId.stringValue : self.selectedVehicle.ID.stringValue noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange  isEdit:self.isEdit routeID:self.routeDetails.ID.stringValue startLat:startLat startLng:startLng endLat:endLat endLng:endLng WithSuccess:^(NSString *response) {
+        [[MobDriverManager sharedMobDriverManager] createEditRideWithName:self.rideNameTextField.text fromEmirateID:fromEmirateID fromRegionID:fromRegionID toEmirateID:toEmirateID toRegionID:toRegionID isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicleID:self.isEdit ? self.routeDetails.VehicelId.stringValue : self.selectedVehicle.ID.stringValue noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange  isEdit:self.isEdit routeID:self.routeDetails.ID.stringValue startLat:startLat startLng:startLng endLat:endLat endLng:endLng Smoke:acceptSmoke WithSuccess:^(NSString *response) {
             [KVNProgress dismiss];
             
-            if ([response containsString:@"1"]) {
-                [KVNProgress showSuccessWithStatus:self.isEdit ?  NSLocalizedString(@"Ride edited successfully", nil) : NSLocalizedString(@"Ride created successfully", nil)];
+            if (![response containsString:@"-"]) {
+                [KVNProgress showSuccessWithStatus:self.isEdit ?  GET_STRING(@"Ride edited successfully") : GET_STRING(@"Ride created successfully")];
+                
                 [blockSelf performBlock:^{
                     [KVNProgress dismiss];
-                    [blockSelf.navigationController popViewControllerAnimated:YES];
+                    //                    [blockSelf.navigationController popViewControllerAnimated:YES];
+                    //GonMade MaplookUpForThis page
+                    NSLog(@"Route id For response is : %@",[self SpacesRemover:response]);
+                    NSString *unfilteredString = response;
+                    NSCharacterSet *notAllowedChars = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
+                    NSString *resultString = [[unfilteredString componentsSeparatedByCharactersInSet:notAllowedChars] componentsJoinedByString:@""];
+                    NSLog (@"Result: %@", resultString);
+                    
+                    _RouteID = [NSString stringWithFormat:@"%@",resultString];
+                    if (![_RouteID containsString:@"-"]) {
+                        
+                        NSLog(@"Route id is : %@",[self SpacesRemover:self.RouteID]);
+                        //                        User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
+                        //                        _UserID = [NSString stringWithFormat:@"%@",user.ID];
+                        [[MasterDataManager sharedMasterDataManager]getRideDetailsFORPASSENGER:_UserID FromEmirateID:[NSString stringWithFormat:@"%@",fromEmirateID] FromRegionID:[NSString stringWithFormat:@"%@",fromRegionID] ToEmirateID:[NSString stringWithFormat:@"%@",toEmirateID] ToRegionID:[NSString stringWithFormat:@"%@",toRegionID] RouteID:[NSString stringWithFormat:@"%@",[self SpacesRemover:self.RouteID]] WithSuccess:^(NSMutableArray *array) {
+                            if( array.count > 0 ){
+                                MostRideDetailsViewControllerForPassenger *rideDetailsView = [[MostRideDetailsViewControllerForPassenger alloc] initWithNibName:@"MostRideDetailsViewControllerForPassenger" bundle:nil];
+                                rideDetailsView.toEmirate = _startPointLabel.text;
+                                rideDetailsView.fromRegion = @"";
+                                rideDetailsView.fromEmirate = _destinationLabel.text;
+                                rideDetailsView.RouteIDString = _RouteID;
+                                rideDetailsView.WebAccountID = [NSString stringWithFormat:@"%@",_UserID];
+                                rideDetailsView.FromEmirateID = [NSString stringWithFormat:@"%@",fromEmirateID];
+                                rideDetailsView.ToEmirateID = [NSString stringWithFormat:@"%@",toEmirateID];
+                                rideDetailsView.FromRegionID = [NSString stringWithFormat:@"%@",fromRegionID];
+                                rideDetailsView.ToRegionID = [NSString stringWithFormat:@"%@",toRegionID];
+                                rideDetailsView.TheFlag = @"RideDetails";
+                                
+                                rideDetailsView.CheckIfCreatRide  = @"CreatedRide";
+                                [self.navigationController pushViewController:rideDetailsView animated:YES];
+                            }
+                            else{
+                                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"No Rides Found")];
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                    [blockSelf.navigationController popViewControllerAnimated:YES];
+                                    
+                                });
+                            }
+                            //    [[MasterDataManager sharedMasterDataManager] getRideDetails:@"0" FromEmirateID:_ride.FromEmirateId FromRegionID:_ride.FromRegionId ToEmirateID:_ride.ToEmirateId ToRegionID:_ride.ToRegionId WithSuccess:^(NSMutableArray *array) {
+                            
+                            [KVNProgress dismiss];
+                            
+                        } Failure:^(NSString *error) {
+                            
+                            NSLog(@"Error in Best Drivers : RideDetailsVC");
+                            //        [KVNProgress dismiss];
+                            //        [KVNProgress showErrorWithStatus:@"Error"];
+                            //        [blockSelf performBlock:^{
+                            //            [KVNProgress dismiss];
+                            //        } afterDelay:3];
+                            
+                        }];
+                    }
                 } afterDelay:3];
                 if (blockSelf.isEdit && blockSelf.editHandler) {
                     blockSelf.editHandler();
                 }
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    if (self.isEdit) {
+                        [blockSelf.navigationController popViewControllerAnimated:YES];
+                        
+                    }
+                });
             }
-            else if ([response containsString:@"0"]){
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Error.", nil)];
-            }
-            else if ([response containsString:@"-2"]){
-                [[HelpManager sharedHelpManager] showAlertWithMessage:self.isEdit ? NSLocalizedString(@"an error happend when trying to create ride", nil) : NSLocalizedString(@"you cannot create more than 2 rides.", nil)];
+            else
+            {
+                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"An error happend when trying to create ride")];
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
-            [KVNProgress showErrorWithStatus:NSLocalizedString(@"an error happend when trying to create ride", nil)];
+            [KVNProgress showErrorWithStatus:GET_STRING(@"An error happend when trying to create ride")];
             [blockSelf performBlock:^{
                 [KVNProgress dismiss];
             } afterDelay:3];
         }];
+        
+        
     }
 }
 
@@ -980,7 +1154,7 @@
 
 - (void) showDatePicker{
     __block CreateRideViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select",nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.dateFormatter.dateFormat = @"dd/MM/yyyy";
         NSString *dateString = [self.dateFormatter stringFromDate:date];
@@ -996,13 +1170,13 @@
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel",nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = NSLocalizedString(@"select Pickup Date", nil);
+    dateSelectionController.title = GET_STRING(@"Select Pickup Date");
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
     dateSelectionController.datePicker.date = self.pickupDate ? self.pickupDate : [NSDate date];
     
@@ -1013,7 +1187,7 @@
 - (void) showTimePicker{
     
     __block CreateRideViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select",nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDate *date =  ((UIDatePicker *)controller.contentView).date;
         blockSelf.pickupTime = date;
         blockSelf.dateFormatter.dateFormat = @"HH:mm a";
@@ -1022,17 +1196,17 @@
         NSInteger hour = date.hour;
         NSInteger minutes = date.minute;
         blockSelf.pickupDate = [blockSelf.pickupDate dateBySettingHour:hour minute:minutes second:0];
-
+        
     }];
     
     //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel",nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         
     }];
     
     //Create date selection view controller
     RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = NSLocalizedString(@"select Pickup Time",nil);
+    dateSelectionController.title = GET_STRING(@"Select Pickup Time");
     dateSelectionController.datePicker.datePickerMode = UIDatePickerModeTime;
     dateSelectionController.datePicker.date = self.pickupDate;
     
@@ -1040,8 +1214,9 @@
     [self presentViewController:dateSelectionController animated:YES completion:nil];
 }
 
-- (void) showPickerWithTextFieldType:(TextFieldType)type{
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select",nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+- (void) showPickerWithTextFieldType:(TextFieldType)type
+{
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
@@ -1080,7 +1255,7 @@
     }];
     
     
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         NSLog(@"Row selection was canceled");
     }];
     
@@ -1129,7 +1304,7 @@
 }
 
 - (void) showLocationPicker{
-    SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:@"SelectLocationViewController" bundle:nil];
+    SelectLocationViewController *selectLocationViewController = [[SelectLocationViewController alloc] initWithNibName:(KIS_ARABIC)?@"SelectLocationViewController_ar":@"SelectLocationViewController" bundle:nil];
     selectLocationViewController.validateDestination = YES;
     __block CreateRideViewController *blockSelf = self;
     [selectLocationViewController setSelectionHandler:^(Emirate *fromEmirate, Region *fromRegion,Emirate *toEmirate, Region *toRegion) {
@@ -1152,38 +1327,13 @@
     [self.navigationController pushViewController:selectLocationViewController animated:YES];
 }
 
-#pragma TextFieldDelegate
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
-//    if (textField == self.nationalityTextField){
-////        [self showPickerWithTextFieldType:NationalityTextField];
-//    }
-    return YES;
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
-//    if (textField == self.nationalityTextField) {
-//        BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTextField.text];
-//        if (!validNationality) {
-//            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select nationality from list", nil)];
-//            return NO;
-//        }
-//    }
-    [textField resignFirstResponder];
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
-
 #pragma PickerViewDeelgate&DataSource
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
     NSString *title = @"";
-    switch (pickerView.tag) {
+    switch (pickerView.tag)
+    {
         case NationalityTextField:
         {
             Nationality *nationality = [self.nationalties objectAtIndex:row];
@@ -1214,12 +1364,12 @@
     }
     
     return title;
-
-
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    switch (pickerView.tag) {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    switch (pickerView.tag)
+    {
         case NationalityTextField:
         {
             return self.nationalties.count;
@@ -1245,10 +1395,10 @@
             break;
     }
     return 0;
-    
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
     return 1;
 }
 
@@ -1275,4 +1425,168 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     return YES;
 }
 
+- (IBAction)selectGenderType:(id)sender
+{
+    NSString *selectedGender;
+    switch ([sender tag])
+    {
+        case 0:
+            if (self.bothBtn.selected) {
+                self.bothBtn.selected = NO ;
+                selectedGender = @"";
+            }else{
+                self.bothBtn.selected = YES ;
+                selectedGender = @"B";
+            }
+            self.maleBtn.selected = NO ;
+            self.femaleBtn.selected = NO;
+            break;
+        case 1:
+            if (self.maleBtn.selected) {
+                selectedGender = @"";
+                self.maleBtn.selected = NO ;
+            }else{
+                self.maleBtn.selected = YES ;
+                selectedGender = @"M";
+            }
+            self.bothBtn.selected = NO ;
+            self.femaleBtn.selected = NO;
+            break;
+        case 2:
+            if (self.femaleBtn.selected)
+            {
+                selectedGender = @"";
+                self.femaleBtn.selected = NO;
+            }else{
+                self.femaleBtn.selected = YES;
+                selectedGender = @"F";
+            }
+            self.bothBtn.selected = NO ;
+            self.maleBtn.selected = NO ;
+            break;
+        default:
+            break;
+    }
+}
+
+- (IBAction)selectIsSmoke:(id)sender
+{
+    switch ([sender tag])
+    {
+        case 10:
+            if (self.acceptBtn.selected)
+            {
+                self.acceptBtn.selected = NO ;
+            }else{
+                self.acceptBtn.selected = YES ;
+            }
+            self.notAcceptBtn.selected = NO ;
+            break;
+        case 11:
+            self.acceptBtn.selected = NO ;
+            if (self.notAcceptBtn.selected)
+            {
+                self.notAcceptBtn.selected = NO ;
+            }else{
+                self.notAcceptBtn.selected = YES ;
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma TextFieldDelegate
+#pragma mark - TextFieldDelegate
+
+// This code handles the scrolling when tabbing through infput fields
+static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
+static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
+static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
+static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 220;
+static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
+//when clicking the return button in the keybaord
+
+#pragma TextField Delegate
+- (BOOL)textFieldShouldEndEditing:(UITextField*)textField{
+    return [self textSouldEndEditing];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField{
+    
+    [textField resignFirstResponder];
+    
+    return NO;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
+    [self textDidBeginEditing:textFieldRect];
+}
+
+- (void)textDidBeginEditing:(CGRect)textRect{
+    CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
+    CGFloat midline = textRect.origin.y + 0.5 * textRect.size.height;
+    CGFloat numerator = midline - viewRect.origin.y - MINIMUM_SCROLL_FRACTION * viewRect.size.height;
+    CGFloat denominator = (MAXIMUM_SCROLL_FRACTION - MINIMUM_SCROLL_FRACTION) * viewRect.size.height;
+    CGFloat heightFraction = numerator / denominator;
+    if (heightFraction < 0.0)
+    {
+        heightFraction = 0.0;
+    }
+    else if (heightFraction > 1.0)
+    {
+        heightFraction = 1.0;
+    }
+    UIInterfaceOrientation orientation =
+    [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait ||
+        orientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        self.animatedDistance = floor(PORTRAIT_KEYBOARD_HEIGHT * heightFraction);
+    }
+    else
+    {
+        self.animatedDistance = floor(LANDSCAPE_KEYBOARD_HEIGHT * heightFraction);
+    }
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y -= self.animatedDistance;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    [self.view setFrame:viewFrame];
+    [UIView commitAnimations];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    return YES;
+}
+
+- (BOOL)textSouldEndEditing{
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y += self.animatedDistance;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    [self.view setFrame:viewFrame];
+    [UIView commitAnimations];
+    
+    return YES;
+}
+
+#pragma Touches
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    for (UIView* view in self.view.subviews) {
+        for (UIGestureRecognizer* recognizer in view.gestureRecognizers) {
+            [recognizer addTarget:self action:@selector(touchEvent:)];
+        }
+        
+        //        [self.view endEditing:YES];
+    }
+}
+
+- (void)touchEvent:(id)sender{
+    
+    
+}
 @end

@@ -40,17 +40,38 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"Permits", nil);
+    self.title = GET_STRING(@"Permits");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
-    self.noPermits.text = NSLocalizedString(@"No permits found", nil);
+    self.noPermits.text = GET_STRING(@"No permits found");
     [self getPermits];
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+        /*  UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:GET_STRING(@"No permits found") preferredStyle:UIAlertControllerStyleAlert];
+         
+         UIAlertAction *ok = [UIAlertAction actionWithTitle:GET_STRING(@"Ok") style:UIAlertActionStyleDefault handler:nil];
+         [alert addAction:ok];
+         [self presentViewController:alert animated:YES completion:nil];
+         NSLog(@"HIDDen");
+         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         [self.navigationController popViewControllerAnimated:true];
+         });
+         */
+    }else{
+        return YES ;
+    }
 }
 
 - (void)popViewController
@@ -63,7 +84,7 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block PermitsViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] getPermits:[NSString stringWithFormat:@"%@",user.ID] WithSuccess:^(NSMutableArray *array) {
         
         blockSelf.permits = array;
@@ -101,7 +122,7 @@
     
     if (permitCell == nil)
     {
-        permitCell = (PermitCell *)[[[NSBundle mainBundle] loadNibNamed:@"PermitCell" owner:nil options:nil] objectAtIndex:0];
+        permitCell = (PermitCell *)[[[NSBundle mainBundle] loadNibNamed:@"PermitCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
     }
     
     Permit *permit = self.permits[indexPath.row];

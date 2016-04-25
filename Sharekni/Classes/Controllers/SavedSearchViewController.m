@@ -35,16 +35,28 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTranslucent:NO];
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = NSLocalizedString(@"Saved Search", nil);
+    self.title = GET_STRING(@"Saved Search");
     self.noResultLabel.textColor = Red_UIColor;
     self.noResultLabel.alpha = 0;
     [self getRideDetails];
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
 }
 
 - (void)popViewController
@@ -57,11 +69,10 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
     __block SavedSearchViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] getSavedSearch:[NSString stringWithFormat:@"%@",user.ID] withSuccess:^(NSMutableArray *array) {
         
         blockSelf.savedData = array;
-        [KVNProgress dismiss];
         [self.driverList reloadData];
         if (array.count == 0) {
             self.noResultLabel.alpha = 1;
@@ -70,6 +81,8 @@
             self.noResultLabel.alpha = 0;
         }
         
+        [KVNProgress dismiss];
+
     } Failure:^(NSString *error) {
         NSLog(@"Error in Best Drivers");
         [KVNProgress dismiss];
@@ -111,21 +124,29 @@
     MostRideDetails *ride = self.savedData[indexPath.row];
 
         __block SavedSearchViewController *blockSelf = self;
-        [KVNProgress showWithStatus:@"Loading..."];
-        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirateID:ride.FromEmirateId andFromRegionID:ride.FromRegionId toEmirateID:ride.ToEmirateId andToRegionID:ride.ToRegionId PerfferedLanguageID:@"0" nationalityID:@"" ageRangeID:@"0" date:nil isPeriodic:nil saveSearch:nil WithSuccess:^(NSArray *searchResults) {
+    
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
+    
+
+    //GonMade passenger_FindRide?AccountID
+    
+        [[MobDriverManager sharedMobDriverManager] findRidesFromEmirateID:ride.FromEmirateId andFromRegionID:ride.FromRegionId toEmirateID:ride.ToEmirateId andToRegionID:ride.ToRegionId PerfferedLanguageID:@"0" nationalityID:@"" ageRangeID:@"0"  date:nil isPeriodic:nil saveSearch:nil startLat:@"0" startLng:@"0" EndLat:@"0" EndLng:@"0" WithSuccess:^(NSArray *searchResults) {
     
             [KVNProgress dismiss];
-            if(searchResults){
-                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:nil];
+            
+            if(searchResults)
+            {
+                SearchResultsViewController *resultViewController = [[SearchResultsViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchResultsViewController_ar":@"SearchResultsViewController" bundle:nil];
                 resultViewController.results = searchResults;
-                resultViewController.fromEmirate = ride.FromEmirateEnName;
-                resultViewController.toEmirate = ride.ToEmirateEnName;
-                resultViewController.fromRegion = ride.FromRegionEnName;
-                resultViewController.toRegion = ride.ToRegionEnName;
+                resultViewController.fromEmirate = (KIS_ARABIC)?ride.FromEmirateArName:ride.FromEmirateEnName;
+                resultViewController.toEmirate = (KIS_ARABIC)?ride.ToEmirateArName:ride.ToEmirateEnName;
+                resultViewController.fromRegion = (KIS_ARABIC)?ride.FromRegionArName:ride.FromRegionEnName;
+                resultViewController.toRegion = (KIS_ARABIC)?ride.ToRegionArName:ride.ToRegionEnName;
                 [blockSelf.navigationController pushViewController:resultViewController animated:YES];
             }
-            else{
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"No Rides Found ",nil)];
+            else
+            {
+                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"No Rides Found")];
             }
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];

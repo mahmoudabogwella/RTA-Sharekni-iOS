@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  Sharekni
-
-  Created by Ahmed Askar on 10/9/15.
-
-*/
+/*
+ Localizable.strings
+ Sharekni
+ 
+ Created by Ahmed Askar on 10/9/15.
+ 
+ */
 
 "In order to change language you have to re-open the application" =  "لكي تتمكن من تغيير اللغة يجب إعادة فتح التطبيق مرة أخري";
 "Close Now" = "إغلاق الآن";
@@ -20,7 +20,7 @@
 "mobile"    = "رقم الهاتف";
 "nationality" = "الجنسية";
 "pLanguage" = "اللغة المفضلة";
-"Submit" = "تأكيد";
+"Submit" = "إرسال";
 
 "nameReq" = "من فضلك أدخل اسم المستخدم";
 "passReq" = "من فضلك أدخل كلمة المرور";
@@ -36,24 +36,35 @@
 "advancedSearch" = "بحث متقدم";
 "quickSearch" = "بحث";
 
+"Please set direction for both Pick up and Drop off" = "من فضلك اختر وجهتى الإنطلاق و الوصول";
+
+"Sorry, you can't send any more invitations" = "لا يمكن ارسال المزيد من الدعوات";
+
+"Kg" = "كج";
 "loading" = "تحميل";
-"Loading..." = "...تحميل";
+"Loading..." = "تحميل...";
 
 "sharkni" = "شاركني";
 
 "driverDetails" = "تفاصيل السائق";
 "rideDetails" = "تفاصيل الرحلة";
 
+"Sorry, you can't send any more invitations" = "Sorry, you can't send any more invitations";
 
 "submit" = "تأكيد";
 "forget" = "نسيت كلمة المرور";
 "preferedLang" = "الجنسية المفضلة";
 
+//ForgetPassword
+
+"A reset password link has been sent to your email" = "تم إرسال رسالة تغيير رقم المرور إلى بريدك الإلكترونى";
+
+"Email are not matching" = "بريد إلكترونى غير متوفر";
 
 //Registeration
 "Please Choose a valid nationality." = "يرجي اختيار الجنيسة";
 "Please Choose acconut type." = "يرجي اختيار نوع الحساب";
-"Please fill all fields" = "جميع الحقول الزامية";
+"Please fill all fields" = "يرجى تعبئة جميع الحقول الالزامية";
 "First name mustn't have numbers" = "الاسم الاول يجب ألا يحتوي علي ارقام";
 "Last name mustn't have numbers" = "الاسم الاخير يجب ألا يحتوي علي أرقام";
 "Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]" = "رقم الجوال يجب أن يكون ٩ أرقام ويبدأ ب [50 – 55 – 56 – 52]";
@@ -85,7 +96,10 @@
 "Search" = "بحث";
 "Saved Search" = "حفظ البحث";
 "Create Ride"  = "إنشاء رحلة";
-
+"Register Vehicle" = "تسجيل مركبة";
+"Dismiss" = "إلغاء";
+"You Don't Have Any Vehcile Registered" = "ليس لديك اى مركبه مسجله";
+"Do you want to Register it now?" = "هل تريد تسجيل مركبه الآن؟";
 "No permits found" = "عفوا لاتوجد تصاريح";
 //Create Rides
 "No rides joined yet" = "عفوا لاتوجد رحلات مشتركة حتي الآن";
@@ -94,6 +108,7 @@
 "Select vehicle" = "اختر المركبة";
 "Confirm" = "موافق";
 "Delete" = "حذف";
+"DeleteNotifcationHeaderNot" = "حذف";
 "Edit" = "تعديل";
 "Do you want to delete this ride ?" = "هل تريد حذف هذه الرحلة؟";
 "Ride Deleted successfully." = "تم حذف الرحلة بنجاح";
@@ -108,18 +123,26 @@
 "You must write your review first" = "يجب كتابة التعليق أولا";
 "You must write your remark first" = "يجب كتابة رسالتك أولا";
 
+//Creat Drive
+"You can't use this file number" = "عذرا,لا يمكنك استخدام ملف المرور ذلك";
+"License verified, but no cars found" = "الرخصه مصرح بها ولاكن لاتوجد مركبة";
+"Invalid data please check again" = "بيانات غير صحيحة حاول مرة اخرى";
 //Driver Ride
 "Details" = "التفاصيل";
 "Driver" = "السائق";
 "Leave" = "مغادرة";
+
+"Sorry, you can't send any more invitations" = "لا يمكن ارسال المزيد من الدعوات";
+
 
 //Add review
 "Write Your Review" = "اكتب تعليقك";
 "Your Review" = "تعليقك";
 "Review" = "تعليق";
 "I’d like to join your ride" = "أريد الإنضمام إلي هذه الرحلة";
-"Write Your Remarks" = "اكتب ملاحظتك";
-"Your Remarks" = "ملاحظتك";
+"I’d like to invite you to my ride" = "ادعوك للإنضمام إلى رحلتي";
+"Write Your Remarks" = "إرسال دعوة إنضمام";
+"Your Remarks" = "الرسالة";
 
 
 "Map Lookup" = "الخريطة";
@@ -137,7 +160,10 @@
 "Please select from Emirate first" = "من فضلك اختر الإمارة أولا";
 "Please select to Emirate first" = "من فضلك اختر الإمارة أولا";
 "Please enter a valid to region name" = "من فضلك أدخل اسم المنطقة بطريقة صحيحة";
-"invalid start date or time" = "تاريخ البدء أو وقت البدء غير صحيح";
+"invalid start date or time" = "خطأ في تاريخ البدء أو وقت البدء";
+
+"Drivers" = "السائقين";
+"Passengers" = "الركاب";
 
 "Drivers :" = "السائقين :";
 "Passengers :" = "الركاب :";
@@ -176,4 +202,87 @@
 
 "Edit Profile" = "تعديل الحساب";
 "Nationalty must be selected" = "يجب عليك اختيار الجنسية";
-"Please check your username and password" = "يزجي التأكد من الاسم وكلمة المرور";
+"Please check your username and password" = "يرجى التأكد من اسم المستخدم وكلمة المرور";
+"Edit profile info success" = "تم تحديث البيانات بنجاح";
+"Select date of birth" = "اختر تاريخ الميلاد";
+"Verification Code is wrong" = "كود التفعيل غير صحيح";
+"Mobile Verified" = "تم تفعيل رقم الجوال";
+
+"Please select start point" = "من فضلك اختر نقطة البداية";
+"Directions can't be edited." = "الطرق لايمكن تعديلها";
+"Please set startpoint and destination." = "من فضلك اختر نقطة الانطلاق ونقطة الوصول";
+"Please select Vehicle" = "يرجي اختيار المركبة";
+"Please enter ride name" = "من فضلك ادخل اسم الرحلة";
+"Please select start date" = "يرجي اختيار تاريخ البدء";
+"Please select start time" = "يرجي اختيار وقت البدء";
+"Please select number of available seats." = "يرجي اختيار عدد المقاعد المتاحة";
+"Please select days of week." = "يرجي اختيار أيام الاسبوع";
+"Ride edited successfully" = "تم تعديل بيانات الرحلة بنجاح";
+"Ride created successfully" = "تم إنشاء الرحلة بنجاح";
+"An error happend when trying to create ride" = "حدث خطأ عند إنشاء الرحلة";
+"Sorry, It's not allowed to create more than two rides" = "غير مسموح بانشاء أكثر من رحلتين";
+"Sorry, you have yo have at least one ride" = "لا توجد مركبة مسجله";
+"Select Pickup Time" = "اخر وقت الإنطلاق";
+"Select Pickup Date" = "اختر تاريخ الإنطلاق";
+"Rating added successfully" = "تم التقييم بنجاح";
+"Unable to add Rating" = "لا يمكن إضافة التقييم الآن";
+
+
+"Ride Delete successfully." = "تم حذف الرحلة بنجاح";
+"An error occured when deleting ride" = "تم حدوث خطأ عند حذف الرحلة";
+"Passenger removed successfully" = "تم حذف الراكب بنجاح";
+"Unable to remove the passenger" = "لا تستطيع حذف الراكب";
+"Mobile Number not available" = "رقم الجوال غير متاح";
+"Do you want to delete this passenger ?" = "هل تريد حذف الراكب ؟";
+
+"No history" = "لا يوجد اي تواريخ";
+"Do you want to leave this ride" = "هل تريد مغادرة هذه الرحلة";
+"An error occured when leaving ride" = "تم حدوث خطأ اثناء مغادرة الرحلة";
+"Permit added successfully." = "تم إضافة التصريح بنجاح";
+"Invalid birthdate" = "تاريخ الميلاد غير صحيح";
+
+"Male" = "ذكر";
+"Female" = "أنثي";
+"Both" = "كلاهما";
+"Yes" = "نعم";
+"No" = "لا";
+"Dubai" = "دبي";
+
+"Please Choose account type." = "من فضلك اختر نوع الحساب";
+"No camera on device" = "لا توجد كاميرا";
+"You cannot choose year before 1900" = "لا يمكن اختيار سنة أقل من ١٩٩٠";
+"Photo Library" = "مكتبة الصور";
+"Camera" = "الكاميرا";
+
+
+"You don't have joined rides yet" = "عفوا، لا توجد رحلات مشترك بها";
+"You don't have created rides yet" = "عفوا لا توجد رحلات منشأة";
+"Received your request and waiting for approval" = "تم إرسال الطلب بنجاح و انتظر موافقة السائق";
+
+"Request deleted successfully" = "تم حذف الطلب بنجاح";
+"Cannot delete Request" = "لا يمكن حذف الطلب";
+
+"Do you want to delete this review ?" = "هل تريد حذف التعليق ؟";
+"Edit Review" = "تعديل التعليق";
+"Review deleted successfully" = "تم حذف التعليق بنجاح";
+"Cannot delete Review" = "لا يمكن حذف التعليق";
+"Password must be at least 5 characters" = "كلمة المرور يجب أن لا تقل عن ٥ أحرف";
+"No Specified" = "غير محدد";
+"data are not matching" = "البيانات غير صحيحة";
+"Not Specified" = "غير محدد";
+"No Specified" = "غير محدد";
+"Error" = "خطأ";
+"You don't have any notifications" = "لا يوجد لديك تنبيهات";
+"Do you want to delete this request ?" = "هل تريد حذف هذا الطلب ؟";
+"Request had been sent Successfully , Wait for driver Approval." = "تم إرسال الطلب بنجاح و انتظر موافقة السائق";
+"Received your request and waiting for The approval" = "تم إرسال الطلب بنجاح , انتظر الوافقة على الطلب";
+
+"Has Accepted your invitation" = "قام بقبول دعوتك";
+"Received your invitation and waiting for approval" = "تم إستلام دعوتك , انتظر الموافقة";
+"Send you a invitation request" = "بعث لك بطلب دعوه";
+
+"Cannot delete invitation" =  "لا يمكن حذف الطلب";
+"Invitation deleted successfully" = "تم مسح الطلب بنجاح";
+"Do you want to delete this invitation ?" = "هل تريد مسح الدعوة؟";
+"Has Rejected your invitation" = "قد رفض طلبك";
+

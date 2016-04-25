@@ -10,20 +10,23 @@
 #import "Constants.h"
 #import "HelpManager.h"
 #import "Base64.h"
+
 @implementation BaseAPIManager
-- (instancetype)init{
-    if (self = [super init]) {
-        
+
+- (instancetype)init
+{
+    if (self = [super init])
+    {
         self.operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:Sharkeni_BASEURL]];
         
         AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
         [requestSerializer setValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-//        [requestSerializer setValue:@"application/x-www-form-urlencoded " forHTTPHeaderField:@"Content-Type"];
 
         [requestSerializer setValue:@"application/xml" forHTTPHeaderField:@"Accept"];
         self.operationManager.requestSerializer = requestSerializer;
-        
+        self.operationManager.requestSerializer.timeoutInterval = 20;
         AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
+
         [responseSerializer.acceptableContentTypes setByAddingObject:@"application/xml"];
         [responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain; charset=utf-8"];
         self.operationManager.responseSerializer = responseSerializer;
@@ -31,7 +34,8 @@
     return self;
 }
 
-- (NSString *) jsonStringFromResponse:(NSString *)response{
+- (NSString *)jsonStringFromResponse:(NSString *)response
+{
     NSString *string = [response stringByReplacingOccurrencesOfString:XML_Open_Tag withString:@""];
     string = [string stringByReplacingOccurrencesOfString:String_Open_Tag withString:@""];
     string = [string stringByReplacingOccurrencesOfString:String_Close_Tag withString:@""];
@@ -43,12 +47,16 @@
 }
 
 
-- (void) GetPhotoWithName:(NSString *)name withSuccess:(void (^)(UIImage *image,NSString *filePath))success
-                  Failure:(void (^)(NSString *error))failure{
-    if([name isEqualToString:@"NoImage.png"]){
+- (void)GetPhotoWithName:(NSString *)name withSuccess:(void (^)(UIImage *image,NSString *filePath))success
+                  Failure:(void (^)(NSString *error))failure
+{
+    //GonWhat
+    if([name isEqualToString:@"NoImage.png"])
+    {
         success(nil,nil);
     }
-    else{
+    else
+    {
         NSString *imagesDirectory = [[HelpManager sharedHelpManager] imagesDirectory];
         NSString *path = [imagesDirectory stringByAppendingPathComponent:name];
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
@@ -74,25 +82,18 @@
                 responseString = [responseString stringByReplacingOccurrencesOfString:base64tag5 withString:@""];
                 responseString = [responseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                 
-                NSLog(@"string %@",responseString);
-//                NSString *test = @"asdasdasdasdasdasdqweqweqweqwejkbnjknknk";
-//                NSString * x = [self encodeStringTo64:test];
-//                responseString = [self encodeStringTo64:responseString];
                 responseString = [responseString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
                 NSData* data = [Base64 decode:responseString];
                 UIImage *image = [UIImage imageWithData:data];
                 NSData *pngData = UIImagePNGRepresentation(image);
                 [pngData writeToFile:path atomically:YES];
                 success(image,path);
-            } failure:^void(AFHTTPRequestOperation * operation, NSError * error) {
+            } failure:^void(AFHTTPRequestOperation * operation, NSError * error){
                 NSLog(@"Error %@",error.description);
                 failure(error.description);
             }];
         }
     }
 }
-
-
-
 
 @end

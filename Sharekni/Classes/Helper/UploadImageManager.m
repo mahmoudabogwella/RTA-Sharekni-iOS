@@ -31,8 +31,38 @@
 
 - (void) uploadPhoto{
     if(!self.image){
-        self.failureHandler(@"No Image ");
+        self.failureHandler(@"");
     }
+//    else{
+//        NSString *imageString = [self stringFromImage:self.image];
+//        self.webResponseData = [[NSMutableData alloc ] init];
+//        
+////        NSString *soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><UploadImage xmlns=\"http://Sharekni-MobAndroid-Data.org/UploadImage\"><ImageContent>%@</ImageContent><imageExtenstion>png</imageExtenstion></UploadImage></soap:Body></soap:Envelope>",imageString];
+//        
+//// NSString *soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><UploadImage xmlns=\"http://Sharekni-MobIOS-Data.org/\"><ImageContent>%@</ImageContent><imageExtenstion>png</imageExtenstion></UploadImage></soap:Body></soap:Envelope>",imageString];
+////        
+//         NSString *soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><UploadImage xmlns=\"http://Sharekni-MobAndroid-Data.org/\"><ImageContent>%@</ImageContent><imageExtenstion>png</imageExtenstion></UploadImage></soap:Body></soap:Envelope>",imageString];
+//        
+////         NSString *soapMessage = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema-instance\"  xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><UploadImage xmlns=\"http://Sharekni-MobAndroid-Data.org\"><ImageContent>%@</ImageContent><imageExtenstion>png</imageExtenstion></UploadImage></soap:Body></soap:Envelope>",imageString];
+//        
+//        
+//        
+//        NSURL *url = [NSURL URLWithString:@"http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx"];
+//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+//        NSString *messageLength = [NSString stringWithFormat:@"%lu",(unsigned long)[soapMessage length]];
+//        [request addValue:@"sharekni-web.sdg.ae" forHTTPHeaderField:@"Host"];
+//        [request addValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
+//        [request addValue:@"keep-alive" forHTTPHeaderField:@"Connection"];
+//        [request addValue:@"True" forHTTPHeaderField:@"SendChunked"];
+//        [request addValue:@"True" forHTTPHeaderField:@"UseCookieContainer"];
+//
+//        [request addValue:messageLength forHTTPHeaderField:@"Content-Length"];
+//        [request addValue:@"http://Sharekni-MobAndroid-Data.org/UploadImage" forHTTPHeaderField:@"SOAPAction"];
+//        [request setHTTPMethod:@"POST"];
+//        [request setHTTPBody:[soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+//        NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+//        [connection start];
+//    }
     else{
         NSString *imageString = [self stringFromImage:self.image];
         self.webResponseData = [[NSMutableData alloc ] init];
@@ -47,7 +77,7 @@
         [request addValue:@"keep-alive" forHTTPHeaderField:@"Connection"];
         [request addValue:@"True" forHTTPHeaderField:@"SendChunked"];
         [request addValue:@"True" forHTTPHeaderField:@"UseCookieContainer"];
-
+        
         [request addValue:messageLength forHTTPHeaderField:@"Content-Length"];
         [request addValue:@"http://Sharekni-MobIOS-Data.org/UploadImage" forHTTPHeaderField:@"SOAPAction"];
         [request setHTTPMethod:@"POST"];

@@ -89,7 +89,12 @@
     mapping[@"SDG_RouteDays_Thursday"] = @"SDG_RouteDays_Thursday";
     mapping[@"SDG_RouteDays_Friday"] = @"SDG_RouteDays_Friday";
     mapping[@"PassengersCountPerRoute"] = @"PassengersCountPerRoute";
+    mapping[@"LastSeen"] = @"LastSeen";
     
+    
+    mapping[@"CO2Saved"] = @"CO2Saved";
+    mapping[@"GreenPoints"] = @"GreenPoints";
+ 
     return mapping;
 }
 

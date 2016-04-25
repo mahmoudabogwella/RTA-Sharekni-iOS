@@ -19,7 +19,9 @@
     mapping[@"AccountId"] = @"AccountId";
     mapping[@"DriverName"] = @"DriverName";
     mapping[@"DriverMobile"] = @"DriverMobile";
-    mapping[@"DriverPhoto"] = @"DriverPhoto";    
+    mapping[@"DriverPhoto"] = @"DriverPhoto";
+    //GonMade WebServe
+    mapping[@"RequestStatus"] = @"RequestStatus";
 //    mapping[@"Rating"] = @"Rating";
     
     mapping[@"NationalityArName"] = @"NationalityArName";
@@ -73,6 +75,12 @@
     
     mapping[@"StartTime"] = @"StartTime";
     mapping[@"EndTime"] = @"EndTime";
+    
+    mapping[@"CO2Saved"] = @"CO2Saved";
+    mapping[@"GreenPoints"] = @"GreenPoints";
+    
+    mapping[@"LastSeen"] = @"LastSeen";
+
     return mapping;
 }
 
@@ -86,9 +94,10 @@
     }];
 }
 
-- (void)setDriverPhoto:(NSString *)DriverPhoto{
-    _DriverPhoto = DriverPhoto;
+- (void)setDriverPhoto:(NSString *)DriverPhoto
+{
     __block MostRideDetails *blockSelf = self;
+    _DriverPhoto = DriverPhoto ;
     [[MobAccountManager sharedMobAccountManager] GetPhotoWithName:DriverPhoto withSuccess:^(UIImage *image, NSString *filePath) {
         if(image){
             blockSelf.driverImage = image;

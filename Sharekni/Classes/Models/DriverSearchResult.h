@@ -88,7 +88,13 @@
 @property (nonatomic,strong) NSNumber *SDG_RouteDays_Friday;
 @property (nonatomic,strong) NSNumber *PassengersCountPerRoute;
 
+@property (nonatomic,strong) NSString *LastSeen;
+
+
 @property (nonatomic,strong) UIImage *driverImage;
 @property (nonatomic,strong) NSString *driverImageLocalPath;
+
+@property (nonatomic,strong) NSNumber *CO2Saved;
+@property (nonatomic,strong) NSNumber *GreenPoints;
 
 @end

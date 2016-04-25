@@ -67,16 +67,27 @@ typedef enum DirectionType : NSUInteger {
     self.navigationController.navigationBar.translucent = YES;
 }
 
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
+}
+
 - (void) configureData{
     __block SelectLocationViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] GetEmiratesWithSuccess:^(NSMutableArray *array) {
         blockSelf.emirates = array;
         [KVNProgress dismiss];
     } Failure:^(NSString *error) {
         NSLog(@"Error in Emirates");
         [KVNProgress dismiss];
-        [KVNProgress showErrorWithStatus:NSLocalizedString(@"Error", nil)];
+        [KVNProgress showErrorWithStatus:GET_STRING(@"Error")];
         [blockSelf performBlock:^{
             [KVNProgress dismiss];
         } afterDelay:3];
@@ -87,7 +98,7 @@ typedef enum DirectionType : NSUInteger {
     Emirate *emirate = type == DirectionTypeFrom ? self.selectedFromEmirate:self.selectedToEmirate;
     if (emirate) {
         __block SelectLocationViewController *blockSelf = self;
-        [KVNProgress showWithStatus:NSLocalizedString(@"Loading", nil)];
+        [KVNProgress showWithStatus:GET_STRING(@"loading")];
         [[MasterDataManager sharedMasterDataManager] GetRegionsByEmirateID:emirate.EmirateId withSuccess:^(NSMutableArray *array) {
             if (type == DirectionTypeFrom) {
                 blockSelf.fromRegions = array;
@@ -106,7 +117,7 @@ typedef enum DirectionType : NSUInteger {
             [KVNProgress dismiss];
         } Failure:^(NSString *error) {
             [KVNProgress dismiss];
-            [KVNProgress showErrorWithStatus:NSLocalizedString(@"Error", nil)];
+            [KVNProgress showErrorWithStatus:GET_STRING(@"Error")];
             [blockSelf performBlock:^{
                 [KVNProgress dismiss];
             } afterDelay:3];
@@ -114,13 +125,13 @@ typedef enum DirectionType : NSUInteger {
     }
 }
 
-- (void) configureUI{
-    
-    self.navigationItem.title = NSLocalizedString(@"Set Direction", ni);
+- (void) configureUI
+{    
+    self.navigationItem.title = GET_STRING(@"Set Direction");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -130,7 +141,6 @@ typedef enum DirectionType : NSUInteger {
         titleLabel.textColor = Red_UIColor;
         [titleLabel addRightBorderWithColor:Red_UIColor];
         [titleLabel addLeftBorderWithColor:Red_UIColor];
-        titleLabel.backgroundColor = [UIColor whiteColor];
     }
     
     for (UIView *containerView in self.containerViews) {
@@ -143,14 +153,14 @@ typedef enum DirectionType : NSUInteger {
     [self.fromEmirateButton setBackgroundColor:[UIColor whiteColor]];
      self.fromEmirateButton.layer.cornerRadius = 10;
     [self.fromEmirateButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
-    [self.fromEmirateButton setTitle:NSLocalizedString(@"Select Emirate", nil) forState:UIControlStateNormal];
+    [self.fromEmirateButton setTitle:GET_STRING(@"Select Emirate") forState:UIControlStateNormal];
     self.fromEmirateButton.layer.borderWidth = .8;
     self.fromEmirateButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
 
     [self.toEmirateButton setBackgroundColor:[UIColor whiteColor]];
      self.toEmirateButton.layer.cornerRadius = 10;
     [self.toEmirateButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
-    [self.toEmirateButton setTitle:NSLocalizedString(@"Select Emirate", nil) forState:UIControlStateNormal];
+    [self.toEmirateButton setTitle:GET_STRING(@"Select Emirate") forState:UIControlStateNormal];
     self.toEmirateButton.layer.borderWidth = .8;
     self.toEmirateButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
@@ -162,8 +172,12 @@ typedef enum DirectionType : NSUInteger {
     self.fromRegionTextField.autoCompleteTableBackgroundColor = [UIColor whiteColor];
     self.fromRegionTextField.autoCompleteTableAppearsAsKeyboardAccessory = YES;
     [self.fromRegionTextField setTintColor:Red_UIColor];
-//    self.toRegionTextField.layer.borderWidth = .8;
     self.toRegionTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    if (KIS_ARABIC)
+    {
+        self.fromRegionTextField.textAlignment = NSTextAlignmentRight ;
+        self.toRegionTextField.textAlignment   = NSTextAlignmentRight ;
+    }
     
     self.toRegionTextField.delegate = self;
     self.toRegionTextField.autoCompleteDataSource = self;
@@ -173,7 +187,6 @@ typedef enum DirectionType : NSUInteger {
     self.toRegionTextField.autoCompleteTableBackgroundColor = [UIColor whiteColor];
     self.toRegionTextField.autoCompleteTableAppearsAsKeyboardAccessory = YES;
     [self.toRegionTextField setTintColor:Red_UIColor];
-//    self.toRegionTextField.layer.borderWidth = 1.5;
     self.toRegionTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     UITapGestureRecognizer *dismissGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissHandler)];
@@ -184,7 +197,8 @@ typedef enum DirectionType : NSUInteger {
     [self.DoneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
-- (void)popViewController{
+- (void)popViewController
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -192,30 +206,30 @@ typedef enum DirectionType : NSUInteger {
 {
     if (!self.selectedFromEmirate)
     {
-      [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select from Emirate",nil)];
+      [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select from Emirate")];
     }
     else if (self.fromRegionTextField.text.length == 0)
     {
-      [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter from Region",nil)];
+      [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please Enter from Region")];
     }
     else if (![self.fromRegionsStringsArray containsObject:self.fromRegionTextField.text])
     {
-      [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter Valid from Region Name",nil)];
+      [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please Enter Valid from Region Name")];
     }
     else
     {
         if(self.selectedToEmirate || self.selectedToRegion || self.validateDestination)
         {
             if (!self.selectedToEmirate) {
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select to Emirate",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select to Emirate")];
             }
             else if (self.toRegionTextField.text.length == 0)
             {
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Enter to Region",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please Enter to Region")];
                 
             }
             else if (![self.toRegionsStringsArray containsObject:self.toRegionTextField.text]){
-                [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please enter a valid to region name",nil)];
+                [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please enter a valid to region name")];
             }else{
                 NSInteger fromRegionIndex = [self.fromRegionsStringsArray indexOfObject:self.fromRegionTextField.text];
                 self.selectedFromRegion = [self.fromRegions objectAtIndex:fromRegionIndex];
@@ -244,7 +258,7 @@ typedef enum DirectionType : NSUInteger {
 
 - (void) showEmiratePickerForType:(DirectionType)type{
     __block SelectLocationViewController *blockSelf = self;
-    RMAction * selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select Emirate", Nil)  style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction * selectAction = [RMAction actionWithTitle:GET_STRING(@"Select Emirate")  style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         if (type == DirectionTypeFrom) {
             self.selectedFromEmirate = [self.emirates objectAtIndex:[picker selectedRowInComponent:0]];
@@ -257,7 +271,7 @@ typedef enum DirectionType : NSUInteger {
         [blockSelf configureRegionsWithDirectionType:type];
     }];
     
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", Nil) style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         NSLog(@"Row selection was canceled");
     }];
     
@@ -290,17 +304,22 @@ typedef enum DirectionType : NSUInteger {
 }
 
 #pragma TextFieldDelegate
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    if (textField == self.fromRegionTextField){
-        if (!self.selectedFromEmirate) {
-            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select from Emirate first",nil)];
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField == self.fromRegionTextField)
+    {
+        if (!self.selectedFromEmirate)
+        {
+            [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select from Emirate first")];
             return NO;
         }
         return YES;
     }
-    if (textField == self.toRegionTextField){
+    
+    if (textField == self.toRegionTextField)
+    {
         if (!self.selectedToEmirate) {
-            [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please select to Emirate first",nil)];
+            [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select to Emirate first")];
             return NO;
         }
         return YES;
@@ -313,11 +332,12 @@ typedef enum DirectionType : NSUInteger {
 #pragma AutoCompelete_Delegate
 - (BOOL)autoCompleteTextField:(MLPAutoCompleteTextField *)textField
 shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
-               forBorderStyle:(UITextBorderStyle)borderStyle{
+               forBorderStyle:(UITextBorderStyle)borderStyle
+{
     return YES;
 }
 
-- (NSArray *)autoCompleteTextField:(MLPAutoCompleteTextField *)textField      possibleCompletionsForString:(NSString *)string{
+- (NSArray *)autoCompleteTextField:(MLPAutoCompleteTextField *)textField possibleCompletionsForString:(NSString *)string{
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",string]; // if you need case sensitive search avoid '[c]' in the predicate
     NSArray * dataSourceArray ;
@@ -331,10 +351,13 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     return results;
 }
 
-- (IBAction)choosFromEmirateHandler:(id)sender {
+- (IBAction)choosFromEmirateHandler:(id)sender
+{
     [self showEmiratePickerForType:DirectionTypeFrom];
 }
-- (IBAction)chooseToEmirateHandler:(id)sender {
+
+- (IBAction)chooseToEmirateHandler:(id)sender
+{
     [self showEmiratePickerForType:DirectionTypeTo];
 }
 
@@ -348,17 +371,21 @@ static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
 static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
 static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 220;
 static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
+
 //when clicking the return button in the keybaord
-- (BOOL)textFieldShouldEndEditing:(UITextField*)textField{
+- (BOOL)textFieldShouldEndEditing:(UITextField*)textField
+{
     return [self textSouldEndEditing];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField*)textField{
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
     [textField  resignFirstResponder];
     return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
     CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
     [self textDidBeginEditing:textFieldRect];
 }
@@ -397,7 +424,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     [UIView commitAnimations];
 }
 
-- (BOOL)textSouldEndEditing{
+- (BOOL)textSouldEndEditing
+{
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
     [UIView beginAnimations:nil context:NULL];
@@ -409,9 +437,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     return YES;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    for (UIView* view in self.view.subviews) {
-        for (UIGestureRecognizer* recognizer in view.gestureRecognizers) {
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UIView* view in self.view.subviews)
+    {
+        for (UIGestureRecognizer* recognizer in view.gestureRecognizers)
+        {
             [recognizer addTarget:self action:@selector(touchEvent:)];
         }
         

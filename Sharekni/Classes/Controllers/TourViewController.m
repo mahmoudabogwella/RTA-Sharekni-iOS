@@ -26,13 +26,24 @@
 {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"Take a tour", nil);
+    self.title = GET_STRING(@"Take a tour");
     self.navigationController.navigationBarHidden = YES ;
     
     allImages = [[Tour getInstance] getTourImages];
 
     
     [self setScrollUserGuide];
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -80,7 +91,10 @@
     [self.view addSubview:scroller];
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backBtn.frame = CGRectMake((KIS_ARABIC)?8:self.view.frame.size.width-40, 8, 32, 32);
+    
+    
+    
+    _backBtn.frame = CGRectMake((KIS_ARABIC)?8:scroller.scrollWidth-40, 12, 32, 32);
     [_backBtn setBackgroundImage:[UIImage imageNamed:@"Close"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];

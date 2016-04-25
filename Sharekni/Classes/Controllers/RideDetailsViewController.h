@@ -16,4 +16,5 @@
 @property (nonatomic ,strong) CreatedRide *createdRide;
 @property (nonatomic ,strong) Ride *joinedRide;
 
+
 @end

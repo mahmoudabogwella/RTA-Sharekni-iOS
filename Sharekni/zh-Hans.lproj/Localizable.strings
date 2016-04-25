@@ -1,0 +1,274 @@
+/*
+ Localizable.strings
+ Sharekni
+ 
+ Created by Ahmed Askar on 10/9/15.
+ 
+ */
+
+
+"No" = "한국어/조선말";
+"Take a tour" = "한국어/조선말";
+
+"Back_icn" = "한국어/조선말";
+"username"  = "한국어/조선말";
+"Username (Your Email)" = "한국어/조선말 (Your Email)";
+"Password"  = "한국어/조선말";
+"firstName" = "한국어/조선말 Name";
+"lastName"  = "한국어/조선말/조선말 Name";
+"mobile"    = "한국어/조선말 Number";
+"nationality" = "한국어/조선말";
+"pLanguage" = "한국어/조선말 Language";
+"Submit" = "한국어/조선말";
+
+"nameReq" = "한국어/조선말 enter your username";
+"passReq" = "한국어/조선말 enter password";
+
+"mobileReq" = "한국어/조선말 enter mobile number";
+"mailReq" = "한국어/조선말/조선말 enter email address";
+
+"registration" = "한국어/조선말";
+"login" = "한국어/조선말";
+"bestDrivers" = "Best 한국어/조선말";
+"searchOptions" = "한국어/조선말 Search";
+"mostRides" = "Most 한국어/조선말";
+"advancedSearch" = "한국어/조선말 Search";
+"quickSearch" = "Qu한국어/조선말ick Search";
+
+
+"loading" = "한국어/조선말";
+"Loading..." = "한국어/조선말...";
+
+"sharkni" = "한국어/조선말";
+
+"driverDetails" = "한국어/조선말 Details";
+"rideDetails" = "한국어/조선말 Details";
+
+
+"submit" = "한국어/조선말";
+"forget" = "한국어/조선말 Password";
+"preferedLang" = "한국어/조선말 Nationality";
+
+//ForgetPassword
+
+"A reset password link has been sent to your email" = "A reset password link has been sent to your email";
+
+"Email are not matching" = "data are not matching";
+
+
+//Registeration
+"Please Choose a valid nationality." = "Ple한국어/조선말ase Choose a valid nationality.";
+"Please Choose acconut type." = "Pleas한국어/조선말e Choose acconut type.";
+"Please fill all fields" = "Please fi한국어/조선말ll all fields";
+"First name mustn't have numbers" = "Firs한국어/조선말t name mustn't have numbers";
+"Last name mustn't have numbers" = "Last n한국어/조선말ame mustn't have numbers";
+"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]" = "Mobi한국어/조선말le Number should be only 9 and should start with [50 – 55 – 56 – 52]";
+"Please enter a valid email address" = "Ple한국어/조선말ase enter a valid email address";
+"You should be older than 18 Years"  = "You한국어/조선말 should be older than 18 Years";
+"Select" = "Sel한국어/조선말ect";
+"Cancel" = "Can한국어/조선말cel";
+"Ok" = "O한국어/조선말k";
+"Email already exists" = "Email a한국어/조선말lready exists";
+"Mobile number already exists" = "Mobile num한국어/조선말ber already exists";
+"Registration done successfully" = "Registrat한국어/조선말ion done successfully";
+
+"Choose a language" = "Choose a l한국어/조선말anguage";
+"Choose age range" = "Choose a한국어/조선말ge range";
+
+//Home
+"Home Page" = "Home한국어/조선말 Page";
+"Most Rides" = "Most 한국어/조선말Rides";
+"Best Drivers" = "Best한국어/조선말 Drivers";
+"Logout" = "Lo한국어/조선말gout";
+"Language" = "Lang한국어/조선말uage";
+
+"Rides Created" = "Ride한국어/조선말s Created";
+"Rides Joined" = "Ri한국어/조선말des Joined";
+"Vehicles" = "Vehic한국어/조선말les";
+"History" = "His한국어/조선말tory";
+"Permits" = "Per한국어/조선말mits";
+"Permit" = "Perm한국어/조선말it";
+"Search" = "Sea한국어/조선말rch";
+"Saved Search" = "Saved한국어/조선말 Search";
+"Create Ride"  = "Creat한국어/조선말e Ride";
+
+"Register Vehicle" = "Register Vehicle";
+"Dismiss" = "Dismiss";
+"You Don't Have Any Vehcile Registered" = "ليس لديك مركبه مسجله";
+"Do you want to Register it now?" = "Do you want to Register it now?";
+
+"No permits found" = "No perm한국어/조선말its found";
+//Create Rides
+"No rides joined yet" = "No rides joined yet";
+"Do you want to leave this ride?" = "Do you want to leave this ride?";
+"Ride leaved successfully." = "Ride leaved successfully.";
+"Select vehicle" = "Select vehicle";
+"Confirm" = "Confirm";
+"Delete" = "Delete";
+"Edit" = "Edit";
+"Do you want to delete this ride ?" = "Do you want to delete this ride ?";
+"Ride Deleted successfully." = "Ride Deleted successfully.";
+"Saved Search" = "Saved Search";
+"Edit Ride" = "Edit Ride";
+"Please configure your vehicles first" = "Please configure your vehicles first";
+"Days Of Week" = "Days Of Week";
+
+
+"Notifications" = "Notifications";
+"Attention" = "Attention";
+"You must write your review first" = "You must write your review first";
+"You must write your remark first" = "You must write your remark first";
+
+//Driver Ride
+"Details" = "Details";
+"Driver" = "Driver";
+"Leave" = "Leave";
+
+//Add review
+"Write Your Review" = "Write Your Review";
+"Your Review" = "Your Review";
+"Review" = "Review";
+"I’d like to join your ride" = "I’d like to join your ride";
+"I’d like to invite you to my ride" = "I’d like to invite you to my ride";
+"Write Your Remarks" = "Write Your Remarks";
+"Your Remarks" = "Your Remarks";
+
+
+"Map Lookup" = "Map Lookup";
+"Starting Time :" = "Starting Time :";
+"Set Direction" = "Set Direction";
+"Please set direction" = "Please set direction";
+"No Rides Found" = "No Rides Found";
+"Please select from Emirate" = "Please select from Emirate";
+"Please Enter from Region" = "Please Enter from Region";
+"Please Enter to Region" = "Please Enter to Region";
+"Please select to Emirate" = "Please select to Emirate";
+
+
+"Select Emirate" = "Select Emirate";
+"Please select from Emirate first" = "Please select from Emirate first";
+"Please select to Emirate first" = "Please select to Emirate first";
+"Please enter a valid to region name" = "Please enter a valid to region name";
+"invalid start date or time" = "invalid start date or time";
+
+"Drivers :" = "Drivers :";
+"Passengers :" = "Passengers :";
+"Coming Rides :" = "Coming Rides :";
+
+"From" = "From";
+"To" = "To";
+"Not Set" = "Not Set";
+"Ride Days" = "Ride Days";
+
+"Sat " = "Sat ";
+"Sun " = "Sun ";
+"Mon " = "Mon ";
+"Tue " = "Tue ";
+"Wed " = "Wed ";
+"Thu " = "Thu ";
+"Fri " = "Fri ";
+
+"Terms And Conditions" = "Terms And Conditions";
+"Accept" = "Accept";
+"Policy" = "Policy";
+"Search Results" = "Search Results";
+"Has Accepted your request" = "Has Accepted your request";
+"Send you a join request" = "Send you a join request";
+"Notification Details" = "Notification Details";
+
+"Mobile verification code has been sent to your mobile" = "Mobile verification code has been sent to your mobile";
+"Please check your mobile number" = "Please check your mobile number";
+
+"Please write your verification code" = "Please write your verification code";
+"Write Your Code" = "Write Your Code";
+"Your Code" = "Your Code";
+"Resend verification code" = "Resend verification code";
+"Enter verification code"  = "Enter verification code";
+"Traffic File No." = "Traffic File No.";
+
+"Edit Profile" = "Edit Profile";
+"Nationalty must be selected" = "Nationalty must be selected";
+"Please check your username and password" = "Please check your username and password";
+"Edit profile info success" = "Edit profile info success";
+"Select date of birth" = "Select date of birth";
+"Verification Code is wrong" = "Verification Code is wrong";
+"Mobile Verified" = "Mobile Verified";
+
+"Please select start point" = "Please select start point";
+"Directions can't be edited." = "Directions can't be edited.";
+"Please set startpoint and destination." = "Please set startpoint and destination.";
+"Please select Vehicle" = "Please select Vehicle";
+"Please enter ride name" = "Please enter ride name";
+"Please select start date" = "Please select start date";
+"Please select start time" = "Please select start time";
+"Please select number of available seats." = "Please select number of available seats.";
+"Please select days of week." = "Please select days of week.";
+"Ride edited successfully" = "Ride edited successfully";
+"Ride created successfully" = "Ride created successfully";
+"An error happend when trying to create ride" = "An error happend when trying to create ride";
+"You cannot create more than two rides." = "You cannot create more than two rides.";
+"Select Pickup Time" = "Select Pickup Time";
+"Select Pickup Date" = "Select Pickup Date";
+"Rating added successfully" = "Rating added successfully";
+"Unable to add Rating" = "Unable to add Rating";
+
+
+"Ride Delete successfully." = "Ride Delete successfully.";
+"An error occured when deleting ride" = "An error occured when deleting ride";
+"Passenger removed successfully" = "Passenger removed successfully";
+"Unable to remove the passenger" = "Unable to remove the passenger";
+"Mobile Number not available" = "Mobile Number not available";
+"Do you want to delete this passenger ?" = "Do you want to delete this passenger ?";
+
+"No history" = "No history";
+"Do you want to leave this ride" = "Do you want to leave this ride";
+"An error occured when leaving ride" = "An error occured when leaving ride";
+"Permit added successfully." = "Permit added successfully.";
+"Invalid birthdate" = "Invalid birthdate";
+
+"Male" = "Male";
+"Female" = "Female";
+"Both" = "Both";
+"Yes" = "Yes";
+"No" = "No";
+"Dubai" = "Dubai";
+
+"Please Choose account type." = "Please Choose account type.";
+"No camera on device" = "No camera on device";
+"You cannot choose year before 1900" = "You cannot choose year before 1900";
+"Photo Library" = "Photo Library";
+"Camera" = "Camera";
+
+"You don't have joined rides yet" = "You don't have joined rides yet";
+"You don't have created rides yet" = "You don't have created rides yet";
+"Received your request and waiting for approval" = "Received your request and waiting for approval";
+"Request deleted successfully" = "Request deleted successfully";
+"Cannot delete Request" = "Cannot delete Request";
+
+"Do you want to delete this review ?" = "Do you want to delete this review ?";
+"Edit Review" = "Edit Review";
+"Review deleted successfully" = "Review deleted successfully";
+"Cannot delete Review" = "Cannot delete Review";
+"Password must be at least 5 characters" = "Password must be at least 5 characters";
+"data are not matching" = "data are not matching";
+"Not Specified" = "Not Specified";
+"No Specified" = "Not Specified";
+"No Specified" = "Not Specified";
+"Error" = "Error";
+"You don't have any notifications" = "You don't have any notifications";
+"Do you want to delete this request ?" = "Do you want to delete this request ?";
+"Request had been sent Successfully , Wait for driver Approval." = "Request had been sent Successfully , Wait for driver Approval.";
+
+
+//Labels
+//Registration
+"_driver" = "司机";
+"_passenger" = "乘客";
+"_both" = "都";
+"_dateOfBirth" = "";
+"_Male" = "男";
+"_Female"="女";
+"_UploadYourPhoto" = "乘客乘客";
+"_Save" = "";
+"_Terms" = "";
+"_Privacy&Policy" = "";

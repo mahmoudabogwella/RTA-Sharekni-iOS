@@ -20,5 +20,6 @@
 @property (nonatomic ,weak) id <ReloadNotificationsDelegate> delegate ;
 
 @property (nonatomic ,strong) Notification *notification ;
+@property (nonatomic,strong) NSString *IsItPorDHuH;
 
 @end

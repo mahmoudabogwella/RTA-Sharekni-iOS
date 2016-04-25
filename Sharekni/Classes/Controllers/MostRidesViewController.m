@@ -26,17 +26,25 @@
 
 @implementation MostRidesViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTranslucent:NO];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = NO ;
-    self.title = NSLocalizedString(@"Most Rides", nil);
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+
+    self.title = GET_STRING(@"Most Rides");
     
     if (self.enableBackButton) {
         UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _backBtn.frame = CGRectMake(0, 0, 22, 22);
-        [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn",nil)] forState:UIControlStateNormal];
+        [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
         [_backBtn setHighlighted:NO];
         [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
@@ -47,6 +55,17 @@
     }
     
     [self getMostRides];
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
 }
 
 #pragma mark - Methods
@@ -63,7 +82,7 @@
 - (void)getMostRides
 {
     __block MostRidesViewController *blockSelf = self;
-    [KVNProgress showWithStatus:NSLocalizedString(@"loading", nil)];
+    [KVNProgress showWithStatus:GET_STRING(@"loading")];
     [[MasterDataManager sharedMasterDataManager] GetMostRides:^(NSMutableArray *array) {
         blockSelf.mostRides = array;
         [KVNProgress dismiss];
@@ -92,10 +111,9 @@
     static NSString *rideIdentifier = @"MostRideCell";
     MostRidesCell *rideCell = (MostRidesCell*)[tableView dequeueReusableCellWithIdentifier:rideIdentifier];
     if (rideCell == nil) {
-        rideCell = [[MostRidesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rideIdentifier];
+        rideCell = (MostRidesCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRidesCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
         rideCell.contentView.backgroundColor = [UIColor clearColor];
     }
-    
     MostRide *ride = self.mostRides [indexPath.row];
     [rideCell setRide:ride];
     

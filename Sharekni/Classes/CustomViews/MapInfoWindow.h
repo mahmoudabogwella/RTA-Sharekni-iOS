@@ -16,6 +16,10 @@
 @property (nonatomic,strong) NSString *driversCount;
 @property (nonatomic,strong) NSString *passengers;
 @property (nonatomic,strong) NSString *comingRides;
+@property (nonatomic,strong) NSString *Type;
 
--(instancetype)initWithArabicName:(NSString *)arabicName englishName:(NSString *)englishName passengers:(NSString *)passengers drivers:(NSString *)drivers lat:(NSString *)lat lng:(NSString *)lng time:(NSString *)comingRides ;
+
+
+
+-(instancetype)initWithArabicName:(NSString *)arabicName englishName:(NSString *)englishName Type:(NSString *)Type passengers:(NSString *)passengers drivers:(NSString *)drivers lat:(NSString *)lat lng:(NSString *)lng time:(NSString *)comingRides ;
 @end

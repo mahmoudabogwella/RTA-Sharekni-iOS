@@ -39,11 +39,11 @@
 @property (weak,nonatomic) IBOutlet MLPAutoCompleteTextField *nationalityTxt;
 @property (weak,nonatomic) IBOutlet UITextField *preferredLanguageTxt;
 
-@property (weak,nonatomic) IBOutlet UIView *datePickerView;
+//@property (weak,nonatomic) IBOutlet UIView *datePickerView;
 @property (weak,nonatomic) IBOutlet UIButton *switchBtn;
 
 @property (weak,nonatomic) IBOutlet UILabel *femaleLabel;
-@property (weak,nonatomic) IBOutlet UILabel *dateLabel;
+//@property (weak,nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak,nonatomic) IBOutlet UILabel *maleLabel;
 @property (nonatomic,assign) float animatedDistance ;
 
@@ -62,8 +62,11 @@
 @property (strong,nonatomic) Language *selectedLanguage;
 @property (strong,nonatomic) NSString *firstName;
 @property (strong,nonatomic) NSString *lastName;
-@property (strong,nonatomic) NSDate *date;
-@property (strong,nonatomic) NSDateFormatter *dateFormatter;
+@property (strong,nonatomic) NSString *mobileNumber ;
+@property (strong,nonatomic) NSString *NationalitySub ;
+
+//@property (strong,nonatomic) NSDate *date;
+//@property (strong,nonatomic) NSDateFormatter *dateFormatter;
 @property (assign,nonatomic) BOOL isMale;
 
 @property (nonatomic,strong) User *sharedUser;
@@ -82,18 +85,30 @@
     
     self.navigationController.navigationBarHidden = NO ;
     
-    self.title = NSLocalizedString(@"Edit Profile", nil);
+    self.title = GET_STRING(@"Edit Profile");
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
-    [_backBtn setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"Back_icn", nil)] forState:UIControlStateNormal];
+    [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
+    
     [self configureUI];
     [self configureData];
     [self configrueNationalityAutoCompelete];
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait){
+        // your code for portrait mode
+        return NO ;
+    }else{
+        return YES ;
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -115,16 +130,16 @@
     self.profileImageView.clipsToBounds = YES;
     
     
-    self.dateLabel.textColor = [UIColor blackColor];
+//    self.dateLabel.textColor = [UIColor blackColor];
 
-    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
-    [self.datePickerView addGestureRecognizer:gesture];
-    [self.dateLabel addGestureRecognizer:gesture];
-    [self.dateLabel setUserInteractionEnabled:YES];
-    [self.datePickerView setUserInteractionEnabled:YES];
+//    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)];
+   // [self.datePickerView addGestureRecognizer:gesture];
+   // [self.dateLabel addGestureRecognizer:gesture];
+  //  [self.dateLabel setUserInteractionEnabled:YES];
+   // [self.datePickerView setUserInteractionEnabled:YES];
     
-    [self.switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Left"]       forState:UIControlStateNormal];
-    [self.switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Right"]      forState:UIControlStateSelected];
+//    [self.switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Left"]       forState:UIControlStateNormal];
+//    [self.switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Right"]      forState:UIControlStateSelected];
     
     self.maleLabel.textColor = Red_UIColor;
     self.femaleLabel.textColor = [UIColor darkGrayColor];
@@ -142,18 +157,18 @@
     if ([self.firstNametxt respondsToSelector:@selector(setAttributedPlaceholder:)])
     {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
-        self.firstNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"firstName",nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.lastNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"lastName", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"mobile", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"username", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"nationality", nil) attributes:@{NSForegroundColorAttributeName: color}];
-        self.preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"pLanguage", nil) attributes:@{NSForegroundColorAttributeName: color}];
+        self.firstNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"firstName") attributes:@{NSForegroundColorAttributeName: color}];
+        self.lastNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"lastName") attributes:@{NSForegroundColorAttributeName: color}];
+        self.mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"mobile") attributes:@{NSForegroundColorAttributeName: color}];
+        self.usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"Username (Your Email)") attributes:@{NSForegroundColorAttributeName: color}];
+        self.preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"pLanguage") attributes:@{NSForegroundColorAttributeName: color}];
+        self.nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"nationality") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
     }
     
-    self.dateLabel.textColor = Red_UIColor;
+   // self.dateLabel.textColor = Red_UIColor;
 }
 
 - (void) femaleTapped
@@ -162,6 +177,8 @@
     self.switchBtn.selected = YES ;
     self.maleLabel.textColor =  [UIColor darkGrayColor];
     self.femaleLabel.textColor = Red_UIColor;
+    [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_right"]forState:UIControlStateNormal];
+
 }
 
 - (void) maleTapped{
@@ -169,6 +186,9 @@
     self.maleLabel.textColor = Red_UIColor;
     self.femaleLabel.textColor = [UIColor darkGrayColor];
     self.isMale = YES;
+    [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_Left"]forState:UIControlStateNormal];
+
+    
 }
 
 - (void) configrueNationalityAutoCompelete
@@ -187,30 +207,57 @@
 - (void) configureData
 {
     self.sharedUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
-    self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"thumbnail"];
+    if ([self.sharedUser.GenderEn  isEqual: @"Male"] || [self.sharedUser.GenderAr  isEqual: @"ذكر"]) {
+        self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"defaultdriver.jpg"];
+        [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_right"]forState:UIControlStateNormal];
+
+    }else {
+        self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"defaultdriverfemale.jpg"];
+        [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_Left"]forState:UIControlStateNormal];
+
+    }
+//    self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"thumbnail"];
     self.firstName = self.sharedUser.FirstName ;
     self.firstNametxt.text = self.firstName ;
     self.lastName = self.sharedUser.LastName ;
     self.lastNametxt.text = self.lastName ;
-    self.mobileNumberTxt.text = self.sharedUser.Mobile ;
+    self.mobileNumberTxt.text = [self.sharedUser.Mobile stringByReplacingOccurrencesOfString:@"+971" withString:@""] ;
     self.usernameTxt.text = self.sharedUser.Username ;
     self.nationalityTxt.text = (KIS_ARABIC)?self.sharedUser.NationalityArName:self.sharedUser.NationalityEnName ;
    
-    NSString *dateString = self.sharedUser.BirthDate;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
-    self.date = [dateFormatter dateFromString:dateString];
-    self.dateLabel.text = self.sharedUser.BirthDate ;
+     if ([self.sharedUser.NationalityArName  isEqual: @"Not Specified"]|| [self.sharedUser.NationalityEnName  isEqual: @"Not Specified"]) {
+     NSLog(@"The Nationality is : Not Specified");
+         NSLog(_nationalityTxt.text);
+     _nationalityTxt.text = @"";
+     } else {
+     NSLog(_nationalityTxt.text);
+     }
     
+//    NSString *dateString = self.sharedUser.BirthDate;
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+//    self.date = [dateFormatter dateFromString:dateString];
+//    self.dateLabel.text = self.sharedUser.BirthDate ;
+//
     if ([self.sharedUser.GenderEn isEqualToString:@"Male"])
     {
         self.isMale = YES;
         [self.switchBtn setSelected:NO];
+        self.maleLabel.textColor = Red_UIColor;
+        self.femaleLabel.textColor = [UIColor darkGrayColor];
+        //SelectRight.png
+        [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_Left"]forState:UIControlStateNormal];
+
     }
     else
     {
         self.isMale = NO;
         [self.switchBtn setSelected:YES];
+        self.maleLabel.textColor =  [UIColor darkGrayColor];
+        self.femaleLabel.textColor = Red_UIColor;
+        [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_right"]forState:UIControlStateNormal];
+
+
     }
 
     __block EditProfileViewController*blockSelf = self;
@@ -260,7 +307,7 @@
         [blockSelf handleManagerFailure];
     }];
     
-    self.dateFormatter = [[NSDateFormatter alloc] init];
+//    self.dateFormatter = [[NSDateFormatter alloc] init];
 }
 
 - (void) handleManagerFailure
@@ -302,8 +349,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     {
         [self isValidLastName];
     }
-    else if (textField == self.mobileNumberTxt)
-    {
+    else if (textField == self.mobileNumberTxt){
         [self isValidMobileNumber];
     }
     else if (textField == self.nationalityTxt)
@@ -391,6 +437,22 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     return YES;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if(textField == self.mobileNumberTxt)
+    {
+        if (textField.text.length <= 8)
+        {
+            return YES;
+        }
+        else if(string.length == 0)
+        {
+            return YES ;
+        }
+        return NO;
+    }
+    return YES;
+}
+
 #pragma Touches
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -398,8 +460,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         for (UIGestureRecognizer* recognizer in view.gestureRecognizers) {
             [recognizer addTarget:self action:@selector(touchEvent:)];
         }
-        
-        //        [self.view endEditing:YES];
+        [self.view endEditing:YES];
+        [self.container endEditing:YES];
+        [self.mobileNumberTxt resignFirstResponder];
     }
 }
 
@@ -410,7 +473,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 
 #pragma Pickers
 - (void) showPickerWithTextFieldType:(TextFieldType)type{
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
@@ -447,7 +510,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }];
     
     
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         NSLog(@"Row selection was canceled");
     }];
     
@@ -480,102 +543,137 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     [self presentViewController:pickerController animated:YES completion:nil];
 }
 
-- (void)showDatePicker
-{
-    
-    [self.view endEditing:YES];
-    __block EditProfileViewController *blockSelf = self;
-    RMAction *selectAction = [RMAction actionWithTitle:NSLocalizedString(@"Select", nil) style:RMActionStyleDone andHandler:^(RMActionController *controller) {
-        NSDate *date =  ((UIDatePicker *)controller.contentView).date;
-        
-        blockSelf.dateFormatter.dateFormat = @"dd, MMM, yyyy";
-        NSString * dateString = [self.dateFormatter stringFromDate:date];
-        self.dateLabel.text = dateString;
-        blockSelf.date = date;
-        if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:blockSelf.date] < 18)){
-            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"You should be older than 18 Years", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
-            [alertView show];
-            self.date = nil;
-            [self configureBorders];
-        }
-    }];
-    
-    //Create cancel action
-    RMAction *cancelAction = [RMAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
-        
-    }];
-    
-    //Create date selection view controller
-    RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
-    dateSelectionController.title = @"select date of birth";
-    dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
-    dateSelectionController.datePicker.date = [NSDate date];
-    
-    //Now just present the date selection controller using the standard iOS presentation method
-    [self presentViewController:dateSelectionController animated:YES completion:nil];
-}
+//- (void)showDatePicker
+//{
+//    [self.view endEditing:YES];
+//    __block EditProfileViewController *blockSelf = self;
+//    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+//        NSDate *date =  ((UIDatePicker *)controller.contentView).date;
+//        blockSelf.dateFormatter.dateFormat = @"dd, MMM, yyyy";
+//        NSString * dateString = [self.dateFormatter stringFromDate:date];
+//        self.dateLabel.text = dateString;
+//        blockSelf.date = date;
+//        if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:blockSelf.date] < 18)){
+//            UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:GET_STRING(@"Error") message:GET_STRING(@"You should be older than 18 Years") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
+//            [alertView show];
+//            self.date = nil;
+//            [self configureBorders];
+//        }
+//    }];
+//    
+//    //Create cancel action
+//    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+//        
+//    }];
+//    
+//    //Create date selection view controller
+//    RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
+//    dateSelectionController.title = GET_STRING(@"Select date of birth");
+//    dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
+//    dateSelectionController.datePicker.date = self.date;
+//    
+//    //Now just present the date selection controller using the standard iOS presentation method
+//    [self presentViewController:dateSelectionController animated:YES completion:nil];
+//}
 
+//GonEdit
 #pragma Actions
 - (IBAction)updateAction:(id)sender
 {
-    self.firstName = self.firstNametxt.text;
-    self.lastName = self.lastNametxt.text;
     
+    self.firstName = self.firstNametxt.text;
+    self.firstName =[self SpacesRemover:self.firstName];
+    self.lastName = self.lastNametxt.text;
+    self.lastName = [self SpacesRemover:self.lastName];
+    self.mobileNumber = self.mobileNumberTxt.text;
+    self.mobileNumber = [self SpacesRemover:self.mobileNumber];
+
+
     BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
     if (validNationality)
     {
         self.selectedNationality = [self.nationalties objectAtIndex:[self.nationaltiesStringsArray indexOfObject:self.nationalityTxt.text]];
     }
     
-    if(self.firstName.length == 0 || self.lastName.length == 0 || !self.date)
+    if(self.firstName.length == 0 || self.lastName.length == 0 /*|| !self.date*/)
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please fill all fields", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please fill all fields")];
         [self configureBorders];
     }
     else if (![self isValidFirstName])
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"First name mustn't have numbers", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"First name mustn't have numbers")];
     }
     else if (![self isValidLastName])
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Last name mustn't have numbers", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Last name mustn't have numbers")];
     }
-    else if (![self isValidMobileNumber])
-    {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]", nil)];
+    else if (![self isValidMobileNumber]){
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]")];
     }
-    else if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:self.date] < 18))
+   /* else if (([[HelpManager sharedHelpManager] yearsBetweenDate:[NSDate date] andDate:self.date] < 18))
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"You should be older than 18 Years", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"You should be older than 18 Years")];
         self.date = nil;
         [self configureBorders];
-    }
-    else if (!validNationality)
+    }*/
+    else if (!validNationality && [_nationalityTxt.text length] != 0)
     {
-        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Please Choose a valid nationality.", nil)];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please Choose a valid nationality.")];
     }
-    else{
+    else {
+        if (self.profileImage) {
+            [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
+            UploadImageManager *imageManager = [[UploadImageManager alloc] initWithImage:self.profileImage Success:^(NSString *fileName) {
+                     [self registerDriverWithPhotoName:fileName];
+                
+            } Failure:^(NSString *error) {
+                [KVNProgress dismiss];
+                    [self registerDriverWithPhotoName:@""];
+            }];
+            [imageManager uploadPhoto];
+        }
+        else{
+                [self registerDriverWithPhotoName:@""];
+            }
         
-       
+        
     }
+        
+        
+    
+    
+    
+//    else
+//    {
+//        self.dateFormatter.dateFormat = @"dd/MM/yyyy";
+//        NSString *dateString = [self.dateFormatter stringFromDate:self.date];
+//        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
+//    
+//    //GonMade Bos ya sede u will give the imagePath the name of your image
+//        
+//        [[MobAccountManager sharedMobAccountManager] updateUserProfileWithAccountID:[NSString stringWithFormat:@"%@",self.sharedUser.ID] firstName:self.firstName lastName:self.lastName gender:self.isMale ? @"M":@"F" imagePath:@"" birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId Mobile:[self.sharedUser.Mobile stringByReplacingOccurrencesOfString:@"+971" withString:@""] WithSuccess:^(NSString *user) {
+//        
+//            [KVNProgress dismiss];
+//            [KVNProgress showSuccessWithStatus:GET_STRING(@"Edit profile info success")];
+//            [self performSelector:@selector(popViewController) withObject:nil afterDelay:1.0f];
+//
+//        } Failure:^(NSString *error)
+//        {
+//            [KVNProgress dismiss];
+//            [[HelpManager sharedHelpManager] showAlertWithMessage:error];
+//        }];
+//    }
 }
 
-- (void) registerDriverWithPhotoName:(NSString *)photoName{
-    self.dateFormatter.dateFormat = @"dd/MM/yyyy";
-    NSString *dateString = [self.dateFormatter stringFromDate:self.date];
-    [KVNProgress showWithStatus:NSLocalizedString(@"Loading...", nil)];
-//    [[MobAccountManager sharedMobAccountManager] registerDriverWithFirstName:self.firstName lastName:self.lastName mobile:self.mobileNumber username:self.userName password:self.password gender:self.isMale ? @"M":@"F" imagePath:photoName birthDate:dateString nationalityID:self.selectedNationality.ID PreferredLanguageId:self.selectedLanguage.LanguageId WithSuccess:^(NSMutableArray *array) {
-//        [KVNProgress dismiss];
-//        [[HelpManager sharedHelpManager] showAlertWithMessage:NSLocalizedString(@"Registration done successfully",nil)];
-//        [self loginAfterRegisteration];
-//    } Failure:^(NSString *error) {
-//        [KVNProgress dismiss];
-//        [[HelpManager sharedHelpManager] showAlertWithMessage:error];
-//    }];
+-(NSString *)SpacesRemover :(NSString *)StringRemoveSpaces{
+    NSString *s = [StringRemoveSpaces stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    return s ;
 }
 
-
-- (IBAction)selectGender:(id)sender{
+- (IBAction)selectGender:(id)sender
+{
     UIButton *btn = (UIButton*)sender ;
     
     if (btn.selected)
@@ -584,14 +682,51 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         self.maleLabel.textColor = Red_UIColor;
         self.femaleLabel.textColor = [UIColor darkGrayColor];
         self.isMale = YES;
-    }else{
+        [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_Left"]forState:UIControlStateNormal];
+
+    }
+    else
+    {
         self.isMale = NO;
         self.switchBtn.selected = YES ;
         self.maleLabel.textColor =  [UIColor darkGrayColor];
-        self.femaleLabel.textColor = Red_UIColor;;
+        self.femaleLabel.textColor = Red_UIColor;
+        [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_right"]forState:UIControlStateNormal];
+
     }
 }
-//            [self presentViewController:[self homeViewController] animated:YES completion:nil];
+
+
+- (void) registerDriverWithPhotoName:(NSString *)photoName{
+
+//self.dateFormatter.dateFormat = @"dd/MM/yyyy";
+//NSString *dateString = [self.dateFormatter stringFromDate:self.date];
+[KVNProgress showWithStatus:GET_STRING(@"Loading...")];
+
+//GonMade Bos ya sede u will give the imagePath the name of your image
+
+    if([_nationalityTxt.text length] != 0) {
+        
+        _NationalitySub = self.selectedNationality.ID;
+    }else {
+            _NationalitySub = @"0";
+    }
+
+[[MobAccountManager sharedMobAccountManager] updateUserProfileWithAccountID:[NSString stringWithFormat:@"%@",self.sharedUser.ID] firstName:[self SpacesRemover:self.firstName] lastName:[self SpacesRemover:self.lastName] gender:self.isMale ? @"M":@"F" imagePath:photoName birthDate:11/11/1988 nationalityID: _NationalitySub /*self.selectedNationality.ID */PreferredLanguageId:self.selectedLanguage.LanguageId Mobile:self.mobileNumber WithSuccess:^(NSString *user) {
+    
+    [KVNProgress dismiss];
+    [KVNProgress showSuccessWithStatus:GET_STRING(@"Edit profile info success")];
+    [self performSelector:@selector(popViewController) withObject:nil afterDelay:1.0f];
+    
+} Failure:^(NSString *error)
+ {
+     [KVNProgress dismiss];
+     [[HelpManager sharedHelpManager] showAlertWithMessage:error];
+ }];
+}
+
+
+
 
 
 #pragma PickerViewDeelgate&DataSource
@@ -664,7 +799,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 {
     self.firstName = self.firstNametxt.text;
     self.lastName = self.lastNametxt.text;
-    
+    self.mobileNumber = self.mobileNumberTxt.text;
+
     if (self.firstName.length == 0)
     {
         [self addRedBorderToView:self.firstNameView];
@@ -679,6 +815,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     else{
         [self addGreyBorderToView:self.lastNameView];
     }
+    if(self.mobileNumber.length == 0){
+        [self addRedBorderToView:self.mobileNumberView];
+    }
+    else{
+        [self addGreyBorderToView:self.mobileNumberView];
+    }
     
     BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
     if (!validNationality){
@@ -688,12 +830,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [self addGreyBorderToView:self.nationalityView];
     }
 
-    if (!self.date){
-        [self addRedBorderToView:self.datePickerView];
-    }
-    else{
-        [self addGreyBorderToView:self.datePickerView];
-    }
+//    if (!self.date){
+//        [self addRedBorderToView:self.datePickerView];
+//    }
+//    else{
+//        [self addGreyBorderToView:self.datePickerView];
+//    }
 }
 
 - (void) addRedBorderToView :(UIView *)view{
@@ -752,25 +894,6 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     return YES;
 }
 
-- (BOOL) isValidMobileNumber{
-    NSArray *begins = @[@"50",@"55",@"56",@"52"];
-    NSString *mobileNumber = self.mobileNumberTxt.text;
-    NSString *begin = [mobileNumber substringToIndex:mobileNumber.length > 2 ? 2 : 0];
-    
-    if (mobileNumber.length != 9) {
-        [self addRedBorderToView:self.mobileNumberView];
-        return NO;
-    }
-    else if (![begins containsObject:begin]){
-        [self addRedBorderToView:self.mobileNumberView];
-        return NO;
-    }
-    else{
-        [self addGreyBorderToView:self.mobileNumberView];
-        return YES;
-    }
-    return YES;
-}
 
 -(BOOL) IsValidEmail:(NSString *)checkString{
     BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
@@ -791,9 +914,30 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     return YES;
 }
 
-- (REFrostedViewController *) homeViewController {
+- (BOOL) isValidMobileNumber
+{
+    NSArray *begins = @[@"50",@"55",@"56",@"52"];
+    NSString *mobileNumber = self.mobileNumberTxt.text;
+    NSString *begin = [mobileNumber substringToIndex:mobileNumber.length > 2 ? 2 : 0];
     
-    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    if (mobileNumber.length != 9) {
+        [self addRedBorderToView:self.mobileNumberView];
+        return NO;
+    }
+    else if (![begins containsObject:begin]){
+        [self addRedBorderToView:self.mobileNumberView];
+        return NO;
+    }
+    else{
+        [self addGreyBorderToView:self.mobileNumberView];
+        return YES;
+    }
+    return YES;
+}
+
+- (REFrostedViewController *) homeViewController
+{
+    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
     
@@ -807,6 +951,122 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     frostedViewController.delegate = self;
     
     return frostedViewController;
+}
+
+
+
+
+
+
+//- (void) configureProfileImageView{
+//    [self.profileImageView setUserInteractionEnabled:YES];
+//    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
+//    self.profileImageView.clipsToBounds = YES;
+//    UITapGestureRecognizer *profileImageGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileImageTapped)];
+//    [self.profileImageView addGestureRecognizer:profileImageGesture];
+//}
+//
+//- (void) profileImageTapped{
+//    UIActionSheet *imageSourceOptions;
+//    
+//    imageSourceOptions = [[UIActionSheet alloc]
+//                          initWithTitle:nil
+//                          delegate:nil
+//                          cancelButtonTitle:GET_STRING(@"Cancel")
+//                          destructiveButtonTitle:nil
+//                          otherButtonTitles:
+//                          GET_STRING(@"Photo Library"),
+//                          GET_STRING(@"Camera"),nil];
+//    imageSourceOptions.delegate = self;
+//    [imageSourceOptions showInView:self.view];
+//}
+
+- (IBAction)uploadPhotoHandler:(id)sender {
+    UIActionSheet *imageSourceOptions;
+    
+    imageSourceOptions = [[UIActionSheet alloc]
+                          initWithTitle:nil
+                          delegate:nil
+                          cancelButtonTitle:GET_STRING(@"Cancel")
+                          destructiveButtonTitle:nil
+                          otherButtonTitles:
+                          GET_STRING(@"Photo Library"),
+                          GET_STRING(@"Camera"),nil];
+    imageSourceOptions.delegate = self;
+    [imageSourceOptions showInView:self.view];
+}
+
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    UIImagePickerControllerSourceType source;
+    
+    if(buttonIndex == 0)
+    {
+        source = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    else if (buttonIndex == 1)
+    {
+        if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            [[[UIAlertView alloc] initWithTitle:nil message:GET_STRING(@"No camera on device") delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil] show];
+            return;
+        }
+        source = UIImagePickerControllerSourceTypeCamera;
+    }
+    else
+    {
+        return;
+    }
+    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+    imagePickerController.sourceType = source;
+    imagePickerController.delegate = self;
+    if (source != UIImagePickerControllerSourceTypeCamera) {
+        imagePickerController.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    imagePickerController.allowsEditing = YES;
+    [self presentViewController:imagePickerController];
+}
+
+#pragma mark UIImagePickerController Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    self.profileImage = [info valueForKey:UIImagePickerControllerEditedImage];
+    self.profileImageView.image = self.profileImage;
+    self.profileImageView.hidden = NO;
+//    self.uploadButton.hidden = YES;
+    [self saveProfileImage];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - ImagePicker Delegate
+
+- (void) imagePickerControllerDidSelectImage:(UIImage *)image withIconName:(NSString *)iconName{
+    
+    self.profileImage = image;
+    self.profileImageView.image = self.profileImage;
+    [self saveProfileImage];
+    
+    
+}
+
+- (void) presentViewController:(UIViewController*)viewController{
+    if ([viewController isKindOfClass:[UIImagePickerController class]] &&
+        ((UIImagePickerController*)viewController).sourceType == UIImagePickerControllerSourceTypeCamera) {
+    }
+    else {
+        viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+- (void) saveProfileImage{
+    
 }
 
 

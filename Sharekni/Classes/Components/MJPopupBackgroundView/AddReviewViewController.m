@@ -19,12 +19,22 @@
 {
     [super viewDidLoad];
     
-    viewText.textAlignment = NSTextAlignmentNatural ;
-    [self.headerTitle setText:NSLocalizedString(@"Write Your Review", nil)];
-    [self.headerTitle2 setText:NSLocalizedString(@"Your Review", nil)];
-    [self.submitBtn setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
+    if (KIS_ARABIC)
+    {
+        viewText.textAlignment = NSTextAlignmentRight ;
+        self.headerTitle2.textAlignment = NSTextAlignmentRight ;
+    }
+    
+    [self.headerTitle setText:GET_STRING(@"Write Your Review")];
+    [self.headerTitle2 setText:GET_STRING(@"Your Review")];
+    [self.submitBtn setTitle:GET_STRING(@"Submit") forState:UIControlStateNormal];
     
     [viewText becomeFirstResponder];
+    
+    if(self.isEdit){
+        viewText.text = self.review.Review;
+        [self.submitBtn setTitle:GET_STRING(@"Edit Review") forState:UIControlStateNormal];
+    }
 }
 
 - (void)HideKeyboard
@@ -37,23 +47,37 @@
     NSString *str = viewText.text ;
     str = [str stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]];
     if (str.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attention", nil) message:NSLocalizedString(@"You must write your review first", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:GET_STRING(@"Attention") message:GET_STRING(@"You must write your review first") delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alert show];
         return ;
     }
     
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     
-    [KVNProgress showWithStatus:@"Loading...."];
-    [[MobAccountManager sharedMobAccountManager] reviewDriver:self.routeDetails.AccountId.stringValue PassengerId:user.ID.stringValue RouteId:self.routeDetails.ID.stringValue ReviewText:viewText.text WithSuccess:^(NSString *user) {
-        [KVNProgress dismiss];
-        
-        if (self.delegate && [self.delegate respondsToSelector:@selector(cancelButtonClicked:)]) {
-            [self.delegate cancelButtonClicked:self];
-        }
-    } Failure:^(NSString *error) {
-        [KVNProgress dismiss];
-    }];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
+
+    if(self.isEdit){
+        [[MobAccountManager sharedMobAccountManager] EditreviewWithID:self.review.ReviewId ReviewText:viewText.text WithSuccess:^(BOOL deleted) {
+            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(cancelButtonClicked:)])
+            {
+                [self.delegate cancelButtonClicked:self];
+            }
+        } Failure:^(NSString *error) {
+            [KVNProgress dismiss];
+        }];
+    }
+    else{
+        [[MobAccountManager sharedMobAccountManager] reviewDriver:self.routeDetails.AccountId.stringValue PassengerId:user.ID.stringValue RouteId:self.routeDetails.ID.stringValue ReviewText:viewText.text WithSuccess:^(NSString *user) {
+            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(cancelButtonClicked:)])
+            {
+                [self.delegate cancelButtonClicked:self];
+            }
+        } Failure:^(NSString *error) {
+            [KVNProgress dismiss];
+        }];
+    }
 }
 
 @end
