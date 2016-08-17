@@ -9,7 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface HomeViewController : BaseViewController
+@interface HomeViewController : BaseViewController{
+    
+    
+    
+    NSString *selected;
+    NSInteger *num ;
+    
+    NSArray *hardCodedLanguages;
+}
+
 //"PendingInvitationCount"
 //"Passenger_Invitation_Count"
 //"PassengerMyAlertsCount"

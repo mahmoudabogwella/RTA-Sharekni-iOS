@@ -23,7 +23,11 @@
 #import "User.h"
 #import "LoginViewController.h"
 
-@interface BestDriversViewController () <SendSMSDelegate,MFMessageComposeViewControllerDelegate>
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+
+
+@interface BestDriversViewController () <SendSMSDelegate,MFMessageComposeViewControllerDelegate,MJAddRemarkPopupDelegate>
 
 @property (nonatomic ,weak) IBOutlet UITableView *driversList ;
 @property (nonatomic ,strong) NSMutableArray *bestDrivers ;
@@ -45,7 +49,13 @@
     
     self.title = GET_STRING(@"bestDrivers");
     [self getBestDrivers];
+
+    
+    
 }
+
+
+
 
 - (BOOL)shouldAutorotate
 {
@@ -103,9 +113,19 @@
     static NSString *driverIdentifier = @"BestDriverCell";
     BestDriverCell *driverCell = (BestDriverCell*)[tableView dequeueReusableCellWithIdentifier:driverIdentifier];
     if (driverCell == nil) {
-        driverCell = (BestDriverCell *)[[[NSBundle mainBundle] loadNibNamed:@"BestDriverCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
+        
+        if (IDIOM == IPAD) {
+            driverCell = (BestDriverCell *)[[[NSBundle mainBundle] loadNibNamed:@"BestDriverCell_Ipad" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
+            
+            driverCell.contentView.backgroundColor = [UIColor clearColor];
+            
+        }else {
+            driverCell = (BestDriverCell *)[[[NSBundle mainBundle] loadNibNamed:@"BestDriverCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
+            
+            driverCell.contentView.backgroundColor = [UIColor clearColor];
+        }
 
-        driverCell.contentView.backgroundColor = [UIColor clearColor];
+        
     }
     
     driverCell.delegate = self ;
@@ -154,7 +174,7 @@
     {
         if(![MFMessageComposeViewController canSendText])
         {
-            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil];
             [warningAlert show];
             return;
         }

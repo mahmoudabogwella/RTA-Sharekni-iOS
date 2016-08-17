@@ -24,8 +24,12 @@
 #import "Vehicle.h"
 #import <UIViewController+REFrostedViewController.h>
 #import <REFrostedViewController.h>
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "MobAccountManager.h"
+#import "User.h"
 
-@interface VehiclesViewController () <UITableViewDataSource ,UITableViewDelegate>
+@interface VehiclesViewController () <UITableViewDataSource ,UITableViewDelegate,MJAddRemarkPopupDelegate>
 {
     __weak IBOutlet UILabel *titleLabel ;
     __weak IBOutlet UIView *titleLabelView ;
@@ -44,6 +48,8 @@
 @property (weak,nonatomic) IBOutlet UIView *datePickerView ;
 @property (strong,nonatomic) NSDate *date ;
 @property (strong,nonatomic) NSDateFormatter *dateFormatter;
+@property (weak, nonatomic) IBOutlet UIButton *LSubmit;
+@property (weak, nonatomic) IBOutlet UIButton *LRefresh;
 
 @end
 
@@ -65,6 +71,16 @@
     
     self.title = GET_STRING(@"Vehicles");
     
+    //Gonlang
+    
+    _vehiclesTitleLabel.text = GET_STRING(@"Register Vehicle");
+    _dateLabel.text = GET_STRING(@"Date of birth");
+    [_LSubmit setTitle:GET_STRING(@"Submit") forState:UIControlStateNormal];
+    [_LRefresh setTitle:GET_STRING(@"Refresh") forState:UIControlStateNormal];
+    _LRefresh.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    _LSubmit.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    titleLabel.text = GET_STRING(@"Register Vehicle");
+    //
     if (self.enableBackButton)
     {
         UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -102,8 +118,8 @@
         
         [self configureUI];
     }
-}
-
+    
+   }
 - (BOOL)shouldAutorotate
 {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];

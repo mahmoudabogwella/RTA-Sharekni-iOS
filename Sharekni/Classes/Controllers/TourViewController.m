@@ -66,6 +66,12 @@
     {
         scroller = [[KCHorizontalScroller alloc] initWithFrame:CGRectMake(0.0f,0.0f,414.0f,736.0f)];
 
+    }else if ( IDIOM == IPAD )
+    {
+        CGFloat width = [UIScreen mainScreen].bounds.size.width;
+        CGFloat height = [UIScreen mainScreen].bounds.size.height;
+        
+        scroller = [[KCHorizontalScroller alloc] initWithFrame:CGRectMake(0.0f,0.0f,width,height)];
     }
     else
     {
@@ -82,9 +88,15 @@
     else if (IS_IPHONE_6P)
     {
         scroller.scrollWidth = 414.0f;
+    }else if ( IDIOM == IPAD )
+    {
+        CGFloat width = [UIScreen mainScreen].bounds.size.width;
+        scroller.scrollWidth = width;
+
     }
     else
     {
+        
         scroller.scrollWidth = 320.0f;
     }
     
@@ -133,6 +145,12 @@
     {
         return [[PageView alloc] initWithFrame:CGRectMake(0.0f,0.0f,414.0f,736.0f) tour:tourObj];
 
+    }else if ( IDIOM == IPAD )
+    {
+        CGFloat width = [UIScreen mainScreen].bounds.size.width;
+        CGFloat height = [UIScreen mainScreen].bounds.size.height;
+        
+        return [[PageView alloc] initWithFrame:CGRectMake(0.0f,0.0f,width,height) tour:tourObj];
     }
     else
     {

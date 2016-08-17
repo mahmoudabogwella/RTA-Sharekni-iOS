@@ -19,7 +19,9 @@
 #import "MobAccountManager.h"
 #import "ActivatePermitViewController.h"
 
-@interface PermitsViewController ()
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+@interface PermitsViewController () <MJAddRemarkPopupDelegate>
 
 @property (nonatomic ,strong) NSArray *permits ;
 @property (nonatomic ,weak)   IBOutlet UITableView *permitsList ;
@@ -51,6 +53,7 @@
     
     self.noPermits.text = GET_STRING(@"No permits found");
     [self getPermits];
+   
 }
 
 - (BOOL)shouldAutorotate

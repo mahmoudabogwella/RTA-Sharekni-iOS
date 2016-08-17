@@ -125,8 +125,14 @@ NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/ChangePassword?id=
     NSString *path = [NSString stringWithFormat:@"cls_mobios.asmx/CheckLogin?username=%@&password=%@",userName,password];
     __block MobAccountManager *blockSelf = self;
     [self.operationManager GET:path parameters:nil success:^void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         responseString = [self jsonStringFromResponse:responseString];
+        
+        
+        
+        
         if ([responseString containsString:@"ID"]) {
             NSError *jsonError;
             NSData *objectData = [responseString dataUsingEncoding:NSUTF8StringEncoding];

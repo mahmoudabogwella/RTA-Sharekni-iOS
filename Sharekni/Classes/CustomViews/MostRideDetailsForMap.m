@@ -18,12 +18,25 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
-    {
-        self = (MostRideDetailsForMap *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsForMap" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
-        self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
-        self.driverImage.clipsToBounds = YES ;
+    
+    if (IDIOM == IPAD) {
+        if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
+        {
+            self = (MostRideDetailsForMap *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsForMap_Ipad" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
+            self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
+            self.driverImage.clipsToBounds = YES ;
+        }
+    }else {
+        if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
+        {
+            self = (MostRideDetailsForMap *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsForMap" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
+            self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
+            self.driverImage.clipsToBounds = YES ;
+        }
     }
+   
+    
+    
     return self;
 }
 

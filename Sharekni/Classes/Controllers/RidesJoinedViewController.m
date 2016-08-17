@@ -18,8 +18,14 @@
 #import "DriverDetailsViewController.h"
 #import "UIView+Borders.h"
 
+#import "MobAccountManager.h"
+#import "User.h"
+
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+
 #define JOINED_RIDE_CELLHEIGHT 210
-@interface RidesJoinedViewController ()
+@interface RidesJoinedViewController () <MJAddRemarkPopupDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *noResultLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSArray *rides;
@@ -54,7 +60,10 @@
     
     [self configureTableView];
     [self configureData];
-}
+    
+    }
+
+
 
 - (BOOL)shouldAutorotate
 {

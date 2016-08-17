@@ -17,7 +17,10 @@
 #import "LoginViewController.h"
 #import "MobAccountManager.h"
 
-@interface SearchResultsViewController () <SendMSGDelegate,MFMessageComposeViewControllerDelegate>
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+
+@interface SearchResultsViewController () <SendMSGDelegate,MFMessageComposeViewControllerDelegate,MJAddRemarkPopupDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *fromLabel;
@@ -32,7 +35,10 @@
 {
     [super viewDidLoad];
     [self configureUI];
+    
+   
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -98,8 +104,15 @@
 {
    MostRideDetailsCell *cell = (MostRideDetailsCell*)[tableView dequeueReusableCellWithIdentifier:MOST_RIDE_DETAILS_CELLID];
     if (cell == nil) {
-        cell = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:0];
-        cell.contentView.backgroundColor = [UIColor clearColor];
+        
+        if (IDIOM == IPAD) {
+            cell = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:0];
+            cell.contentView.backgroundColor = [UIColor clearColor];
+        }else {
+            cell = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:0];
+            cell.contentView.backgroundColor = [UIColor clearColor];
+        }
+
     }
     cell.delegate = self ;
     DriverSearchResult *driver = [self.results objectAtIndex:indexPath.row];
@@ -143,7 +156,7 @@
     {
         if(![MFMessageComposeViewController canSendText])
         {
-            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil];
             [warningAlert show];
             return;
         }

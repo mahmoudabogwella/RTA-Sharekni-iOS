@@ -1,3 +1,4 @@
+
 /*
  Localizable.strings
  Sharekni
@@ -7,268 +8,389 @@
  */
 
 
-"No" = "한국어/조선말";
-"Take a tour" = "한국어/조선말";
+"No" = "編號";
+"Take a tour" = "旅行";
 
-"Back_icn" = "한국어/조선말";
-"username"  = "한국어/조선말";
-"Username (Your Email)" = "한국어/조선말 (Your Email)";
-"Password"  = "한국어/조선말";
-"firstName" = "한국어/조선말 Name";
-"lastName"  = "한국어/조선말/조선말 Name";
-"mobile"    = "한국어/조선말 Number";
-"nationality" = "한국어/조선말";
-"pLanguage" = "한국어/조선말 Language";
-"Submit" = "한국어/조선말";
+"Back_icn" = "Back_icn_right";
+"username"  = "使用者名稱";
+"Username (Your Email)" = "使用者名稱（您的電子郵件）";
+"Password"  = "密碼";
+"firstName" = "名字";
+"lastName"  = "姓氏";
+"mobile"    = "行動電話";
+"nationality" = "國籍";
+"pLanguage" = "首選語言";
+"Submit" = "提交";
 
-"nameReq" = "한국어/조선말 enter your username";
-"passReq" = "한국어/조선말 enter password";
+"nameReq" = "請輸入您的使用者名稱";
+"passReq" = "請輸入密碼";
 
-"mobileReq" = "한국어/조선말 enter mobile number";
-"mailReq" = "한국어/조선말/조선말 enter email address";
+"mobileReq" = "請輸入行動電話號碼";
+"mailReq" = "請輸入電子郵件地址";
 
-"registration" = "한국어/조선말";
-"login" = "한국어/조선말";
-"bestDrivers" = "Best 한국어/조선말";
-"searchOptions" = "한국어/조선말 Search";
-"mostRides" = "Most 한국어/조선말";
-"advancedSearch" = "한국어/조선말 Search";
-"quickSearch" = "Qu한국어/조선말ick Search";
+"registration" = "註冊";
+"login" = "登陸";
+"bestDrivers" = "最佳司機排名";
+"searchOptions" = "快速搜索";
+"mostRides" = "大多數乘坐方式";
+"advancedSearch" = "高級搜尋";
+"quickSearch" = "快速搜尋";
+
+"Please set direction for both Pick up and Drop off" = "為了搜尋更準確，您必須選擇起點和目的地";
+"loading" = "正在加載";
+"Loading..." = "正在加載...";
+
+"sharkni" = "Sharekni";
+
+"driverDetails" = "司機詳細資訊";
+"rideDetails" = "乘坐詳情";
 
 
-"loading" = "한국어/조선말";
-"Loading..." = "한국어/조선말...";
+"submit" = "Submit";
+"forget" = "忘記密碼？";
+"preferedLang" = "首選語言";
 
-"sharkni" = "한국어/조선말";
-
-"driverDetails" = "한국어/조선말 Details";
-"rideDetails" = "한국어/조선말 Details";
-
-
-"submit" = "한국어/조선말";
-"forget" = "한국어/조선말 Password";
-"preferedLang" = "한국어/조선말 Nationality";
 
 //ForgetPassword
 
-"A reset password link has been sent to your email" = "A reset password link has been sent to your email";
+"A reset password link has been sent to your email" = "重置密碼鏈接已傳送到您的郵箱。請注意，該鏈接的有效期僅為一天。";
 
-"Email are not matching" = "data are not matching";
+"Email are not matching" = "請輸入有效的電子郵件地址（user@domain.com）";
 
-
+"Kg" = "公斤";
 //Registeration
-"Please Choose a valid nationality." = "Ple한국어/조선말ase Choose a valid nationality.";
-"Please Choose acconut type." = "Pleas한국어/조선말e Choose acconut type.";
-"Please fill all fields" = "Please fi한국어/조선말ll all fields";
-"First name mustn't have numbers" = "Firs한국어/조선말t name mustn't have numbers";
-"Last name mustn't have numbers" = "Last n한국어/조선말ame mustn't have numbers";
-"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]" = "Mobi한국어/조선말le Number should be only 9 and should start with [50 – 55 – 56 – 52]";
-"Please enter a valid email address" = "Ple한국어/조선말ase enter a valid email address";
-"You should be older than 18 Years"  = "You한국어/조선말 should be older than 18 Years";
-"Select" = "Sel한국어/조선말ect";
-"Cancel" = "Can한국어/조선말cel";
-"Ok" = "O한국어/조선말k";
-"Email already exists" = "Email a한국어/조선말lready exists";
-"Mobile number already exists" = "Mobile num한국어/조선말ber already exists";
-"Registration done successfully" = "Registrat한국어/조선말ion done successfully";
+"Please Choose a valid nationality." = "Please Choose a valid nationality.";
+"Please Choose acconut type." = "請選擇帳戶類型";
+"Please fill all fields" = "填寫所有必填欄位";
+"First name mustn't have numbers" = "第一名稱不得具有數字";
+"Last name mustn't have numbers" = "姓氏不得有數量";
+"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]" = "手機號碼應該只有9，應啟動[50 - 55 - 56 - 52]";
+"Please enter a valid email address" = "請輸入有效的電子郵件";
+"You should be older than 18 Years"  = "您應年滿18歲";
+"Select" = "選擇";
+"Cancel" = "取消";
+"Ok" = "確定";
+"Email already exists" = "電子郵件已經存在，請選擇另一個";
+"Mobile number already exists" = "行動電話號碼已經存在，請選擇另一個";
+"Registration done successfully" = "註冊成功完成";
 
-"Choose a language" = "Choose a l한국어/조선말anguage";
-"Choose age range" = "Choose a한국어/조선말ge range";
+"Choose a language" = "選擇一種語言";
+"Choose age range" = "請選擇年齡範圍";
+"Select Nationality" = "選擇國籍";
+
+"Fill in the email address please" = "請填寫電子郵件" ;
+
+
 
 //Home
-"Home Page" = "Home한국어/조선말 Page";
-"Most Rides" = "Most 한국어/조선말Rides";
-"Best Drivers" = "Best한국어/조선말 Drivers";
-"Logout" = "Lo한국어/조선말gout";
-"Language" = "Lang한국어/조선말uage";
+"Home Page" = "首頁";
+"Most Rides" = "大多數乘坐方式";
+"Best Drivers" = "最佳司機";
+"Logout" = "註銷";
+"Language" = "語言";
 
-"Rides Created" = "Ride한국어/조선말s Created";
-"Rides Joined" = "Ri한국어/조선말des Joined";
-"Vehicles" = "Vehic한국어/조선말les";
-"History" = "His한국어/조선말tory";
-"Permits" = "Per한국어/조선말mits";
-"Permit" = "Perm한국어/조선말it";
-"Search" = "Sea한국어/조선말rch";
-"Saved Search" = "Saved한국어/조선말 Search";
-"Create Ride"  = "Creat한국어/조선말e Ride";
+"Rides Created" = "已創建乘坐方式";
+"Rides Joined" = "已加入乘坐方式";
+"Vehicles" = "我的車輛";
+"History" = "歷史";
+"Permits" = "許可證";
+"Permit" = "許可證";
+"Search" = "搜尋";
+"Saved Search" = "保存的搜尋";
+"Create Ride"  = "創建乘坐方式";
+"You Don't Have Any Vehcile Registered" = "您沒有註冊任何車輛";
+"Do you want to Register it now?" = "你要登記嗎?";
+"Register Vehicle" = "立即註冊";
+"Dismiss" = "解僱";
 
-"Register Vehicle" = "Register Vehicle";
-"Dismiss" = "Dismiss";
-"You Don't Have Any Vehcile Registered" = "ليس لديك مركبه مسجله";
-"Do you want to Register it now?" = "Do you want to Register it now?";
-
-"No permits found" = "No perm한국어/조선말its found";
+"No permits found" = "沒有加入的乘坐方式";
 //Create Rides
-"No rides joined yet" = "No rides joined yet";
-"Do you want to leave this ride?" = "Do you want to leave this ride?";
-"Ride leaved successfully." = "Ride leaved successfully.";
-"Select vehicle" = "Select vehicle";
-"Confirm" = "Confirm";
-"Delete" = "Delete";
-"Edit" = "Edit";
-"Do you want to delete this ride ?" = "Do you want to delete this ride ?";
-"Ride Deleted successfully." = "Ride Deleted successfully.";
-"Saved Search" = "Saved Search";
-"Edit Ride" = "Edit Ride";
-"Please configure your vehicles first" = "Please configure your vehicles first";
-"Days Of Week" = "Days Of Week";
+"No rides joined yet" = "沒有遊樂設施尚未加盟";
+"Do you want to leave this ride?" = "您確定要離開此乘坐方式嗎？";
+"Ride leaved successfully." = "您沒有離開此乘坐方式";
+"Select vehicle" = "請選擇車輛";
+"Confirm" = "確認";
+"DeleteNotifcationHeaderNot" = "確認";
+
+"Delete" = "刪除";
+"Edit" = "編輯";
+"Do you want to delete this ride ?" = "您確定要刪除嗎？";
+"Ride Deleted successfully." = "路線已刪除";
+"Saved Search" = "保存的搜尋";
+"Edit Ride" = "編輯線路";
+"Please configure your vehicles first" = "請首先配置您的車輛";
+"Days Of Week" = "一星期的天數";
 
 
-"Notifications" = "Notifications";
-"Attention" = "Attention";
-"You must write your review first" = "You must write your review first";
-"You must write your remark first" = "You must write your remark first";
+"Notifications" = "通知";
+"Attention" = "注意";
+"You must write your review first" = "請先發表評論";
+"You must write your remark first" = "你必须先写你的话";
 
+//Creat Drive
+"You can't use this file number" = "您不能用這個檔號";
+"License verified, but no cars found" = "許可證已驗證，但沒有發現車";
+"Invalid data please check again" = "無效的資料，請再次檢查";
 //Driver Ride
-"Details" = "Details";
-"Driver" = "Driver";
-"Leave" = "Leave";
+"Details" = "詳細資訊";
+"Driver" = "司機";
+"Leave" = "離開";
+
+"Sorry, you can't send any more invitations" = "很抱歉，您不能发送任何邀请";
+
 
 //Add review
-"Write Your Review" = "Write Your Review";
-"Your Review" = "Your Review";
-"Review" = "Review";
-"I’d like to join your ride" = "I’d like to join your ride";
-"I’d like to invite you to my ride" = "I’d like to invite you to my ride";
-"Write Your Remarks" = "Write Your Remarks";
-"Your Remarks" = "Your Remarks";
+"Write Your Review" = "發表您的評論";
+"Your Review" = "您的意見";
+"Review" = "檢查";
+"I’d like to join your ride" = "我想加入您的乘坐工具";
+"I’d like to invite you to my ride" = "我想請您到乘坐我的車";
+"Write Your Remarks" = "發表您的評論";
+"Your Remarks" = "您的評論";
 
 
-"Map Lookup" = "Map Lookup";
-"Starting Time :" = "Starting Time :";
-"Set Direction" = "Set Direction";
-"Please set direction" = "Please set direction";
-"No Rides Found" = "No Rides Found";
-"Please select from Emirate" = "Please select from Emirate";
-"Please Enter from Region" = "Please Enter from Region";
-"Please Enter to Region" = "Please Enter to Region";
-"Please select to Emirate" = "Please select to Emirate";
+"Map Lookup" = "地圖查詢";
+"Starting Time :" = "開始時間 :";
+"Set Direction" = "點擊設置方向";
+"Please set direction" = "请设置方向";
+"No Rides Found" = "没有找到驱动器";
+"Please select from Emirate" = "请从酋长国选择";
+"Please Enter from Region" = "请从地区进入";
+"Please Enter to Region" = "请输入到区域";
+"Please select to Emirate" = "请选择酋长国";
 
 
-"Select Emirate" = "Select Emirate";
-"Please select from Emirate first" = "Please select from Emirate first";
-"Please select to Emirate first" = "Please select to Emirate first";
-"Please enter a valid to region name" = "Please enter a valid to region name";
-"invalid start date or time" = "invalid start date or time";
+"Select Emirate" = "選擇酋長國";
+"Please select from Emirate first" = "从酋长国首先请选择";
+"Please select to Emirate first" = "请选择第一个酋长国";
+"Please enter a valid to region name" = "请输入一个有效的区域名称";
+"invalid start date or time" = "无效的开始日期或时间";
 
-"Drivers :" = "Drivers :";
-"Passengers :" = "Passengers :";
-"Coming Rides :" = "Coming Rides :";
+"Drivers :" = "司機 :";
+"Passengers :" = "乘客 :";
 
-"From" = "From";
-"To" = "To";
-"Not Set" = "Not Set";
-"Ride Days" = "Ride Days";
+"Drivers" = "司機";
+"Passengers" = "乘客";
+"Coming Rides :" = "即將到達的乘坐方式：";
 
-"Sat " = "Sat ";
-"Sun " = "Sun ";
-"Mon " = "Mon ";
-"Tue " = "Tue ";
-"Wed " = "Wed ";
-"Thu " = "Thu ";
-"Fri " = "Fri ";
+"From" = "從";
+"To" = "到";
+"Not Set" = "没有设置";
+"Ride Days" = "乘坐天數";
 
-"Terms And Conditions" = "Terms And Conditions";
-"Accept" = "Accept";
-"Policy" = "Policy";
-"Search Results" = "Search Results";
-"Has Accepted your request" = "Has Accepted your request";
-"Send you a join request" = "Send you a join request";
-"Notification Details" = "Notification Details";
+"Sat " = "星期六 ";
+"Sun " = "星期天 ";
+"Mon " = "星期一 ";
+"Tue " = "星期二 ";
+"Wed " = "星期三 ";
+"Thu " = "星期四 ";
+"Fri " = "星期五 ";
 
-"Mobile verification code has been sent to your mobile" = "Mobile verification code has been sent to your mobile";
-"Please check your mobile number" = "Please check your mobile number";
+"Terms And Conditions" = "條款和條件";
+"Accept" = "接受";
+"Policy" = "政策";
+"Search Results" = "搜尋結果";
+"Has Accepted your request" = "已接受您的請求";
+"Send you a join request" = "傳送您一個加入請求";
+"Notification Details" = "通知詳細資訊";
 
-"Please write your verification code" = "Please write your verification code";
-"Write Your Code" = "Write Your Code";
-"Your Code" = "Your Code";
-"Resend verification code" = "Resend verification code";
-"Enter verification code"  = "Enter verification code";
-"Traffic File No." = "Traffic File No.";
+"Mobile verification code has been sent to your mobile" = "手机验证码已发送到你的手机";
+"Please check your mobile number" = "輸入有效的行動電話號碼";
 
-"Edit Profile" = "Edit Profile";
-"Nationalty must be selected" = "Nationalty must be selected";
-"Please check your username and password" = "Please check your username and password";
-"Edit profile info success" = "Edit profile info success";
-"Select date of birth" = "Select date of birth";
-"Verification Code is wrong" = "Verification Code is wrong";
-"Mobile Verified" = "Mobile Verified";
+"Please write your verification code" = "輸入您的代碼";
+"Write Your Code" = "编写代码";
+"Your Code" = "您的代碼";
+"Resend verification code" = "再次发送代码";
+"Enter verification code"  = "輸入驗證碼";
+"Traffic File No." = "交通文件編號";
 
-"Please select start point" = "Please select start point";
-"Directions can't be edited." = "Directions can't be edited.";
-"Please set startpoint and destination." = "Please set startpoint and destination.";
-"Please select Vehicle" = "Please select Vehicle";
-"Please enter ride name" = "Please enter ride name";
-"Please select start date" = "Please select start date";
-"Please select start time" = "Please select start time";
-"Please select number of available seats." = "Please select number of available seats.";
-"Please select days of week." = "Please select days of week.";
-"Ride edited successfully" = "Ride edited successfully";
-"Ride created successfully" = "Ride created successfully";
-"An error happend when trying to create ride" = "An error happend when trying to create ride";
-"You cannot create more than two rides." = "You cannot create more than two rides.";
-"Select Pickup Time" = "Select Pickup Time";
-"Select Pickup Date" = "Select Pickup Date";
-"Rating added successfully" = "Rating added successfully";
-"Unable to add Rating" = "Unable to add Rating";
+"Edit Profile" = "編輯個人資料";
+"Nationalty must be selected" = "請選擇國籍";
+"Please check your username and password" = "檢查您的使用者名稱和密碼";
+"Edit profile info success" = "詳細資訊已更新";
+"Select date of birth" = "出生日期無效";
+"Verification Code is wrong" = "代碼是錯誤的";
+"Mobile Verified" = "手机验证";
+
+"Please select start point" = "請至少選擇起點";
+"Directions can't be edited." = "路线不能编辑。";
+"Please set startpoint and destination." = "请设置起点和终点。";
+"Please select Vehicle" = "请选择车型";
+"Please enter ride name" = "请输入乘车名";
+"Please select start date" = "请选择起始日期";
+"Please select start time" = "请选择开始时间";
+"Please select number of available seats." = "请选择可提供座位数";
+"Please select days of week." = "請選擇至少一天";
+"Ride edited successfully" = "騎更新！";
+"Ride created successfully" = "乘坐方式已創建！";
+"An error happend when trying to create ride" = "试图创造骑当发生错误";
+"Sorry, It's not allowed to create more than two rides" = "您已達到最大允許的遊樂設施！";
+"Sorry, you have yo have at least one ride" = "您没有任何车辆";
+"Select Pickup Time" = "选择出发时间";
+"Select Pickup Date" = "选择皮卡日期";
+"Rating added successfully" = "評級成功提交";
+"Unable to add Rating" = "无法添加评级";
 
 
-"Ride Delete successfully." = "Ride Delete successfully.";
-"An error occured when deleting ride" = "An error occured when deleting ride";
-"Passenger removed successfully" = "Passenger removed successfully";
-"Unable to remove the passenger" = "Unable to remove the passenger";
-"Mobile Number not available" = "Mobile Number not available";
-"Do you want to delete this passenger ?" = "Do you want to delete this passenger ?";
+"Ride Delete successfully." = "乘坐成功删除。";
+"An error occured when deleting ride" = "删除骑当发生错误";
+"Passenger removed successfully" = "您確定要刪除嗎？";
+"Unable to remove the passenger" = "无法删除乘客";
+"Mobile Number not available" = "无法使用手机号码";
+"Do you want to delete this passenger ?" = "刪除乘客";
 
-"No history" = "No history";
-"Do you want to leave this ride" = "Do you want to leave this ride";
-"An error occured when leaving ride" = "An error occured when leaving ride";
-"Permit added successfully." = "Permit added successfully.";
-"Invalid birthdate" = "Invalid birthdate";
+"No history" = "沒有發現歷史記錄";
+"Do you want to leave this ride" = "你想离开这个骑";
+"An error occured when leaving ride" = "乘车离开时发生错误";
+"Permit added successfully." = "已授予許可證";
+"Invalid birthdate" = "无效的出生日期";
 
-"Male" = "Male";
-"Female" = "Female";
-"Both" = "Both";
-"Yes" = "Yes";
-"No" = "No";
-"Dubai" = "Dubai";
+"Male" = "男";
+"Female" = "女";
+"Both" = "兩個";
+"Yes" = "是";
+"No" = "否";
+"Dubai" = "迪拜";
 
-"Please Choose account type." = "Please Choose account type.";
+"Please Choose account type." = "選擇個人資料的圖片！！";
 "No camera on device" = "No camera on device";
-"You cannot choose year before 1900" = "You cannot choose year before 1900";
-"Photo Library" = "Photo Library";
-"Camera" = "Camera";
+"You cannot choose year before 1900" = "1900年以前，你不能选择一年";
+"Photo Library" = "從圖片庫中選擇";
+"Camera" = "相机";
 
-"You don't have joined rides yet" = "You don't have joined rides yet";
-"You don't have created rides yet" = "You don't have created rides yet";
-"Received your request and waiting for approval" = "Received your request and waiting for approval";
-"Request deleted successfully" = "Request deleted successfully";
-"Cannot delete Request" = "Cannot delete Request";
+"You don't have joined rides yet" = "沒有加入的乘坐方式";
+"You don't have created rides yet" = "還沒有已創建的乘坐方式";
+"Received your request and waiting for approval" = "已收到您的申請，等待審批";
+"Request deleted successfully" = "請求成功刪除";
+"Cannot delete Request" = "无法删除请求";
 
-"Do you want to delete this review ?" = "Do you want to delete this review ?";
-"Edit Review" = "Edit Review";
-"Review deleted successfully" = "Review deleted successfully";
-"Cannot delete Review" = "Cannot delete Review";
-"Password must be at least 5 characters" = "Password must be at least 5 characters";
-"data are not matching" = "data are not matching";
-"Not Specified" = "Not Specified";
-"No Specified" = "Not Specified";
-"No Specified" = "Not Specified";
-"Error" = "Error";
-"You don't have any notifications" = "You don't have any notifications";
-"Do you want to delete this request ?" = "Do you want to delete this request ?";
-"Request had been sent Successfully , Wait for driver Approval." = "Request had been sent Successfully , Wait for driver Approval.";
+"Do you want to delete this review ?" = "刪除評論";
+"Edit Review" = "编辑评论";
+"Review deleted successfully" = "評論已刪除";
+"Cannot delete Review" = "无法删除评论";
+"Password must be at least 5 characters" = "請輸入至少包含5個字元的密碼";
+"data are not matching" = "数据不匹配";
+"Not Specified" = "未指定";
+"No Specified" = "未指定";
+"No Specified" = "未指定";
+"Error" = "錯誤";
+"You don't have any notifications" = "您没有任何通知";
+"Do you want to delete this request ?" = "你要删除这个要求吗？";
+"Request had been sent Successfully , Wait for driver Approval." = "請求已傳送成功，等待司機審批。";
+"Request had been sent Successfully , wait for Passenger's Approval" = "請求已傳送成功，等待乘客審批。";
+
+// Passenger invitation
+"Has Accepted your invitation" = "已接受您的邀请";
+"Received your invitation and waiting for approval" = "收到你的邀请，等待审批";
+"Send you a invitation request" = "向您傳送了邀請";
+
+"Cannot delete invitation" = "无法删除邀请";
+"Invitation deleted successfully" = "邀请成功删除";
+"Do you want to delete this invitation ?" = "你想删除此邀请吗？";
+
+"Has Rejected your invitation" = "拒绝你的邀请";
 
 
-//Labels
+"Has Rejected your join Request" = "已拒絕您的要求";
+
+//Quick Search
+"Please click on set direction button to set start and end point" = "點擊設置方向";
+"Start Date" = "開始日期";
+"Start Time" = "開始時間";
+"Top Rides" = "最想要的乘坐方式";
+
+//Set Direction in quick Search
+"Pick up" = "撿起";
+"Drop off" = "放下";
+"Done" = "完成";
+"Select Region" = "選擇區域";
+
+//Advanced Search
+"Single Ride" = "單程";
+"Periodic" = "定期";
+"Optional" = "可選";
+"Not Accept" = "不接受";
+
+//Ride Details
+
+"Last Seen" = "最後一次查看 :";
+"Co2 Saving" = "減少二氧化碳";
+
+//Driver Details
+"Points" = "點";
+"Km" = "千米";
+"Routes" = "路線";
+"My Work" = "My Work";
+"Go to work" = "上班";
+
+//Ride Details
+"Gender" = "性別";
+"Age Range" = "年齡範圍";
+"Smokers" = "吸煙者";
+"Preferences"  = "首選項";
+"Join Ride" = "加入乘坐";
+"Matched Search Results" = "匹配的搜尋結果";
+"Share" = "Share";
 //Registration
-"_driver" = "司机";
-"_passenger" = "乘客";
-"_both" = "都";
-"_dateOfBirth" = "";
-"_Male" = "男";
-"_Female"="女";
-"_UploadYourPhoto" = "乘客乘客";
-"_Save" = "";
-"_Terms" = "";
-"_Privacy&Policy" = "";
+"Passenger" = "乘客";
+"+18 Years" = "18歲以上";
+"Upload your photo" = "上傳您的照片";
+"I accept the RTA's terms and conditions" = "我接受RTA的條款和條件。";
+"Privacy and Policy" = "隱私政策";
+"Save" = "節省";
+"Register Now" = "立即註冊|";
+"Forget Password?" = "忘記密碼?";
+
+//Vehicles
+"Register Vehicles" = "註冊車輛";
+"Date of birth" = "出生日期";
+
+//Creat Ride
+"Available Seats" = "可用座位";
+//Homae Page
+"Verify" = "驗證";
+//Edit Profile
+"Update" = "節省";
+
+"Invite" = "邀請";
+"Join" = "Join";
+"Save Search" = "保存搜尋";
+
+
+"Sorry but you have to be logged in facebook to share" = "Sorry but you have to be logged in facebook to share";
+
+
+"This app" = "这个应用程序";
+"Micro app" = "微应用";
+"Transation" = "翻译";
+
+"Help & FAQ" = "常見問答";
+"No Passengers Found" = "沒有發現乘客" ;
+
+//map LookUp
+
+"Please turn on GPS first" = "請先開啟GPS" ;
+
+"Preferred Gender" = "首選性別";
+
+"Happy Meter" = "幸福";
+
+
+"Filipino" = "菲律宾";
+"Chinese" = "中文";
+"Arabic" = "阿拉伯语";
+"English" = "英语";
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 9 , 12 ,19, 21 ,23,25 , 38 ("Please write your verification code") ,42 (Not)

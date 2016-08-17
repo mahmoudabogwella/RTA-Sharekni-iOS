@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WelcomeViewController : UIViewController
+@interface WelcomeViewController : UIViewController{
+    
+    
+    
+    NSString *selected;
+    NSInteger *num ;
+    
+    NSArray *hardCodedLanguages;
+}
 
 @end

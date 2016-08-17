@@ -225,7 +225,7 @@
 
 //GET /_mobfiles/cls_mobios.asmx/Driver_CreateCarpool?AccountID=string&EnName=string&FromEmirateID=string&ToEmirateID=string&FromRegionID=string&ToRegionID=string&IsRounded=string&Time=string&Saturday=string&Sunday=string&Monday=string&Tuesday=string&Wednesday=string&Thursday=string&Friday=string&PreferredGender=string&VehicleID=string&NoOfSeats=string&StartLat=string&StartLng=string&EndLat=string&EndLng=string&PrefferedLanguageId=string&PrefferedNationlaities=string&AgeRangeId=string&StartDate=string HTTP/1.1
 
-- (void) createEditRideWithName:(NSString *)name fromEmirateID:(NSString *)fromEmirateID fromRegionID:(NSString *)fromRegionID toEmirateID:(NSString *)toEmirateID toRegionID:(NSString *)toRegionID isRounded:(BOOL)isRounded  date:(NSDate *)date saturday:(BOOL) saturday sunday:(BOOL) sunday  monday:(BOOL) monday  tuesday:(BOOL) tuesday  wednesday:(BOOL) wednesday  thursday:(BOOL) thursday friday:(BOOL) friday PreferredGender:(NSString *)gender vehicleID:(NSString *)vehicleID noOfSeats:(NSInteger)noOfSeats language:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange  isEdit:(BOOL) isEdit routeID:(NSString *)routeID startLat:(NSString *)startLat startLng:(NSString *)startLng endLat:(NSString *)endLat endLng:(NSString *)endLng Smoke:(NSString *)smoke WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
+- (void) createEditRideWithName:(NSString *)name fromEmirateID:(NSString *)fromEmirateID fromRegionID:(NSString *)fromRegionID toEmirateID:(NSString *)toEmirateID toRegionID:(NSString *)toRegionID isRounded:(BOOL)isRounded  date:(NSDate *)date saturday:(BOOL) saturday sunday:(BOOL) sunday  monday:(BOOL) monday  tuesday:(BOOL) tuesday  wednesday:(BOOL) wednesday  thursday:(BOOL) thursday friday:(BOOL) friday PreferredGender:(NSString *)gender vehicleID:(NSString *)vehicleID noOfSeats:(NSInteger)noOfSeats language:(Language *)language nationality:(Nationality *)nationality ageRange:(AgeRange *)ageRange  isEdit:(BOOL) isEdit routeID:(NSString *)routeID startLat:(NSString *)startLat startLng:(NSString *)startLng endLat:(NSString *)endLat endLng:(NSString *)endLng Smoke:(NSString *)smoke Distance:(NSString *)distance Duration:(NSString *)duration WithSuccess:(void (^)(NSString *response))success Failure:(void (^)(NSString *error))failure{
     
     NSString *dateString;
     NSString *timeString;
@@ -268,7 +268,7 @@
     else{
         path =[NSString stringWithFormat:@"cls_mobios.asmx/Driver_CreateCarpool?AccountID=%@",accountID];
     }
-    NSString *requestBody = [NSString stringWithFormat:@"%@&EnName=%@&FromEmirateID=%@&ToEmirateID=%@&FromRegionID=%@&ToRegionID=%@&IsRounded=%@&Time=%@&Saturday=%@&Sunday=%@&Monday=%@&Tuesday=%@&Wednesday=%@&Thursday=%@&Friday=%@&PreferredGender=%@&VehicleID=%@&NoOfSeats=%@&StartLat=%@&StartLng=%@&EndLat=%@&EndLng=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&IsSmoking=%@",path,name,fromEmirateID,toEmirateID,fromRegionID,toRegionID,_isRounded,timeString,sat,sun,mon,tue,wed,thu,fri,gender,vehicleID,_noOfSeats,startLat,startLng,endLat,endLng,languageId,nationalityId,ageRangeId,dateString,smoke];
+    NSString *requestBody = [NSString stringWithFormat:@"%@&EnName=%@&FromEmirateID=%@&ToEmirateID=%@&FromRegionID=%@&ToRegionID=%@&IsRounded=%@&Time=%@&Saturday=%@&Sunday=%@&Monday=%@&Tuesday=%@&Wednesday=%@&Thursday=%@&Friday=%@&PreferredGender=%@&VehicleID=%@&NoOfSeats=%@&StartLat=%@&StartLng=%@&EndLat=%@&EndLng=%@&PrefferedLanguageId=%@&PrefferedNationlaities=%@&AgeRangeId=%@&StartDate=%@&IsSmoking=%@&Distance=%@&Duration=%@",path,name,fromEmirateID,toEmirateID,fromRegionID,toRegionID,_isRounded,timeString,sat,sun,mon,tue,wed,thu,fri,gender,vehicleID,_noOfSeats,startLat,startLng,endLat,endLng,languageId,nationalityId,ageRangeId,dateString,smoke,distance,duration];
     NSLog(@" createEditRideWithName :  %@%@",Sharkeni_BASEURL,requestBody);
 
     requestBody = [requestBody stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -282,6 +282,40 @@
         failure(error.localizedDescription);
     }];
 }
+- (void) DestinationAndDuration:(NSString *)StartLnglang andEndL:(NSString *)EndLngLang WithSuccess:(void (^)(NSArray *items))success Failure:(void (^)(NSString *error))failure{
+    
+        NSString *requestBody = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%@&destinations=%@&key=AIzaSyDjDfEe3c7xfwpLqVhktVa9Nkoh2fB9Z_I",StartLnglang,EndLngLang];
+        
+        NSLog(@"getMapLookupForPassengerWithSuccess : %@",requestBody);
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:requestBody parameters:nil success:^(AFHTTPRequestOperation *  operation, id responseObject) {
+            
+            NSArray *data = responseObject;
+            NSLog(@" data : %@",data);
+            NSArray *index1 = [data valueForKey:@"rows"];
+            NSLog(@" index1 : %@",index1);
+            NSArray *index  = index1 ;
+            NSString *index2 = [index objectAtIndex:0];
+            NSLog(@" index2 : %@",index2);
+            NSArray *index3 = [index2 valueForKey:@"elements"];
+            NSLog(@" index3 : %@",index3);
+            NSArray *index4 = [index3 objectAtIndex:0];
+            NSLog(@" index4 : %@",index4);
+            NSArray *index5 = [index4 valueForKey:@"distance"];
+            NSLog(@" index5 : %@",index5);
+            NSString *valueForDistance = [index5 valueForKey:@"value"];
+            NSLog(@" index6 : %@",valueForDistance);
+            NSArray *index6 = [index4 valueForKey:@"duration"];
+            NSLog(@" index5 : %@",index6);
+            NSString *valueForDuration = [index6 valueForKey:@"value"];
+            NSLog(@" index6 : %@",valueForDuration);
+
+            
+        } failure:^(AFHTTPRequestOperation *  operation, NSError * error) {
+            
+        }];
+    }
+
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(MobDriverManager);
 @end

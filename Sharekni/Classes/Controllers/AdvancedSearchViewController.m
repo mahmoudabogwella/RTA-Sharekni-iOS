@@ -34,7 +34,10 @@
 #import "MLPAutoCompleteTextFieldDelegate.h"
 #import "MobAccountManager.h"
 
-@interface AdvancedSearchViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,MLPAutoCompleteTextFieldDelegate,MLPAutoCompleteTextFieldDataSource>
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+
+@interface AdvancedSearchViewController ()<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,MLPAutoCompleteTextFieldDelegate,MLPAutoCompleteTextFieldDataSource,MJAddRemarkPopupDelegate>
 //Outlets
 @property (weak, nonatomic) IBOutlet UIView *saveSearchView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView ;
@@ -102,8 +105,18 @@
 @property (weak ,nonatomic) IBOutlet UIButton *maleBtn ;
 @property (weak ,nonatomic) IBOutlet UIButton *femaleBtn ;
 
+
 @property (weak ,nonatomic) IBOutlet UIButton *acceptBtn ;
 @property (weak ,nonatomic) IBOutlet UIButton *notAcceptBtn ;
+@property (weak, nonatomic) IBOutlet UILabel *LSmokers;
+
+@property (weak, nonatomic) IBOutlet UILabel *LPrefGender;
+
+@property (weak, nonatomic) IBOutlet UILabel *LBoth;
+@property (weak, nonatomic) IBOutlet UILabel *LMale;
+@property (weak, nonatomic) IBOutlet UILabel *LFemale;
+@property (weak, nonatomic) IBOutlet UILabel *LAccept;
+@property (weak, nonatomic) IBOutlet UILabel *LDoesnotAccept;
 
 @end
 
@@ -125,7 +138,31 @@
     [super viewDidLoad];
  
     self.title = GET_STRING(@"advancedSearch");
+    //Gonlang
+    self.optionalHeader.text = GET_STRING(@"Optional");
+    self.dateLabel.text = GET_STRING(@"Start Date");
+    self.timeLabel.text = GET_STRING(@"Start Time");
+    self.helpLabel.text = GET_STRING(@"Please click on set direction button to set start and end point");
+    self.singleRideLabel.text = GET_STRING(@"Single Ride");
+    self.periodicLabel.text = GET_STRING(@"Periodic");
+    [_setDirectionBtuton setTitle:GET_STRING(@"Set Direction") forState:UIControlStateNormal];
+    [_searchButton setTitle:GET_STRING(@"Search") forState:UIControlStateNormal];
+    self.pickupTitleLabel.text = GET_STRING(@"Pick up");
+    self.dropoffTitleLabel.text = GET_STRING(@"Drop off");
+    self.LPrefGender.text = GET_STRING(@"Preferred Gender");
+    self.LMale.text = GET_STRING(@"Male");
+    self.LFemale.text = GET_STRING(@"Female");
+    self.LSmokers.text = GET_STRING(@"Smokers");
+    self.LBoth.text = GET_STRING(@"Both");
+    self.LAccept.text = GET_STRING(@"Accept");
+    self.LDoesnotAccept.text = GET_STRING(@"Not Accept");
+    self.saveSearchLabel.text = GET_STRING(@"Saved Search");
+
+    _searchButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    _setDirectionBtuton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+
     
+    //
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
     [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
@@ -141,7 +178,9 @@
     [self configureRoadTypeView];
     [self configureGenderView];
     [self configureUI];
+     
 }
+
 
 - (BOOL)shouldAutorotate
 {

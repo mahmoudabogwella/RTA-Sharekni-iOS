@@ -17,8 +17,13 @@
 #import "UIView+Borders.h"
 #import <UIColor+Additions.h>
 
+#import "MobAccountManager.h"
+#import "User.h"
 
-@interface CreatedRidesViewController ()<UIAlertViewDelegate>
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+
+@interface CreatedRidesViewController ()<UIAlertViewDelegate,MJAddRemarkPopupDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *noResultLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSArray *createdRides;
@@ -42,7 +47,10 @@
     self.noResultLabel.alpha = 0;
     
     self.navigationItem.title = GET_STRING(@"Rides Created");
+    
+   
 }
+
 
 - (BOOL)shouldAutorotate
 {
@@ -112,9 +120,19 @@
     [rideCell setCreatedRide:ride];
     
     [rideCell setEditHandler:^{
-        CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar":@"CreateRideViewController" bundle:nil];
-        editRideViewController.ride = ride;
-        [blockSelf.navigationController pushViewController:editRideViewController animated:YES];
+        
+        if (IDIOM == IPAD) {
+            
+            CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar_Ipad":@"CreateRideViewController_IPad" bundle:nil];
+            editRideViewController.ride = ride;
+            [blockSelf.navigationController pushViewController:editRideViewController animated:YES];
+            
+        }else {
+            CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar":@"CreateRideViewController" bundle:nil];
+            editRideViewController.ride = ride;
+            [blockSelf.navigationController pushViewController:editRideViewController animated:YES];
+        }
+     
     }];
     
     [rideCell setDeleteHandler:^{
@@ -149,13 +167,30 @@
 
 - (void)editRide:(CreatedRide *)ride
 {
-    CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar":@"CreateRideViewController" bundle:nil];
-    editRideViewController.ride = ride;
-    __block CreatedRidesViewController *blockSelf = self;
-    [editRideViewController setEditHandler:^{
-        [blockSelf configureData];
-    }];
-    [self.navigationController pushViewController:editRideViewController animated:YES];
+    
+    if (IDIOM == IPAD) {
+        
+        CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar_Ipad":@"CreateRideViewController_IPad" bundle:nil];
+        editRideViewController.ride = ride;
+        __block CreatedRidesViewController *blockSelf = self;
+        [editRideViewController setEditHandler:^{
+            [blockSelf configureData];
+        }];
+        [self.navigationController pushViewController:editRideViewController animated:YES];
+        
+    }else {
+        CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar":@"CreateRideViewController" bundle:nil];
+        editRideViewController.ride = ride;
+        __block CreatedRidesViewController *blockSelf = self;
+
+        [editRideViewController setEditHandler:^{
+            [blockSelf configureData];
+        }];
+        [self.navigationController pushViewController:editRideViewController animated:YES];
+    }
+    
+    
+
 }
 
 - (void) showDetailsViewControllerWithRide:(CreatedRide *)createdRide

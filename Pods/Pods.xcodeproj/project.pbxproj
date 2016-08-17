@@ -846,6 +846,7 @@
 		6DEB0631ACB662669C3C1EF5FC5A700D /* NSObject+GenomeIntrospection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+GenomeIntrospection.h"; path = "Genome/Source/NSObject+GenomeIntrospection.h"; sourceTree = "<group>"; };
 		6EA40F352ED50685607DEAC337C74369 /* AFURLSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = AFNetworking/AFURLSessionManager.m; sourceTree = "<group>"; };
 		6F571EE180BB35ECBA2869D8C267FE2A /* NSDate+Calendar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Calendar-dummy.m"; sourceTree = "<group>"; };
+		7103B36B1C62B7B00097A611 /* Hints */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Hints; path = RETableViewManager/Hints; sourceTree = "<group>"; };
 		715AFCAA5E49794DE6D48F9679676EE9 /* REFloatItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = REFloatItem.m; path = RETableViewManager/Items/REFloatItem.m; sourceTree = "<group>"; };
 		71B12C11610EDB53A678E3B766615769 /* CRToastManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CRToastManager.m; path = CRToast/CRToastManager.m; sourceTree = "<group>"; };
 		7279330571C36E086D5B542C5C01143E /* REDateTimeItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = REDateTimeItem.m; path = RETableViewManager/Items/REDateTimeItem.m; sourceTree = "<group>"; };
@@ -1938,6 +1939,7 @@
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
+				7103B36B1C62B7B00097A611 /* Hints */,
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				24002A6670E6882ECD6250D3E60F9CB2 /* Frameworks */,
 				E366873C39F04DF8455FB73762BF3044 /* Pods */,

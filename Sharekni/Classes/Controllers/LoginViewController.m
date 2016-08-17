@@ -39,6 +39,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = GET_STRING(@"login");
+    [_loginButton setTitle:GET_STRING(@"login") forState:UIControlStateNormal];
+    [_registerNewButton setTitle:GET_STRING(@"Register Now") forState:UIControlStateNormal];
+
+    [_forgotPasswordButton setTitle:GET_STRING(@"Forget Password?") forState:UIControlStateNormal];
+    if ([[Languages sharedLanguageInstance] language] == Philippine) {
+        [_forgotPasswordButton.titleLabel setFont:[UIFont systemFontOfSize:10]];
+
+        [_registerNewButton.titleLabel setFont:[UIFont systemFontOfSize:11]];
+    }else {
+        [_forgotPasswordButton.titleLabel setFont:[UIFont systemFontOfSize:13]];
+        [_registerNewButton.titleLabel setFont:[UIFont systemFontOfSize:13]];
+
+    }
     
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
@@ -133,8 +146,18 @@
 
 - (IBAction)signupAction:(id)sender{
     [self.view endEditing:YES];
-    RegisterViewController *registerView = [[RegisterViewController alloc] initWithNibName:(KIS_ARABIC)?@"RegisterViewController_ar":@"RegisterViewController" bundle:nil];
-    [self.navigationController pushViewController:registerView animated:YES];
+    
+    if ( IDIOM == IPAD ) {
+        /* do something specifically for iPad. */
+        RegisterViewController *registerView = [[RegisterViewController alloc] initWithNibName:(KIS_ARABIC)?@"RegisterViewController_ar_Ipad":@"RegisterViewController_Ipad" bundle:nil];
+        [self.navigationController pushViewController:registerView animated:YES];
+    } else {
+        /* do something specifically for iPhone or iPod touch. */
+        RegisterViewController *registerView = [[RegisterViewController alloc] initWithNibName:(KIS_ARABIC)?@"RegisterViewController_ar":@"RegisterViewController" bundle:nil];
+        [self.navigationController pushViewController:registerView animated:YES];
+    }
+    
+
 }
 
 - (IBAction)forgotPasswordAction:(id)sender
@@ -229,7 +252,20 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 
 - (REFrostedViewController *) mainViewController
 {
-    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
+    
+    HomeViewController *homeViewControlle;
+    if ( IDIOM == IPAD )
+    {
+        homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar_Ipad":@"HomeViewController_Ipad" bundle:nil];
+        
+        
+    }else {
+        homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
+        
+    }
+    
+    
+    
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
     

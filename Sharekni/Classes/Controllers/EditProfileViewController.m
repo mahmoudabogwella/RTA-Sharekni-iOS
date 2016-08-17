@@ -65,6 +65,11 @@
 @property (strong,nonatomic) NSString *mobileNumber ;
 @property (strong,nonatomic) NSString *NationalitySub ;
 
+//GonLang
+@property (weak, nonatomic) IBOutlet UIButton *Lupdate;
+
+
+//
 //@property (strong,nonatomic) NSDate *date;
 //@property (strong,nonatomic) NSDateFormatter *dateFormatter;
 @property (assign,nonatomic) BOOL isMale;
@@ -87,6 +92,10 @@
     
     self.title = GET_STRING(@"Edit Profile");
     
+    self.maleLabel.text = GET_STRING(@"Male");
+    self.femaleLabel.text = GET_STRING(@"Female");
+    [_Lupdate setTitle:GET_STRING(@"Update") forState:UIControlStateNormal];
+    self.Lupdate.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
     [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
@@ -937,7 +946,19 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
 
 - (REFrostedViewController *) homeViewController
 {
-    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
+    
+    HomeViewController *homeViewControlle;
+    if ( IDIOM == IPAD )
+    {
+        homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar_Ipad":@"HomeViewController_Ipad" bundle:nil];
+        
+        
+    }else {
+        homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
+        
+    }
+    
+    
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
     
@@ -996,16 +1017,51 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     [imageSourceOptions showInView:self.view];
 }
 
-- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
+//- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+//    
+//    UIImagePickerControllerSourceType source;
+//    
+//    if(buttonIndex == 0)
+//    {
+//        source = UIImagePickerControllerSourceTypePhotoLibrary;
+//    }
+//    else if (buttonIndex == 1)
+//    {
+//        if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+//        {
+//            [[[UIAlertView alloc] initWithTitle:nil message:GET_STRING(@"No camera on device") delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil] show];
+//            return;
+//        }
+//        source = UIImagePickerControllerSourceTypeCamera;
+//    }
+//    else
+//    {
+//        return;
+//    }
+//    
+//    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+//    imagePickerController.sourceType = source;
+//    imagePickerController.delegate = self;
+//    if (source != UIImagePickerControllerSourceTypeCamera) {
+//        imagePickerController.modalPresentationStyle = UIModalPresentationFormSheet;
+//    }
+//    imagePickerController.allowsEditing = YES;
+//    [self presentViewController:imagePickerController];
+//}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+{
+    // my code
     UIImagePickerControllerSourceType source;
     
     if(buttonIndex == 0)
     {
         source = UIImagePickerControllerSourceTypePhotoLibrary;
+        NSLog(@"HE Picked Gallery");
     }
     else if (buttonIndex == 1)
     {
+        NSLog(@"HE Picked Camera");
         if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
             [[[UIAlertView alloc] initWithTitle:nil message:GET_STRING(@"No camera on device") delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil] show];
@@ -1026,7 +1082,9 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
     }
     imagePickerController.allowsEditing = YES;
     [self presentViewController:imagePickerController];
+    
 }
+
 
 #pragma mark UIImagePickerController Delegate
 

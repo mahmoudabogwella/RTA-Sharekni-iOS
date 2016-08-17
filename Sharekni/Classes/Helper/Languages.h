@@ -17,7 +17,8 @@ typedef enum {
     Arabic = 0,
     English ,
     Chines ,
-    Indian
+    Indian,
+    Philippine
 } LanguageType;
 
 @interface Languages : NSObject

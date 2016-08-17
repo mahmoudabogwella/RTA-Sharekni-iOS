@@ -20,7 +20,13 @@
 #import "RideDetailsViewController.h"
 #import "DriverDetailsViewController.h"
 #import "HelpManager.h"
-@interface HistoryViewController ()
+
+#import "User.h"
+
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+
+@interface HistoryViewController () <MJAddRemarkPopupDelegate>
 {
     __weak IBOutlet UILabel *createdLblName;
     __weak IBOutlet UILabel *joinedLblName;
@@ -63,7 +69,10 @@
    
     [self configureUI];
     [self getCreatedRides];
+    
 }
+
+
 
 - (void)popViewController
 {

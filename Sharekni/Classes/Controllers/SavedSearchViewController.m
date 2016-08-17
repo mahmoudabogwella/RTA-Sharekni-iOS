@@ -22,7 +22,10 @@
 #import "User.h"
 #import "MobAccountManager.h"
 
-@interface SavedSearchViewController ()
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+
+@interface SavedSearchViewController () <MJAddRemarkPopupDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *noResultLabel;
 
 @property (nonatomic ,weak) IBOutlet UITableView *driverList ;
@@ -47,6 +50,8 @@
     self.noResultLabel.alpha = 0;
     [self getRideDetails];
 }
+
+
 
 - (BOOL)shouldAutorotate
 {

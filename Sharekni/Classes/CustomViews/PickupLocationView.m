@@ -42,7 +42,7 @@
 
 - (void) configureData{
     __block PickupLocationView *blockSelf = self;
-    [KVNProgress showWithStatus:@"Loading"];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
  [[MasterDataManager sharedMasterDataManager] GetEmiratesWithSuccess:^(NSMutableArray *array) {
      blockSelf.emirates = array;
      [KVNProgress dismiss];
@@ -59,7 +59,7 @@
 - (void) configureRegionsWithSelectedEmirate{
     if (self.selectedEmirate) {
         __block PickupLocationView *blockSelf = self;
-        [KVNProgress showWithStatus:@"Loading"];
+        [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
         [[MasterDataManager sharedMasterDataManager] GetRegionsByEmirateID:self.selectedEmirate.EmirateId withSuccess:^(NSMutableArray *array) {
             blockSelf.regions = array;
             [KVNProgress dismiss];
@@ -125,7 +125,7 @@
         blockSelf.emirateTextField.text = blockSelf.selectedEmirate.EmirateArName;
     }];
     
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
         NSLog(@"Row selection was canceled");
     }];
     

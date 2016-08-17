@@ -102,5 +102,8 @@
 @property (nonatomic,strong) NSString *AgeRangeID;
 @property (nonatomic,strong) NSString *AgeRange;
 @property (nonatomic,strong) NSString *AccountRating;
+//ShareLink
+@property (nonatomic,strong) NSString *ShareLink;
+
 
 @end

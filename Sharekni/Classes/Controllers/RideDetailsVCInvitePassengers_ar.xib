@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RideDetailsVCInvitePassengers">
             <connections>
                 <outlet property="FromRegionName" destination="9Ss-AV-fjr" id="xID-WC-cn3"/>
+                <outlet property="LAgerange" destination="2dC-z8-KLh" id="8Rg-XC-mGC"/>
+                <outlet property="LLang" destination="AOE-G2-hmp" id="i5f-VZ-vJj"/>
+                <outlet property="LNationality" destination="h3w-Fx-K9Y" id="Hof-HK-K06"/>
+                <outlet property="LSmokers" destination="e8P-tx-1Co" id="jgY-ff-baU"/>
+                <outlet property="Lgender" destination="Hi1-fq-NW8" id="Xe1-aP-iEt"/>
                 <outlet property="MatchedSearchResults" destination="vQH-UY-PfR" id="e3h-lb-TA1"/>
                 <outlet property="ToRegionName" destination="2uY-OX-8Gx" id="Lz7-8D-xSW"/>
                 <outlet property="_MKmapView" destination="7lu-n3-uSK" id="a8N-Di-jnK"/>

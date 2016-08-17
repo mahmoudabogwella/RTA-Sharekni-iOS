@@ -19,6 +19,7 @@
 @property (nonatomic,strong) UINavigationController * savedSearchNavigationController;
 @property (nonatomic,strong) UINavigationController * notificationsViewController;
 @property (nonatomic,strong) UINavigationController * welcomeNavigationController;
+@property (nonatomic,strong) UINavigationController * FAQVC;
 
 
 - (instancetype) initWithNavigationController:(UINavigationController *) navigationController;

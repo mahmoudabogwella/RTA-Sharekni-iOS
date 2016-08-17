@@ -25,6 +25,9 @@
 @end
 
 static NSString *MJPopupViewDismissedKey = @"MJPopupViewDismissed";
+double i5 = 44.0f;
+double i6 = 100.0f;
+double i6p = 130.0f;
 
 ////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -60,6 +63,18 @@ static void * const keypath = (void*)&keypath;
 
 - (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType
 {
+     i5 = 44.0f;
+     i6 = 100.0f;
+     i6p = 130.0f;
+    [self presentPopupViewController:popupViewController animationType:animationType dismissed:nil];
+}
+
+- (void)presentPopupViewController2:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType
+{
+    ///GonChangeHeight
+    i5 = 326.0f;
+    i6 = 421.0f;
+    i6p = 458.0f;
     [self presentPopupViewController:popupViewController animationType:animationType dismissed:nil];
 }
 
@@ -246,24 +261,24 @@ static void * const keypath = (void*)&keypath;
     if (IS_IPHONE_5)
     {
          popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
-                                         44.0f,
+                                         i5,
                                          popupSize.width,
                                    popupSize.height);
     }
     
-    if (IS_IPHONE_6)
+    if (IS_IPHONE_6) //6s .
     {
             popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
-                                      100.0f,
+                                      i6,
                                       popupSize.width,
                                       popupSize.height);
             
     }
     
-    if(IS_IPHONE_6P)
+    if(IS_IPHONE_6P)// 6sp
     {
         popupEndRect = CGRectMake((sourceSize.width - popupSize.width) / 2,
-                                  130.0f,
+                                  i6p,
                                   popupSize.width,
                                   popupSize.height);
     }

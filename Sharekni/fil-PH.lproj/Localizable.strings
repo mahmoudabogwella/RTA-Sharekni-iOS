@@ -1,0 +1,392 @@
+
+/*
+ Localizable.strings
+ Sharekni
+ 
+ Created by Ahmed Askar on 10/9/15.
+ 
+ */
+
+
+"No" = "Hindi";
+"Take a tour" = "Maglibot"; //√
+
+"Back_icn" = "Back_icn_right";
+"username"  = "Pangalan ng Gumagamit";//√
+"Username (Your Email)" = "Pangalan ng Gumagamit (Ang Iyong Email)"; //√
+"Password"  = "Password"; //√
+"firstName" = "Lumikha ng Account"; //√
+"lastName"  = "Apelyido"; //√
+"mobile"    = "Selpon"; //√
+"nationality" = "Nasyonalidad"; //√
+"pLanguage" = "Piniling Wika"; //√
+"Submit" = "Isumite"; //√
+
+"nameReq" = "Mangyaring ipasok ang iyong pangalan ng gumagamit"; //√
+"passReq" = "Mangyaring ipasok ang password"; //√
+
+"mobileReq" = "Mangyaring ipasok ang numero ng mobile"; //√
+"mailReq" = "mangyaring ipasok ang email address";////
+
+"registration" = "Rehistrasyon"; //√
+"login" = "Pumasok";//√
+"bestDrivers" = "Mga Pinakamahusay na Drayber"; //√
+"searchOptions" = "Dagling Maghanap"; //√
+"mostRides" = "Karamihang mga Pagsakay"; //√
+"advancedSearch" = "Pinasulong na Paghahanap"; //√
+"quickSearch" = "Dagling Maghanap"; //√
+
+"Please set direction for both Pick up and Drop off" = "Upang itabi ang paghahanap dapat mong piliin ang dako ng simula at patutunguhan"; //√
+"loading" = "nagkakarga";
+"Loading..." = "nagkakarga...";
+
+"sharkni" = "Sharekni";
+
+"driverDetails" = "Mga Detalye ng Drayber"; //√
+"rideDetails" = "Mga Detalye ng Pagsakay"; //√
+
+
+"submit" = "Submit";
+"forget" = "Nakalimutan ang Password?";
+"preferedLang" = "Piliin ang Nasyonalidad"; //√
+
+
+//ForgetPassword
+
+"A reset password link has been sent to your email" = "Isang kawing ng muling pagtatakda ng password ay ipinadala sa iyong email. Mangyaring tandaan na ang kawing na ito ay may bisa sa isang araw lamang."; //√
+
+"Email are not matching" = "Mangyaring magpasok ng wastong email address (user@domain.com)"; //√
+
+"Kg" = "Kg";
+//Registeration
+"Please Choose a valid nationality." = "Please Choose a valid nationality.";
+"Please Choose acconut type." = "mangyaring pumili ng uri ng account";
+"Please fill all fields" = "Punan Lahat ng mga Kinakailangang Patlang"; //√
+"First name mustn't have numbers" = "unang pangalan ay hindi dapat magkaroon number";
+"Last name mustn't have numbers" = "apelyido ay hindi dapat magkaroon number";
+"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]" = "Mobile Number ay dapat na lamang 9 at dapat magsimula sa [50 - 55-56 - 52]";
+"Please enter a valid email address" = "Mangyaring magpasok ng wastong email"; //√
+"You should be older than 18 Years"  = "Ikaw ay dapat mas matanda kaysa sa 18 taong gulang"; //√
+"Select" = "Piliin"; //√
+"Cancel" = "Kanselahin"; //√
+"Ok" = "Ok"; //√
+"Email already exists" = "Email Mayroon Na, Mangyaring pumili ng isa pa";//√
+"Mobile number already exists" = "Blg. ng Selpon mayroon na, Mangyaring pumili ng isa pa"; //√
+"Registration done successfully" = "Registration matagumpay na nagawa";
+
+"Choose a language" = "Pumili ng Isang Wika"; //√
+"Choose age range" = "Mangyaring piliin ang hanay ng edad "; //√
+"Select Nationality" = "Piliin ang Nasyonalidad";
+
+"Fill in the email address please" = "Mangyaring Punan ang Email " ;//√
+
+
+
+
+//Home
+"Home Page" = "Tahanang Pahina";
+"Most Rides" = "Karamihang mga Pagsakay"; //√
+"Best Drivers" = "Mga Pinakamahusay na Drayber"; //√
+"Logout" = "Umalis"; //√
+"Language" = "Mga Wika"; //√
+
+"Rides Created" = "Nilikhang mga Pagsakay"; //√
+"Rides Joined" = "Sinalihang mga Pagsakay"; //√
+"Vehicles" = "Aking mga Sasakyan"; //√
+"History" = "Kasaysayan"; //√
+"Permits" = "Mga Permit"; //√
+"Permit" = "Permit"; //√
+"Search" = "Paghahanap"; //√
+"Saved Search" = "Naitabing Paghahanap";
+"Create Ride"  = "Lumikha ng Pagsakay";
+"You Don't Have Any Vehcile Registered" = "Wala kang anumang sasakyan na nakarehistro";//√
+"Do you want to Register it now?" = "Gusto mo bang Magparehistro?";
+"Register Vehicle" = "Magrehistro Ngayon "; //√
+"Dismiss" = "Paalisin"; //√
+
+"No permits found" = "Walang sinalihang pagsakay"; //√
+//Create Rides
+"No rides joined yet" = "No rides sumali pa";
+"Do you want to leave this ride?" = "Sigurado ka ba na nais mong lisanin ang pagsakay na ito?";
+"Ride leaved successfully." = "Linisan Mo Na ang Pagsakay na ito"; //√
+"Select vehicle" = "Mangyaring Piliin ang Sasakyan"; //√
+"Confirm" = "Beripikahin";//√
+"DeleteNotifcationHeaderNot" = "Beripikahin";//√
+
+"Delete" = "Burahin";
+"Edit" = "Iedit ang"; //√
+"Do you want to delete this ride ?" = "Sigurado ka ba na gusto mong burahin ito?"; //√
+"Ride Deleted successfully." = "Ruta Binura"; //√
+"Saved Search" = "Naitabing Paghahanap"; //√
+"Edit Ride" = "Iedit ang Ruta"; //√
+"Please configure your vehicles first" = "Mangyaring i-configure ang iyong sasakyan 's unang";
+"Days Of Week" = "Mga Araw ng Linggo"; //√
+
+
+"Notifications" = "Mga Abiso"; //√
+"Attention" = "atensyon";
+"You must write your review first" = "Mangyaring magsulat muna ng isang rebyu"; //√
+"You must write your remark first" = "Kailangan mong isulat ang iyong pangungusap unang";
+
+
+//Creat Drive
+"You can't use this file number" = "hindi mo maaaring gamitin ang numero ng salansan na ito";
+"License verified, but no cars found" = "lisensiya naberipika, ngunit walang mga kotse ang natagpuan"; //√
+"Invalid data please check again" = "Di-wastong data, mangyaring suriin muli"; //√
+//Driver Ride
+"Details" = "Mga Detalye"; //√
+"Driver" = "Drayber"; //√
+"Leave" = "Lumisan"; //√
+
+"Sorry, you can't send any more invitations" = "Paumanhin, hindi ka makapagpadala ng anumang karagdagang mga imbitasyon";
+
+
+//Add review
+"Write Your Review" = "Isulat ang Iyong Rebyu"; //√
+"Your Review" = "Ang Iyong Rebyu";
+"Review" = "Rebyu"; //√
+"I’d like to join your ride" = "Gusto kong sumali sa iyong pagsakay"; //√
+"I’d like to invite you to my ride" = "Gusto kong imbitahan ka sa aking pagsakay"; //√
+"Write Your Remarks" = "Isulat ang iyong mga masasabi" ; //√
+"Your Remarks" = "Ang iyong mga masasabi"; //√
+
+
+"Map Lookup" = "Pagtingin sa Mapa";
+"Starting Time :" = "Oras ng Pagsisimula :"; //√
+"Set Direction" = "Pumindot upang Magtakda ng Direksiyon"; //√
+"Please set direction" = "Mangyaring itakda ang direksyon";
+"No Rides Found" = "No Drives Natagpuan";
+"Please select from Emirate" = "Mangyaring pumili mula sa Emirate";
+"Please Enter from Region" = "Mangyaring Ipasok mula sa Region";
+"Please Enter to Region" = "Mangyaring Ipasok sa Region";
+"Please select to Emirate" = "Mangyaring pumili para Emirate";
+
+
+"Select Emirate" = "Piliin ang Emirate"; //√
+"Please select from Emirate first" = "Mangyaring pumili mula sa Emirate unang";
+"Please select to Emirate first" = "Mangyaring pumili para Emirate unang";
+"Please enter a valid to region name" = "Ilagay ang ginagamit na to name rehiyon";
+"invalid start date or time" = "di-wastong petsa ng pagsisimula o oras";
+
+"Drivers :" = "Mga Drayber :";//√
+"Passengers :" = "Mga Pasahero :";//√
+
+"Drivers" = "Mga Drayber"; //√
+"Passengers" = "Mga Pasahero";
+"Coming Rides :" = "Paparating na pagsakay:"; //√
+
+"From" = "MULA SA"; //√
+"To" = "Tungo sa";
+"Not Set" = "hindi nakatakda";
+"Ride Days" = "Mga Araw ng Pagsakay"; //√
+
+"Sat " = "Sabado ";
+"Sun " = "Linggo ";
+"Mon " = "Lunes ";
+"Tue " = "Martes ";
+"Wed " = "Miyerkules ";
+"Thu " = "Huwebes ";
+"Fri " = "Biyernes ";
+
+"Terms And Conditions" = "Mga Tuntunin at Kundisyon"; //√
+"Accept" = "Tanggapin"; //√
+"Policy" = "patakaran";
+"Search Results" = "Mga Resulta sa Paghahanap"; //√
+"Has Accepted your request" = "Tinanggap ang Iyong Kahilingan"; //√
+"Send you a join request" =  "Magpadala ka ng Kahilingan sa Pagsali"; //√
+"Notification Details" = "Mga Detalye ng Abiso"; //√
+
+"Mobile verification code has been sent to your mobile" = "Mobile verification code ay naipadala na sa iyong mobile";
+"Please check your mobile number" = "Enter valid Mobile Number";
+
+"Please write your verification code" = "Ipasok ang Iyong Kodigo";
+"Write Your Code" = "Isulat ang Iyong Code";
+"Your Code" = "Kodigo Mo";
+"Resend verification code" = "Magpadala code muli";
+"Enter verification code"  = "Ipasok ang kodigo ng beripikasyon"; //√
+"Traffic File No." = "Blg ng Salansang Pantrapiko"; //√
+
+"Edit Profile" = "Iedit ang profile"; //√
+"Nationalty must be selected" = "Mangyaring piliin ang nasyonalidad"; //√
+"Please check your username and password" = "Suriin ang iyong Pangalan ng Gumagamit at Password"; //√
+"Edit profile info success" = "Mga Detalye Isinapanahon"; //√
+"Select date of birth" = "Petsa ng kapanganakan hindi wasto"; //√
+"Verification Code is wrong" = "Kodigo ay Mali"; //√
+"Mobile Verified" = "Mobile Beripikadong";
+
+"Please select start point" = "Mangyaring Piliin ang Dako ng Simula"; //√
+"Directions can't be edited." = "Direksyon ay hindi maaaring i-edit.";
+"Please set startpoint and destination." = "Mangyaring itakda start point at patutunguhan";
+"Please select Vehicle" = "Mangyaring pumili ng Sasakyan";
+"Please enter ride name" = "Mangyaring ipasok ang pangalan ride";
+"Please select start date" = "Mangyaring pumili ng petsa ng pagsisimula";
+"Please select start time" = "Mangyaring pumili ng oras ng pagsisimula";
+"Please select number of available seats." = "Mangyaring piliin ang bilang ng mga magagamit na upuan";
+"Please select days of week." = "Mangyaring Pumili ng hindi bababa sa isang araw"; //√
+"Ride edited successfully" = "Pagsakay Isinapanahon!";
+"Ride created successfully" = "Pagsakay Nilikha!";//√
+"An error happend when trying to create ride" = "Isang error ang nangyari kapag sinusubukang lumikha ride";
+"Sorry, It's not allowed to create more than two rides" = "Narating Mo Na Ang Max na Pagsakay na Pinahihintulutan!";
+"Sorry, you have yo have at least one ride" = "Hindi mo na kailangang Vehicle";
+"Select Pickup Time" = "Piliin Pickup Time";
+"Select Pickup Date" = "Piliin ang Petsa Pickup";
+"Rating added successfully" = "Ang antas ay matagumpay na naisumite"; //√
+"Unable to add Rating" = "Hindi maidagdag Rating";
+
+
+"Ride Delete successfully." = "Ride Deleted matagumpay";
+"An error occured when deleting ride" = "May naganap na error habang nagbubura ride";
+"Passenger removed successfully" = "Pasahero naburang matagumpay "; //√
+"Unable to remove the passenger" = "Hindi maalis ang mga pasahero";
+"Mobile Number not available" = "Mobile Number hindi magagamit";
+"Do you want to delete this passenger ?" = "Burahin ang Pasahero"; //√
+
+"No history" = "Walang Kasaysayan ang Natagpuan"; //√
+"Do you want to leave this ride" = "Gusto mo bang mag-iwan ito ride";
+"An error occured when leaving ride" = "naganap na error kapag nag-iiwan ride";
+"Permit added successfully." = "Permit Ipinagkaloob"; //√
+"Invalid birthdate" = "Di-wastong petsa ng kapanganakan";
+
+"Male" = "Lalaki"; //√
+"Female" = "Babae"; //√
+"Both" = " Kapwa Dalawa"; //√
+"Yes" = "Oo"; //√
+"No" = "Hindi"; //√
+"Dubai" = "Dubai";
+
+"Please Choose account type." = "Piliin Imahen ng Profile!";
+"No camera on device" = "No camera on device";
+"You cannot choose year before 1900" = "Hindi ka maaaring pumili taon bago 1900";
+"Photo Library" = "Pumili mula sa Aklatan";
+"Camera" = "Camera";
+
+"You don't have joined rides yet" = "Walang sinalihang pagsakay"; //√
+"You don't have created rides yet" = "Wala pang nilikhang mga pagsakay"; //√
+"Received your request and waiting for approval" = "Natanggap Ang Iyong Kahilingan At Naghihintay ng Pagsang-ayon"; //√
+"Request deleted successfully" = "Kahilingan ay matagumpay na tinanggal"; //√
+"Cannot delete Request" = "Hindi matanggal Paghiling";
+
+"Do you want to delete this review ?" = "Burahin ang Rebyu"; //√
+"Edit Review" = "Edit Review";
+"Review deleted successfully" = "Rebyu Binura"; //√
+"Cannot delete Review" = "Hindi matanggal ang Review";
+"Password must be at least 5 characters" = "Pakitype ang password ng hindi bababa sa 5 mga karakter"; //√
+"data are not matching" = "data ay hindi tumutugma";
+"Not Specified" = " Hindi Tinukoy"; //√
+"No Specified" = " Hindi Tinukoy"; //√
+"No Specified" =  " Hindi Tinukoy"; //√
+"Error" = "Mali"; //√
+"You don't have any notifications" = "Hindi mo na kailangang ng mga abiso";
+"Do you want to delete this request ?" = "Gusto mo bang tanggalin ang kahilingang ito?";
+"Request had been sent Successfully , Wait for driver Approval." = "Kahilingan ay naipadalang matagumpay, Maghintay sa Pagsang-ayon ng Drayber."; //√
+"Request had been sent Successfully , wait for Passenger's Approval" = "Kahilingan ay naipadalang matagumpay, Maghintay sa Pagsang-ayon ng Pasahero."; //√
+
+// Passenger invitation
+"Has Accepted your invitation" = "Ay Tinanggap iyong imbitasyon";
+"Received your invitation and waiting for approval" = "Natanggap inyong imbitasyon, naghihintay para sa apruba";
+"Send you a invitation request" = "Ay Nagpadala sa iyo ng isang Imbitasyon";
+
+"Cannot delete invitation" = "Hindi matanggal ang imbitasyon";
+"Invitation deleted successfully" = "Invitation Matagumpay na nabura";
+"Do you want to delete this invitation ?" = "Gusto mo bang tanggalin ang imbitasyong ito?";
+
+"Has Rejected your invitation" = "Ay Tinanggihan inyong imbitasyon";
+
+
+"Has Rejected your join Request" = "Tinanggihan ang Iyong Kahilingan"; //√
+
+//Quick Search
+"Please click on set direction button to set start and end point" = "Pumindot upang Magtakda ng Direksiyon";
+"Start Date" = "Petsa ng Pagsisimula "; //√
+"Start Time" = "Oras ng Simula"; //√
+"Top Rides" = "Pinakainaasam na mga Pagsakay"; //√
+
+//Set Direction in quick Search
+"Pick up" = "Pagdadaanan"; //√
+"Drop off" = "Pagbababaan";
+"Done" = "Tapos"; //√
+"Select Region" = "Piliin ang Lugar"; //√
+
+//Advanced Search
+"Single Ride" = "Biyaheng Papunta";
+"Periodic" = "Pana-panahon"; //√
+"Optional" = "Opsiyonal"; //√
+"Not Accept" = "Hindi Tumatanggap";//√
+
+//Ride Details
+
+"Last Seen" = "Huling Nakita :"; //√
+"Co2 Saving" = "Pagtitipid ng CO2 "; //√
+
+//Driver Details
+"Points" = "Mga Dako"; //√
+"Km" = "Km";//√
+"Routes" = "Mga Ruta"; //√
+"My Work" = "My Work";
+"Go to work" = "Pumunta sa trabaho"; //√
+
+//Ride Details
+"Gender" = "Kasarian"; //√
+"Age Range" = "Hanay ng Edad"; //√
+"Smokers" = "Mga Naninigarilyo"; //√
+"Preferences"  = "Mga Preperensiya"; //√
+"Join Ride" = "sumali sa pagsakay"; //√
+"Matched Search Results" = "Katugmang Resulta ng Paghahanap"; //√
+"Share" = "Share";
+//Registration
+"Passenger" = "Pasahero"; //√
+"+18 Years" = "+18 taon";
+"Upload your photo" = "Mag-akyat ng iyong Larawan"; //√
+"I accept the RTA's terms and conditions" = "Tinatanggap Ko Ang Mga Tuntunin at Kundisyon ng .RTA";
+"Privacy and Policy" = "Patakaran sa Pagkapribado"; //√
+"Save" = "Itabi"; //√
+"Register Now" = "Magrehistro Ngayon";
+"Forget Password?" = "Nakalimutan ang Password?"; //√
+
+//Vehicles
+"Register Vehicles" = "Magrehistro ng Sasakyan"; //√
+"Date of birth" = "Petsa ng Kapanganakan"; //√
+
+//Creat Ride
+"Available Seats" = "Magagamit na (mga) Upuan"; //√
+//Homae Page
+"Verify" = "Beripikahin"; //√
+//Edit Profile
+"Update" = "Itabi";
+
+"Invite" = "Mag-anyaya"; //√
+"Join" = "Join";
+"Save Search" = "Itabi ang Paghahanap"; //√
+
+
+"Sorry but you have to be logged in facebook to share" = "Sorry but you have to be logged in facebook to share";
+
+
+"This app" = "ang app na ito";
+"Micro app" = "Micro app";
+"Transation" = "Pagsasalin";
+
+"Help & FAQ" = "FAQ"; //√
+"No Passengers Found" = "Walang mga Pasahero ang Natagpuan" ; //√
+
+//map LookUp
+
+"Please turn on GPS first" = "Mangyaring Buksan Muna ang Gps" ; //√
+
+"Preferred Gender" = "Piniling Kasarian";
+
+
+
+"Happy Meter" = "kaligayahan";
+
+
+"Filipino" = "filipino";
+"Chinese" = "Tsino";
+"Arabic" = "Arabe";
+"English" = "Ingles";
+
+
+
+
+
+// 9 , 12 ,19, 21 ,23,25 , 38 ("Please write your verification code") ,42 (Not)

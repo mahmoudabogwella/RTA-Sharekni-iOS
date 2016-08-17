@@ -39,6 +39,10 @@
 
 #import "MostRideDetailsViewControllerForPassenger.h"
 
+#import "User.h"
+
+#import "HappyMeter.h"
+
 
 #define VERTICAL_SPACE 15
 #define REVIEWS_CELL_HEIGHT  117
@@ -200,6 +204,8 @@
     [self configureMapView];
     [self configureData];
     [self getDriverRate];
+    
+   
 }
 
 - (BOOL)shouldAutorotate
@@ -630,17 +636,42 @@
         [self presentPopupViewController:addReview animationType:MJPopupViewAnimationSlideBottomBottom];
     }
     else{
-        if (  [self->selected  isEqual: @"Arabic"]) {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
-        }else {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
+        
+        
+        
+        if ( IDIOM == IPAD ) {
+            /* do something specifically for iPad. */
+            
+            if (  [self->selected  isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
+        } else {
+            /* do something specifically for iPhone or iPod touch. */
+            
+            if (  [self->selected  isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
         }
+        
+        
         
     }
 }
@@ -654,13 +685,28 @@
 
 - (void) editRideAction
 {
-    CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar":@"CreateRideViewController" bundle:nil];
-    editRideViewController.routeDetails = self.routeDetails;
-    __block RideDetailsViewController *blockSelf = self;
-    [editRideViewController setEditHandler:^{
-        [blockSelf refreshInfo];
-    }];
-    [self.navigationController pushViewController:editRideViewController animated:YES];
+    
+    if (IDIOM == IPAD) {
+        
+        CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar_Ipad":@"CreateRideViewController_IPad" bundle:nil];
+        editRideViewController.routeDetails = self.routeDetails;
+        __block RideDetailsViewController *blockSelf = self;
+        [editRideViewController setEditHandler:^{
+            [blockSelf refreshInfo];
+        }];
+        [self.navigationController pushViewController:editRideViewController animated:YES];
+        
+    }else {
+        CreateRideViewController *editRideViewController = [[CreateRideViewController alloc] initWithNibName:(KIS_ARABIC)?@"CreateRideViewController_ar":@"CreateRideViewController" bundle:nil];
+        editRideViewController.routeDetails = self.routeDetails;
+        __block RideDetailsViewController *blockSelf = self;
+        [editRideViewController setEditHandler:^{
+            [blockSelf refreshInfo];
+        }];
+        [self.navigationController pushViewController:editRideViewController animated:YES];
+    }
+    
+
 }
 
 - (void) permitRideAction
@@ -710,7 +756,7 @@
     //        {
     //            [self.navigationController popToViewController:controller animated:YES];
     if (self.alreadyJoined == NO) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:GET_STRING(@"Received your request and waiting for The approval") preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:GET_STRING(@"Request had been sent Successfully , Wait for driver Approval.") preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *ok = [UIAlertAction actionWithTitle:GET_STRING(@"Ok") style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
@@ -739,16 +785,38 @@
     }
     else
     {
-        if (  [self->selected  isEqual: @"Arabic"]) {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
-        }else {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
+        
+        
+        if ( IDIOM == IPAD ) {
+            /* do something specifically for iPad. */
+            
+            if (  [self->selected  isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
+        } else {
+            /* do something specifically for iPhone or iPod touch. */
+            
+            if (  [self->selected  isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
         }
         
     }
@@ -939,6 +1007,11 @@
     else if (IS_IPHONE_6P)
     {
         frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, 414.0f, 280);
+    }else if (IDIOM == IPAD) {
+        CGFloat width = [UIScreen mainScreen].bounds.size.width;
+        
+        frame =  CGRectMake(_MKmapView.frame.origin.x, _MKmapView.frame.origin.y, width, 280);
+        
     }
     else
     {
@@ -1027,7 +1100,7 @@
 {
     if(![MFMessageComposeViewController canSendText])
     {
-        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil];
         [warningAlert show];
         return;
     }

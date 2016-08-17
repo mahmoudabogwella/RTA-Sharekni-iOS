@@ -47,7 +47,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [_mapView bringSubviewToFront:_TheMapSwitcherOutLet];
+    [_mapView bringSubviewToFront:_TheMapSwitcherOutLet];
+    
+    
+    
+//    if([CLLocationManager locationServicesEnabled] &&
+//       [CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
+//        // show the map
+//        NSLog(@"GPS working and he allowes it");
+//    } else {
+//        __block MapLookupViewController *blockSelf = self;
+//   [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please turn on GPS first")];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [blockSelf.navigationController popViewControllerAnimated:YES];
+//            
+//        });
+//    }
     
     currentLocationEnabled = NO;
     self.title = GET_STRING(@"Map Lookup");
@@ -107,6 +122,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+   
+
+    
     //    [mapView_ addObserver:self forKeyPath:@"myLocation" options:0 context:nil];
 //    UISegmentedControl * cntrl = [[UISegmentedControl alloc]   initWithItems:@[[UIImage imageNamed:@"Circle"],@"2"]];
 //    _mapView.frame = CGRectMake(30, 100, 200, 50);
@@ -122,7 +141,11 @@
 
 - (void) configureMapView{
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:_mapView.userLocation.coordinate.latitude longitude:_mapView.userLocation.coordinate.longitude zoom:14];
-    mapView_ = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+        mapView_ = [GMSMapView mapWithFrame:CGRectMake(0,0, width, height) camera:camera];
+
     mapView_.myLocationEnabled = YES;
     [self.view addSubview:mapView_];
     mapView_.settings.compassButton = YES;
@@ -471,7 +494,7 @@
 
 - (void) configureData{
     
-    [KVNProgress showWithStatus:@"Loading..."];
+    [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
     __block MapLookupViewController *blockSelf = self;
     if ( _MapDeciderSwitchBoolean == YES && [_MapDeciderForSwitch  isEqual: @"Driver"]  ) {
         

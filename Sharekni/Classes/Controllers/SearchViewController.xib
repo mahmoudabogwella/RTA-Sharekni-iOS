@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController">
             <connections>
+                <outlet property="AdvancedSearch" destination="uFj-QM-Wmb" id="Vud-vY-ubN"/>
                 <outlet property="SwitchImage" destination="apc-Ob-xVA" id="llU-II-SBw"/>
+                <outlet property="TopRides" destination="RQL-Op-Nec" id="GxR-Xw-RNE"/>
                 <outlet property="background" destination="yhL-B1-Ye4" id="NuS-HZ-TUQ"/>
                 <outlet property="dateLabel" destination="taH-E8-djB" id="tcT-YC-kli"/>
                 <outlet property="dateView" destination="0R2-qQ-Sdr" id="S3I-LD-p8Y"/>
@@ -15,6 +17,7 @@
                 <outlet property="dropoffTitleLabel" destination="aJv-Pp-HzO" id="9mT-W1-hyv"/>
                 <outlet property="emiratesRegionsView" destination="N9k-FZ-MTx" id="eQh-CG-r2S"/>
                 <outlet property="helpLabel" destination="7P3-RI-uAR" id="g2H-Hm-Eld"/>
+                <outlet property="mapLook" destination="uTD-R5-ZlG" id="d3M-GH-vkY"/>
                 <outlet property="pickupTitleLabel" destination="Tyo-Et-eSA" id="19C-ur-kAG"/>
                 <outlet property="saveSearchLabel" destination="crW-OT-bpr" id="DsC-2V-lJs"/>
                 <outlet property="saveSearchView" destination="jAB-i3-cvH" id="yex-uF-dHR"/>
@@ -253,8 +256,8 @@
                     <rect key="frame" x="117" y="478" width="89" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Rides" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RQL-Op-Nec">
-                    <rect key="frame" x="115" y="525" width="89" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Rides" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="7" id="RQL-Op-Nec">
+                    <rect key="frame" x="115" y="525" width="89" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" red="1" green="0.0092928023220000006" blue="0.06065833943" alpha="1" colorSpace="calibratedRGB"/>
@@ -264,7 +267,7 @@
                     <rect key="frame" x="7" y="460" width="304" height="10"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map Lookup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uTD-R5-ZlG">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map Lookup" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="uTD-R5-ZlG">
                     <rect key="frame" x="8" y="525" width="89" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>

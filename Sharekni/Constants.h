@@ -9,6 +9,8 @@
 #ifndef Sharekni_Constants_h
 #define Sharekni_Constants_h
 
+#define IDIOM    UI_USER_INTERFACE_IDIOM()
+#define IPAD     UIUserInterfaceIdiomPad
 
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
@@ -44,10 +46,10 @@
 #define XML_Tag1 @"<string xmlns=\"http://Sharekni-MobIOS-Data.org/\">"
 #define XML_Tag3 @"<string xmlns=\"http://Sharekni-MobIOS-Data.org/\">"
 
-#define Sharkeni_BASEURL @"https://www.sharekni.ae/_mobfiles/"
+//#define Sharkeni_BASEURL @"https://www.sharekni.ae/_mobfiles/"
 
-//#define Sharkeni_BASEURL @"http://213.42.51.219/_mobfiles/"
-
+#define Sharkeni_BASEURL @"http://213.42.51.219/_mobfiles/"
+//
 //#define Sharkeni_BASEURL @"http://sharekni-web.sdg.ae/_mobfiles/"
 
 #define GetAgeRanges_URL @"cls_mobios.asmx/GetAgeRanges"
@@ -100,6 +102,12 @@
 #define Yellow_HEX @"f30c12"
 #define Red_UIColor [UIColor add_colorWithRGBHexString:Red_HEX]
 #define Yellow_UIColor [UIColor add_colorWithRGBHexString:Yellow_HEX]
+
+
+#define serviceProviderSecretHM @"aaaf179f5f4b852f"
+#define clientIDHM @"dsg123"
+#define microAppHM @"Sharekni"
+#define serviceProviderHM @"DSG"
 
 #pragma ENUMS
 

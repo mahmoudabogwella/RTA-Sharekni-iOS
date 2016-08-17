@@ -16,5 +16,8 @@
 @property (nonatomic ,strong) CreatedRide *createdRide;
 @property (nonatomic ,strong) Ride *joinedRide;
 
+@property (nonatomic,strong) NSString *ShareLink;//unUsed
+@property (nonatomic,strong) NSString *RouteName;
+
 
 @end

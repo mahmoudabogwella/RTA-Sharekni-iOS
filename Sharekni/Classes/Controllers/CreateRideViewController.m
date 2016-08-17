@@ -36,7 +36,12 @@
 
 #import "MobAccountManager.h"
 #import "MostRideDetailsViewControllerForPassenger.h"
-@interface CreateRideViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate,UITextFieldDelegate>
+#import "User.h"
+
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+@interface CreateRideViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,MLPAutoCompleteTextFieldDataSource,MLPAutoCompleteTextFieldDelegate,UITextFieldDelegate,MJAddRemarkPopupDelegate>
+
 
 @property (weak, nonatomic) IBOutlet UIImageView *seat4ImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *seat3ImageView;
@@ -89,6 +94,8 @@
 @property (assign, nonatomic)  BOOL isFemaleOnly;
 @property (strong,nonatomic)   NSDate *pickupDate;
 @property (strong,nonatomic)   NSDate *pickupTime;
+@property (weak, nonatomic) IBOutlet UILabel *Lpick;
+@property (weak, nonatomic) IBOutlet UILabel *LdropoffTitleLabel;
 
 @property (strong,nonatomic) NSArray *nationalties;
 @property (nonatomic,strong) NSMutableArray *nationaltiesStringsArray;
@@ -133,7 +140,19 @@
 @property (weak ,nonatomic) IBOutlet UIButton *notAcceptBtn ;
 
 @property (nonatomic,strong) NSString *RouteID;
+@property (nonatomic,strong) NSString *destanceValue;
+@property (nonatomic,strong) NSString *durationValue;
+//lang
+@property (weak, nonatomic) IBOutlet UILabel *LSmokers;
 
+@property (weak, nonatomic) IBOutlet UILabel *LPrefGender;
+
+@property (weak, nonatomic) IBOutlet UILabel *LBoth;
+@property (weak, nonatomic) IBOutlet UILabel *LMale;
+@property (weak, nonatomic) IBOutlet UILabel *LFemale;
+@property (weak, nonatomic) IBOutlet UILabel *LAccept;
+@property (weak, nonatomic) IBOutlet UILabel *LDoesnotAccept;
+//
 @end
 
 @implementation CreateRideViewController
@@ -148,15 +167,103 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.isEdit = (self.ride != nil) || (self.routeDetails !=nil);
+    //Gonlang
+    self.dateLabel.text = GET_STRING(@"Start Date");
+    self.timeLabel.text = GET_STRING(@"Start Time");
+    self.helpLabel.text = GET_STRING(@"Please click on set direction button to set start and end point");
+    self.singleRideLabel.text = GET_STRING(@"Single Ride");
+    self.periodicLabel.text = GET_STRING(@"Periodic");
+    [_setDirectionButton setTitle:GET_STRING(@"Set Direction") forState:UIControlStateNormal];
+    self.Lpick.text = GET_STRING(@"Pick up");
+    self.LdropoffTitleLabel.text = GET_STRING(@"Drop off");
+    self.LPrefGender.text = GET_STRING(@"Preferred Gender");
+    self.LMale.text = GET_STRING(@"Male");
+    self.LFemale.text = GET_STRING(@"Female");
+    self.LSmokers.text = GET_STRING(@"Smokers");
+    self.LBoth.text = GET_STRING(@"Both");
+    self.LAccept.text = GET_STRING(@"Accept");
+    self.LDoesnotAccept.text = GET_STRING(@"Not Accept");
     
+    _setDirectionButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    self.optionalSectionLabel.text = GET_STRING(@"Optional");
+    self.availableSeatsLabel.text = GET_STRING(@"Available Seats");
+    [_nationalityTextField setText:GET_STRING(@"Select Nationality")];
+    _nationalityTextField.font =  [ UIFont boldSystemFontOfSize:15];
+    self.satLabel.text = GET_STRING(@"Sat ");
+    self.sunLabel.text = GET_STRING(@"Sun ");
+    self.monLabel.text = GET_STRING(@"Mon ");
+    self.tueLabel.text = GET_STRING(@"Tue ");
+    self.wedLabel.text = GET_STRING(@"Wed ");
+    self.thrLabel.text = GET_STRING(@"Thu ");
+    self.friLabel.text = GET_STRING(@"Fri ");
+    
+    [self.selectLanguageButton setTitle:GET_STRING(@"Choose a language") forState:UIControlStateNormal];
+    [self.selectAgeRangeButton setTitle:GET_STRING(@"Choose age range") forState:UIControlStateNormal];
+    self.selectAgeRangeButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    self.selectLanguageButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+
+    //
     [self configureUI];
     [self configureSeats];
     [self configureDaysLabels];
     [self configureData];
     [self configureRoadTypeView];
     [self configureGenderView];
+    
+    NSString *startLat ;
+    NSString *startLng ;
+    
+    NSString *endLat ;
+    NSString *endLng ;
+    
+    if (self.isEdit) {
+        startLat = self.routeDetails.StartLat;
+        startLng = self.routeDetails.StartLng;
+        endLat = self.routeDetails.EndLat;
+        endLng = self.routeDetails.EndLng;
+    }
+    else{
+        startLat = _fromRegion.RegionLatitude;
+        startLng = _fromRegion.RegionLongitude;
+        endLat = _toRegion.RegionLatitude;
+        endLng = _toRegion.RegionLongitude;
+    }
+    //GonFollowOrders
+    
+    
+    //GonMade DurationAndDestination
+    NSString *requestBody = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%@,%@&destinations=%@,%@&key=AIzaSyDjDfEe3c7xfwpLqVhktVa9Nkoh2fB9Z_I",startLat,startLng,endLat,endLng];
+    
+    NSLog(@"getMapLookupForPassengerWithSuccess : %@",requestBody);
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:requestBody parameters:nil success:^(AFHTTPRequestOperation *  operation, id responseObject) {
+        
+        NSArray *data = responseObject;
+        NSLog(@" data : %@",data);
+        NSArray *index1 = [data valueForKey:@"rows"];
+        NSLog(@" index1 : %@",index1);
+        NSArray *index  = index1 ;
+        NSString *index2 = [index objectAtIndex:0];
+        NSLog(@" index2 : %@",index2);
+        NSArray *index3 = [index2 valueForKey:@"elements"];
+        NSLog(@" index3 : %@",index3);
+        NSArray *index4 = [index3 objectAtIndex:0];
+        NSLog(@" index4 : %@",index4);
+        NSArray *index5 = [index4 valueForKey:@"distance"];
+        NSLog(@" index5 : %@",index5);
+        _destanceValue = [index5 valueForKey:@"value"];
+        NSLog(@" index6 : %@",_destanceValue);
+        NSArray *index6 = [index4 valueForKey:@"duration"];
+        NSLog(@" index7 : %@",index6);
+        _durationValue = [index6 valueForKey:@"value"];
+        NSLog(@" index8 : %@",_durationValue);
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *  operation, NSError * error) {
+        
+    }];
 }
-
 - (BOOL)shouldAutorotate
 {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -369,6 +476,60 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent = NO;
+    NSString *startLat ;
+    NSString *startLng ;
+    
+    NSString *endLat ;
+    NSString *endLng ;
+    
+    if (self.isEdit) {
+        startLat = self.routeDetails.StartLat;
+        startLng = self.routeDetails.StartLng;
+        endLat = self.routeDetails.EndLat;
+        endLng = self.routeDetails.EndLng;
+    }
+    else{
+        startLat = _fromRegion.RegionLatitude;
+        startLng = _fromRegion.RegionLongitude;
+        endLat = _toRegion.RegionLatitude;
+        endLng = _toRegion.RegionLongitude;
+    }
+    //GonFollowOrders
+    
+    
+    //GonMade DurationAndDestination
+    NSString *requestBody = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%@,%@&destinations=%@,%@&key=AIzaSyDjDfEe3c7xfwpLqVhktVa9Nkoh2fB9Z_I",startLat,startLng,endLat,endLng];
+    
+    NSLog(@"getMapLookupForPassengerWithSuccess : %@",requestBody);
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:requestBody parameters:nil success:^(AFHTTPRequestOperation *  operation, id responseObject) {
+        
+        NSArray *data = responseObject;
+        NSLog(@" data : %@",data);
+        NSArray *index1 = [data valueForKey:@"rows"];
+        NSLog(@" index1 : %@",index1);
+        NSArray *index  = index1 ;
+        NSString *index2 = [index objectAtIndex:0];
+        NSLog(@" index2 : %@",index2);
+        NSArray *index3 = [index2 valueForKey:@"elements"];
+        NSLog(@" index3 : %@",index3);
+        NSArray *index4 = [index3 objectAtIndex:0];
+        NSLog(@" index4 : %@",index4);
+        NSArray *index5 = [index4 valueForKey:@"distance"];
+        NSLog(@" index5 : %@",index5);
+        _destanceValue = [index5 valueForKey:@"value"];
+        NSLog(@" index6 : %@",_destanceValue);
+        NSArray *index6 = [index4 valueForKey:@"duration"];
+        NSLog(@" index7 : %@",index6);
+        _durationValue = [index6 valueForKey:@"value"];
+        NSLog(@" index8 : %@",_durationValue);
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *  operation, NSError * error) {
+        
+    }];
+
 }
 
 #pragma SEATS
@@ -1060,7 +1221,8 @@
         }
         //GonFollowOrders
         
-        [[MobDriverManager sharedMobDriverManager] createEditRideWithName:self.rideNameTextField.text fromEmirateID:fromEmirateID fromRegionID:fromRegionID toEmirateID:toEmirateID toRegionID:toRegionID isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicleID:self.isEdit ? self.routeDetails.VehicelId.stringValue : self.selectedVehicle.ID.stringValue noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange  isEdit:self.isEdit routeID:self.routeDetails.ID.stringValue startLat:startLat startLng:startLng endLat:endLat endLng:endLng Smoke:acceptSmoke WithSuccess:^(NSString *response) {
+        
+        [[MobDriverManager sharedMobDriverManager] createEditRideWithName:self.rideNameTextField.text fromEmirateID:fromEmirateID fromRegionID:fromRegionID toEmirateID:toEmirateID toRegionID:toRegionID isRounded:isRounded date:self.pickupDate saturday:self.satActive sunday:self.sunActive monday:self.monActive tuesday:self.tueActive wednesday:self.wedActive thursday:self.thrActive friday:self.friActive PreferredGender:gender vehicleID:self.isEdit ? self.routeDetails.VehicelId.stringValue : self.selectedVehicle.ID.stringValue noOfSeats:self.noOfSeats language:self.selectedLanguage nationality:self.selectedNationality  ageRange:self.selectedAgeRange  isEdit:self.isEdit routeID:self.routeDetails.ID.stringValue startLat:startLat startLng:startLng endLat:endLat endLng:endLng Smoke:acceptSmoke  Distance: _destanceValue Duration: _durationValue  WithSuccess:^(NSString *response) {
             [KVNProgress dismiss];
             
             if (![response containsString:@"-"]) {
@@ -1149,6 +1311,9 @@
         
     }
 }
+
+
+
 
 #pragma Pickers
 

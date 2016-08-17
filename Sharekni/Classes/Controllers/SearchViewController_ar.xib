@@ -303,7 +303,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="236" y="326"/>
+            <point key="canvasLocation" x="279" y="368"/>
         </view>
     </objects>
     <resources>

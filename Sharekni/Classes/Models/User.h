@@ -40,6 +40,9 @@
 @property (nonatomic,strong) NSString *AccountTypeArName;
 @property (nonatomic,strong) NSString *AccountTypeEnName;
 @property (nonatomic,strong) NSString *AccountStatus;
+
+@property (nonatomic,strong) NSString *IsPassenger;
+
 @property (nonatomic,strong) NSNumber *PrefferedLanguage;
 @property (nonatomic,strong) NSString *AccountRating;
 @property (nonatomic,strong) NSNumber *DriverMyRidesCount;

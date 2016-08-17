@@ -35,7 +35,7 @@
 "advancedSearch" = "Advanced Search";
 "quickSearch" = "Quick Search";
 
-"Please set direction for both Pick up and Drop off" = "Please set direction for both Pick up and Drop off";
+"Please set direction for both Pick up and Drop off" = "To save the search you must choose a start point and also a destination";
 "loading" = "Loading";
 "Loading..." = "Loading...";
 
@@ -52,7 +52,7 @@
 
 //ForgetPassword
 
-"A reset password link has been sent to your email" = "A reset password link has been sent to your email";
+"A reset password link has been sent to your email" = "A reset password link has been sent to your email. Please note that this link is valid for one day only.";
 
 "Email are not matching" = "Invalid Email";
 
@@ -69,12 +69,17 @@
 "Select" = "Select";
 "Cancel" = "Cancel";
 "Ok" = "Ok";
-"Email already exists" = "Email already exists please choose another";
-"Mobile number already exists" = "Mobile number already exists";
+"Email already exists" = "Email already exists,please choose an alternative email address";
+"Mobile number already exists" = "Mobile No. already exist, please choose another";
 "Registration done successfully" = "Registration done successfully";
 
 "Choose a language" = "Choose a language";
 "Choose age range" = "Choose age range";
+"Select Nationality" = "Select Nationality";
+
+"Fill in the email address please" = "Fill in the email address please" ;
+
+
 
 //Home
 "Home Page" = "Home Page";
@@ -94,22 +99,22 @@
 "Create Ride"  = "Create Ride";
 "You Don't Have Any Vehcile Registered" = "You Don't Have Any Registered Vehciles";
 "Do you want to Register it now?" = "Do you want to Register?";
-"Register Vehicle" = "Register Now";
+"Register Vehicle" = "Register Vehicle";
 "Dismiss" = "Dismiss";
 
-"No permits found" = "No permits found";
+"No permits found" = "There is no permit yet";
 //Create Rides
 "No rides joined yet" = "No rides joined yet";
 "Do you want to leave this ride?" = "Do you want to leave this ride?";
-"Ride leaved successfully." = "Ride leaved successfully.";
+"Ride leaved successfully." = "You have left this Ride";
 "Select vehicle" = "Select vehicle";
 "Confirm" = "Confirm";
 "DeleteNotifcationHeaderNot" = "Confirm";
 
 "Delete" = "Delete";
 "Edit" = "Edit";
-"Do you want to delete this ride ?" = "Do you want to delete this ride ?";
-"Ride Deleted successfully." = "Ride Deleted successfully.";
+"Do you want to delete this ride ?" = "Are you sure that you want to delete this ride?";
+"Ride Deleted successfully." = "Route Deleted";
 "Saved Search" = "Saved Search";
 "Edit Ride" = "Edit Ride";
 "Please configure your vehicles first" = "Please configure your vehicles first";
@@ -118,7 +123,7 @@
 
 "Notifications" = "Notifications";
 "Attention" = "Attention";
-"You must write your review first" = "You must write your review first";
+"You must write your review first" = "Please write a review first";
 "You must write your remark first" = "You must write your remark first";
 
 
@@ -190,21 +195,21 @@
 "Notification Details" = "Notification Details";
 
 "Mobile verification code has been sent to your mobile" = "Mobile verification code has been sent to your mobile";
-"Please check your mobile number" = "Please check your mobile number";
+"Please check your mobile number" = "Enter valid Mobile Number";
 
 "Please write your verification code" = "Please write your verification code";
 "Write Your Code" = "Write Your Code";
 "Your Code" = "Your Code";
-"Resend verification code" = "Resend verification code";
+"Resend verification code" = "Resend code again";
 "Enter verification code"  = "Enter verification code";
 "Traffic File No." = "Traffic File No.";
 
 "Edit Profile" = "Edit Profile";
 "Nationalty must be selected" = "Nationalty must be selected";
-"Please check your username and password" = "Please check your username and password";
-"Edit profile info success" = "Edit profile info success";
-"Select date of birth" = "Select date of birth";
-"Verification Code is wrong" = "Verification Code is wrong";
+"Please check your username and password" = "Please check your username or password";
+"Edit profile info success" = "Details Updated";
+"Select date of birth" = "Date of Birth invalid";
+"Verification Code is wrong" = "Code is wrong";
 "Mobile Verified" = "Mobile Verified";
 
 "Please select start point" = "Please select start point";
@@ -215,26 +220,26 @@
 "Please select start date" = "Please select start date";
 "Please select start time" = "Please select start time";
 "Please select number of available seats." = "Please select number of available seats.";
-"Please select days of week." = "Please select days of week.";
-"Ride edited successfully" = "Ride edited successfully";
+"Please select days of week." = "Please choose at least one day";
+"Ride edited successfully" = "Ride updated!!";
 "Ride created successfully" = "Ride created successfully";
 "An error happend when trying to create ride" = "An error happend when trying to create ride";
-"Sorry, It's not allowed to create more than two rides" = "You cannot create more than two rides.";
+"Sorry, It's not allowed to create more than two rides" = "You Have Reached Maximum Rides Allowable!!";
 "Sorry, you have yo have at least one ride" = "You don't have any Vechile";
 "Select Pickup Time" = "Select Pickup Time";
 "Select Pickup Date" = "Select Pickup Date";
-"Rating added successfully" = "Rating added successfully";
+"Rating added successfully" = "Rate is successfully submitted";
 "Unable to add Rating" = "Unable to add Rating";
 
 
 "Ride Delete successfully." = "Ride Delete successfully.";
 "An error occured when deleting ride" = "An error occured when deleting ride";
-"Passenger removed successfully" = "Passenger removed successfully";
+"Passenger removed successfully" = "Are you sure you want to delete this?";
 "Unable to remove the passenger" = "Unable to remove the passenger";
 "Mobile Number not available" = "Mobile Number not available";
 "Do you want to delete this passenger ?" = "Do you want to delete this passenger ?";
 
-"No history" = "No history";
+"No history" = "No history Found";
 "Do you want to leave this ride" = "Do you want to leave this ride";
 "An error occured when leaving ride" = "An error occured when leaving ride";
 "Permit added successfully." = "Permit added successfully.";
@@ -253,10 +258,10 @@
 "Photo Library" = "Photo Library";
 "Camera" = "Camera";
 
-"You don't have joined rides yet" = "You don't have joined rides yet";
+"You don't have joined rides yet" = "There are no rides joined";
 "You don't have created rides yet" = "You don't have created rides yet";
 "Received your request and waiting for approval" = "Received your request and waiting for approval";
-"Request deleted successfully" = "Request deleted successfully";
+"Request deleted successfully" = "Request is successfully removed";
 "Cannot delete Request" = "Cannot delete Request";
 
 "Do you want to delete this review ?" = "Do you want to delete this review ?";
@@ -271,8 +276,8 @@
 "Error" = "Error";
 "You don't have any notifications" = "You don't have any notifications";
 "Do you want to delete this request ?" = "Do you want to delete this request ?";
-"Request had been sent Successfully , Wait for driver Approval." = "Request had been sent Successfully , Wait for driver Approval.";
-"Received your request and waiting for The approval" = "Received your request and waiting for The approval";
+"Request had been sent Successfully , Wait for driver Approval." = "Request had been sent Successfully , Wait for driver's Approval.";
+"Request had been sent Successfully , wait for Passenger's Approval" = "Request had been sent Successfully , wait for Passenger's Approval";
 
 // Passenger invitation
 "Has Accepted your invitation" = "Has Accepted your invitation";
@@ -325,7 +330,7 @@
 "Preferences"  = "Preferences";
 "Join Ride" = "Join Ride";
 "Matched Search Results" = "Matched Search Results";
-
+"Share" = "Share";
 //Registration
 "Passenger" = "Passenger";
 "+18 Years" = "+18 Years";
@@ -333,7 +338,7 @@
 "I accept the RTA's terms and conditions" = "I accept the RTA's terms and conditions";
 "Privacy and Policy" = "Privacy and Policy";
 "Save" = "Save";
-"Register New" = "Register New";
+"Register Now" = "Register Now";
 "Forget Password?" = "Forgot Password?";
 
 //Vehicles
@@ -350,3 +355,39 @@
 "Invite" = "Invite";
 "Join" = "Join";
 "Save Search" = "Save Search";
+
+
+"Sorry but you have to be logged in facebook to share" = "Sorry but you have to be logged in facebook to share";
+
+
+"This app" = "This app";
+"Micro app" = "Micro app";
+"Transation" = "Transation";
+
+"Help & FAQ" = "Help & FAQ";
+"No Passengers Found" = "No Passengers Found" ;
+
+//map LookUp
+
+"Please turn on GPS first" = "Please turn on GPS first" ;
+
+"Preferred Gender" = "Preferred Gender" ;
+
+
+"Happy Meter" = "Happiness";
+
+"Filipino" = "Filipino";
+"Chinese" = "Chinese";
+"Arabic" = "Arabic";
+"English" = "English";
+
+
+
+
+
+
+
+
+
+
+// 9 , 12 ,19, 21 ,23,25 , 38 ("Please write your verification code") ,42 (Not)

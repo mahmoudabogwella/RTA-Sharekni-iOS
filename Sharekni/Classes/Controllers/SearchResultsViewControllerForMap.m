@@ -22,10 +22,14 @@
 
 #import "LoginViewController.h"
 #import "UIViewController+MJPopupViewController.h"
+
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+
 //#import "AddReviewViewController.h"
 
 
-@interface SearchResultsViewControllerForMap () <SendMSGDelegate/*,MJDetailPopupDelegate*/,MJAddRemarkPopupDelegate,MFMessageComposeViewControllerDelegate ,UIActionSheetDelegate ,UIAlertViewDelegate>
+@interface SearchResultsViewControllerForMap () <SendMSGDelegate/*,MJDetailPopupDelegate*/,MJAddRemarkPopupDelegate,MFMessageComposeViewControllerDelegate ,UIActionSheetDelegate ,UIAlertViewDelegate,MJAddRemarkPopupDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *fromLabel;
@@ -58,7 +62,10 @@
     }
 
     [self configureUI];
-}
+    
+   
+    
+  }
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -123,9 +130,17 @@
 - (MostRideDetailsForMap *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MostRideDetailsForMap *cell = (MostRideDetailsForMap*)[tableView dequeueReusableCellWithIdentifier:MOST_RIDE_DETAILS_CELLID];
+    if(IDIOM == IPAD) {
+        
+        if (cell == nil) {
+            cell = (MostRideDetailsForMap *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsForMap_Ipad" owner:nil options:nil] objectAtIndex:0];
+            cell.contentView.backgroundColor = [UIColor clearColor];
+        }
+    }else {
     if (cell == nil) {
         cell = (MostRideDetailsForMap *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsForMap" owner:nil options:nil] objectAtIndex:0];
         cell.contentView.backgroundColor = [UIColor clearColor];
+    }
     }
     cell.delegate = self ;
     DriverSearchResult *driver = [self.results objectAtIndex:indexPath.row];
@@ -172,20 +187,43 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     if (user == nil)
     {
-        if (  [_LanguageIs isEqual: @"Arabic"]) {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
-        }else {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
-        }
         
+        
+        
+        if ( IDIOM == IPAD ) {
+            /* do something specifically for iPad. */
+            
+            if (  [_LanguageIs isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
+        } else {
+            /* do something specifically for iPhone or iPod touch. */
+            
+            if (  [_LanguageIs isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
+        }
+       
     }else {
-    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select a Route:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select a Route:" delegate:self cancelButtonTitle:GET_STRING(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:
                             @"Route 1",
                             @"Route 2",
                             nil];
@@ -304,17 +342,40 @@
     }
     else
     {
-        if (  [_LanguageIs isEqual: @"Arabic"]) {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
-        }else {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
-        }
+        
+        
+        
+        if ( IDIOM == IPAD ) {
+            /* do something specifically for iPad. */
+            
+            if (  [_LanguageIs isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
+        } else {
+            /* do something specifically for iPhone or iPod touch. */
+            
+            if (  [_LanguageIs isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
+        }       
         
     }
 }

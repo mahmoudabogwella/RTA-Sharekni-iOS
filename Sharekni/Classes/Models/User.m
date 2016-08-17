@@ -41,6 +41,9 @@
     mapping[@"AccountTypeArName"] = @"AccountTypeArName";
     mapping[@"AccountTypeEnName"] = @"AccountTypeEnName";
     mapping[@"AccountStatus"] = @"AccountStatus";
+//    IsPassenger
+    mapping[@"IsPassenger"] = @"IsPassenger";
+
     mapping[@"PrefferedLanguage"] = @"PrefferedLanguage";
     mapping[@"DriverMyRidesCount"] = @"DriverMyRidesCount";
     mapping[@"DriverMyAlertsCount"] = @"DriverMyAlertsCount";
@@ -62,19 +65,33 @@
     
     return mapping;
 }
-
-- (void)setAccountStatus:(NSString *)AccountStatus{
-    _AccountStatus = AccountStatus;
-    if ([_AccountStatus containsString:@"D"]) {
-        self.accountType = AccountTypeDriver;
-    }
-    else if ([_AccountStatus containsString:@"P"]){
-        self.accountType = AccountTypePassenger;
-    }
-    else if ([_AccountStatus containsString:@"B"]){
+-(void)setIsPassenger:(NSString *)IsPassenger {
+    _IsPassenger = IsPassenger;
+    NSLog(@"that is passenger value :%@",_IsPassenger);
+    NSString *LOL = [NSString stringWithFormat:@"%@",_IsPassenger];
+    NSLog(@"that is LOL Value :%@",LOL);
+    if ([LOL containsString:@"0"] || [LOL containsString:@"false"]) {
+        NSLog(@"value is 0");
         self.accountType = AccountTypeBoth;
+    } else if ([LOL containsString:@"1"] || [LOL containsString:@"true"]) {
+        NSLog(@"value is 1");
+        self.accountType = AccountTypePassenger;
+
     }
 }
+
+//- (void)setAccountStatus:(NSString *)AccountStatus{
+//    _AccountStatus = AccountStatus;
+//    if ([_AccountStatus containsString:@"D"]) {
+//        self.accountType = AccountTypeDriver;
+//    }
+//    else if ([_AccountStatus containsString:@"P"]){
+//        self.accountType = AccountTypePassenger;
+//    }
+//    else if ([_AccountStatus containsString:@"B"]){
+//        self.accountType = AccountTypeBoth;
+//    }
+//}
 
 - (void)setPhotoPath:(NSString *)PhotoPath{
     _PhotoPath = PhotoPath;

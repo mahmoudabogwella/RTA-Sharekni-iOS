@@ -32,7 +32,11 @@
 #import "HelpManager.h"
 #import "SearchResultsViewController.h"
 #import "MobAccountManager.h"
-@interface SearchViewController ()<UITextFieldDelegate>
+
+#import "HappyMeter.h"
+#import "UIViewController+MJPopupViewController.h"
+
+@interface SearchViewController ()<UITextFieldDelegate,MJAddRemarkPopupDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *setDirectionButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *startPointLabel;
@@ -64,6 +68,13 @@
 @property (strong,nonatomic) NSDate *pickupDate;
 @property (strong,nonatomic) NSDate *pickupTime;
 
+//language label
+@property (weak, nonatomic) IBOutlet UILabel *TopRides;
+@property (weak, nonatomic) IBOutlet UILabel *mapLook;
+@property (weak, nonatomic) IBOutlet UILabel *AdvancedSearch;
+
+//
+
 @end
 
 @implementation SearchViewController
@@ -78,11 +89,33 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   
+    self.pickupTitleLabel.text = GET_STRING(@"Pick up");
+    self.dropoffTitleLabel.text = GET_STRING(@"Drop off");
+    self.timeLabel.text = GET_STRING(@"Start Time");
+    self.dateLabel.text = GET_STRING(@"Start Date");
+    self.helpLabel.text = GET_STRING(@"Please click on set direction button to set start and end point");
+    self.TopRides.text = GET_STRING(@"Top Rides");
+    self.mapLook.text = GET_STRING(@"Map Lookup");
+    self.AdvancedSearch.text = GET_STRING(@"advancedSearch");
+    [_setDirectionButton setTitle:GET_STRING(@"Set Direction") forState:UIControlStateNormal];
+    [_searchButton setTitle:GET_STRING(@"Search") forState:UIControlStateNormal];
+    self.helpLabel.text = GET_STRING(@"Please click on set direction button to set start and end point");
     self.title = GET_STRING(@"searchOptions");
+    self.TopRides.text = GET_STRING(@"Top Rides");
+    self.saveSearchLabel.text = GET_STRING(@"Saved Search");
+    self.TopRides.text = GET_STRING(@"Top Rides");
+    
+    
+    
+    _setDirectionButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    _searchButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+
     self.navigationController.navigationBarHidden = NO ;
     [self configureUI];
+    
+   
 }
+
 
 - (void) viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.translucent = YES;
@@ -340,13 +373,32 @@
 }
 
 - (IBAction) advancedSearch:(id)sender{
-    AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] initWithNibName:(KIS_ARABIC)?@"AdvancedSearchViewController_ar":@"AdvancedSearchViewController" bundle:nil];
-    [self.navigationController pushViewController:advancedSearchView animated:YES];
+
+    if ( IDIOM == IPAD ) {
+        /* do something specifically for iPad. */
+        AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] initWithNibName:(KIS_ARABIC)?@"AdvancedSearchViewController_ar_Ipad":@"AdvancedSearchViewController_Ipad" bundle:nil];
+        [self.navigationController pushViewController:advancedSearchView animated:YES];
+    } else {
+        /* do something specifically for iPhone or iPod touch. */
+        AdvancedSearchViewController *advancedSearchView = [[AdvancedSearchViewController alloc] initWithNibName:(KIS_ARABIC)?@"AdvancedSearchViewController_ar":@"AdvancedSearchViewController" bundle:nil];
+        [self.navigationController pushViewController:advancedSearchView animated:YES];
+    }
+    
+    
+    
+    
+ 
 }
 
 - (IBAction) mapLookUp:(id)sender {
-    MapLookupViewController *mapLookupViewController = [[MapLookupViewController alloc] initWithNibName:@"MapLookupViewController" bundle:nil];
-    [self.navigationController pushViewController:mapLookupViewController animated:YES];
+    
+
+    
+    
+    
+        MapLookupViewController *mapLookupViewController = [[MapLookupViewController alloc] initWithNibName:@"MapLookupViewController" bundle:nil];
+        [self.navigationController pushViewController:mapLookupViewController animated:YES];
+    
 }
 
 - (IBAction) topRides:(id)sender{

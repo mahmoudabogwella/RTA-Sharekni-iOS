@@ -19,9 +19,18 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 {
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
-        self = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
-        self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
-        self.driverImage.clipsToBounds = YES ;
+        if (IDIOM == IPAD) {
+            self = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell_Ipad" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
+            self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
+            self.driverImage.clipsToBounds = YES ;
+            
+        }else {
+            self = (MostRideDetailsCell *)[[[NSBundle mainBundle] loadNibNamed:@"MostRideDetailsCell" owner:nil options:nil] objectAtIndex:(KIS_ARABIC)?1:0];
+            self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
+            self.driverImage.clipsToBounds = YES ;
+        }
+        
+      
     }
     return self;
 }

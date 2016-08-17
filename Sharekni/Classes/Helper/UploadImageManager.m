@@ -123,7 +123,7 @@
     }
     @catch (NSException* exception)
     {
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:[exception reason] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:[exception reason] delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles: nil];
         [alert show];
         self.failureHandler(@"cannot parse xml");
         return;

@@ -162,7 +162,16 @@ NSString * const TUNE_PACKAGE_NAME   = @"rta.ae.sharekni";
 
 - (REFrostedViewController *) homeViewController {
     
-    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
+    HomeViewController *homeViewControlle;
+    if ( IDIOM == IPAD )
+    {
+     homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar_Ipad":@"HomeViewController_Ipad" bundle:nil];
+
+        
+    }else {
+       homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
+
+    }
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
     
@@ -181,9 +190,16 @@ NSString * const TUNE_PACKAGE_NAME   = @"rta.ae.sharekni";
 - (UINavigationController *)welcomeNavigationController
 {
     if (!_welcomeNavigationController) {
-        WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"WelcomeViewController_ar":@"WelcomeViewController" bundle:nil];
+        if ( IDIOM == IPAD ) {
+        WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"WelcomeViewController_ar_Ipad":@"WelcomeViewController_Ipad" bundle:nil];
         
                _welcomeNavigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
+        }
+        else{
+            WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"WelcomeViewController_ar":@"WelcomeViewController" bundle:nil];
+            
+            _welcomeNavigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
+        }
         }
     return _welcomeNavigationController;
 }

@@ -53,7 +53,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *termsButton;
 @property (weak,nonatomic) IBOutlet UILabel *femaleLabel;
-    
+
 @property (weak,nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak,nonatomic) IBOutlet UILabel *maleLabel;
 @property (nonatomic,assign) float animatedDistance ;
@@ -85,6 +85,7 @@
 @property (assign,nonatomic) BOOL Plus18;
 @property (assign,nonatomic) AccountType accountType;
 @property (weak, nonatomic) IBOutlet UIButton *uploadButton;
+@property (weak, nonatomic) IBOutlet UIButton *SaveRegister;
 
 @property (strong,nonatomic) UIImage *profileImage;
 
@@ -97,46 +98,63 @@
     [super viewDidLoad];
     self.selectedNationality.ID = @"0" ;
     // Do any additional setup after loading the view.
+    _bothLbl.text = GET_STRING(@"Both");
+    _driverLbl.text = GET_STRING(@"Driver");
+    _passengerLbl.text = GET_STRING(@"Passenger");
+    [_uploadButton setTitle: GET_STRING(@"Upload your photo") forState: UIControlStateNormal];
+    _maleLabel.text = GET_STRING(@"Male");
+    _femaleLabel.text = GET_STRING(@"Female");
+    _Plus18Label.text = GET_STRING(@"+18 Years");
+    [_SaveRegister setTitle:GET_STRING(@"Save") forState:UIControlStateNormal ];
+    [_termsButton setTitle:GET_STRING(@"I accept the RTA's terms and conditions") forState:UIControlStateNormal ];
     
-    switch ([[Languages sharedLanguageInstance] language]) {
-            
-            
-        case Arabic:
-            //
-            
-            break;
-        case English:
-            //
-            
-            //        self.HindiButtonSelector.hidden = NO;
-         
-            break;
-        case Chines:
-            //
-            _bothLbl.text = GET_STRING(@"_both");
-            _driverLbl.text = GET_STRING(@"_driver");
-            _passengerLbl.text = GET_STRING(@"_passenger");
-            [_uploadButton setTitle: GET_STRING(@"_UploadYourPhoto") forState: UIControlStateNormal];
-            _maleLabel.text = GET_STRING(@"_Male");
-            _femaleLabel.text = GET_STRING(@"_Female");
+    [_privacyButton setTitle:GET_STRING(@"Privacy and Policy") forState:UIControlStateNormal];
+    if ([[Languages sharedLanguageInstance] language] == Philippine) {
+        
+        [_termsButton.titleLabel setFont:[UIFont systemFontOfSize:11]];
+    }else {
+        [_termsButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
 
-            break;
-        case Indian:
-            //
-            _bothLbl.text = GET_STRING(@"_both");
-            _driverLbl.text = GET_STRING(@"_driver");
-            _passengerLbl.text = GET_STRING(@"_passenger");
-            //        self.HindiButtonSelector.hidden = NO;
-            [_uploadButton setTitle: GET_STRING(@"_UploadYourPhoto") forState: UIControlStateNormal];
-            _maleLabel.text = GET_STRING(@"_Male");
-            _femaleLabel.text = GET_STRING(@"_Female");
-
-            break;
-        default:
-            NSLog(@"Error while picking Language");
-            break;
     }
-
+//    switch ([[Languages sharedLanguageInstance] language]) {
+//            
+//            
+//        case Arabic:
+//            //
+//            
+//            break;
+//        case English:
+//            //
+//            
+//            //        self.HindiButtonSelector.hidden = NO;
+//            
+//            break;
+//        case Chines:
+//            //
+//            _bothLbl.text = GET_STRING(@"Both");
+//            _driverLbl.text = GET_STRING(@"Driver");
+//            _passengerLbl.text = GET_STRING(@"passenger");
+//            [_uploadButton setTitle: GET_STRING(@"Upload your photo") forState: UIControlStateNormal];
+//            _maleLabel.text = GET_STRING(@"Male");
+//            _femaleLabel.text = GET_STRING(@"Female");
+//            
+//            break;
+//        case Indian:
+//            //
+//            _bothLbl.text = GET_STRING(@"_both");
+//            _driverLbl.text = GET_STRING(@"_driver");
+//            _passengerLbl.text = GET_STRING(@"_passenger");
+//            //        self.HindiButtonSelector.hidden = NO;
+//            [_uploadButton setTitle: GET_STRING(@"_UploadYourPhoto") forState: UIControlStateNormal];
+//            _maleLabel.text = GET_STRING(@"_Male");
+//            _femaleLabel.text = GET_STRING(@"_Female");
+//            
+//            break;
+//        default:
+//            NSLog(@"Error while picking Language");
+//            break;
+//    }
+    
     
     self.navigationController.navigationBarHidden = NO ;
     
@@ -148,9 +166,9 @@
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
-   
+    
     [self configureUI];
-//    [self configrueNationalityAutoCompelete];
+    //    [self configrueNationalityAutoCompelete];
     [self configureData];
     [self configureTextFields];
     self.isMale = YES;
@@ -196,16 +214,16 @@
     [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"driver_icon"]    forState:UIControlStateNormal];
     [self.driverBtn    setBackgroundImage:[UIImage imageNamed:@"driverActive_icon"]      forState:UIControlStateSelected];
     [self.driverBtn    setSelected:NO];
-   
+    
     [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"passenger_icon"] forState:UIControlStateNormal];
     [self.passengerBtn setBackgroundImage:[UIImage imageNamed:@"passengerActive_icon"]   forState:UIControlStateSelected];
     [self.passengerBtn    setSelected:NO];
-
+    
     [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"both_icon"]      forState:UIControlStateNormal];
     [self.bothBtn      setBackgroundImage:[UIImage imageNamed:@"bothAcive_icon"]        forState:UIControlStateSelected];
     [self.bothBtn    setSelected:NO];
     self.accountType = AccountTypeNone;
-
+    
     [self.switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_Left"]       forState:UIControlStateNormal];
     [self.switchBtn    setBackgroundImage:[UIImage imageNamed:@"select_right"]      forState:UIControlStateSelected];
     [self.switchBtn    setSelected:NO];
@@ -222,7 +240,7 @@
     [self.femaleLabel addGestureRecognizer:femaleGesture];
     
     [self.container setContentSize:self.container.frame.size];
-
+    
     if ([self.firstNametxt respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor add_colorWithRGBHexString:Red_HEX];
         self.firstNametxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"firstName") attributes:@{NSForegroundColorAttributeName: color}];
@@ -230,7 +248,7 @@
         self.mobileNumberTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"mobile") attributes:@{NSForegroundColorAttributeName: color}];
         self.usernameTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"Username (Your Email)") attributes:@{NSForegroundColorAttributeName: color}];
         self.passwordTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"Password") attributes:@{NSForegroundColorAttributeName: color}];
-//        self.nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"nationality") attributes:@{NSForegroundColorAttributeName: color}];
+        //        self.nationalityTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"nationality") attributes:@{NSForegroundColorAttributeName: color}];
         self.preferredLanguageTxt.attributedPlaceholder = [[NSAttributedString alloc] initWithString:GET_STRING(@"pLanguage") attributes:@{NSForegroundColorAttributeName: color}];
     } else {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
@@ -243,13 +261,13 @@
 }
 
 - (void) femaleTapped{
-
+    
     self.isMale = NO;
     self.switchBtn.selected = YES ;
     self.maleLabel.textColor =  [UIColor darkGrayColor];
     self.femaleLabel.textColor = Red_UIColor;
     [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_right"]forState:UIControlStateNormal];
-
+    
 }
 
 - (void) maleTapped{
@@ -258,7 +276,7 @@
     self.femaleLabel.textColor = [UIColor darkGrayColor];
     self.isMale = YES;
     [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_Left"]forState:UIControlStateNormal];
-
+    
 }
 
 //- (void) configrueNationalityAutoCompelete{
@@ -337,18 +355,18 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     else if (textField == self.mobileNumberTxt){
         [self isValidMobileNumber];
     }
-//    else if (textField == self.nationalityTxt){
-//        [self isValidNationality];
-//    }
+    //    else if (textField == self.nationalityTxt){
+    //        [self isValidNationality];
+    //    }
     return [self textSouldEndEditing];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField*)textField{
     NSInteger nextTag = textField.tag + 10;
     // Try to find next responder
-//    if (nextTag == Nationality_Tag) {
-//        [textField resignFirstResponder];
-//    }
+    //    if (nextTag == Nationality_Tag) {
+    //        [textField resignFirstResponder];
+    //    }
     UIResponder* nextResponder = [self.view viewWithTag:nextTag];
     if (nextResponder) {
         // Found next responder, so set it.
@@ -358,7 +376,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [textField resignFirstResponder];
     }
     return NO; // We do not want UITextField to insert line-breaks.
-//    return YES;
+    //    return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -401,13 +419,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-//    [self.view endEditing:YES];
-//    if (textField == self.nationalityTxt){
-//        return YES;
-////        [self showPickerWithTextFieldType:NationalityTextField];
-//    }
-//    else
-        if (textField == self.preferredLanguageTxt){
+    //    [self.view endEditing:YES];
+    //    if (textField == self.nationalityTxt){
+    //        return YES;
+    ////        [self showPickerWithTextFieldType:NationalityTextField];
+    //    }
+    //    else
+    if (textField == self.preferredLanguageTxt){
         [self showPickerWithTextFieldType:LanguageTextField];
     }
     else{
@@ -451,7 +469,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
             [recognizer addTarget:self action:@selector(touchEvent:)];
         }
         
-//        [self.view endEditing:YES];
+        //        [self.view endEditing:YES];
     }
 }
 
@@ -466,28 +484,28 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         UIPickerView *picker = ((RMPickerViewController *)controller).picker;
         NSInteger selectedRow = [picker selectedRowInComponent:0];
         switch (picker.tag) {
-//            case NationalityTextField:
-//            {
-//                Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
-//                if (KIS_ARABIC) {
-//                    self.nationalityTxt.text = nationality.NationalityArName;
-//                }else{
-//                    self.nationalityTxt.text = nationality.NationalityEnName;
-//                }
-//
-//                self.selectedNationality = nationality;
-//                [self configureBorders];
-//            }
-//                break;
+                //            case NationalityTextField:
+                //            {
+                //                Nationality *nationality = [self.nationalties objectAtIndex:selectedRow];
+                //                if (KIS_ARABIC) {
+                //                    self.nationalityTxt.text = nationality.NationalityArName;
+                //                }else{
+                //                    self.nationalityTxt.text = nationality.NationalityEnName;
+                //                }
+                //
+                //                self.selectedNationality = nationality;
+                //                [self configureBorders];
+                //            }
+                //                break;
             case LanguageTextField:
             {
                 Language *language = [self.languages objectAtIndex:selectedRow];
                 if (KIS_ARABIC) {
                     self.preferredLanguageTxt.text = language.LanguageArName;
-
+                    
                 }else{
                     self.preferredLanguageTxt.text = language.LanguageEnName;
-
+                    
                 }
                 self.selectedLanguage = language;
             }
@@ -511,13 +529,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     pickerController.picker.tag = type;
     NSInteger selectedRow = 0;
     switch (type) {
-//        case NationalityTextField:
-//        {
-//            if (self.selectedNationality) {
-//                selectedRow = [self.nationalties indexOfObject:self.selectedNationality];
-//            }
-//        }
-//            break;
+            //        case NationalityTextField:
+            //        {
+            //            if (self.selectedNationality) {
+            //                selectedRow = [self.nationalties indexOfObject:self.selectedNationality];
+            //            }
+            //        }
+            //            break;
         case LanguageTextField:
         {
             if (self.selectedLanguage) {
@@ -533,12 +551,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 }
 
 //- (void)showDatePicker{
-//    
+//
 //    [self.view endEditing:YES];
 //    __block RegisterViewController *blockSelf = self;
 //    RMAction *selectAction = [RMAction actionWithTitle:GET_STRING(@"Select") style:RMActionStyleDone andHandler:^(RMActionController *controller) {
 //        NSDate *date =  ((UIDatePicker *)controller.contentView).date;
-//        
+//
 //        blockSelf.dateFormatter.dateFormat = @"dd, MMM, yyyy";
 //        NSString * dateString = [self.dateFormatter stringFromDate:date];
 //        self.dateLabel.text = dateString;
@@ -559,18 +577,18 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 //            [self configureBorders];
 //        }
 //    }];
-//    
+//
 //    //Create cancel action
 //    RMAction *cancelAction = [RMAction actionWithTitle:GET_STRING(@"Cancel") style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
-//        
+//
 //    }];
-//    
+//
 //    //Create date selection view controller
 //    RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
 //    dateSelectionController.title = @"select date of birth";
 //    dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
 //    dateSelectionController.datePicker.date = [NSDate date];
-//    
+//
 //    //Now just present the date selection controller using the standard iOS presentation method
 //    [self presentViewController:dateSelectionController animated:YES completion:nil];
 //}
@@ -594,7 +612,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 
 
 
- // GonKey SaveRegistration
+// GonKey SaveRegistration
 #pragma Actions
 - (IBAction)registerAction:(id)sender
 {
@@ -607,20 +625,24 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     self.lastName = [self SpacesRemover:self.lastName];
     self.mobileNumber = self.mobileNumberTxt.text;
     self.mobileNumber = [self SpacesRemover:self.mobileNumber];
-
-//    BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
-//    if (validNationality){
-//        self.selectedNationality = [self.nationalties objectAtIndex:[self.nationaltiesStringsArray indexOfObject:self.nationalityTxt.text]];
-//    }
+    
+    //    BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
+    //    if (validNationality){
+    //        self.selectedNationality = [self.nationalties objectAtIndex:[self.nationaltiesStringsArray indexOfObject:self.nationalityTxt.text]];
+    //    }
     
     if(self.accountType == AccountTypeNone){
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please Choose account type.") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
     }
-    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.userName.length == 0 || self.mobileNumber.length == 0 /*|| !self.date */|| !self.selectedLanguage){
+    else if(self.firstName.length == 0 || self.lastName.length == 0 || self.mobileNumber.length == 0 /*|| !self.date */|| !self.selectedLanguage){
         UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please fill all fields") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
         [alertView show];
         [self configureBorders];
+    }
+    else if( self.userName.length == 0 ) {
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Fill in the email address please")];
+
     }
     else if (![self isValidFirstName]){
         [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"First name mustn't have numbers")];
@@ -648,19 +670,19 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         self.date = nil;
         [self configureBorders];
     }
-//    else if ([[HelpManager sharedHelpManager] isDateBefor1900:self.date]){
-//        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"You cannot choose year before 1900") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
-//        [alertView show];	
-//        self.date = nil;
-//        [self configureBorders];
-//    }
+    //    else if ([[HelpManager sharedHelpManager] isDateBefor1900:self.date]){
+    //        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"You cannot choose year before 1900") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
+    //        [alertView show];
+    //        self.date = nil;
+    //        [self configureBorders];
+    //    }
     
     
-//    else if (!validNationality){
-//        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please Choose a valid nationality.") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
-//        [alertView show];
-//    }
-
+    //    else if (!validNationality){
+    //        UIAlertView *alertView = [[UIAlertView  alloc] initWithTitle:NSLocalizedString(@"", nil) message:GET_STRING(@"Please Choose a valid nationality.") delegate:self cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil, nil];
+    //        [alertView show];
+    //    }
+    
     else{
         if (self.profileImage) {
             [KVNProgress showWithStatus:GET_STRING(@"Loading...")];
@@ -723,7 +745,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         [KVNProgress dismiss];
         [[HelpManager sharedHelpManager] showAlertWithMessage:error];
     }];
-
+    
 }
 
 - (IBAction)selectHumanType:(id)sender{
@@ -782,14 +804,14 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
         self.femaleLabel.textColor = [UIColor darkGrayColor];
         self.isMale = YES;
         [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_Left"]forState:UIControlStateNormal];
-
+        
     }else{
         self.isMale = NO;
         self.switchBtn.selected = YES ;
         self.maleLabel.textColor =  [UIColor darkGrayColor];
         self.femaleLabel.textColor = Red_UIColor;;
         [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"select_right"]forState:UIControlStateNormal];
-
+        
     }
 }
 
@@ -809,16 +831,16 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     NSString *title = @"";
     switch (pickerView.tag) {
-//        case NationalityTextField:
-//        {
-//            Nationality *nationality = [self.nationalties objectAtIndex:row];
-//            if (KIS_ARABIC) {
-//                title = nationality.NationalityArName;
-//            }else{
-//                title = nationality.NationalityEnName;
-//            }
-//        }
-//            break;
+            //        case NationalityTextField:
+            //        {
+            //            Nationality *nationality = [self.nationalties objectAtIndex:row];
+            //            if (KIS_ARABIC) {
+            //                title = nationality.NationalityArName;
+            //            }else{
+            //                title = nationality.NationalityEnName;
+            //            }
+            //        }
+            //            break;
         case LanguageTextField:
         {
             Language *language = [self.languages objectAtIndex:row];
@@ -828,7 +850,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
             }else{
                 title = language.LanguageEnName;
             }
-
+            
         }
             break;
             
@@ -841,11 +863,11 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     switch (pickerView.tag) {
-//        case NationalityTextField:
-//        {
-//            return self.nationalties.count;
-//        }
-//            break;
+            //        case NationalityTextField:
+            //        {
+            //            return self.nationalties.count;
+            //        }
+            //            break;
         case LanguageTextField:
         {
             return self.languages.count;
@@ -912,13 +934,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     else{
         [self addGreyBorderToView:self.mobileNumberView];
     }
-//    BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
-//    if (!validNationality){
-//        [self addRedBorderToView:self.nationalityView];
-//    }
-//    else{
-//        [self addGreyBorderToView:self.nationalityView];
-//    }
+    //    BOOL validNationality = [self.nationaltiesStringsArray containsObject:self.nationalityTxt.text];
+    //    if (!validNationality){
+    //        [self addRedBorderToView:self.nationalityView];
+    //    }
+    //    else{
+    //        [self addGreyBorderToView:self.nationalityView];
+    //    }
     
     if (!self.selectedLanguage){
         [self addRedBorderToView:self.languageView];
@@ -996,16 +1018,53 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     [imageSourceOptions showInView:self.view];
 }
 
-- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
+//- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+//
+//    UIImagePickerControllerSourceType source;
+//
+//    if(buttonIndex == 0)
+//    {
+//        source = UIImagePickerControllerSourceTypePhotoLibrary;
+//        NSLog(@"HE Picked Gallery");
+//    }
+//    else if (buttonIndex == 1)
+//    {
+//        NSLog(@"HE Picked Camera");
+//        if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+//        {
+//            [[[UIAlertView alloc] initWithTitle:nil message:GET_STRING(@"No camera on device") delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil] show];
+//            return;
+//        }
+//        source = UIImagePickerControllerSourceTypeCamera;
+//    }
+//    else
+//    {
+//        return;
+//    }
+//
+//    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+//    imagePickerController.sourceType = source;
+//    imagePickerController.delegate = self;
+//    if (source != UIImagePickerControllerSourceTypeCamera) {
+//        imagePickerController.modalPresentationStyle = UIModalPresentationFormSheet;
+//    }
+//    imagePickerController.allowsEditing = YES;
+//    [self presentViewController:imagePickerController];
+//}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+{
+    // my code
     UIImagePickerControllerSourceType source;
     
     if(buttonIndex == 0)
     {
         source = UIImagePickerControllerSourceTypePhotoLibrary;
+        NSLog(@"HE Picked Gallery");
     }
     else if (buttonIndex == 1)
     {
+        NSLog(@"HE Picked Camera");
         if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
             [[[UIAlertView alloc] initWithTitle:nil message:GET_STRING(@"No camera on device") delegate:nil cancelButtonTitle:GET_STRING(@"Ok") otherButtonTitles:nil] show];
@@ -1026,7 +1085,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     }
     imagePickerController.allowsEditing = YES;
     [self presentViewController:imagePickerController];
+    
 }
+
 
 #pragma mark UIImagePickerController Delegate
 
@@ -1053,7 +1114,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 140;
     self.profileImageView.image = self.profileImage;
     self.profileImageView.hidden = NO;
     self.uploadButton.hidden = YES;
-    [self saveProfileImage];    
+    [self saveProfileImage];
 }
 
 - (void) presentViewController:(UIViewController*)viewController{
@@ -1095,7 +1156,7 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
         [self addRedBorderToView:self.firstNameView];
         return NO;
     }
-   [self addGreyBorderToView:self.firstNameView];
+    [self addGreyBorderToView:self.firstNameView];
     return YES;
 }
 
@@ -1160,7 +1221,18 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
 
 - (REFrostedViewController *) homeViewController {
     
-    HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
+    
+    HomeViewController *homeViewControlle;
+    if ( IDIOM == IPAD )
+    {
+        homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar_Ipad":@"HomeViewController_Ipad" bundle:nil];
+        
+        
+    }else {
+        homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
+        
+    }
+    
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     SideMenuTableViewController  *menuController = [[SideMenuTableViewController alloc] initWithNavigationController:navigationController];
     
@@ -1194,8 +1266,8 @@ shouldStyleAutoCompleteTableView:(UITableView *)autoCompleteTableView
         _inputAccessoryView = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
         _inputAccessoryView.barStyle = UIBarStyleDefault;
         _inputAccessoryView.items = [NSArray arrayWithObjects:
-                         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTapped)],
-                         nil];
+                                     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTapped)],
+                                     nil];
         [_inputAccessoryView sizeToFit];
     }
     return _inputAccessoryView;

@@ -24,6 +24,7 @@
 #import "NotificationsViewController.h"
 #import "VehiclesViewController.h"
 #import "HomeViewController.h"
+#import "FAQ.h"
 
 #define Title_Key @"Title"
 #define Image_Key @"ImageName"
@@ -36,6 +37,8 @@
 }
 @property (nonatomic,strong) NSMutableArray *items;
 @property (nonatomic,strong) User *applicationUser;
+@property (nonatomic,strong) NSString *MProfileImage;
+@property (nonatomic,strong) NSString *FProfileImage;
 
 @end
 
@@ -60,16 +63,22 @@
 {
     self.items = [NSMutableArray array];
     NSDictionary *dictionary;
-    if ([self.applicationUser.AccountStatus containsString:@"D"] || [self.applicationUser.AccountStatus containsString:@"B"]) {
+//    if ([self.applicationUser.AccountStatus containsString:@"D"] || [self.applicationUser.AccountStatus containsString:@"B"]) {
+    
+    NSLog(@"that is passenger value :%@",self.applicationUser.IsPassenger);
+    NSString *LOL = [NSString stringWithFormat:@"%@",self.applicationUser.IsPassenger];
+    NSLog(@"that is LOL Value :%@",LOL);
+    if ([LOL containsString:@"0"] || [LOL containsString:@"false"]) {
+        
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Home Page"),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Vehicles"),@"Side_vehicles"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
-        
-//        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Saved Search"),@"Side_savesearch"] forKeys:@[Title_Key,Image_Key]];
-//        [self.items addObject:dictionary];
-        
+        //Add new sidemenu 1
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Help & FAQ"),@"Side_savesearch"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        // End of add new 1
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Most Rides"),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
@@ -81,20 +90,20 @@
         
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Notifications"),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
-        
+        /*
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Language"),(KIS_ARABIC)?@"Language_En":@"Language_Ar"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
-
+*/
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Logout"),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
     }
     else{
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Home Page"),@"Side_Home"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
-        
-//        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Saved Search"),@"Side_savesearch"] forKeys:@[Title_Key,Image_Key]];
-//        [self.items addObject:dictionary];
-        
+        //Add new sidemenu
+        dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Help & FAQ"),@"Side_savesearch"] forKeys:@[Title_Key,Image_Key]];
+        [self.items addObject:dictionary];
+        //end of add new 2
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Most Rides"),@"Side_mostrides"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
         
@@ -106,10 +115,10 @@
         
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Notifications"),@"Side_notifications"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
-        
+        /*
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Language"),(KIS_ARABIC)?@"Language_En":@"Language_Ar"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
-
+*/
         dictionary = [[NSDictionary alloc] initWithObjects:@[GET_STRING(@"Logout"),@"Side_Logout"] forKeys:@[Title_Key,Image_Key]];
         [self.items addObject:dictionary];
     }
@@ -131,13 +140,59 @@
         
         
 //        imageView.image = self.applicationUser.userImage ? self.applicationUser.userImage : [UIImage imageNamed:@"thumbnail"];
-        
+        switch ([[Languages sharedLanguageInstance] language]) {
+                
+                
+            case Arabic:
+                //
+                if ([self.applicationUser.GenderEn  isEqual: @"Male"] || [self.applicationUser.GenderAr  isEqual: @"ذكر"]) {
+                    
+                    _MProfileImage = @"imageaftereditar.png";
+                }else{
+                    //                    NSLog(self.sharedUser.GenderAr);
+                    _FProfileImage = @"imageaftereditfemale.png";
+                }
+                break;
+            case English:
+                //
+                if ([self.applicationUser.GenderEn  isEqual: @"Male"] || [self.applicationUser.GenderAr  isEqual: @"ذكر"]) {
+                    
+                    _MProfileImage = @"imageafterediten.png";
+                }else{
+                    //                    NSLog(self.sharedUser.GenderAr);
+                    _FProfileImage = @"imageaftereditfemale.png";
+                }
+                break;
+            case Chines:
+                //
+                if ([self.applicationUser.GenderEn  isEqual: @"Male"] || [self.applicationUser.GenderAr  isEqual: @"ذكر"]) {
+                    
+                    _MProfileImage = @"imageafterediten_ch.png";
+                }else{
+                    //                    NSLog(self.sharedUser.GenderAr);
+                    _FProfileImage = @"imageaftereditfemale_ch.png";
+                }
+                break;
+            case Philippine:
+                //
+                
+                if ([self.applicationUser.GenderEn  isEqual: @"Male"] || [self.applicationUser.GenderAr  isEqual: @"ذكر"]) {
+                    
+                    _MProfileImage = @"imageafterediten_fi.png";
+                }else{
+                    //                    NSLog(self.sharedUser.GenderAr);
+                    _FProfileImage = @"imageaftereditfemale_fi.png";
+                }
+            default:
+                NSLog(@"Error with the language Image Picker");
+                break;
+        }
         self.applicationUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
         if ([self.applicationUser.GenderEn  isEqual: @"Male"] || [self.applicationUser.GenderAr  isEqual: @"ذكر"]) {
-            imageView.image = self.applicationUser.userImage ? self.applicationUser.userImage : [UIImage imageNamed:@"defaultdriver.jpg"];
+            imageView.image = self.applicationUser.userImage ? self.applicationUser.userImage : [UIImage imageNamed:_MProfileImage];
             
         }else {
-            imageView.image = self.applicationUser.userImage ? self.applicationUser.userImage : [UIImage imageNamed:@"defaultdriverfemale.jpg"];
+            imageView.image = self.applicationUser.userImage ? self.applicationUser.userImage : [UIImage imageNamed:_FProfileImage];
 
             
         }
@@ -182,7 +237,12 @@
 #pragma mark UITableView Datasource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45;
+    if (IDIOM == IPAD) {
+        NSLog(@"I'm Ipad User in The Side Menu");
+        return 100;
+    }else {
+    return 42;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -241,6 +301,10 @@
             [self.frostedViewController setContentViewController:self.savedSearchNavigationController];
             [self.frostedViewController hideMenuViewController];
         }
+        else if ([title isEqualToString:GET_STRING(@"Help & FAQ")]){
+            [self.frostedViewController setContentViewController:self.FAQVC];
+            [self.frostedViewController hideMenuViewController];
+        }
         else if ([title isEqualToString:GET_STRING(@"Notifications")]){
             [self.frostedViewController setContentViewController:self.notificationsNavigationController];
             [self.frostedViewController hideMenuViewController];
@@ -253,7 +317,7 @@
             [[HelpManager sharedHelpManager] deleteUserFromUSerDefaults];
             [MobAccountManager sharedMobAccountManager].applicationUser = nil;
             [self presentViewController:self.welcomeNavigationController animated:YES completion:nil];
-        }else if ([title isEqualToString:GET_STRING(@"Language")]){
+        }/*else if ([title isEqualToString:GET_STRING(@"Language")]){
 
             if (KIS_ARABIC)
             {
@@ -261,7 +325,7 @@
             }else{
                 [self selectLangaugeAr];
             }
-        }
+        }*/
 }
 
 - (void)selectLangaugeEn
@@ -291,13 +355,33 @@
     }
 }
 
+-(UINavigationController *)FAQVC{
+
+        if (!_FAQVC) {
+            FAQ *viewController = [[FAQ alloc] initWithNibName:@"FAQ" bundle:nil];
+            viewController.enableBackButton = NO;
+            _FAQVC = [[UINavigationController alloc] initWithRootViewController:viewController];
+        }
+        return _FAQVC;
+    }
 
 
 
 - (UINavigationController *)homeNavigationController
 {
     if (!_homeNavigationController) {
-        HomeViewController *homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
+        
+        HomeViewController *homeViewControlle;
+        if ( IDIOM == IPAD )
+        {
+            homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar_Ipad":@"HomeViewController_Ipad" bundle:nil];
+            
+            
+        }else {
+            homeViewControlle = [[HomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"HomeViewController_ar":@"HomeViewController" bundle:nil];
+            
+        }
+        
         homeViewControlle.enableBackButton = NO;
         _homeNavigationController = [[UINavigationController alloc] initWithRootViewController:homeViewControlle];
     }
@@ -318,9 +402,25 @@
 - (UINavigationController *)searchNavigationController
 {
     if (!_searchNavigationController) {
-        SearchViewController *viewController = [[SearchViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchViewController_ar":@"SearchViewController" bundle:nil];
-        viewController.enableBackButton = NO;
-        _searchNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+        
+        
+        
+        if ( IDIOM == IPAD ) {
+            /* do something specifically for iPad. */
+            SearchViewController *viewController = [[SearchViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchViewController_ar_Ipad":@"SearchViewController_Ipad" bundle:nil];
+            viewController.enableBackButton = NO;
+            _searchNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+        } else {
+            /* do something specifically for iPhone or iPod touch. */
+            SearchViewController *viewController = [[SearchViewController alloc] initWithNibName:(KIS_ARABIC)?@"SearchViewController_ar":@"SearchViewController" bundle:nil];
+            viewController.enableBackButton = NO;
+            _searchNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+        }
+        
+        
+        
+        
+    
     }
     return _searchNavigationController;
 }
@@ -359,8 +459,19 @@
 {
     if (!_vehiclesNavigationController)
     {
-        VehiclesViewController *vehiclesView = [[VehiclesViewController alloc] initWithNibName:(KIS_ARABIC)?@"VehiclesViewController_ar":@"VehiclesViewController" bundle:nil];
-        _vehiclesNavigationController = [[UINavigationController alloc] initWithRootViewController:vehiclesView];
+        
+        
+        if (IDIOM == IPAD) {
+            VehiclesViewController *vehiclesView = [[VehiclesViewController alloc] initWithNibName:(KIS_ARABIC)?@"VehiclesViewController_ar_Ipad":@"VehiclesViewController_Ipad" bundle:nil];
+            _vehiclesNavigationController = [[UINavigationController alloc] initWithRootViewController:vehiclesView];
+        }else {
+            VehiclesViewController *vehiclesView = [[VehiclesViewController alloc] initWithNibName:(KIS_ARABIC)?@"VehiclesViewController_ar":@"VehiclesViewController" bundle:nil];
+            _vehiclesNavigationController = [[UINavigationController alloc] initWithRootViewController:vehiclesView];
+            
+        }
+        
+        
+     
     }
     return _vehiclesNavigationController;
 }
@@ -369,8 +480,14 @@
 {
     if (!_welcomeNavigationController)
     {
+        if ( IDIOM == IPAD ) {
+            WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"WelcomeViewController_ar_Ipad":@"WelcomeViewController_Ipad" bundle:nil];
+            
+            _welcomeNavigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
+        }
+        else{
         WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] initWithNibName:(KIS_ARABIC)?@"WelcomeViewController_ar":@"WelcomeViewController" bundle:nil];
-     _welcomeNavigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
+            _welcomeNavigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];}
     }
     return _welcomeNavigationController;
 }

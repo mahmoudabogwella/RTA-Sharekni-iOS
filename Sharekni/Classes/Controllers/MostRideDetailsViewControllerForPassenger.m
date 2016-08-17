@@ -25,9 +25,8 @@
 #import "AddRemarksViewControllerForMap.h"
 #import "UIViewController+MJPopupViewController.h"
 
-/*
- #import "UIViewController+MJPopupViewController.h"
- */
+#import "HappyMeter.h"
+
 
 @interface MostRideDetailsViewControllerForPassenger ()<SendMSGDelegate/*,MJDetailPopupDelegate*/,MJAddRemarkPopupDelegate,MFMessageComposeViewControllerDelegate ,UIActionSheetDelegate ,UIAlertViewDelegate>
 
@@ -109,7 +108,10 @@
     }
     
     [self getRideDetails];
+    
+
 }
+
 
 - (BOOL)shouldAutorotate
 {
@@ -282,17 +284,42 @@
     User *user = [[MobAccountManager sharedMobAccountManager] applicationUser];
     if (user == nil)
     {
-        if (  [_LanguageIs isEqual: @"Arabic"]) {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
-        }else {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
+        
+        
+        if ( IDIOM == IPAD ) {
+            /* do something specifically for iPad. */
+           
+            if (  [_LanguageIs isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
+        } else {
+            /* do something specifically for iPhone or iPod touch. */
+       
+            if (  [_LanguageIs isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
         }
+        
+        
+      
         
     }else {
         [self Comments];
@@ -313,17 +340,40 @@
     }
     else
     {
-        if (  [_LanguageIs isEqual: @"Arabic"]) {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
-        }else {
-            LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
-            loginView.isLogged = YES ;
-            [self presentViewController:navg animated:YES completion:nil];
+        
+        
+        if ( IDIOM == IPAD ) {
+            /* do something specifically for iPad. */
+            
+            if (  [_LanguageIs isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_Ipad" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
+        } else {
+            /* do something specifically for iPhone or iPod touch. */
+            
+            if (  [_LanguageIs isEqual: @"Arabic"]) {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }else {
+                LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+                UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
+                loginView.isLogged = YES ;
+                [self presentViewController:navg animated:YES completion:nil];
+            }
+            
         }
+
         
     }
 }
