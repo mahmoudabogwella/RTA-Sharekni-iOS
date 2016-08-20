@@ -89,6 +89,10 @@
         
         _toLbl.hidden = YES;
     }
+//        if ([[Languages sharedLanguageInstance] language] == Philippine) {
+//            self.fromLbl.text = GET_STRING(@"From");
+//            self.toLbl.text = GET_STRING(@"To");
+//        }
     self.fromLbl.text = GET_STRING(@"From");
     self.toLbl.text = GET_STRING(@"To");
     

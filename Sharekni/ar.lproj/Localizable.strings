@@ -30,7 +30,7 @@
 "mobileReq" = "من فضلك أدخل رقم المحمول";
 "mailReq" = "من فضلك أدخل البريد الإلكتروني";
 
-"registration" = "مستخدم جديد";
+"registration" = "تسجيل";
 "login" = "الدخول";
 "bestDrivers" = "أفضل السائقين";
 "searchOptions" = "البحث";
@@ -336,20 +336,26 @@
 
 "Happy Meter" = "السعادة";
 
-"Filipino" = "الفلبينية";
-"Chinese" = "الصينية";
+"Filipino" = "Filipino";
+"Chinese" = "中国";
 "Arabic" = "العربية";
-"English" = "الإنجليزية";
+"English" = "English";
+"Urdu" = "اردو";
 
 "Pick up" = "الإنطلاق";
 "Drop off" = "الوصول";
 
+"Select Region" = "اختر المنطقة";
 
+"Join Ride" = "الانضمام للرحلة";
+"Last Seen" = "اخر مشاهدة";
+"Points" = "نقاط";
+"Km" = "Km";
+"Routes" = "طرق";
+"Co2 Saving" = "CO2 استهلاك";
 
+"Invite" = "إرسال دعوه";
+"+18 Years"= "+18 عاما" ;
+"Save" = "تسجيل";
 
-
-
-
-
-
-
+"There is no saved search yet." = "لا توجد رحلات مشترك بها بعد";

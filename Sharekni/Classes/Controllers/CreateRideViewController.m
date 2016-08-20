@@ -95,7 +95,6 @@
 @property (strong,nonatomic)   NSDate *pickupDate;
 @property (strong,nonatomic)   NSDate *pickupTime;
 @property (weak, nonatomic) IBOutlet UILabel *Lpick;
-@property (weak, nonatomic) IBOutlet UILabel *LdropoffTitleLabel;
 
 @property (strong,nonatomic) NSArray *nationalties;
 @property (nonatomic,strong) NSMutableArray *nationaltiesStringsArray;
@@ -174,8 +173,9 @@
     self.singleRideLabel.text = GET_STRING(@"Single Ride");
     self.periodicLabel.text = GET_STRING(@"Periodic");
     [_setDirectionButton setTitle:GET_STRING(@"Set Direction") forState:UIControlStateNormal];
+    self.rideDetailsSectionLabel.text = GET_STRING(@"rideDetails");
     self.Lpick.text = GET_STRING(@"Pick up");
-    self.LdropoffTitleLabel.text = GET_STRING(@"Drop off");
+    self.destinationTitleLabel.text = GET_STRING(@"Drop off");
     self.LPrefGender.text = GET_STRING(@"Preferred Gender");
     self.LMale.text = GET_STRING(@"Male");
     self.LFemale.text = GET_STRING(@"Female");

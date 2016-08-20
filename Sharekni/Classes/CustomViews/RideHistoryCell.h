@@ -11,6 +11,8 @@
 #import "CreatedRide.h"
 
 @interface RideHistoryCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *FromLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ToLabel;
 
 @property (nonatomic ,weak) IBOutlet UILabel *RouteName ;
 @property (nonatomic ,weak) IBOutlet UIView *containerView ;

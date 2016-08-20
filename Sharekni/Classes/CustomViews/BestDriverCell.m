@@ -17,6 +17,10 @@
     // Initialization code
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
+    self.CO2.text = GET_STRING(@"Co2 Saving");
+
+    self.TLastSeen.text = GET_STRING(@"Last Seen");
+    self.TPoints.text = GET_STRING(@"Points");
 }
 
 - (void)setDriver:(BestDriver *)driver

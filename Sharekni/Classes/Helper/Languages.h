@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define GET_STRING(key) [[Languages sharedLanguageInstance] getStringForKey:key]
-#define KIS_ARABIC  ([Languages sharedLanguageInstance].language == 0)
+#define KIS_ARABIC  ([Languages sharedLanguageInstance].language == 0 || [Languages sharedLanguageInstance].language == 5 )
 #define LANGUAGE_KEY @"language_key"
 #define LANGUAGE_CHANGE_NOTIFICATION @"language_change_notification"
 
@@ -18,7 +18,8 @@ typedef enum {
     English ,
     Chines ,
     Indian,
-    Philippine
+    Philippine ,
+    Urdu
 } LanguageType;
 
 @interface Languages : NSObject

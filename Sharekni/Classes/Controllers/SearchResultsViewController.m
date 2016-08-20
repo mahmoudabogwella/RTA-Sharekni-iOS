@@ -21,6 +21,7 @@
 #import "UIViewController+MJPopupViewController.h"
 
 @interface SearchResultsViewController () <SendMSGDelegate,MFMessageComposeViewControllerDelegate,MJAddRemarkPopupDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *FromLabelO;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *fromLabel;
@@ -36,6 +37,9 @@
     [super viewDidLoad];
     [self configureUI];
     
+    self.FromLabelO.text = GET_STRING(@"From");
+    self.toTitleLabel.text = GET_STRING(@"To");
+
    
 }
 

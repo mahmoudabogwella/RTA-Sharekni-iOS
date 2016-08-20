@@ -54,6 +54,9 @@
 
 @interface RideDetailsVCInvitePassengers ()<GMSMapViewDelegate,MJDetailPopupDelegate,MJAddRemarkPopupDelegate,MFMessageComposeViewControllerDelegate,UIAlertViewDelegate>
 {
+    __weak IBOutlet UILabel *FromLabel;
+    __weak IBOutlet UILabel *ToLabel;
+    
     __weak IBOutlet UIScrollView *contentView ;
     __weak IBOutlet UITableView *reviewList ;
     __weak IBOutlet UIView *passengersHeader;
@@ -138,7 +141,9 @@
     
     //Test
   
-    
+    FromLabel.text = GET_STRING(@"From");
+    ToLabel.text = GET_STRING(@"To");
+
  
 //    UIBarButtonItem *customBtn=[[UIBarButtonItem alloc] initWithTitle:GET_STRING(@"Share") style:UIBarButtonItemStylePlain target:self action:@selector(customBtnPressed)];
 //    [self.navigationItem setRightBarButtonItem:customBtn];
@@ -154,7 +159,7 @@
     LAgerange.text = GET_STRING(@"Age Range");
     LSmokers.text = GET_STRING(@"Smokers");
 LNationality.text = GET_STRING(@"nationality");
-    
+    reviewLbl.text = GET_STRING(@"Review");
     //
     _RouteName = self.driverDetails.RouteEnName;
 
@@ -184,6 +189,21 @@ LNationality.text = GET_STRING(@"nationality");
         case English:
             //
             self->selected = @"English";
+            //        self.HindiButtonSelector.hidden = NO;
+            break;
+        case Philippine:
+            //
+            self->selected = @"Philippine";
+            //        self.HindiButtonSelector.hidden = NO;
+            break;
+        case Chines:
+            //
+            self->selected = @"Chines";
+            //        self.HindiButtonSelector.hidden = NO;
+            break;
+        case Urdu:
+            //
+            self->selected = @"Urdu";
             //        self.HindiButtonSelector.hidden = NO;
             break;
         default:
@@ -803,7 +823,7 @@ LNationality.text = GET_STRING(@"nationality");
         if ( IDIOM == IPAD ) {
             /* do something specifically for iPad. */
             
-            if (  [self->selected  isEqual: @"Arabic"]) {
+            if (  [self->selected  isEqual: @"Arabic"] ||[self->selected  isEqual: @"Urdu"] ) {
                 LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar_Ipad" bundle:nil];
                 UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
                 loginView.isLogged = YES ;
@@ -818,7 +838,7 @@ LNationality.text = GET_STRING(@"nationality");
         } else {
             /* do something specifically for iPhone or iPod touch. */
             
-            if (  [self->selected  isEqual: @"Arabic"]) {
+            if (  [self->selected  isEqual: @"Arabic"] ||[self->selected  isEqual: @"Urdu"] ) {
                 LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
                 UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
                 loginView.isLogged = YES ;
@@ -954,7 +974,7 @@ LNationality.text = GET_STRING(@"nationality");
         if ( IDIOM == IPAD ) {
             /* do something specifically for iPad. */
             
-            if (  [self->selected  isEqual: @"Arabic"]) {
+            if (  [self->selected  isEqual: @"Arabic"] ||[self->selected  isEqual: @"Urdu"] ) {
                 LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar_Ipad" bundle:nil];
                 UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
                 loginView.isLogged = YES ;
@@ -969,7 +989,7 @@ LNationality.text = GET_STRING(@"nationality");
         } else {
             /* do something specifically for iPhone or iPod touch. */
             
-            if (  [self->selected  isEqual: @"Arabic"]) {
+            if (  [self->selected  isEqual: @"Arabic"] ||[self->selected  isEqual: @"Urdu"] ) {
                 LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
                 UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
                 loginView.isLogged = YES ;

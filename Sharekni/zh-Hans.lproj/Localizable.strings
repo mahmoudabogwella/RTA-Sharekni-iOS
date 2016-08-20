@@ -376,14 +376,15 @@
 "Happy Meter" = "幸福";
 
 
-"Filipino" = "菲律宾";
-"Chinese" = "中文";
-"Arabic" = "阿拉伯语";
-"English" = "英语";
+"Filipino" = "Filipino";
+"Chinese" = "中国";
+"Arabic" = "العربية";
+"English" = "English";
+"Urdu" = "اردو";
 
+"There is no saved search yet." = "有没有保存的搜索还"; 
 
-
-
+"Refresh" = "刷新" ;
 
 
 

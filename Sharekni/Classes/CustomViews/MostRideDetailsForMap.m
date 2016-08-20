@@ -45,6 +45,7 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     // Initialization code
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
+    [_InviteButton setTitle:GET_STRING(@"Invite") forState:UIControlStateNormal ];
 }
 
 - (void)setMostRide:(MostRideDetailsDataForPassenger *)mostRide

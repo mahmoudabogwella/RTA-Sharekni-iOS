@@ -13,6 +13,13 @@
 #import "Ride.h"
 
 @interface DriverDetailsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *TPoints;
+@property (weak, nonatomic) IBOutlet UILabel *TVehicles;
+@property (weak, nonatomic) IBOutlet UILabel *TRoutes;
+@property (weak, nonatomic) IBOutlet UILabel *TKM;
+
+@property (weak, nonatomic) IBOutlet UILabel *CO2;
+
 @property (weak, nonatomic) IBOutlet UILabel *GreenPointKmOutLets;
 @property (weak, nonatomic) IBOutlet UILabel *KmOutLet;
 @property (weak, nonatomic) IBOutlet UILabel *RoutesOutLet;

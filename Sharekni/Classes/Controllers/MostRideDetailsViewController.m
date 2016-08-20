@@ -53,7 +53,10 @@
     [_backBtn setHighlighted:NO];
     [_backBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
-
+//    if ([[Languages sharedLanguageInstance] language] == Philippine) {
+//        self.fromLbl.text = @"Dam";
+//        self.toLbl.text = @"You ";
+//    }
     self.fromLbl.text = GET_STRING(@"From");
     self.toLbl.text = GET_STRING(@"To");
     

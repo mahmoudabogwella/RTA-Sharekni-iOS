@@ -183,6 +183,16 @@
                     //                    NSLog(self.sharedUser.GenderAr);
                     _FProfileImage = @"imageaftereditfemale_fi.png";
                 }
+            case Urdu:
+                //
+                if ([self.applicationUser.GenderEn  isEqual: @"Male"] || [self.applicationUser.GenderAr  isEqual: @"ذكر"]) {
+                    
+                    _MProfileImage = @"Urduimageafterediten.png";
+                }else{
+                    //                    NSLog(self.sharedUser.GenderAr);
+                    _FProfileImage = @"Urduimageaftereditfemale.png";
+                }
+                break;
             default:
                 NSLog(@"Error with the language Image Picker");
                 break;

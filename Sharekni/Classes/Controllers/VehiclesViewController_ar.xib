@@ -12,7 +12,7 @@
                 <outlet property="containerView" destination="xEw-bI-mbE" id="GOG-xe-rOW"/>
                 <outlet property="dateLabel" destination="Bdp-7h-DuV" id="QPp-7x-Sjc"/>
                 <outlet property="datePickerView" destination="jd7-2N-qaf" id="a4H-oy-9yj"/>
-                <outlet property="titleLabel" destination="eQd-Wa-WAG" id="zHe-2k-bd5"/>
+                <outlet property="titleLabel" destination="dfO-CA-XnE" id="ZJ2-W7-99k"/>
                 <outlet property="titleLabelView" destination="ul1-u9-Cfr" id="7Nv-ds-6eD"/>
                 <outlet property="traficFileNo" destination="pKp-7k-UWj" id="qwu-OS-MGZ"/>
                 <outlet property="vehiclesContainerView" destination="cew-SP-mEK" id="Npc-Mp-GG7"/>

@@ -17,6 +17,16 @@
     self.driversImage.layer.borderWidth = 3.0f;
     self.driversImage.layer.borderColor = Red_UIColor.CGColor;
     self.driversImage.clipsToBounds = YES ;
+    self.FromEmirateName.text = GET_STRING(@"From");
+    self.ToEmirateName.text = GET_STRING(@"To");
+    self.TDrivers.text = GET_STRING(@"Drivers");
+//        if ([[Languages sharedLanguageInstance] language] == Philippine ||[[Languages sharedLanguageInstance] language] == Urdu ) {
+//            self.FromEmirateName.textAlignment = NSTextAlignmentRight ;
+//            self.ToEmirateName.textAlignment = NSTextAlignmentRight ;
+//        }else {
+//            self.FromEmirateName.textAlignment = NSTextAlignmentRight ;
+//            self.ToEmirateName.textAlignment = NSTextAlignmentRight ;
+//        }
 }
 
 - (void)setRide:(MostRide *)ride

@@ -7,7 +7,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController">
             <connections>
+                <outlet property="TLogin" destination="4Zt-uK-aID" id="EuU-Jf-gVI"/>
+                <outlet property="TMostRides" destination="Vol-a4-G1b" id="3UV-eH-xnM"/>
+                <outlet property="TSearch" destination="Xyb-yt-Kgi" id="00O-iF-bNT"/>
+                <outlet property="TbestDrivers" destination="NfG-NG-f50" id="YB9-9q-vgO"/>
                 <outlet property="TextViaPicker" destination="AZv-RP-l9q" id="hJ0-sX-pJZ"/>
+                <outlet property="TheHappyMeter" destination="nXm-c4-jNR" id="hA9-QH-Blt"/>
+                <outlet property="Tregister" destination="Ak2-jM-46t" id="LSG-dY-T4m"/>
                 <outlet property="bestDriversView" destination="PxC-jE-2qJ" id="AbF-Bk-esM"/>
                 <outlet property="enBtn" destination="mdX-nY-9ph" id="6Ih-NZ-Axa"/>
                 <outlet property="mostRidesView" destination="y4V-HN-rDg" id="UFz-pe-AZ1"/>

@@ -107,28 +107,35 @@ NSArray* language ;
         case Arabic:
             //GET_STRING(@"Filipino") GET_STRING(@"Chinese") GET_STRING(@"Arabic") GET_STRING(@"English")
             
-            hardCodedLanguages = @[ GET_STRING(@"English"),GET_STRING(@"Chinese"),GET_STRING(@"Filipino")];
+            hardCodedLanguages = @[ GET_STRING(@"English"),GET_STRING(@"Chinese"),GET_STRING(@"Filipino"),GET_STRING(@"Urdu")];
             selected = @"English";
             break;
         case English:
             //
             
             //        self.HindiButtonSelector.hidden = NO;
-            hardCodedLanguages = @[GET_STRING(@"Arabic") ,GET_STRING(@"Chinese"),GET_STRING(@"Filipino")];
-            selected = @"Arabic";
+            hardCodedLanguages = @[GET_STRING(@"Arabic") ,GET_STRING(@"Chinese"),GET_STRING(@"Filipino") ,GET_STRING(@"Urdu")];
+            selected = @"العربية";
             break;
         case Chines:
             //
             
             //        self.HindiButtonSelector.hidden = NO;
-            hardCodedLanguages = @[GET_STRING(@"English") ,GET_STRING(@"Arabic"),GET_STRING(@"Filipino")];
+            hardCodedLanguages = @[GET_STRING(@"English") ,GET_STRING(@"Arabic"),GET_STRING(@"Filipino") ,GET_STRING(@"Urdu")];
             selected = @"English";
             break;
         case Philippine:
             //
             
             //        self.HindiButtonSelector.hidden = NO;
-            hardCodedLanguages = @[GET_STRING(@"English") ,GET_STRING(@"Arabic"),GET_STRING(@"Chinese")];
+            hardCodedLanguages = @[GET_STRING(@"English") ,GET_STRING(@"Arabic"),GET_STRING(@"Chinese") ,GET_STRING(@"Urdu")];
+            selected = @"English";
+            break;
+        case Urdu:
+            //
+            
+            //        self.HindiButtonSelector.hidden = NO;
+            hardCodedLanguages = @[GET_STRING(@"English") ,GET_STRING(@"Arabic"),GET_STRING(@"Chinese") ,GET_STRING(@"Filipino")];
             selected = @"English";
             break;
         default:
@@ -141,6 +148,9 @@ NSArray* language ;
     self.ridesCreatedLabel.text = GET_STRING(@"Create Ride");
     if ([[Languages sharedLanguageInstance] language] == Philippine) {
         self.verifyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:11];
+        
+    } else if ([[Languages sharedLanguageInstance] language] == Urdu) {
+        self.verifyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:10];
         
     }else{
         self.verifyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
@@ -463,6 +473,20 @@ NSArray* language ;
                     self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"imageaftereditfemale_fi.png"];
                     
                 }
+            case Urdu:
+                //
+                
+                if ([self.sharedUser.GenderEn  isEqual: @"Male"]) {
+                    
+                    self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"Urduimageafterediten.png"];
+                    
+                }else{
+                    //                    NSLog(self.sharedUser.GenderAr);
+                    
+                    self.profileImageView.image = self.sharedUser.userImage ? self.sharedUser.userImage : [UIImage imageNamed:@"Urduimageaftereditfemale.png"];
+                    
+                }
+                break;
             default:
                 NSLog(@"Error while picking Language");
                 
@@ -504,25 +528,30 @@ NSArray* language ;
     
     NSLog(@"that is the selected lang : %@",selected);
     
-    if ([selected  isEqual: @"Arabic"] || [selected  isEqual: @"阿拉伯语"] || [selected  isEqual: @"Arabe"]|| [selected  isEqual: @"العربية"]) {
-        NSLog(@"Select Arabic");
+    if ([selected  isEqual: @"العربية"]) {
+        NSLog(@"Selected Arabic");
         [[Languages sharedLanguageInstance] setLanguage:Arabic];
         [[NSNotificationCenter defaultCenter] postNotificationName:LANGUAGE_CHANGE_NOTIFICATION object:self];
         [appDelegate reloadApp];
         
-    } else  if ([selected  isEqual: @"Ingles"] || [selected  isEqual: @"英语"] || [selected  isEqual: @"الإنجليزية"]||[selected  isEqual: @"English"]) {
-        NSLog(@"Select English");
+    } else  if ([selected  isEqual: @"English"]) {
+        NSLog(@"Selected English");
         [[Languages sharedLanguageInstance] setLanguage:English];
         [[NSNotificationCenter defaultCenter] postNotificationName:LANGUAGE_CHANGE_NOTIFICATION object:self];
         [appDelegate reloadApp];
-    } else  if ([selected  isEqual: @"الصينية"] || [selected  isEqual: @"Tsino"] || [selected  isEqual: @"Chinese"]||[selected  isEqual: @"中文"]) {
-        NSLog(@"Select Chines");
+    } else  if ([selected  isEqual: @"中国"] ) {
+        NSLog(@"Selected Chines");
         [[Languages sharedLanguageInstance] setLanguage:Chines];
         [[NSNotificationCenter defaultCenter] postNotificationName:LANGUAGE_CHANGE_NOTIFICATION object:self];
         [appDelegate reloadApp];
-    } else  if ([selected  isEqual: @"Filipino"] || [selected  isEqual: @"الفلبينية"] || [selected  isEqual: @"菲律宾"]||[selected  isEqual: @"filipino"]) {
-        NSLog(@"Select Filipino");
+    } else  if ([selected  isEqual: @"Filipino"]) {
+        NSLog(@"Selected Filipino");
         [[Languages sharedLanguageInstance] setLanguage:Philippine];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LANGUAGE_CHANGE_NOTIFICATION object:self];
+        [appDelegate reloadApp];
+    }else  if ([selected  isEqual: @"اردو"]) {
+        NSLog(@"Selected Urdu");
+        [[Languages sharedLanguageInstance] setLanguage:Urdu];
         [[NSNotificationCenter defaultCenter] postNotificationName:LANGUAGE_CHANGE_NOTIFICATION object:self];
         [appDelegate reloadApp];
     }
@@ -531,15 +560,17 @@ NSArray* language ;
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NSString *title = hardCodedLanguages[row];
-    if ([title  isEqual: @"Arabic"] || [title  isEqual: @"阿拉伯语"] || [title  isEqual: @"Arabe"]|| [title  isEqual: @"العربية"]) {
+    if ([title  isEqual: @"العربية"]) {
         title = GET_STRING(@"Arabic");
-    } else  if ([title  isEqual: @"Ingles"] || [title  isEqual: @"英语"] || [title  isEqual: @"الإنجليزية"]||[title  isEqual: @"English"]) {
+    } else  if ([title  isEqual: @"English"]) {
         title = GET_STRING(@"English");
-    } else  if ([title  isEqual: @"الصينية"] || [title  isEqual: @"Tsino"] || [title  isEqual: @"Chinese"]||[title  isEqual: @"中文"]) {
+    } else  if ([title  isEqual: @"中国"] ) {
         title = GET_STRING(@"Chinese");
-    } else  if ([title  isEqual: @"Filipino"] || [title  isEqual: @"الفلبينية"] || [title  isEqual: @"菲律宾"]||[title  isEqual: @"filipino"]) {
+    } else  if ([title  isEqual: @"Filipino"]) {
         title = GET_STRING(@"Filipino");
-    }//
+    }else  if ([title  isEqual: @"اردو"]) {
+        title = GET_STRING(@"Urdu");
+    }
     NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
     
     return attString;

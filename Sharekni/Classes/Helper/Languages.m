@@ -38,6 +38,8 @@
                 language = Chines;
             }else if ([deviceLang isEqualToString:@"fil-PH"]) {
                 language = Philippine;
+            }else if ([deviceLang isEqualToString:@"pa-Arab-PK"]) {
+                language = Urdu;
             }
 			[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:language] forKey:LANGUAGE_KEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
@@ -92,6 +94,9 @@
             break;
         case Philippine :
             currentBundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"fil-PH" ofType:@"lproj"]];
+            break;
+        case Urdu :
+            currentBundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"pa-Arab-PK" ofType:@"lproj"]];
             break;
     }
 }

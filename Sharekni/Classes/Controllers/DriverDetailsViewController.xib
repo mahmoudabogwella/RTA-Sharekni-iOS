@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DriverDetailsViewController">
             <connections>
+                <outlet property="CO2" destination="uxc-th-yK3" id="mpJ-1l-5lw"/>
                 <outlet property="GreenPointKmOutLets" destination="2h0-wU-Qf4" id="TkL-eo-xjI"/>
                 <outlet property="KmOutLet" destination="ZRQ-rA-DVh" id="pvx-um-TK6"/>
                 <outlet property="PointsOutLet" destination="4Xz-Dp-MBo" id="gdC-n4-ORd"/>
                 <outlet property="RoutesOutLet" destination="R0l-Dk-46d" id="Zv0-Xw-yos"/>
+                <outlet property="TKM" destination="eJ1-Xg-DGf" id="ybh-Cw-SWW"/>
+                <outlet property="TPoints" destination="7eR-Lz-P3O" id="pWD-2o-jiu"/>
+                <outlet property="TRoutes" destination="ZKm-kp-AkE" id="bG0-hb-IzV"/>
+                <outlet property="TVehicles" destination="vIq-y2-OfQ" id="Tzj-S0-A1F"/>
                 <outlet property="VehiclesOutLet" destination="PtS-Fk-2mU" id="g9I-Qa-QGq"/>
                 <outlet property="country" destination="S9c-d2-TUI" id="eHC-VU-6Px"/>
                 <outlet property="driverImage" destination="FIp-K9-OOv" id="aDZ-Us-3gN"/>
@@ -118,8 +123,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Yl-o2-j67">
                     <rect key="frame" x="0.0" y="79" width="600" height="73"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eR-Lz-P3O">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="7eR-Lz-P3O">
                             <rect key="frame" x="4" y="57" width="48" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="M1c-4u-Hvv"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="11"/>
                             <color key="textColor" red="0.2470588235" green="0.42352941179999998" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -127,10 +135,11 @@
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehicles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIq-y2-OfQ">
-                            <rect key="frame" x="128" y="57" width="48" height="16"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehicles" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="vIq-y2-OfQ">
+                            <rect key="frame" x="137" y="57" width="90" height="16"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="48" id="fcx-Z3-P4n">
+                                <constraint firstAttribute="height" constant="16" id="QBF-LU-jzO"/>
+                                <constraint firstAttribute="width" constant="90" id="fcx-Z3-P4n">
                                     <variation key="heightClass=regular-widthClass=regular" constant="65"/>
                                 </constraint>
                             </constraints>
@@ -141,9 +150,10 @@
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Routes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKm-kp-AkE">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Routes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="ZKm-kp-AkE">
                             <rect key="frame" x="82" y="57" width="48" height="16"/>
                             <constraints>
+                                <constraint firstAttribute="height" constant="16" id="O3H-CJ-zH0"/>
                                 <constraint firstAttribute="width" constant="48" id="x1L-G0-4f9"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="11"/>
@@ -153,12 +163,13 @@
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJ1-Xg-DGf">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KM" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="eJ1-Xg-DGf">
                             <rect key="frame" x="62" y="57" width="18" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="18" id="Byo-Hc-5PH">
                                     <variation key="heightClass=regular-widthClass=regular" constant="34"/>
                                 </constraint>
+                                <constraint firstAttribute="height" constant="16" id="EZ7-YK-5au"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="11"/>
                             <color key="textColor" red="0.2470588235" green="0.42352941179999998" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -238,8 +249,8 @@
                                         <constraint firstAttribute="width" constant="43" id="yue-Hb-F3B"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="2h0-wU-Qf4">
-                                    <rect key="frame" x="8" y="27" width="73" height="24"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="2h0-wU-Qf4">
+                                    <rect key="frame" x="8" y="28" width="73" height="23"/>
                                     <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
                                     <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="16"/>
                                     <color key="textColor" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -248,14 +259,18 @@
                                         <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="18"/>
                                     </variation>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNe-R3-xnO">
-                                    <rect key="frame" x="59" y="9" width="5" height="14"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNe-R3-xnO">
+                                    <rect key="frame" x="59" y="24" width="0.0" height="0.0"/>
                                     <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="10"/>
                                     <color key="textColor" red="0.21176470589999999" green="0.41176470590000003" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CO  Saving" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxc-th-yK3">
-                                    <rect key="frame" x="46" y="3" width="54" height="16"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CO  Saving" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="uxc-th-yK3">
+                                    <rect key="frame" x="43" y="1" width="79" height="19"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="19" id="I1B-6o-sgc"/>
+                                        <constraint firstAttribute="width" constant="79" id="jDp-Hu-rUG"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="KohinoorDevanagari-Semibold" family="Kohinoor Devanagari" pointSize="10"/>
                                     <color key="textColor" red="0.21176470589999999" green="0.41176470590000003" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -263,8 +278,8 @@
                                         <fontDescription key="fontDescription" name="KohinoorDevanagari-Semibold" family="Kohinoor Devanagari" pointSize="12"/>
                                     </variation>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="kg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGC-Zi-zwu">
-                                    <rect key="frame" x="84" y="32" width="13" height="14"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGC-Zi-zwu">
+                                    <rect key="frame" x="84" y="33" width="13" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="13" id="Nc9-PV-55f">
                                             <variation key="heightClass=regular-widthClass=regular" constant="16"/>
@@ -280,7 +295,7 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="uxc-th-yK3" firstAttribute="leading" secondItem="mIQ-Ga-Yc0" secondAttribute="leading" constant="46" id="2Ny-P8-Q6j">
+                                <constraint firstItem="uxc-th-yK3" firstAttribute="leading" secondItem="mIQ-Ga-Yc0" secondAttribute="leading" constant="43" id="2Ny-P8-Q6j">
                                     <variation key="heightClass=regular-widthClass=regular" constant="52"/>
                                 </constraint>
                                 <constraint firstItem="2h0-wU-Qf4" firstAttribute="leading" secondItem="mIQ-Ga-Yc0" secondAttribute="leading" constant="8" id="Fyq-wG-4wN">
@@ -412,7 +427,7 @@
                             <variation key="heightClass=regular-widthClass=regular" constant="37"/>
                         </constraint>
                         <constraint firstItem="qOb-4Y-zcs" firstAttribute="leading" secondItem="4Yl-o2-j67" secondAttribute="leading" constant="8" id="BLe-KP-rts"/>
-                        <constraint firstItem="vIq-y2-OfQ" firstAttribute="leading" secondItem="PtS-Fk-2mU" secondAttribute="leading" id="BN3-hh-mAT">
+                        <constraint firstItem="vIq-y2-OfQ" firstAttribute="leading" secondItem="PtS-Fk-2mU" secondAttribute="leading" constant="9" id="BN3-hh-mAT">
                             <variation key="heightClass=regular-widthClass=regular" constant="-6"/>
                         </constraint>
                         <constraint firstItem="8rY-q0-5EJ" firstAttribute="leading" secondItem="gim-a7-gk6" secondAttribute="trailing" constant="39" id="C5A-DM-17j">

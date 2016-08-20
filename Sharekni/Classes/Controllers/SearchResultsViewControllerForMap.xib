@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchResultsViewControllerForMap">
             <connections>
+                <outlet property="FromLabel" destination="CBt-OR-gZf" id="Qvy-W5-GAL"/>
                 <outlet property="fromLabel" destination="Tdv-vf-dIk" id="53u-A1-JLZ"/>
                 <outlet property="tableView" destination="EuV-zd-7ha" id="apV-s3-cLc"/>
                 <outlet property="toLabel" destination="Q9E-jc-7iW" id="riY-VX-kdF"/>

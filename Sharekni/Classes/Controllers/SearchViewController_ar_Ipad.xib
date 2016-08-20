@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,7 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController">
             <connections>
+                <outlet property="AdvancedSearch" destination="uFj-QM-Wmb" id="V6i-LX-4Xa"/>
                 <outlet property="SwitchImage" destination="apc-Ob-xVA" id="llU-II-SBw"/>
+                <outlet property="TopRides" destination="RQL-Op-Nec" id="sSh-qc-Cnr"/>
                 <outlet property="background" destination="yhL-B1-Ye4" id="NuS-HZ-TUQ"/>
                 <outlet property="dateLabel" destination="taH-E8-djB" id="tcT-YC-kli"/>
                 <outlet property="dateView" destination="0R2-qQ-Sdr" id="S3I-LD-p8Y"/>
@@ -15,6 +17,7 @@
                 <outlet property="dropoffTitleLabel" destination="aJv-Pp-HzO" id="9mT-W1-hyv"/>
                 <outlet property="emiratesRegionsView" destination="N9k-FZ-MTx" id="eQh-CG-r2S"/>
                 <outlet property="helpLabel" destination="7P3-RI-uAR" id="g2H-Hm-Eld"/>
+                <outlet property="mapLook" destination="uTD-R5-ZlG" id="9tc-v8-qDN"/>
                 <outlet property="pickupTitleLabel" destination="Tyo-Et-eSA" id="19C-ur-kAG"/>
                 <outlet property="saveSearchLabel" destination="crW-OT-bpr" id="DsC-2V-lJs"/>
                 <outlet property="saveSearchView" destination="jAB-i3-cvH" id="yex-uF-dHR"/>
@@ -288,7 +291,7 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="الإنطلاق" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyo-Et-eSA">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="الإنطلاق" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tyo-Et-eSA">
                                             <rect key="frame" x="2" y="1" width="62" height="31"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -407,7 +410,7 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="الوصول" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJv-Pp-HzO">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="الوصول" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="aJv-Pp-HzO">
                                             <rect key="frame" x="2" y="1" width="62" height="31"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -772,7 +775,26 @@
                         <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jAB-i3-cvH">
                             <rect key="frame" x="13" y="351" width="288" height="45"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="حفظ البحث" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crW-OT-bpr">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="select_right" translatesAutoresizingMaskIntoConstraints="NO" id="apc-Ob-xVA">
+                                    <rect key="frame" x="23" y="8" width="45" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="65" id="JdV-tT-5vC"/>
+                                        <constraint firstAttribute="height" constant="38" id="Zct-KJ-GEr"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="JdV-tT-5vC"/>
+                                            <exclude reference="Zct-KJ-GEr"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=regular">
+                                        <mask key="constraints">
+                                            <include reference="JdV-tT-5vC"/>
+                                            <include reference="Zct-KJ-GEr"/>
+                                        </mask>
+                                    </variation>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="حفظ البحث" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="crW-OT-bpr">
                                     <rect key="frame" x="76" y="12" width="95" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="VEx-40-ug5"/>
@@ -794,25 +816,6 @@
                                         </mask>
                                     </variation>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="select_right" translatesAutoresizingMaskIntoConstraints="NO" id="apc-Ob-xVA">
-                                    <rect key="frame" x="23" y="8" width="45" height="28"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="65" id="JdV-tT-5vC"/>
-                                        <constraint firstAttribute="height" constant="38" id="Zct-KJ-GEr"/>
-                                    </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="JdV-tT-5vC"/>
-                                            <exclude reference="Zct-KJ-GEr"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="heightClass=regular-widthClass=regular">
-                                        <mask key="constraints">
-                                            <include reference="JdV-tT-5vC"/>
-                                            <include reference="Zct-KJ-GEr"/>
-                                        </mask>
-                                    </variation>
-                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>

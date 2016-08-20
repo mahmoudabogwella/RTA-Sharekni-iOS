@@ -355,7 +355,7 @@
 "Invite" = "Invite";
 "Join" = "Join";
 "Save Search" = "Save Search";
-
+"Refresh" = "Refresh";
 
 "Sorry but you have to be logged in facebook to share" = "Sorry but you have to be logged in facebook to share";
 
@@ -377,11 +377,12 @@
 "Happy Meter" = "Happiness";
 
 "Filipino" = "Filipino";
-"Chinese" = "Chinese";
-"Arabic" = "Arabic";
+"Chinese" = "中国";
+"Arabic" = "العربية";
 "English" = "English";
+"Urdu" = "اردو";
 
-
+"There is no saved search yet." = "There is no saved search yet." ;
 
 
 

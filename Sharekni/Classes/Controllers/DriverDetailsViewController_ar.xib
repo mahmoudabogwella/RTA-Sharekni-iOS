@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -10,10 +10,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DriverDetailsViewController">
             <connections>
+                <outlet property="CO2" destination="Ljh-UN-51r" id="jks-0c-H4i"/>
                 <outlet property="GreenPointKmOutLets" destination="ycD-tf-bF4" id="xKl-dF-jPY"/>
                 <outlet property="KmOutLet" destination="BqX-JK-ahM" id="CXr-pr-JnG"/>
                 <outlet property="PointsOutLet" destination="ADN-DV-YaD" id="ZHN-Q5-Z3a"/>
                 <outlet property="RoutesOutLet" destination="fvv-jG-u4S" id="hnf-w5-Mph"/>
+                <outlet property="TKM" destination="e7F-GQ-EOW" id="wTX-3i-9HS"/>
+                <outlet property="TPoints" destination="r6W-Ui-N1s" id="VZK-R4-5aK"/>
+                <outlet property="TRoutes" destination="H5S-7A-9im" id="FbT-9e-KOZ"/>
+                <outlet property="TVehicles" destination="4oL-pt-RpK" id="OWB-zK-zcl"/>
                 <outlet property="VehiclesOutLet" destination="5yn-9L-Fdy" id="L3A-ah-tfg"/>
                 <outlet property="country" destination="S9c-d2-TUI" id="eHC-VU-6Px"/>
                 <outlet property="driverImage" destination="FIp-K9-OOv" id="aDZ-Us-3gN"/>
@@ -105,14 +110,14 @@
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="21" id="sS0-ar-WbY"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B9G-6c-jKm">
-                    <rect key="frame" x="0.0" y="90" width="600" height="73"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B9G-6c-jKm">
+                    <rect key="frame" x="0.0" y="90" width="600" height="70"/>
                     <subviews>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQj-vw-31y">
-                            <rect key="frame" x="304" y="4" width="125" height="52"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQj-vw-31y">
+                            <rect key="frame" x="304" y="4" width="125" height="49"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ycD-tf-bF4">
-                                    <rect key="frame" x="55" y="26" width="98" height="31"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ycD-tf-bF4">
+                                    <rect key="frame" x="55" y="26" width="98" height="28"/>
                                     <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="98" id="Xal-4k-9nW"/>
@@ -124,8 +129,12 @@
                                         <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="20"/>
                                     </variation>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CO  إستهلاك" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljh-UN-51r">
-                                    <rect key="frame" x="22" y="6" width="62" height="16"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CO  إستهلاك" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ljh-UN-51r">
+                                    <rect key="frame" x="6" y="4" width="76" height="18"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="76" id="5ac-CI-FZy"/>
+                                        <constraint firstAttribute="height" constant="18" id="kF1-3l-2MF"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="KohinoorDevanagari-Semibold" family="Kohinoor Devanagari" pointSize="10"/>
                                     <color key="textColor" red="0.21176470589999999" green="0.41176470590000003" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -133,20 +142,11 @@
                                         <fontDescription key="fontDescription" name="KohinoorDevanagari-Semibold" family="Kohinoor Devanagari" pointSize="12"/>
                                     </variation>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8h-gz-9Ri">
-                                    <rect key="frame" x="35" y="8" width="55" height="21"/>
-                                    <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="11"/>
-                                    <color key="textColor" red="0.21176470589999999" green="0.41176470590000003" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                    <variation key="heightClass=regular-widthClass=regular">
-                                        <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="9"/>
-                                    </variation>
-                                </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="greencarar" translatesAutoresizingMaskIntoConstraints="NO" id="pnr-oT-XYk">
-                                    <rect key="frame" x="63" y="-2" width="45" height="42"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greencarar" translatesAutoresizingMaskIntoConstraints="NO" id="pnr-oT-XYk">
+                                    <rect key="frame" x="63" y="-2" width="45" height="39"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="كج" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLW-sw-vW1">
-                                    <rect key="frame" x="38" y="31" width="13" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="كج" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLW-sw-vW1">
+                                    <rect key="frame" x="38" y="31" width="13" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="13" id="8ev-OI-TJ9"/>
                                     </constraints>
@@ -157,13 +157,22 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     </variation>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8h-gz-9Ri">
+                                    <rect key="frame" x="35" y="8" width="55" height="18"/>
+                                    <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="11"/>
+                                    <color key="textColor" red="0.21176470589999999" green="0.41176470590000003" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="heightClass=regular-widthClass=regular">
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="9"/>
+                                    </variation>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="pnr-oT-XYk" firstAttribute="leading" secondItem="ycD-tf-bF4" secondAttribute="trailing" constant="-90" id="8Wa-nj-U8W">
                                     <variation key="heightClass=regular-widthClass=regular" constant="-75"/>
                                 </constraint>
-                                <constraint firstAttribute="trailing" secondItem="Ljh-UN-51r" secondAttribute="trailing" constant="41" id="9bj-qI-mvY">
+                                <constraint firstAttribute="trailing" secondItem="Ljh-UN-51r" secondAttribute="trailing" constant="43" id="9bj-qI-mvY">
                                     <variation key="heightClass=regular-widthClass=regular" constant="54"/>
                                 </constraint>
                                 <constraint firstItem="ycD-tf-bF4" firstAttribute="centerY" secondItem="hLW-sw-vW1" secondAttribute="centerY" id="Ev5-z8-GPx"/>
@@ -171,10 +180,10 @@
                                     <variation key="widthClass=compact" constant="-16"/>
                                     <variation key="heightClass=regular-widthClass=regular" constant="-25"/>
                                 </constraint>
-                                <constraint firstItem="Ljh-UN-51r" firstAttribute="leading" secondItem="hLW-sw-vW1" secondAttribute="trailing" constant="-29" id="NNF-TB-KJT">
+                                <constraint firstItem="Ljh-UN-51r" firstAttribute="leading" secondItem="hLW-sw-vW1" secondAttribute="trailing" constant="-45" id="NNF-TB-KJT">
                                     <variation key="heightClass=regular-widthClass=regular" constant="-20"/>
                                 </constraint>
-                                <constraint firstItem="Ljh-UN-51r" firstAttribute="top" secondItem="mQj-vw-31y" secondAttribute="top" constant="6" id="SJu-5a-abE"/>
+                                <constraint firstItem="Ljh-UN-51r" firstAttribute="top" secondItem="mQj-vw-31y" secondAttribute="top" constant="4" id="SJu-5a-abE"/>
                                 <constraint firstItem="G8h-gz-9Ri" firstAttribute="top" secondItem="mQj-vw-31y" secondAttribute="top" constant="8" id="USa-9z-jSg">
                                     <variation key="widthClass=compact" constant="11"/>
                                     <variation key="heightClass=regular-widthClass=regular" constant="9"/>
@@ -229,31 +238,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="مركبات" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4oL-pt-RpK">
-                            <rect key="frame" x="427" y="55" width="48" height="21"/>
-                            <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="11"/>
-                            <color key="textColor" red="0.24705882352941178" green="0.42352941176470588" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                            <variation key="heightClass=regular-widthClass=regular">
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="13"/>
-                            </variation>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="طرق" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5S-7A-9im">
-                            <rect key="frame" x="481" y="57" width="18" height="17"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="18" id="q2l-eB-m96">
-                                    <variation key="heightClass=regular-widthClass=regular" constant="36"/>
-                                </constraint>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="9"/>
-                            <color key="textColor" red="0.24705882352941178" green="0.42352941176470588" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                            <variation key="heightClass=regular-widthClass=regular">
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="13"/>
-                            </variation>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="5yn-9L-Fdy">
-                            <rect key="frame" x="427" y="43" width="42" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="5yn-9L-Fdy">
+                            <rect key="frame" x="427" y="40" width="42" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="42" id="syb-RD-7qD">
                                     <variation key="heightClass=regular-widthClass=regular" constant="64"/>
@@ -266,8 +252,8 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="BqX-JK-ahM">
-                            <rect key="frame" x="508" y="44" width="39" height="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="BqX-JK-ahM">
+                            <rect key="frame" x="508" y="40" width="39" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="39" id="9CH-y8-5Pz">
                                     <variation key="heightClass=regular-widthClass=regular" constant="55"/>
@@ -280,8 +266,8 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="fvv-jG-u4S">
-                            <rect key="frame" x="468" y="43" width="43" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="fvv-jG-u4S">
+                            <rect key="frame" x="468" y="40" width="43" height="21"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                             <color key="textColor" red="0.21176470589999999" green="0.41176470590000003" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -289,8 +275,8 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="ADN-DV-YaD">
-                            <rect key="frame" x="554" y="44" width="36" height="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="ADN-DV-YaD">
+                            <rect key="frame" x="554" y="40" width="36" height="21"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                             <color key="textColor" red="0.21176470589999999" green="0.41176470590000003" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -373,12 +359,15 @@
                                 </constraint>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOe-cq-eOK">
-                            <rect key="frame" x="429" y="26" width="163" height="6"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOe-cq-eOK">
+                            <rect key="frame" x="429" y="26" width="163" height="3"/>
                             <color key="backgroundColor" red="0.30588235289999999" green="0.49019607840000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="كم" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7F-GQ-EOW">
-                            <rect key="frame" x="504" y="55" width="48" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="كم" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="e7F-GQ-EOW">
+                            <rect key="frame" x="504" y="52" width="48" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="OtA-Ji-ycP"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="11"/>
                             <color key="textColor" red="0.24705882352941178" green="0.42352941176470588" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -386,9 +375,39 @@
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="13"/>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="نقاط" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6W-Ui-N1s">
-                            <rect key="frame" x="549" y="55" width="48" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="نقاط" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="r6W-Ui-N1s">
+                            <rect key="frame" x="549" y="52" width="48" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="ndg-5l-hIs"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="11"/>
+                            <color key="textColor" red="0.24705882352941178" green="0.42352941176470588" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="13"/>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="مركبات" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="4oL-pt-RpK">
+                            <rect key="frame" x="427" y="52" width="48" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="1Ni-7p-MJh"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="11"/>
+                            <color key="textColor" red="0.24705882352941178" green="0.42352941176470588" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="13"/>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="طرق" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="H5S-7A-9im">
+                            <rect key="frame" x="481" y="54" width="18" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="17" id="Iyb-GP-4Fi"/>
+                                <constraint firstAttribute="width" constant="18" id="q2l-eB-m96">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="36"/>
+                                </constraint>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="9"/>
                             <color key="textColor" red="0.24705882352941178" green="0.42352941176470588" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <variation key="heightClass=regular-widthClass=regular">
@@ -529,8 +548,8 @@
                         <constraint firstItem="e7F-GQ-EOW" firstAttribute="baseline" secondItem="4oL-pt-RpK" secondAttribute="baseline" id="zGE-JR-cXa"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="170" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBn-Mc-ZA6">
-                    <rect key="frame" x="0.0" y="171" width="600" height="429"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="170" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBn-Mc-ZA6">
+                    <rect key="frame" x="0.0" y="168" width="600" height="432"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="zc3-VB-8F9"/>

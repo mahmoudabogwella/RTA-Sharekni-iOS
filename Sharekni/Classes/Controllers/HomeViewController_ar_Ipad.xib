@@ -512,7 +512,7 @@
                         <constraint firstAttribute="width" constant="66" id="W4P-WX-V0C"/>
                         <constraint firstAttribute="height" constant="30" id="hbE-6D-0xM"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                     <state key="normal" title="Verify">
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

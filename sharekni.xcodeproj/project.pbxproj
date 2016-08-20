@@ -539,6 +539,8 @@
 		71501E861CD41707002B267B /* LoginViewController_Ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_Ipad.xib; sourceTree = "<group>"; };
 		71501E881CD41752002B267B /* LoginViewController_ar_Ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_ar_Ipad.xib; sourceTree = "<group>"; };
 		715F02281C78893A00788D41 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		718572581D65ED24007ADDB3 /* pa-Arab-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pa-Arab-PK"; path = "pa-Arab-PK.lproj/Main.strings"; sourceTree = "<group>"; };
+		718572591D65ED24007ADDB3 /* pa-Arab-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pa-Arab-PK"; path = "pa-Arab-PK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7189257F1C81ECE300BE8A6D /* MostRideDetailsDataForPassenger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MostRideDetailsDataForPassenger.h; sourceTree = "<group>"; };
 		718925801C81ECED00BE8A6D /* MostRideDetailsDataForPassenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostRideDetailsDataForPassenger.m; sourceTree = "<group>"; };
 		718925821C81ED6900BE8A6D /* MostRideDetailsViewControllerForPassenger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MostRideDetailsViewControllerForPassenger.h; sourceTree = "<group>"; };
@@ -1420,6 +1422,7 @@
 				"zh-Hans",
 				hi,
 				"fil-PH",
+				"pa-Arab-PK",
 			);
 			mainGroup = 04931B121BAAF814000F5434;
 			productRefGroup = 04931B1C1BAAF814000F5434 /* Products */;
@@ -1754,6 +1757,7 @@
 				71F506351C5D9D0F003C0639 /* zh-Hans */,
 				71F506371C5DA2D2003C0639 /* hi */,
 				713BD8261D4F623B008B180F /* fil-PH */,
+				718572581D65ED24007ADDB3 /* pa-Arab-PK */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1766,6 +1770,7 @@
 				71F506361C5D9D0F003C0639 /* zh-Hans */,
 				71F506381C5DA2D2003C0639 /* hi */,
 				713BD8271D4F623B008B180F /* fil-PH */,
+				718572591D65ED24007ADDB3 /* pa-Arab-PK */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

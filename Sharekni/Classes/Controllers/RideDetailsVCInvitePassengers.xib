@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RideDetailsVCInvitePassengers">
             <connections>
+                <outlet property="FromLabel" destination="zH5-2p-VBK" id="jyx-oE-Ofr"/>
                 <outlet property="FromRegionName" destination="9Ss-AV-fjr" id="xID-WC-cn3"/>
                 <outlet property="LAgerange" destination="2dC-z8-KLh" id="NMa-ok-y4a"/>
                 <outlet property="LLang" destination="AOE-G2-hmp" id="rF5-bI-hHT"/>
@@ -14,6 +15,7 @@
                 <outlet property="LSmokers" destination="e8P-tx-1Co" id="wLn-v4-b8l"/>
                 <outlet property="Lgender" destination="Hi1-fq-NW8" id="7Zz-Us-5Ha"/>
                 <outlet property="MatchedSearchResults" destination="myZ-jy-Ylq" id="161-jD-ZAG"/>
+                <outlet property="ToLabel" destination="VAc-E5-Oms" id="MkP-A5-lCg"/>
                 <outlet property="ToRegionName" destination="2uY-OX-8Gx" id="Lz7-8D-xSW"/>
                 <outlet property="_MKmapView" destination="7lu-n3-uSK" id="a8N-Di-jnK"/>
                 <outlet property="ageRange" destination="Qvo-8B-rBr" id="OyO-Zf-Y6e"/>
@@ -278,20 +280,6 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="20y-a9-bgJ">
-                            <rect key="frame" x="95" y="1214" width="131" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Join Ride"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="3"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="joinThisRide:" destination="-1" eventType="touchUpInside" id="cOs-ZK-7bS"/>
-                            </connections>
-                        </button>
                         <view contentMode="scaleToFill" id="BlE-VM-j4C">
                             <rect key="frame" x="8" y="568" width="304" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -310,7 +298,7 @@
                             <rect key="frame" x="93" y="827" width="134" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preferences" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oCf-Pl-KTs">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preferences" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" id="oCf-Pl-KTs">
                                     <rect key="frame" x="0.0" y="0.0" width="134" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -325,7 +313,7 @@
                             <rect key="frame" x="93" y="1015" width="134" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o27-7B-X0W">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" id="o27-7B-X0W">
                                     <rect key="frame" x="0.0" y="0.0" width="134" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
@@ -358,6 +346,20 @@
                                 <action selector="MatchedSearchResulst:" destination="-1" eventType="touchUpInside" id="d8i-wI-1OZ"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="20y-a9-bgJ">
+                            <rect key="frame" x="83" y="1214" width="155" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Join Ride"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="joinThisRide:" destination="-1" eventType="touchUpInside" id="cOs-ZK-7bS"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </scrollView>
@@ -366,7 +368,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="571" y="709"/>
+            <point key="canvasLocation" x="454" y="288"/>
         </view>
     </objects>
 </document>

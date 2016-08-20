@@ -380,11 +380,14 @@
 "Happy Meter" = "kaligayahan";
 
 
-"Filipino" = "filipino";
-"Chinese" = "Tsino";
-"Arabic" = "Arabe";
-"English" = "Ingles";
+"Filipino" = "Filipino";
+"Chinese" = "中国";
+"Arabic" = "العربية";
+"English" = "English";
+"Urdu" = "اردو";
 
+"There is no saved search yet." = "Walang-save na paghahanap pa";
+"Refresh" = "Refresh" ;
 
 
 

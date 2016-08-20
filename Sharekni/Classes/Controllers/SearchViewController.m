@@ -106,8 +106,14 @@
     self.TopRides.text = GET_STRING(@"Top Rides");
     
     
-    
-    _setDirectionButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+            if ([[Languages sharedLanguageInstance] language] == Philippine/* ||[[Languages sharedLanguageInstance] language] == Urdu */) {
+                _setDirectionButton.titleLabel.font = [UIFont boldSystemFontOfSize:11];
+
+                
+            }else{
+                _setDirectionButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+            }
+
     _searchButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
 
     self.navigationController.navigationBarHidden = NO ;

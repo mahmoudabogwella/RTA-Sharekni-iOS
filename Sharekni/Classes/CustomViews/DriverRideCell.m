@@ -39,6 +39,8 @@
     _containerView.layer.cornerRadius = 20;
     _containerView.layer.borderWidth = 1;
     _containerView.layer.borderColor = Red_UIColor.CGColor;
+    self.FromLabel.text = GET_STRING(@"From");
+    self.ToLabel.text = GET_STRING(@"To");
 }
 
 - (void)setDriverRideDetails:(DriverDetails *)driverRideDetails

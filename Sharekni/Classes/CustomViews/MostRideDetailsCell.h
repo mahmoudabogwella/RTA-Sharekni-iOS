@@ -21,6 +21,8 @@
 @end
 
 @interface MostRideDetailsCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *CO2;
+@property (weak, nonatomic) IBOutlet UILabel *TPoints;
 @property (weak, nonatomic) IBOutlet UILabel *GreenPointCo2Saving;
 @property (weak, nonatomic) IBOutlet UILabel *GreenPointPoints;
 

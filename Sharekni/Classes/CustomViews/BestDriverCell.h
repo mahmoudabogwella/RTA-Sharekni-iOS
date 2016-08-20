@@ -16,6 +16,9 @@
 @end
 
 @interface BestDriverCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *TPoints;
+@property (weak, nonatomic) IBOutlet UILabel *CO2;
+@property (weak, nonatomic) IBOutlet UILabel *TLastSeen;
 
 @property (nonatomic ,weak) id <SendSMSDelegate> delegate ;
 @property (weak, nonatomic) IBOutlet UILabel *LastSeen;

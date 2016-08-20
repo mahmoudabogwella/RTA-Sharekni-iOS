@@ -47,7 +47,10 @@
     // Do any additional setup after loading the view from its nib.
     
     self.title = GET_STRING(@"driverDetails");
-    
+    self.CO2.text = GET_STRING(@"Co2 Saving");
+    self.TPoints.text = GET_STRING(@"Points");
+    self.TRoutes.text = GET_STRING(@"Routes");
+    self.TVehicles.text = GET_STRING(@"Vehicles");
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
     [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];

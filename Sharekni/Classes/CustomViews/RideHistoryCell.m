@@ -13,6 +13,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.FromLabel.text = GET_STRING(@"From");
+    self.ToLabel.text = GET_STRING(@"To");
 }
 
 - (void)setJoinedRide:(Ride *)joinedRide

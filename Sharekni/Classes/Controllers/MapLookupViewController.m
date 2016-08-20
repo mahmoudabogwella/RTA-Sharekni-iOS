@@ -49,21 +49,14 @@
     [super viewDidLoad];
     [_mapView bringSubviewToFront:_TheMapSwitcherOutLet];
     
-    
-    
-//    if([CLLocationManager locationServicesEnabled] &&
-//       [CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
-//        // show the map
-//        NSLog(@"GPS working and he allowes it");
-//    } else {
-//        __block MapLookupViewController *blockSelf = self;
-//   [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please turn on GPS first")];
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [blockSelf.navigationController popViewControllerAnimated:YES];
-//            
-//        });
-//    }
-    
+    User *applicationUser = [[MobAccountManager sharedMobAccountManager] applicationUser];
+    if (applicationUser) {
+        self.TheMapSwitcherOutLet.hidden = NO;
+
+    }else {
+        self.TheMapSwitcherOutLet.hidden = YES;
+
+    }
     currentLocationEnabled = NO;
     self.title = GET_STRING(@"Map Lookup");
     switch ([[Languages sharedLanguageInstance] language]) {
@@ -480,12 +473,40 @@
 //        bounds = [bounds includingCoordinate:marker.position];
     
 //    [mapView_ animateWithCameraUpdate:[GMSCameraUpdate fitBounds:bounds withPadding:100.0f]];
-    mapView_.myLocationEnabled = YES;
-    CLLocation* myLoc = [mapView_ myLocation];
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:myLoc.coordinate.latitude
-                                                            longitude:myLoc.coordinate.longitude
-                                                                 zoom:12];//GonZoom From Here
-    [mapView_ setCamera:camera];
+    
+
+    
+    
+    if([CLLocationManager locationServicesEnabled] &&
+       [CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
+        // show the map
+        NSLog(@"GPS working and he allowes it");
+        mapView_.myLocationEnabled = YES;
+        CLLocation* myLoc = [mapView_ myLocation];
+        NSLog(@"that is lat : %f and log : %f ",myLoc.coordinate.latitude,myLoc.coordinate.longitude);
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:myLoc.coordinate.latitude
+                                                                longitude:myLoc.coordinate.longitude
+                                                                     zoom:12];//GonZoom From Here
+        [mapView_ setCamera:camera];
+    } else {
+        //        __block MapLookupViewController *blockSelf = self;
+        //   [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please turn on GPS first")];
+        //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //            [blockSelf.navigationController popViewControllerAnimated:YES];
+        //
+        //        });
+        NSLog(@"GPS is not working");
+        
+        mapView_.myLocationEnabled = YES;
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:25.47425
+                                                                longitude:55.70783
+                                                                     zoom:7];//GonZoom From Here
+        [mapView_ setCamera:camera];
+        //
+        
+    }
+    
+ 
 }
 
 - (void) popViewController{
@@ -526,7 +547,11 @@
             NSLog(@"Succes");
             [KVNProgress dismiss];
             blockSelf.mapLookupsForPassenger = items; //ESA
+          NSLog(@"that is the mapLookupsForPassenger : %@",blockSelf.mapLookupsForPassenger);
+          NSLog(@"that is the items : %@",items);
+
             blockSelf.markers = [NSMutableArray array];
+          NSLog(@"that is the marker : %@",blockSelf.markers);
             [blockSelf configurePins];
             [blockSelf focusMapToShowAllMarkers];
         } Failure:^(NSString *error) {

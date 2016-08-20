@@ -14,6 +14,7 @@
                 <outlet property="LMale" destination="V1Q-9t-BRf" id="Xge-b5-aFw"/>
                 <outlet property="LPrefGender" destination="uJR-sr-A6O" id="RjG-98-E2a"/>
                 <outlet property="LSmokers" destination="9XP-bQ-s2m" id="TCL-LO-n5o"/>
+                <outlet property="Lpick" destination="dfI-qg-e8O" id="eTx-Zg-bCi"/>
                 <outlet property="acceptBtn" destination="Ls7-dc-Vq0" id="MMe-BQ-NqY"/>
                 <outlet property="availableSeatsLabel" destination="T3d-m3-W4U" id="OdH-6f-3El"/>
                 <outlet property="bothBtn" destination="TaM-uM-d8T" id="CrY-PM-YHP"/>
@@ -448,7 +449,7 @@
                             <rect key="frame" x="100" y="20" width="120" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="تفاصيل الرحلة" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" id="GjP-gH-gl5">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="تفاصيل الرحلة" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" enabled="NO" id="GjP-gH-gl5">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -649,15 +650,15 @@
                                                 <action selector="selectIsSmoke:" destination="-1" eventType="touchUpInside" id="NZO-SX-eqH"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="موافق" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ygr-1j-1YV">
-                                            <rect key="frame" x="185" y="40" width="45" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="غير موافق" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HMX-EV-qdK">
+                                            <rect key="frame" x="18" y="40" width="71" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="غير موافق" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HMX-EV-qdK">
-                                            <rect key="frame" x="18" y="40" width="71" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="موافق" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="7" id="ygr-1j-1YV">
+                                            <rect key="frame" x="165" y="40" width="65" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

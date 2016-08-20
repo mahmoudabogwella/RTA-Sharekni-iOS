@@ -38,8 +38,11 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 - (void)awakeFromNib
 {
     // Initialization code
+    self.CO2.text = GET_STRING(@"Co2 Saving");
+    _HideLastSeen.text = GET_STRING(@"Last Seen");
     self.driverImage.layer.cornerRadius = self.driverImage.frame.size.width / 2.0f ;
     self.driverImage.clipsToBounds = YES ;
+    self.TPoints.text = GET_STRING(@"Points");
 }
 
 - (void)setMostRide:(MostRideDetails *)mostRide

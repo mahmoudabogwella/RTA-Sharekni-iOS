@@ -44,7 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.noResultLabel.text = GET_STRING(@"There is no saved search yet.");
     self.title = GET_STRING(@"Saved Search");
     self.noResultLabel.textColor = Red_UIColor;
     self.noResultLabel.alpha = 0;

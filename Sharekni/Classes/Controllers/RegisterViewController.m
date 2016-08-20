@@ -98,6 +98,7 @@
     [super viewDidLoad];
     self.selectedNationality.ID = @"0" ;
     // Do any additional setup after loading the view.
+    _Plus18Label.text = GET_STRING(@"+18 Years");
     _bothLbl.text = GET_STRING(@"Both");
     _driverLbl.text = GET_STRING(@"Driver");
     _passengerLbl.text = GET_STRING(@"Passenger");

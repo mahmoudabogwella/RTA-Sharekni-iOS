@@ -65,7 +65,7 @@ typedef enum DirectionType : NSUInteger {
     [super viewDidLoad];
     [self configureData];
     [self configureUI];
-   }
+}
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -131,15 +131,16 @@ typedef enum DirectionType : NSUInteger {
 }
 
 - (void) configureUI
-{    
+{
     self.navigationItem.title = GET_STRING(@"Set Direction");
     
     self.PickUplabel.text = GET_STRING(@"Pick up");
     self.DropOffLabel.text = GET_STRING(@"Drop off");
     [self.DoneButton setTitle:GET_STRING(@"Done") forState:UIControlStateNormal] ;
+    self.fromRegionTextField.placeholder = GET_STRING(@"Select Region");
+    self.toRegionTextField.placeholder = GET_STRING(@"Select Region");
     
     
-
     UIButton *_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.frame = CGRectMake(0, 0, 22, 22);
     [_backBtn setBackgroundImage:[UIImage imageNamed:@"Back_icn"] forState:UIControlStateNormal];
@@ -162,14 +163,14 @@ typedef enum DirectionType : NSUInteger {
     }
     
     [self.fromEmirateButton setBackgroundColor:[UIColor whiteColor]];
-     self.fromEmirateButton.layer.cornerRadius = 10;
+    self.fromEmirateButton.layer.cornerRadius = 10;
     [self.fromEmirateButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
     [self.fromEmirateButton setTitle:GET_STRING(@"Select Emirate") forState:UIControlStateNormal];
     self.fromEmirateButton.layer.borderWidth = .8;
     self.fromEmirateButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
-
+    
     [self.toEmirateButton setBackgroundColor:[UIColor whiteColor]];
-     self.toEmirateButton.layer.cornerRadius = 10;
+    self.toEmirateButton.layer.cornerRadius = 10;
     [self.toEmirateButton setTitleColor:Red_UIColor forState:UIControlStateNormal];
     [self.toEmirateButton setTitle:GET_STRING(@"Select Emirate") forState:UIControlStateNormal];
     self.toEmirateButton.layer.borderWidth = .8;
@@ -217,15 +218,15 @@ typedef enum DirectionType : NSUInteger {
 {
     if (!self.selectedFromEmirate)
     {
-      [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select from Emirate")];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please select from Emirate")];
     }
     else if (self.fromRegionTextField.text.length == 0)
     {
-      [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please Enter from Region")];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please Enter from Region")];
     }
     else if (![self.fromRegionsStringsArray containsObject:self.fromRegionTextField.text])
     {
-      [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please Enter Valid from Region Name")];
+        [[HelpManager sharedHelpManager] showAlertWithMessage:GET_STRING(@"Please Enter Valid from Region Name")];
     }
     else
     {

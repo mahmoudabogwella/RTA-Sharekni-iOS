@@ -1,0 +1,397 @@
+/*
+ Localizable.strings
+ Sharekni
+ 
+ Created by Ahmed Askar on 10/9/15.
+ 
+ */
+
+
+"No" = "نہیں";
+"Take a tour" = "دورہ کریں";
+
+"Back_icn" = "واپس آئکن";
+"username"  = "کا صارف کا نام";
+"Username (Your Email)" = "صارف كا نام(ای ميل)";
+"Password"  = "پاس ورڈ";
+"firstName" = "پہلا نام";
+"lastName"  = "آخری نام";
+"mobile"    = "موبائل";
+"nationality" = "قومیت";
+"pLanguage" = "پسندیدہ زبان";
+"Submit" = "جمع کروائیں";
+
+"nameReq" = "نام مطلوب";
+"passReq" = "پاس ورڈ کی ضرورت";
+
+"mobileReq" = "موبائل درکار";
+"mailReq" = "میل کی ضرورت";
+
+"registration" = "رجسٹریشن";
+"login" = "لاگ ان";
+"bestDrivers" = "بہترین ڈرائیوروں";
+"searchOptions" = "فوری تلاش";
+"mostRides" = "سب سے اوپر سواری";
+"advancedSearch" = "علی درجے کی تلاش";
+"quickSearch" = "فوری تلاش";
+
+"Please set direction for both Pick up and Drop off" = "چھوڑ دونوں اٹھا لینا کے لئے سمت مقرر اور براہ مہربانی";
+"loading" = "لوڈ کر رہا ہے";
+"Loading..." = "لوڈ کر رہا ہے";
+
+"sharkni" = "Sharekni";
+
+"driverDetails" = "ڈرائیور کی تفصیلات";
+"rideDetails" = "کی سواری کی تفصیلات";
+
+
+"submit" = "جمع کروائیں";
+"forget" = "پاسورڈ بھول گے";
+"preferedLang" = "ترجیح دی قومیت";
+
+
+//ForgetPassword
+
+"A reset password link has been sent to your email" = "ایک ری سیٹ پاس ورڈ لنک آپ کے ای میل کرنے کے لئے بھیج دیا گیا ہے";
+
+"Email are not matching" = "ای میل ملاپ نہیں ہیں";
+
+"Kg" = "Kg";
+//Registeration
+"Please Choose a valid nationality." = "ایک درست قومیت کا انتخاب کریں.";
+"Please Choose acconut type." = "اکاؤنٹ کی قسم کا انتخاب کریں.";
+"Please fill all fields" = "تمام مطلوبہ شعبوں کو بھرنے براہ مہربانی";
+"First name mustn't have numbers" = "پہلا نام نمبرز نہیں ہونا چاہیے";
+"Last name mustn't have numbers" = "آخری نام نمبرز نہیں ہونا چاہیے";
+"Mobile Number should be only 9 and should start with [50 – 55 – 56 – 52]" = "موبائل نمبر صرف 9 ہونا چاہئے اور ساتھ شروع کر دینا چاہئے [50 - 55 - 56 - 52]";
+"Please enter a valid email address" = "برائے مہربانی قابل قبول ای میل ایڈریس لکھیں";
+"You should be older than 18 Years"  = "آپ 18 سے زیادہ عمر سال سے زیادہ ہونا چاہئے";
+"Select" = "منتخب کریں";
+"Cancel" = "منسوخ کریں";
+"Ok" = "ٹھیک ہے";
+"Email already exists" = "ای میل پہلے سے موجود ہے";
+"Mobile number already exists" = "موبائل نمبر پہلے سے موجود ہے";
+"Registration done successfully" = "رجسٹریشن کامیابی سے کیا.";
+
+"Choose a language" = "ایک زبان کا انتخاب کریں";
+"Choose age range" = "عمر کی حد کا انتخاب کریں";
+"Select Nationality" = "منتخب قومیت";
+
+"Fill in the email address please" = "براہ مہربانی ای میل پتہ درج کریں" ;
+
+
+
+//Home
+"Home Page" = "ہوم پیج";
+"Most Rides" = "سب سے زیادہ سواری";
+"Best Drivers" = "بہترین ڈرائیوروں";
+"Logout" = "لاگ آوٹ";
+"Language" = "زبان";
+
+"Rides Created" = "سواری پیدا کیا";
+"Rides Joined" = "سواری شمولیت";
+"Vehicles" = "گاڑیاں";
+"History" = "تاریخ";
+"Permits" = "اجازت نامہ";
+"Permit" = "اجازت";
+"Search" = "تلاش";
+"Saved Search" = "محفوظ تلاش";
+"Create Ride"  = "سواری بنائیں";
+"You Don't Have Any Vehcile Registered" = "آپ کسی بھی رجسٹرڈ گاڑیاں نہیں ہے";
+"Do you want to Register it now?" = "آپ کو رجسٹر کرنا چاہتے ہیں؟";
+"Register Vehicle" = "رجسٹر وہیکل";
+"Dismiss" = "برخاست";
+
+"No permits found" = "ابھی تک کوئی اجازت نامہ نہیں ہے";
+//Create Rides
+"No rides joined yet" = "کوئی سواری ابھی تک شامل";
+"Do you want to leave this ride?" = "کیا تم نے اس سواری کو چھوڑنا چاہتے ہیں؟";
+"Ride leaved successfully." = "آپ اس سواری کو چھوڑ دیا ہے";
+"Select vehicle" = "منتخب گاڑی";
+"Confirm" = "تصدیق";
+"DeleteNotifcationHeaderNot" = "تصدیق";
+
+"Delete" = "حذف";
+"Edit" = "ترمیم کریں";
+"Do you want to delete this ride ?" = "کیا تم نے اس سواری کو حذف کرنا چاہتے ہیں کہ آپ کو یقین ہے؟";
+"Ride Deleted successfully." = "راستے کو حذف کریں";
+"Saved Search" = "محفوظ تلاش";
+"Edit Ride" = "سواری ترمیم کریں";
+"Please configure your vehicles first" = "آپ کی گاڑی کی پہلے کی تشکیل کریں";
+"Days Of Week" = "ہفتے کے دن";
+
+
+"Notifications" = "اطلاعات";
+"Attention" = "توجہ";
+"You must write your review first" = "سب سے پہلے ایک جائزے لکھ کریں";
+"You must write your remark first" = "تم سب سے پہلے اپنے ریمارکس لکھ ضروری ہے";
+
+
+//Creat Drive
+"You can't use this file number" = "تم اس فائل نمبر استعمال نہیں کر سکتے";
+"License verified, but no cars found" = "تصدیق کی لائسنس، لیکن کوئی کارڈ نہیں ملا";
+"Invalid data please check again" = "غلط ڈیٹا دوبارہ چیک کریں، براہ مہربانی";
+//Driver Ride
+"Details" = "تفصیلات";
+"Driver" = "ڈرائیور";
+"Leave" = "چھوڑ دو";
+
+"Sorry, you can't send any more invitations" = "معاف کیجئے گا، آپ کو کوئی مزید دعوتیں نہیں بھیج سکتے";
+
+
+//Add review
+"Write Your Review" = "آپ کا جائزہ لکھنے";
+"Your Review" = "آپ کا جائزہ لیں";
+"Review" = "جائزہ";
+"I’d like to join your ride" = "میں آپ کی سواری کے ساتھ شامل ہوں";
+"I’d like to invite you to my ride" = "میں نے اپنی سواری کے لئے آپ کو مدعو کرنے کے لئے چاہتے ہیں";
+"Write Your Remarks" = "آپ ریمارکس لکھ";
+"Your Remarks" = "آپ ریمارکس";
+
+
+"Map Lookup" = "نقشہ تلاش کریں";
+"Starting Time :" = "وقت پر شروع";
+"Set Direction" = "سیٹ سمت";
+"Please set direction" = "سمت مقرر کریں";
+"No Rides Found" = "نہیں ڈرائیوز پایا";
+"Please select from Emirate" = "امارت سے انتخاب کریں";
+"Please Enter from Region" = "علاقہ سے درج کریں";
+"Please Enter to Region" = "علاقہ کرنے کے لئے درج کریں";
+"Please select to Emirate" = "امارت کرنے کے لئے منتخب کریں";
+
+
+"Select Emirate" = "إمارات منتخب";
+"Please select from Emirate first" = "سب سے پہلے امارت سے انتخاب کریں";
+"Please select to Emirate first" = "سب سے پہلے امارت کرنے کے لئے منتخب کریں";
+"Please enter a valid to region name" = "خطے کا نام کے لئے ایک درست درج کریں";
+"invalid start date or time" = "غلط شروع کرنے کی تاریخ یا وقت";
+
+"Drivers :" = "ڈرائیور";
+"Passengers :" = "مسافروں :";
+
+"Drivers" = "ڈرائیور";
+"Passengers" = "مسافروں";
+"Coming Rides :" = "آئندہ سواری";
+
+"From" = "منجانب";
+"To" = "کرنے کے لئے";
+"Not Set" = "سیٹ نہیں ہے";
+"Ride Days" = "سواری دن";
+
+"Sat " = "  هفته";
+"Sun " = "  اتوار";
+"Mon " = "  پیر";
+"Tue " = "  منگل";
+"Wed " = "  بده" ;
+"Thu " = " جمعرات";
+"Fri " = "  جمعه";
+
+"Terms And Conditions" = "شرائط و ضوابط";
+"Accept" = "قبول کریں";
+"Policy" = "پالیسی";
+"Search Results" = "تلاش کے نتائج";
+"Has Accepted your request" = "آپ کی درخواست قبول کر لی ہے";
+"Send you a join request" = "آپ کو ایک شمولیت کی درخواست بھیجیں";
+"Notification Details" = "اہم اطلاع کی تفصیلات";
+
+"Mobile verification code has been sent to your mobile" = "موبائل تصدیقی کوڈ آپ کے موبائل پر بھیجا گیا ہے";
+"Please check your mobile number" = "درست موبائل نمبر درج کریں";
+
+"Please write your verification code" = "اپنا توثیقی کوڈ لکھ کریں";
+"Write Your Code" = "آپ کا کوڈ لکھیں";
+"Your Code" = "آپ کے کوڈ";
+"Resend verification code" = "ایک بار پھر کوڈ بھیجیں";
+"Enter verification code"  = "تصدیقی کوڈ درج کریں";
+"Traffic File No." = "ٹریفک فائل نمبر";
+
+"Edit Profile" = "پروفائل میں ترمیم کریں";
+"Nationalty must be selected" = "قومیت منتخب ہونا ضروری ہے";
+"Please check your username and password" = "اپنا صارف کا نام یا پاس ورڈ براہ مہربانی چیک کریں";
+"Edit profile info success" = "تفصیلات کو اپ ڈیٹ";
+"Select date of birth" = "پیدائش باطل کی تاریخ";
+"Verification Code is wrong" = "کوڈ غلط ہے";
+"Mobile Verified" = "موبائل کی توثیق";
+
+"Please select start point" = "آغاز نقطہ براہ مہربانی منتخب کریں";
+"Directions can't be edited." = "ہدایات ترمیم نہیں کی جاسکتی.";
+"Please set startpoint and destination." = "نقطہ آغاز اور منزل مقرر کریں.";
+"Please select Vehicle" = "وہیکل براہ مہربانی منتخب کریں";
+"Please enter ride name" = "سواری کے نام درج کریں";
+"Please select start date" = "شروع کرنے کی تاریخ کا انتخاب کریں";
+"Please select start time" = "وقت آغاز براہ مہربانی منتخب کریں";
+"Please select number of available seats." = "دستیاب نشستوں کی تعداد کو منتخب کریں.";
+"Please select days of week." = "کم از کم ایک دن منتخب کریں";
+"Ride edited successfully" = "سوار اپ ڈیٹ!!";
+"Ride created successfully" = "سواری کامیابی کے ساتھ";
+"An error happend when trying to create ride" = "سواری بنائیں کرتے وقت ایک خامی پیش کیا ہوا";
+"Sorry, It's not allowed to create more than two rides" = "آپ زیادہ سے زیادہ قابل اجازت سواری تک پہنچ چکے ہیں!";
+"Sorry, you have yo have at least one ride" = "آپ کسی بھی گاڑی کی ضرورت نہیں ہے";
+"Select Pickup Time" = "اٹھا لینا وقت منتخب کریں";
+"Select Pickup Date" = "سلیکٹ اٹھا تاریخ";
+"Rating added successfully" = "شرح کامیابی سے پیش کیا جاتا ہے";
+"Unable to add Rating" = "درجہ بندی شامل کرنے سے قاصر";
+
+
+"Ride Delete successfully." = "کامیابی سواری خارج کر دیا گیا.";
+"An error occured when deleting ride" = "سواری سے خارج کرتے وقت ایک خامی پیش آگئی";
+"Passenger removed successfully" = "آپ کو اس کو حذف کرنا چاہتے ہیں؟";
+"Unable to remove the passenger" = "مسافر کو دور کرنے سے قاصر ہے";
+"Mobile Number not available" = "موبائل نمبر دستیاب نہیں";
+"Do you want to delete this passenger ?" = "آپ کو اس مسافر کو حذف کرنا چاہتے ہیں؟";
+
+"No history" = "کوئی سرگزشت ملا";
+"Do you want to leave this ride" = "آپ کو اس کی سواری چھوڑنے کے لئے چاہتے ہیں";
+"An error occured when leaving ride" = "کی سواری چھوڑ کر جب ایک خرابی واقع ہوئی";
+"Permit added successfully." = "پرمٹ کامیابی سے شامل.";
+"Invalid birthdate" = "غلط تاریخ پیدائش";
+
+"Male" = "مرد";
+"Female" = "خواتین";
+"Both" = "دونوں";
+"Yes" = "جی ہاں";
+"No" = "نہیں";
+"Dubai" = "دبئی";
+
+"Please Choose account type." = "اکاؤنٹ کی قسم کا انتخاب کریں.";
+"No camera on device" = "آلہ پر کوئی کیمرے";
+"You cannot choose year before 1900" = "آپ 1900 سال سے پہلے انتخاب نہیں کر سکتے";
+"Photo Library" = "تصویر لائبریری";
+"Camera" = "کیمرے";
+
+"You don't have joined rides yet" = "شمولیت اختیار کوئی سواری نہیں ہیں";
+"You don't have created rides yet" = "ابھی تک آپ سے پیدا کی سواری کی ضرورت نہیں ہے";
+"Received your request and waiting for approval" = "آپ کی درخواست موصول ہوئی ہے اور منظوری کے انتظار میں";
+"Request deleted successfully" = "پروپوزل کی کامیابی سے ہٹا دیا جاتا ہے";
+"Cannot delete Request" = "گذارش حذف نہیں کیا جاسکتا";
+
+"Do you want to delete this review ?" = "آپ اس جائزے کو حذف کرنا چاہتے ہیں؟";
+"Edit Review" = "ترمیم کا جائزہ لیں";
+"Review deleted successfully" = "کا جائزہ کامیابی سے خارج";
+"Cannot delete Review" = "کا جائزہ لیں حذف نہیں کیا جاسکتا";
+"Password must be at least 5 characters" = "پاس ورڈ میں کم از کم 5 حروف ہونا ضروری ہے";
+"data are not matching" = "اعداد و شمار کے ملاپ نہیں ہیں";
+"Not Specified" = "واضع";
+"No Specified" = "واضع";
+"No Specified" = "واضع";
+"Error" = "خرابی";
+"You don't have any notifications" = "آپ کسی بھی اطلاعات نہیں بنایا";
+"Do you want to delete this request ?" = "آپ اس درخواست کو خارج کرنا چاہتے ہیں؟";
+"Request had been sent Successfully , Wait for driver Approval." = "درخواست کامیابی بھیج دیا گیا ہے، ڈرائیور کی منظوری کے لئے انتظار.";
+"Request had been sent Successfully , wait for Passenger's Approval" = "درخواست کامیابی بھیج دیا گیا ہے، مسافروں کو منظوری کے لئے انتظار";
+
+// Passenger invitation
+"Has Accepted your invitation" = "آپ کی دعوت قبول کر لی ہے";
+"Received your invitation and waiting for approval" = "آپ کی دعوت موصول ہوئی ہے اور منظوری کے انتظار میں";
+"Send you a invitation request" = "آپ کو ایک دعوت نامہ بھیجیں درخواست";
+
+"Cannot delete invitation" = "دعوت کو حذف نہیں کیا جاسکتا";
+"Invitation deleted successfully" = "دعوت کامیابی کے ساتھ حذف";
+"Do you want to delete this invitation ?" = "اس دعوت نامے کو حذف کرنا چاہتے ہیں؟";
+
+"Has Rejected your invitation" = "آپ کی دعوت مسترد کر دی ہے";
+
+
+"Has Rejected your join Request" = "آپ کی درخواست کے ساتھ شامل ہونے کو رد کر دیا";
+
+//Quick Search
+"Please click on set direction button to set start and end point" = "شروع اور آخر نقطہ قائم کرنے کے لئے مقرر سمت بٹن پر کلک کریں براہ مہربانی";
+"Start Date" = "شروع کرنے کی تاریخ";
+"Start Time" = "وقت آغاز";
+"Top Rides" = "سب سے اوپر سواری";
+
+//Set Direction in quick Search
+"Pick up" = "اٹھاو";
+"Drop off" = "چھوڑ";
+"Done" = "ہوگیا";
+"Select Region" = "علاقہ سلیکٹ";
+
+//Advanced Search
+"Single Ride" = "سنگل سواری";
+"Periodic" = "متواتر";
+"Optional" = "اختیاری";
+"Not Accept" = "قبول نہیں";
+
+//Ride Details
+
+"Last Seen" = "آخری دفعہ پایا";
+"Co2 Saving" = "CO2 کی بچت";
+
+//Driver Details
+"Points" = "پوائنٹس";
+"Km" = "Km";
+"Routes" = "روٹس";
+"My Work" = "میرا کام";
+"Go to work" = "کام پر جانا";
+
+//Ride Details
+"Gender" = "صنف";
+"Age Range" = "حد عمر";
+"Smokers" = "تمباکو نوشی کرنے";
+"Preferences"  = "ترجیحات";
+"Join Ride" = "سواری شمولیت";
+"Matched Search Results" = "ملائے گئے تلاش کے نتائج";
+"Share" = "سیکنڈ اور";
+//Registration
+"Passenger" = "مسافر";
+"+18 Years" = "+18 سال";
+"Upload your photo" = "آپ کی تصویر اپ لوڈ کریں";
+"I accept the RTA's terms and conditions" = "مجھے RTA کی شرائط و ضوابط کو قبول";
+"Privacy and Policy" = "پرائیویسی اور پالیسی";
+"Save" = "محفوظ کریں";
+"Register Now" = "ابھی رجسٹر";
+"Forget Password?" = "پاسورڈ بھول گے؟";
+
+//Vehicles
+"Register Vehicles" = "رجسٹر گاڑیاں";
+"Date of birth" = "پیدائش کی تاریخ";
+
+//Creat Ride
+"Available Seats" = "دستیاب نشستیں";
+//Homae Page
+"Verify" = "تصدیق کریں";
+//Edit Profile
+"Update" = "اپ ڈیٹ";
+
+"Invite" = "مدعو کریں";
+"Join" = "شامل ہوں";
+"Save Search" = "محفوظ کریں تلاش کریں";
+
+
+"Sorry but you have to be logged in facebook to share" = "معذرت لیکن اگر آپ فیس بک لاگ ان ہونا اشتراک کرنے کے لئے ہے";
+
+
+"This app" = "یہ ایپ";
+"Micro app" = "مائیکرو اپلی کیشن";
+"Transation" = "ترجمہ میں";
+
+"Help & FAQ" = "مدد اور عمومی سوالات";
+"No Passengers Found" = "کوئی مسافر ملا" ;
+
+//map LookUp
+
+"Please turn on GPS first" = "پہلی GPS پر تبدیل کریں" ;
+
+"Preferred Gender" = "پسندیدہ صنف" ;
+
+
+"Happy Meter" = "خوشی كو";
+
+"Filipino" = "Filipino";
+"Chinese" = "中国";
+"Arabic" = "العربية";
+"English" = "English";
+"Urdu" = "اردو";
+
+
+"There is no saved search yet." = "ابھی تک کوئی محفوظ کردہ تلاش نہیں ہے" ; 
+
+
+"Refresh" = "تازہ کریں" ;
+
+
+
+
+
+
+
+// 9 , 12 ,19, 21 ,23,25 , 38 ("Please write your verification code") ,42 (Not)

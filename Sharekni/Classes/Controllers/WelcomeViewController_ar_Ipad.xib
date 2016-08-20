@@ -224,8 +224,7 @@
                                     <exclude reference="EBx-pH-Thl"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                <rect key="frame" x="619" y="109" width="120" height="18"/>
+                            <variation key="heightClass=regular-widthClass=regular">
                                 <mask key="constraints">
                                     <include reference="Dvy-Cg-C6Y"/>
                                     <include reference="EBx-pH-Thl"/>

@@ -31,6 +31,10 @@
 
 @interface SearchResultsViewControllerForMap () <SendMSGDelegate/*,MJDetailPopupDelegate*/,MJAddRemarkPopupDelegate,MFMessageComposeViewControllerDelegate ,UIActionSheetDelegate ,UIAlertViewDelegate,MJAddRemarkPopupDelegate>
 
+
+@property (weak, nonatomic) IBOutlet UILabel *FromLabel;
+
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *fromLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toTitleLabel;
@@ -43,6 +47,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.FromLabel.text = GET_STRING(@"From");
+    self.toTitleLabel.text = GET_STRING(@"To");
+    
+    
     switch ([[Languages sharedLanguageInstance] language]) {
             
             

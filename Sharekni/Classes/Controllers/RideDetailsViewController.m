@@ -52,6 +52,8 @@
 
 @interface RideDetailsViewController ()<GMSMapViewDelegate,MJDetailPopupDelegate,MJAddRemarkPopupDelegate,MFMessageComposeViewControllerDelegate,UIAlertViewDelegate>
 {
+    __weak IBOutlet UILabel *FromLabel;
+    __weak IBOutlet UILabel *ToLabel;
     __weak IBOutlet UIScrollView *contentView ;
     __weak IBOutlet UITableView *reviewList ;
     __weak IBOutlet UIView *passengersHeader;
@@ -86,6 +88,17 @@
     __weak IBOutlet UIButton *thirdButton;
     
     __weak IBOutlet UIButton *MatchedSearchResults;
+    
+    //Gonlang
+    
+    __weak IBOutlet UILabel *LLang;
+    __weak IBOutlet UILabel *Lgender;
+    __weak IBOutlet UILabel *LNationality;
+
+    __weak IBOutlet UILabel *LAgerange;
+    __weak IBOutlet UILabel *LSmokers;
+
+    
     NSString *selected;
 }
 
@@ -118,7 +131,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    FromLabel.text = GET_STRING(@"From");
+    ToLabel.text = GET_STRING(@"To");
     
     
     if (self.driverDetails)
@@ -145,10 +159,36 @@
             self->selected = @"English";
             //        self.HindiButtonSelector.hidden = NO;
             break;
+        case Philippine:
+            //
+            self->selected = @"Philippine";
+            //        self.HindiButtonSelector.hidden = NO;
+            break;
+        case Chines:
+            //
+            self->selected = @"Chines";
+            //        self.HindiButtonSelector.hidden = NO;
+            break;
+        case Urdu:
+            //
+            self->selected = @"Urdu";
+            //        self.HindiButtonSelector.hidden = NO;
+            break;
         default:
             break;
     }
-    
+    [MatchedSearchResults setTitle:GET_STRING(@"Matched Search Results") forState:UIControlStateNormal];
+    MatchedSearchResults.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    preferenceLbl.text = GET_STRING(@"Preferences");
+    nationality.text = GET_STRING(@"Not Specified");
+    NSLog(@"that is the nationality : %@",nationality.text);
+    LLang.text = GET_STRING(@"Language");
+    Lgender.text = GET_STRING(@"Gender");
+    LAgerange.text = GET_STRING(@"Age Range");
+    LSmokers.text = GET_STRING(@"Smokers");
+    LNationality.text = GET_STRING(@"nationality");
+    [joinRideBtn setTitle:GET_STRING(@"Join Ride") forState:UIControlStateNormal];
+    reviewLbl.text = GET_STRING(@"Review");
     
     self.alreadyJoined = NO;
     self.title = GET_STRING(@"rideDetails");
@@ -318,6 +358,12 @@
     else
     {
         nationality.text = (KIS_ARABIC)?self.routeDetails.NationalityArName:self.routeDetails.NationalityEnName ;
+        
+        if ([nationality.text containsString:@"Not Specified"]) {
+            
+            nationality.text = GET_STRING(@"Not Specified");
+        }
+        
     }
     
     if ([NSStringEmpty isNullOrEmpty:self.routeDetails.AgeRange])
@@ -642,7 +688,7 @@
         if ( IDIOM == IPAD ) {
             /* do something specifically for iPad. */
             
-            if (  [self->selected  isEqual: @"Arabic"]) {
+            if (  [self->selected  isEqual: @"Arabic"] ||[self->selected  isEqual: @"Urdu"] ) {
                 LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar_Ipad" bundle:nil];
                 UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
                 loginView.isLogged = YES ;
@@ -657,7 +703,7 @@
         } else {
             /* do something specifically for iPhone or iPod touch. */
             
-            if (  [self->selected  isEqual: @"Arabic"]) {
+            if (  [self->selected  isEqual: @"Arabic"] ||[self->selected  isEqual: @"Urdu"] ) {
                 LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
                 UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
                 loginView.isLogged = YES ;
@@ -790,7 +836,7 @@
         if ( IDIOM == IPAD ) {
             /* do something specifically for iPad. */
             
-            if (  [self->selected  isEqual: @"Arabic"]) {
+            if (  [self->selected  isEqual: @"Arabic"] || [self->selected  isEqual: @"Urdu"]) {
                 LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar_Ipad" bundle:nil];
                 UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
                 loginView.isLogged = YES ;
@@ -805,7 +851,7 @@
         } else {
             /* do something specifically for iPhone or iPod touch. */
             
-            if (  [self->selected  isEqual: @"Arabic"]) {
+            if (  [self->selected  isEqual: @"Arabic"] || [self->selected  isEqual: @"Urdu"]) {
                 LoginViewController *loginView =  [[LoginViewController alloc] initWithNibName:@"LoginViewController_ar" bundle:nil];
                 UINavigationController *navg = [[UINavigationController alloc] initWithRootViewController:loginView];
                 loginView.isLogged = YES ;

@@ -62,6 +62,8 @@
             break;
         case Indian:
             break;
+        case Urdu:
+            break;
         
     }
     [_ThisappB setTitle:GET_STRING(@"This app") forState:UIControlStateNormal];
